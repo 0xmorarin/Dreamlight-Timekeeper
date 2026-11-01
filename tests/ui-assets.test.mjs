@@ -10,22 +10,22 @@ const gameEntry={kind:'game_ui',verified:true,platform:'Steam',gameVersion:'1.25
   path:'assets/steam/v1253/ui/currency/moonstone.webp',sha256:hash,sourceSha256:hash,
   sourceAsset:'ui-imagesatlas_assets_all.bundle|Texture2D',mappingEvidence:'Sprite-to-texture linkage observed',
   spritePathId:'9511052423844503179',texturePathId:'5643049798835674763',width:64,height:64};
-const appEntry={kind:'app_ui',verified:true,path:'assets/app/ui/action/open-save.webp',
+const appEntry={kind:'app_ui',verified:true,path:'assets/app/ui/action/open-save.svg',
   sha256:hash,sourceSha256:hash,sourceAsset:'Original tool artwork',
-  mappingEvidence:'Direct owner-authored action.open-save symbol',width:64,height:64};
+  mappingEvidence:'Direct owner-authored action.open-save symbol',width:24,height:24};
 const withIcon=(base,key,entry)=>({...structuredClone(base),
   source:{...base.source,status:'VERIFIED_ASSETS'},icons:{[key]:entry}});
 test('published game and app UI icons resolve in independent namespaces',()=>{
  assert.equal(validateUiManifest(game,'game_ui'),true);
  assert.equal(validateUiManifest(app,'app_ui'),true);
  assert.equal(resolveGameUiIcon(game,'currency.moonstone'),null);
- assert.equal(resolveAppUiIcon(app,'action.open-save')?.width,48);
- assert.equal(resolveAppUiIcon(app,'action.backup')?.height,48);
+ assert.equal(resolveAppUiIcon(app,'action.open-save')?.width,24);
+ assert.equal(resolveAppUiIcon(app,'action.backup')?.height,24);
  assert.equal(resolveGameUiIcon(game,'skill.mining')?.width,128);
  assert.equal(resolveGameUiIcon(game,'status.warning')?.height,32);
  assert.ok(GAME_UI_KEYS.includes('tab.spawn')&&APP_UI_KEYS.includes('action.backup'));
 });
-test('verified semantic keys resolve only for their own type',()=>{
+test('validated semantic keys resolve only for their own type',()=>{
  const g=withIcon(game,'currency.moonstone',gameEntry),a=withIcon(app,'action.open-save',appEntry);
  assert.equal(validateUiManifest(g,'game_ui'),true);
  assert.equal(validateUiManifest(a,'app_ui'),true);
