@@ -4,7 +4,8 @@ export const GAME_UI_KEYS = Object.freeze([
   'currency.star-coin','currency.moonstone','currency.dreamlight','currency.mist','status.energy',
   'skill.fishing','skill.mining','skill.gardening','skill.foraging','skill.timebending',
   'skill.cooking','skill.crafting','category.furniture','category.clothing',
-  'tab.spawn','tab.resources','tab.shops','tab.daily'
+  'tab.spawn','tab.resources','tab.shops','tab.daily',
+  'world.valley','world.exp1','world.exp2','world.exp3','world.hgw'
 ]);
 export const APP_UI_KEYS = Object.freeze([
   'action.open-save','action.backup','action.open-another','status.warning',
