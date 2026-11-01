@@ -27,7 +27,7 @@ export function classifyDecorationSpawnEvent(record){
  if(!record||!idOK(record.id)||typeof record.name!=='string')throw new Error('Unrecognized event record.');
  let family=FAMILY.EXCLUDED;
  // W1 is a *static review tag only*, not proof of writable or removable state.
- if(record.tab==='spawn'&&record.eventPolicy==='W1'&&record.active===true&&linked(record)){
+ if(record.tab==='spawn'&&record.eventPolicy==='W1'&&linked(record)){
   if(record.group==='障害物'&&['闇のトゲ','障害物（種類別）'].includes(record.subgroup))family=FAMILY.OBSTACLE;
   else if(record.group==='野生植物'&&record.subgroup==='ハーブ・スパイス・野生作物')family=FAMILY.WILD_PLANT;
   else if(record.group==='花'&&record.subgroup==='花の生成')family=FAMILY.FLOWER;
@@ -39,6 +39,7 @@ export function classifyDecorationSpawnEvent(record){
  const primary=[FAMILY.OBSTACLE,FAMILY.WILD_PLANT,FAMILY.FLOWER,FAMILY.WOOD].includes(family);
  return Object.freeze({
   eventId:record.id,eventName:record.name,family,primaryDecorationResearch:primary,
+  definitionActive:record.active===true,activeSourceReviewCandidate:primary&&record.active===true,
   sourceEventPolicy:record.eventPolicy??'UNKNOWN',
   linkedItemIds:Object.freeze((record.items||[]).filter(x=>idOK(x.id)).map(x=>x.id)),
   linkedItemIsPlacedGridObjectVerified:false,
@@ -56,11 +57,12 @@ export function compileDecorationSpawnEvidence(document){
  const rows=document.events.map(classifyDecorationSpawnEvent);
  if(new Set(rows.map(r=>r.eventId)).size!==508)throw new Error('Duplicate event identity.');
  const counts=Object.fromEntries(Object.values(FAMILY).map(x=>[x,0]));
- for(const r of rows)counts[r.family]++;
+ const activeCounts=Object.fromEntries(Object.values(FAMILY).map(x=>[x,0]));
+ for(const r of rows){counts[r.family]++;if(r.definitionActive)activeCounts[r.family]++;}
  return Object.freeze({
   source:Object.freeze({...SOURCE,sourceRecordCount:508,
    status:'STATIC_SOURCE_PROJECTION',writeAuthorization:false,deleteAuthorization:false}),
-  counts:Object.freeze(counts),
+  counts:Object.freeze(counts),activeCounts:Object.freeze(activeCounts),
   rows:Object.freeze(rows.sort((a,b)=>a.eventId-b.eventId))
  });
 }
