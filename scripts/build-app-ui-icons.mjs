@@ -21,7 +21,7 @@ export async function buildAppIcons(outRoot){
       width:APP_SVG_SIZE,height:APP_SVG_SIZE};
   }
   const manifest={kind:'app_ui',source:{platform:'Dreamlight Timekeeper',revision:2,
-    assetFormat:'SVG',status:'VERIFIED_ASSETS',writerAuthorization:false},icons};
+    assetFormat:'SVG',designStatus:'PROVISIONAL_OWNER_ARTWORK',status:'VERIFIED_ASSETS',writerAuthorization:false},icons};
   await mkdir(join(root,'data'),{recursive:true});
   await writeFile(join(root,'data','app-ui-icons.json'),JSON.stringify(manifest,null,2)+'\n');
   return manifest;
