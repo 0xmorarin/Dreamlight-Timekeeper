@@ -1,1 +1,11 @@
-{"name":"dreamlight-timekeeper","version":"0.5.0","private":true,"type":"module","scripts":{"test":"node --test tests/*.test.mjs","serve":"python -m http.server 8000"}}
+{
+  "name": "dreamlight-timekeeper",
+  "version": "0.5.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs && npm run verify:icons",
+    "serve": "python -m http.server 8000",
+    "verify:icons": "node scripts/verify-icon-assets.mjs"
+  }
+}
