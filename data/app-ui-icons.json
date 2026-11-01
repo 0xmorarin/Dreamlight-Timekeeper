@@ -5,7 +5,8 @@
     "revision": 2,
     "status": "VERIFIED_ASSETS",
     "writerAuthorization": false,
-    "assetFormat": "SVG"
+    "assetFormat": "SVG",
+    "designStatus": "PROVISIONAL_OWNER_ARTWORK"
   },
   "icons": {
     "action.open-save": {
