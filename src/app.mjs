@@ -26,11 +26,36 @@ function message(text,error=false){
  el.hidden=!text;el.textContent=text;el.className=state.snapshot?(error?'workspace-status error':'workspace-status'):(error?'status error':'status');
  if(state.snapshot){const count=++noticeCount;setTimeout(()=>{if(count===noticeCount)el.hidden=true;},6500);}
 }
+function renderAudit(){
+ const root=$('timing-audit');
+ if(!root)return;
+ const prior=root.querySelector('details');
+ const wasOpen=prior?.open;
+ root.replaceChildren();
+ const a=state.snapshot?.timingAudit;
+ if(!a||a.diagnosticOnly!==true||a.writerAuthorized!==false)return;
+ const detail=make('details','audit-details');
+ detail.open=wasOpen??(a.statuses.SPECIAL_2126_UNRESOLVED>0||a.statuses.DISTANT_FUTURE_UNVERIFIED>0||a.statuses.INVALID>0);
+ detail.append(make('summary','',t('auditTitle')+' · '+a.total));
+ const numbers=make('div','audit-counters');
+ for(const [key,n] of [
+  ['auditShared',a.statuses.SPECIAL_2126_UNRESOLVED],
+  ['auditDistant',a.statuses.DISTANT_FUTURE_UNVERIFIED],
+  ['auditFuture',a.statuses.FUTURE],
+  ['auditInvalid',a.statuses.INVALID],
+  ['auditPast',a.statuses.PAST]
+ ])numbers.append(make('span','',t(key,{n})));
+ detail.append(numbers);
+ if(a.shared2126.multiTypePattern)detail.append(make('p','audit-uncertainty',t('auditMulti')));
+ detail.append(make('p','audit-uncertainty',t('auditNoRepair')));
+ detail.append(make('p','audit-provenance',t('auditUnknown')));
+ root.append(detail);
+}
 function showEditor(){
  $('welcome').hidden=true;$('workspace').hidden=false;
  $('session-name').textContent=state.snapshot.identity.name||'Save opened';
  $('download-backup').disabled=false;
- renderTabs();renderFilters();renderList();renderDetails();
+ renderAudit();renderTabs();renderFilters();renderList();renderDetails();
 }
 function showWelcome(){if(state.snapshot)return;$('welcome').hidden=false;$('workspace').hidden=true;}
 async function openSave(file){
@@ -155,7 +180,7 @@ function refreshLanguage(){
  $('filter-input').placeholder=t('search');
  for(const id of ['welcome-language','workspace-language'])$(id).value=state.locale;
  const overlay=$('drop-overlay').querySelector('.drop-message');overlay.lastChild.textContent=' '+t('dropHint');
- if(state.snapshot){renderTabs();renderFilters();renderList();renderDetails();}
+ if(state.snapshot){renderAudit();renderTabs();renderFilters();renderList();renderDetails();}
 }
 function setLanguage(locale){if(!SUPPORTED_LOCALES.includes(locale))return;state.locale=locale;try{localStorage.setItem('dreamlight-timekeeper-locale',locale);}catch{}refreshLanguage();}
 async function loadIcons(){try{const r=await fetch(new URL('../data/steam-icons-v1253.json',import.meta.url));if(!r.ok)return;const file=await r.json();if(file?.source?.platform==='Steam/Windows'&&file?.source?.gameVersion==='1.25.3'&&file.icons&&typeof file.icons==='object')iconManifest=file;}catch{}}
