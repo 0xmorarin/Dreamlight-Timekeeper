@@ -1,0 +1,34 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import test from 'node:test';
+const page=await readFile(new URL('../index.html',import.meta.url),'utf8');
+const app=await readFile(new URL('../src/app.mjs',import.meta.url),'utf8');
+const css=await readFile(new URL('../styles.css',import.meta.url),'utf8');
+test('landing page has approved public name, support fields, no header or drop-zone frame',()=>{
+ assert.match(page,/<title>Dreamlight Timekeeper<\/title>/);
+ assert.match(page,/<h1>Dreamlight Timekeeper<\/h1>/);
+ assert.match(page,/>正式対応</);
+ assert.match(page,/ゲームバージョン：v1\.25\.3/);
+ assert.match(page,/セーブバージョン：626/);
+ assert.match(page,/最終更新：2026-11-01/);
+ assert.match(page,/セーブファイルをドラッグ＆ドロップ/);
+ assert.match(page,/>セーブを開く</);
+ assert.doesNotMatch(page,/<header\b|ドロップ領域|DDV Save Timing Tools|Nintendo Switch/);
+ assert.doesNotMatch(page,/対応形式|ファイル形式|ツールバージョン/);
+});
+test('one global drop listener and independent four-tab three-pane editor',()=>{
+ assert.match(page,/id="welcome"/);
+ assert.match(page,/id="workspace"[^>]*hidden/);
+ assert.match(page,/id="regions"/);
+ assert.match(page,/id="records"/);
+ assert.match(page,/id="preview"/);
+ assert.match(app,/document\.addEventListener\('drop'/);
+ assert.match(app,/document\.addEventListener\('dragover'/);
+ assert.match(app,/document\.addEventListener\('dragenter'/);
+ assert.match(app,/dataTransfer\?\.files\?\.\[0\]/);
+ assert.match(app,/previewScope\(/);
+ assert.match(app,/selected\.add\(/);
+ assert.match(app,/original_/);
+ assert.match(css,/100dvh/);
+ assert.match(css,/grid-template-columns:minmax\(205px,240px\)/);
+});

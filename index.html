@@ -3,58 +3,88 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DDV Save Timing Tools</title>
+<meta name="color-scheme" content="dark">
+<title>Dreamlight Timekeeper</title>
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-<main>
-<header>
-<h1>DDV Save Timing Tools <small>β</small></h1>
-<div class="file-controls">
-<label for="save-file">セーブファイル</label>
-<input id="save-file" type="file" aria-label="セーブファイルを選択">
-<button id="download-backup" disabled>原本を保存</button>
-</div>
-</header>
-<p id="status" role="status" aria-live="polite">初期化しています…</p>
-<div id="save-info" class="save-info">セーブ未読込み</div>
-<nav id="tabs" aria-label="日時カテゴリ"></nav>
-<section class="work">
-<div class="heading">
-<h2 id="current-category">自動発生・スポーン</h2>
-<select id="world-filter" aria-label="エリア"><option value="all">全エリア</option></select>
- <input id="filter-input" type="search" placeholder="名前・IDで検索" aria-label="名前またはIDで検索">
-</div>
-<div class="controls">
-<label for="time-mode">指定日時</label>
-<select id="time-mode">
-<option value="now">現在時刻</option>
-<option value="custom">任意の日時</option>
-</select>
-<input id="custom-time" type="datetime-local" aria-label="任意の日時" disabled>
-<button id="bulk" disabled>表示中の対象を確認</button>
-</div>
-<div id="records" class="records"></div>
-<section class="preview">
-<h3>確認内容</h3>
-<div id="preview">対象を選択してください。</div>
+<input id="save-file" type="file" hidden aria-label="セーブファイルを選択">
+<div id="drop-overlay" hidden aria-hidden="true"><div class="drop-message"><span class="drop-icon">✦</span>ここにドロップ</div></div>
+<section id="welcome" class="welcome" aria-label="セーブの読込み">
+  <div class="welcome-content">
+    <div class="brand-mark" aria-hidden="true">✦</div>
+    <h1>Dreamlight Timekeeper</h1>
+    <div class="support">
+      <span class="support-title">正式対応</span>
+      <span>ゲームバージョン：v1.25.3</span>
+      <span>セーブバージョン：626</span>
+      <span>最終更新：2026-11-01</span>
+    </div>
+    <div class="drop-guidance">
+      <svg viewBox="0 0 56 56" width="54" height="54" fill="none" aria-hidden="true"><path d="M28 38V14M18 24l10-10 10 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 38v4a5 5 0 005 5h18a5 5 0 005-5v-4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+      <h2>セーブファイルをドラッグ＆ドロップ</h2>
+    </div>
+    <button id="open-welcome" class="primary large" type="button">セーブを開く</button>
+    <p id="welcome-status" class="status" role="status" aria-live="polite"></p>
+  </div>
 </section>
+<section id="workspace" class="workspace" aria-label="日時データの確認" hidden>
+  <nav id="tabs" class="tabs" aria-label="日時カテゴリ"></nav>
+  <div class="workspace-actions">
+    <span id="session-name" class="session-name"></span>
+    <span class="readonly-flag">読取り専用</span>
+    <button id="open-again" class="subtle" type="button">別のセーブを開く</button>
+  </div>
+  <div class="workspace-grid">
+    <aside class="regions-panel" aria-label="地域と分類">
+      <div class="pane-head"><h2>エリア</h2></div>
+      <div id="regions" class="filter-list"></div>
+      <div class="pane-head section-head"><h2>カテゴリ</h2></div>
+      <div id="groups" class="filter-list"></div>
+    </aside>
+    <main class="records-panel">
+      <div class="pane-head records-head"><div><h2 id="category-title">自動発生・スポーン</h2><p id="record-count" class="caption"></p></div></div>
+      <div class="list-controls">
+        <input id="filter-input" type="search" placeholder="名前・IDで検索" aria-label="項目を検索">
+        <select id="sort-order" aria-label="並び順"><option value="name">名前順</option><option value="time">日時順</option><option value="future">未来日時を優先</option></select>
+      </div>
+      <div class="selection-bar">
+        <button id="select-visible" class="subtle" type="button">表示中をすべて選択</button>
+        <button id="clear-selection" class="subtle" type="button">選択解除</button>
+        <span id="selection-label"></span>
+      </div>
+      <div id="records" class="records"></div>
+      <button id="more-records" class="more" hidden type="button">続きを表示</button>
+    </main>
+    <aside class="detail-panel" aria-label="日時の確認">
+      <div class="pane-head"><h2>日時の確認</h2></div>
+      <div id="selection-info" class="selection-info">中央の一覧から項目を選択してください。</div>
+      <div class="time-config">
+        <label for="time-mode">指定日時</label>
+        <select id="time-mode"><option value="now">現在時刻</option><option value="custom">任意の日時</option></select>
+        <input id="custom-time" type="datetime-local" aria-label="任意の日時" disabled>
+      </div>
+      <div id="preview" class="preview" aria-live="polite"></div>
+      <details class="technical"><summary>選択項目の詳細</summary><div id="technical-details"></div></details>
+      <div class="detail-bottom">
+        <p class="safety-note">変更内容の確認のみ。セーブへの書込みは無効です。</p>
+        <button id="download-backup" type="button" class="subtle backup" disabled>原本を保存</button>
+      </div>
+    </aside>
+  </div>
+  <p id="workspace-status" class="workspace-status" role="status" aria-live="polite" hidden></p>
 </section>
-<footer>読取り専用 · 元のセーブは変更しません · Switch v1.25.3 / schema 626</footer>
-</main>
 <script>
 (()=>{
-const status=document.getElementById('status');
-if(location.protocol==='file:'){
-status.textContent='直接開いた場合は動作しません。展開先で py -m http.server 8000 を実行し、http://localhost:8000/ を開いてください。';
-status.className='error';
-document.getElementById('save-file').disabled=true;
-return;
-}
-const failure=message=>{if(!window.__ddvBooted){status.textContent=message;status.className='error';}};
-window.addEventListener('error',e=>failure('画面の初期化に失敗しました: '+(e.message||'スクリプトを確認してください')));
-window.addEventListener('unhandledrejection',e=>failure('画面の初期化に失敗しました: '+(e.reason?.message||'処理エラー')));
-setTimeout(()=>failure('初期化できませんでした。サーバー起動とJavaScriptの読込みを確認してください。'),7000);
+ if(location.protocol==='file:'){
+  document.getElementById('welcome-status').textContent='ブラウザーから直接開くことはできません。GitHub Pages、またはローカルHTTPサーバーで開いてください。';
+  document.getElementById('open-welcome').disabled=true;
+  return;
+ }
+ const failure=message=>{if(!window.__dreamlightBooted){document.getElementById('welcome-status').textContent=message;}};
+ window.addEventListener('error',e=>failure('初期化できませんでした: '+(e.message||'スクリプトエラー')));
+ window.addEventListener('unhandledrejection',e=>failure('初期化できませんでした: '+(e.reason?.message||'処理エラー')));
+ setTimeout(()=>failure('初期化できませんでした。ページを再読み込みしてください。'),8000);
 })();
 </script>
 <script type="module" src="./src/app.mjs"></script>

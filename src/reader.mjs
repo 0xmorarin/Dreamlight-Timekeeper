@@ -11,11 +11,23 @@ export const WORLD_ORDER = Object.freeze([
   ['exp1','永遠の島'],
   ['exp2','物語の谷'],
   ['exp3','ウィッシュブロッサム牧場'],
+  ['hgw','ハニーグローの森'],
   ['unknown','エリア未特定']
 ]);
 export const worldForEventName = name => {
-  const match=String(name??'').match(/Expansion0([1-3])/);
-  return match?`exp${match[1]}`:'valley';
+  const text=String(name??'');
+  const match=text.match(/Expansion0([1-3])/);
+  if(match)return `exp${match[1]}`;
+  if(text.includes('Mini01'))return 'hgw';
+  return 'valley';
+};
+export const worldForVillageName = name => {
+  const text=String(name??'');
+  if(/^Village04(?:Layout|ObjectLimit)/.test(text))return 'valley';
+  const expansion=text.match(/^Expansion0([1-3])(?:Layout|ObjectLimit)/);
+  if(expansion)return `exp${expansion[1]}`;
+  if(/^WinnieDLC(?:Layout|ObjectLimit)/.test(text))return 'hgw';
+  return 'unknown';
 };
 const TYPES = new Set([
   'ItemSpawning','WildCropsSpawningInVillage','FlowerSpawningInVillage',
@@ -67,8 +79,27 @@ function describeEvent(record,type,id){
   const text=unique.length===1?unique[0]:core;
   return area?`${text} · ${area}`:`${text} · ${safeText(record.name?.split('!').at(-1)||id)}`;
 }
+export function gridWorldFromVillages(world){
+  const lookup=new Map();
+  if(!Array.isArray(world.Villages))return lookup;
+  for(const village of world.Villages){
+    if(!isObj(village)||!isObj(village.Areas))continue;
+    const region=worldForVillageName(village.VillageAreaDataName);
+    for(const area of Object.values(village.Areas)){
+      if(!isObj(area)||!Array.isArray(area.GridIDs))continue;
+      for(const gridID of area.GridIDs){
+        const id=String(gridID);
+        if(!/^(?:0|[1-9]\d*)$/.test(id))continue;
+        if(lookup.has(id)&&lookup.get(id)!==region)lookup.set(id,'unknown');
+        else if(!lookup.has(id))lookup.set(id,region);
+      }
+    }
+  }
+  return lookup;
+}
 function scanObjectState(world,store,now,diagnostics){
   if(!isObj(world.GridCollection))return;
+  const gridWorld=gridWorldFromVillages(world);
   const queue=[{obj:world.GridCollection,path:'/World/GridCollection',depth:0}];
   let visited=0;
   while(queue.length){
@@ -77,6 +108,8 @@ function scanObjectState(world,store,now,diagnostics){
     if(!obj||typeof obj!=='object'||depth>21)continue;
     if(isObj(obj.State)){
       const state=obj.State;
+      const match=path.match(/^\/World\/GridCollection\/Grids\/(\d+)\/Objects\//);
+      const region=match?(gridWorld.get(match[1])??'unknown'):'unknown';
       const itemId=obj.ItemID||obj.ItemId||null;
       const idText=itemId?`Item ${itemId}`:'設置物';
       const specs=[
@@ -89,12 +122,12 @@ function scanObjectState(world,store,now,diagnostics){
         const value=isObj(state[type])?field.split('.').reduce((v,k)=>isObj(v)?v[k]:undefined,state[type]):undefined;
         if(value===undefined)continue;
         const ptr=`${path}/State/${type}/${field.split('.').map(escapePtr).join('/')}`;
-        row(store,{tab,group,subgroup,label:`${title} · ${idText}`,id:itemId,kind:`${type}.${field}`,pointer:ptr,time:value,source:'World.GridCollection',reason:'設置物ごとの状態と日時を表示。書込み条件は未検証'},now);
+        row(store,{tab,world:region,group,subgroup,label:`${title} · ${idText}`,id:itemId,kind:`${type}.${field}`,pointer:ptr,time:value,source:'World.GridCollection',reason:'設置物ごとの状態と日時を表示。書込み条件は未検証'},now);
       }
       if(isObj(state.GardenData)&&Array.isArray(state.GardenData.Slots)){
         for(const [i,slot] of state.GardenData.Slots.entries()){
           if(!isObj(slot)||!isObj(slot.Sapling)||!('EndOfGrowth' in slot.Sapling))continue;
-          row(store,{tab:'resources',group:'栽培・成長',subgroup:'庭の作物',label:`成長完了予定 · ${idText} · スロット ${i+1}`,id:itemId,
+          row(store,{tab:'resources',world:region,group:'栽培・成長',subgroup:'庭の作物',label:`成長完了予定 · ${idText} · スロット ${i+1}`,id:itemId,
             kind:'GardenData.Slots.Sapling.EndOfGrowth',pointer:`${path}/State/GardenData/Slots/${i}/Sapling/EndOfGrowth`,time:slot.Sapling.EndOfGrowth,
             source:'World.GridCollection',reason:'成長・水やり・クエスト状態との整合性未確認'},now);
         }

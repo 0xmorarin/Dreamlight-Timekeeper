@@ -11,7 +11,6 @@ self.onmessage=async({data})=>{
   if(!Number.isSafeInteger(id))return;
   try{
     if(data.type==='open'){
-      original=null;originalName=null;
       const bytes=new Uint8Array(data.buffer);
       if(bytes.length===0||bytes.length>128*1024*1024)throw new Error('セーブファイルが空、または128MiBを超えています');
       let text,format;
