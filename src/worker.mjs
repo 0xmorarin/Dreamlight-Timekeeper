@@ -9,7 +9,13 @@ let namesPromise;
 let rulesPromise;
 let original=null;
 let originalName=null;
-const getIndex=()=>indexPromise??=fetch(new URL('../data/events-v1253.json',import.meta.url)).then(r=>{if(!r.ok)throw new Error('Event data unavailable');return r.json()}).then(indexEvents);
+const getIndex=()=>indexPromise??=Promise.all([
+ fetch(new URL('../data/events-v1253.json',import.meta.url)),
+ fetch(new URL('../data/wand-iswood-crosswalk-v1253.json',import.meta.url))
+]).then(async([events,woodTags])=>{
+ if(!events.ok||!woodTags.ok)throw new Error('Verified event metadata unavailable');
+ return indexEvents(await events.json(),await woodTags.json());
+});
 const getRules=()=>rulesPromise??=fetch(new URL('../data/timing-review-rules-v1253.json',import.meta.url)).then(r=>{if(!r.ok)throw new Error('Timing review rules unavailable');return r.json()}).then(indexTimingReviewRules);
 const getNames=()=>namesPromise??=fetch(new URL('../data/item-names-v1250.json.gz',import.meta.url)).then(r=>{if(!r.ok)throw new Error('Item names unavailable');return r.body.pipeThrough(new DecompressionStream('gzip'));}).then(async stream=>JSON.parse(await new Response(stream).text()).items);
 self.onmessage=async({data})=>{
