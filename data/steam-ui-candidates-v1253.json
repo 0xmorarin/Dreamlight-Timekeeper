@@ -231,6 +231,42 @@
       "alternativeCount": 1,
       "reviewState": "HOLD_SEMANTIC_REVIEW",
       "pixelTrial": "NOT_TESTED"
+    },
+    {
+      "key": "world.valley",
+      "spriteName": "export_icon_ips_dream_valley",
+      "spritePathId": "1512533464914153988",
+      "texturePathId": "2722964377584423428",
+      "width": 176,
+      "height": 176,
+      "textureFormat": 25,
+      "alternativeCount": 1,
+      "reviewState": "STATIC_REFERENCE_VERIFIED",
+      "pixelTrial": "PASS_PRIVATE_2026-11-01"
+    },
+    {
+      "key": "world.exp1",
+      "spriteName": "icon_eternity_isle",
+      "spritePathId": "11850830269409517482",
+      "texturePathId": "7386682675117285290",
+      "width": 152,
+      "height": 152,
+      "textureFormat": 25,
+      "alternativeCount": 1,
+      "reviewState": "STATIC_REFERENCE_VERIFIED",
+      "pixelTrial": "PASS_PRIVATE_2026-11-01"
+    },
+    {
+      "key": "world.hgw",
+      "spriteName": "icon_map_travel_mini1_honeywood",
+      "spritePathId": "15526096041384401868",
+      "texturePathId": "9168973084813024204",
+      "width": 168,
+      "height": 168,
+      "textureFormat": 12,
+      "alternativeCount": 1,
+      "reviewState": "HOLD_DEPLOYMENT",
+      "pixelTrial": "PASS_PRIVATE_2026-11-01"
     }
   ]
 }
