@@ -8,7 +8,7 @@ test('Steam UI atlas catalog is source-specific and never itself a publishable i
  assert.equal(data.source.writerAuthorization,false);
  assert.equal(data.objectCounts.Sprite,2428);
  assert.equal(data.objectCounts.Texture2D,2330);
- assert.equal(data.candidates.length,18);
+ assert.equal(data.candidates.length,21);
 });
 test('each UI semantic candidate has distinct Sprite and Texture references, dimensions and audit status',()=>{
  const keys=new Set(),spritePaths=new Set(),texturePaths=new Set();
@@ -21,6 +21,13 @@ test('each UI semantic candidate has distinct Sprite and Texture references, dim
   assert.ok(!keys.has(r.key)&&!spritePaths.has(r.spritePathId)&&!texturePaths.has(r.texturePathId));
   keys.add(r.key);spritePaths.add(r.spritePathId);texturePaths.add(r.texturePathId);
  }
- assert.equal(data.candidates.filter(x=>x.pixelTrial.startsWith('PASS')).length,16);
- assert.equal(data.candidates.filter(x=>x.reviewState.startsWith('HOLD')).length,2);
+ assert.equal(data.candidates.filter(x=>x.pixelTrial.startsWith('PASS')).length,19);
+ assert.equal(data.candidates.filter(x=>x.reviewState.startsWith('HOLD')).length,3);
+});
+test('game-world icon candidates are individually version-verified and held keyart is not misclassified',()=>{
+ const worlds=data.candidates.filter(x=>x.key.startsWith('world.'));
+ assert.deepEqual(worlds.map(x=>x.key),['world.valley','world.exp1','world.hgw']);
+ assert.equal(worlds.every(x=>x.pixelTrial.startsWith('PASS')),true);
+ assert.equal(worlds.filter(x=>x.reviewState==='STATIC_REFERENCE_VERIFIED').length,2);
+ assert.equal(worlds.find(x=>x.key==='world.hgw').reviewState,'HOLD_DEPLOYMENT');
 });
