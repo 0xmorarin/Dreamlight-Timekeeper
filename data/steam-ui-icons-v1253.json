@@ -1,0 +1,12 @@
+{
+  "kind": "game_ui",
+  "source": {
+    "platform": "Steam/Windows",
+    "gameVersion": "1.25.3",
+    "status": "NO_ASSETS_VERIFIED",
+    "sourceBundle": "ddv_Data/StreamingAssets/aa/win/ui-imagesatlas_assets_all.bundle",
+    "sourceBundleSha256": "8fb0c3dbc4f937bee5d2918dfd2b9bef115dd6626e15af712f3669becc102b3d",
+    "writerAuthorization": false
+  },
+  "icons": {}
+}
