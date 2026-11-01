@@ -45,5 +45,5 @@ test('unregistered event stays read-only with unknown world',()=>{
   assert.deepEqual(out.worlds.map(x=>x.id),['unknown']);
   assert.equal(out.rows[0].policy,'HOLD');
   assert.equal(out.rows[0].writeAuthorized,false);
-  assert.equal(WORLD_ORDER.length,6);
+  assert.deepEqual(WORLD_ORDER.map(([id])=>id),['all','valley','exp1','exp2','exp3','hgw','unknown']);
 });
