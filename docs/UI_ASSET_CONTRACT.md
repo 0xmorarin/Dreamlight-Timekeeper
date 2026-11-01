@@ -8,19 +8,21 @@ Images deliberately use two distinct formats:
 | --- | --- | --- | --- |
 | Item images | ItemID | VP8L Lossless WebP | Verified original Steam game assets |
 | Game-specific UI/world icons | `game_ui:<semantic.key>` | VP8L Lossless WebP | Verified original Steam game assets |
-| Tool-created controls, state glyphs | `app_ui:<semantic.key>` | SVG | Original unified vector icons designed for this tool |
+| Tool controls and state glyphs | `app_ui:<semantic.key>` | SVG | Reviewed Lucide subset from a pinned official source |
 
 The older all-Lossless-WebP policy **does not apply to app_ui**. Do not convert these original app SVGs back into raster assets. Game-source images must never be substituted with a newly drawn vector that merely resembles the game.
 
-## App SVG accessibility
+## App SVG source, licensing and accessibility
 
-Exactly 16 original app icons are published from `src/app-ui-icon-design.mjs` by `scripts/build-app-ui-icons.mjs`. They share a 24×24 viewBox, 2.25-unit rounded strokes, a light neutral stroke color and sparse familiar outlines. `data/app-ui-icons.json` revision 2 records a SHA-256 for each exact SVG and another hash for the original geometry definition. CI rebuilds the source and requires byte-identical output.
+The preferred application icon set is **Lucide** (official source `lucide-icons/lucide`). The source is pinned at commit `a630cec77eac6568b989e87e4947a8bfe45caacd`; the 16 selected upstream icons are independently stored under `vendor/lucide/icons/`, and the original upstream `LICENSE` is retained in `vendor/lucide/LICENSE`. Lucide uses the ISC License, with an MIT License copyright notice for the included Feather-derived icons. Retain both notices when redistributing. Do not assert that original game images use Lucide licensing.
 
-Buttons and status messages **keep text labels**. Icons are decorative and use empty alt text and `aria-hidden`; keyboard operation, visible focus and localization do not depend on a successful image request. Controls use minimum 44 px touch targets and a strong dark/light visual contrast; the primary light-background button reverses icon brightness for legibility. An unavailable SVG must not block the corresponding action. Unknown or arbitrary SVG contents are refused: the app manifest only allows local `.svg` paths; the build validator restricts the root SVG contract, geometry tags, attributes, hash and dimensions. No remote image source, script or SVG animation is allowed.
+`src/app-ui-icon-design.mjs` fixes exactly 16 semantic-to-upstream-icon mappings. `scripts/build-app-ui-icons.mjs` only accepts those vetted source files, preserves their original geometry and sets a single neutral color (`#f2f6f6`) and stroke width (`2.25`) for the dark UI. The output is a native 24×24 SVG; no rasterization occurs. No Lucide framework runtime, icon font, build-time CDN or external network access is necessary in the browser. `data/app-ui-icons.json` revision 3 records the upstream commit, exact source SHA-256, styled output SHA-256, semantic key and source path. CI must recreate every SVG and compare both bytes and manifest.
 
-The 16 semantic keys are: `action.open-save`, `action.open-another`, `action.backup`, `action.search`, `action.filter`, `action.expand`, `action.collapse`, `action.calendar`, `action.clock`, `action.utc`, `action.local-time`, `action.technical-details`, `status.warning`, `status.error`, `status.success`, and `status.missing-asset`. Presence in the manifest does not imply each symbol is used in the current interface.
+Semantic mapping: `action.open-save`→`folder-open`, `action.open-another`→`folder-input`, `action.backup`→`download`, `status.warning`→`triangle-alert`, `status.error`→`circle-x`, `status.success`→`circle-check`, `action.search`→`search`, `action.filter`→`list-filter`, `action.expand`→`chevron-down`, `action.collapse`→`chevron-up`, `action.calendar`→`calendar-days`, `action.clock`→`clock`, `action.utc`→`globe`, `action.local-time`→`map-pin`, `action.technical-details`→`info`, and `status.missing-asset`→`image-off`.
 
-The old original app `.webp` files, `scripts/build-app-ui-icons.py` and its Pillow-based tests were removed from the feature branch, replaced with Node SVG-specific regression tests.
+For universal design, symbols augment rather than replace translated visible labels. Use `alt=""` and `aria-hidden="true"` on decorative SVG images, retain readable contrast and keyboard focus, provide at least 44 px touch targets, and do not communicate state by hue alone. A missing image must not disable buttons. Prefer known conventions at actual 20–24 px sizes and check real browser rendering. If a Lucide glyph is ambiguous in context, a plain text label takes precedence; icon-library popularity alone does not prove universal comprehensibility. An exceptional tool-specific glyph may be created separately but must pass the same design and accessibility gate.
+
+The app UI manifest allows only local `.svg` files, and the validator enforces the expected root and permitted static shapes/attributes, hashes, source version and dimensional metadata. Embedded scripts, external references, SVG animation and arbitrary injected HTML are not supported.
 
 ## Game-derived icons, world mapping and evidence
 
