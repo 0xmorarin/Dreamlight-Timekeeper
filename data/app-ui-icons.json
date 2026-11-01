@@ -3,8 +3,42 @@
   "source": {
     "platform": "Dreamlight Timekeeper",
     "revision": 1,
-    "status": "NO_ASSETS_VERIFIED",
+    "status": "VERIFIED_ASSETS",
     "writerAuthorization": false
   },
-  "icons": {}
+  "icons": {
+    "action.open-save": {
+      "kind": "app_ui",
+      "verified": true,
+      "path": "assets/app/ui/action/open-save.webp",
+      "sha256": "86c923117e0bdabc6cc1ff07dd7af37027b6905e850cbcfab403cb529edfa382",
+      "sourceSha256": "d6c0e3a8924b6c00bf7840b59da1636693c9d2f74c0f267fb1ca5ec2d0f116e3",
+      "sourceAsset": "scripts/build-app-ui-icons.py",
+      "mappingEvidence": "Original 48x48 author-defined glyph: action.open-save",
+      "width": 48,
+      "height": 48
+    },
+    "action.open-another": {
+      "kind": "app_ui",
+      "verified": true,
+      "path": "assets/app/ui/action/open-another.webp",
+      "sha256": "8ec2ab4b395c7ff2c73afb3b71f19bcbc06661747944b20448ab583645d1f25f",
+      "sourceSha256": "6a298facb570379400cc3934aa31e03a087faa8a8b3c6ba2adc0ff40289c5051",
+      "sourceAsset": "scripts/build-app-ui-icons.py",
+      "mappingEvidence": "Original 48x48 author-defined glyph: action.open-another",
+      "width": 48,
+      "height": 48
+    },
+    "action.backup": {
+      "kind": "app_ui",
+      "verified": true,
+      "path": "assets/app/ui/action/backup.webp",
+      "sha256": "2949d55d67d0790d05b9ba97166ecc99a9c6c228f3361bcd52c6969792b34847",
+      "sourceSha256": "eec2482ad4454664aa83e2dbe750c7f81f64bacca338e238bafedd92cd500867",
+      "sourceAsset": "scripts/build-app-ui-icons.py",
+      "mappingEvidence": "Original 48x48 author-defined glyph: action.backup",
+      "width": 48,
+      "height": 48
+    }
+  }
 }
