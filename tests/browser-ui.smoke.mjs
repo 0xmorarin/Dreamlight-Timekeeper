@@ -31,12 +31,12 @@ try{
  await page.waitForFunction(()=>window.__dreamlightBooted===true,{timeout:15000});
  const open=page.locator('#open-welcome');
  await open.locator('img.semantic-icon').waitFor({state:'visible'});
- assert.equal(await open.locator('img.semantic-icon').evaluate(img=>img.complete&&img.naturalWidth===48),true);
+ assert.equal(await open.locator('img.semantic-icon').evaluate(img=>img.complete&&img.naturalWidth===24),true);
  assert.match(await open.innerText(),/Open save/);
  await page.selectOption('#welcome-language','ja');
  assert.match(await open.innerText(),/セーブを開く/);
  await open.locator('img.semantic-icon').waitFor();
- assert.equal(await open.locator('img.semantic-icon').evaluate(img=>img.complete&&img.naturalWidth===48),true);
+ assert.equal(await open.locator('img.semantic-icon').evaluate(img=>img.complete&&img.naturalWidth===24),true);
  const src=new Uint8Array(makeSyntheticP1gProfile({
   GameInfo:{InitialVersion:518,Version:626,LastSaveDeviceInfo:{deviceType:'DeviceType_Switch'},
     Created:'2025-01-01T00:00:00Z',Modified:'2026-11-01T00:00:00Z'},
@@ -51,7 +51,7 @@ try{
  for(const id of ['open-again','download-backup']){
   const icon=page.locator('#'+id+' img.semantic-icon');
   await icon.waitFor({state:'visible'});
-  assert.equal(await icon.evaluate(img=>img.complete&&img.naturalWidth===48),true);
+  assert.equal(await icon.evaluate(img=>img.complete&&img.naturalWidth===24),true);
  }
  assert.match(await page.locator('.readonly-flag').innerText(),/読取り専用/);
  const warning=await page.evaluate(async()=>{
@@ -76,7 +76,7 @@ try{
  assert.equal(await backup.isVisible(),true);
  const fallback=await browser.newPage({viewport:{width:390,height:844}});
  let blocked=0;
- await fallback.route('**/assets/app/ui/action/open-save.webp',route=>{
+ await fallback.route('**/assets/app/ui/action/open-save.svg',route=>{
   blocked++;
   return route.abort();
  });
