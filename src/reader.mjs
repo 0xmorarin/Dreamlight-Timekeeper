@@ -39,7 +39,7 @@ const TIME = /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d{1,9})?Z$/;
 const MAP = ['Urban','Meadow','Beach','Forest','Glade','Plateau','Frosted','Forgotten'];
 const isObj = x => x !== null && typeof x === 'object' && !Array.isArray(x);
 const escapePtr = s => String(s).replaceAll('~','~0').replaceAll('/','~1');
-export const validTime = v => typeof v === 'string' && TIME.test(v) && Number.isFinite(Date.parse(v));
+export const validTime = v => typeof v === 'string' && TIME.test(v) && Number.isFinite(Date.parse(v)) && new Date(Date.parse(v)).toISOString().slice(0,19)===v.slice(0,19);
 export const safeText = v => String(v ?? '').replace(/<\/?nobr>/gi,'').replace(/<[^>]*>/g,'').replace(/[\u200B-\u200D\uFEFF]/g,'').normalize('NFC');
 export function classifyDate(value,now=Date.now()){
   if(!validTime(value))return 'INVALID';
@@ -66,10 +66,10 @@ export function indexEvents(raw){
   if(events.size!==508)throw new Error('イベント定義の件数が期待値と異なります');
   return events;
 }
-function row(store,{tab,world='unknown',group,subgroup,label,id,kind,pointer,time,source,policy='HOLD',reason='',items=[],eventName=null,areaKey='',timingKey=null},now){
+function row(store,{tab,world='unknown',group,subgroup,label,id,kind,pointer,time,source,policy='HOLD',reason='',items=[],eventName=null,eventActive=null,structureValid=true,areaKey='',timingKey=null},now){
   const timing=timingKey||(kind.includes('LastRefresh')?'timeRefresh':kind.includes('LastCollect')?'timeCollect':kind.includes('EndOfGrowth')?'timeGrowth':kind.includes('EndOfLife')?'timeLife':kind==='ResetTimer'?'timeReset':kind==='DisplayInfo.LastRefresh'?'timeRefresh':'timeNext');
   store.push({tab,world,group,subgroup,label,id,kind,pointer,time:validTime(time)?time:null,
-    status:classifyDate(time,now),source,policy,reason,items,eventName,areaKey,timingKey:timing,writeAuthorized:false});
+    status:classifyDate(time,now),source,policy,reason,items,eventName,eventActive,structureValid,areaKey,timingKey:timing,writeAuthorized:false});
 }
 function describeEvent(record,type,id){
   if(!record)return `${type} (${id})`;
@@ -166,7 +166,7 @@ export function projectProfile(profile,registry,{now=Date.now(),itemNames={}}={}
       if(known?.eventPolicy!=='W1')reasons.push('更新条件の静的検証が未完了');
       if(status==='SPECIAL_2126_UNRESOLVED'||status==='DISTANT_FUTURE_UNVERIFIED')reasons.push('遠い未来日時の理由が不明');
       row(rows,{tab:known?.tab||defaultTab(type),world:known?worldForEventName(known.name):'unknown',group:known?.group||'未登録イベント',subgroup:known?.subgroup||type,
-        label:describeEvent(known,type,id),id:Number.isSafeInteger(id)?id:null,kind:type,eventName:known?.name??null,areaKey:areaLabel(known?.name||''),
+        label:describeEvent(known,type,id),id:Number.isSafeInteger(id)?id:null,kind:type,eventName:known?.name??null,eventActive:known?.active??null,structureValid:variants.length===1,areaKey:areaLabel(known?.name||''),
         pointer:`/World/RecurringEvents/${escapePtr(key)}/${escapePtr(type)}/NextOccurrence`,time:entry.NextOccurrence,
         source:'World.RecurringEvents',policy:known?.eventPolicy||'HOLD',reason:reasons.join('／')||'日時編集の実機検証は未完了',
         items:(known?.items||[]).map(x=>({id:x.id,name:safeText(x.en||x.ja),names:itemNames[String(x.id)]??{'en-US':safeText(x.en),'ja':safeText(x.ja)}}))},now);
