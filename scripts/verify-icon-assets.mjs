@@ -4,7 +4,7 @@ import {resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {validateIconManifest,inspectLosslessWebP} from '../src/icon-assets.mjs';
 
-const root = fileURLToPath(new URL('../',import.meta.url));
+const root = resolve(process.argv[2]||fileURLToPath(new URL('../',import.meta.url)));
 const manifest = JSON.parse(await readFile(new URL('../data/steam-icons-v1253.json',import.meta.url),'utf8'));
 validateIconManifest(manifest);
 let total=0;
