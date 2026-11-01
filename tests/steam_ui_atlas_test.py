@@ -40,7 +40,7 @@ class SteamUiAtlasTests(unittest.TestCase):
         objects={str(sprite_id):(213,name.decode(),bytes(sprite)),str(texture_id):(28,name.decode(),bytes(texture))}
         row={'key':'status.warning','spriteName':name.decode(),'spritePathId':str(sprite_id),
           'texturePathId':str(texture_id),'width':width,'height':height,'textureFormat':fmt}
-        self.assertEqual(audit.inspect_candidate(row,objects),(120,4096))
+        self.assertEqual(audit.inspect_candidate(row,objects),(120,1024))
         row['width']=33
         with self.assertRaises(ValueError):
             audit.inspect_candidate(row,objects)
