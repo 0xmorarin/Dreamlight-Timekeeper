@@ -21,9 +21,10 @@ const FAMILY=Object.freeze({
  EXCLUDED:'NOT_PRIMARY_DECORATION_EVENT'
 });
 const idOK=id=>Number.isSafeInteger(id)&&id>0;
+const tryShape=value=>{try{return decodeStructuredItemId(value);}catch{return null;}};
 const linked=rec=>Array.isArray(rec.items)&&rec.items.length>0&&
- rec.items.every(x=>x&&idOK(x.id));
-const allShape=(records,predicate)=>records.every(x=>predicate(decodeStructuredItemId(x.id)));
+ rec.items.every(x=>x&&idOK(x.id)&&tryShape(x.id)!==null);
+const allShape=(records,predicate)=>records.every(x=>{const shape=tryShape(x.id);return shape!==null&&predicate(shape);});
 const activity=(type,subtype)=>x=>x.itemType===type&&x.subtype===subtype;
 
 export function classifyDecorationSpawnEvent(record){
@@ -50,7 +51,8 @@ export function classifyDecorationSpawnEvent(record){
   sourceEventPolicy:record.eventPolicy??'UNKNOWN',
   linkedItemIds:Object.freeze((record.items||[]).filter(x=>idOK(x.id)).map(x=>x.id)),
   linkedItemNumericKinds:Object.freeze((record.items||[]).filter(x=>idOK(x.id)).map(x=>{
-   const d=decodeStructuredItemId(x.id);return Object.freeze({itemType:d.itemType,subtype:d.subtype});
+   const d=tryShape(x.id);return Object.freeze({itemType:d?.itemType??null,subtype:d?.subtype??null,
+    numericStructureVerified:d!==null});
   })),
   linkedItemIsPlacedGridObjectVerified:false,
   runtimeSpawnAndRemovalVerified:false,writerAuthorized:false,bulkDeletionAuthorized:false
