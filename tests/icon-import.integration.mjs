@@ -51,11 +51,13 @@ test('offline importer preserves visible and fully transparent RGBA and verifies
   assert.equal(manifest.icons[id].sourceSha256,sha(png));
   assert.equal(manifest.icons[id].verified,true);
   assert.equal(manifest.icons[id].itemIdEvidence,'TEST_SYNTHETIC_MAPPING');
-  const published=JSON.parse(await readFile(join(output,'data','steam-ui-icons-v1253.json'),'utf8'));
-  for(const entry of Object.values(published.icons)){
-   const destination=join(output,entry.path);
-   await mkdir(dirname(destination),{recursive:true});
-   await copyFile(join(root,entry.path),destination);
+  for(const name of ['steam-ui-icons-v1253.json','app-ui-icons.json']){
+   const published=JSON.parse(await readFile(join(output,'data',name),'utf8'));
+   for(const entry of Object.values(published.icons)){
+    const destination=join(output,entry.path);
+    await mkdir(dirname(destination),{recursive:true});
+    await copyFile(join(root,entry.path),destination);
+   }
   }
   await exec(process.execPath,[verifier,output]);
   await assert.rejects(exec(process.execPath,[importer,planPath,output]),/already published/);
