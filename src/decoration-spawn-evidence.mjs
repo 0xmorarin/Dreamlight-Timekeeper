@@ -27,7 +27,7 @@ const linked=rec=>Array.isArray(rec.items)&&rec.items.length>0&&
 const allShape=(records,predicate)=>records.every(x=>{const shape=tryShape(x.id);return shape!==null&&predicate(shape);});
 const activity=(type,subtype)=>x=>x.itemType===type&&x.subtype===subtype;
 
-export function classifyDecorationSpawnEvent(record){
+export function classifyDecorationSpawnEvent(record,woodTagStatus=null){
  if(!record||!idOK(record.id)||typeof record.name!=='string')throw new Error('Unrecognized event record.');
  let family=FAMILY.EXCLUDED;
  // W1 is a *static review tag only*, not proof of writable or removable state.
@@ -39,9 +39,14 @@ export function classifyDecorationSpawnEvent(record){
   else if(record.group==='花'&&record.subgroup==='花の生成'&&
    allShape(record.items,activity(3,8)))family=FAMILY.FLOWER;
   else if(record.group==='自然資源'&&record.subgroup==='木材・落下素材'){
-   const isWood=record.items.every(item=>WOOD_MATERIAL_ITEM_IDS.has(item.id))&&
+   // Explicit source-byte-verified Gameplay isWood evidence supersedes a
+   // historical hand-curated material list; unknown IDs remain protected.
+   const supported=woodTagStatus==='IS_WOOD_TAG'||woodTagStatus==='NOT_WOOD_TAG';
+   const legacy=record.items.every(item=>WOOD_MATERIAL_ITEM_IDS.has(item.id))&&
     allShape(record.items,activity(3,17));
-   family=isWood?FAMILY.WOOD:FAMILY.OTHER_FORAGE;
+   family=woodTagStatus==='UNKNOWN_ITEM_TAG'?FAMILY.EXCLUDED:
+    supported?(woodTagStatus==='IS_WOOD_TAG'?FAMILY.WOOD:FAMILY.OTHER_FORAGE):
+    (legacy?FAMILY.WOOD:FAMILY.OTHER_FORAGE);
   }
  }
  const primary=[FAMILY.OBSTACLE,FAMILY.WILD_PLANT,FAMILY.FLOWER,FAMILY.WOOD].includes(family);
