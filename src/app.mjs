@@ -1,4 +1,5 @@
 import {TAB_ORDER,WORLD_ORDER,previewScope,safeText} from './reader.mjs';
+import {resolveTimePreset} from './time-presets.mjs';
 import {SUPPORTED_LOCALES,initialLocale,translate,categoryName,areaName,localDate,parseLocalDateTime} from './i18n.mjs';
 const $=id=>document.getElementById(id);
 const make=(tag,cls='',value)=>{const el=document.createElement(tag);if(cls)el.className=cls;if(value!==undefined)el.textContent=String(value);return el;};
@@ -153,10 +154,11 @@ function renderDetails(){
  selected.append(make('strong','',t('selected',{n})));
  if(n===1)selected.append(make('p','',recordTitle(rows[0])));
  const preview=$('preview');preview.replaceChildren();const custom=$('custom-time').value;
- const when=state.mode==='custom'?parseLocalDateTime(custom):null;
+ const clock=Date.now();
+ const when=state.mode==='custom'?parseLocalDateTime(custom):state.mode==='now'?null:resolveTimePreset(state.mode,{now:clock});
  try{
   if(state.mode==='custom'&&custom&&!when)throw new Error(t('errorInvalidLocal'));
-  const result=previewScope(state.snapshot,{tab:state.tab,pointers:rows.map(r=>r.pointer),world:'all',mode:state.mode,customTime:when,now:Date.now()});
+  const result=previewScope(state.snapshot,{tab:state.tab,pointers:rows.map(r=>r.pointer),world:'all',mode:state.mode==='now'?'now':'custom',customTime:when,now:clock});
   const summary=make('div','preview-summary');summary.append(make('span','',t('previewScope',{n:result.affected.length})),make('strong','',`${t('previewTime')}: ${fmt(result.previewTime)}`));preview.append(summary);
   for(const row of result.affected.slice(0,24)){const item=make('div','preview-row');item.append(make('strong','',recordTitle(row)),make('span','',`${fmt(row.time)} → ${fmt(result.previewTime)}`));preview.append(item);}
   if(result.affected.length>24)preview.append(make('p','caption',t('morePreview',{n:result.affected.length-24})));
