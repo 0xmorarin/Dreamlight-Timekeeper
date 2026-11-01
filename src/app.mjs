@@ -36,7 +36,7 @@ function renderAudit(){
  const a=state.snapshot?.timingAudit;
  if(!a||a.diagnosticOnly!==true||a.writerAuthorized!==false)return;
  const detail=make('details','audit-details');
- detail.open=wasOpen??(a.statuses.SPECIAL_2126_UNRESOLVED>0||a.statuses.DISTANT_FUTURE_UNVERIFIED>0||a.statuses.INVALID>0);
+ detail.open=wasOpen??false;
  detail.append(make('summary','',t('auditTitle')+' · '+a.total));
  const numbers=make('div','audit-counters');
  for(const [key,n] of [
