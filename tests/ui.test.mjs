@@ -37,6 +37,7 @@ test('read-only timing audit is visible without implying repair or changing the 
  assert.match(app,/a\.diagnosticOnly!==true\|\|a\.writerAuthorized!==false/);
  assert.match(app,/t\('auditNoRepair'\)/);
  assert.match(css,/\.audit-details/);
+ assert.match(app,/detail\.open=wasOpen\?\?false/);
 });
 
 test('preview UI exposes approved past and future presets without enabling any writer',()=>{
