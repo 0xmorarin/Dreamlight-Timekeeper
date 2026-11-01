@@ -3,10 +3,41 @@
   "source": {
     "platform": "Steam/Windows",
     "gameVersion": "1.25.3",
-    "status": "NO_ASSETS_VERIFIED",
+    "status": "VERIFIED_ASSETS",
     "sourceBundle": "ddv_Data/StreamingAssets/aa/win/ui-imagesatlas_assets_all.bundle",
     "sourceBundleSha256": "8fb0c3dbc4f937bee5d2918dfd2b9bef115dd6626e15af712f3669becc102b3d",
     "writerAuthorization": false
   },
-  "icons": {}
+  "icons": {
+    "skill.mining": {
+      "kind": "game_ui",
+      "verified": true,
+      "platform": "Steam",
+      "gameVersion": "1.25.3",
+      "path": "assets/steam/v1253/ui/skill/mining.webp",
+      "sha256": "dcc381b5480280bbd771fe6beea374993fd678b955ee605ddb9596bdea351197",
+      "sourceSha256": "7ba4424ee055c9638022891f11ba9413fc149fe19f41a502c0d392a4cf427b48",
+      "sourceAsset": "CAB-fe2bbf4dc0b20d2a3f3b5ff35a49ffe8|icon_mining",
+      "mappingEvidence": "Exact Steam v1.25.3 Sprite name, full-rectangle, Texture2D PPtr and RGBA round-trip",
+      "spritePathId": "8838071592011784765",
+      "texturePathId": "2140947109914567229",
+      "width": 128,
+      "height": 128
+    },
+    "status.warning": {
+      "kind": "game_ui",
+      "verified": true,
+      "platform": "Steam",
+      "gameVersion": "1.25.3",
+      "path": "assets/steam/v1253/ui/status/warning.webp",
+      "sha256": "d9ecb95ae3b5e7483f8a4d7ee1cf51ded8b86323aed3459a4806e6b9e482b70e",
+      "sourceSha256": "3fb9cc7ee3e4630afe3f669eabd2641498670b51e7adc3d15aab24c8db6c3a9e",
+      "sourceAsset": "CAB-fe2bbf4dc0b20d2a3f3b5ff35a49ffe8|IconWarning",
+      "mappingEvidence": "Exact Steam v1.25.3 Sprite name, full-rectangle, Texture2D PPtr and RGBA round-trip",
+      "spritePathId": "1195881995301868918",
+      "texturePathId": "4550751082103756150",
+      "width": 32,
+      "height": 32
+    }
+  }
 }
