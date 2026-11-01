@@ -64,3 +64,14 @@ For bulk-removal research, only the third identity can select a specific field o
 `tests/decoration-spawn-evidence.test.mjs` guards source counts, specific event-to-item links, exceptions including Cinnamon, Moonstone/area selectors, invalid source fingerprints, and inactive-vs-candidate separation. Tests cannot establish Switch runtime acceptance.
 
 The future Wand integration consumes this evidence through the shared DDVRE index and an explicit versioned adapter; it must not replicate the 508 source records or inherit independent writer permissions.
+
+
+## Follow-up: offline read-only GridObject ItemID candidate crosswalk
+
+`src/decoration-grid-audit.mjs` implements `auditDecorationGridItemMatches(profile,source)` for **research only**. It consumes the exact Switch v1.25.3 source fingerprint and walks only the directly referenced Area GridIDs in `World.Villages[].Areas[].GridIDs` and `World.GridCollection.Grids[gridId].Objects`. Each matching saved GridObject must have a valid (GridID, map key == GridObject.ID), and its actual `GridObject.ItemID` must match one of the source-linked primary decoration Item IDs.
+
+Results contain only: selected GridID/GridObjectID, ItemID, *possible* recurring source event IDs, source families, direct area locator if uniquely determined, unresolved area ownership, state presence and counts. For an Item ID shared across 8+ source event definitions, the output deliberately retains all possible source event IDs rather than assigning an invented origin. Saved GridObjects in technical/indirect grids, including untraced SubGrid ownership, are **not** analyzed by this first pass; do not interpret non-match as object absence. Area entries with the same GridID in multiple Areas remain ambiguous; category validation and native spawn-origin evidence are independent blockers.
+
+Every matched object remains `sourceProvenanceVerified=false`, `nativeRemovalVerified=false`, `bulkDeletionAuthorized=false` and `timestampEditAuthorized=false`. This module does **not** alter the user's save or call any writer. It does not pretend that `GridObject.ItemID` matches alone identify a naturally generated object rather than a player-placed or quest-linked one. It deliberately avoids resolving source `GridObject.From` semantics, historical event references and object-owned SubGrids without authoritative v1.25.3 source proof. Performance budgets for direct grids and individual objects cause fail-closed errors instead of partial results.
+
+`tests/decoration-grid-audit.test.mjs` uses small synthetic Areas/Grids to distinguish exact Item ID matches, excluded Cinnamon and Moonstone Chest, a technical/unreachable Grid, ambiguous multiple Area references, duplicate/mismatched object IDs, source fingerprint mismatch, input immutability and output guards. Actual Switch profile/console behavior remains untested for this new crosswalk.
