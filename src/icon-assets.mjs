@@ -1,4 +1,3 @@
-// Display-only image contract. No fallback may silently relabel Switch assets as Steam assets.
 export const ICON_ROOT = 'assets/steam/v1253/';
 export const ICON_PLATFORM = 'Steam/Windows';
 export const ICON_VERSION = '1.25.3';
@@ -47,7 +46,6 @@ export function resolveIconAsset(manifest,itemId) {
   return record;
 }
 
-// A structural VP8L check: the lossless decoder must still be tested with real game assets.
 export function inspectLosslessWebP(bytes) {
   if (!(bytes instanceof Uint8Array) || bytes.length < 25) throw new Error('WebP file is truncated.');
   const view = new DataView(bytes.buffer,bytes.byteOffset,bytes.byteLength);
