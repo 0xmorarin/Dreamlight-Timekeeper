@@ -36,7 +36,6 @@ test('manifest refuses inconsistent status and duplicate output paths',()=>{
  assert.throws(()=>validateIconManifest(duplicate));
 });
 test('VP8L structural checker rejects lossy VP8 and broken RIFF',()=>{
- // Minimal synthetic VP8L envelope tests header screening, not full decoding.
  const out=new Uint8Array(26),v=new DataView(out.buffer);
  out.set([...Buffer.from('RIFF')],0);v.setUint32(4,18,true);
  out.set([...Buffer.from('WEBPVP8L')],8);v.setUint32(16,5,true);out[20]=0x2f;
