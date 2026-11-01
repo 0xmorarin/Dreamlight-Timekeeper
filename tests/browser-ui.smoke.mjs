@@ -59,6 +59,18 @@ try{
   await image.decode();return [image.naturalWidth,image.naturalHeight];
  });
  assert.deepEqual(warning,[32,32]);
+ let warningInLiveRecord=false;
+ const tabs=page.locator('#tabs button');
+ for(let n=0;n<await tabs.count();n++){
+  await tabs.nth(n).click();
+  const icons=page.locator('.record-warning .semantic-icon');
+  if(await icons.count()){
+   await icons.first().evaluate(async img=>{await img.decode();});
+   warningInLiveRecord=true;
+   break;
+  }
+ }
+ assert.equal(warningInLiveRecord,true,'Expected anomalous synthetic timestamp to use the actual warning asset.');
  assert.equal(pageErrors.length,0,'Unexpected browser script exceptions: '+pageErrors.join('; '));
  await page.setViewportSize({width:390,height:844});
  assert.equal(await backup.isVisible(),true);
