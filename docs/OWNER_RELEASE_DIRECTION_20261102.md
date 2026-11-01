@@ -1,6 +1,6 @@
 # Owner-approved Timekeeper release direction — 2026-11-02
 
-Status: **PRODUCT DECISIONS LOCKED / PHASE 3 IMPLEMENTATION PENDING EXPLICIT DESIGN REVIEW**. This document supersedes the earlier future-time-as-anomaly emphasis in the PR #2 diagnostic discussion. No writer or edited-save download is enabled by this documentation change.
+Status: **OWNER-APPROVED PRODUCT AND PHASE 3 CORE DESIGN / IMPLEMENTATION AND VALIDATION PENDING**. This document supersedes the earlier future-time-as-anomaly emphasis and superseded ZIP export proposal. No writer or edited-save download is enabled by this documentation change.
 
 ## Product intent, ordered by priority
 
@@ -42,17 +42,29 @@ Separate three states:
 
 The current `src/core/versioning.mjs` and `SafeProfileEditSession.exportVerifiedCopy()` use exact build contracts, while `src/reader.mjs` and `src/timing-review.mjs` recognize schema 626 for current research. These strict rules must be *reworked with a **separate Timekeeper edit compatibility gate*** before a wider-version writer is enabled; do not silently disable or weaken shared Dreamwish Wand authorization. A user choosing to try a newer save is not sufficient evidence to claim an unverified edited file is safe. Avoid requiring Switch BID in the save itself when it is not present; record version provenance honestly.
 
-## Backup and computational model — design to approve before Phase 3
+## Date presets — owner approved, gameplay semantics separately gated
 
-Owner asks for the original backup **at the same final download step** as the edited save, similar to DDV Profile Converter. Preferred proposal:
-- Load/decode once, keep the exact source byte array unchanged in the local browser session; no upload or cloud storage.
-- Record user changes as a small ordered in-memory set of field-level edits/undo actions. While selecting/changing rows, do **not** re-encrypt or rebuild the full save.
-- At final Export only: apply the allowlisted edit plan to one detached copy, validate original-to-edited semantic diff, package and re-open the newly encoded save, compare the exact allowed fields and all unrelated data.
-- Offer **one download** containing `original` and `edited` files in a ZIP by default (do not compress already encrypted P1G bytes; use ZIP STORE, not a CPU-expensive deflate). Optional single edited file is a future UX choice; preserve prominent original-backup availability throughout.
-- Avoid two consecutive browser downloads triggered by one click if browser download policies can block the second. Assess ZIP RAM and peak browser memory on large real saves; cap input sizes and fail safely. The archive itself must not be mistaken for a directly game-importable save; the edited file inside is the artifact.
-- No original file is automatically overwritten. Nothing is written at selection time, preview time or diagnostic time. Preserve the session's original bytes until the tab is closed or explicitly replaced.
+Core preset buttons are **Now**, **100 years ahead**, and **Game release date**. The release date is the original Early Access start **2022-09-06**, according to Disney/Gameloft; this is distinct from the game's formal post-Early-Access launch **2023-12-05**. Treat this as a date preset, not a claim that the game launched exactly at midnight UTC. The preset's timezone/local-time convention and rounding will be explicit and tested, with an option to refine time of day; it must not imply the reactivation of expired online events or reward entitlements.
 
-**Approval scope:** The Phase 1 product intent and Phase 2 research priorities are approved. Phase 3 is a **design proposal**, not approved implementation: explain stages, tradeoffs of two files vs single archive, performance, compatibility and recovery/verification to Owner first. Do not enable actual save edits or public writer without its separate approval and testing.
+"100 years ahead" means relative to **one frozen present-time snapshot** on the chosen action, with a deterministic calendar-year policy (including February 29 and DST behavior) instead of blindly adding a fixed number of milliseconds. For each selected eligible field, the same target time is applied in one preview/commit batch. Any chosen future value is intentional; no arbitrary threshold or 2126 observation should disable an otherwise proven write operation. Individual fields remain gated on actual source semantics.
+
+## Phase 3 core session and final export — OWNER APPROVED
+
+- The browser-local input original is held unchanged; decode/parse once per opening.
+- During editing, keep a **minimal field-level plan and Undo/Redo** only. Do not serialize/recompress/re-encrypt the whole save for each edit.
+- At final export, validate the selected exact path/ID/version-conditioned allowlist and original values, apply changes to an isolated copy, compute precise diff, encode/repack only once, reopen and compare all unrelated fields; fail closed on any mismatch. Before that, *no* save writing.
+- **DO NOT PACKAGE BOTH FILES INTO A ZIP.** Owner rejected the ZIP proposal for convenience. When final output passes verification, offer **one action that attempts both separate downloads**: untouched source backup and edited artifact (trigger original backup first; browser multiple-download policies may block the second). Provide a visible individual retry/download button for each already prepared file. Keep prepared blobs in memory only for the user session, with sensible size caps, and do not re-encode just to retry a download. Do not claim two downloads are guaranteed by browsers.
+- Edited output and source backup remain independent objects; source is byte-identical to uploaded input. Record source hash and edited hash for validation; user-facing archive download is not required. No server upload/telemetry.
+- A **possible direct-input-file overwrite mode** is a separate feasibility backlog, NOT APPROVED for initial release. Ordinary `<input type=file>` cannot write through to the user's disk path. A capable HTTPS browser may offer File System Access handles with explicit permission; when available, get user consent and a verified backup before any direct overwrite, detect edit/reload failures, and fall back to separate downloads. Web page code cannot directly replace protected Nintendo Switch save storage.
+- Memory/performance tests must reflect Wand's existing decoded >10MB owner observation and 25/50/100/200MiB planning envelope; Worker owns parsed state, and UI receives only needed rows/summaries. Optimize duplicate buffers and encoding only after measurement; do not claim theoretical memory guarantees.
+
+**Approval boundary:** Owner approved the lightweight one-decode, staged field edits, final-one-encode independent validation core and separate-file export design. These are implementation mandates, NOT proof that existing `SafeProfileEditSession` is a verified v1.25.3 writer, and NOT permission to enable real output before save preservation and Switch acceptance.
+
+## Additional independent world-editing backlog — not ordinary timer edits
+
+1. **Area-scoped one-click removal of auto-spawned activity GridObjects** (obstacles, wild herbs/spices, branches/wood, flowers etc.). First map source event/ItemID to actual spawned GridObject, verify area/root/subgrid scope, distinguish quest objects, player-placed objects, mission spawn history, reference dependencies and rescheduling. Soft deletion/undo and source-state preservation need independent proof before allowing any bulk delete.
+2. **Move the already spawned Moonstone Chest in front of the original player's house, main Valley scope.** Interpret Moonstone as the existing chest object, not currency balance or online reward claim editing. Wand 01B and DDV_PLAYERHOUSE_SAVE_MODEL_v1.24.13 establish `PlayerHouseIndex=0` as original interior but *not* a unique global entrance or fixed position. Resolve the actual main Valley exterior GridObject, placement grid, usable coordinate/footprint and collision constraints; preserve object identity and conditional-event references and test resave/restart. Different from forcing a new chest spawn.
+3. **Wand-first shared research rule**: search DDVRE/Wand canonical Save 01A, World 01B, Game DB 01D, Runtime 01E and PlayerHouse/Grid transaction research before doing any new static analysis. Add verified missing facts to the shared DDVRE/00_PROJECT index at https://docs.google.com/document/d/1JFEcHRWclsGLkRsW9-lMcfgcNiGoeVRoL6xaJ-8CDd8/edit; Timekeeper's Drive docs and this repository link to it instead of copying originals. Future Wand integration consumes versioned contracts after its own independent gates; do not change Wand production write authorization.
 
 ## Release evidence remaining
 
