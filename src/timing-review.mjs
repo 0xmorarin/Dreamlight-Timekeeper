@@ -41,10 +41,10 @@ export function assessTimingRow(row,index,{schema=626}={}){
     status='HOLD_UNKNOWN_EVENT';reason='Event ID has no verified definition.';
   }else if(row.source==='World.RecurringEvents' && row.eventActive===false){
     status='HOLD_INACTIVE_EVENT';reason='Registry marks the event inactive; operational meaning not proven.';
-  }else if(row.source==='World.RecurringEvents' && rule?.classification==='RESEARCH_CANDIDATE' && row.policy!=='W1'){
-    status='HOLD_EVENT_POLICY';reason='Event-specific static policy is not W1.';
   }else if(row.source==='World.RecurringEvents' && row.id===2010000064){
     status='CONDITIONAL_REVIEW';reason='Moonstone Chest local schedule is separate from server reward eligibility.';
+  }else if(row.source==='World.RecurringEvents' && rule?.classification==='RESEARCH_CANDIDATE' && row.policy!=='W1'){
+    status='HOLD_EVENT_POLICY';reason='Event-specific static policy is not W1.';
   }
   return Object.freeze({status,semantic:rule?.semantic??null,reason,
     nativeEvidence:rule?.nativeEvidence??null,ruleRevision:index.source.revision,
@@ -56,6 +56,6 @@ export function assessTimingSnapshot(snapshot,index){
     throw new Error('Save snapshot is invalid.');
   const rows=snapshot.rows.map(row=>({...row,review:assessTimingRow(row,index,{schema:snapshot.identity.schema})}));
   return {...snapshot,rows,timingReview:{gameVersion:index.source.gameVersion,
-    buildId:index.source.buildId,schema:index.source.schema,
+    evidenceBuildId:index.source.buildId,saveBuildVerified:false,schema:index.source.schema,
     revision:index.source.revision,evidenceLevel:'STATIC_ONLY',writerAuthorization:false}};
 }
