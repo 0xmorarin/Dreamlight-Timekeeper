@@ -24,7 +24,7 @@ function chunk(kind,body){
 }
 function samplePng(){
  const ihdr=Buffer.alloc(13);ihdr.writeUInt32BE(2,0);ihdr.writeUInt32BE(2,4);ihdr[8]=8;ihdr[9]=6;
- const pixels=Buffer.from([0,245,100,10,0,20,30,40,255,0,35,45,55,120,0,200,110,90,255]);
+ const pixels=Buffer.from([0,245,100,10,0,20,30,40,255,0,35,45,55,120,200,110,90,255]);
  return Buffer.concat([
   Buffer.from([137,80,78,71,13,10,26,10]),chunk('IHDR',ihdr),
   chunk('IDAT',deflateSync(pixels)),chunk('IEND',Buffer.alloc(0))
