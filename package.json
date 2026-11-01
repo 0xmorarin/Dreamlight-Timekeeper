@@ -7,6 +7,7 @@
     "test": "node --test tests/*.test.mjs && npm run verify:icons",
     "serve": "python -m http.server 8000",
     "verify:icons": "node scripts/verify-icon-assets.mjs",
-    "test:icon-import": "node --test tests/icon-import.integration.mjs"
+    "test:icon-import": "node --test tests/icon-import.integration.mjs",
+    "build:app-icons": "node scripts/build-app-ui-icons.mjs"
   }
 }
