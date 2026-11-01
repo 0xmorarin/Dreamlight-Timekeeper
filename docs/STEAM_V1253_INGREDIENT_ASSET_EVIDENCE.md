@@ -56,3 +56,24 @@ Using native UnityFS/LZ4 block extraction and DDS decode (BC7/DXT5), 90 mapped P
 5. Maintain `data/steam-icons-v1253.json` as empty until these publication gates are resolved. This does not block reader functionality.
 
 The reader and timing writer capabilities are unaffected; no save fields were modified.
+
+
+## Additional category bundle audits (same Steam build and ActivityItem source)
+
+The same UnityFS object-table, ActivityItem field-4 GUID, AssetBundle container PPtr, Sprite-to-Texture and full-rect checks were applied independently to seven more bundles. Recorded SHA-256 values refer to the **raw compressed UnityFS source**, not the extracted images.
+
+| Source bundle | Raw SHA-256 | Mapped ItemIDs | Unique Sprite references |
+| --- | --- | ---: | ---: |
+| \`flower_584a9f69.bundle\` | \`e7cbd3f2c08f13bcca84e58ec96cf519ef566cb2061c5ae6fe3d65a612b97770\` | 110 | 100 |
+| \`fish_3f084647.bundle\` | \`cfb844919e844124ba390730ec95d6dd0e4fabfaf409f25227e5ef09beb551a6\` | 88 | 76 |
+| \`seed_8c733f88.bundle\` | \`3650906d8318350dd35944ddbcf67f4616e11c37e544ab379a48faa059514e3f\` | 108 | 97 |
+| \`craftingmaterial_a01be543.bundle\` | \`85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c\` | 148 | 124 |
+| \`crop_7563a03a.bundle\` | \`c7301948d3d58315da07330245e1c58857492069b9007c79ad6a9344fcd7a3e9\` | 159 | 122 |
+| \`mineral_6fc39434.bundle\` | \`0e530e5bed94c8c840c9506cec8be46f61a2615651f5ced8d842033f97734b3e\` | 57 | 53 |
+| \`other_650458c6.bundle\` | \`8cfbfa263869b7b275ea382895322d16d1a79af96082dc3f111f461dbbd1b058\` | 0 via ActivityItem | 0 matched; 25 Sprite objects present |
+
+Across Ingredient and the seven listed sources, 760 ItemIDs were matched with **zero duplicate ItemIDs between bundles**. This is a partial source-specific coverage count and must not be called a complete Steam item icon index. The \`other\` source requires another item-definition/asset reference table and must not be automatically mapped by filename.
+
+Additional private conversion checks: Flower 110/110, Fish 88/88 and Seed 108/108 PNG/WebP RGBA pixel equality PASS, using Pillow/libwebp with \`lossless=True\`, \`exact=True\`, mixed encoding methods 0/3 due local resource limits. Taken together with Ingredient 90/90 method 6, **396/396 local decoded-RGBA equality checks passed**. Remaining Crafting Material, Crop and Mineral mappings have not been individually exported and pixel-checked; do not report them as verified deployment images.
+
+The checked extraction script is \`scripts/audit-steam-icons.py\`. Its code and synthetic test suite contain no game image assets; the build remains reader-only and the public deployed icon manifest remains unpopulated.
