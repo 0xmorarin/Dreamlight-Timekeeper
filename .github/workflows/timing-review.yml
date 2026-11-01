@@ -1,0 +1,35 @@
+name: Verify Timing Review
+
+on:
+  pull_request:
+    paths:
+      - 'src/timing-review.mjs'
+      - 'src/reader.mjs'
+      - 'src/worker.mjs'
+      - 'src/app.mjs'
+      - 'data/timing-review-rules-v1253.json'
+      - 'tests/timing-review.test.mjs'
+      - '.github/workflows/timing-review.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'src/timing-review.mjs'
+      - 'src/reader.mjs'
+      - 'src/worker.mjs'
+      - 'src/app.mjs'
+      - 'data/timing-review-rules-v1253.json'
+      - 'tests/timing-review.test.mjs'
+
+permissions:
+  contents: read
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run all browser reader and timing policy tests
+        run: node --test tests/*.test.mjs
