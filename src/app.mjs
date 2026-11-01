@@ -137,7 +137,7 @@ function makeRecord(r){
  const body=make('span','record-data');body.append(make('span','record-title',recordTitle(r)),make('span','record-subtitle',recordLocation(r)));
  if(r.items.length>1)body.append(make('span','record-items',r.items.length<=3?r.items.map(localizedItem).join(' · '):t('multiItems',{n:r.items.length})));
  const timing=make('span','record-timing');timing.append(make('span','record-timing-label',t(r.timingKey||'timeStored')),make('span','record-time',fmt(r.time)));
- if(['SPECIAL_2126_UNRESOLVED','DISTANT_FUTURE_UNVERIFIED'].includes(r.status)){timing.classList.add('record-warning');timing.append(make('span','record-timing-note',t(r.status==='SPECIAL_2126_UNRESOLVED'?'statusSentinel':'statusDistant')));}
+ if(['SPECIAL_2126_UNRESOLVED','DISTANT_FUTURE_UNVERIFIED'].includes(r.status)){timing.classList.add('record-warning');timing.append(make('span','record-timing-note',t(r.status==='SPECIAL_2126_UNRESOLVED'?'statusSentinel':'statusDistant')));decorateWithIcon(timing,'game_ui','status.warning');}
  label.append(check,imageCluster(r),body,timing);return label;
 }
 function renderSelectionLabel(){const n=state.selected.size;$('selection-label').textContent=n?t('selected',{n}):t('unselected');}
