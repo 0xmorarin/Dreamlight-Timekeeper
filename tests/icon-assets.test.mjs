@@ -7,7 +7,7 @@ const manifest = JSON.parse(await readFile(new URL('../data/steam-icons-v1253.js
 const hash = 'a'.repeat(64);
 const record = {platform:'Steam',gameVersion:'1.25.3',verified:true,
  path:'assets/steam/v1253/31300003.webp',sha256:hash,sourceSha256:'b'.repeat(64),
- sourceAsset:'Steam AssetBundle ItemIcon/31300003',width:1,height:1};
+ sourceAsset:'Steam AssetBundle ItemIcon/31300003',itemIdEvidence:'proven ItemID association',width:1,height:1};
 function oneIcon(overrides={}) {
  return {source:{platform:'Steam/Windows',gameVersion:'1.25.3',status:'VERIFIED_STEAM_ASSETS'},
  icons:{31300003:{...record,...overrides}}};
