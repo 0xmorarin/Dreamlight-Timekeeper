@@ -23,6 +23,24 @@ test('UTF-8 BOM profile.json is handled and acknowledged',async()=>{
   assert.equal(result.format,'json');
   assert.equal(result.view.identity.name,'TEST');
 });
+test('Worker provides non-mutating read-only shared-date diagnostics for uploaded save',async()=>{
+ const special='2126-08-20T00:00:00.000Z';
+ const source={GameInfo:{Version:626},Player:{Name:'Fixture'},World:{RecurringEvents:{
+  '0':{ItemSpawning:{RecurringEventItemID:2010000003,NextOccurrence:special}},
+  '1':{FlowerSpawningInVillage:{RecurringEventItemID:2010500008,NextOccurrence:special}},
+  '2':{FishSpawningInVillage:{RecurringEventItemID:2010200014,NextOccurrence:'2028-01-01T00:00:00Z'}}
+ }}};
+ const sourceText=JSON.stringify(source);
+ const result=await send('open',sourceText);
+ assert.equal(result.ok,true);
+ assert.equal(result.view.timingAudit.statuses.SPECIAL_2126_UNRESOLVED,2);
+ assert.equal(result.view.timingAudit.shared2126.multiTypePattern,true);
+ assert.equal(result.view.timingAudit.shared2126.originVerified,false);
+ assert.equal(result.view.timingAudit.autoRepairAllowed,false);
+ assert.equal(result.view.timingAudit.writerAuthorized,false);
+ assert.equal(result.view.capabilities.editingAllowed,false);
+ assert.equal(JSON.stringify(source),sourceText);
+});
 test('malformed profile.json returns a visible error result',async()=>{
   const result=await send('open','{invalid');
   assert.equal(result.ok,false);
