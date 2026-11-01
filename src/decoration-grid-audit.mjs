@@ -9,7 +9,10 @@ export function auditDecorationGridItemMatches(profile,source,{maxGrids=10000,ma
  const world=profile?.World;
  if(!isObject(world)||!isObject(world.GridCollection?.Grids)||!Array.isArray(world.Villages)||
   !source||source.source?.writeAuthorization!==false||
-  source.source?.deleteAuthorization!==false||!Array.isArray(source.rows))
+  source.source?.deleteAuthorization!==false||
+  source.source?.version!=='1.25.3'||source.source?.buildId!=='9A239D3DB569756D'||
+  source.source?.rawEventSHA256!=='028a206635d37bffd7f3a8ff820958bdaa201887bacf35e10faa8328d20022ea'||
+  source.rows?.length!==508||!Array.isArray(source.rows))
   throw new Error('Unrecognized read-only Grid audit input.');
  const byItem=new Map();
  for(const row of source.rows){
