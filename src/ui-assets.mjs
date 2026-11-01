@@ -29,7 +29,7 @@ export function validateUiManifest(manifest,kind){
   if(kind==='game_ui'&&(src.platform!=='Steam/Windows'||src.gameVersion!=='1.25.3'||
      !SHA.test(src.sourceBundleSha256)||typeof src.sourceBundle!=='string'||!src.sourceBundle))
     throw new Error('Steam UI asset provenance mismatch.');
-  if(kind==='app_ui'&&(src.platform!=='Dreamlight Timekeeper'||!Number.isSafeInteger(src.revision)||src.revision<2||src.assetFormat!=='SVG'))
+  if(kind==='app_ui'&&(src.platform!=='Dreamlight Timekeeper'||!Number.isSafeInteger(src.revision)||src.revision<2||src.assetFormat!=='SVG'||src.designStatus!=='PROVISIONAL_OWNER_ARTWORK'))
     throw new Error('App UI asset version mismatch.');
   const records=Object.entries(manifest.icons);
   if(src.status!==(records.length?'VERIFIED_ASSETS':'NO_ASSETS_VERIFIED'))
