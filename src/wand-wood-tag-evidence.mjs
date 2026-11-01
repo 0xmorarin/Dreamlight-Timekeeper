@@ -1,6 +1,6 @@
 // Evidence-only versioned source crosswalk. Does not grant write or world-object permissions.
 const E='028a206635d37bffd7f3a8ff820958bdaa201887bacf35e10faa8328d20022ea';
-const A='20e4f190fc4481325cb4311a4a3a3e6fc57d3f1ca7a67acffd9c9008394ba5d4';
+const A='20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4';
 const T='1208fc88a6b6b47346a6e8680db831b6a6751115adef34c4baf4ff7abdae9f3f';
 export function auditWandWoodTagsInEvents(eventSource,tagPack){
  if(eventSource?.source?.rawEventSHA256!==E||
