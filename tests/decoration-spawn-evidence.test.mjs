@@ -69,3 +69,23 @@ test('unknown inactive or evidence-regressed source does not gain decoration cla
   {...raw,events:[...raw.events.slice(0,-1),raw.events[0]]}
  ])assert.throws(()=>compileDecorationSpawnEvidence(invalid));
 });
+
+test('versioned Wand isWood evidence replaces legacy six-ID wood subset when explicitly supplied',async()=>{
+ const woodTagPack=JSON.parse(await readFile(new URL('../data/wand-iswood-crosswalk-v1253.json',import.meta.url),'utf8'));
+ const r=compileDecorationSpawnEvidence(raw,{woodTagPack});
+ assert.equal(r.source.status,'BYTE_VERIFIED_WOOD_TAG_PROJECTION');
+ assert.equal(r.counts.OBSTACLE_EVENT,76);
+ assert.equal(r.counts.WILD_PLANT_EVENT,38);
+ assert.equal(r.counts.FLOWER_EVENT,157);
+ assert.equal(r.counts.WOOD_MATERIAL_EVENT,40);
+ assert.equal(r.counts.OTHER_FORAGE_EVENT,12);
+ assert.equal(r.rows.filter(x=>x.primaryDecorationResearch).length,311);
+ assert.equal(r.rows.filter(x=>x.activeSourceReviewCandidate).length,88);
+ const row=id=>r.rows.find(x=>x.eventId===id);
+ assert.equal(row(2010000140).family,'WOOD_MATERIAL_EVENT');
+ assert.equal(row(2010000196).family,'WOOD_MATERIAL_EVENT');
+ assert.equal(row(2010000207).family,'WOOD_MATERIAL_EVENT');
+ assert.equal(row(2010000137).family,'OTHER_FORAGE_EVENT');
+ assert.equal(row(2010000113).family,'OTHER_FORAGE_EVENT');
+ assert.equal(r.rows.every(x=>!x.writerAuthorized&&!x.bulkDeletionAuthorized),true);
+});
