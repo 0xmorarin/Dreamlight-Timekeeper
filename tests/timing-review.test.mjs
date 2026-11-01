@@ -68,3 +68,19 @@ test('schema mismatch and conflicting oneof structures fail closed',()=>{
  assert.equal(assessTimingRow({...row,structureValid:false},index).status,'HOLD_STRUCTURE');
  assert.equal(assessTimingRow({...row,status:'DISTANT_FUTURE_UNVERIFIED'},index).status,'HOLD_DISTANT_FUTURE');
 });
+
+test('2126 known shared instant recognizes zero-only fractional precision but not nearby instants',()=>{
+ for(const time of ['2126-08-20T00:00:00Z','2126-08-20T00:00:00.0Z',
+   '2126-08-20T00:00:00.000Z','2126-08-20T00:00:00.000000000Z']){
+  assert.equal(validTime(time),true);
+  const p=profile();p.World.RecurringEvents['2'].FlowerSpawningInVillage.NextOccurrence=time;
+  const snapshot=assessTimingSnapshot(projectProfile(p,registry,{now:at}),index);
+  const target=snapshot.rows.find(r=>r.id===2010500008);
+  assert.equal(target.status,'SPECIAL_2126_UNRESOLVED');
+  assert.equal(target.review.status,'HOLD_2126_UNKNOWN');
+ }
+ const near='2126-08-20T00:00:00.000000001Z';
+ const p=profile();p.World.RecurringEvents['2'].FlowerSpawningInVillage.NextOccurrence=near;
+ const target=projectProfile(p,registry,{now:at}).rows.find(r=>r.id===2010500008);
+ assert.equal(target.status,'DISTANT_FUTURE_UNVERIFIED');
+});
