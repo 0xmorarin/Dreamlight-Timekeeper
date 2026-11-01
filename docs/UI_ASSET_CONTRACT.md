@@ -25,11 +25,13 @@ Initial binary import into Draft PR #3 is intentionally limited to **two exact a
 - `game_ui:skill.mining` — Sprite `8838071592011784765`, Texture2D `2140947109914567229`; 128×128.
 - `game_ui:status.warning` — Sprite `1195881995301868918`, Texture2D `4550751082103756150`; 32×32.
 
-The remaining 14 pixel-equivalent sources have not yet been published in the repository; local research or separate import review is not proof that the web UI is already displaying them.
+The remaining 14 pixel-equivalent Steam sources have not yet been published in the repository; local research or separate import review is not proof that the web UI is already displaying them.
+
+Original app artwork is now also published for exactly three file operations: `action.open-save`, `action.open-another` and `action.backup`, each 48×48 VP8L WebP. Each has an original RGBA SHA-256, shipped-byte SHA-256, corresponding semantic key and reproducible source `scripts/build-app-ui-icons.py`. The source glyphs were authored for this tool rather than extracted from the game.
 
 ## Tool presentation
 
-Semantic images are optional decorations. Tabs, group buttons, alerts and file actions always retain visible translated text and keyboard focus; failure to load an icon removes only its image, not the control. File actions can be decorated by a separate `app_ui` source. The `app_ui` manifest remains empty until tool-owned art is created and tested.
+Semantic images are optional decorations. Tabs, group buttons, alerts and file actions always retain visible translated text and keyboard focus; failure to load an icon removes only its image, not the control. File actions can be decorated by a separate `app_ui` source. The `app_ui` manifest currently contains the three verified original file-operation icons. The other 13 proposed app glyphs have been privately rendered and pixel-checked, but they are not yet published to the website.
 
 For current UI routing:
 - `tab.<tab-id>` decorates the tab only when its semantics are reviewed and its image is published.
@@ -54,3 +56,9 @@ python scripts/audit-steam-ui-atlas.py --bundle /path/to/ui-imagesatlas_assets_a
 ImageMagick's `magick` is additionally required for image extraction. The first command audits references without writing images. The second produces private Lossless WebP images and a versioned manifest. It does not write to the site or overwrite a published file. Both commands use exact original-bundle SHA checks and fail closed for unexpected UnityFS, Sprite/Texture or image formats.
 
 The accepted product layout remains independent of Dreamwish Wand, and the four top-level functional tabs stay unchanged.
+
+## Browser and publication acceptance
+
+GitHub Actions runs a separate Chromium smoke test on pinned Ubuntu 24.04 using a synthetic P1g profile. It checks actual VP8L decode of app icons after language changes, read-only file import, file-control availability, a real Steam warning icon, and mobile-width accessibility. This test does not write or alter any real user save, and is not equivalent to Nintendo Switch hardware acceptance.
+
+The app UI icons have no claim to be official DDV artwork. Their key and output paths must remain in the `app_ui` namespace; do not copy them to game-source metadata or infer gameplay field behavior from their appearance. Source-level icons `action.search`, `action.filter`, `action.calendar`, `action.clock` and the remaining proposed actions stay pending until independently registered with their byte hashes and integration tests.
