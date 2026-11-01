@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#172c29">
+<title>DDV Save Timing Tools</title>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <header class="header">
+    <div class="brand"><div class="brand-mark" aria-hidden="true">◷</div><div><div class="brand-overline">DISNEY DREAMLIGHT VALLEY</div><h1>Save Timing Tools</h1></div></div>
+    <label class="file-button" for="save-file"><span aria-hidden="true">↥</span> セーブを開く</label>
+    <input id="save-file" class="visually-hidden" type="file" accept=".json,.txt,.profile,.dat,application/json,application/octet-stream">
+  </header>
+  <div id="save-info" class="save-info" aria-live="polite"><span>セーブ未読込み</span><span class="muted">ファイルはブラウザー内だけで処理します</span></div>
+  <main class="main">
+    <div class="intro"><div><p class="eyebrow">LOCAL SAVE INSPECTOR</p><h2>日時を、ゲーム内の用途ごとに。</h2><p class="intro-desc">自動発生から生産、ショップ、日次更新まで。現在は解析対象を安全に確認する読取り専用プレビューです。</p></div><button id="download-backup" class="button secondary" disabled>原本をバックアップ</button></div>
+    <div id="status" class="status" role="status" aria-live="polite">イベント定義を読み込んでいます。</div>
+    <nav id="tabs" class="tabs" role="tablist" aria-label="タイマーのカテゴリ"></nav>
+    <section class="workspace" aria-labelledby="current-category">
+      <div class="category-top"><div><p class="eyebrow">TIMING CATEGORY</p><h3 id="current-category">自動発生・スポーン</h3><p class="muted">上位階層から下位の日時まで、対象範囲を確認できます。</p></div><button id="bulk" class="button primary" disabled>カテゴリ全体を確認</button></div>
+      <div class="content-grid">
+        <section class="records-panel" aria-label="対象一覧"><div class="panel-toolbar"><label class="search-label" for="filter-input">対象を探す</label><input id="filter-input" type="search" placeholder="名前・イベントIDで検索" spellcheck="false"><button id="expand-all" class="button subtle">すべて開く</button></div><div id="records" class="records"></div></section>
+        <aside class="actions-panel"><p class="eyebrow">DATE PREVIEW</p><h4>日時の設定</h4><p class="muted aside-note">階層を選ぶと変更対象と変更前後の値を表示します。セーブへの書込みは実行しません。</p><fieldset class="fieldset"><legend>設定する日時</legend><label class="choice"><input type="radio" name="time-mode" value="now" checked> 現在時刻</label><label class="choice"><input type="radio" name="time-mode" value="custom"> 任意の日時</label></fieldset><label class="date-label" for="custom-time">日時（ご利用の地域時間）</label><input id="custom-time" type="datetime-local" disabled><div class="timezone" id="timezone"></div><div id="preview" class="preview"><p class="muted">大・中・小カテゴリ、または個別項目の「確認」を押してください。</p></div></aside>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">解析対象: Switch v1.25.3 / Save schema 626 <span>·</span> 日時書込み・オンライン報酬変更は無効 <span>·</span> No server upload</footer>
+</div>
+<script type="module" src="./src/app.mjs"></script>
+</body>
+</html>
