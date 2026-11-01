@@ -18,3 +18,7 @@ jobs:
           node-version: '22'
       - name: Run tests and icon integrity checks
         run: npm test
+      - name: Install lossless image verification tools
+        run: sudo apt-get update && sudo apt-get install -y webp imagemagick
+      - name: Verify real VP8L pixel round trip
+        run: npm run test:icon-import
