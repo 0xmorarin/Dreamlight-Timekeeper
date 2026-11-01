@@ -2,6 +2,7 @@ import {p1gPackagedProfileCodec} from './core/p1g-packaged-profile-codec.mjs';
 import {parseSafeJson} from './core/safe-edit-session.mjs';
 import {indexEvents,projectProfile} from './reader.mjs';
 import {indexTimingReviewRules,assessTimingSnapshot} from './timing-review.mjs';
+import {auditTimingSnapshot} from './timing-audit.mjs';
 const decoder=new TextDecoder('utf-8',{fatal:true});
 let indexPromise;
 let namesPromise;
@@ -23,7 +24,9 @@ self.onmessage=async({data})=>{
       else {const loaded=await p1gPackagedProfileCodec.loadProfile(bytes);text=loaded.jsonText;format='packaged'}
       const profile=parseSafeJson(text);
       const [registry,names,rules]=await Promise.all([getIndex(),getNames(),getRules()]);
-       const view=assessTimingSnapshot(projectProfile(profile,registry,{itemNames:names}),rules);
+       const observedAt=Date.now();
+      const reviewed=assessTimingSnapshot(projectProfile(profile,registry,{itemNames:names,now:observedAt}),rules);
+      const view={...reviewed,timingAudit:auditTimingSnapshot(reviewed,{now:observedAt})};
       original=bytes.slice();originalName=String(data.name||'profile.json').slice(0,180);
       self.postMessage({id,ok:true,type:'opened',format,view});
       return;
