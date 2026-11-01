@@ -113,7 +113,7 @@ function visibleRows(){
 function filterButton(name,count,active,fn,iconKey=null){const b=click(name,fn,'');b.className=active?'active':'';if(iconKey)decorateWithIcon(b,'game_ui',iconKey);b.append(make('small','',count));return b;}
 function renderFilters(){
  const rows=tabRows(),regions=$('regions');regions.replaceChildren();
- for(const [id] of WORLD_ORDER){const count=rows.filter(r=>id==='all'||r.world===id).length;if(id!=='all'&&!count)continue;regions.append(filterButton(t(id==='all'?'allRegions':id),count,state.world===id,()=>{state.world=id;state.group=null;state.subgroup=null;state.selected.clear();state.limit=120;renderFilters();renderList();renderDetails();}));}
+ for(const [id] of WORLD_ORDER){const count=rows.filter(r=>id==='all'||r.world===id).length;if(id!=='all'&&!count)continue;regions.append(filterButton(t(id==='all'?'allRegions':id),count,state.world===id,()=>{state.world=id;state.group=null;state.subgroup=null;state.selected.clear();state.limit=120;renderFilters();renderList();renderDetails();},id==='all'||id==='unknown'?null:'world.'+id));}
  const grouped=worldRows(),groups=$('groups');groups.replaceChildren();
  groups.append(filterButton(t('all'),grouped.length,state.group===null,()=>{state.group=null;state.subgroup=null;state.selected.clear();state.limit=120;renderFilters();renderList();renderDetails();}));
  const byGroup=new Map();
