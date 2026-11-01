@@ -1,5 +1,6 @@
 import {TAB_ORDER,WORLD_ORDER,previewScope,safeText} from './reader.mjs';
 import {SUPPORTED_LOCALES,initialLocale,translate,categoryName,areaName,localDate,parseLocalDateTime} from './i18n.mjs';
+import {validateIconManifest,resolveIconAsset} from './icon-assets.mjs';
 const $=id=>document.getElementById(id);
 const make=(tag,cls='',value)=>{const el=document.createElement(tag);if(cls)el.className=cls;if(value!==undefined)el.textContent=String(value);return el;};
 const click=(label,handler,cls='subtle')=>{const el=make('button',cls,label);el.type='button';el.addEventListener('click',handler);return el;};
@@ -90,7 +91,7 @@ function renderFilters(){
  for(const r of grouped){if(!byGroup.has(r.group))byGroup.set(r.group,new Map());const inner=byGroup.get(r.group);inner.set(r.subgroup,(inner.get(r.subgroup)||0)+1);}
  for(const [group,subs] of byGroup){const total=[...subs.values()].reduce((a,b)=>a+b,0);const list=make('div');list.append(filterButton(categoryName(state.locale,group),total,state.group===group&&state.subgroup===null,()=>{state.group=group;state.subgroup=null;state.selected.clear();state.limit=120;renderFilters();renderList();renderDetails();}));if(subs.size>1){const details=make('details');details.open=state.group===group;const summary=make('summary','',categoryName(state.locale,group));details.append(summary);for(const [sub,count] of subs)details.append(filterButton(categoryName(state.locale,sub),count,state.group===group&&state.subgroup===sub,()=>{state.group=group;state.subgroup=sub;state.selected.clear();state.limit=120;renderFilters();renderList();renderDetails();}));list.append(details);}groups.append(list);}
 }
-function iconFor(item){const record=iconManifest?.icons?.[String(item.id)];if(!record||record.platform!=='Steam'||record.gameVersion!=='1.25.3'||record.verified!==true||typeof record.path!=='string'||!/^assets\/steam\/v1253\/[a-zA-Z0-9_/-]+\.(?:webp|png)$/.test(record.path)||!(/^[0-9a-f]{64}$/.test(record.sha256||'')))return null;return new URL('../'+record.path,import.meta.url).href;}
+function iconFor(item){const record=resolveIconAsset(iconManifest,item.id);return record?new URL('../'+record.path,import.meta.url).href:null;}
 function imageCluster(r){
  const root=make('span','record-art');const all=r.items.slice(0,3);
  if(!all.length){const empty=make('span','record-art-empty','✦');empty.setAttribute('aria-label',t('imagesUnavailable'));root.append(empty);return root;}
@@ -158,7 +159,7 @@ function refreshLanguage(){
  if(state.snapshot){renderTabs();renderFilters();renderList();renderDetails();}
 }
 function setLanguage(locale){if(!SUPPORTED_LOCALES.includes(locale))return;state.locale=locale;try{localStorage.setItem('dreamlight-timekeeper-locale',locale);}catch{}refreshLanguage();}
-async function loadIcons(){try{const r=await fetch(new URL('../data/steam-icons-v1253.json',import.meta.url));if(!r.ok)return;const file=await r.json();if(file?.source?.platform==='Steam/Windows'&&file?.source?.gameVersion==='1.25.3'&&file.icons&&typeof file.icons==='object')iconManifest=file;}catch{}}
+async function loadIcons(){try{const r=await fetch(new URL('../data/steam-icons-v1253.json',import.meta.url));if(!r.ok)return;const file=await r.json();if(validateIconManifest(file))iconManifest=file;}catch{iconManifest=null;}}
 function boot(){
  for(const id of ['welcome-language','workspace-language']){const el=$(id);for(const locale of SUPPORTED_LOCALES){const name=new Intl.DisplayNames([locale],{type:'language'}).of(locale);el.append(make('option','',name));el.lastChild.value=locale;}el.addEventListener('change',()=>setLanguage(el.value));}
  $('open-welcome').addEventListener('click',fileDialog);$('open-again').addEventListener('click',fileDialog);
