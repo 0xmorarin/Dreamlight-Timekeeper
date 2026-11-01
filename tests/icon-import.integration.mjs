@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {mkdtemp,mkdir,writeFile,readFile,rm} from 'node:fs/promises';
+import {mkdtemp,mkdir,writeFile,readFile,copyFile,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {deflateSync} from 'node:zlib';
@@ -45,6 +45,8 @@ test('offline importer preserves visible and fully transparent RGBA and verifies
   const importer=join(root,'scripts','import-steam-icons.mjs');
   const verifier=join(root,'scripts','verify-icon-assets.mjs');
   await exec(process.execPath,[importer,planPath,output],{maxBuffer:8*1024*1024});
+  for(const file of ['steam-ui-icons-v1253.json','app-ui-icons.json'])
+   await copyFile(join(root,'data',file),join(output,'data',file));
   const manifest=JSON.parse(await readFile(join(output,'data','steam-icons-v1253.json'),'utf8'));
   assert.equal(manifest.icons[id].sourceSha256,sha(png));
   assert.equal(manifest.icons[id].verified,true);
