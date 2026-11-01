@@ -15,11 +15,13 @@ const appEntry={kind:'app_ui',verified:true,path:'assets/app/ui/action/open-save
   mappingEvidence:'Direct owner-authored action.open-save symbol',width:64,height:64};
 const withIcon=(base,key,entry)=>({...structuredClone(base),
   source:{...base.source,status:'VERIFIED_ASSETS'},icons:{[key]:entry}});
-test('empty UI manifests validate independently of item image manifest',()=>{
+test('independent populated Steam and empty app UI manifests validate',()=>{
  assert.equal(validateUiManifest(game,'game_ui'),true);
  assert.equal(validateUiManifest(app,'app_ui'),true);
  assert.equal(resolveGameUiIcon(game,'currency.moonstone'),null);
  assert.equal(resolveAppUiIcon(app,'action.open-save'),null);
+ assert.equal(resolveGameUiIcon(game,'skill.mining')?.width,128);
+ assert.equal(resolveGameUiIcon(game,'status.warning')?.height,32);
  assert.ok(GAME_UI_KEYS.includes('tab.spawn')&&APP_UI_KEYS.includes('action.backup'));
 });
 test('verified semantic keys resolve only for their own type',()=>{
