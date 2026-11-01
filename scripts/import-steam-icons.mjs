@@ -4,12 +4,13 @@ import {readFile,writeFile,copyFile,mkdir,mkdtemp,realpath,rm} from 'node:fs/pro
 import {tmpdir} from 'node:os';
 import {dirname,resolve,join,sep} from 'node:path';
 import {promisify} from 'node:util';
+import {fileURLToPath} from 'node:url';
 import {validateIconManifest,inspectLosslessWebP} from '../src/icon-assets.mjs';
 import {checkIconImportPlan,readPngRgbaHeader} from '../src/icon-import-plan.mjs';
 
 const exec = promisify(execFile);
 const planPath=process.argv[2];
-const outputRoot=resolve(process.argv[3]||new URL('../',import.meta.url).pathname);
+const outputRoot=resolve(process.argv[3]||fileURLToPath(new URL('../',import.meta.url)));
 if (!planPath || process.argv.length>4) {
   console.error('Usage: node scripts/import-steam-icons.mjs <local-plan.json> [output-root]');
   process.exitCode=2;
@@ -17,6 +18,7 @@ if (!planPath || process.argv.length>4) {
   const hex=bytes=>createHash('sha256').update(bytes).digest('hex');
   const assertInside=(base,target)=>{if (target===base || !target.startsWith(base+sep)) throw new Error('Source path escaped the import directory.');};
   const run=async(binary,args)=>exec(binary,args,{encoding:'buffer',maxBuffer:8*1024*1024});
+  const pixels=async args=>{try{return await run('magick',args);}catch(e){if(e.code==='ENOENT')return run('convert',args);throw e;}};
   const validatePublished=async(root)=>{
     const manifestPath=join(root,'data','steam-icons-v1253.json');
     try {const original=JSON.parse(await readFile(manifestPath,'utf8'));validateIconManifest(original);return original;}
@@ -46,8 +48,8 @@ if (!planPath || process.argv.length>4) {
         const webp=await readFile(file),decoded=inspectLosslessWebP(webp);
         if(decoded.width!==dims.width||decoded.height!==dims.height)throw new Error('WebP dimensions changed: '+item.itemId);
         const [originalRgba,convertedRgba]=await Promise.all([
-          run('magick',[actual,'-alpha','on','-depth','8','RGBA:-']),
-          run('magick',[file,'-alpha','on','-depth','8','RGBA:-'])
+          pixels([actual,'-alpha','on','-depth','8','RGBA:-']),
+          pixels([file,'-alpha','on','-depth','8','RGBA:-'])
         ]);
         if(!Buffer.from(originalRgba.stdout).equals(Buffer.from(convertedRgba.stdout)))
           throw new Error('Decoded RGBA pixels differ: '+item.itemId);
