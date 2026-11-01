@@ -69,13 +69,13 @@ export function inspectAppSvg(bytes){
     throw new Error('App SVG must use the fixed universal-design contract.');
   const shapes=svg.slice(start.length,-7);
   if(!shapes||shapes.includes('<!')||shapes.includes('<?')||shapes.includes('&')||
-    /(?:script|foreignObject|image|href|url\\(|onload|onclick|style|animate)/i.test(shapes))
+    /(?:script|foreignObject|image|href|url\(|onload|onclick|style|animate)/i.test(shapes))
     throw new Error('Unsupported or unsafe app SVG content.');
-  const tags=shapes.match(/<(?:path|rect|circle)\\s[^<>]*\\/>/g);
+  const tags=shapes.match(/<(?:path|rect|circle)\s[^<>]*\/>/g);
   if(!tags?.length||tags.join('')!==shapes)
     throw new Error('Only path, rect and circle geometry are allowed.');
   for(const tag of tags){
-    const names=[...tag.matchAll(/\\s([a-z-]+)="([^"]*)"/g)];
+    const names=[...tag.matchAll(/\s([a-z-]+)="([^"]*)"/g)];
     const attrs=new Set();
     for(const [,name,value] of names){
       if(!['d','cx','cy','r','x','y','width','height','rx','stroke','fill'].includes(name)||
