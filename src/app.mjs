@@ -184,6 +184,7 @@ function refreshLanguage(){
  for(const el of document.querySelectorAll('[data-i18n]'))el.textContent=t(el.dataset.i18n);
  $('filter-input').placeholder=t('search');
  for(const id of ['welcome-language','workspace-language'])$(id).value=state.locale;
+ refreshActionIcons();
  const overlay=$('drop-overlay').querySelector('.drop-message');overlay.lastChild.textContent=' '+t('dropHint');
  if(state.snapshot){renderTabs();renderFilters();renderList();renderDetails();}
 }
