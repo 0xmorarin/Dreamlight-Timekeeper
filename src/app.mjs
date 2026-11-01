@@ -1,20 +1,22 @@
 import {TAB_ORDER,WORLD_ORDER,previewScope,safeText} from './reader.mjs';
+import {SUPPORTED_LOCALES,initialLocale,translate,categoryName,areaName,localDate,parseLocalDateTime} from './i18n.mjs';
 const $=id=>document.getElementById(id);
 const make=(tag,cls='',value)=>{const el=document.createElement(tag);if(cls)el.className=cls;if(value!==undefined)el.textContent=String(value);return el;};
 const click=(label,handler,cls='subtle')=>{const el=make('button',cls,label);el.type='button';el.addEventListener('click',handler);return el;};
-const state={snapshot:null,tab:'spawn',world:'all',group:null,subgroup:null,query:'',sort:'name',selected:new Set(),limit:120,mode:'now',customTime:null,loading:false};
-let worker=null,seq=0,noticeCount=0;
+const state={snapshot:null,tab:'spawn',world:'all',group:null,subgroup:null,query:'',sort:'name',selected:new Set(),limit:120,mode:'now',loading:false,locale:initialLocale()};
+const t=(key,values)=>translate(state.locale,key,values);
+const fmt=value=>localDate(value,state.locale);
+let worker=null,seq=0,noticeCount=0,iconManifest=null;
 const pending=new Map();
-const fmt=value=>{if(!value)return '日時不明';const date=new Date(value);return Number.isFinite(date.getTime())?date.toLocaleString('ja-JP',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',timeZoneName:'short'}):safeText(value);};
 function failWorker(message){for(const p of pending.values())p.reject(new Error(message));pending.clear();if(worker){worker.terminate();worker=null;}}
 function request(type,payload={},transfer=[]){return new Promise((resolve,reject)=>{
  const id=++seq;
  try{
   if(!worker){
    worker=new Worker(new URL('./worker.mjs',import.meta.url),{type:'module'});
-   worker.onmessage=({data})=>{const p=pending.get(data.id);if(!p)return;pending.delete(data.id);data.ok?p.resolve(data):p.reject(new Error(data.error||'内部エラー'));};
-   worker.onerror=e=>{e.preventDefault();failWorker('セーブ処理の初期化に失敗しました。ページを再読み込みしてください。');};
-   worker.onmessageerror=()=>failWorker('セーブ処理の応答を受信できませんでした。');
+   worker.onmessage=({data})=>{const p=pending.get(data.id);if(!p)return;pending.delete(data.id);data.ok?p.resolve(data):p.reject(new Error(data.error||'Internal error'));};
+   worker.onerror=e=>{e.preventDefault();failWorker('Save reader initialization failed. Reload the page.');};
+   worker.onmessageerror=()=>failWorker('Save reader response could not be received.');
   }
   pending.set(id,{resolve,reject});worker.postMessage({id,type,...payload},transfer);
  }catch(err){pending.delete(id);reject(err);}
@@ -26,7 +28,7 @@ function message(text,error=false){
 }
 function showEditor(){
  $('welcome').hidden=true;$('workspace').hidden=false;
- $('session-name').textContent=state.snapshot.identity.name||'セーブ読込み済み';
+ $('session-name').textContent=state.snapshot.identity.name||'Save opened';
  $('download-backup').disabled=false;
  renderTabs();renderFilters();renderList();renderDetails();
 }
@@ -35,97 +37,130 @@ async function openSave(file){
  if(!file||state.loading)return;
  state.loading=true;$('open-welcome').disabled=true;$('open-again').disabled=true;
  const old=state.snapshot;
- message(`読込み中：${file.name}`);
+ message(t('loading',{name:file.name}));
  try{
   const buffer=await file.arrayBuffer();
-  if(!buffer.byteLength)throw new Error('空のファイルです');
+  if(!buffer.byteLength)throw new Error('Empty file');
   const result=await request('open',{buffer,name:file.name},[buffer]);
-  state.snapshot=result.view;state.tab='spawn';state.world='all';state.group=null;state.subgroup=null;state.selected.clear();state.query='';state.limit=120;state.mode='now';state.customTime=null;
+  state.snapshot=result.view;state.tab='spawn';state.world='all';state.group=null;state.subgroup=null;state.selected.clear();state.query='';state.limit=120;state.mode='now';
   $('filter-input').value='';$('sort-order').value='name';$('time-mode').value='now';$('custom-time').value='';$('custom-time').disabled=true;
-  showEditor();
-  message(`${result.format==='packaged'?'暗号化されたセーブ':'JSON'}を読み込みました。${result.view.diagnostics.length?result.view.diagnostics.join(' / '):''}`);
+  showEditor();message(t('opened',{format:result.format}));
  }catch(err){
   if(old){state.snapshot=old;showEditor();}else{state.snapshot=null;showWelcome();}
-  message(`読込み失敗（${file.name}）：${err instanceof Error?err.message:String(err)}`,true);
+  message(t('loadError',{name:file.name,reason:err instanceof Error?err.message:String(err)}),true);
  }finally{state.loading=false;$('open-welcome').disabled=false;$('open-again').disabled=false;$('save-file').value='';}
 }
 function fileDialog(){$('save-file').click();}
+function localizedItem(item){const names=item.names||{};return safeText(names[state.locale]||names['en-US']||item.name||t('recordIndex',{id:item.id}));}
+function recordTitle(r){
+ if(r.items.length){const unique=[...new Set(r.items.map(localizedItem).filter(Boolean))];if(unique.length===1)return unique[0];if(unique.length>1)return categoryName(state.locale,r.subgroup||r.group);}
+ if(r.source==='World.RecurringEvents')return categoryName(state.locale,r.subgroup||r.group)||t('eventId',{id:r.id});
+ if(r.kind==='StoreInfo.LastRefresh')return t('storeName',{id:r.id});
+ if(r.kind==='DisplayInfo.LastRefresh'){const slot=r.label.match(/(\d+)$/)?.[1]||'?';return t('displaySlot',{n:slot});}
+ if(r.kind==='GardenData.Slots.Sapling.EndOfGrowth'){const slot=r.label.match(/(\d+)$/)?.[1]||'?';return t('gardenSlot',{n:slot});}
+ if(r.kind?.includes('TreeAndBushData'))return categoryName(state.locale,'果樹・茂み');
+ if(r.kind?.includes('StallData')||r.kind?.includes('ShopData'))return categoryName(state.locale,r.group);
+ if(r.kind==='ResetTimer')return r.id==='LastDailyReset'?'Daily reset':'Weekly reset';
+ return r.label&&state.locale==='ja'?r.label:categoryName(state.locale,r.subgroup||r.group)||t('defaultEvent',{id:r.id});
+}
+function recordLocation(r){const region=t(r.world);const biome=areaName(state.locale,r.areaKey);return biome?`${region} · ${biome}`:region;}
+function recordSearch(r){return [recordTitle(r),r.label,r.id,r.kind,r.group,r.subgroup,r.eventName,...r.items.flatMap(x=>[x.id,x.name,...Object.values(x.names||{})])].filter(Boolean).join(' ').toLocaleLowerCase();}
 function renderTabs(){
  const root=$('tabs');root.replaceChildren();
- for(const [tab,name] of TAB_ORDER){const b=click(name,()=>{state.tab=tab;state.world='all';state.group=null;state.subgroup=null;state.selected.clear();state.limit=120;renderTabs();renderFilters();renderList();renderDetails();},'');b.className=state.tab===tab?'active':'';b.setAttribute('aria-current',String(state.tab===tab));root.append(b);}
+ for(const [tab] of TAB_ORDER){const b=click(t('tab_'+tab),()=>{state.tab=tab;state.world='all';state.group=null;state.subgroup=null;state.selected.clear();state.limit=120;renderTabs();renderFilters();renderList();renderDetails();},'');b.className=state.tab===tab?'active':'';b.setAttribute('aria-current',String(state.tab===tab));root.append(b);}
 }
-const tabRows=()=>state.snapshot?.rows.filter(row=>row.tab===state.tab)||[];
-const worldRows=()=>tabRows().filter(row=>state.world==='all'||row.world===state.world);
-function groupRows(){return worldRows().filter(row=>state.group===null||row.group===state.group).filter(row=>state.subgroup===null||row.subgroup===state.subgroup);}
+const tabRows=()=>state.snapshot?.rows.filter(r=>r.tab===state.tab)||[];
+const worldRows=()=>tabRows().filter(r=>state.world==='all'||r.world===state.world);
+const groupRows=()=>worldRows().filter(r=>(state.group===null||r.group===state.group)&&(state.subgroup===null||r.subgroup===state.subgroup));
 function visibleRows(){
- const query=state.query;let rows=groupRows().filter(row=>!query||[row.label,row.id,row.kind,row.group,row.subgroup,...row.items.map(x=>x.name)].join(' ').toLocaleLowerCase().includes(query));
- if(state.sort==='name')return rows;
+ const query=state.query;let rows=groupRows().filter(r=>!query||recordSearch(r).includes(query));
+ if(state.sort==='name')return rows.slice().sort((a,b)=>recordTitle(a).localeCompare(recordTitle(b),state.locale));
  const clone=rows.slice();
- if(state.sort==='time')clone.sort((a,b)=>(a.time===null)-(b.time===null)||(a.time||'').localeCompare(b.time||'')||a.label.localeCompare(b.label,'ja'));
- if(state.sort==='future')clone.sort((a,b)=>Number(['FUTURE','DISTANT_FUTURE_UNVERIFIED','SPECIAL_2126_UNRESOLVED'].includes(b.status))-Number(['FUTURE','DISTANT_FUTURE_UNVERIFIED','SPECIAL_2126_UNRESOLVED'].includes(a.status))||a.label.localeCompare(b.label,'ja'));
+ if(state.sort==='time')clone.sort((a,b)=>(a.time===null)-(b.time===null)||(a.time||'').localeCompare(b.time||'')||recordTitle(a).localeCompare(recordTitle(b),state.locale));
+ if(state.sort==='future')clone.sort((a,b)=>Number(['FUTURE','DISTANT_FUTURE_UNVERIFIED','SPECIAL_2126_UNRESOLVED'].includes(b.status))-Number(['FUTURE','DISTANT_FUTURE_UNVERIFIED','SPECIAL_2126_UNRESOLVED'].includes(a.status))||recordTitle(a).localeCompare(recordTitle(b),state.locale));
  return clone;
 }
 function filterButton(name,count,active,fn){const b=click(name,fn,'');b.className=active?'active':'';b.append(make('small','',count));return b;}
 function renderFilters(){
  const rows=tabRows(),regions=$('regions');regions.replaceChildren();
- for(const [id,label] of WORLD_ORDER){const count=rows.filter(r=>id==='all'||r.world===id).length;if(id!=='all'&&!count)continue;regions.append(filterButton(label,count,state.world===id,()=>{state.world=id;state.group=null;state.subgroup=null;state.selected.clear();state.limit=120;renderFilters();renderList();renderDetails();}));}
+ for(const [id] of WORLD_ORDER){const count=rows.filter(r=>id==='all'||r.world===id).length;if(id!=='all'&&!count)continue;regions.append(filterButton(t(id==='all'?'allRegions':id),count,state.world===id,()=>{state.world=id;state.group=null;state.subgroup=null;state.selected.clear();state.limit=120;renderFilters();renderList();renderDetails();}));}
  const grouped=worldRows(),groups=$('groups');groups.replaceChildren();
- groups.append(filterButton('すべて',grouped.length,state.group===null,()=>{state.group=null;state.subgroup=null;state.selected.clear();state.limit=120;renderFilters();renderList();renderDetails();}));
+ groups.append(filterButton(t('all'),grouped.length,state.group===null,()=>{state.group=null;state.subgroup=null;state.selected.clear();state.limit=120;renderFilters();renderList();renderDetails();}));
  const byGroup=new Map();
  for(const r of grouped){if(!byGroup.has(r.group))byGroup.set(r.group,new Map());const inner=byGroup.get(r.group);inner.set(r.subgroup,(inner.get(r.subgroup)||0)+1);}
- for(const [group,subs] of byGroup){const total=[...subs.values()].reduce((a,b)=>a+b,0);const list=make('div');list.append(filterButton(group,total,state.group===group&&state.subgroup===null,()=>{state.group=group;state.subgroup=null;state.selected.clear();state.limit=120;renderFilters();renderList();renderDetails();}));if(subs.size>1){const details=make('details');details.open=state.group===group;const summary=make('summary','','細分類');details.append(summary);for(const [sub,count] of subs)details.append(filterButton(sub,count,state.group===group&&state.subgroup===sub,()=>{state.group=group;state.subgroup=sub;state.selected.clear();state.limit=120;renderFilters();renderList();renderDetails();}));list.append(details);}groups.append(list);}
+ for(const [group,subs] of byGroup){const total=[...subs.values()].reduce((a,b)=>a+b,0);const list=make('div');list.append(filterButton(categoryName(state.locale,group),total,state.group===group&&state.subgroup===null,()=>{state.group=group;state.subgroup=null;state.selected.clear();state.limit=120;renderFilters();renderList();renderDetails();}));if(subs.size>1){const details=make('details');details.open=state.group===group;const summary=make('summary','',categoryName(state.locale,group));details.append(summary);for(const [sub,count] of subs)details.append(filterButton(categoryName(state.locale,sub),count,state.group===group&&state.subgroup===sub,()=>{state.group=group;state.subgroup=sub;state.selected.clear();state.limit=120;renderFilters();renderList();renderDetails();}));list.append(details);}groups.append(list);}
+}
+function iconFor(item){const record=iconManifest?.icons?.[String(item.id)];if(!record||record.platform!=='Steam'||record.gameVersion!=='1.25.3'||record.verified!==true||typeof record.path!=='string'||!/^assets\/steam\/v1253\/[a-zA-Z0-9_/-]+\.(?:webp|png)$/.test(record.path)||!(/^[0-9a-f]{64}$/.test(record.sha256||'')))return null;return new URL('../'+record.path,import.meta.url).href;}
+function imageCluster(r){
+ const root=make('span','record-art');const all=r.items.slice(0,3);
+ if(!all.length){const empty=make('span','record-art-empty','✦');empty.setAttribute('aria-label',t('imagesUnavailable'));root.append(empty);return root;}
+ for(const item of all){const url=iconFor(item);if(!url){const empty=make('span','record-art-empty','✦');empty.setAttribute('title',t('imagesUnavailable'));root.append(empty);continue;}
+  const image=make('img','record-icon');image.src=url;image.alt=localizedItem(item);image.loading='lazy';image.decoding='async';image.addEventListener('error',()=>{const empty=make('span','record-art-empty','✦');empty.setAttribute('title',t('imagesUnavailable'));image.replaceWith(empty);});root.append(image);
+ }
+ if(r.items.length>3)root.append(make('span','art-more','+'+(r.items.length-3)));
+ return root;
 }
 function makeRecord(r){
  const label=make('label',state.selected.has(r.pointer)?'record checked':'record');
- const check=make('input');check.type='checkbox';check.checked=state.selected.has(r.pointer);check.setAttribute('aria-label',`${r.label}を選択`);
+ const check=make('input');check.type='checkbox';check.checked=state.selected.has(r.pointer);check.setAttribute('aria-label',`${recordTitle(r)}: ${t('selectVisible')}`);
  check.addEventListener('change',()=>{if(check.checked)state.selected.add(r.pointer);else state.selected.delete(r.pointer);label.classList.toggle('checked',check.checked);renderSelectionLabel();renderDetails();});
- const body=make('span','record-data');body.append(make('span','record-title',r.label));
- const time=make('span','record-meta',fmt(r.time));
- if(['SPECIAL_2126_UNRESOLVED','DISTANT_FUTURE_UNVERIFIED'].includes(r.status))time.classList.add('record-tag');
- body.append(time);label.append(check,body);return label;
+ const body=make('span','record-data');body.append(make('span','record-title',recordTitle(r)),make('span','record-subtitle',recordLocation(r)));
+ if(r.items.length>1)body.append(make('span','record-items',r.items.length<=3?r.items.map(localizedItem).join(' · '):t('multiItems',{n:r.items.length})));
+ const timing=make('span','record-timing');timing.append(make('span','record-timing-label',t(r.timingKey||'timeStored')),make('span','record-time',fmt(r.time)));
+ if(['SPECIAL_2126_UNRESOLVED','DISTANT_FUTURE_UNVERIFIED'].includes(r.status)){timing.classList.add('record-warning');timing.append(make('span','record-timing-note',t(r.status==='SPECIAL_2126_UNRESOLVED'?'statusSentinel':'statusDistant')));}
+ label.append(check,imageCluster(r),body,timing);return label;
 }
-function renderSelectionLabel(){const n=state.selected.size;$('selection-label').textContent=n?`${n}件選択中`:'未選択';}
+function renderSelectionLabel(){const n=state.selected.size;$('selection-label').textContent=n?t('selected',{n}):t('unselected');}
 function renderList(){
- const rows=visibleRows();$('category-title').textContent=TAB_ORDER.find(x=>x[0]===state.tab)?.[1]||'';
- $('record-count').textContent=`${rows.length}件の保存済み日時`;
- const root=$('records');root.replaceChildren();
- if(!rows.length)root.append(make('p','empty','条件に一致する日時情報がありません。'));
+ const rows=visibleRows();$('category-title').textContent=t('tab_'+state.tab);
+ $('record-count').textContent=t('recordCount',{n:rows.length});const root=$('records');root.replaceChildren();
+ if(!rows.length)root.append(make('p','empty',t('noRecords')));
  else for(const r of rows.slice(0,state.limit))root.append(makeRecord(r));
- $('more-records').hidden=rows.length<=state.limit;$('more-records').textContent=`続きを表示（残り${rows.length-state.limit}件）`;
+ $('more-records').hidden=rows.length<=state.limit;$('more-records').textContent=t('more',{n:rows.length-state.limit});
  $('select-visible').disabled=!rows.length;renderSelectionLabel();
 }
 function setTime(){state.mode=$('time-mode').value;$('custom-time').disabled=state.mode!=='custom';renderDetails();}
 function renderDetails(){
  const rows=state.snapshot?.rows.filter(r=>state.selected.has(r.pointer))||[],n=rows.length;
  const selected=$('selection-info');selected.replaceChildren();
- if(!n){selected.textContent='中央の一覧から項目を選択してください。';$('preview').replaceChildren();$('technical-details').replaceChildren();return;}
- selected.append(make('strong','',`${n}件を選択中`));
- if(n===1)selected.append(make('p','',rows[0].label));
- const preview=$('preview');preview.replaceChildren();
- const custom=$('custom-time').value;
- let when=null;
- if(state.mode==='custom'&&custom){const date=new Date(custom);if(Number.isFinite(date.getTime()))when=date.toISOString();}
+ const zone=Intl.DateTimeFormat().resolvedOptions().timeZone||'Local';$('timezone-label').textContent=`${t('timeZone')}: ${zone}`;
+ if(!n){selected.textContent=t('selectPrompt');$('preview').replaceChildren();$('technical-details').replaceChildren();return;}
+ selected.append(make('strong','',t('selected',{n})));
+ if(n===1)selected.append(make('p','',recordTitle(rows[0])));
+ const preview=$('preview');preview.replaceChildren();const custom=$('custom-time').value;
+ const when=state.mode==='custom'?parseLocalDateTime(custom):null;
  try{
+  if(state.mode==='custom'&&custom&&!when)throw new Error(t('errorInvalidLocal'));
   const result=previewScope(state.snapshot,{tab:state.tab,pointers:rows.map(r=>r.pointer),world:'all',mode:state.mode,customTime:when,now:Date.now()});
-  preview.append(make('div','preview-summary',`確認対象：${result.affected.length}件\n指定日時：${fmt(result.previewTime)}`));
-  for(const row of result.affected.slice(0,24)){const item=make('div','preview-row');item.append(make('strong','',row.label),make('span','',`${fmt(row.time)} → ${fmt(result.previewTime)}`));preview.append(item);}
-  if(result.affected.length>24)preview.append(make('p','caption',`ほか${result.affected.length-24}件は省略しています。`));
- }catch(err){preview.append(make('p','caption',state.mode==='custom'&&!custom?'日時を指定してください。':err.message));}
+  const summary=make('div','preview-summary');summary.append(make('span','',t('previewScope',{n:result.affected.length})),make('strong','',`${t('previewTime')}: ${fmt(result.previewTime)}`));preview.append(summary);
+  for(const row of result.affected.slice(0,24)){const item=make('div','preview-row');item.append(make('strong','',recordTitle(row)),make('span','',`${fmt(row.time)} → ${fmt(result.previewTime)}`));preview.append(item);}
+  if(result.affected.length>24)preview.append(make('p','caption',t('morePreview',{n:result.affected.length-24})));
+ }catch(err){preview.append(make('p','caption',state.mode==='custom'&&!custom?t('needsTime'):err.message));}
  const details=$('technical-details');details.replaceChildren();
- for(const r of rows.slice(0,8)){const p=make('p','');p.textContent=`${r.label} / ID ${r.id??'不明'} / ${r.kind} / ${r.source} / ${r.pointer}${r.reason?' / '+r.reason:''}`;details.append(p);}
- if(n>8)details.append(make('p','','ほか'+(n-8)+'件'));
+ for(const r of rows.slice(0,8)){const p=make('p','');p.textContent=`${recordTitle(r)} | Event/Item ID: ${r.id??'unknown'} | ${r.kind} | ${r.source} | ${r.pointer} | ${t('rawUTC')}: ${r.time||'unknown'}${r.reason?' | '+r.reason:''}`;details.append(p);}
+ if(n>8)details.append(make('p','',t('morePreview',{n:n-8})));
 }
-async function backup(){try{const data=await request('backup');const blob=new Blob([data.buffer],{type:'application/octet-stream'}),url=URL.createObjectURL(blob);const anchor=make('a');anchor.href=url;anchor.download=`original_${data.name}`;anchor.click();setTimeout(()=>URL.revokeObjectURL(url),10000);}catch(err){message(`バックアップ失敗：${err.message}`,true);}}
+async function backup(){try{const data=await request('backup');const blob=new Blob([data.buffer],{type:'application/octet-stream'}),url=URL.createObjectURL(blob);const anchor=make('a');anchor.href=url;anchor.download=`original_${data.name}`;anchor.click();setTimeout(()=>URL.revokeObjectURL(url),10000);}catch(err){message(t('backupError',{reason:err.message}),true);}}
 function bindDrop(){
- const overlay=$('drop-overlay');
- const fileDrag=e=>Array.from(e.dataTransfer?.types||[]).includes('Files');
+ const overlay=$('drop-overlay'),fileDrag=e=>Array.from(e.dataTransfer?.types||[]).includes('Files');
  document.addEventListener('dragenter',e=>{if(fileDrag(e)){e.preventDefault();overlay.hidden=false;}});
  document.addEventListener('dragover',e=>{if(fileDrag(e)){e.preventDefault();e.dataTransfer.dropEffect='copy';overlay.hidden=false;}});
  document.addEventListener('dragleave',e=>{if(!e.relatedTarget||e.relatedTarget===document.documentElement)overlay.hidden=true;});
  document.addEventListener('drop',e=>{e.preventDefault();overlay.hidden=true;const file=e.dataTransfer?.files?.[0];if(file)openSave(file);});
  window.addEventListener('blur',()=>{overlay.hidden=true;});
 }
+function refreshLanguage(){
+ document.documentElement.lang=state.locale;
+ for(const el of document.querySelectorAll('[data-i18n]'))el.textContent=t(el.dataset.i18n);
+ $('filter-input').placeholder=t('search');
+ for(const id of ['welcome-language','workspace-language'])$(id).value=state.locale;
+ const overlay=$('drop-overlay').querySelector('.drop-message');overlay.lastChild.textContent=' '+t('dropHint');
+ if(state.snapshot){renderTabs();renderFilters();renderList();renderDetails();}
+}
+function setLanguage(locale){if(!SUPPORTED_LOCALES.includes(locale))return;state.locale=locale;try{localStorage.setItem('dreamlight-timekeeper-locale',locale);}catch{}refreshLanguage();}
+async function loadIcons(){try{const r=await fetch(new URL('../data/steam-icons-v1253.json',import.meta.url));if(!r.ok)return;const file=await r.json();if(file?.source?.platform==='Steam/Windows'&&file?.source?.gameVersion==='1.25.3'&&file.icons&&typeof file.icons==='object')iconManifest=file;}catch{}}
 function boot(){
+ for(const id of ['welcome-language','workspace-language']){const el=$(id);for(const locale of SUPPORTED_LOCALES){const name=new Intl.DisplayNames([locale],{type:'language'}).of(locale);el.append(make('option','',name));el.lastChild.value=locale;}el.addEventListener('change',()=>setLanguage(el.value));}
  $('open-welcome').addEventListener('click',fileDialog);$('open-again').addEventListener('click',fileDialog);
  $('save-file').addEventListener('change',e=>{const file=e.target.files?.[0];if(file)openSave(file);});
  $('download-backup').addEventListener('click',backup);
@@ -135,8 +170,9 @@ function boot(){
  $('clear-selection').addEventListener('click',()=>{state.selected.clear();renderList();renderDetails();});
  $('more-records').addEventListener('click',()=>{state.limit+=120;renderList();});
  $('time-mode').addEventListener('change',setTime);
- $('custom-time').addEventListener('change',e=>{const date=new Date(e.target.value);state.customTime=Number.isFinite(date.getTime())?date.toISOString():null;renderDetails();});
- bindDrop();window.__dreamlightBooted=true;
- request('check').catch(err=>message('初期化エラー：'+err.message,true));
+ $('custom-time').addEventListener('change',renderDetails);
+ bindDrop();refreshLanguage();window.__dreamlightBooted=true;
+ loadIcons().then(()=>{if(state.snapshot)renderList();});
+ request('check').catch(err=>message('Initialization error: '+err.message,true));
 }
 boot();

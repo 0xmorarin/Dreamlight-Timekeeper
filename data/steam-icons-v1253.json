@@ -1,0 +1,9 @@
+{
+  "source": {
+    "platform": "Steam/Windows",
+    "gameVersion": "1.25.3",
+    "status": "NO_STEAM_ASSET_BYTES_VERIFIED",
+    "assetAuthoringRequired": true
+  },
+  "icons": {}
+}

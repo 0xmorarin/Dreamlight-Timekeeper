@@ -36,7 +36,7 @@ const TYPES = new Set([
   'TimeLostTreasureSpawning','MakeCharacterEager','PendingFishUpgrade'
 ]);
 const TIME = /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d{1,9})?Z$/;
-const MAP = {'Urban':'広場','Meadow':'平和の草原','Beach':'輝きの浜辺','Forest':'勇気の森','Glade':'信頼の湿地','Plateau':'太陽の台地','Frosted':'氷の高原','Forgotten':'忘却の地'};
+const MAP = ['Urban','Meadow','Beach','Forest','Glade','Plateau','Frosted','Forgotten'];
 const isObj = x => x !== null && typeof x === 'object' && !Array.isArray(x);
 const escapePtr = s => String(s).replaceAll('~','~0').replaceAll('/','~1');
 export const validTime = v => typeof v === 'string' && TIME.test(v) && Number.isFinite(Date.parse(v));
@@ -54,8 +54,7 @@ const defaultTab = type => {
   return 'daily';
 };
 const areaLabel = s => {
-  const found=Object.entries(MAP).find(([k])=>s.includes(k));
-  return found?.[1]||'';
+  return MAP.find(k=>s.includes(k))||'';
 };
 export function indexEvents(raw){
   if(!isObj(raw)||!isObj(raw.source)||raw.source.writerAuthorization!==false||!Array.isArray(raw.events)||raw.source.schema!==626)throw new Error('未検証または不正なイベント定義です');
@@ -67,9 +66,10 @@ export function indexEvents(raw){
   if(events.size!==508)throw new Error('イベント定義の件数が期待値と異なります');
   return events;
 }
-function row(store,{tab,world='unknown',group,subgroup,label,id,kind,pointer,time,source,policy='HOLD',reason='',items=[]},now){
+function row(store,{tab,world='unknown',group,subgroup,label,id,kind,pointer,time,source,policy='HOLD',reason='',items=[],eventName=null,areaKey='',timingKey=null},now){
+  const timing=timingKey||(kind.includes('LastRefresh')?'timeRefresh':kind.includes('LastCollect')?'timeCollect':kind.includes('EndOfGrowth')?'timeGrowth':kind.includes('EndOfLife')?'timeLife':kind==='ResetTimer'?'timeReset':kind==='DisplayInfo.LastRefresh'?'timeRefresh':'timeNext');
   store.push({tab,world,group,subgroup,label,id,kind,pointer,time:validTime(time)?time:null,
-    status:classifyDate(time,now),source,policy,reason,items,writeAuthorized:false});
+    status:classifyDate(time,now),source,policy,reason,items,eventName,areaKey,timingKey:timing,writeAuthorized:false});
 }
 function describeEvent(record,type,id){
   if(!record)return `${type} (${id})`;
@@ -97,7 +97,7 @@ export function gridWorldFromVillages(world){
   }
   return lookup;
 }
-function scanObjectState(world,store,now,diagnostics){
+function scanObjectState(world,store,now,diagnostics,itemNames){
   if(!isObj(world.GridCollection))return;
   const gridWorld=gridWorldFromVillages(world);
   const queue=[{obj:world.GridCollection,path:'/World/GridCollection',depth:0}];
@@ -112,6 +112,7 @@ function scanObjectState(world,store,now,diagnostics){
       const region=match?(gridWorld.get(match[1])??'unknown'):'unknown';
       const itemId=obj.ItemID||obj.ItemId||null;
       const idText=itemId?`Item ${itemId}`:'設置物';
+      const linked=itemId&&itemNames?.[String(itemId)]?[{id:itemId,names:itemNames[String(itemId)]}]:[];
       const specs=[
         ['FishingStallData','LastCollect','resources','生産施設','モアナの小舟','最終回収'],
         ['TreeAndBushData','EndOfGrowth','resources','果樹・茂み','再成長','成長予定'],
@@ -122,14 +123,14 @@ function scanObjectState(world,store,now,diagnostics){
         const value=isObj(state[type])?field.split('.').reduce((v,k)=>isObj(v)?v[k]:undefined,state[type]):undefined;
         if(value===undefined)continue;
         const ptr=`${path}/State/${type}/${field.split('.').map(escapePtr).join('/')}`;
-        row(store,{tab,world:region,group,subgroup,label:`${title} · ${idText}`,id:itemId,kind:`${type}.${field}`,pointer:ptr,time:value,source:'World.GridCollection',reason:'設置物ごとの状態と日時を表示。書込み条件は未検証'},now);
+        row(store,{tab,world:region,group,subgroup,label:`${title} · ${idText}`,id:itemId,kind:`${type}.${field}`,pointer:ptr,time:value,source:'World.GridCollection',reason:'設置物ごとの状態と日時を表示。書込み条件は未検証',items:linked},now);
       }
       if(isObj(state.GardenData)&&Array.isArray(state.GardenData.Slots)){
         for(const [i,slot] of state.GardenData.Slots.entries()){
           if(!isObj(slot)||!isObj(slot.Sapling)||!('EndOfGrowth' in slot.Sapling))continue;
           row(store,{tab:'resources',world:region,group:'栽培・成長',subgroup:'庭の作物',label:`成長完了予定 · ${idText} · スロット ${i+1}`,id:itemId,
             kind:'GardenData.Slots.Sapling.EndOfGrowth',pointer:`${path}/State/GardenData/Slots/${i}/Sapling/EndOfGrowth`,time:slot.Sapling.EndOfGrowth,
-            source:'World.GridCollection',reason:'成長・水やり・クエスト状態との整合性未確認'},now);
+            source:'World.GridCollection',reason:'成長・水やり・クエスト状態との整合性未確認',items:linked},now);
         }
       }
     }
@@ -140,7 +141,7 @@ function scanObjectState(world,store,now,diagnostics){
     }
   }
 }
-export function projectProfile(profile,registry,{now=Date.now()}={}){
+export function projectProfile(profile,registry,{now=Date.now(),itemNames={}}={}){
   if(!isObj(profile)||!isObj(profile.GameInfo)||!isObj(profile.Player)||!isObj(profile.World)||!(registry instanceof Map))throw new Error('GameInfo、Player、Worldの構造を確認できません');
   const schema=Number(profile.GameInfo.Version);
   if(!Number.isSafeInteger(schema))throw new Error('セーブのスキーマが不正です');
@@ -165,10 +166,10 @@ export function projectProfile(profile,registry,{now=Date.now()}={}){
       if(known?.eventPolicy!=='W1')reasons.push('更新条件の静的検証が未完了');
       if(status==='SPECIAL_2126_UNRESOLVED'||status==='DISTANT_FUTURE_UNVERIFIED')reasons.push('遠い未来日時の理由が不明');
       row(rows,{tab:known?.tab||defaultTab(type),world:known?worldForEventName(known.name):'unknown',group:known?.group||'未登録イベント',subgroup:known?.subgroup||type,
-        label:describeEvent(known,type,id),id:Number.isSafeInteger(id)?id:null,kind:type,
+        label:describeEvent(known,type,id),id:Number.isSafeInteger(id)?id:null,kind:type,eventName:known?.name??null,areaKey:areaLabel(known?.name||''),
         pointer:`/World/RecurringEvents/${escapePtr(key)}/${escapePtr(type)}/NextOccurrence`,time:entry.NextOccurrence,
         source:'World.RecurringEvents',policy:known?.eventPolicy||'HOLD',reason:reasons.join('／')||'日時編集の実機検証は未完了',
-        items:(known?.items||[]).map(x=>({id:x.id,name:safeText(x.ja||x.en)}))},now);
+        items:(known?.items||[]).map(x=>({id:x.id,name:safeText(x.en||x.ja),names:itemNames[String(x.id)]??{'en-US':safeText(x.en),'ja':safeText(x.ja)}}))},now);
     }
   }
   const stores=profile.World.Stores;
@@ -177,7 +178,7 @@ export function projectProfile(profile,registry,{now=Date.now()}={}){
     const id=store.BuildingItemID??i;
     const base=`/World/Stores/${escapePtr(i)}`;
     if('LastRefresh' in store)row(rows,{tab:'shops',group:'スクルージストア',subgroup:'店舗全体',label:`店舗 ${id}`,id,
-      kind:'StoreInfo.LastRefresh',pointer:`${base}/LastRefresh`,time:store.LastRefresh,source:'World.Stores',reason:'設定時刻を現在にしても商品更新にはならない'},now);
+      kind:'StoreInfo.LastRefresh',pointer:`${base}/LastRefresh`,time:store.LastRefresh,source:'World.Stores',reason:'設定時刻を現在にしても商品更新にはならない',items:itemNames[String(id)]?[{id,names:itemNames[String(id)]}]:[]},now);
     const displays=store.Displays;
     if(Array.isArray(displays)||isObj(displays))for(const [j,display] of Object.entries(displays)){
       if(!isObj(display))continue;
@@ -185,7 +186,7 @@ export function projectProfile(profile,registry,{now=Date.now()}={}){
       if(!('LastRefresh' in inner))continue;
       row(rows,{tab:'shops',group:'スクルージストア',subgroup:`店舗 ${id} · 陳列台`,label:`陳列台 ${Number(j)+1||j}`,
         id,kind:'DisplayInfo.LastRefresh',pointer:`${base}/Displays/${escapePtr(j)}${inner===display?'':'/DisplayInfo'}/LastRefresh`,time:inner.LastRefresh,
-        source:'World.Stores',reason:'販売疲労・陳列の更新条件は未検証'},now);
+        source:'World.Stores',reason:'販売疲労・陳列の更新条件は未検証',items:itemNames[String(id)]?[{id,names:itemNames[String(id)]}]:[]},now);
     }
   }
   const shops=profile.World.Shops;
@@ -203,7 +204,7 @@ export function projectProfile(profile,registry,{now=Date.now()}={}){
     row(rows,{tab:'daily',group:'日次・週次更新',subgroup:name==='LastDailyReset'?'日次':'週次',label:name,id:name,kind:'ResetTimer',
       pointer:`${base}/${name}`,time:obj[name],source:'Profile',reason:'日次／週次回数とオンライン状態を含めた検証が必要'},now);
   }
-  scanObjectState(profile.World,rows,now,diagnostics);
+  scanObjectState(profile.World,rows,now,diagnostics,itemNames);
   rows.sort((a,b)=>TAB_ORDER.findIndex(x=>x[0]===a.tab)-TAB_ORDER.findIndex(x=>x[0]===b.tab)
     ||a.group.localeCompare(b.group,'ja')||a.subgroup.localeCompare(b.subgroup,'ja')||a.label.localeCompare(b.label,'ja'));
   const worlds=WORLD_ORDER.filter(([id])=>id!=='all'&&rows.some(r=>r.world===id)).map(([id,label])=>({id,label}));

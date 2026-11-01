@@ -3,7 +3,7 @@ import {readFile} from 'node:fs/promises';
 import test from 'node:test';
 import {fileURLToPath} from 'node:url';
 const originalFetch=globalThis.fetch;
-globalThis.fetch=async url=>({ok:true,json:async()=>JSON.parse(await readFile(fileURLToPath(url),'utf8'))});
+globalThis.fetch=async url=>{const bytes=await readFile(fileURLToPath(url));return new Response(bytes,{status:200,headers:{'content-type':String(url).endsWith('.gz')?'application/octet-stream':'application/json'}})};
 let reply;
 globalThis.self={postMessage:data=>{reply?.(data);}};
 await import('../src/worker.mjs');

@@ -4,17 +4,15 @@ import test from 'node:test';
 const page=await readFile(new URL('../index.html',import.meta.url),'utf8');
 const app=await readFile(new URL('../src/app.mjs',import.meta.url),'utf8');
 const css=await readFile(new URL('../styles.css',import.meta.url),'utf8');
-test('landing page has approved public name, support fields, no header or drop-zone frame',()=>{
+test('landing page is translation-ready and contains confirmed official support fields',()=>{
+ assert.match(page,/<html lang="en">/);
  assert.match(page,/<title>Dreamlight Timekeeper<\/title>/);
  assert.match(page,/<h1>Dreamlight Timekeeper<\/h1>/);
- assert.match(page,/>正式対応</);
- assert.match(page,/ゲームバージョン：v1\.25\.3/);
- assert.match(page,/セーブバージョン：626/);
- assert.match(page,/最終更新：2026-11-01/);
- assert.match(page,/セーブファイルをドラッグ＆ドロップ/);
- assert.match(page,/>セーブを開く</);
- assert.doesNotMatch(page,/<header\b|ドロップ領域|DDV Save Timing Tools|Nintendo Switch/);
- assert.doesNotMatch(page,/対応形式|ファイル形式|ツールバージョン/);
+ for(const key of ['official','gameVersion','saveVersion','updated','dropHint','openSave','language'])assert.match(page,new RegExp('data-i18n="'+key+'"'));
+ assert.match(page,/v1\.25\.3/);
+ assert.match(page,/>: 626<\/span>/);
+ assert.match(page,/2026-11-01/);
+ assert.doesNotMatch(page,/<header\b|DDV Save Timing Tools|Nintendo Switch/);
 });
 test('one global drop listener and independent four-tab three-pane editor',()=>{
  assert.match(page,/id="welcome"/);
