@@ -5,6 +5,7 @@ import {decodeStructuredItemId} from './item-id-structure.mjs';
 const fullString=s=>typeof s==='string'&&s.length>0;
 const named=s=>s===null||fullString(s);
 const key=(type,subtype)=>`${type}:${subtype}`;
+const validatedMaps=new WeakMap();
 export function buildWandItemTaxonomy(query,{expectedVersion,expectedBuildId,expectedItems}={}){
  if(!query||query.artifact!=='DDV_GAME_QUERY_INDEX'||query.platform!=='Nintendo Switch'||
     !fullString(query.gameVersion)||!fullString(query.buildID)||
@@ -34,27 +35,24 @@ export function buildWandItemTaxonomy(query,{expectedVersion,expectedBuildId,exp
     existing.subtypeName!==descriptor.subtypeName||
     existing.concreteType!==descriptor.concreteType))
    throw new Error('Same numeric namespace has conflicting type metadata.');
-  if(!existing)familiesByKey.set(k,Object.freeze({...descriptor,definitionCount:0}));
+  if(!existing)familiesByKey.set(k,Object.freeze(descriptor));
   itemsById.set(numeric.itemId,Object.freeze({
    ...descriptor,itemId:numeric.itemId,index:numeric.index,
    itemRawSha256:item.rawPayloadSha256,internalName:fullString(item.internalName)?item.internalName:null
   }));
  }
- // Maps are an internal read-only lookup. No mutable Map is exposed as a
- // user-facing permission, and caller must not treat it as a writer allowlist.
- return {
-  version:query.gameVersion,buildId:query.buildID,
-  definitionCount:itemsById.size,numericFamilyCount:familiesByKey.size,
-  itemsById,familiesByKey
- };
+ // Do not expose mutable Maps as public API or a forged source descriptor.
+ const catalog=Object.freeze({version:query.gameVersion,buildId:query.buildID,
+  definitionCount:itemsById.size,numericFamilyCount:familiesByKey.size});
+ validatedMaps.set(catalog,{itemsById,familiesByKey});
+ return catalog;
 }
 export function resolveWandItemTaxonomy(value,catalog,{saveGameVersion=null}={}){
- if(!catalog||!(catalog.itemsById instanceof Map)||
-    !(catalog.familiesByKey instanceof Map)||!fullString(catalog.version))
-  throw new Error('Wand taxonomy has not been validated.');
+ const maps=catalog&&validatedMaps.get(catalog);
+ if(!maps||!fullString(catalog.version))throw new Error('Wand taxonomy has not been validated.');
  const numeric=decodeStructuredItemId(value);
- const family=catalog.familiesByKey.get(key(numeric.itemType,numeric.subtype));
- const record=catalog.itemsById.get(numeric.itemId);
+ const family=maps.familiesByKey.get(key(numeric.itemType,numeric.subtype));
+ const record=maps.itemsById.get(numeric.itemId);
  const exact=saveGameVersion===catalog.version;
  const basis=record?(exact?'EXACT_VERSION_ITEM_DEFINITION':'HISTORICAL_ITEM_DEFINITION'):
     family?'NUMERIC_FAMILY_ONLY':'UNKNOWN_NUMERIC_FAMILY';
