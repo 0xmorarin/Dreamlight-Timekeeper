@@ -90,9 +90,22 @@ function refreshActionIcons(){
    ['download-backup','action.backup']]){
    const el=$(id);
    if(!el)continue;
-   const prior=el.querySelector('.semantic-icon');
-   if(prior)prior.remove();
+   el.querySelectorAll('.semantic-icon').forEach(icon=>icon.remove());
    decorateWithIcon(el,'app_ui',key);
+ }
+ for(const [selector,key] of [['.technical summary','action.technical-details'],
+   ['.time-config label[for="time-mode"]','action.clock']]){
+   const el=document.querySelector(selector);
+   if(!el)continue;
+   el.querySelectorAll('.semantic-icon').forEach(icon=>icon.remove());
+   decorateWithIcon(el,'app_ui',key);
+ }
+ const search=$('filter-input');
+ if(search){
+  const old=search.previousElementSibling;
+  if(old?.classList.contains('semantic-icon'))old.remove();
+  const icon=semanticIcon('app_ui','action.search');
+  if(icon)search.before(icon);
  }
 }
 function renderTabs(){
