@@ -29,7 +29,7 @@ class SteamUiAtlasTests(unittest.TestCase):
         off=audit.align(4+len(name))
         struct.pack_into('<ffff',sprite,off,0,0,width,height)
         struct.pack_into('<Q',sprite,off+20,texture_id)
-        texture=bytearray(132)
+        texture=bytearray(256)
         struct.pack_into('<I',texture,0,len(name))
         texture[4:4+len(name)]=name
         toff=audit.align(4+len(name))
