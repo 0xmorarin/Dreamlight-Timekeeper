@@ -26,6 +26,7 @@ For each verified icon, the `icons` object has a numeric ItemID key and a record
   "sha256": "<64-character lowercase SHA-256 of WebP bytes>",
   "sourceSha256": "<64-character lowercase SHA-256 of source image/asset bytes>",
   "sourceAsset": "<stable in-game Steam asset identifier>",
+  "itemIdEvidence": "<ItemID to texture mapping record>",
   "width": 128,
   "height": 128
 }
