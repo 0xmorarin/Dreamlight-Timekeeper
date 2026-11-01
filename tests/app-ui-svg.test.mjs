@@ -13,6 +13,7 @@ const sum=buffer=>createHash('sha256').update(buffer).digest('hex');
 test('all 16 original app SVG images are safe, source-reproducible and high-contrast by design',async()=>{
  const manifest=JSON.parse(await readFile(new URL('../data/app-ui-icons.json',import.meta.url),'utf8'));
  assert.equal(manifest.source.assetFormat,'SVG');
+ assert.equal(manifest.source.designStatus,'PROVISIONAL_OWNER_ARTWORK');
  assert.equal(validateUiManifest(manifest,'app_ui'),true);
  assert.equal(Object.keys(manifest.icons).length,16);
  assert.deepEqual(Object.keys(manifest.icons).sort(),Object.keys(APP_ICON_GLYPHS).sort());
