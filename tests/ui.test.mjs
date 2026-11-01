@@ -30,3 +30,11 @@ test('one global drop listener and independent four-tab three-pane editor',()=>{
  assert.match(css,/100dvh/);
  assert.match(css,/grid-template-columns:minmax\(205px,240px\)/);
 });
+
+test('read-only timing audit is visible without implying repair or changing the save',()=>{
+ assert.match(page,/id="timing-audit"/);
+ assert.match(app,/function renderAudit\(/);
+ assert.match(app,/a\.diagnosticOnly!==true\|\|a\.writerAuthorized!==false/);
+ assert.match(app,/t\('auditNoRepair'\)/);
+ assert.match(css,/\.audit-details/);
+});
