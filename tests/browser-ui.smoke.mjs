@@ -74,6 +74,21 @@ try{
  assert.equal(pageErrors.length,0,'Unexpected browser script exceptions: '+pageErrors.join('; '));
  await page.setViewportSize({width:390,height:844});
  assert.equal(await backup.isVisible(),true);
+ const fallback=await browser.newPage({viewport:{width:390,height:844}});
+ let blocked=0;
+ await fallback.route('**/assets/app/ui/action/open-save.webp',route=>{
+  blocked++;
+  return route.abort();
+ });
+ await fallback.goto(site,{waitUntil:'domcontentloaded'});
+ await fallback.waitForFunction(()=>window.__dreamlightBooted===true);
+ await fallback.waitForTimeout(700);
+ assert.ok(blocked>0,'Expected app UI icon request to be blocked.');
+ assert.equal(await fallback.locator('#open-welcome img.semantic-icon').count(),0);
+ assert.match(await fallback.locator('#open-welcome').innerText(),/Open save/);
+ const [chooser]=await Promise.all([fallback.waitForEvent('filechooser'),fallback.locator('#open-welcome').click()]);
+ assert.equal(chooser.isMultiple(),false);
+ await fallback.close();
  console.log('Chromium UI smoke PASS: three decoded app UI icons, Steam warning VP8L, locale switch, synthetic read-only save, mobile layout.');
 }finally{
  if(browser)await browser.close();
