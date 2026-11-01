@@ -43,7 +43,7 @@ export const validTime = v => typeof v === 'string' && TIME.test(v) && Number.is
 export const safeText = v => String(v ?? '').replace(/<\/?nobr>/gi,'').replace(/<[^>]*>/g,'').replace(/[\u200B-\u200D\uFEFF]/g,'').normalize('NFC');
 export function classifyDate(value,now=Date.now()){
   if(!validTime(value))return 'INVALID';
-  if(value==='2126-08-20T00:00:00Z')return 'SPECIAL_2126_UNRESOLVED';
+  if(/^2126-08-20T00:00:00(?:\.0{1,9})?Z$/.test(value))return 'SPECIAL_2126_UNRESOLVED';
   const time=Date.parse(value);
   if(time > now + 365*86400000)return 'DISTANT_FUTURE_UNVERIFIED';
   return time > now?'FUTURE':'PAST';
