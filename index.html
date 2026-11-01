@@ -22,7 +22,8 @@
 <section class="work">
 <div class="heading">
 <h2 id="current-category">自動発生・スポーン</h2>
-<input id="filter-input" type="search" placeholder="名前・IDで検索" aria-label="名前またはIDで検索">
+<select id="world-filter" aria-label="エリア"><option value="all">全エリア</option></select>
+ <input id="filter-input" type="search" placeholder="名前・IDで検索" aria-label="名前またはIDで検索">
 </div>
 <div class="controls">
 <label for="time-mode">指定日時</label>
@@ -31,7 +32,7 @@
 <option value="custom">任意の日時</option>
 </select>
 <input id="custom-time" type="datetime-local" aria-label="任意の日時" disabled>
-<button id="bulk" disabled>カテゴリ全体を確認</button>
+<button id="bulk" disabled>表示中の対象を確認</button>
 </div>
 <div id="records" class="records"></div>
 <section class="preview">

@@ -5,6 +5,18 @@ export const TAB_ORDER = Object.freeze([
   ['daily','日次・その他']
 ]);
 
+export const WORLD_ORDER = Object.freeze([
+  ['all','全エリア'],
+  ['valley','ドリームライトバレー・共通'],
+  ['exp1','永遠の島'],
+  ['exp2','物語の谷'],
+  ['exp3','ウィッシュブロッサム牧場'],
+  ['unknown','エリア未特定']
+]);
+export const worldForEventName = name => {
+  const match=String(name??'').match(/Expansion0([1-3])/);
+  return match?`exp${match[1]}`:'valley';
+};
 const TYPES = new Set([
   'ItemSpawning','WildCropsSpawningInVillage','FlowerSpawningInVillage',
   'FishSpawningInVillage','SnippetSpawning','MiningRockTurningSpecial',
@@ -43,8 +55,8 @@ export function indexEvents(raw){
   if(events.size!==508)throw new Error('イベント定義の件数が期待値と異なります');
   return events;
 }
-function row(store,{tab,group,subgroup,label,id,kind,pointer,time,source,policy='HOLD',reason='',items=[]},now){
-  store.push({tab,group,subgroup,label,id,kind,pointer,time:validTime(time)?time:null,
+function row(store,{tab,world='unknown',group,subgroup,label,id,kind,pointer,time,source,policy='HOLD',reason='',items=[]},now){
+  store.push({tab,world,group,subgroup,label,id,kind,pointer,time:validTime(time)?time:null,
     status:classifyDate(time,now),source,policy,reason,items,writeAuthorized:false});
 }
 function describeEvent(record,type,id){
@@ -119,7 +131,7 @@ export function projectProfile(profile,registry,{now=Date.now()}={}){
       if(!known)reasons.push('イベント定義に存在しない');
       if(known?.eventPolicy!=='W1')reasons.push('更新条件の静的検証が未完了');
       if(status==='SPECIAL_2126_UNRESOLVED'||status==='DISTANT_FUTURE_UNVERIFIED')reasons.push('遠い未来日時の理由が不明');
-      row(rows,{tab:known?.tab||defaultTab(type),group:known?.group||'未登録イベント',subgroup:known?.subgroup||type,
+      row(rows,{tab:known?.tab||defaultTab(type),world:known?worldForEventName(known.name):'unknown',group:known?.group||'未登録イベント',subgroup:known?.subgroup||type,
         label:describeEvent(known,type,id),id:Number.isSafeInteger(id)?id:null,kind:type,
         pointer:`/World/RecurringEvents/${escapePtr(key)}/${escapePtr(type)}/NextOccurrence`,time:entry.NextOccurrence,
         source:'World.RecurringEvents',policy:known?.eventPolicy||'HOLD',reason:reasons.join('／')||'日時編集の実機検証は未完了',
@@ -161,12 +173,15 @@ export function projectProfile(profile,registry,{now=Date.now()}={}){
   scanObjectState(profile.World,rows,now,diagnostics);
   rows.sort((a,b)=>TAB_ORDER.findIndex(x=>x[0]===a.tab)-TAB_ORDER.findIndex(x=>x[0]===b.tab)
     ||a.group.localeCompare(b.group,'ja')||a.subgroup.localeCompare(b.subgroup,'ja')||a.label.localeCompare(b.label,'ja'));
-  return {identity,rows,diagnostics,capabilities:{schemaRecognized:schema===626,readOnly:true,editingAllowed:false,exportEditedAllowed:false}};
+  const worlds=WORLD_ORDER.filter(([id])=>id!=='all'&&rows.some(r=>r.world===id)).map(([id,label])=>({id,label}));
+  return {identity,rows,worlds,diagnostics,capabilities:{schemaRecognized:schema===626,readOnly:true,editingAllowed:false,exportEditedAllowed:false}};
 }
-export function previewScope(snapshot,{tab,group=null,subgroup=null,pointer=null,mode='now',customTime=null,now=Date.now()}={}){
+export function previewScope(snapshot,{tab,world='all',group=null,subgroup=null,pointer=null,pointers=null,mode='now',customTime=null,now=Date.now()}={}){
   if(!TAB_ORDER.some(x=>x[0]===tab)||!snapshot||!Array.isArray(snapshot.rows))throw new Error('対象が不正です');
   const time=mode==='now'?new Date(now).toISOString():customTime;
   if(!validTime(time))throw new Error('有効な日時を指定してください');
-  const affected=snapshot.rows.filter(x=>x.tab===tab&&(group===null||x.group===group)&&(subgroup===null||x.subgroup===subgroup)&&(pointer===null||x.pointer===pointer));
-  return {tab,group,subgroup,previewTime:time,status:'PREVIEW_ONLY_NO_MUTATION',affected:affected.map(x=>({...x,writeAuthorized:false}))};
+  if(world!=='all'&&!WORLD_ORDER.some(([id])=>id===world))throw new Error('未定義のエリアです');
+  const allowed=pointers===null?null:new Set(pointers);
+  const affected=snapshot.rows.filter(x=>x.tab===tab&&(world==='all'||x.world===world)&&(group===null||x.group===group)&&(subgroup===null||x.subgroup===subgroup)&&(pointer===null||x.pointer===pointer)&&(allowed===null||allowed.has(x.pointer)));
+  return {tab,world,group,subgroup,previewTime:time,status:'PREVIEW_ONLY_NO_MUTATION',affected:affected.map(x=>({...x,writeAuthorized:false}))};
 }
