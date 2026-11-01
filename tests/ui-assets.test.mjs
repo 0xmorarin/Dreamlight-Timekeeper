@@ -57,6 +57,15 @@ test('semantic names cannot escape their assigned namespace or appear twice unde
  assert.throws(()=>validateUiManifest(a,'app_ui'),/Duplicate/);
  assert.equal(resolveAppUiIcon(a,'action.open-save'),null);
 });
+test('design approval is independent from byte verification and must remain provisional',()=>{
+ assert.equal(app.source.designStatus,'PROVISIONAL_OWNER_ARTWORK');
+ for(const state of [undefined,'APPROVED','LUCIDE','']){
+  const candidate=structuredClone(app);
+  if(state===undefined)delete candidate.source.designStatus;
+  else candidate.source.designStatus=state;
+  assert.throws(()=>validateUiManifest(candidate,'app_ui'));
+ }
+});
 test('verified UI icons are still presentation assets and never authorize save writes',()=>{
  assert.equal(game.source.writerAuthorization,false);
  assert.equal(app.source.writerAuthorization,false);
