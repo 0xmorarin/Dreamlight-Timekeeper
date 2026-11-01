@@ -137,7 +137,7 @@ function renderDetails(){
   if(result.affected.length>24)preview.append(make('p','caption',t('morePreview',{n:result.affected.length-24})));
  }catch(err){preview.append(make('p','caption',state.mode==='custom'&&!custom?t('needsTime'):err.message));}
  const details=$('technical-details');details.replaceChildren();
- for(const r of rows.slice(0,8)){const p=make('p','');p.textContent=`${recordTitle(r)} | Event/Item ID: ${r.id??'unknown'} | ${r.kind} | ${r.source} | ${r.pointer} | ${t('rawUTC')}: ${r.time||'unknown'}${r.reason?' | '+r.reason:''}`;details.append(p);}
+ for(const r of rows.slice(0,8)){const p=make('p','');p.textContent=`${recordTitle(r)} | Event/Item ID: ${r.id??'unknown'} | ${r.kind} | ${r.source} | ${r.pointer} | ${t('rawUTC')}: ${r.time||'unknown'}${r.reason?' | '+r.reason:''}${r.review?' | Review: '+r.review.status+' | '+r.review.reason:''}`;details.append(p);}
  if(n>8)details.append(make('p','',t('morePreview',{n:n-8})));
 }
 async function backup(){try{const data=await request('backup');const blob=new Blob([data.buffer],{type:'application/octet-stream'}),url=URL.createObjectURL(blob);const anchor=make('a');anchor.href=url;anchor.download=`original_${data.name}`;anchor.click();setTimeout(()=>URL.revokeObjectURL(url),10000);}catch(err){message(t('backupError',{reason:err.message}),true);}}
