@@ -1,3 +1,4 @@
+import {classifyDecorationSpawnEvent} from './decoration-spawn-evidence.mjs';
 export const TAB_ORDER = Object.freeze([
   ['spawn','自動発生・スポーン'],
   ['resources','採集・生産'],
@@ -158,6 +159,8 @@ export function projectProfile(profile,registry,{now=Date.now(),itemNames={}}={}
       if(!Object.hasOwn(entry,'NextOccurrence'))continue;
       const id=Number(entry.RecurringEventItemID);
       const known=Number.isSafeInteger(id)?registry.get(id):null;
+      const research=known?classifyDecorationSpawnEvent(known):null;
+      const classifiedSubgroup=research?.family==='WOOD_MATERIAL_EVENT'?'木材・落下枝':research?.family==='OTHER_FORAGE_EVENT'?'その他の落下素材':known?.subgroup||type;
       const status=classifyDate(entry.NextOccurrence,now);
       const reasons=[];
       if(schema!==626)reasons.push('未承認スキーマ');
@@ -165,7 +168,7 @@ export function projectProfile(profile,registry,{now=Date.now(),itemNames={}}={}
       if(!known)reasons.push('イベント定義に存在しない');
       if(known?.eventPolicy!=='W1')reasons.push('更新条件の静的検証が未完了');
       if(status==='SPECIAL_2126_UNRESOLVED'||status==='DISTANT_FUTURE_UNVERIFIED')reasons.push('遠い未来日時の理由が不明');
-      row(rows,{tab:known?.tab||defaultTab(type),world:known?worldForEventName(known.name):'unknown',group:known?.group||'未登録イベント',subgroup:known?.subgroup||type,
+      row(rows,{tab:known?.tab||defaultTab(type),world:known?worldForEventName(known.name):'unknown',group:known?.group||'未登録イベント',subgroup:classifiedSubgroup,
         label:describeEvent(known,type,id),id:Number.isSafeInteger(id)?id:null,kind:type,eventName:known?.name??null,eventActive:known?.active??null,structureValid:variants.length===1,areaKey:areaLabel(known?.name||''),
         pointer:`/World/RecurringEvents/${escapePtr(key)}/${escapePtr(type)}/NextOccurrence`,time:entry.NextOccurrence,
         source:'World.RecurringEvents',policy:known?.eventPolicy||'HOLD',reason:reasons.join('／')||'日時編集の実機検証は未完了',
