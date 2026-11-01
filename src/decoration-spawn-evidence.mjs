@@ -1,3 +1,4 @@
+import {auditWandWoodTagsInEvents} from './wand-wood-tag-evidence.mjs';
 import {decodeStructuredItemId} from './item-id-structure.mjs';
 // Version-scoped research projection. This is not a runtime spawn GridObject classifier.
 const SOURCE=Object.freeze({
@@ -63,7 +64,7 @@ export function classifyDecorationSpawnEvent(record,woodTagStatus=null){
   runtimeSpawnAndRemovalVerified:false,writerAuthorized:false,bulkDeletionAuthorized:false
  });
 }
-export function compileDecorationSpawnEvidence(document){
+export function compileDecorationSpawnEvidence(document,{woodTagPack=null}={}){
  if(!document?.source||!Array.isArray(document.events)||
    document.source.writerAuthorization!==false||
    document.source.version!==SOURCE.version||
@@ -71,14 +72,17 @@ export function compileDecorationSpawnEvidence(document){
    document.source.schema!==SOURCE.schema||
    document.source.rawEventSHA256!==SOURCE.rawEventSHA256||
    document.events.length!==508)throw new Error('Source or event denominator differs from v1.25.3 research.');
- const rows=document.events.map(classifyDecorationSpawnEvent);
+ const woodStatuses=woodTagPack===null?null:new Map(
+  auditWandWoodTagsInEvents(document,woodTagPack).rows.map(x=>[x.eventId,x.status]));
+ const rows=document.events.map(r=>classifyDecorationSpawnEvent(r,woodStatuses?.get(r.id)));
  if(new Set(rows.map(r=>r.eventId)).size!==508)throw new Error('Duplicate event identity.');
  const counts=Object.fromEntries(Object.values(FAMILY).map(x=>[x,0]));
  const activeCounts=Object.fromEntries(Object.values(FAMILY).map(x=>[x,0]));
  for(const r of rows){counts[r.family]++;if(r.definitionActive)activeCounts[r.family]++;}
  return Object.freeze({
   source:Object.freeze({...SOURCE,sourceRecordCount:508,
-   status:'STATIC_SOURCE_PROJECTION',writeAuthorization:false,deleteAuthorization:false}),
+   status:woodTagPack===null?'STATIC_SOURCE_PROJECTION':'BYTE_VERIFIED_WOOD_TAG_PROJECTION',
+   writeAuthorization:false,deleteAuthorization:false}),
   counts:Object.freeze(counts),activeCounts:Object.freeze(activeCounts),
   rows:Object.freeze(rows.sort((a,b)=>a.eventId-b.eventId))
  });
