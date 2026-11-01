@@ -1,4 +1,4 @@
-import {isAbsolute,sep} from 'node:path';
+import {isAbsolute} from 'node:path';
 
 const SHA256 = /^[0-9a-f]{64}$/;
 const ID = /^(?:0|[1-9][0-9]*)$/;
