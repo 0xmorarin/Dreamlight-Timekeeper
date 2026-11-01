@@ -54,6 +54,16 @@ try{
   assert.equal(await icon.evaluate(img=>img.complete&&img.naturalWidth===24),true);
  }
  assert.match(await page.locator('.readonly-flag').innerText(),/読取り専用/);
+ const sourceWorld=page.locator('#regions img.semantic-icon');
+ await sourceWorld.first().waitFor({state:'visible'});
+ assert.equal(await sourceWorld.first().evaluate(async img=>{
+  await img.decode();
+  return img.naturalWidth===176&&img.getAttribute('alt')===''&&img.getAttribute('aria-hidden')==='true';
+ }),true,'Expected original Steam Dreamlight Valley world icon with decorative accessibility.');
+ const sourceBadge=await sourceWorld.first().evaluate(img=>img.closest('button')?.innerText);
+ assert.ok(sourceBadge.includes('ドリームライト'));
+ const primaryBox=await page.locator('#open-again').boundingBox();
+ assert.ok(primaryBox.height>=44,'File operation touch target too small.');
  const warning=await page.evaluate(async()=>{
   const image=new Image();image.src='./assets/steam/v1253/ui/status/warning.webp';
   await image.decode();return [image.naturalWidth,image.naturalHeight];
