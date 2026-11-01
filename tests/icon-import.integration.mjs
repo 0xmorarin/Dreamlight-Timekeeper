@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {mkdtemp,mkdir,writeFile,readFile,copyFile,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
-import {join} from 'node:path';
+import {join,dirname} from 'node:path';
 import {deflateSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import {execFile} from 'node:child_process';
@@ -51,6 +51,12 @@ test('offline importer preserves visible and fully transparent RGBA and verifies
   assert.equal(manifest.icons[id].sourceSha256,sha(png));
   assert.equal(manifest.icons[id].verified,true);
   assert.equal(manifest.icons[id].itemIdEvidence,'TEST_SYNTHETIC_MAPPING');
+  const published=JSON.parse(await readFile(join(output,'data','steam-ui-icons-v1253.json'),'utf8'));
+  for(const entry of Object.values(published.icons)){
+   const destination=join(output,entry.path);
+   await mkdir(dirname(destination),{recursive:true});
+   await copyFile(join(root,entry.path),destination);
+  }
   await exec(process.execPath,[verifier,output]);
   await assert.rejects(exec(process.execPath,[importer,planPath,output]),/already published/);
   const saved=await readFile(join(output,'assets','steam','v1253',id+'.webp'));
