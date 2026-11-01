@@ -1,3 +1,4 @@
+import {auditWandWoodTagsInEvents} from './wand-wood-tag-evidence.mjs';
 import {classifyDecorationSpawnEvent} from './decoration-spawn-evidence.mjs';
 export const TAB_ORDER = Object.freeze([
   ['spawn','自動発生・スポーン'],
@@ -57,7 +58,7 @@ const defaultTab = type => {
 const areaLabel = s => {
   return MAP.find(k=>s.includes(k))||'';
 };
-export function indexEvents(raw){
+export function indexEvents(raw,tagPack=null){
   if(!isObj(raw)||!isObj(raw.source)||raw.source.writerAuthorization!==false||!Array.isArray(raw.events)||raw.source.schema!==626)throw new Error('未検証または不正なイベント定義です');
   const events=new Map();
   for(const record of raw.events){
@@ -65,6 +66,13 @@ export function indexEvents(raw){
     events.set(record.id,record);
   }
   if(events.size!==508)throw new Error('イベント定義の件数が期待値と異なります');
+  if(tagPack!==null){
+   const audit=auditWandWoodTagsInEvents(raw,tagPack);
+   Object.defineProperty(events,'woodTagStatusByEvent',{
+    value:new Map(audit.rows.map(x=>[x.eventId,x.status])),
+    writable:false,configurable:false
+   });
+  }
   return events;
 }
 function row(store,{tab,world='unknown',group,subgroup,label,id,kind,pointer,time,source,policy='HOLD',reason='',items=[],eventName=null,eventActive=null,structureValid=true,areaKey='',timingKey=null},now){
@@ -159,8 +167,8 @@ export function projectProfile(profile,registry,{now=Date.now(),itemNames={}}={}
       if(!Object.hasOwn(entry,'NextOccurrence'))continue;
       const id=Number(entry.RecurringEventItemID);
       const known=Number.isSafeInteger(id)?registry.get(id):null;
-      const research=known?classifyDecorationSpawnEvent(known):null;
-      const classifiedSubgroup=research?.family==='WOOD_MATERIAL_EVENT'?'木材・落下枝':research?.family==='OTHER_FORAGE_EVENT'?'その他の落下素材':known?.subgroup||type;
+      const research=known?classifyDecorationSpawnEvent(known,registry.woodTagStatusByEvent?.get(known.id)):null;
+      const classifiedSubgroup=research?.family==='WOOD_MATERIAL_EVENT'?'木材・樹木由来素材':research?.family==='OTHER_FORAGE_EVENT'?'その他の落下素材':known?.subgroup||type;
       const status=classifyDate(entry.NextOccurrence,now);
       const reasons=[];
       if(schema!==626)reasons.push('未承認スキーマ');
