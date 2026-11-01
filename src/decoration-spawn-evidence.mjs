@@ -1,3 +1,4 @@
+import {decodeStructuredItemId} from './item-id-structure.mjs';
 // Version-scoped research projection. This is not a runtime spawn GridObject classifier.
 const SOURCE=Object.freeze({
  version:'1.25.3', buildId:'9A239D3DB569756D',schema:626,
@@ -22,17 +23,23 @@ const FAMILY=Object.freeze({
 const idOK=id=>Number.isSafeInteger(id)&&id>0;
 const linked=rec=>Array.isArray(rec.items)&&rec.items.length>0&&
  rec.items.every(x=>x&&idOK(x.id));
+const allShape=(records,predicate)=>records.every(x=>predicate(decodeStructuredItemId(x.id)));
+const activity=(type,subtype)=>x=>x.itemType===type&&x.subtype===subtype;
 
 export function classifyDecorationSpawnEvent(record){
  if(!record||!idOK(record.id)||typeof record.name!=='string')throw new Error('Unrecognized event record.');
  let family=FAMILY.EXCLUDED;
  // W1 is a *static review tag only*, not proof of writable or removable state.
  if(record.tab==='spawn'&&record.eventPolicy==='W1'&&linked(record)){
-  if(record.group==='障害物'&&['闇のトゲ','障害物（種類別）'].includes(record.subgroup))family=FAMILY.OBSTACLE;
-  else if(record.group==='野生植物'&&record.subgroup==='ハーブ・スパイス・野生作物')family=FAMILY.WILD_PLANT;
-  else if(record.group==='花'&&record.subgroup==='花の生成')family=FAMILY.FLOWER;
+  if(record.group==='障害物'&&['闇のトゲ','障害物（種類別）'].includes(record.subgroup)&&
+   allShape(record.items,x=>(x.itemType===3&&x.subtype===13)||(x.itemType===4&&x.subtype===6)))family=FAMILY.OBSTACLE;
+  else if(record.group==='野生植物'&&record.subgroup==='ハーブ・スパイス・野生作物'&&
+   allShape(record.items,activity(3,4)))family=FAMILY.WILD_PLANT;
+  else if(record.group==='花'&&record.subgroup==='花の生成'&&
+   allShape(record.items,activity(3,8)))family=FAMILY.FLOWER;
   else if(record.group==='自然資源'&&record.subgroup==='木材・落下素材'){
-   const isWood=record.items.every(item=>WOOD_MATERIAL_ITEM_IDS.has(item.id));
+   const isWood=record.items.every(item=>WOOD_MATERIAL_ITEM_IDS.has(item.id))&&
+    allShape(record.items,activity(3,17));
    family=isWood?FAMILY.WOOD:FAMILY.OTHER_FORAGE;
   }
  }
@@ -42,6 +49,9 @@ export function classifyDecorationSpawnEvent(record){
   definitionActive:record.active===true,activeSourceReviewCandidate:primary&&record.active===true,
   sourceEventPolicy:record.eventPolicy??'UNKNOWN',
   linkedItemIds:Object.freeze((record.items||[]).filter(x=>idOK(x.id)).map(x=>x.id)),
+  linkedItemNumericKinds:Object.freeze((record.items||[]).filter(x=>idOK(x.id)).map(x=>{
+   const d=decodeStructuredItemId(x.id);return Object.freeze({itemType:d.itemType,subtype:d.subtype});
+  })),
   linkedItemIsPlacedGridObjectVerified:false,
   runtimeSpawnAndRemovalVerified:false,writerAuthorized:false,bulkDeletionAuthorized:false
  });
