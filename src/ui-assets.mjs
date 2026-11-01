@@ -29,7 +29,7 @@ export function validateUiManifest(manifest,kind){
   if(kind==='game_ui'&&(src.platform!=='Steam/Windows'||src.gameVersion!=='1.25.3'||
      !SHA.test(src.sourceBundleSha256)||typeof src.sourceBundle!=='string'||!src.sourceBundle))
     throw new Error('Steam UI asset provenance mismatch.');
-  if(kind==='app_ui'&&(src.platform!=='Dreamlight Timekeeper'||!Number.isSafeInteger(src.revision)||src.revision<2||src.assetFormat!=='SVG'))
+  if(kind==='app_ui'&&(src.platform!=='Dreamlight Timekeeper'||!Number.isSafeInteger(src.revision)||src.revision<3||src.assetFormat!=='SVG'||src.iconSet!=='Lucide'||src.upstreamRepository!=='lucide-icons/lucide'||src.upstreamCommit!=='a630cec77eac6568b989e87e4947a8bfe45caacd'))
     throw new Error('App UI asset version mismatch.');
   const records=Object.entries(manifest.icons);
   if(src.status!==(records.length?'VERIFIED_ASSETS':'NO_ASSETS_VERIFIED'))
@@ -72,20 +72,22 @@ export function inspectAppSvg(bytes){
   if(!shapes||shapes.includes('<!')||shapes.includes('<?')||shapes.includes('&')||
     /(?:script|foreignObject|image|href|url\(|onload|onclick|style|animate)/i.test(shapes))
     throw new Error('Unsupported or unsafe app SVG content.');
-  const tags=shapes.match(/<(?:path|rect|circle)\s[^<>]*\/>/g);
+  const tags=shapes.match(/<(?:path|rect|circle|line|polyline|polygon|ellipse)\s[^<>]*\/>/g);
   if(!tags?.length||tags.join('')!==shapes)
     throw new Error('Only path, rect and circle geometry are allowed.');
   for(const tag of tags){
-    const names=[...tag.matchAll(/\s([a-z-]+)="([^"]*)"/g)];
+    const names=[...tag.matchAll(/\s([a-z][a-z0-9-]*)="([^"]*)"/g)];
     const attrs=new Set();
     for(const [,name,value] of names){
-      if(!['d','cx','cy','r','x','y','width','height','rx','stroke','fill'].includes(name)||
+      if(!['d','cx','cy','r','x','y','x1','x2','y1','y2','width','height','rx','ry','points','stroke','fill'].includes(name)||
          attrs.has(name)||!/^[-0-9. MmLlHhVvCcSsQqTtAaZz,]+$/.test(value)&&
          !(name==='fill'&&value==='#f2f6f6')&&!(name==='stroke'&&value==='none'))
         throw new Error('Invalid SVG geometry attribute.');
       attrs.add(name);
     }
-    if(!attrs.size)throw new Error('App SVG shape has no attributes.');
+    const tagName=tag.match(/^<([a-z]+)/)?.[1];
+    if(!attrs.size||tag.replace(/\s[a-z][a-z0-9-]*="[^"]*"/g,'')!==`<${tagName}/>`)
+      throw new Error('App SVG has unrecognized shape attributes.');
   }
   return {width:24,height:24};
 }
