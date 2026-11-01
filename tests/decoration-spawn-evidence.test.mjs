@@ -60,7 +60,8 @@ test('unknown inactive or evidence-regressed source does not gain decoration cla
  assert.equal(classifyDecorationSpawnEvent({...datum,active:false}).activeSourceReviewCandidate,false);
  assert.equal(classifyDecorationSpawnEvent({...datum,eventPolicy:'W2'}).primaryDecorationResearch,false);
  assert.equal(classifyDecorationSpawnEvent({...datum,items:[]}).primaryDecorationResearch,false);
- assert.equal(classifyDecorationSpawnEvent({...datum,items:[{id:99999}]}).family,'OTHER_FORAGE_EVENT');
+ assert.equal(classifyDecorationSpawnEvent({...datum,items:[{id:99999}]}).family,'NOT_PRIMARY_DECORATION_EVENT');
+ assert.equal(classifyDecorationSpawnEvent({...datum,items:[{id:99999}]}).linkedItemNumericKinds[0].numericStructureVerified,false);
  for(const invalid of [
   {...raw,source:{...raw.source,buildId:'OTHER'}},
   {...raw,source:{...raw.source,rawEventSHA256:'unrecognized'}},
