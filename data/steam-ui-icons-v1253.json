@@ -38,6 +38,36 @@
       "texturePathId": "4550751082103756150",
       "width": 32,
       "height": 32
+    },
+    "world.valley": {
+      "kind": "game_ui",
+      "verified": true,
+      "platform": "Steam",
+      "gameVersion": "1.25.3",
+      "path": "assets/steam/v1253/ui/world/valley.webp",
+      "sha256": "c8de879d8f96eb678fad5bb2317b62a6bdce9523b8fe743ae348f62d4436e7ad",
+      "sourceSha256": "d4b1ccc4a419d11326dc411da5a9bf882f546bc39419208b6618a4add9668c6e",
+      "sourceAsset": "CAB-fe2bbf4dc0b20d2a3f3b5ff35a49ffe8|export_icon_ips_dream_valley",
+      "mappingEvidence": "Original Steam full-rectangle Sprite/Texture PPtr; literal asset name export_icon_ips_dream_valley; decoded RGBA pixel parity",
+      "spritePathId": "1512533464914153988",
+      "texturePathId": "2722964377584423428",
+      "width": 176,
+      "height": 176
+    },
+    "world.exp1": {
+      "kind": "game_ui",
+      "verified": true,
+      "platform": "Steam",
+      "gameVersion": "1.25.3",
+      "path": "assets/steam/v1253/ui/world/exp1.webp",
+      "sha256": "5fdfec6c047467a16b607f25a087b01263da151c48345fd0e21940de99d0e735",
+      "sourceSha256": "5fb47fee4a40c0a266ee5d17b03b42478be3021fa996b37480ab3c720ae75a52",
+      "sourceAsset": "CAB-fe2bbf4dc0b20d2a3f3b5ff35a49ffe8|icon_eternity_isle",
+      "mappingEvidence": "Original Steam full-rectangle Sprite/Texture PPtr; literal asset name icon_eternity_isle; decoded RGBA pixel parity",
+      "spritePathId": "11850830269409517482",
+      "texturePathId": "7386682675117285290",
+      "width": 152,
+      "height": 152
     }
   }
 }
