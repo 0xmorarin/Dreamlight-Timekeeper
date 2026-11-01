@@ -31,7 +31,9 @@ test('index rules are versioned, revisable and explicitly never writer-authorize
  assert.throws(()=>indexTimingReviewRules(repeat),/Ambiguous/);
 });
 test('ordinary W1, anomalous 2126, moonstone, unknown, inactive and old shop timestamp do not converge',()=>{
- const view=assessTimingSnapshot(projectProfile(profile(),registry,{now:at}),index);
+ const original=projectProfile(profile(),registry,{now:at}),before=JSON.stringify(original);
+ const view=assessTimingSnapshot(original,index);
+ assert.equal(JSON.stringify(original),before);
  const by=id=>view.rows.find(x=>x.id===id)?.review;
  assert.equal(by(2010000003).status,'RESEARCH_CANDIDATE');
  assert.equal(by(2010000064).status,'CONDITIONAL_REVIEW');
