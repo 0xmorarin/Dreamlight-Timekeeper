@@ -50,6 +50,9 @@ test('source data must never grant deletion authority',()=>{
  const invalid=structuredClone(source);
  invalid.rows[0].bulkDeletionAuthorized=true;
  assert.throws(()=>auditDecorationGridItemMatches(fixture(),invalid));
+ const mismatched=structuredClone(source);
+ mismatched.source.buildId='UNREVIEWED';
+ assert.throws(()=>auditDecorationGridItemMatches(fixture(),mismatched));
  const bad=fixture();bad.World.GridCollection.Grids['10'].ID=42;
  const audit=auditDecorationGridItemMatches(bad,source);
  assert(audit.diagnostics.some(x=>x.code==='GRID_IDENTITY_OR_OBJECT_STRUCTURE_UNKNOWN'));
