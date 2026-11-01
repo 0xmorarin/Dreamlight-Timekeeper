@@ -23,6 +23,7 @@ export function validateIconManifest(manifest) {
       record.verified !== true || !ASSET_PATH.test(record.path) ||
       !SHA256.test(record.sha256) || !SHA256.test(record.sourceSha256) ||
       typeof record.sourceAsset !== 'string' || !record.sourceAsset.trim() ||
+      typeof record.itemIdEvidence !== 'string' || !record.itemIdEvidence.trim() ||
       !Number.isInteger(record.width) || record.width < 1 || record.width > 16383 ||
       !Number.isInteger(record.height) || record.height < 1 || record.height > 16383)
       throw new Error(`Icon provenance or lossless WebP metadata missing for item ${id}.`);
