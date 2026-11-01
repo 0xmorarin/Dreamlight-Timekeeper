@@ -38,3 +38,11 @@ test('read-only timing audit is visible without implying repair or changing the 
  assert.match(app,/t\('auditNoRepair'\)/);
  assert.match(css,/\.audit-details/);
 });
+
+test('preview UI exposes approved past and future presets without enabling any writer',()=>{
+ assert.match(page,/value="century"/);
+ assert.match(page,/value="release"/);
+ assert.match(app,/resolveTimePreset\(state\.mode/);
+ assert.match(app,/mode:state\.mode==='now'\?'now':'custom'/);
+ assert.doesNotMatch(page,/id="export-edited"/);
+});
