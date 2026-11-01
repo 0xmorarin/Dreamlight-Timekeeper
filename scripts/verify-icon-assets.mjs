@@ -1,11 +1,11 @@
 import {createHash} from 'node:crypto';
 import {readFile} from 'node:fs/promises';
-import {resolve} from 'node:path';
+import {join,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {validateIconManifest,inspectLosslessWebP} from '../src/icon-assets.mjs';
 
 const root = resolve(process.argv[2]||fileURLToPath(new URL('../',import.meta.url)));
-const manifest = JSON.parse(await readFile(new URL('../data/steam-icons-v1253.json',import.meta.url),'utf8'));
+const manifest = JSON.parse(await readFile(join(root,'data','steam-icons-v1253.json'),'utf8'));
 validateIconManifest(manifest);
 let total=0;
 for (const [id,entry] of Object.entries(manifest.icons)) {
