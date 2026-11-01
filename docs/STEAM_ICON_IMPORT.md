@@ -39,3 +39,21 @@ The import script checks source hashes and exact source paths, converts using `c
 Generated files are deployed to `assets/steam/v1253/*.webp`; the source PNG and the local plan remain private research input. Do not commit extracted source or personal game data. Runtime verifies the manifest structure; Node CI checks deployed WebP SHA-256, VP8L format and image dimensions. A verified icon is never treated as a save editor write capability.
 
 Missing images remain placeholders. Under no circumstances should Switch-derived assets be relabeled Steam.
+
+
+## Reproducible UnityFS extraction (v1.25.3)
+
+The verified local source extractor is \`scripts/audit-steam-icons.py\`. It reads the original Steam \`ingredient_1c1bf99b.bundle\` and \`itemlist/ActivityItem.json\`, follows the serialized \`field 4\` icon GUID through the Unity AssetBundle container and checks Sprite-to-Texture2D path IDs. It supports full-rectangle Sprite data with BC7 (TextureFormat 25) or DXT5 (TextureFormat 12). Sub-rectangles and unexpected serialized layouts fail closed rather than silently export the wrong graphic.
+
+Install the local analysis dependency with \`python -m pip install lz4\`; ImageMagick (\`magick\`) is required only for PNG extraction. No dependency is introduced to the public web app. The files are read from a locally owned Steam installation or authorized research copy:
+
+\`\`\`sh
+python scripts/audit-steam-icons.py --bundle /path/to/ingredient_1c1bf99b.bundle --activity /path/to/ActivityItem.json --output /private/research
+python scripts/audit-steam-icons.py --bundle /path/to/ingredient_1c1bf99b.bundle --activity /path/to/ActivityItem.json --output /private/research --extract
+node scripts/import-steam-icons.mjs /private/research/icon-import-plan.json
+npm test
+\`\`\`
+
+The first command creates \`icon-audit.json\` without extracting image files. The second additionally creates \`items/<ItemID>.png\` and an import plan. Do not repeat \`--extract\` into a directory already containing those image names; it refuses overwrites.
+
+This narrow extractor does not claim to support all Unity 6 bundles, atlases, compressed formats, Sprite trimming variants or all ItemID definition files. The verified Ingredient source covers 90 ItemIDs / 58 distinct Sprite assets, while other categories require independent mapping. The \`sourceAsset\` field carries GUID and exact Sprite/Texture path IDs; \`itemIdEvidence\` carries the ActivityItem file SHA-256 plus the field-4 GUID. Importing image files into the public tree remains subject to a separate publication decision.
