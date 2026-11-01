@@ -16,6 +16,11 @@ test('508 native-source events have bounded, read-only decorating classification
  assert.equal(result.counts.OTHER_FORAGE_EVENT,21);
  assert.equal(result.counts.NOT_PRIMARY_DECORATION_EVENT,185);
  assert.equal(result.rows.filter(r=>r.primaryDecorationResearch).length,302);
+ assert.equal(result.activeCounts.OBSTACLE_EVENT,29);
+ assert.equal(result.activeCounts.WILD_PLANT_EVENT,7);
+ assert.equal(result.activeCounts.FLOWER_EVENT,40);
+ assert.equal(result.activeCounts.WOOD_MATERIAL_EVENT,12);
+ assert.equal(result.rows.filter(r=>r.activeSourceReviewCandidate).length,88);
  assert.equal(result.source.writeAuthorization,false);
  assert.equal(result.source.deleteAuthorization,false);
  for(const r of result.rows){
@@ -51,7 +56,8 @@ test('excluded controls and Moonstone Chest cannot inherit bulk deletion permiss
 });
 test('unknown inactive or evidence-regressed source does not gain decoration classification',()=>{
  const datum={...raw.events.find(e=>e.id===2010000021)};
- assert.equal(classifyDecorationSpawnEvent({...datum,active:false}).primaryDecorationResearch,false);
+ assert.equal(classifyDecorationSpawnEvent({...datum,active:false}).primaryDecorationResearch,true);
+ assert.equal(classifyDecorationSpawnEvent({...datum,active:false}).activeSourceReviewCandidate,false);
  assert.equal(classifyDecorationSpawnEvent({...datum,eventPolicy:'W2'}).primaryDecorationResearch,false);
  assert.equal(classifyDecorationSpawnEvent({...datum,items:[]}).primaryDecorationResearch,false);
  assert.equal(classifyDecorationSpawnEvent({...datum,items:[{id:99999}]}).family,'OTHER_FORAGE_EVENT');
