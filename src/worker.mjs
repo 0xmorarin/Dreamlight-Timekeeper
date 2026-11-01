@@ -15,7 +15,7 @@ self.onmessage=async({data})=>{
       const bytes=new Uint8Array(data.buffer);
       if(bytes.length===0||bytes.length>128*1024*1024)throw new Error('セーブファイルが空、または128MiBを超えています');
       let text,format;
-      if(bytes[0]===123||bytes[0]===32||bytes[0]===10||bytes[0]===13){text=decoder.decode(bytes);format='json'}
+      if(bytes[0]===123||bytes[0]===32||bytes[0]===10||bytes[0]===13||bytes[0]===9||bytes[0]===0xef){text=decoder.decode(bytes).replace(/^\uFEFF/,'');format='json'}
       else {const loaded=await p1gPackagedProfileCodec.loadProfile(bytes);text=loaded.jsonText;format='packaged'}
       const profile=parseSafeJson(text);
       const view=projectProfile(profile,await getIndex());
