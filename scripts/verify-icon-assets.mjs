@@ -31,8 +31,8 @@ for(const [path,kind] of [['data/steam-ui-icons-v1253.json','game_ui'],['data/ap
     const bytes=await readFile(resolve(root,entry.path));
     const sha=createHash('sha256').update(bytes).digest('hex');
     if(sha!==entry.sha256)throw new Error('UI icon hash mismatch: '+kind+':'+key);
-    verifyUiAssetBytes(entry,bytes);
+    verifyUiAssetBytes(entry,bytes,kind);
     checked++;
   }
-  console.log('Verified '+kind+' VP8L UI icons: '+checked);
+  console.log('Verified '+kind+' UI icons ('+(kind==='app_ui'?'safe SVG':'lossless VP8L')+'): '+checked);
 }
