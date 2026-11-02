@@ -9,7 +9,7 @@ const domains=new Set(['timing','inventory','collections','storage','world-grid'
 const encoder=new TextEncoder();
 // Estimate the exact UTF-8 JSON wire size without stringifying a whole Grid,
 // Inventory or Quest tree. Reject non-JSON values, cycles and deep structures.
-function boundedJsonBytes(value,limit){
+export function boundedJsonBytes(value,limit){
  let bytes=0,nodes=0;const ancestors=new WeakSet();
  const add=n=>{bytes+=n;if(bytes>limit)throw Error('PROJECTION_TOO_LARGE');};
  function visit(v,depth){
