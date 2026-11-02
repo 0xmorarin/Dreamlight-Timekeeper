@@ -1,7 +1,7 @@
 name: 03 WEB Wand-compatible SvelteKit Migration
 on:
   push:
-    branches: [feat/web-sveltekit-wand-foundation, feat/web-single-save-session-contract, research/web-core-save-session-api-alignment]
+    branches: [feat/web-sveltekit-wand-foundation, feat/web-single-save-session-contract, research/web-core-save-session-api-alignment, research/web-projection-core-contract-20261103]
   workflow_dispatch:
 permissions:
   contents: read
@@ -18,7 +18,7 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Independent migration source contract and old Node regression
         run: |
-          node --test tests/sveltekit-migration-contract.test.mjs tests/save-session-response-fence.test.mjs tests/sveltekit-build-inventory.test.mjs tests/web-rust-session-alignment.test.mjs
+          node --test tests/sveltekit-migration-contract.test.mjs tests/save-session-response-fence.test.mjs tests/sveltekit-build-inventory.test.mjs tests/web-rust-session-alignment.test.mjs tests/web-projection-qr-fixtures.test.mjs
           node --test tests/reader.test.mjs tests/worker.test.mjs tests/timing-draft.test.mjs tests/ui-separate-downloads.test.mjs tests/ui-verified-pair-downloads.test.mjs tests/timekeeper-timing-compatibility.test.mjs
           # Legacy release staging's strict source whitelist intentionally excludes
           # all newly authored Svelte files; it remains a separate old-HTML artifact gate.
