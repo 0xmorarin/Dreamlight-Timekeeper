@@ -146,8 +146,9 @@ try{
  const edited=await readFile(editedOnDisk);
  assert.notDeepEqual(edited,source);
  const reopened=parseSafeJson((await p1gPackagedProfileCodec.loadProfile(edited)).jsonText);
- assert.deepEqual(diffPaths(initial,reopened),['/World/RecurringEvents/0/ItemSpawning/NextOccurrence']);
- assert.equal(reopened.World.RecurringEvents['0'].ItemSpawning.NextOccurrence,NEW);
+ assert.deepEqual(diffPaths(initial,reopened),[proposal.entries[0].pointer],'only Worker proposed selected field may change');
+ const selected=proposal.entries[0].pointer.split('/');
+ assert.equal(reopened.World.RecurringEvents[selected[3]][selected[4]].NextOccurrence,NEW);
  assert.deepEqual(reopened.World.Opaque,initial.World.Opaque);
  assert.deepEqual(reopened.World.RecurringEvents['2'],initial.World.RecurringEvents['2']);
  assert.equal(HASH(await readFile(originalOnDisk)),HASH(source));
