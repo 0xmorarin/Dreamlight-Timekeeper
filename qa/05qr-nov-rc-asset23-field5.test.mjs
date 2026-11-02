@@ -90,3 +90,25 @@ test('05QR release manifest and 244 statuses remain denied regardless of private
  assert(now.items.every(x=>x.publishedImage==='MISSING'));
  assert.equal(now.field5WorldObjectCatalogAudit.publicImageUrlsGranted,0);
 });
+
+test('05QR only nine P0 routes carry item-level Field5 GUID/bundle metadata, not thumbnail evidence',()=>{
+ const top=selected.filter(r=>r.unresolvedVariantPriority?.tier==='P0');
+ assert.equal(top.length,9);
+ const guids=new Set();
+ for(const row of top){
+  const p=row.definitionAudit.worldObjectSource;
+  assert.match(p.gameObjectGuid,/^[0-9a-f]{32}$/);
+  assert.equal(p.additionalSourcePathProof,'EXACT_FIELD5_AND_CATALOG_DEPENDENCY');
+  assert(typeof p.primaryDependencyBundle==='string'&&p.primaryDependencyBundle.length>5);
+  assert.equal(p.doesNotResolve2DThumbnail,true);
+  assert.equal(row.readOnlyImageResolution.url,null);
+  guids.add(p.gameObjectGuid);
+ }
+ assert.equal(guids.size,9);
+ const other=selected.filter(r=>r.unresolvedVariantPriority?.tier!=='P0');
+ assert.equal(other.length,72);
+ for(const row of other){
+  assert.equal(row.definitionAudit.worldObjectSource.additionalSourcePathProof,'SOURCE_CENSUS_ONLY');
+  assert.equal(row.definitionAudit.worldObjectSource.doesNotResolve2DThumbnail,true);
+ }
+});
