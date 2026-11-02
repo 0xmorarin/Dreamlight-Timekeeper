@@ -1,0 +1,14 @@
+[package]
+name = "timekeeper-w1-research-bridge"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# Test-only consumer of Wand 01A's pinned research API. No independent SaveSession or Codec.
+[dependencies]
+ddv-save-core = { path = "../../vendor-wand/crates/ddv-save-core" }
+serde_json = "=1.0.145"
+
+[[bin]]
+name = "timekeeper-w1-witness-probe"
+path = "src/main.rs"
