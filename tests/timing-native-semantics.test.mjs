@@ -710,3 +710,22 @@ test('Client has a separate recurring-event reschedule notification consumer, no
   assert.equal(c.eventIdToConcreteSaveVariantVerified,false);
   assert.equal(c.normalSaveTimingVerified,false);
 });
+
+
+test('Profile.AddRecurringEvent has explicit slot62 reschedule notification edge; not every setter',()=>{
+  const c=native.native.clientRecurringRescheduleNotification;
+  assert.equal(c.profileAddRecurringEventRVA,'0x05A29920');
+  assert.equal(c.profileAddNotificationSlotRVA,'0x05A2A0F0');
+  assert.equal(c.profileAddNotificationSlotOpcode,'0x528007C2');
+  const mov=0x528007C2;
+  assert.equal(mov&31,2); // W2
+  assert.equal((mov>>>5)&0xffff,62);
+  assert.equal(c.profileAddNotificationVirtualCallRVA,'0x05A2A118');
+  assert.equal(c.profileAddNotificationConditionalOnDispatcher,true);
+  assert.equal(c.endDatePreventsClientWaitOnMatchedRecordByStaticBranch,true);
+  assert.equal(c.actualizeRaisesRescheduleNotificationVerified,false);
+  assert.equal(c.notificationFiredByEverySetterVerified,false);
+  assert.equal(c.handlerSubscriptionRuntimeVerified,false);
+  assert.equal(native.native.reschedule.setterDispatchIsStaticOnly,true);
+  assert.equal(native.native.fieldLayout.directSavePersistenceVerified,false);
+});
