@@ -11,3 +11,13 @@
 .audit-uncertainty{font-size:11px;line-height:1.65;color:#e9d6ae;margin:12px 0 5px}
 .audit-provenance{font-size:10px;line-height:1.6;color:#a4c0c2;margin:7px 0 0}
 @media(max-width:600px){.audit-counters{grid-template-columns:1fr}}
+
+.draft-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.draft-actions #stage-preview{grid-column:1/-1;border-color:#789391;color:#e2f0da}
+.draft-actions .subtle{white-space:normal;padding:8px 6px;min-height:36px}
+.draft-plan{border:1px solid #38545a;border-radius:8px;padding:11px;font-size:11px;line-height:1.6;color:#d0e1df}
+.draft-plan-title{font-size:12px;font-weight:650;color:#f0e4bc}
+.draft-plan-item{border-top:1px solid #38515a;padding:7px 0;overflow-wrap:anywhere}
+.draft-plan-item strong,.draft-plan-item span{display:block}
+.draft-plan-item span{color:#aac4c6}
+.draft-plan-note{font-size:10px;color:#e1c49a;margin:8px 0 0}
