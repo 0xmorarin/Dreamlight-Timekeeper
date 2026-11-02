@@ -42,6 +42,16 @@ test('regenerating app SVG leaves published bytes and manifest unchanged',async(
   }
  }finally{await rm(temp,{recursive:true,force:true});}
 });
+test('SVG validator rejects unparsed namespaced or mixed-case event attributes',()=>{
+ const base=renderAppUiIconSvg('action.open-save');
+ for(const injected of [
+  base.replace('<path d=', '<path onFocus="alert(1)" d='),
+  base.replace('<path d=', '<path xml:base="https://example.com" d='),
+  base.replace('<path d=', '<path data:other="ignored" d=')
+ ]){
+  assert.throws(()=>inspectAppSvg(new TextEncoder().encode(injected)),/attribute/);
+ }
+});
 test('unsafe SVG event handlers, external assets and script elements are refused',()=>{
  const base=renderAppUiIconSvg('action.open-save');
  for(const unsafe of [

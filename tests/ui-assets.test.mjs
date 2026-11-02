@@ -57,6 +57,23 @@ test('semantic names cannot escape their assigned namespace or appear twice unde
  assert.throws(()=>validateUiManifest(a,'app_ui'),/Duplicate/);
  assert.equal(resolveAppUiIcon(a,'action.open-save'),null);
 });
+test('UI icon semantic keys must match registered namespace and canonical file path',()=>{
+ for(const [base,kind,key,entry] of [
+  [game,'game_ui','currency.moonstone',gameEntry],
+  [app,'app_ui','action.open-save',appEntry]
+ ]){
+  const valid=withIcon(base,key,entry);
+  assert.equal(validateUiManifest(valid,kind),true);
+  const altered=withIcon(base,key,{...entry,path:kind==='game_ui'?
+   'assets/steam/v1253/ui/status/warning.webp':'assets/app/ui/status/warning.svg'});
+  assert.throws(()=>validateUiManifest(altered,kind),/canonical path/);
+  const unknown=withIcon(base,'unknown.unregistered',{...entry});
+  assert.throws(()=>validateUiManifest(unknown,kind),/semantic key/);
+ }
+ assert.equal(resolveAppUiIcon(app,'constructor'),null);
+ assert.equal(resolveGameUiIcon(game,'constructor'),null);
+ assert.equal(resolveAppUiIcon(app,'not-registered'),null);
+});
 test('design approval is independent from byte verification and must remain provisional',()=>{
  assert.equal(app.source.designStatus,'PROVISIONAL_OWNER_ARTWORK');
  for(const state of [undefined,'APPROVED','LUCIDE','']){

@@ -4,6 +4,7 @@ export const GAME_UI_KEYS = Object.freeze([
   'currency.star-coin','currency.moonstone','currency.dreamlight','currency.mist','status.energy',
   'skill.fishing','skill.mining','skill.gardening','skill.foraging','skill.timebending',
   'skill.cooking','skill.crafting','category.furniture','category.clothing',
+  'status.warning','status.error',
   'tab.spawn','tab.resources','tab.shops','tab.daily',
   'world.valley','world.exp1','world.exp2','world.exp3','world.hgw'
 ]);
@@ -49,6 +50,11 @@ export function validateUiManifest(manifest,kind){
       throw new Error('UI icon lacks exact Steam Sprite/Texture reference: '+key);
     if(paths.has(item.path))throw new Error('Duplicate UI image output path.');
     paths.add(item.path);
+    const knownKeys=kind==='game_ui'?GAME_UI_KEYS:APP_UI_KEYS;
+    const canonicalPath=(kind==='game_ui'?'assets/steam/v1253/ui/':'assets/app/ui/')+
+      key.replace('.', '/')+(kind==='game_ui'?'.webp':'.svg');
+    if(!knownKeys.includes(key)||item.path!==canonicalPath)
+      throw new Error('UI icon semantic key or canonical path mismatch: '+key);
   }
   return true;
 }
@@ -56,7 +62,7 @@ export function validateUiManifest(manifest,kind){
 export function resolveUiIcon(manifest,kind,semanticKey){
   if(typeof semanticKey!=='string'||!KEY.test(semanticKey))return null;
   try{validateUiManifest(manifest,kind);}catch{return null;}
-  return manifest.icons[semanticKey]||null;
+  return Object.hasOwn(manifest.icons,semanticKey)?manifest.icons[semanticKey]:null;
 }
 export const resolveGameUiIcon=(manifest,semanticKey)=>resolveUiIcon(manifest,'game_ui',semanticKey);
 export const resolveAppUiIcon=(manifest,semanticKey)=>resolveUiIcon(manifest,'app_ui',semanticKey);
@@ -76,16 +82,26 @@ export function inspectAppSvg(bytes){
   if(!tags?.length||tags.join('')!==shapes)
     throw new Error('Only path, rect and circle geometry are allowed.');
   for(const tag of tags){
-    const names=[...tag.matchAll(/\s([a-z-]+)="([^"]*)"/g)];
+    const shape=/^<(path|rect|circle)(?=\s)/.exec(tag)?.[1];
+    if(!shape)throw new Error('Unsupported SVG shape.');
+    const source=tag.slice(shape.length+1,-2);
+    const attr=/\s+([a-z-]+)="([^"]*)"/gy;
     const attrs=new Set();
-    for(const [,name,value] of names){
+    let cursor=0;
+    while(cursor<source.length){
+      attr.lastIndex=cursor;
+      const match=attr.exec(source);
+      if(!match)throw new Error('Invalid or unparsed SVG geometry attribute.');
+      const [,name,value]=match;
       if(!['d','cx','cy','r','x','y','width','height','rx','stroke','fill'].includes(name)||
          attrs.has(name)||!/^[-0-9. MmLlHhVvCcSsQqTtAaZz,]+$/.test(value)&&
          !(name==='fill'&&value==='#f2f6f6')&&!(name==='stroke'&&value==='none'))
         throw new Error('Invalid SVG geometry attribute.');
       attrs.add(name);
+      cursor=attr.lastIndex;
     }
-    if(!attrs.size)throw new Error('App SVG shape has no attributes.');
+    const required=shape==='path'?['d']:shape==='circle'?['cx','cy','r']:['x','y','width','height'];
+    if(!required.every(name=>attrs.has(name)))throw new Error('App SVG shape is missing required geometry.');
   }
   return {width:24,height:24};
 }

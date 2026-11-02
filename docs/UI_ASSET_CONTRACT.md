@@ -24,7 +24,7 @@ The current 16 conceptual keys are `action.open-save`, `action.open-another`, `a
 
 **Final polish checklist, deferred:** compare each visible icon at 16, 20 and 24px, across light and dark surfaces and browser zoom 200%; adjust optical alignment, line density, negative space, touch/click target, contrast, and semantic recognizability. Check Japanese/English with SVG missing. Unused prospective glyphs should be reviewed before public release rather than modified speculatively. There is **no current permission** to rasterize tool SVGs or to replace game-source assets with self-drawn symbols.
 
-The app manifest permits only local `.svg` paths and its validator restricts the exact geometric root, static shape types, attributes, original-source hashes, path and dimensions. Scripts, remote image sources, external references, SVG animation and arbitrary HTML are not allowed.
+The app manifest permits only local `.svg` paths and its validator restricts the exact geometric root, static shape types, attributes, original-source hashes, path and dimensions. Both UI namespaces require a registered semantic key and its exact canonical local path (`<namespace>/<category>/<name>.<format>`); missing keys, including inherited object properties, resolve to null. The SVG parser must consume every shape attribute and reject unparsed mixed-case or namespaced attributes rather than silently ignoring them. Scripts, remote image sources, external references, SVG animation and arbitrary HTML are not allowed.
 
 ## Game-derived icons, world mapping and evidence
 
