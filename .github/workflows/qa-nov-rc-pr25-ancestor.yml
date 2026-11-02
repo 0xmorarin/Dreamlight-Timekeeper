@@ -1,0 +1,25 @@
+name: 05 QR Nov RC PR25 Ancestor Symlink Delta
+on:
+  pull_request:
+    paths:
+      - 'qa/05qr-nov-rc-pr25-ancestor.test.mjs'
+      - '.github/workflows/qa-nov-rc-pr25-ancestor.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ancestor-delta:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Freeze product source at PR25 HEAD
+        run: |
+          git diff --quiet 7d3285b5fd7ff5a6d13a41229b9ba12ae5bb5bd2 HEAD -- scripts/stage-sveltekit-review-only.mjs tests/ctrl-sveltekit-review-stage.test.mjs
+      - name: Independent source and build ANCESTOR symlink refusal ONLY
+        run: node --test qa/05qr-nov-rc-pr25-ancestor.test.mjs
+      - name: No re-run of 38-file audit or authorization
+        run: echo 'No compiled build; no staged output, no release and no Writer'
