@@ -302,7 +302,19 @@ if(typed?.gameVersion!=='1.25.3'||typed.platform!=='Steam/Windows'||
  typed.formerlyUnclassified138ActivityItemProof?.canonicalSortedItemIdAndStreamSha256!==
  '553cc22aef519f8e5cb4e3873e4aa74a1aa0eb358c1e7dd8e2a93d5761b9e012'||
  originalLinkedDigest!==typed.formerlyUnclassified138ActivityItemProof.canonicalSortedItemIdAndStreamSha256)
- fail('original v1.25.3 typed 244 ItemID category census drift; linkedDigest='+originalLinkedDigest);
+ fail('original v1.25.3 typed 244 ItemID category census drift; checks='+JSON.stringify({
+   linked:originalLinkedDigest===typed.formerlyUnclassified138ActivityItemProof.canonicalSortedItemIdAndStreamSha256,
+   hashes:normalized(typed.sourceHashes)===normalized(expectedStreams),
+   recordCounts:normalized(typed.originalRecordCounts)===normalized(originals),
+   streamCounts:normalized(typed.streamCounts)===normalized(exactTypes),
+   category:typed.categoryIsOriginalSourceTypeOnly,
+   native:typed.notNativeGameplayCategory,
+   variant:typed.visualsGranted,
+   rights:typed.rightsGranted,
+   sourceType:typed.evidence,
+   originalStreams:typed.formerlyUnclassified138ActivityItemProof.sourceStream,
+   originalProof:typed.formerlyUnclassified138ActivityItemProof
+ }));
 const typedCounts={'ActivityItem.json':0,'Furniture.json':0,'Companion.json':0};
 for(const row of pinned.items){
  const witness=row.itemSourceType;
