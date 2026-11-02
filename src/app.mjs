@@ -10,7 +10,8 @@ const click=(label,handler,cls='subtle')=>{const el=make('button',cls,label);el.
 const state={snapshot:null,draft:null,sessionId:null,preflight:null,planPending:false,tab:'spawn',world:'all',group:null,subgroup:null,query:'',sort:'name',selected:new Set(),limit:120,mode:'now',loading:false,locale:initialLocale()};
 const t=(key,values)=>translate(state.locale,key,values);
 const fmt=value=>localDate(value,state.locale);
-let worker=null,seq=0,noticeCount=0,iconManifest=null,preflightSequence=0,outputPlanRevision=0;
+let worker=null,seq=0,noticeCount=0,iconManifest=null,preflightSequence=0;
+let outputPlanRevision=0;
 const pending=new Map();
 function failWorker(message){for(const p of pending.values())p.reject(new Error(message));pending.clear();if(worker){worker.terminate();worker=null;}}
 function request(type,payload={},transfer=[]){return new Promise((resolve,reject)=>{
