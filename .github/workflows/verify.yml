@@ -24,7 +24,7 @@ jobs:
         run: npm run test:icon-import
       - name: Verify UnityFS item-source analysis helper
         run: |
-          python -m pip install lz4
+          python -m pip install lz4 Pillow
           python -m unittest discover -s tests -p 'steam_icon_audit_test.py' -v
           python -m unittest discover -s tests -p 'steam_ui_atlas_test.py' -v
           python -m py_compile scripts/audit-steam-ui-atlas.py

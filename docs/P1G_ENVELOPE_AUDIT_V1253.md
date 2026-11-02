@@ -139,3 +139,46 @@ The existing synthetic `createEncodedProfile` now additionally requires an **obs
 **Metadata preservation limits still open:** original ZIP may contain unknown local extra, central extra, archive/entry comment, prefix, descriptor, trailing data, unknown flags and unusual timestamp/header variance; current rebuild reconstructs one `profile` entry and normalizes or drops unsupported features rather than losslessly copying their raw bytes. Stored/deflate method, central creator/attribute/DOS values can be observed on a simple source, but new CRC/sizes, compressed bytes, ZIP header offsets, ciphertext and raw JSON representation must change or be independently verified when edited. A successful source audit and a synthetic matching metadata projection are necessary **but insufficient** evidence for save compatibility.
 
 **Release gate:** 05 QR independent review of new HEAD + CI; a separate disposable *real modified-copy* metadata/unknown-field preservation study and Switch cold-load/save/restart are still OPEN and prohibited in this round. PR #11 UI/Worker integration and Wand 01A permissions untouched.
+
+## 01 CORE Round 4 — JSON lexical fidelity, numeric precision and ZIP rebuild TOCTOU (2026-11-02)
+
+**Provenance:** Draft PR #8 based on unchanged PR #2 HEAD `9ebdac063b81934eee37a62e5694749b1cf1aa65`. The prior Round 3 version of PR #8 is present **byte-for-byte** in integration PR #11 HEAD `51aba6924ab39c1c83682cb29ad58c63abef1fdc` for the verified core, envelope and JSON test blobs. Round 4 commits are owned by PR #8 only; PR #11, Worker, UI, Wand and native semantics were not modified.
+
+### Full real-save read pathway and actual evidence
+
+`loadProfile(ciphertext)` has source-level sequence: (1) encrypted input size/type and AES-ECB/PKCS7 decoding; (2) ZIP EOCD, central and local header bounds, entry selection, deflate and CRC verification; (3) UTF-8 decoding; (4) strict `parseSafeJson` duplicate key / unsafe numeric / depth enforcement and required root shape; (5) version extraction and ZIP metadata publication; (6) separate `auditP1gEnvelope` from the Worker, emitting source-only findings. The original 01E source hash and private independent AES/ZIP metadata path were verified in earlier rounds, and **the exact JavaScript envelope audit was executed against reconstructed metadata from the real accepted original** in Round 3. **The entire new JS `loadProfile` call on that real original has not been independently run as one end-to-end operation in these rounds.** This distinction remains an explicit read-only compatibility gap after Round 4. Source metadata parity is not full codec runtime or edited-copy approval.
+
+### New strict number guard (01 CORE source change)
+
+Existing `parseSafeJson` already refused integer tokens beyond `Number.MAX_SAFE_INTEGER`. Exponent or fraction spellings of such integer magnitudes could bypass that lexical test and round during `Number()` conversion. It now rejects **all parsed integral unsafe magnitudes**, including `9007199254740993.0`, `9.007199254740993e15` and `1e20`, on every direct codec read/parse/research-encode path. Plain fractional `0.125` and representable exponent integer `6.26e2` remain accepted in the synthetic matrix. Numeric token recognition reuses a sticky regex on the original source rather than repeatedly allocating unexamined suffix copies per number token. Synthetic regression includes 50,000 safe numeric values and unknown opaque nested fields. This guard is intentionally conservative: a future save legitimately requiring unsafe numeric *integral* magnitude will be read-blocked until a lossless representation is supported; the same schema number does not grant compatibility.
+
+### Source JSON vs modified JSON serialization
+
+**Synthetic-only lexical preservation observation:** the original JSON byte/text representation can contain Unicode escape sequences (including surrogate pairs and lone surrogate), `1.0`, `1e2`, `9007199254740993` as a **string**, and object keys `"12"` before `"2"`. Original `loadProfile` returns the decoded `jsonText` unchanged, but parsing/cloning and `JSON.stringify` of a synthetic change converts number spellings, Unicode spellings, whitespace and integer-index-like object key ordering. The reopened synthetic P1G still has exactly one authorized synthetic path difference by `diffPaths`, and opaque values and their types compare equal. **Therefore semantic JSON equality and unknown-value survival do not prove original JSON textual/byte preservation.** No real modified-save test was performed.
+
+| Compatibility aspect | Source/Node evidence | Operation-level limit |
+| --- | --- | --- |
+| duplicate keys (including escaped aliases) | direct parser rejects; synthetic P1G encrypted test | unsupported profile is fail-closed, no Writer |
+| unsafe integer/exponent/fraction | rejected across direct parser/decode/research encode | cannot promise lossless conversion of unsafe magnitudes |
+| Unicode escaped text / lone surrogate | synthetic parsed/reopened values match | escape spelling and raw JSON bytes are not preserved by `JSON.stringify` |
+| integer-looking object keys | synthetic values match | order may be normalized, even outside planned pointer |
+| numeric `1.0` / `1e2` | synthetic values match | original numeric spellings not preserved |
+| numerical-looking string | retained as a string | type must never be inferred from string contents |
+| one edited pointer, unknown nested JSON | source-copy unchanged; synthetic exact semantic `diffPaths` | no real schema626 edited-copy, opaque binary or serializer compatibility |
+| 50,000 numeric array tokens | synthetic strict parse PASS | not a 128 MiB browser memory or real-save load benchmark |
+
+### Synthetic ZIP repacking, metadata mutation and source-byte boundaries
+
+The research-only `createEncodedProfile` receives caller-owned decoded metadata. A ZIP source may be fully audited at method entry, yet `buildSingleProfileZip` performs an asynchronous deflate before reading header attributes. To prevent post-audit caller mutation from affecting output bytes, the codec now snapshots and copies validated source ZIP header scalar attributes plus `extra`/`comment` bytes *before* awaiting compression. This is a **TOCTOU hardening measure for the synthetic research encode API**, not proof that a caller-provided metadata object is authentic. A synthetic test mutates `flagBits`, DOS time/date, extract version, creator system/version and internal/external attributes after entering encode; reopened synthetic output retains the audited snapshot values.
+
+A separate synthetic encrypted P1G comparison confirms ZIP local/central signature and checksum consistency, the changed profile's **different CRC and compressed data bytes**, re-emit of known simple source flags, creator, DOS timestamp, external attrs and zero extra/comment lengths, and exact unchanged original source bytes. The regenerated ZIP's central offsets, compressed data, CRC, ciphertext, raw JSON and any future unsupported opaque extension are not promised byte-identical. The source envelope compatibility gate continues to reject unknown metadata and unrecognized extras/descriptor rather than silently copying/normalizing them. No Writer is enabled.
+
+### Evidence, dependencies and remaining acceptance
+
+- **CONFIRMED:** codec control flow, strict numeric/checksum path, source ZIP snapshot prior to async rebuild, unchanged `auditP1gEnvelope` and immutable false capability/report fields.
+- **SYNTHETIC_TESTED:** direct unsafe numeric aliases, escaped duplicate keys, Unicode/order lexical drift vs unchanged semantic values, large numeric token set, simple ZIP rebuild byte/CRC changes, header-field snapshot under mutation, unchanged original ciphertext, and previous negative ZIP/Inflate coverage.
+- **REAL_SAVE_READ_ONLY:** approved 01E source and Round 2/3 independent ZIP metadata + exact JS envelope-audit function result. This round does not extend exact real-file JS full-path execution.
+- **UNKNOWN/BLOCKED:** full new JS `loadProfile` on real original, real modified-copy `createEncodedProfile`, actual ZIP opaque preservation and serializer identity, 128 MiB browser memory pressure, Switch runtime cold-load/save/restart and 05 QR independence for this new HEAD.
+- **Capability for 02 TIME/03 WEB:** the existing Worker-owned `auditP1gEnvelope` status/findings and read-only preflight remain the only permitted projection; `repackageShapeObserved` is a **source shape signal**. There is no consumer API change, no source-derived BID claim, and no Writer permission from any read, synthetic encode/reopen or lexical observation. `operationAllowlisted=false`, `writerAuthorized=false`, `editedCopyAuthorized=false` and independent restore/replacement remains unauthorized.
+
+Round 4 QA must inspect these exact code and test deltas against the prior accepted HEAD, run CI at the final frozen SHA and independently confirm no UI/Worker/Wand changes. PR #11 integration must be planned by 00 CTRL after new HEAD review; no direct integration push is performed here.

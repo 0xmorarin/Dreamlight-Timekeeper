@@ -267,6 +267,9 @@ function rejectDuplicateObjectKeys(source) {
 }
 function rejectUnsafeJsonNumbers(source) {
     let inString = false;
+    // Match at the existing offset without making a fresh suffix for each
+    // token in a large save; this retains the prior number-token grammar.
+    const numericToken = /-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+\-]?\d+)?/y;
     for (let i = 0; i < source.length; i += 1) {
         const ch = source[i];
         if (inString) {
@@ -284,13 +287,18 @@ function rejectUnsafeJsonNumbers(source) {
         }
         if (ch !== '-' && (ch < '0' || ch > '9'))
             continue;
-        const match = source.slice(i).match(/^-?(?:0|[1-9]\d*)(?:\.\d+)?(?:[eE][+\-]?\d+)?/);
+        numericToken.lastIndex = i;
+        const match = numericToken.exec(source);
         if (!match)
             continue;
         const token = match[0];
         const value = Number(token);
         if (!Number.isFinite(value))
             throw new Error('JSON number is not finite.');
+        // Exponent/decimal spelling can silently round an integral unsafe
+        // magnitude, e.g. 9007199254740993.0 or 9.007199254740993e15.
+        if (Number.isInteger(value) && !Number.isSafeInteger(value))
+            throw new Error('Unsafe JSON integer: cannot guarantee data preservation.');
         if (/^-?(?:0|[1-9]\d*)$/.test(token)) {
             const integer = BigInt(token);
             if (integer > BigInt(Number.MAX_SAFE_INTEGER) || integer < BigInt(Number.MIN_SAFE_INTEGER)) {

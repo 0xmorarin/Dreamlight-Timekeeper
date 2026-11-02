@@ -178,15 +178,56 @@ def dds_image(row,pixels):
         struct.pack_into('<IIIII',header,128,98,3,0,1,0)
     return bytes(header)+pixels
 
+
+def private_trial_candidate(catalog,key,output):
+    if not isinstance(key,str) or not re.fullmatch(r'[a-z]+(?:[.-][a-z0-9]+)*',key):
+        raise ValueError('Invalid private review semantic key')
+    root=Path(__file__).resolve().parents[1]
+    if output.resolve()==root or output.resolve().is_relative_to(root):
+        raise ValueError('Private trial output must be outside the public repository')
+    matches=[row for row in catalog['candidates'] if row['key']==key]
+    if len(matches)!=1 or matches[0]['reviewState'] not in ('HOLD_DEPLOYMENT','HOLD_SEMANTIC_REVIEW'):
+        raise ValueError('Private review requires one uniquely identified HOLD candidate')
+    return matches[0]
+
+def verify_private_rgba_parity(png,webp,width,height):
+    from PIL import Image
+    payload=webp.read_bytes()
+    if (len(payload)<25 or payload[:4]!=b'RIFF' or payload[8:16]!=b'WEBPVP8L' or
+        struct.unpack_from('<I',payload,4)[0]!=len(payload)-8 or payload[20]!=47):
+        raise ValueError('Private candidate must be lossless VP8L WebP')
+    bits=struct.unpack_from('<I',payload,21)[0]
+    if (bits>>29)!=0 or ((bits&16383)+1,((bits>>14)&16383)+1)!=(width,height):
+        raise ValueError('Private VP8L dimensions or version mismatch')
+    original=Image.open(png).convert('RGBA')
+    converted=Image.open(webp).convert('RGBA')
+    if original.size!=(width,height) or converted.size!=(width,height) or original.tobytes()!=converted.tobytes():
+        raise ValueError('Pillow source and WebP RGBA mismatch')
+    def decode(path):
+        return subprocess.run(['magick',str(path),'-alpha','on','-depth','8','RGBA:-'],
+            stdout=subprocess.PIPE,stderr=subprocess.PIPE,check=True).stdout
+    a=decode(png)
+    b=decode(webp)
+    if len(a)!=width*height*4 or a!=b or a!=original.tobytes():
+        raise ValueError('Independent ImageMagick RGBA mismatch')
+    return {'rgbaSha256':sha(a),'pngSha256':sha(png.read_bytes()),
+            'trialWebpSha256':sha(payload),'width':width,'height':height}
+
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--bundle',type=Path,required=True)
     parser.add_argument('--candidates',type=Path,default=Path(__file__).resolve().parents[1]/'data'/'steam-ui-candidates-v1253.json')
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--extract',action='store_true')
+    parser.add_argument('--private-trial-key',help='Verify one HOLD candidate in an external private directory')
     args=parser.parse_args()
+    if args.private_trial_key and args.extract:
+        parser.error('--private-trial-key cannot be combined with --extract')
     data=args.bundle.read_bytes()
     candidates=json.loads(args.candidates.read_text('utf-8'))
+    private_row=private_trial_candidate(candidates,args.private_trial_key,args.output) if args.private_trial_key else None
+    if candidates['source']['platform']!='Steam/Windows' or candidates['source']['gameVersion']!='1.25.3' or candidates['source']['fullVersion']!='releases_1.25-v1.25.3-44-g0b41250d9ac0-incremental-22':
+        raise ValueError('Source identity or Steam build mismatch')
     if candidates['source']['bundleSHA256']!=sha(data):
         raise ValueError('Original Steam atlas SHA-256 does not match expected source')
     unity,nodes,cab,extract=analyze_bundle(data)
@@ -197,6 +238,7 @@ def main():
         raise ValueError('Unexpected atlas Sprite/Texture2D population')
     audits=[]
     exported={}
+    private_trial=None
     seen=set()
     for row in candidates['candidates']:
         key=row['key']
@@ -205,7 +247,8 @@ def main():
         seen.add(key)
         off,length=inspect_candidate(row,objects)
         audits.append({**row,'sourceTextureOffset':off,'textureCompressedBytes':length})
-        if not args.extract or row['reviewState']!='STATIC_REFERENCE_VERIFIED':
+        trial=private_row is not None and key==private_row['key']
+        if not trial and (not args.extract or row['reviewState']!='STATIC_REFERENCE_VERIFIED'):
             continue
         from PIL import Image
         pixelbytes=extract(nodes[1][1]+off,length)
@@ -217,7 +260,7 @@ def main():
             input_rgba=Image.open(png).convert('RGBA')
             if input_rgba.size!=(row['width'],row['height']):
                 raise ValueError('Decoded image changed dimensions: '+key)
-            output_path='assets/steam/v1253/ui/'+key.replace('.','/')+'.webp'
+            output_path=('private-steam-ui-review/'+key.replace('.','-')+'.webp') if trial else 'assets/steam/v1253/ui/'+key.replace('.','/')+'.webp'
             target=args.output/output_path
             if target.exists():
                 raise ValueError('Refusing to overwrite icon file: '+str(target))
@@ -226,6 +269,22 @@ def main():
             verify=Image.open(target).convert('RGBA')
             if verify.tobytes()!=input_rgba.tobytes() or target.read_bytes()[12:16]!=b'VP8L':
                 raise ValueError('Lossless RGBA verification failed: '+key)
+            if trial:
+                parity=verify_private_rgba_parity(png,target,row['width'],row['height'])
+                private_trial={
+                    'kind':'PRIVATE_RESEARCH_TRIAL_NOT_DEPLOYMENT',
+                    'candidateKey':key,'reviewState':row['reviewState'],'semanticUse':'UNVERIFIED',
+                    'sourceBundleSha256':sha(data),'cabSha256':sha(cab),
+                    'spriteName':row['spriteName'],'spritePathId':row['spritePathId'],
+                    'texturePathId':row['texturePathId'],'textureFormat':row['textureFormat'],
+                    'textureCompressedSha256':sha(pixelbytes),'trialRelativePath':output_path,
+                    'rgbaDecoders':'PILLOW_AND_IMAGEMAGICK_EQUAL',
+                    'outputWebpSha256':parity['trialWebpSha256'],
+                    'decodedRgbaSha256':parity['rgbaSha256'],
+                    'sourcePngSha256':parity['pngSha256'],'width':row['width'],'height':row['height'],
+                    'releaseApproved':False,'publishedToManifest':False,'saveWriterEnabled':False
+                }
+                continue
             exported[key]={
                 'kind':'game_ui','verified':True,'platform':'Steam','gameVersion':'1.25.3',
                 'path':output_path,'sha256':sha(target.read_bytes()),'sourceSha256':sha(png.read_bytes()),
@@ -237,6 +296,11 @@ def main():
     args.output.mkdir(parents=True,exist_ok=True)
     (args.output/'atlas-audit.json').write_text(json.dumps({
         'source':candidates['source'],'histogram':histogram,'candidates':audits},indent=2)+'\n')
+    if private_trial is not None:
+        report=args.output/'private-steam-ui-review'/'review-only-evidence.json'
+        if report.exists():
+            raise ValueError('Refusing to overwrite private candidate evidence: '+str(report))
+        report.write_text(json.dumps(private_trial,indent=2)+'\n')
     if args.extract:
         manifest={
             'kind':'game_ui',
@@ -253,7 +317,8 @@ def main():
         target.write_text(json.dumps(manifest,indent=2)+'\n')
     print(json.dumps({'Texture2D':histogram[28],'Sprite':histogram[213],
         'sourceCandidates':len(audits),'pixelVerifiedExports':len(exported),
-        'saveWriterEnabled':False}))
+        'saveWriterEnabled':False,'privateTrial':args.private_trial_key,
+        'privateTrialReleaseApproved':False}))
 
 if __name__=='__main__':
     main()

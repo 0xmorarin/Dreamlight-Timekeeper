@@ -42,6 +42,8 @@ export function auditSteamUiPublicationLedger(catalog,manifest){
        !Number.isInteger(row.alternativeCount)||row.alternativeCount<1||
        !['STATIC_REFERENCE_VERIFIED','HOLD_DEPLOYMENT','HOLD_SEMANTIC_REVIEW'].includes(row.reviewState)||
        !['PASS_PRIVATE_2026-11-01','NOT_TESTED'].includes(row.pixelTrial)||
+       (row.reviewState.startsWith('HOLD_')&&
+        (typeof row.holdEvidence!=='string'||!row.holdEvidence.trim()||row.semanticUseProof!=='UNKNOWN'))||
        keys.has(row.key)||sprites.has(row.spritePathId)||textures.has(row.texturePathId))
       throw new Error('Malformed, ambiguous or duplicated Steam UI source candidate: '+row?.key);
     keys.add(row.key);sprites.add(row.spritePathId);textures.add(row.texturePathId);index.set(row.key,row);

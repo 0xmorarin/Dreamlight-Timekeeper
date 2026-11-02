@@ -69,10 +69,27 @@ export const p1gPackagedProfileCodec = Object.freeze({
         const envelope = auditP1gEnvelope({format: 'packaged', metadata});
         if (!envelope.repackageShapeObserved)
             throw new Error('ZIP_SOURCE_ENVELOPE_REBUILD_UNVERIFIED');
+        // Snapshot each audited ZIP field before the first asynchronous deflate
+        // await. The caller still owns the metadata object and must not be able
+        // to change the representation used by the synthetic repacker mid-flight.
+        const observedEntry = metadata.zip.profileEntry;
+        const stableEntry = Object.freeze({
+            compressType: observedEntry.compressType,
+            flagBits: observedEntry.flagBits,
+            dosTime: observedEntry.dosTime,
+            dosDate: observedEntry.dosDate,
+            extractVersion: observedEntry.extractVersion,
+            createSystem: observedEntry.createSystem,
+            createVersion: observedEntry.createVersion,
+            internalAttr: observedEntry.internalAttr,
+            externalAttr: observedEntry.externalAttr,
+            extra: observedEntry.extra.slice(),
+            comment: observedEntry.comment.slice()
+        });
         const profileBytes = encoder.encode(text);
         if (profileBytes.length > MAX_PROFILE_BYTES)
             throw new Error('PROFILE_ENTRY_TOO_LARGE');
-        const archive = await buildSingleProfileZip(profileBytes, metadata.zip.profileEntry);
+        const archive = await buildSingleProfileZip(profileBytes, stableEntry);
         const encrypted = encryptAes256EcbPkcs7(archive);
         const reopened = await this.loadProfile(encrypted);
         const expectedRoot = JSON.parse(text);

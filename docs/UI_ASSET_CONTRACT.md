@@ -73,3 +73,28 @@ The offline CI verifier now also calls `auditSteamUiPublicationLedger` to cross-
 `world.hgw` is `HOLD_DEPLOYMENT`: the existing source candidate says `icon_map_travel_mini1_honeywood` / SpritePathID `15526096041384401868` / TexturePathID `9168973084813024204` / 168x168 / TextureFormat 12 (DXT5), with a historical private pixel trial `PASS_PRIVATE_2026-11-01`. It does not contain deployment WebP bytes with finalized SHA-256. An independent original-bundle-to-final-WebP RGBA check, verified output hash, and distribution/rights decision remain required. The new verifier produces `STATIC_LEDGER_CROSSCHECK_ONLY`; it does NOT load original private UnityFS bytes or establish independent pixel equivalence or release authorization.
 
 The existing item-icon research establishes a PARTIAL GUID-to-Sprite-to-Texture correspondence for 760 ItemIDs across the eight studied bundles, and 396 local converted-RGBA equality trials (Ingredient, Flower, Fish, Seed); it does not establish coverage of the full GameDB or proof of public deployment images. The `other` bundle is not connected to ActivityItem through this source path. Furniture and Clothing require further source-specific authoritative mapping. Item image manifest stays at 0. No raw game assets, new images, save writer, or shared UI changes are introduced.
+
+
+## Round 4 — private HOLD Sprite / Pixel verification route (2026-11-02)
+
+The existing `scripts/audit-steam-ui-atlas.py` (no independent extractor reimplementation) now accepts `--private-trial-key world.hgw` or `tab.shops` / `tab.daily`, **without `--extract`**. The output directory must resolve outside the public repository. This path reuses the original Steam v1.25.3 UnityFS hash, CAB hash, serialized Sprite/Texture PathID, full-rectangle checks and DDS extraction. It saves a review-only VP8L WebP and `private-steam-ui-review/review-only-evidence.json` with the compressed source texture SHA, decoded RGBA SHA, source PNG SHA and trial WebP SHA; Pillow plus independent ImageMagick decoders must match RGBA bytes, including hidden RGB at alpha=0. The result explicitly has `releaseApproved=false` and `publishedToManifest=false` and cannot write the deployed game UI Manifest.
+
+Private research invocation, when the owner-authorized original **158,399,415-byte Steam** bundle is available:
+
+```sh
+python scripts/audit-steam-ui-atlas.py --bundle /private/original/ui-imagesatlas_assets_all.bundle --output /private/review-hgw --private-trial-key world.hgw
+```
+
+The original UnityFS bundle and completed `world.hgw` deployment WebP bytes were **not present in the Project attachment or verified Drive filename searches during this round**. The new tests run on synthetic RGBA/VP8L images and the static catalogue; they do not establish original Steam `world.hgw` parity, a reviewed final output SHA, actual game UI use or redistribution authorization. Do not treat the private trial file as released. No asset image file or public ItemID mapping was added.
+
+The three held candidates are **different blocks**:
+
+| Key | Literal Steam Sprite name / texture | Block |
+| --- | --- | --- |
+| `world.hgw` | `icon_map_travel_mini1_honeywood`, Sprite `15526096041384401868`, Texture `9168973084813024204`, 168×168, DXT5 | Historical private pixel trial only; no final approved deployment WebP SHA or rights review, actual UI consumer not proven |
+| `tab.shops` | `icon_scroogestore_upgrade`, Sprite `1870431927978895815`, Texture `712869362402470343`, 152×152, BC7 | Icon name suggests a Scrooge Store upgrade, not proof of the whole Shops tab; screen/prefab/native consumer unknown |
+| `tab.daily` | `shop_time_icon`, Sprite `18271839876007890476`, Texture `9833321933812502060`, 56×64, BC7 | Icon name suggests shop timing, not proof of Daily tab; screen/prefab/native consumer unknown |
+
+The exact source GUID-to-Sprite evidence for **760 partial ItemIDs** from eight bundles remains separate from icon deployment bytes and publication rights. Private PNG/WebP parity is documented for **396** mapped trials (Ingredient, Flower, Fish, Seed), not Crafting Material/Crop/Mineral. The Other bundle has 25 sprites but no mapped ItemIDs through ActivityItem; Furniture and Clothing require their own authoritative definition/asset mapping. Prior Wand v1.25.0 Item metadata and Switch v1.24.13 UI evidence can constrain hypotheses but do not certify Steam v1.25.3 image identity, or native screen usage. Public item manifest remains at 0.
+
+**Boundaries:** Source matching ≠ semantic UI consumer ≠ RGBA equality ≠ deployment byte/hash review ≠ rights/publication authorization. This round's proof is STATIC_LEDGER_CROSSCHECK + synthetic trial code; real Steam trial remains BLOCKED until the source bundle can be run in an isolated private environment. App UI SVG16 / shipped Steam UI VP8L4 / shared UI / PR #11 / Writer were not changed.
