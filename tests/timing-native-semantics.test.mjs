@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {compileW1NativeSemantics} from '../src/timing-native-semantics.mjs';
+import {compileW1NativeSemantics,analyzeW1StaticBranches} from '../src/timing-native-semantics.mjs';
 
 const events=JSON.parse(await readFile(new URL('../data/events-v1253.json',import.meta.url),'utf8'));
 const woodTagPack=JSON.parse(await readFile(new URL('../data/wand-iswood-crosswalk-v1253.json',import.meta.url),'utf8'));
@@ -95,4 +95,84 @@ test('source and results stay read only; future dates are not evaluated as anoma
   assert.equal(a.sourceBuildVerifiedFromSave,false);
   assert.equal(JSON.stringify(events),original);
   assert.equal(JSON.stringify(woodTagPack),wood);
+});
+
+
+test('exact Native artifact separates NSO text fingerprint from full main SHA and BID',()=>{
+  assert.equal(native.source.nsoTextSHA256,'15d17f0b9e95d022368bbd89ec8feacec6f1feb2439bc9a37fe2f6bf2078a328');
+  assert.notEqual(native.source.nsoTextSHA256,native.source.mainSHA256);
+  assert.notEqual(native.source.buildId,native.source.mainSHA256);
+  assert.equal(native.source.saveSchema,626);
+});
+test('future schedule: reviewed readiness false and overdue correction branch false, never write authorization',()=>{
+  const r=analyzeW1StaticBranches(native,{eventId:2010000021,saveKind:'ItemSpawning',
+    nowTicks:1_000_000n,nextOccurrenceTicks:2_000_000n,maxIntervalTicks:300_000n});
+  assert.equal(r.status,'STATIC_PREDICATE_MODEL_ONLY');
+  assert.equal(r.readinessCondition,false);
+  assert.equal(r.overdueClampCondition,false);
+  assert.equal(r.actualizeBranchReached,false);
+  assert.equal(r.runtimeVerified,false);
+  assert.equal(r.writerAuthorized,false);
+  assert.equal(r.spawnObserved,false);
+  assert.equal(r.removedObjectsUnchangedByThisModel,true);
+});
+test('now matches reviewed predicate but does not prove spawn or event action',()=>{
+  const r=analyzeW1StaticBranches(native,{eventId:2010500008,saveKind:'FlowerSpawningInVillage',
+    nowTicks:1_000_000n,nextOccurrenceTicks:1_000_000n,maxIntervalTicks:300_000n});
+  assert.equal(r.readinessCondition,true);
+  assert.equal(r.overdueClampCondition,false);
+  assert.equal(r.executePathVerified,false);
+  assert.equal(r.afterExecuteRescheduleVerified,false);
+  assert.equal(r.gameRestartRetentionVerified,false);
+  assert.equal(r.operationAllowlisted,false);
+});
+test('overdue catch-up condition is strict greater-than, not greater-than-or-equal',()=>{
+  const p={eventId:2010400001,saveKind:'WildCropsSpawningInVillage',
+    nowTicks:1_000_000n,maxIntervalTicks:300_000n};
+  const equal=analyzeW1StaticBranches(native,{...p,nextOccurrenceTicks:700_000n});
+  const greater=analyzeW1StaticBranches(native,{...p,nextOccurrenceTicks:699_999n});
+  assert.equal(equal.overdueClampCondition,false);
+  assert.equal(greater.overdueClampCondition,true);
+  assert.equal(greater.actualizeBranchReached,false);
+  assert.equal(greater.pickupRescheduleVerified,false);
+});
+test('unknown catch-up interval is not silently guessed, even when readiness predicate is true',()=>{
+  const r=analyzeW1StaticBranches(native,{eventId:2010000003,saveKind:'ItemSpawning',
+    nowTicks:900n,nextOccurrenceTicks:100n});
+  assert.equal(r.readinessCondition,true);
+  assert.equal(r.overdueClampCondition,null);
+  assert.equal(r.overdueClampIntervalKnown,false);
+  assert.equal(r.runtimeVerified,false);
+});
+test('special, inactive, mismatched, and unknown IDs cannot enter a static branch model',()=>{
+  const p={nowTicks:100n,nextOccurrenceTicks:200n,maxIntervalTicks:50n};
+  const cases=[
+    [2010000064,'ItemSpawning','PROTECTED_MOONSTONE_CHEST'],
+    [2011300000,'SnippetSpawning','NON_W1_SOURCE_POLICY'],
+    [2010000093,'ItemSpawning','NON_W1_SOURCE_POLICY'],
+    [2010000120,'ItemSpawning','NON_W1_SOURCE_POLICY'],
+    [2010200014,'FishSpawningInVillage','INACTIVE_SOURCE_DEFINITION'],
+    [2010500008,'FishSpawningInVillage','SOURCE_VARIANT_HINT_CONFLICT'],
+    [2010000021,'UnknownFutureVariant','UNRECOGNIZED_OR_NON_W1_SAVED_VARIANT'],
+    [2010009999,'ItemSpawning','UNKNOWN_EVENT_ID']
+  ];
+  for(const [id,kind,status] of cases){
+    const r=analyzeW1StaticBranches(native,{...p,eventId:id,saveKind:kind});
+    assert.equal(r.status,'EVENT_OUTSIDE_STATIC_W1_BRANCH_SCOPE');
+    assert.equal(r.eventEvidenceStatus,status);
+    assert.equal(r.readinessCondition,null);
+    assert.equal(r.overdueClampCondition,null);
+    assert.equal(r.writerAuthorized,false);
+  }
+});
+test('static branches reject unsafe operands and unrecognized evidence ledger',()=>{
+  const p={eventId:2010000021,saveKind:'ItemSpawning',nowTicks:100n,
+    nextOccurrenceTicks:50n,maxIntervalTicks:10n};
+  for(const bad of [{nowTicks:100},{nextOccurrenceTicks:-1n},
+    {maxIntervalTicks:-1n},{nowTicks:1n<<62n},{maxIntervalTicks:1n<<62n}])
+    assert.throws(()=>analyzeW1StaticBranches(native,{...p,...bad}),/bigint/);
+  assert.throws(()=>analyzeW1StaticBranches({...native,source:{...native.source}},p),/provenance/);
+  assert.throws(()=>analyzeW1StaticBranches(null,p),/provenance/);
+  const r=analyzeW1StaticBranches(native,p);
+  assert.throws(()=>{r.readinessCondition=false;},TypeError);
 });
