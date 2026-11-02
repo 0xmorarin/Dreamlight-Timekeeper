@@ -39,3 +39,4 @@ jobs:
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
           node tests/browser-sveltekit-migration.smoke.mjs
+          node tests/browser-sveltekit-zoom.smoke.mjs
