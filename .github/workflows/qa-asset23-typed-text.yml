@@ -1,0 +1,24 @@
+name: 05 QR ASSET23 Typed Source and Text Fallback
+on:
+  pull_request:
+    paths:
+      - 'qa/05qr-pr23-typed-fallback-independent.test.mjs'
+      - '.github/workflows/qa-asset23-typed-text.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent-asset-text:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Ensure exact frozen ASSET23 product diff zero
+        run: git diff --quiet 067cd1b1b59eb7e0ce4119d2355ed074fd49cc5b HEAD -- data src/item-image-coverage.mjs tests/item-image-coverage.test.mjs
+      - name: Independent all-244 source type, unknown ItemID and plain text ARIA fallback
+        run: node --test qa/05qr-pr23-typed-fallback-independent.test.mjs
+      - name: No image publication
+        run: echo 'SOURCE_METADATA_ONLY=1; NO_PIXEL_BYTES=1; GAME_ART_RIGHTS_NOT_ESTABLISHED=1'
