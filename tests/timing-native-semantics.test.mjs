@@ -624,3 +624,26 @@ test('NightThorn, Wood, WildCrop and Flower IDs are source witnesses only, never
     assert.equal(view.gridDeletionAuthorized,false);
   }
 });
+
+test('DiffGrid conditional allocation sets object ID and ItemID without EventID identity proof',()=>{
+  const x=native.native.diffGridConditionalAddObject;
+  assert.equal(x.implementationRVA,'0x04E8BC70');
+  assert.equal(x.innerAddObjectRVA,'0x04E8BEA0');
+  assert.equal(x.nextObjectIdFieldOffset,'0x50');
+  assert.equal(x.gridObjectIdFieldOffset,'0x18');
+  assert.equal(x.gridObjectItemIdFieldOffset,'0x1C');
+  assert.equal(x.nextObjectIdLoadRVA,'0x04E8BDB4');
+  assert.equal(x.nextObjectIdIncrementRVA,'0x04E8BDB8');
+  assert.equal(x.nextObjectIdStoreRVA,'0x04E8BDBC');
+  assert.equal(x.gridObjectIdentityStoreRVA,'0x04E8BDC8');
+  assert.equal(decodeBL(0x04E8BF70,0x9400E40C),0x04EC4FA0);
+  assert.equal(decodeTBZTarget(0x04E8BF7C,0x36000828),0x04E8C080);
+  assert.equal(decodeBL(0x04E8BFA0,0x97B61F54),0x03C13CF0);
+  assert.deepEqual(decodeLdrXUnsigned(0xF94022A0),{rt:0,rn:21,byteOffset:0x40});
+  assert.equal(x.conditionalAllocationPathProvedByNative,true);
+  assert.equal(x.sourceEventIdWrittenIntoGridObject,false);
+  assert.equal(x.fromFieldProvenToBePopulated,false);
+  assert.equal(x.directW1CallToThisConcreteImplementationVerified,false);
+  assert.equal(x.runtimeSuccessfulPlacementObserved,false);
+  assert.equal(x.postSavePersistenceVerified,false);
+});
