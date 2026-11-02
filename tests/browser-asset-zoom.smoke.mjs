@@ -157,6 +157,35 @@ try{
   await page.locator('#workspace').waitFor({state:'visible',timeout:20000});
   assert.equal(await page.locator('#download-backup').isEnabled(),true,
     'Keyboard-accessible file input must lead to a usable loaded synthetic save.');
+
+  // Non-destructive simulation of a distribution package with ALL four game
+  // rasters unavailable. Source manifest and all shipped files are unchanged.
+  // The existing UI must remain navigable via text after the img error fallback.
+  const noGamePage=await context.newPage();
+  let unavailableGameRequests=0;
+  const fallbackErrors=[];
+  noGamePage.on('pageerror',e=>fallbackErrors.push(e.message));
+  await noGamePage.route('**/assets/steam/v1253/ui/**/*.webp',route=>{
+    unavailableGameRequests++;
+    return route.abort();
+  });
+  await noGamePage.goto(site,{waitUntil:'domcontentloaded'});
+  await noGamePage.waitForFunction(()=>window.__dreamlightBooted===true,{timeout:15000});
+  await noGamePage.locator('#save-file').setInputFiles({
+    name:'synthetic-without-game-images.p1g',mimeType:'application/octet-stream',
+    buffer:Buffer.from(synthetic)
+  });
+  await noGamePage.locator('#workspace').waitFor({state:'visible',timeout:20000});
+  await noGamePage.locator('#regions button').first().waitFor({state:'visible',timeout:10000});
+  assert.ok(unavailableGameRequests>0,'Image-blocking fixture must intercept an actual game UI request.');
+  const firstRegion=await noGamePage.locator('#regions button').first().innerText();
+  assert.ok(firstRegion.trim(),'Region filter must retain readable label without game images.');
+  assert.equal(await noGamePage.locator('#download-backup').isEnabled(),true);
+  assert.deepEqual(fallbackErrors,[],'Unavailable game images must not break the reader.');
+  console.log('Game UI media denied (network-only simulation): '+unavailableGameRequests+
+    ' original requests blocked; text regions and synthetic save/backup remain usable. '+
+    'This does NOT remove shipped media from Git/release packaging.');
+  await noGamePage.close();
   assert.deepEqual(errors,[],'Unexpected browser page errors.');
   console.log('Actual Chromium tab zoom 200% PASS: '+decoded.length+
     ' decoded originals (4 Steam VP8L + 16 app SVG), viewport '+baseline.width+' -> '+

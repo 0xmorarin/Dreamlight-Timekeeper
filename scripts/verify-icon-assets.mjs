@@ -4,7 +4,7 @@ import {join,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {validateIconManifest,inspectLosslessWebP} from '../src/icon-assets.mjs';
 import {validateUiManifest,verifyUiAssetBytes} from '../src/ui-assets.mjs';
-import {auditSteamUiPublicationLedger,auditSteamUiPrivatePixelEvidence,auditSteamUiConsumerLinks,auditExistingGameUiPublicationRights} from '../src/steam-ui-provenance.mjs';
+import {auditSteamUiPublicationLedger,auditSteamUiPrivatePixelEvidence,auditSteamUiConsumerLinks,auditExistingGameUiPublicationRights,auditGameUiPublicationOptions} from '../src/steam-ui-provenance.mjs';
 
 const root = resolve(process.argv[2]||fileURLToPath(new URL('../',import.meta.url)));
 const manifest = JSON.parse(await readFile(join(root,'data','steam-icons-v1253.json'),'utf8'));
@@ -29,6 +29,12 @@ const gameManifest=JSON.parse(await readFile(join(root,'data','steam-ui-icons-v1
 const ledger=auditSteamUiPublicationLedger(catalog,gameManifest);
 const rightsReview=JSON.parse(await readFile(join(root,'data','steam-ui-existing-rights-review-v1253.json'),'utf8'));
 const rightsAudit=auditExistingGameUiPublicationRights(gameManifest,rightsReview);
+const options=JSON.parse(await readFile(join(root,'data','steam-ui-publication-options-v1253.json'),'utf8'));
+const releaseOptions=auditGameUiPublicationOptions(gameManifest,rightsReview,catalog,options);
+console.log('Steam game image deployment decision: '+releaseOptions.gameRasterCount+
+  ' already shipped; '+releaseOptions.heldCount+' held; '+releaseOptions.choicesForOwnerOnly+
+  ' Owner-only paths, no permission or automatic asset change.');
+
 console.log('Shipped Steam UI game-raster rights: '+rightsAudit.rightsReviewRequiredCount+
   '/4 require independent permission review; zero permissions established by static metadata.');
 

@@ -1,13 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {auditSteamUiPublicationLedger,auditSteamUiPrivatePixelEvidence,auditSteamUiConsumerLinks,auditExistingGameUiPublicationRights} from '../src/steam-ui-provenance.mjs';
+import {auditSteamUiPublicationLedger,auditSteamUiPrivatePixelEvidence,auditSteamUiConsumerLinks,auditExistingGameUiPublicationRights,auditGameUiPublicationOptions} from '../src/steam-ui-provenance.mjs';
 
 const catalog=JSON.parse(await readFile(new URL('../data/steam-ui-candidates-v1253.json',import.meta.url),'utf8'));
 const manifest=JSON.parse(await readFile(new URL('../data/steam-ui-icons-v1253.json',import.meta.url),'utf8'));
 const pixelEvidence=JSON.parse(await readFile(new URL('../data/steam-ui-private-pixel-evidence-v1253.json',import.meta.url),'utf8'));
 const consumerEvidence=JSON.parse(await readFile(new URL('../data/steam-ui-consumer-links-v1253.json',import.meta.url),'utf8'));
 const publicRightsReview=JSON.parse(await readFile(new URL('../data/steam-ui-existing-rights-review-v1253.json',import.meta.url),'utf8'));
+const publicationOptions=JSON.parse(await readFile(new URL('../data/steam-ui-publication-options-v1253.json',import.meta.url),'utf8'));
 const copy=x=>structuredClone(x);
 const run=(c=catalog,m=manifest)=>auditSteamUiPublicationLedger(c,m);
 const publishedKey='skill.mining';
@@ -207,4 +208,42 @@ test('published image rights metadata fails closed on changed source or false pe
   const altered=copy(manifest);
   altered.icons['world.valley'].spritePathId='1';
   assert.throws(()=>verify(altered));
+});
+
+test('four already-shipped and three held game images remain Owner-only publication decisions',()=>{
+  const result=auditGameUiPublicationOptions(manifest,publicRightsReview,catalog,publicationOptions);
+  assert.deepEqual(result,{gameRasterCount:4,heldCount:3,choicesForOwnerOnly:4,
+    rightsApproved:0,deploymentsChanged:false,
+    verificationLevel:'STATIC_PUBLICATION_DECISION_RECORD_ONLY'});
+});
+
+test('publication decision never auto-approves original sprite distribution or silently deletes deployed files',()=>{
+  const verify=o=>auditGameUiPublicationOptions(manifest,publicRightsReview,catalog,o);
+  const changes=[
+    x=>{x.decisionTaken=true;},
+    x=>{x.appliedToDeployment=true;},
+    x=>{x.privateSourceBytesIncluded=true;},
+    x=>{x.status='PERMISSION_GRANTED';},
+    x=>{x.terms.ddvSpecificAssetLicense='UNRESTRICTED';},
+    x=>{x.terms.disneyDirectApplicabilityToDdv='YES';},
+    x=>{x.terms.thirdPartyWikiPolicyIsNotPublisherPermission=false;},
+    x=>{x.existing['skill.mining'].redistributionPermission='YES';},
+    x=>{x.existing['status.warning'].sha256='0'.repeat(64);},
+    x=>{x.existing['world.valley'].nativeConsumer='VERIFIED';},
+    x=>{x.existing['world.exp1'].newPublicationAllowed=true;},
+    x=>{delete x.existing['skill.mining'];},
+    x=>{x.held['world.hgw'].publish=true;},
+    x=>{x.held['tab.shops'].semantic='GENERAL_SHOPS_CONFIRMED';},
+    x=>{x.held['tab.daily'].permission='ALLOWED';},
+    x=>{delete x.held['tab.daily'];},
+    x=>{x.choices[0].state='APPROVED';},
+    x=>{x.choices[1].rightsResolved=true;},
+    x=>{x.choices[2].requires=[];},
+    x=>{x.choices[3].assetChanges=false;},
+    x=>{x.choices.push({...x.choices[0]});}
+  ];
+  for(const change of changes){
+    const record=copy(publicationOptions);change(record);
+    assert.throws(()=>verify(record));
+  }
 });

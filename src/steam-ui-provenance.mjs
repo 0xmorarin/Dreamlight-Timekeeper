@@ -255,3 +255,76 @@ export function auditExistingGameUiPublicationRights(manifest,review){
     verificationLevel:'STATIC_EXISTING_DEPLOYMENT_RIGHTS_RECORD_ONLY',
     publicationPermissionGranted:false};
 }
+
+/**
+ * A release-decision inventory: NOT a switch that can delete media or grant
+ * permission. Only 00 CTRL can authorize a packaging change after QR review.
+ */
+export function auditGameUiPublicationOptions(manifest,rights,catalog,options){
+  auditExistingGameUiPublicationRights(manifest,rights);
+  if(!object(options)||options.schema!=='STEAM_V1253_PUBLICATION_CONTROL_REVIEW_V1'||
+     options.status!=='OWNER_00_CTRL_DECISION_REQUIRED'||
+     options.decisionTaken!==false||options.appliedToDeployment!==false||
+     options.gameUiOriginalCount!==4||options.originalSvgCount!==16||
+     options.newItemIconCount!==0||options.privateSourceBytesIncluded!==false||
+     !object(options.terms)||!object(options.existing)||!object(options.held)||
+     !Array.isArray(options.choices))
+    throw new Error('Game imagery publication options are missing or improperly authorized.');
+  if(options.terms.gameloft!=='https://www.gameloft.com/en/conditions-of-use'||
+     JSON.stringify(options.terms.gameloftSections)!=='["V.A","V.E"]'||
+     options.terms.disneyGeneral!=='https://disneytermsofuse.com/english/'||
+     options.terms.disneyDirectApplicabilityToDdv!=='NOT_EVALUATED'||
+     options.terms.ddvSpecificAssetLicense!=='NOT_FOUND_IN_REVIEWED_PUBLIC_SOURCES'||
+     options.terms.thirdPartyWikiPolicyIsNotPublisherPermission!==true)
+    throw new Error('Official terms provenance or unverified license scope was promoted.');
+  const expectedKeys=baselinePublishedKeys;
+  if(Object.keys(options.existing).length!==4||
+     Object.keys(options.existing).some(key=>!expectedKeys.includes(key)))
+    throw new Error('Publication options must inventory the four deployed Steam assets.');
+  for(const key of expectedKeys){
+    const entry=manifest.icons[key],review=rights.reviewedItems[key],item=options.existing[key];
+    if(!entry||!review||!object(item)||item.file!==entry.path||
+       item.sha256!==entry.sha256||item.owner!=='GAMELOFT_OR_DISNEY_LICENSED_SOURCE'||
+       item.basis!=='GAME_ASSET_EXTRACTED_FROM_PROPRIETARY_STEAM_UNITYFS'||
+       item.pixelProof!=='PREVIOUSLY_RECORDED_NOT_RETESTED_ROUND10'||
+       item.nativeConsumer!=='NOT_TYPED_OR_RUNTIME_VERIFIED'||
+       item.redistributionPermission!=='NOT_DOCUMENTED'||
+       item.sourceAttribution!=='STEAM_1_25_3_BUNDLE'||item.existingShip!==true||
+       item.newPublicationAllowed!==false||
+       review.copyrightRedistributionPermission!=='NOT_ESTABLISHED')
+      throw new Error('Existing game image use, rights or deployment facts drifted: '+key);
+  }
+  const held=['world.hgw','tab.shops','tab.daily'];
+  if(Object.keys(options.held).length!==3||Object.keys(options.held).some(k=>!held.includes(k)))
+    throw new Error('All three held candidates must be represented.');
+  for(const key of held){
+    const item=options.held[key],row=catalog.candidates.find(x=>x.key===key);
+    if(!object(item)||!row||!row.reviewState.startsWith('HOLD_')||
+       row.pixelTrial!=='PASS_PRIVATE_REAL_SOURCE_2026-11-02'||
+       item.pixelProof!=='REAL_STEAM_ORIGINAL_RGBA_CONFIRMED'||
+       item.semantic!==(key==='world.hgw'?'HUD_VILLAGE_AREA_DISPLAY_UNTYPED_REFERENCE_ONLY':'UNKNOWN_ONLY_MENU_HUD_SCANNED')||
+       item.permission!=='NOT_DOCUMENTED'||item.publish!==false)
+      throw new Error('Held game image may not be deployed based solely on source pixels: '+key);
+  }
+  const expectedChoices=[
+    ['retain_current_pending_rights_review','CONSIDERATION_ONLY',false,'EXISTING_4_ORIGINAL_GAME_IMAGES_STILL_SHIPPED',
+     ['OWNER_DECISION','RIGHTS_BASIS_REVIEW','05_QR_SCOPED_ACCEPTANCE']],
+    ['exclude_game_raster_files_from_distribution','CONSIDERATION_ONLY',true,'SHIP_NO_PROPRIETARY_RASTER',
+     ['OWNER_DECISION','03_WEB_UI_FALLBACK_CONTRACT','00_CTRL_PACKAGING','05_QR_BROWSER_A11Y']],
+    ['owner_authored_app_svg_or_plain_text','CONSIDERATION_ONLY',true,'ONLY_INDEPENDENT_OWNER_CREATED_UI_GRAPHICS_OR_TEXT',
+     ['OWNER_SELECTS_APPROPRIATE_ARTWORK','03_WEB_MAPPING','04_ASSET_ORIGINALITY_VERIFICATION','05_QR_A11Y']],
+    ['user_supplied_local_media_not_shipped','RESEARCH_ONLY',true,'USER_MANAGES_PRIVATE_LOCAL_INPUT_NON_UPLOADED',
+     ['OWNER_PRODUCT_DECISION','01_CORE_03_WEB_SECURITY_CONTRACT','INDIVIDUAL_RIGHTS_REVIEW','05_QR']]
+  ];
+  if(options.choices.length!==expectedChoices.length)throw new Error('Missing Owner publication alternatives.');
+  for(let i=0;i<expectedChoices.length;i++){
+    const choice=options.choices[i],e=expectedChoices[i];
+    if(!object(choice)||choice.id!==e[0]||choice.state!==e[1]||
+       choice.assetChanges!==e[2]||choice.rightsResolved!==false||
+       choice.exposure!==e[3]||JSON.stringify(choice.requires)!==JSON.stringify(e[4]))
+      throw new Error('Owner-only publication alternative changed without review: '+e[0]);
+  }
+  return {gameRasterCount:4,heldCount:3,choicesForOwnerOnly:4,
+    rightsApproved:0,deploymentsChanged:false,
+    verificationLevel:'STATIC_PUBLICATION_DECISION_RECORD_ONLY'};
+}
