@@ -171,3 +171,53 @@ test('strict ItemID read-only resolution leaves all 244 unshipped with 81 AMBIGU
  assert.equal(pinned.readOnlyResolutionContract.unapprovedMediaPublishable,false);
  assert.equal(pinned.scope.additionalRealSaveItemIDs,'UNKNOWN_NOT_ENUMERATED_ON_THIS_STATIC_BASELINE');
 });
+
+
+test('private generic placeholder source cannot mint ItemID image URL; field5 world object is not thumbnail',async()=>{
+ const pinned=await json('data/item-image-coverage-v1253.json');
+ const original=await json('data/steam-icons-v1253.json');
+ const audit=pinned.sharedPlaceholderAssetInspection;
+ const source=pinned.field5WorldObjectCatalogAudit;
+ assert.equal(audit.genericSpriteName,'icon_2x2');
+ assert.equal(audit.genericSpritePathId,'13192077654445607906');
+ assert.equal(audit.genericTexturePathId,'15528772250824494050');
+ assert.equal(audit.genericTextureWidth,265);
+ assert.equal(audit.genericTextureHeight,246);
+ assert.equal(audit.rawTextureRgbaSha256,'42daa1b8ebadd81fc48eef2a8ecc2fb3f8eac4878f4f57d28b3dd44a40e28add');
+ assert.equal(audit.privateLosslessWebpBytes,4316);
+ assert.equal(audit.privateLosslessWebpSha256,'34be7222ed315fec5ee36b840fa163997a2fb4e1e764ac8f2cb180714ad34408');
+ assert.equal(audit.privateReopenedRgbaIdentical,true);
+ assert.equal(audit.privatePrototypeIsItemThumbnail,false);
+ assert.equal(audit.perItemRuntimeVariant,'UNKNOWN');
+ assert.equal(audit.perItemSourceSpriteTexture,'UNPROVEN');
+ assert.equal(audit.pixelsOrGameBundlePublished,false);
+ assert.equal(source.sourceItemCount,81);
+ assert.equal(source.distinctField5Guids,81);
+ assert.equal(source.gameObjectCatalogEntries,81);
+ assert.equal(source.uniquePrimaryBundleCount,32);
+ assert.equal(source.highPriorityObjectRoutesRecorded,9);
+ assert.equal(source.actualRuntimeVariantVerified,false);
+ assert.equal(source.renderedThumbsMatched,0);
+ assert.equal(source.publicImageUrlsGranted,0);
+ const placeholder=pinned.items.filter(i=>i.definitionAudit?.declaredIconAddressGuid===audit.declaredIconAddressGuid);
+ assert.equal(placeholder.length,81);
+ for(const item of placeholder){
+  assert.equal(item.readOnlyImageResolution.status,'AMBIGUOUS');
+  assert.equal(item.readOnlyImageResolution.url,null);
+  assert.equal(item.definitionAudit.webpDecodedRgbaMatched,false);
+  assert.equal(item.definitionAudit.spriteResolved,false);
+  assert.equal(item.definitionAudit.catalogDependency.perItemSpritePathId,null);
+  assert.equal(item.definitionAudit.catalogDependency.perItemTexturePathId,null);
+  assert.equal(item.definitionAudit.worldObjectSource.doesNotResolve2DThumbnail,true);
+  assert.equal(item.definitionAudit.worldObjectSource.candidateRenderingStrategy,'UNKNOWN_RUNTIME');
+  const view=resolveItemImageView(original,{id:item.itemId},{coverageAudit:pinned});
+  assert.equal(view.status,'AMBIGUOUS');
+  assert.equal(view.url,null);
+ }
+ const top=placeholder.filter(i=>i.unresolvedVariantPriority.tier==='P0');
+ assert.equal(top.length,9);
+ assert.equal(top.every(i=>i.definitionAudit.worldObjectSource.additionalSourcePathProof==='EXACT_FIELD5_AND_CATALOG_DEPENDENCY'),true);
+ assert.equal(new Set(top.map(i=>i.definitionAudit.worldObjectSource.gameObjectGuid)).size,9);
+ assert.equal(placeholder.filter(i=>i.unresolvedVariantPriority.tier==='P1').length,12);
+ assert.equal(placeholder.filter(i=>i.unresolvedVariantPriority.tier==='P2').length,60);
+});
