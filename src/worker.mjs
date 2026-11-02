@@ -3,12 +3,16 @@ import {parseSafeJson} from './core/safe-edit-session.mjs';
 import {indexEvents,projectProfile} from './reader.mjs';
 import {indexTimingReviewRules,assessTimingSnapshot} from './timing-review.mjs';
 import {auditTimingSnapshot} from './timing-audit.mjs';
+import {inspectTimingPlan} from './core/timing-plan-preflight.mjs';
 const decoder=new TextDecoder('utf-8',{fatal:true});
 let indexPromise;
 let namesPromise;
 let rulesPromise;
 let original=null;
 let originalName=null;
+let activeProfile=null;
+let activeReview=null;
+let activeSessionId=0;
 const getIndex=()=>indexPromise??=Promise.all([
  fetch(new URL('../data/events-v1253.json',import.meta.url)),
  fetch(new URL('../data/wand-iswood-crosswalk-v1253.json',import.meta.url))
@@ -34,13 +38,22 @@ self.onmessage=async({data})=>{
       const reviewed=assessTimingSnapshot(projectProfile(profile,registry,{itemNames:names,now:observedAt}),rules);
       const view={...reviewed,timingAudit:auditTimingSnapshot(reviewed,{now:observedAt})};
       original=bytes.slice();originalName=String(data.name||'profile.json').slice(0,180);
-      self.postMessage({id,ok:true,type:'opened',format,view});
+      activeProfile=profile;activeReview=reviewed;activeSessionId++;
+
+      self.postMessage({id,ok:true,type:'opened',format,view,sessionId:activeSessionId});
       return;
     }
     if(data.type==='backup'){
-      if(!original)throw new Error('先にセーブを読み込んでください');
+      if(!original||data.sessionId!==activeSessionId)throw new Error('セーブの読み込みセッションが一致しません');
       const payload=original.slice().buffer;
       self.postMessage({id,ok:true,type:'backup',name:originalName,buffer:payload},[payload]);
+      return;
+    }
+    if(data.type==='preflight'){
+      if(!activeProfile||!activeReview||data.sessionId!==activeSessionId)
+       throw new Error('Timing preflight session is stale or missing.');
+      const report=inspectTimingPlan(activeProfile,activeReview,data.entries);
+      self.postMessage({id,ok:true,type:'preflight',sessionId:activeSessionId,report});
       return;
     }
     if(data.type==='check'){
