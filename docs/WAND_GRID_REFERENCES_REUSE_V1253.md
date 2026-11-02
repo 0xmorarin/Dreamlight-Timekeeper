@@ -52,3 +52,15 @@ Every row retains `sourceProvenanceVerified=false`, `nativeRemovalVerified=false
 4. Independently verify grid removal, NextOccurrence reschedule, population cap and cold-load on disposable Switch save. Preserve existing user intentional ~100-years-future suppression.
 
 Static analysis and synthetic CI are **not** actual console removal, roundtrip writer acceptance, or permission to mutate saves.
+
+## 2026-11-02 private real-save read-only regression, diff-grid caveat
+
+The existing Wand 01E accepted Switch schema626 source was decoded *locally and read-only* and checked against 01A's exact identity-reference paths. See the internal **DDVRE/00_PROJECT** cross-product research SSoT for aggregate denominators and the redacted machine-readable evidence; no raw source profile or per-object addresses are committed to this public repository.
+
+Key structural findings: the older 01A schema624 profile is **not** the same sample as the schema626 profile. Both have many operational ConditionalEvent refs that cannot be resolved through save-local Grids/DiffGrids, and **some source ItemID matches are stored in DiffGrids.ModifiedObjects with active exact-address ConditionalEvent references**. Thus `World.Villages→Areas→GridIDs→Grids.Objects` alone is an insufficient exhaustive search for field objects or unsafe ownership references.
+
+The v1.25.3 sample also demonstrated that serialized `GridObject.From` is frequently omitted from ordinary Grids.Objects and that a small set of Diff ModifiedObjects carries named `GridSource_...` values. The `From` enum alone has **no accepted generated-vs-user-placed origin mapping** here. Its absence must never imply an object was automatically spawned, and its presence must not be interpreted as a secure removal authorization.
+
+Accordingly, `src/decoration-grid-audit.mjs` now returns a separate `diffModifiedMatches` read-only result (never blended into direct Area matches). Each has exact reference assessment, `locationRoleVerified=false`, `sourceFromSemanticsVerified=false`, `sourceProvenanceVerified=false`, `nativeRemovalVerified=false` and `bulkDeletionAuthorized=false`. Malformed DiffGrid identity or map shapes produce explicit diagnostics; the total object-processing budget covers both direct Grids and DiffGrids. No deletion, move, serialization or per-profile mutation is performed.
+
+This is a **read-only actual-save structural observation**, plus synthetic tests of the new source adapter, not independent actual save mutation or console runtime verification.
