@@ -136,3 +136,79 @@ export function resolveItemImageView(manifest,item,{basePath='./',coverageAudit=
     alt:{en,ja:ja||en},fallback:'text',lazy:true,
     width:mapped.width,height:mapped.height,webpSha256:mapped.sha256};
 }
+
+
+/**
+ * 03 WEB / November RC: accessible, explicitly text-first ItemID row.
+ * Only the already approved static image manifest may authorize a thumbnail;
+ * private source hashes, the generic placeholder, and field5 world Prefabs
+ * are NEVER item image URLs. This view authorizes no release or Writer.
+ * Render output with textContent / Svelte text expressions, NEVER {@html}.
+ */
+export const RC_ITEM_TEXT_CONTRACT='timekeeper.rc-item-text-fallback.v1';
+const sourceCategories=Object.freeze({
+  'ActivityItem.json':Object.freeze({code:'ACTIVITY_ITEM',en:'Activity item',ja:'アクティビティ項目'}),
+  'Furniture.json':Object.freeze({code:'FURNITURE_SOURCE',en:'Furniture / world object',ja:'家具・配置物'}),
+  'Companion.json':Object.freeze({code:'COMPANION',en:'Companion',ja:'コンパニオン'})
+});
+const unclassifiedCategory=Object.freeze({code:'UNCLASSIFIED',en:'Unclassified item',ja:'種類未確認'});
+const textSafe=value=>safeName(value)
+  .replace(/<[^>]*>/g,'')
+  .replace(/[\u200b\u200c\u200d\u2060\u202a-\u202e\u2066-\u2069]/g,'')
+  .replace(/\s+/g,' ')
+  .trim();
+const trustworthyAudit=a=>a?.schema==='TIMEKEEPER_ITEM_IMAGE_BASELINE_AUDIT_V1'&&
+  a.source?.eventRawSHA256===BASELINE.eventSourceSha256&&
+  a.scope?.recurringDistinctItemIDs===BASELINE.recurringItemIdCount&&
+  a.readOnlyResolutionContract?.schema==='timekeeper.item-image-resolution.v1'&&
+  Array.isArray(a.items)&&a.items.length===BASELINE.recurringItemIdCount;
+
+/**
+ * Required UI fields: visible ItemID, localized plain text name, honest
+ * evidence-qualified source category, and an accessible no-image message.
+ * Unsupported dynamic save rows are UNCLASSIFIED, not silently categorized
+ * by ItemID digits, names, or EventID. No save paths are retained.
+ */
+export function resolveRcItemTextRow(manifest,item,{locale='ja',basePath='./',coverageAudit=null}={}){
+  if(!['ja','en','ja-JP','en-US'].includes(locale))throw new Error('Unsupported RC text locale.');
+  const language=locale.startsWith('ja')?'ja':'en';
+  const itemId=validId(item?.id)?item.id:null;
+  const pinned=trustworthyAudit(coverageAudit)&&itemId!==null?
+    coverageAudit.items.find(row=>row.itemId===itemId):null;
+  const enName=textSafe(pinned?.enNames?.[0])||textSafe(item?.en)||textSafe(item?.name)||
+    (itemId===null?'Unknown item':'Item '+itemId);
+  const jaName=textSafe(pinned?.jaNames?.[0])||textSafe(item?.ja)||enName;
+  const name=language==='ja'?jaName:enName;
+  const sourceCategory=pinned?.definitionAudit?.sourceStream;
+  const typed=sourceCategories[sourceCategory];
+  const category=typed||unclassifiedCategory;
+  const image=resolveItemImageView(manifest,{id:itemId,en:enName,ja:jaName},
+    {basePath,coverageAudit});
+  const hasImage=image.status==='VERIFIED'&&typeof image.url==='string';
+  const idText=itemId===null?'unknown':String(itemId);
+  const idLabel='ItemID '+idText;
+  const categoryLabel=category[language];
+  const imageStatusText=hasImage?(language==='ja'?'検証済み画像':'Verified image'):
+    image.status==='AMBIGUOUS'?(language==='ja'?'画像の対応未確定':'Image mapping uncertain'):
+      (language==='ja'?'画像未提供':'Image unavailable');
+  const ariaLabel=language==='ja'?
+    name+'。カテゴリ: '+categoryLabel+'。'+idLabel+'。'+imageStatusText+'。':
+    name+'. Category: '+categoryLabel+'. '+idLabel+'. '+imageStatusText+'.';
+  return {
+    contract:RC_ITEM_TEXT_CONTRACT,
+    itemId,locale:language,name,enName,jaName,
+    idLabel,category:{code:category.code,label:categoryLabel,
+      source:typed?'ORIGINAL_ITEMDB_STREAM':'NOT_VERIFIED',verified:!!typed},
+    image:{status:image.status,url:hasImage?image.url:null,
+      alt:name,loading:'lazy',width:hasImage?image.width:null,
+      height:hasImage?image.height:null},
+    textFallback:{required:!hasImage,visibleName:name,visibleItemId:idLabel,
+      visibleCategory:categoryLabel,visibleStatus:imageStatusText,
+      ariaLabel,renderAsPlainText:true},
+    evidence:{itemIdSource:pinned?'V1253_RECURRING_REGISTRY':'UNCLASSIFIED_DYNAMIC_OR_UNKNOWN',
+      privatePixelDoesNotGrantImage:true,worldObjectPrefabDoesNotGrantImage:true,
+      mediaRedistributionPermission:'NOT_ESTABLISHED'},
+    rcTextDisplaySupported:true,
+    fullItemImageReleaseAccepted:false
+  };
+}
