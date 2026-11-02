@@ -6,7 +6,9 @@
     "wand_pr312": "473acaab467051a03b40e39d92878d2ed8197d31",
     "rust_contract": "dreamwish.ddv.unified-save-session.research@1",
     "rust_session_source": "crates/ddv-save-core/src/session.rs",
-    "rust_session_blob_sha": "43951d777ccffb4c92418d7a3383512dae72da33"
+    "rust_session_blob_sha": "43951d777ccffb4c92418d7a3383512dae72da33",
+    "control_pr25_current": "2822aeaf6cc47b92cbb3972fa5112c9ef787ee17",
+    "note": "Historical reference.wand_pr312 and rust_session_blob_sha are pinned PR27 initial comparison; observedLatest is the separately rechecked 2026-11-02 HEAD."
   },
   "current": {
     "api": "ddv.common-save-session/1",
@@ -123,6 +125,43 @@
       "p1g::create_p1g_copy_research performs synthetic encrypted copy and self reopen, but product_encode_copy_authorized=false",
       "w1_evidence::inspect_w1_source_research validates source/registry SHA, external BID, schema626, W1 ID/index/oneof/token witness with required_reference_closure_complete=false and encode_copy_authorized=false",
       "session::inspect_source_reference_paths issues source-derived path witnesses but reports cross_domain_reference_closure_complete=false, domain_reference_semantics_verified=false and usable_for_product_writer=false"
+    ],
+    "productP1gAccepted": false,
+    "completeDomainProjectionAccepted": false,
+    "stableWasmWorkerApiAccepted": false,
+    "writerGranted": false
+  },
+  "projectionResponseBoundary": {
+    "status": "WEB_REJECTION_ONLY_NOT_CORE_PROOF",
+    "maxRows": 200,
+    "maxRowBytes": 65536,
+    "maxPageBytes": 2097152,
+    "maxCursorChars": 512,
+    "cursor": "complete=true iff nextCursor=null; non-complete page must be nonempty and supply a new cursor; dispatch-reply ticket tied to session source revision domain/view/sort/filter",
+    "revision": "invalidate all issued page tickets and scoped cursor history on open/close/undo/redo-issued Core revision",
+    "semantics": "large Grid/Inventory/Quest must be Core-indexed as bounded typed rows; UI cannot assert full graph completeness or writer authority"
+  },
+  "observedLatest": {
+    "wandPr312Head": "1909dd5e041db69dd3c6fc0f896d0c57e02c5a89",
+    "comparedFrom": "c587f04855db0543896c51f3defa068ccf002b43",
+    "comparison": "7 commits ahead; changed p1g oracle, w1 evidence and tests; added P1G_SOURCE_EVIDENCE_RESEARCH_API_V1.md and source reference tests; no session.rs or p1g.rs change",
+    "sourceBlobs": {
+      "session": "5eaaaf5f503253f05d25bf15475d3f82df02e200",
+      "p1g": "c8cacdc5fa6afc7a60f388af561522e2867f5c9b",
+      "w1Evidence": "a028f82b0b3c2ca59815920291b0dfd45e722efe",
+      "researchApiDocument": "b2fad0558734f478c209843bee050423eaecef7e"
+    },
+    "researchAvailable": [
+      "decode_p1g_research: synthetic source ciphertext SHA plus decoded JSON SHA, strict single profile, SHA scope distinct",
+      "create_p1g_copy_research: synthetic only encrypted copy/self-reopen, product_encode_copy_authorized=false",
+      "inspect_source_reference_paths: source-derived exact path token witnesses, cross_domain_reference_closure_complete=false",
+      "inspect_w1_source_research: three distinct SHA roots, externally selected BID not cryptographically bound, native_semantics_verified=false"
+    ],
+    "stillMissing": [
+      "stable versioned WASM Worker encrypted File open and accepted typed paged domain cursor",
+      "Core-derived complete semantic reference graph across relevant domains and operation-specific positive capabilities",
+      "original encrypted P1G as immutable product SaveSession backing and byte-exact backup port",
+      "real-schema edited-copy independent read/encode/reopen, resource-bounded browser verification and 05 QR fixed-head acceptance"
     ],
     "productP1gAccepted": false,
     "completeDomainProjectionAccepted": false,
