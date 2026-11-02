@@ -58,7 +58,7 @@ test('post-freeze Wand synthetic P1G and W1 witnesses do not grant product write
 });
 
 test('Wand latest research SHA scope remains distinct from accepted product API',async()=>{
- const newest=fixture.observedLatest;
+ const newest=fixture.observedBeforeCurrent;
  assert.equal(newest.wandPr312Head,'1909dd5e041db69dd3c6fc0f896d0c57e02c5a89');
  assert.equal(newest.sourceBlobs.session,'5eaaaf5f503253f05d25bf15475d3f82df02e200');
  assert.equal(newest.sourceBlobs.p1g,'c8cacdc5fa6afc7a60f388af561522e2867f5c9b');
@@ -75,4 +75,27 @@ test('Wand latest research SHA scope remains distinct from accepted product API'
  assert.match(port,/view: string;\s*rows: readonly/);
  assert.match(port,/wasmInstalled:false, writerGranted:false/);
  assert.equal(fixture.integration.phaseB,'BLOCKED');
+});
+
+test('new Wand CORE fixed delta remains synthetic-only and projection proposal never grants Writer',async()=>{
+ const newer=fixture.observedLatest;
+ assert.equal(newer.wandPr312Head,'c6b152512d3bc901fd1474dbcfcb07253ae1b347');
+ assert.equal(newer.sourceBlobs.session,'c222695ff1e2e3122170c4c627ccde928bdaabfb');
+ assert.equal(newer.sourceBlobs.p1g,'c8cacdc5fa6afc7a60f388af561522e2867f5c9b');
+ assert.equal(newer.sourceBlobs.semanticSafety,'0096ba2f0e060baa5239a3e423b42f3a8876a12e');
+ assert(newer.delta.some(s=>s.includes('NOT full graph closure')));
+ assert(newer.delta.some(s=>s.includes('MAX_PAGE64')));
+ for(const k of ['productReadAccepted','completeDomainProjectionAccepted','stableWasmWorkerApiAccepted','writerGranted'])
+  assert.equal(newer[k],false,k);
+ const proposal=JSON.parse(await source('contracts/web-core-projection-boundary-v1.json'));
+ assert.equal(proposal.status,'PROPOSED_NOT_IMPLEMENTED_NOT_ACCEPTED');
+ assert.equal(proposal.wire.bindingInstalled,false);
+ assert.equal(proposal.trust.allowUIReferenceGraph,false);
+ assert.equal(proposal.trust.allowUIWriterCapability,false);
+ assert.equal(proposal.trust.capabilities.ENCODE_COPY,'DENIED');
+ assert.equal(proposal.trust.capabilities.PERSISTENT_REPLACE,'DENIED');
+ assert.equal(proposal.acceptance.phaseB,'BLOCKED');
+ assert.equal(proposal.limits.rowsMax,200);
+ assert.equal(proposal.limits.rowUtf8JsonBytesMax,65536);
+ assert.equal(proposal.limits.responseUtf8JsonBytesMax,2097152);
 });
