@@ -218,8 +218,8 @@
       "textureFormat": 25,
       "alternativeCount": 1,
       "reviewState": "HOLD_SEMANTIC_REVIEW",
-      "pixelTrial": "NOT_TESTED",
-      "holdEvidence": "Source name icon_scroogestore_upgrade identifies a store upgrade, not confirmed as a general Shops-tab icon; native UI consumer/screenshot linkage not verified",
+      "pixelTrial": "PASS_PRIVATE_REAL_SOURCE_2026-11-02",
+      "holdEvidence": "Source name icon_scroogestore_upgrade identifies a store upgrade, not confirmed as a general Shops-tab icon; native UI consumer/screenshot linkage not verified; verified real Steam source DDS/Pillow/ImageMagick/WebP exact RGBA on 2026-11-02; publication and consumer still HOLD",
       "semanticUseProof": "UNKNOWN"
     },
     {
@@ -232,8 +232,8 @@
       "textureFormat": 25,
       "alternativeCount": 1,
       "reviewState": "HOLD_SEMANTIC_REVIEW",
-      "pixelTrial": "NOT_TESTED",
-      "holdEvidence": "Source name shop_time_icon identifies shop time, not confirmed as the general Daily-tab icon; native UI consumer/screenshot linkage not verified",
+      "pixelTrial": "PASS_PRIVATE_REAL_SOURCE_2026-11-02",
+      "holdEvidence": "Source name shop_time_icon identifies shop time, not confirmed as the general Daily-tab icon; native UI consumer/screenshot linkage not verified; verified real Steam source DDS/Pillow/ImageMagick/WebP exact RGBA on 2026-11-02; publication and consumer still HOLD",
       "semanticUseProof": "UNKNOWN"
     },
     {
@@ -270,8 +270,8 @@
       "textureFormat": 12,
       "alternativeCount": 1,
       "reviewState": "HOLD_DEPLOYMENT",
-      "pixelTrial": "PASS_PRIVATE_2026-11-01",
-      "holdEvidence": "SOURCE_RGBA_PRIVATE_TRIAL_ONLY; final deployed VP8L bytes/SHA and separate release rights not verified; world-filter consumer also unconfirmed",
+      "pixelTrial": "PASS_PRIVATE_REAL_SOURCE_2026-11-02",
+      "holdEvidence": "SOURCE_RGBA_PRIVATE_TRIAL_ONLY; final deployed VP8L bytes/SHA and separate release rights not verified; world-filter consumer also unconfirmed; verified real Steam source DDS/Pillow/ImageMagick/WebP exact RGBA on 2026-11-02; publication and consumer still HOLD",
       "semanticUseProof": "UNKNOWN"
     }
   ]

@@ -1,10 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {auditSteamUiPublicationLedger} from '../src/steam-ui-provenance.mjs';
+import {auditSteamUiPublicationLedger,auditSteamUiPrivatePixelEvidence} from '../src/steam-ui-provenance.mjs';
 
 const catalog=JSON.parse(await readFile(new URL('../data/steam-ui-candidates-v1253.json',import.meta.url),'utf8'));
 const manifest=JSON.parse(await readFile(new URL('../data/steam-ui-icons-v1253.json',import.meta.url),'utf8'));
+const pixelEvidence=JSON.parse(await readFile(new URL('../data/steam-ui-private-pixel-evidence-v1253.json',import.meta.url),'utf8'));
 const copy=x=>structuredClone(x);
 const run=(c=catalog,m=manifest)=>auditSteamUiPublicationLedger(c,m);
 const publishedKey='skill.mining';
@@ -76,4 +77,51 @@ test('a static ledger result cannot be misreported as pixel or release approval'
   const result=run();
   assert.ok(!('pixelVerified' in result));
   assert.ok(!('releaseApproved' in result));
+});
+
+test('three real-source hash records remain non-publishable and linked to HOLD rows',()=>{
+  const result=auditSteamUiPrivatePixelEvidence(catalog,pixelEvidence);
+  assert.equal(result.verifiedHashRecords,3);
+  assert.equal(result.releaseApproved,false);
+  assert.equal(result.verificationLevel,'PRIVATE_REAL_SOURCE_PIXEL_HASH_RECORD_CROSSCHECK_ONLY');
+  assert.equal(run().publishedCount,4);
+  for(const key of ['world.hgw','tab.shops','tab.daily'])
+    assert.equal(Object.hasOwn(manifest.icons,key),false);
+});
+
+test('private pixel provenance source, dimensions, alpha, PPtr or release promotion fails closed',()=>{
+  const runPixel=(c=catalog,e=pixelEvidence)=>auditSteamUiPrivatePixelEvidence(c,e);
+  const modifications=[
+    e=>{e.source.bundleSha256='0'.repeat(64);},
+    e=>{e.source.cabSha256='a'.repeat(64);},
+    e=>{e.method.pptr='TYPED_PPTR_CONFIRMED';},
+    e=>{e.method.alphaZeroRgbIncluded=false;},
+    e=>{e.releaseApproved=true;},
+    e=>{e.publicManifestChanged=true;},
+    e=>{e.heldCandidates['tab.shops'].compressedSha256='x';},
+    e=>{e.heldCandidates['tab.daily'].decodedRgbaSha256='x';},
+    e=>{e.heldCandidates['world.hgw'].trialVp8lSha256='x';},
+    e=>{e.heldCandidates['world.hgw'].trialVp8lBytes=0;},
+    e=>{e.heldCandidates['tab.daily'].compressedLength=0;},
+    e=>{e.heldCandidates['tab.daily'].alphaZeroPixels=100000;},
+    e=>{e.heldCandidates['tab.shops'].file0PathIdOffset=133;},
+    e=>{e.heldCandidates['tab.shops'].sourceRgbaMatched=false;},
+    e=>{e.heldCandidates['tab.shops'].semanticConsumer='CONFIRMED';},
+    e=>{e.heldCandidates['world.hgw'].distributionAuthorization='GRANTED';},
+    e=>{e.heldCandidates['world.hgw'].published=true;},
+    e=>{delete e.heldCandidates['tab.daily'];}
+  ];
+  for(const mutate of modifications){
+    const evidence=copy(pixelEvidence);mutate(evidence);
+    assert.throws(()=>runPixel(catalog,evidence));
+  }
+  const c=copy(catalog);
+  c.candidates.find(x=>x.key==='tab.daily').reviewState='STATIC_REFERENCE_VERIFIED';
+  assert.throws(()=>runPixel(c));
+  const c2=copy(catalog);
+  c2.candidates.find(x=>x.key==='tab.shops').width++;
+  assert.throws(()=>runPixel(c2));
+  const c3=copy(catalog);
+  c3.candidates.find(x=>x.key==='world.hgw').pixelTrial='NOT_TESTED';
+  assert.throws(()=>runPixel(c3));
 });
