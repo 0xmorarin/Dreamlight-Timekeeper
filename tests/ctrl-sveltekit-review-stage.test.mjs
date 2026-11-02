@@ -46,6 +46,25 @@ test('00 CTRL refuses source/output overlap and symlinked parent',async()=>{
  });
 });
 
+test('00 CTRL refuses symlinked compiled buildRoot and sourceRoot before realpath',async()=>{
+ await sandbox(async base=>{
+  const buildAlias=join(base,'build-alias');
+  await symlink(build,buildAlias,'dir');
+  const target=join(base,'blocked-build-alias');
+  await assert.rejects(stageSveltekitReviewOnly({
+   sourceRoot:repo,buildRoot:buildAlias,outputRoot:target
+  }),/REVIEW_STAGE_SYMLINK_OR_INVALID_BUILD_ROOT/);
+  await assert.rejects(lstat(target),{code:'ENOENT'});
+  const sourceAlias=join(base,'source-alias');
+  await symlink(repo,sourceAlias,'dir');
+  const target2=join(base,'blocked-source-alias');
+  await assert.rejects(stageSveltekitReviewOnly({
+   sourceRoot:sourceAlias,buildRoot:build,outputRoot:target2
+  }),/REVIEW_STAGE_SYMLINK_OR_INVALID_SOURCE_ROOT/);
+  await assert.rejects(lstat(target2),{code:'ENOENT'});
+ });
+});
+
 test('00 CTRL refuses unexpected media or executable files in compiled stage',async()=>{
  await sandbox(async base=>{
   const source=join(base,'source'),altered=join(source,'build');
