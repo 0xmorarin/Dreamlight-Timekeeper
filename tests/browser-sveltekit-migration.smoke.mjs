@@ -73,7 +73,7 @@ try{
  await page.locator('.event-row input[type=checkbox]').first().check();
  await page.locator('#tk-time-mode').selectOption('custom');
  await page.locator('#tk-custom-time').fill('2026-11-02T10:15');
- await page.getByRole('button',{name:'Stage preview'}).click();
+ await page.locator('.details > button.primary').click();
  await page.getByText('staged').first().waitFor();
  await page.locator('.write-controls input[type=checkbox]').check();
  const prepare=page.getByRole('button',{name:'Prepare verified edited P1G'});
