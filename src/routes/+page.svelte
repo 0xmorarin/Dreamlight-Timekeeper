@@ -4,7 +4,7 @@
  import ResponsiveFrame from '$lib/wand-ui/ResponsiveFrame.svelte';
  import SegmentedControl from '$lib/wand-ui/SegmentedControl.svelte';
  import LiveRegion from '$lib/wand-a11y/LiveRegion.svelte';
- import {locale,t,SUPPORTED_LOCALES,initializeLocalePreference,setManualLocalePreference,resetToBrowserLanguage,legacyLocale,oldText,dateLabel,parseLocalDateTime,categoryName,areaName} from '$lib/timekeeper/locale';
+ import {locale,t as wandTranslate,SUPPORTED_LOCALES,initializeLocalePreference,setManualLocalePreference,resetToBrowserLanguage,legacyLocale,oldText,dateLabel,parseLocalDateTime,categoryName,areaName} from '$lib/timekeeper/locale';
  import {JsWorkerAdapter} from '$lib/timekeeper/worker-adapter';
  import type {TimingSnapshot,TimingRow,PlanView,VerifiedPair,SaveResponse} from '$lib/timekeeper/model';
  import {TAB_ORDER,WORLD_ORDER,previewScope} from '../reader.mjs';
@@ -15,6 +15,7 @@
  import ItemThumb from '$lib/timekeeper/ItemThumb.svelte';
 
  let localeCode='en',snapshot:TimingSnapshot|null=null,sessionId=0,sourceFormat='';
+ let t=(key:string,params:Record<string,unknown>={})=>wandTranslate(key,params);
  let tab='spawn',world='all',category='',subCategory='',query='',sort='name',selected=new Set<string>(),limit=80;
  let mode='now',customTime='',confirmedSwitch=false;
  let draft:any=null,plan:PlanView|null=null,preflight:any=null,planPending=false;
@@ -143,7 +144,12 @@
  async function resetLanguage(){await resetToBrowserLanguage();notice='';}
  onMount(()=>{
   engine=new JsWorkerAdapter();
-  localeUnsubscribe=locale.subscribe(code=>{localeCode=code;});
+  localeUnsubscribe=locale.subscribe(code=>{
+   localeCode=code;
+   // Svelte tracks an assigned function reference; Wand locale runtime itself
+   // is shared, while this triggers UI copy updates on manual locale changes.
+   t=(key:string,params:Record<string,unknown>={})=>wandTranslate(key,params);
+  });
   void initializeLocalePreference().catch(()=>{});
   backupCoordinator=createOriginalBackupCoordinator({
    requestBackup:(s:number)=>engine!.request({type:'backup',sessionId:s}),
