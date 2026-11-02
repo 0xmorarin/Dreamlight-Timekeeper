@@ -1,0 +1,24 @@
+name: 05 QR ASSET23 Companion Private Evidence Delta
+on:
+  pull_request:
+    paths:
+      - 'qa/05qr-asset23-companion-independent.test.mjs'
+      - '.github/workflows/qa-asset23-companion.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent-asset:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Ensure target source unchanged by QA
+        run: git diff --quiet 8f3516a543e381709f73db96bdabd6b78a144bcd HEAD -- data/item-image-coverage-v1253.json data/steam-icons-v1253.json
+      - name: Independent prior 7 vs new 18 metadata and no publication
+        run: node --test qa/05qr-asset23-companion-independent.test.mjs
+      - name: Privacy and rights boundary
+        run: echo 'Metadata and source SHA only; private game pixels and publishing not accepted'
