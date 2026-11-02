@@ -53,3 +53,16 @@ test('invalid or incomplete paired receipt never enables downloads',()=>{
  }
  assert.deepEqual(requests,[]);
 });
+
+test('individual edited retry cannot precede a requested original',()=>{
+ const ui=controls(),attempts=[];
+ const c=createVerifiedPairDownloadUi({controls:ui,currentSession:()=>1,currentPlanRevision:()=>0,
+  triggerDownload:kind=>attempts.push(kind)});
+ c.acceptWorkerPair(receipt(1),{sessionId:1,planRevision:0});
+ assert.equal(ui.edited.disabled,true);
+ assert.throws(()=>c.retryEdited(),/Original download must be requested first/);
+ assert.deepEqual(attempts,[]);
+ c.retryOriginal();assert.deepEqual(attempts,['original']);
+ assert.equal(ui.edited.disabled,false);
+ c.retryEdited();assert.deepEqual(attempts,['original','edited']);
+});
