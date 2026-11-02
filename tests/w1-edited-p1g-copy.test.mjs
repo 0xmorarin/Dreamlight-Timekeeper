@@ -47,6 +47,7 @@ const timeReview=plan=>({
 function ctx({profile=root(),plan=edits(),review=timeReview(plan),build=BID,sessionId=12}={}){
  const sourceBytes=makeSyntheticP1gProfile(profile);
  return {sourceBytes,sourceSessionId:sessionId,activeSessionId:sessionId,
+  getActiveSessionId:()=>sessionId,
   expectedSourceSha256:sha(sourceBytes),targetBuild:build,eventRegistry:registry,
   w1TargetReview:review,entries:plan};
 }
