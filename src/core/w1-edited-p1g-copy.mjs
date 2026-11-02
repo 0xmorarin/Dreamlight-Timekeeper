@@ -121,6 +121,7 @@ function ownParent(root,pointer){
  * Worker-only call:
  * - sourceBytes: originally selected encrypted P1G, not uploaded anywhere.
  * - activeSessionId / sourceSessionId: from Worker and request respectively.
+ * - getActiveSessionId: Worker-owned live session getter (not a UI payload).
  * - expectedSourceSha256: SHA of source at initial Worker open.
  * - eventRegistry: indexEvents(verified local data/events-v1253.json).
  * - w1TargetReview: result of 02 TIME assessMinimalW1WriteTargets(),
@@ -132,13 +133,14 @@ function ownParent(root,pointer){
  * enforce original-backup-first separate-download UX. No transfer in this module.
  */
 export async function createW1EditedP1gCopy({
- sourceBytes,sourceSessionId,activeSessionId,expectedSourceSha256,
+ sourceBytes,sourceSessionId,activeSessionId,getActiveSessionId,expectedSourceSha256,
  targetBuild,eventRegistry,w1TargetReview,entries
 }={}){
  if(!(sourceBytes instanceof Uint8Array)||sourceBytes.length===0)
   throw Error('W1_SOURCE_INVALID');
  if(!Number.isSafeInteger(activeSessionId)||activeSessionId<1||
-    sourceSessionId!==activeSessionId)
+    typeof getActiveSessionId!=='function'||
+    sourceSessionId!==activeSessionId||getActiveSessionId()!==sourceSessionId)
   throw Error('W1_STALE_SESSION');
  if(typeof expectedSourceSha256!=='string'||!SHA.test(expectedSourceSha256))
   throw Error('W1_SOURCE_HASH_REQUIRED');
@@ -152,6 +154,7 @@ export async function createW1EditedP1gCopy({
  const session=await SafeProfileEditSession.open({
   sourceBytes,sourcePlatform:PlatformFamily.Switch,codec:p1gPackagedProfileCodec
  });
+ if(getActiveSessionId()!==sourceSessionId)throw Error('W1_STALE_SESSION_AFTER_OPEN');
  const identity=session.getSaveIdentity();
  if(identity.profileGameInfoVersion!==626||
     identity.sourceRawSha256!==expectedSourceSha256)
@@ -204,6 +207,7 @@ export async function createW1EditedP1gCopy({
    }
   }
  });
+ if(getActiveSessionId()!==sourceSessionId)throw Error('W1_STALE_SESSION_AFTER_ENCODE');
  if(changed.noOp||!changed.authorization?.capabilities?.encodeCopy||
     changed.authorization.capabilities.persistentReplace)
   throw Error('W1_COPY_AUTHORIZATION_FAILED');
