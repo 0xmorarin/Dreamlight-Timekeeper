@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFile,readdir,mkdtemp,rm} from 'node:fs/promises';
+import {readFile,readdir,mkdtemp,rm,cp,mkdir,symlink,writeFile,lstat} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -77,4 +77,35 @@ test('release staging rejects unknown profiles and source-overwriting destinatio
  await assert.rejects(stageReleaseAssetProfile({sourceRoot:root,outputRoot:'/tmp/ignored',profile:'AUTO_RELEASE'}),/Explicit/);
  await assert.rejects(stageReleaseAssetProfile({sourceRoot:root,outputRoot:root,profile:'owner_svg_text_only'}),/overlap/);
  await assert.rejects(stageReleaseAssetProfile({sourceRoot:root,outputRoot:join(root,'dist'),profile:'owner_svg_text_only'}),/overlap/);
+});
+
+const isolatedReleaseFixture=async()=>{
+ const folder=await mkdtemp(join(tmpdir(),'timekeeper-release-negative-'));
+ const source=join(folder,'source');await mkdir(source);
+ for(const name of ['src','data','assets'])await cp(join(root,name),join(source,name),{recursive:true});
+ for(const name of ['index.html','styles.css'])await cp(join(root,name),join(source,name));
+ return {folder,source};
+};
+
+test('release staging refuses added unapproved executable source modules before output creation',async()=>{
+ const {folder,source}=await isolatedReleaseFixture();
+ try{
+  await writeFile(join(source,'src','unapproved-plugin.mjs'),'// unreviewed release module\n');
+  const output=join(folder,'rejected-extra');
+  await assert.rejects(stageReleaseAssetProfile({sourceRoot:source,outputRoot:output,
+   profile:'owner_svg_text_only'}),/Unknown|unapproved/);
+  await assert.rejects(lstat(output),{code:'ENOENT'});
+ }finally{await rm(folder,{recursive:true,force:true});}
+});
+
+test('stage output cannot use symlinked parent resolving into source checkout',async()=>{
+ const {folder,source}=await isolatedReleaseFixture();
+ try{
+  const link=join(folder,'outside-alias');
+  await symlink(source,link,'dir');
+  const unsafe=join(link,'would-overwrite-source');
+  await assert.rejects(stageReleaseAssetProfile({sourceRoot:source,outputRoot:unsafe,
+   profile:'owner_svg_text_only'}),/Symlink|overlap|realpath/i);
+  await assert.rejects(lstat(join(source,'would-overwrite-source')),{code:'ENOENT'});
+ }finally{await rm(folder,{recursive:true,force:true});}
 });

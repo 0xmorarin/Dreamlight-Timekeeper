@@ -1,4 +1,4 @@
-import {readFile,writeFile,copyFile,mkdir,readdir,lstat,rm} from 'node:fs/promises';
+import {readFile,writeFile,copyFile,mkdir,readdir,lstat,rm,realpath} from 'node:fs/promises';
 import {resolve,relative,join,dirname,sep} from 'node:path';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
@@ -9,6 +9,66 @@ const sha=b=>createHash('sha256').update(b).digest('hex');
 const dataFiles=['events-v1253.json','item-names-v1250.json.gz','wand-iswood-crosswalk-v1253.json',
  'timing-review-rules-v1253.json','steam-icons-v1253.json','app-ui-icons.json'];
 const inside=(parent,child)=>{const rel=relative(parent,child);return rel===''||(!rel.startsWith('..'+sep)&&rel!=='..'&&!rel.startsWith(sep));};
+// Reviewed release module inventory for the fixed v1 source. Any new module requires
+// a deliberate source-and-tests update; globbing executable src modules is unsafe.
+const approvedRuntimeModules=Object.freeze([
+  "src/app-ui-icon-design.mjs",
+  "src/app.mjs",
+  "src/core/p1g-envelope-audit.mjs",
+  "src/core/p1g-packaged-profile-codec.mjs",
+  "src/core/safe-edit-session.mjs",
+  "src/core/timekeeper-timing-compatibility.mjs",
+  "src/core/timing-delta-audit.mjs",
+  "src/core/timing-draft.mjs",
+  "src/core/timing-plan-preflight.mjs",
+  "src/core/versioning.mjs",
+  "src/core/w1-edited-p1g-copy.mjs",
+  "src/decoration-grid-audit.mjs",
+  "src/decoration-spawn-evidence.mjs",
+  "src/i18n.mjs",
+  "src/icon-assets.mjs",
+  "src/icon-import-plan.mjs",
+  "src/item-id-structure.mjs",
+  "src/reader.mjs",
+  "src/steam-ui-provenance.mjs",
+  "src/time-presets.mjs",
+  "src/timing-audit.mjs",
+  "src/timing-native-semantics.mjs",
+  "src/timing-review.mjs",
+  "src/ui-assets.mjs",
+  "src/ui-backup-coordinator.mjs",
+  "src/ui-separate-downloads.mjs",
+  "src/ui-verified-pair-downloads.mjs",
+  "src/w1-minimal-write-contract.mjs",
+  "src/wand-grid-reference-index.mjs",
+  "src/wand-item-taxonomy.mjs",
+  "src/wand-wood-tag-evidence.mjs",
+  "src/worker.mjs"
+]);
+async function assertSafeNewStageDestination(sourceRoot,outputRoot){
+ const canonicalSource=await realpath(sourceRoot);
+ if(inside(sourceRoot,outputRoot)||inside(outputRoot,sourceRoot))
+  throw new Error('Stage directory cannot overlap the source checkout.');
+ // Check EVERY pre-existing ancestor, including aliases that lexically appear
+ // outside sourceRoot but resolve to a directory within it.
+ let cursor=outputRoot,closestExisting=null;
+ for(;;){
+  try{
+   const stat=await lstat(cursor);
+   if(stat.isSymbolicLink())throw new Error('Symlink in stage output path: '+cursor);
+   if(!stat.isDirectory())throw new Error('Unexpected non-directory stage ancestor: '+cursor);
+   if(closestExisting===null)closestExisting=cursor;
+  }catch(err){if(err?.code!=='ENOENT')throw err;}
+  const parent=dirname(cursor);
+  if(parent===cursor)break;
+  cursor=parent;
+ }
+ if(closestExisting===null)throw new Error('No existing stage output ancestor.');
+ const canonicalAncestor=await realpath(closestExisting);
+ const canonicalTarget=resolve(canonicalAncestor,relative(closestExisting,outputRoot));
+ if(inside(canonicalSource,canonicalTarget)||inside(canonicalTarget,canonicalSource))
+  throw new Error('Stage realpath overlaps the source checkout.');
+}
 async function filesIn(root,prefix=''){
  const out=[];
  for(const item of await readdir(root,{withFileTypes:true})){
@@ -60,11 +120,11 @@ export async function stageReleaseAssetProfile({sourceRoot=sourceDefault,outputR
  if(!['current_repo_game_ui','owner_svg_text_only'].includes(profile)||!outputRoot)
   throw new Error('Explicit release profile and new output path required.');
  const base=resolve(sourceRoot),output=resolve(outputRoot);
- if(inside(base,output)||inside(output,base))
-  throw new Error('Stage directory cannot overlap the source checkout.');
+ await assertSafeNewStageDestination(base,output);
  const {scope,game}=await checkReleaseAssetScope(base);
- const modules=(await filesIn(join(base,'src'))).map(p=>'src/'+p);
- if(modules.some(p=>!p.endsWith('.mjs')))throw new Error('Unexpected non-module source file.');
+ const modules=(await filesIn(join(base,'src'))).map(p=>'src/'+p).sort();
+ if(JSON.stringify(modules)!==JSON.stringify(approvedRuntimeModules))
+  throw new Error('Unknown or unapproved source module in release staging.');
  const webp=profile==='current_repo_game_ui'?scope.gameUi.map(x=>x.path):[];
  const paths=['index.html','styles.css','assets/app/release-notice.css',...modules,
   ...dataFiles.map(p=>'data/'+p),...scope.ownerSvg.map(x=>x.path),...webp];
