@@ -400,7 +400,7 @@ test('LastOccurrence is only serialized in ItemSpawning; no timestamp rewrites G
 test('every Event ID has separately scoped evidence states and all operations are BLOCKED',()=>{
   assert.equal(native.rows.length,508);
   assert(native.rows.every(r=>r.sourceRecordEvidence==='CONFIRMED'));
-  assert(native.rows.every(r=>r.nativePerEventEvidence==='STATIC_ONLY'));
+  assert(native.rows.every(r=>r.nativePerEventEvidence==='UNKNOWN'&&r.variantConsumerStaticEvidence==='UNKNOWN'));
   assert(native.rows.every(r=>r.actualAppearanceEvidence==='UNKNOWN'&&r.operationEvidence==='BLOCKED'));
   for(const [id,kind,expectation] of [
     [2010000021,'ItemSpawning','STATIC_ONLY'],
@@ -413,7 +413,8 @@ test('every Event ID has separately scoped evidence states and all operations ar
     [2010009999,'ItemSpawning','UNKNOWN']
   ]){
     const x=native.query(id,kind);
-    assert.equal(x.nativePerEventEvidence,expectation);
+    assert.equal(x.variantConsumerStaticEvidence,expectation);
+    assert.equal(x.nativePerEventEvidence,expectation==='BLOCKED'?'BLOCKED':'UNKNOWN');
     assert.equal(x.actualAppearanceEvidence,'UNKNOWN');
     assert.equal(x.operationEvidence,'BLOCKED');
     assert.equal(x.writerAuthorized,false);
