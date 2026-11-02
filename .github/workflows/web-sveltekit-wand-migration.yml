@@ -1,0 +1,36 @@
+name: 03 WEB Wand-compatible SvelteKit Migration
+on:
+  push:
+    branches: [feat/web-sveltekit-wand-foundation]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  svelte-migration:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Wand-compatible SvelteKit dependency range
+        run: npm install --no-audit --no-fund
+      - name: Independent migration source contract and old Node regression
+        run: |
+          node --test tests/sveltekit-migration-contract.test.mjs
+          npm test
+      - name: Svelte/TypeScript check
+        run: npm run check
+      - name: Static GitHub Pages build with project BASE_PATH
+        env:
+          BASE_PATH: /Dreamlight-Timekeeper
+        run: |
+          npm run build
+          test -f build/index.html
+          test -f build/404.html
+          grep -q Dreamlight-Timekeeper build/index.html
+      - name: Real Chromium UI, typed Worker and synthetic P1G read/edit/download
+        run: |
+          npx playwright install --with-deps chromium
+          node tests/browser-sveltekit-migration.smoke.mjs
