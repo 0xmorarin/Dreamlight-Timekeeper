@@ -41,6 +41,15 @@ test('Worker provides non-mutating read-only shared-date diagnostics for uploade
  assert.equal(result.view.capabilities.editingAllowed,false);
  assert.equal(JSON.stringify(source),sourceText);
 });
+test('Worker identifies plain JSON container contract without claiming a P1G writer',async()=>{
+ const result=await send('open',JSON.stringify(profile));
+ assert.equal(result.ok,true);
+ assert.equal(result.view.containerAudit.status,'PLAIN_JSON_NO_P1G_ENVELOPE');
+ assert.equal(result.view.containerAudit.writerAuthorized,false);
+ assert.equal(result.view.containerAudit.editedCopyAuthorized,false);
+ assert.equal(result.view.containerAudit.sourceMetadataPresent,false);
+});
+
 test('malformed profile.json returns a visible error result',async()=>{
   const result=await send('open','{invalid');
   assert.equal(result.ok,false);
