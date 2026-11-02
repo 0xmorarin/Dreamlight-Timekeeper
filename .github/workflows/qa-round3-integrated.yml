@@ -39,7 +39,7 @@ jobs:
       - name: Install offline lossless WebP CLI required by existing ASSET importer test
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq webp
+          sudo apt-get install -y -qq webp imagemagick
       - name: Independently run impact-scoped CORE/TIME/ASSET and both QA negative suites
         run: |
           cd target
