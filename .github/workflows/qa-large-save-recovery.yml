@@ -1,0 +1,31 @@
+name: 05 QR Chromium recovery after 200 MiB Profile denial
+on:
+  push:
+    branches: [qa/large-save-browser-baseline-20261102]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  recovery:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify immutable PR11 product source and focused test
+        shell: bash
+        run: |
+          set -eu
+          git cat-file -e 393222e7832461ef5fea847b6fff475fedc45017^{commit}
+          test -z "$(git diff --name-only 393222e7832461ef5fea847b6fff475fedc45017 HEAD -- src tests data assets scripts index.html styles.css)"
+          node --check qa/large-save/chromium-recovery-after-200mib-denial.mjs
+      - name: Install isolated actual Chromium runner
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Reject oversize then open valid P1G and verify immutable backup in same browser
+        run: node qa/large-save/chromium-recovery-after-200mib-denial.mjs
