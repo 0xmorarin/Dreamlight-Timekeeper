@@ -1,12 +1,14 @@
 import {TAB_ORDER,WORLD_ORDER,previewScope,safeText} from './reader.mjs';
+import {resolveTimePreset} from './time-presets.mjs';
+import {createTimingDraft} from './core/timing-draft.mjs';
 import {SUPPORTED_LOCALES,initialLocale,translate,categoryName,areaName,localDate,parseLocalDateTime} from './i18n.mjs';
 const $=id=>document.getElementById(id);
 const make=(tag,cls='',value)=>{const el=document.createElement(tag);if(cls)el.className=cls;if(value!==undefined)el.textContent=String(value);return el;};
 const click=(label,handler,cls='subtle')=>{const el=make('button',cls,label);el.type='button';el.addEventListener('click',handler);return el;};
-const state={snapshot:null,tab:'spawn',world:'all',group:null,subgroup:null,query:'',sort:'name',selected:new Set(),limit:120,mode:'now',loading:false,locale:initialLocale()};
+const state={snapshot:null,draft:null,sessionId:null,preflight:null,planPending:false,tab:'spawn',world:'all',group:null,subgroup:null,query:'',sort:'name',selected:new Set(),limit:120,mode:'now',loading:false,locale:initialLocale()};
 const t=(key,values)=>translate(state.locale,key,values);
 const fmt=value=>localDate(value,state.locale);
-let worker=null,seq=0,noticeCount=0,iconManifest=null;
+let worker=null,seq=0,noticeCount=0,iconManifest=null,preflightSequence=0;
 const pending=new Map();
 function failWorker(message){for(const p of pending.values())p.reject(new Error(message));pending.clear();if(worker){worker.terminate();worker=null;}}
 function request(type,payload={},transfer=[]){return new Promise((resolve,reject)=>{
@@ -26,29 +28,68 @@ function message(text,error=false){
  el.hidden=!text;el.textContent=text;el.className=state.snapshot?(error?'workspace-status error':'workspace-status'):(error?'status error':'status');
  if(state.snapshot){const count=++noticeCount;setTimeout(()=>{if(count===noticeCount)el.hidden=true;},6500);}
 }
+function renderAudit(){
+ const root=$('timing-audit');
+ if(!root)return;
+ const prior=root.querySelector('details');
+ const wasOpen=prior?.open;
+ root.replaceChildren();
+ const a=state.snapshot?.timingAudit;
+ if(!a||a.diagnosticOnly!==true||a.writerAuthorized!==false)return;
+ const detail=make('details','audit-details');
+ detail.open=wasOpen??false;
+ detail.append(make('summary','',t('auditTitle')+' · '+a.total));
+ const numbers=make('div','audit-counters');
+ for(const [key,n] of [
+  ['auditShared',a.statuses.SPECIAL_2126_UNRESOLVED],
+  ['auditDistant',a.statuses.DISTANT_FUTURE_UNVERIFIED],
+  ['auditFuture',a.statuses.FUTURE],
+  ['auditInvalid',a.statuses.INVALID],
+  ['auditPast',a.statuses.PAST]
+ ])numbers.append(make('span','',t(key,{n})));
+ detail.append(numbers);
+ if(a.shared2126.multiTypePattern)detail.append(make('p','audit-uncertainty',t('auditMulti')));
+ detail.append(make('p','audit-uncertainty',t('auditNoRepair')));
+ detail.append(make('p','audit-provenance',t('auditUnknown')));
+ root.append(detail);
+ const envelope=state.snapshot?.containerAudit;
+ if(envelope&&envelope.writerAuthorized===false){
+  const box=make('details','audit-details container-audit');
+  box.append(make('summary','',t('containerAuditTitle')));
+  box.append(make('p','audit-provenance',t('containerAuditStatus',{status:envelope.status})));
+  for(const code of envelope.findings||[])box.append(make('p','audit-provenance',code));
+  box.append(make('p','audit-uncertainty',t('containerAuditNoWrite')));
+  root.append(box);
+ }
+}
 function showEditor(){
  $('welcome').hidden=true;$('workspace').hidden=false;
  $('session-name').textContent=state.snapshot.identity.name||'Save opened';
  $('download-backup').disabled=false;
- renderTabs();renderFilters();renderList();renderDetails();
+ renderAudit();renderTabs();renderFilters();renderList();renderDetails();
 }
 function showWelcome(){if(state.snapshot)return;$('welcome').hidden=false;$('workspace').hidden=true;}
 async function openSave(file){
  if(!file||state.loading)return;
  state.loading=true;$('open-welcome').disabled=true;$('open-again').disabled=true;
- const old=state.snapshot;
+ const old=state.snapshot,oldDraft=state.draft,oldSession=state.sessionId,oldPreflight=state.preflight;
+ let workerSessionCommitted=false;
  message(t('loading',{name:file.name}));
  try{
   const buffer=await file.arrayBuffer();
   if(!buffer.byteLength)throw new Error('Empty file');
   const result=await request('open',{buffer,name:file.name},[buffer]);
-  state.snapshot=result.view;state.tab='spawn';state.world='all';state.group=null;state.subgroup=null;state.selected.clear();state.query='';state.limit=120;state.mode='now';
+  workerSessionCommitted=true;
+  ++preflightSequence;
+  state.snapshot=result.view;state.sessionId=result.sessionId;state.preflight=null;state.planPending=false;
+  state.draft=createTimingDraft(result.view);state.tab='spawn';state.world='all';state.group=null;state.subgroup=null;state.selected.clear();state.query='';state.limit=120;state.mode='now';
   $('filter-input').value='';$('sort-order').value='name';$('time-mode').value='now';$('custom-time').value='';$('custom-time').disabled=true;
   showEditor();message(t('opened',{format:result.format}));
  }catch(err){
-  if(old){state.snapshot=old;showEditor();}else{state.snapshot=null;showWelcome();}
+  if(!workerSessionCommitted&&old){state.snapshot=old;state.draft=oldDraft;state.sessionId=oldSession;state.preflight=oldPreflight;showEditor();}
+  else{state.snapshot=null;state.draft=null;state.sessionId=null;state.preflight=null;showWelcome();}
   message(t('loadError',{name:file.name,reason:err instanceof Error?err.message:String(err)}),true);
- }finally{state.loading=false;$('open-welcome').disabled=false;$('open-again').disabled=false;$('save-file').value='';}
+ }finally{state.loading=false;$('open-welcome').disabled=false;$('open-again').disabled=false;$('save-file').value='';renderPlan();}
 }
 function fileDialog(){$('save-file').click();}
 function localizedItem(item){const names=item.names||{};return safeText(names[state.locale]||names['en-US']||item.name||t('recordIndex',{id:item.id}));}
@@ -120,7 +161,40 @@ function renderList(){
  $('select-visible').disabled=!rows.length;renderSelectionLabel();
 }
 function setTime(){state.mode=$('time-mode').value;$('custom-time').disabled=state.mode!=='custom';renderDetails();}
+function renderPlan(){
+ const root=$('draft-plan');root.replaceChildren();
+ const v=state.draft?.view();
+ $('stage-preview').disabled=!v||state.loading||state.selected.size===0;
+ $('undo-plan').disabled=state.loading||!v?.canUndo;
+ $('redo-plan').disabled=state.loading||!v?.canRedo;
+ $('clear-plan').disabled=state.loading||!v?.count;
+ if(!v){root.textContent=t('planEmpty');return;}
+ root.append(make('strong','draft-plan-title',v.count?t('planCount',{n:v.count}):t('planEmpty')));
+ const rowsByPointer=new Map(state.snapshot.rows.map(r=>[r.pointer,r]));
+ const preflightCodes=new Map((state.preflight?.rows||[]).map(r=>[r.pointer,r.code]));
+ const compatibilityCodes=new Map((state.preflight?.compatibility?.rows||[]).map(r=>[r.pointer,r.code]));
+ for(const change of v.entries.slice(0,8)){
+  const el=make('div','draft-plan-item');
+  const row=rowsByPointer.get(change.pointer);
+  el.append(make('strong','',row?recordTitle(row):change.pointer),
+   make('span','',fmt(change.originalTime)+' → '+fmt(change.targetTime)));
+  if(preflightCodes.has(change.pointer))el.append(make('span','draft-plan-check',t('preflightRow',{code:preflightCodes.get(change.pointer)})));
+  if(compatibilityCodes.has(change.pointer))el.append(make('span','draft-plan-check',t('compatibilityRow',{code:compatibilityCodes.get(change.pointer)})));
+  root.append(el);
+ }
+ if(v.count>8)root.append(make('p','caption',t('planMore',{n:v.count-8})));
+ const audit=state.preflight?.summary;
+ if(state.planPending)root.append(make('p','draft-plan-note',t('preflightPending')));
+ else if(audit)root.append(make('p','draft-plan-note',t('preflightSummary',{
+  observed:audit.structuralShapeObserved,held:audit.heldForReview,rejected:audit.rejected
+ })));
+ const research=state.preflight?.compatibility?.summary;
+ if(research&&!state.planPending)root.append(make('p','draft-plan-note',
+  t('compatibilitySummary',{candidates:research.researchCandidate,drift:research.versionReview,excluded:research.excluded})));
+ root.append(make('p','draft-plan-note',t('planReadOnly')));
+}
 function renderDetails(){
+ renderPlan();
  const rows=state.snapshot?.rows.filter(r=>state.selected.has(r.pointer))||[],n=rows.length;
  const selected=$('selection-info');selected.replaceChildren();
  const zone=Intl.DateTimeFormat().resolvedOptions().timeZone||'Local';$('timezone-label').textContent=`${t('timeZone')}: ${zone}`;
@@ -128,19 +202,59 @@ function renderDetails(){
  selected.append(make('strong','',t('selected',{n})));
  if(n===1)selected.append(make('p','',recordTitle(rows[0])));
  const preview=$('preview');preview.replaceChildren();const custom=$('custom-time').value;
- const when=state.mode==='custom'?parseLocalDateTime(custom):null;
+ const clock=Date.now();
+ const when=state.mode==='custom'?parseLocalDateTime(custom):state.mode==='now'?null:resolveTimePreset(state.mode,{now:clock});
  try{
   if(state.mode==='custom'&&custom&&!when)throw new Error(t('errorInvalidLocal'));
-  const result=previewScope(state.snapshot,{tab:state.tab,pointers:rows.map(r=>r.pointer),world:'all',mode:state.mode,customTime:when,now:Date.now()});
+  const result=previewScope(state.snapshot,{tab:state.tab,pointers:rows.map(r=>r.pointer),world:'all',mode:state.mode==='now'?'now':'custom',customTime:when,now:clock});
   const summary=make('div','preview-summary');summary.append(make('span','',t('previewScope',{n:result.affected.length})),make('strong','',`${t('previewTime')}: ${fmt(result.previewTime)}`));preview.append(summary);
   for(const row of result.affected.slice(0,24)){const item=make('div','preview-row');item.append(make('strong','',recordTitle(row)),make('span','',`${fmt(row.time)} → ${fmt(result.previewTime)}`));preview.append(item);}
   if(result.affected.length>24)preview.append(make('p','caption',t('morePreview',{n:result.affected.length-24})));
  }catch(err){preview.append(make('p','caption',state.mode==='custom'&&!custom?t('needsTime'):err.message));}
  const details=$('technical-details');details.replaceChildren();
- for(const r of rows.slice(0,8)){const p=make('p','');p.textContent=`${recordTitle(r)} | Event/Item ID: ${r.id??'unknown'} | ${r.kind} | ${r.source} | ${r.pointer} | ${t('rawUTC')}: ${r.time||'unknown'}${r.reason?' | '+r.reason:''}`;details.append(p);}
+ for(const r of rows.slice(0,8)){const p=make('p','');p.textContent=`${recordTitle(r)} | Event/Item ID: ${r.id??'unknown'} | ${r.kind} | ${r.source} | ${r.pointer} | ${t('rawUTC')}: ${r.time||'unknown'}${r.reason?' | '+r.reason:''}${r.review?' | Review: '+r.review.status+' | '+r.review.reason:''}`;details.append(p);}
  if(n>8)details.append(make('p','',t('morePreview',{n:n-8})));
 }
-async function backup(){try{const data=await request('backup');const blob=new Blob([data.buffer],{type:'application/octet-stream'}),url=URL.createObjectURL(blob);const anchor=make('a');anchor.href=url;anchor.download=`original_${data.name}`;anchor.click();setTimeout(()=>URL.revokeObjectURL(url),10000);}catch(err){message(t('backupError',{reason:err.message}),true);}}
+async function refreshPreflight(){
+ const seq=++preflightSequence,sessionId=state.sessionId;
+ const plan=state.draft?.view();
+ state.preflight=null;state.planPending=Boolean(plan?.count);renderPlan();
+ if(!plan?.count)return;
+ try{
+  const entries=plan.entries.map(x=>({
+   pointer:x.pointer,originalTime:x.originalTime,targetTime:x.targetTime
+  }));
+  const response=await request('preflight',{sessionId,entries});
+  if(seq!==preflightSequence||sessionId!==state.sessionId)return;
+  if(response.sessionId!==sessionId)throw new Error('Preflight session changed.');
+  state.preflight={...response.report,compatibility:response.compatibility};
+ }catch(err){
+  if(seq===preflightSequence&&sessionId===state.sessionId)
+   message(t('preflightFailed',{reason:err.message}),true);
+ }finally{
+  if(seq===preflightSequence&&sessionId===state.sessionId){
+   state.planPending=false;renderPlan();
+  }
+ }
+}
+function stagePreview(){
+ try{
+  if(!state.draft||!state.snapshot||state.loading)throw new Error('No available read-only session.');
+  const rows=state.snapshot.rows.filter(r=>state.selected.has(r.pointer)&&r.tab===state.tab);
+  if(rows.length!==state.selected.size||!rows.length)throw new Error('Select current timing records.');
+  const clock=Date.now(),custom=$('custom-time').value;
+  const target=state.mode==='custom'?parseLocalDateTime(custom):resolveTimePreset(state.mode,{now:clock});
+  if(!target)throw new Error(t('needsTime'));
+  const preview=previewScope(state.snapshot,{
+   tab:state.tab,pointers:rows.map(r=>r.pointer),world:'all',mode:'custom',
+   customTime:target,now:clock
+  });
+  if(preview.affected.length!==rows.length)throw new Error('Preview selection was not consistent.');
+  state.draft.stage(preview.affected.map(r=>r.pointer),preview.previewTime);
+  renderDetails();void refreshPreflight();message(t('planUpdated'));
+ }catch(err){message(t('planFail',{reason:err.message}),true);}
+}
+async function backup(){try{if(state.loading)throw new Error('Save is still loading.');const data=await request('backup',{sessionId:state.sessionId});const blob=new Blob([data.buffer],{type:'application/octet-stream'}),url=URL.createObjectURL(blob);const anchor=make('a');anchor.href=url;anchor.download=`original_${data.name}`;anchor.click();setTimeout(()=>URL.revokeObjectURL(url),10000);}catch(err){message(t('backupError',{reason:err.message}),true);}}
 function bindDrop(){
  const overlay=$('drop-overlay'),fileDrag=e=>Array.from(e.dataTransfer?.types||[]).includes('Files');
  document.addEventListener('dragenter',e=>{if(fileDrag(e)){e.preventDefault();overlay.hidden=false;}});
@@ -155,7 +269,7 @@ function refreshLanguage(){
  $('filter-input').placeholder=t('search');
  for(const id of ['welcome-language','workspace-language'])$(id).value=state.locale;
  const overlay=$('drop-overlay').querySelector('.drop-message');overlay.lastChild.textContent=' '+t('dropHint');
- if(state.snapshot){renderTabs();renderFilters();renderList();renderDetails();}
+ if(state.snapshot){renderAudit();renderTabs();renderFilters();renderList();renderDetails();}
 }
 function setLanguage(locale){if(!SUPPORTED_LOCALES.includes(locale))return;state.locale=locale;try{localStorage.setItem('dreamlight-timekeeper-locale',locale);}catch{}refreshLanguage();}
 async function loadIcons(){try{const r=await fetch(new URL('../data/steam-icons-v1253.json',import.meta.url));if(!r.ok)return;const file=await r.json();if(file?.source?.platform==='Steam/Windows'&&file?.source?.gameVersion==='1.25.3'&&file.icons&&typeof file.icons==='object')iconManifest=file;}catch{}}
@@ -164,6 +278,10 @@ function boot(){
  $('open-welcome').addEventListener('click',fileDialog);$('open-again').addEventListener('click',fileDialog);
  $('save-file').addEventListener('change',e=>{const file=e.target.files?.[0];if(file)openSave(file);});
  $('download-backup').addEventListener('click',backup);
+ $('stage-preview').addEventListener('click',stagePreview);
+ $('undo-plan').addEventListener('click',()=>{if(state.loading)return;state.draft?.undo();renderDetails();void refreshPreflight();});
+ $('redo-plan').addEventListener('click',()=>{if(state.loading)return;state.draft?.redo();renderDetails();void refreshPreflight();});
+ $('clear-plan').addEventListener('click',()=>{if(state.loading)return;state.draft?.clear();renderDetails();void refreshPreflight();});
  $('filter-input').addEventListener('input',e=>{state.query=e.target.value.trim().toLocaleLowerCase();state.limit=120;state.selected.clear();renderList();renderDetails();});
  $('sort-order').addEventListener('change',e=>{state.sort=e.target.value;state.limit=120;renderList();});
  $('select-visible').addEventListener('click',()=>{for(const row of visibleRows())state.selected.add(row.pointer);renderList();renderDetails();});

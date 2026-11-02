@@ -1,0 +1,182 @@
+{
+  "source": {
+    "gameVersion": "1.25.3",
+    "platform": "Nintendo Switch",
+    "buildId": "9A239D3DB569756D",
+    "schema": 626,
+    "revision": 1,
+    "evidenceLevel": "STATIC_ONLY",
+    "writerAuthorization": false,
+    "documentation": "DDV_SAVE_TIMING_FIELD_AND_EVENT_REGISTRY;DDV_SAVE_TIMING_NATIVE_STATIC_FINDINGS_V1253"
+  },
+  "rules": [
+    {
+      "source": "World.RecurringEvents",
+      "kind": "ItemSpawning",
+      "classification": "RESEARCH_CANDIDATE",
+      "semantic": "nextOccurrence",
+      "reason": "Spawn caps and event-specific conditions still need native and console verification",
+      "nativeEvidence": "0x05A65440;0x05A2A170"
+    },
+    {
+      "source": "World.RecurringEvents",
+      "kind": "WildCropsSpawningInVillage",
+      "classification": "RESEARCH_CANDIDATE",
+      "semantic": "nextOccurrence",
+      "reason": "Area capacity and source state may prevent spawning",
+      "nativeEvidence": "0x05A65440;0x05A2A170"
+    },
+    {
+      "source": "World.RecurringEvents",
+      "kind": "FlowerSpawningInVillage",
+      "classification": "RESEARCH_CANDIDATE",
+      "semantic": "nextOccurrence",
+      "reason": "Population limits, pickup/removal and any parked state remain unresolved",
+      "nativeEvidence": "0x057C99E0;0x05A65440"
+    },
+    {
+      "source": "World.RecurringEvents",
+      "kind": "FishSpawningInVillage",
+      "classification": "RESEARCH_CANDIDATE",
+      "semantic": "nextOccurrence",
+      "reason": "Fish nodes and environment conditions require runtime validation",
+      "nativeEvidence": "0x05A65440"
+    },
+    {
+      "source": "World.RecurringEvents",
+      "kind": "SnippetSpawning",
+      "classification": "CONDITIONAL_REVIEW",
+      "semantic": "nextOccurrence",
+      "reason": "FirstActualize and cooldown/trap state require a dedicated test",
+      "nativeEvidence": "0x0580F290"
+    },
+    {
+      "source": "World.RecurringEvents",
+      "kind": "MiningRockTurningSpecial",
+      "classification": "CONDITIONAL_REVIEW",
+      "semantic": "nextOccurrence",
+      "reason": "Rock special-state linked counters and triggering are unverified",
+      "nativeEvidence": "SOURCE_SCHEMA_ONLY"
+    },
+    {
+      "source": "World.RecurringEvents",
+      "kind": "FlowerDryingInVillage",
+      "classification": "DIAGNOSTIC_ONLY",
+      "semantic": "nextOccurrence",
+      "reason": "Drying state is not a spawn refresh request",
+      "nativeEvidence": "SOURCE_SCHEMA_ONLY"
+    },
+    {
+      "source": "World.RecurringEvents",
+      "kind": "ChooseVillageArea",
+      "classification": "PROTECTED",
+      "semantic": "nextOccurrence",
+      "reason": "Area selection control must not be bulk-edited",
+      "nativeEvidence": "SOURCE_SCHEMA_ONLY"
+    },
+    {
+      "source": "World.RecurringEvents",
+      "kind": "ChooseItem",
+      "classification": "PROTECTED",
+      "semantic": "nextOccurrence",
+      "reason": "Item selection control must not be bulk-edited",
+      "nativeEvidence": "SOURCE_SCHEMA_ONLY"
+    },
+    {
+      "source": "World.RecurringEvents",
+      "kind": "TimeLostTreasureSpawning",
+      "classification": "DIAGNOSTIC_ONLY",
+      "semantic": "nextOccurrence",
+      "reason": "Quest/progression interaction requires independent evidence",
+      "nativeEvidence": "SOURCE_SCHEMA_ONLY"
+    },
+    {
+      "source": "World.RecurringEvents",
+      "kind": "MakeCharacterEager",
+      "classification": "DIAGNOSTIC_ONLY",
+      "semantic": "nextOccurrence",
+      "reason": "Character-state behavior is not ordinary resource refresh",
+      "nativeEvidence": "SOURCE_SCHEMA_ONLY"
+    },
+    {
+      "source": "World.RecurringEvents",
+      "kind": "PendingFishUpgrade",
+      "classification": "DIAGNOSTIC_ONLY",
+      "semantic": "nextOccurrence",
+      "reason": "Fish upgrade state unknown",
+      "nativeEvidence": "SOURCE_SCHEMA_ONLY"
+    },
+    {
+      "source": "World.Stores",
+      "kind": "StoreInfo.LastRefresh",
+      "classification": "CONDITIONAL_REVIEW",
+      "semantic": "lastRefresh",
+      "reason": "Now may postpone refresh; fatigue and display state must be checked",
+      "nativeEvidence": "0x03EBF1F0;0x058DBA80"
+    },
+    {
+      "source": "World.Stores",
+      "kind": "DisplayInfo.LastRefresh",
+      "classification": "CONDITIONAL_REVIEW",
+      "semantic": "lastRefresh",
+      "reason": "Display-specific frequency and fatigue state must be checked",
+      "nativeEvidence": "0x058DBBC0"
+    },
+    {
+      "source": "World.Shops",
+      "kind": "ShopData.LastRefresh",
+      "classification": "CONDITIONAL_REVIEW",
+      "semantic": "lastRefresh",
+      "reason": "Initialization timestamps and rotation state must be checked",
+      "nativeEvidence": "SOURCE_SCHEMA_ONLY"
+    },
+    {
+      "source": "World.GridCollection",
+      "kind": "FishingStallData.LastCollect",
+      "classification": "CONDITIONAL_REVIEW",
+      "semantic": "lastCollect",
+      "reason": "Boat catch-up and reward state must be verified",
+      "nativeEvidence": "SOURCE_SCHEMA_ONLY"
+    },
+    {
+      "source": "World.GridCollection",
+      "kind": "TreeAndBushData.EndOfGrowth",
+      "classification": "CONDITIONAL_REVIEW",
+      "semantic": "endOfGrowth",
+      "reason": "Resource readiness depends on linked growth state",
+      "nativeEvidence": "SOURCE_SCHEMA_ONLY"
+    },
+    {
+      "source": "World.GridCollection",
+      "kind": "TreeAndBushData.EndOfLife",
+      "classification": "PROTECTED",
+      "semantic": "endOfLife",
+      "reason": "Life/death expiry must never be mistaken for ready-to-harvest",
+      "nativeEvidence": "TreeAndBushData.IsDead"
+    },
+    {
+      "source": "World.GridCollection",
+      "kind": "StallData.ShopData.LastRefresh",
+      "classification": "CONDITIONAL_REVIEW",
+      "semantic": "lastRefresh",
+      "reason": "Object refresh and shop state need native cross-check",
+      "nativeEvidence": "SOURCE_SCHEMA_ONLY"
+    },
+    {
+      "source": "World.GridCollection",
+      "kind": "GardenData.Slots.Sapling.EndOfGrowth",
+      "classification": "CONDITIONAL_REVIEW",
+      "semantic": "endOfGrowth",
+      "reason": "Watering/growth/quest state unverified",
+      "nativeEvidence": "SOURCE_SCHEMA_ONLY"
+    },
+    {
+      "source": "Profile",
+      "kind": "ResetTimer",
+      "classification": "DIAGNOSTIC_ONLY",
+      "semantic": "resetHistory",
+      "reason": "Daily/weekly linked counters and server state unverified",
+      "nativeEvidence": "SOURCE_SCHEMA_ONLY"
+    }
+  ]
+}

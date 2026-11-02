@@ -30,3 +30,54 @@ test('one global drop listener and independent four-tab three-pane editor',()=>{
  assert.match(css,/100dvh/);
  assert.match(css,/grid-template-columns:minmax\(205px,240px\)/);
 });
+
+test('read-only timing audit is visible without implying repair or changing the save',()=>{
+ assert.match(page,/id="timing-audit"/);
+ assert.match(app,/function renderAudit\(/);
+ assert.match(app,/a\.diagnosticOnly!==true\|\|a\.writerAuthorized!==false/);
+ assert.match(app,/t\('auditNoRepair'\)/);
+ assert.match(css,/\.audit-details/);
+ assert.match(app,/detail\.open=wasOpen\?\?false/);
+});
+
+test('preview UI exposes approved past and future presets without enabling any writer',()=>{
+ assert.match(page,/value="century"/);
+ assert.match(page,/value="release"/);
+ assert.match(app,/resolveTimePreset\(state\.mode/);
+ assert.match(app,/mode:state\.mode==='now'\?'now':'custom'/);
+ assert.doesNotMatch(page,/id="export-edited"/);
+});
+
+test('preview plan UI provides reversible staging without enabling save writes',()=>{
+ for(const id of ['stage-preview','undo-plan','redo-plan','clear-plan','draft-plan'])assert.match(page,new RegExp('id="'+id+'"'));
+ assert.match(app,/createTimingDraft\(result\.view\)/);
+ assert.match(app,/state\.draft\.stage\(/);
+ assert.match(app,/state\.draft\?\.undo\(\)/);
+ assert.match(app,/state\.draft\?\.redo\(\)/);
+ assert.match(app,/state\.draft\?\.clear\(\)/);
+ assert.doesNotMatch(app,/request\('export'\)/);
+ assert.doesNotMatch(page,/id="export-edited"/);
+});
+
+test('preflight is source-authoritative and does not introduce an edited save download path',()=>{
+ assert.match(app,/request\('preflight',\{sessionId,entries\}\)/);
+ assert.match(app,/request\('backup',\{sessionId:state\.sessionId\}\)/);
+ assert.match(app,/preflightSequence/);
+ assert.match(app,/preflightSummary/);
+ assert.doesNotMatch(page,/id="export-edited"/);
+ assert.doesNotMatch(app,/request\('encode'|request\('export'/);
+});
+
+test('save container rebuild risks are diagnostic only in the UI',()=>{
+ assert.match(app,/containerAudit/);
+ assert.match(app,/containerAuditNoWrite/);
+ assert.match(app,/containerAuditTitle/);
+ assert.doesNotMatch(page,/id="export-edited"/);
+});
+
+test('field-level compatibility classification is display-only and not a save writer',()=>{
+ assert.match(app,/compatibilityCodes/);
+ assert.match(app,/compatibilitySummary/);
+ assert.match(app,/response\.compatibility/);
+ assert.doesNotMatch(page,/id="export-edited"/);
+});

@@ -16,3 +16,39 @@ test('bulk preview never mutates the source and denies writes',()=>{const snapsh
 test('unknown event IDs are not treated as writable',()=>{const p=profile();p.World.RecurringEvents['8']={ItemSpawning:{RecurringEventItemID:999999999,NextOccurrence:'2026-11-01T00:00:00Z'}};const result=projectProfile(p,events);const r=result.rows.find(x=>x.id===999999999);assert.equal(r.policy,'HOLD');assert.match(r.reason,/存在しない/);assert.equal(r.writeAuthorized,false)});
 test('alternate schema does not enable edits',()=>{const p=profile();p.GameInfo.Version=624;const r=projectProfile(p,events);assert.equal(r.capabilities.schemaRecognized,false);assert.equal(r.capabilities.editingAllowed,false)});
 test('bad timestamp is diagnostic and excluded from writes',()=>{const p=profile();p.World.RecurringEvents['0'].FishSpawningInVillage.NextOccurrence='invalid';const r=projectProfile(p,events).rows.find(x=>x.id===2010200014);assert.equal(r.status,'INVALID');assert.equal(r.time,null);assert.equal(r.writeAuthorized,false)});
+
+test('wood and other forage show as separate read-only source classifications',()=>{
+ const p=profile();
+ p.World.RecurringEvents['42']={ItemSpawning:{RecurringEventItemID:2010000021,NextOccurrence:'2126-08-20T00:00:00Z'}};
+ p.World.RecurringEvents['43']={ItemSpawning:{RecurringEventItemID:2010000113,NextOccurrence:'2126-08-20T00:00:00Z'}};
+ const before=JSON.stringify(p);
+ const rows=projectProfile(p,events).rows;
+ const wood=rows.find(r=>r.id===2010000021),cinnamon=rows.find(r=>r.id===2010000113);
+ assert.equal(wood.group,'自然資源');
+ assert.equal(wood.subgroup,'木材・樹木由来素材');
+ assert.equal(cinnamon.subgroup,'その他の落下素材');
+ assert.equal(wood.writeAuthorized,false);
+ assert.equal(cinnamon.writeAuthorized,false);
+ assert.equal(JSON.stringify(p),before);
+});
+
+
+test('Wand byte-identical wood tags extend tree-derived read-only grouping beyond six literal woods',async()=>{
+ const tagPack=JSON.parse(await readFile(new URL('../data/wand-iswood-crosswalk-v1253.json',import.meta.url),'utf8'));
+ const index=indexEvents(data,tagPack);
+ const p=profile();
+ for(const [slot,eventId] of [['31',2010000140],['32',2010000196],['33',2010000207],['34',2010000137]]){
+  p.World.RecurringEvents[slot]={ItemSpawning:{RecurringEventItemID:eventId,NextOccurrence:'2126-08-20T00:00:00Z'}};
+ }
+ const original=JSON.stringify(p);
+ const rows=projectProfile(p,index).rows;
+ for(const eventId of [2010000140,2010000196,2010000207]){
+  const r=rows.find(x=>x.id===eventId);
+  assert.equal(r.subgroup,'木材・樹木由来素材');
+  assert.equal(r.writeAuthorized,false);
+ }
+ const moss=rows.find(x=>x.id===2010000137);
+ assert.equal(moss.subgroup,'その他の落下素材');
+ assert.equal(moss.writeAuthorized,false);
+ assert.equal(JSON.stringify(p),original);
+});

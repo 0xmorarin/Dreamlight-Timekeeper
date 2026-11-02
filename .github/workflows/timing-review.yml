@@ -1,0 +1,105 @@
+name: Verify Timing Review
+
+on:
+  pull_request:
+    paths:
+      - 'src/timing-review.mjs'
+      - 'src/timing-audit.mjs'
+      - 'src/time-presets.mjs'
+      - 'src/core/timing-draft.mjs'
+      - 'src/core/timing-plan-preflight.mjs'
+      - 'src/core/timekeeper-timing-compatibility.mjs'
+      - 'tests/timekeeper-timing-compatibility.test.mjs'
+      - 'src/core/p1g-packaged-profile-codec.mjs'
+      - 'src/core/p1g-envelope-audit.mjs'
+      - 'tests/p1g-envelope-audit.test.mjs'
+      - 'src/core/timing-delta-audit.mjs'
+      - 'tests/timing-delta-audit.test.mjs'
+      - 'tests/synthetic-p1g-timing-roundtrip.test.mjs'
+      - 'tests/timing-plan-preflight.test.mjs'
+      - 'tests/timing-draft.test.mjs'
+      - 'src/decoration-spawn-evidence.mjs'
+      - 'src/item-id-structure.mjs'
+      - 'src/wand-item-taxonomy.mjs'
+      - 'src/wand-wood-tag-evidence.mjs'
+      - 'src/wand-grid-reference-index.mjs'
+      - 'src/decoration-grid-audit.mjs'
+      - 'tests/wand-grid-reference-index.test.mjs'
+      - 'tests/decoration-grid-audit.test.mjs'
+      - 'tests/wand-wood-tag-evidence.test.mjs'
+      - 'data/wand-iswood-crosswalk-v1253.json'
+      - 'tests/wand-item-taxonomy.test.mjs'
+      - 'tests/item-id-structure.test.mjs'
+      - 'src/decoration-grid-audit.mjs'
+      - 'tests/decoration-grid-audit.test.mjs'
+      - 'tests/decoration-spawn-evidence.test.mjs'
+      - 'tests/time-presets.test.mjs'
+      - 'tests/ui.test.mjs'
+      - 'tests/timing-audit.test.mjs'
+      - 'src/i18n.mjs'
+      - 'index.html'
+      - 'styles.css'
+      - 'src/reader.mjs'
+      - 'src/worker.mjs'
+      - 'src/app.mjs'
+      - 'data/timing-review-rules-v1253.json'
+      - 'tests/timing-review.test.mjs'
+      - '.github/workflows/timing-review.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'src/timing-review.mjs'
+      - 'src/timing-audit.mjs'
+      - 'src/time-presets.mjs'
+      - 'src/core/timing-draft.mjs'
+      - 'src/core/timing-plan-preflight.mjs'
+      - 'src/core/timekeeper-timing-compatibility.mjs'
+      - 'tests/timekeeper-timing-compatibility.test.mjs'
+      - 'src/core/p1g-packaged-profile-codec.mjs'
+      - 'src/core/p1g-envelope-audit.mjs'
+      - 'tests/p1g-envelope-audit.test.mjs'
+      - 'src/core/timing-delta-audit.mjs'
+      - 'tests/timing-delta-audit.test.mjs'
+      - 'tests/synthetic-p1g-timing-roundtrip.test.mjs'
+      - 'tests/timing-plan-preflight.test.mjs'
+      - 'tests/timing-draft.test.mjs'
+      - 'src/decoration-spawn-evidence.mjs'
+      - 'src/item-id-structure.mjs'
+      - 'src/wand-item-taxonomy.mjs'
+      - 'src/wand-wood-tag-evidence.mjs'
+      - 'src/wand-grid-reference-index.mjs'
+      - 'src/decoration-grid-audit.mjs'
+      - 'tests/wand-grid-reference-index.test.mjs'
+      - 'tests/decoration-grid-audit.test.mjs'
+      - 'tests/wand-wood-tag-evidence.test.mjs'
+      - 'data/wand-iswood-crosswalk-v1253.json'
+      - 'tests/wand-item-taxonomy.test.mjs'
+      - 'tests/item-id-structure.test.mjs'
+      - 'src/decoration-grid-audit.mjs'
+      - 'tests/decoration-grid-audit.test.mjs'
+      - 'tests/decoration-spawn-evidence.test.mjs'
+      - 'tests/time-presets.test.mjs'
+      - 'tests/ui.test.mjs'
+      - 'tests/timing-audit.test.mjs'
+      - 'src/i18n.mjs'
+      - 'index.html'
+      - 'styles.css'
+      - 'src/reader.mjs'
+      - 'src/worker.mjs'
+      - 'src/app.mjs'
+      - 'data/timing-review-rules-v1253.json'
+      - 'tests/timing-review.test.mjs'
+
+permissions:
+  contents: read
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run all browser reader and timing policy tests
+        run: node --test tests/*.test.mjs

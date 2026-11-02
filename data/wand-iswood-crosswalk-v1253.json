@@ -1,0 +1,90 @@
+{
+  "artifact": "DDV_WAND_ISWOOD_CROSS_VERSION_V1253",
+  "version": "1.25.3",
+  "buildId": "9A239D3DB569756D",
+  "gameDbSourceVersion": "1.25.0",
+  "gameDbBuildId": "52BD625D9B4E0053",
+  "sourceEventSha256": "028a206635d37bffd7f3a8ff820958bdaa201887bacf35e10faa8328d20022ea",
+  "sourceActivityItemSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+  "sourceTagSha256BothVersions": "1208fc88a6b6b47346a6e8680db831b6a6751115adef34c4baf4ff7abdae9f3f",
+  "gameplayTag": {
+    "id": 2001200062,
+    "name": "isWood",
+    "tagTypeName": "Gameplay"
+  },
+  "sourceLinkItemsByteIdentical": true,
+  "items": [
+    {
+      "id": 30200147,
+      "isWood": false,
+      "payloadSha256": "16ffcc0367c28f9d89e4a271e845024100e988bc972d75a56fe98ee115586d0b"
+    },
+    {
+      "id": 31000084,
+      "isWood": false,
+      "payloadSha256": "86c1d88e64bc1538aa5cff213f185decf92c082601c8b66ea705bee9d5d08e57"
+    },
+    {
+      "id": 31700002,
+      "isWood": true,
+      "payloadSha256": "6f18ad286b571ec4c0e462030bcaaea1d58f862f1c0abf802770d8e5fde4313a"
+    },
+    {
+      "id": 31700003,
+      "isWood": true,
+      "payloadSha256": "f3c5173efa592f131cbf91cad547affce4211ec640f75168c693a378bbe2a07c"
+    },
+    {
+      "id": 31700008,
+      "isWood": true,
+      "payloadSha256": "4a5008cad731c7a02ada6cebff00727bfee4c565aea5851ebddcea790537e023"
+    },
+    {
+      "id": 31700014,
+      "isWood": true,
+      "payloadSha256": "68555b8075d75593208f2bfaed5bacfac688519e337164a023342169aca753d2"
+    },
+    {
+      "id": 31700038,
+      "isWood": true,
+      "payloadSha256": "aedfe7158cbc853058fdf8254d2303729b8612a9fa02a5779cb94a147381a3c9"
+    },
+    {
+      "id": 31700121,
+      "isWood": false,
+      "payloadSha256": "c7e53e35f92397932800d72f95f9f0d41b402f149d493ce8c8c706ccad0b3f43"
+    },
+    {
+      "id": 31700131,
+      "isWood": true,
+      "payloadSha256": "e252390a9673d752a205fb3483e139585536abbe432b7ce8369aacb03d296703"
+    },
+    {
+      "id": 31700148,
+      "isWood": false,
+      "payloadSha256": "80b27ca9d3e4053fb1ca911cf440a11872265559654abe9548ae3b3ac446761d"
+    },
+    {
+      "id": 31700156,
+      "isWood": true,
+      "payloadSha256": "fbadec6ea91d29e9f00de92d95c5989dbb30d939e6af0edb23f8dda10ef30031"
+    },
+    {
+      "id": 31700164,
+      "isWood": false,
+      "payloadSha256": "7aeb6ea88ad1c66774b151e9ebaeb03eb2085bb7a8ccb6a0050a908424a91af7"
+    },
+    {
+      "id": 31700171,
+      "isWood": true,
+      "payloadSha256": "cfa26c6b2db0e6878b28301d58a38d6cc5c8b6710dff9df064d3c1c07964572b"
+    },
+    {
+      "id": 31700176,
+      "isWood": true,
+      "payloadSha256": "286c36123b4beb045392ba3ad5f69e42d8dcf28fe1676bd69b48426bc8393f63"
+    }
+  ],
+  "writeAuthorized": false,
+  "deleteAuthorized": false
+}

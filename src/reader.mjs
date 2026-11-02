@@ -1,3 +1,5 @@
+import {auditWandWoodTagsInEvents} from './wand-wood-tag-evidence.mjs';
+import {classifyDecorationSpawnEvent} from './decoration-spawn-evidence.mjs';
 export const TAB_ORDER = Object.freeze([
   ['spawn','自動発生・スポーン'],
   ['resources','採集・生産'],
@@ -39,11 +41,11 @@ const TIME = /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d{1,9})?Z$/;
 const MAP = ['Urban','Meadow','Beach','Forest','Glade','Plateau','Frosted','Forgotten'];
 const isObj = x => x !== null && typeof x === 'object' && !Array.isArray(x);
 const escapePtr = s => String(s).replaceAll('~','~0').replaceAll('/','~1');
-export const validTime = v => typeof v === 'string' && TIME.test(v) && Number.isFinite(Date.parse(v));
+export const validTime = v => typeof v === 'string' && TIME.test(v) && Number.isFinite(Date.parse(v)) && new Date(Date.parse(v)).toISOString().slice(0,19)===v.slice(0,19);
 export const safeText = v => String(v ?? '').replace(/<\/?nobr>/gi,'').replace(/<[^>]*>/g,'').replace(/[\u200B-\u200D\uFEFF]/g,'').normalize('NFC');
 export function classifyDate(value,now=Date.now()){
   if(!validTime(value))return 'INVALID';
-  if(value==='2126-08-20T00:00:00Z')return 'SPECIAL_2126_UNRESOLVED';
+  if(/^2126-08-20T00:00:00(?:\.0{1,9})?Z$/.test(value))return 'SPECIAL_2126_UNRESOLVED';
   const time=Date.parse(value);
   if(time > now + 365*86400000)return 'DISTANT_FUTURE_UNVERIFIED';
   return time > now?'FUTURE':'PAST';
@@ -56,7 +58,7 @@ const defaultTab = type => {
 const areaLabel = s => {
   return MAP.find(k=>s.includes(k))||'';
 };
-export function indexEvents(raw){
+export function indexEvents(raw,tagPack=null){
   if(!isObj(raw)||!isObj(raw.source)||raw.source.writerAuthorization!==false||!Array.isArray(raw.events)||raw.source.schema!==626)throw new Error('未検証または不正なイベント定義です');
   const events=new Map();
   for(const record of raw.events){
@@ -64,12 +66,19 @@ export function indexEvents(raw){
     events.set(record.id,record);
   }
   if(events.size!==508)throw new Error('イベント定義の件数が期待値と異なります');
+  if(tagPack!==null){
+   const audit=auditWandWoodTagsInEvents(raw,tagPack);
+   Object.defineProperty(events,'woodTagStatusByEvent',{
+    value:new Map(audit.rows.map(x=>[x.eventId,x.status])),
+    writable:false,configurable:false
+   });
+  }
   return events;
 }
-function row(store,{tab,world='unknown',group,subgroup,label,id,kind,pointer,time,source,policy='HOLD',reason='',items=[],eventName=null,areaKey='',timingKey=null},now){
+function row(store,{tab,world='unknown',group,subgroup,label,id,kind,pointer,time,source,policy='HOLD',reason='',items=[],eventName=null,eventActive=null,structureValid=true,areaKey='',timingKey=null},now){
   const timing=timingKey||(kind.includes('LastRefresh')?'timeRefresh':kind.includes('LastCollect')?'timeCollect':kind.includes('EndOfGrowth')?'timeGrowth':kind.includes('EndOfLife')?'timeLife':kind==='ResetTimer'?'timeReset':kind==='DisplayInfo.LastRefresh'?'timeRefresh':'timeNext');
   store.push({tab,world,group,subgroup,label,id,kind,pointer,time:validTime(time)?time:null,
-    status:classifyDate(time,now),source,policy,reason,items,eventName,areaKey,timingKey:timing,writeAuthorized:false});
+    status:classifyDate(time,now),source,policy,reason,items,eventName,eventActive,structureValid,areaKey,timingKey:timing,writeAuthorized:false});
 }
 function describeEvent(record,type,id){
   if(!record)return `${type} (${id})`;
@@ -158,6 +167,8 @@ export function projectProfile(profile,registry,{now=Date.now(),itemNames={}}={}
       if(!Object.hasOwn(entry,'NextOccurrence'))continue;
       const id=Number(entry.RecurringEventItemID);
       const known=Number.isSafeInteger(id)?registry.get(id):null;
+      const research=known?classifyDecorationSpawnEvent(known,registry.woodTagStatusByEvent?.get(known.id)):null;
+      const classifiedSubgroup=research?.family==='WOOD_MATERIAL_EVENT'?'木材・樹木由来素材':research?.family==='OTHER_FORAGE_EVENT'?'その他の落下素材':known?.subgroup||type;
       const status=classifyDate(entry.NextOccurrence,now);
       const reasons=[];
       if(schema!==626)reasons.push('未承認スキーマ');
@@ -165,8 +176,8 @@ export function projectProfile(profile,registry,{now=Date.now(),itemNames={}}={}
       if(!known)reasons.push('イベント定義に存在しない');
       if(known?.eventPolicy!=='W1')reasons.push('更新条件の静的検証が未完了');
       if(status==='SPECIAL_2126_UNRESOLVED'||status==='DISTANT_FUTURE_UNVERIFIED')reasons.push('遠い未来日時の理由が不明');
-      row(rows,{tab:known?.tab||defaultTab(type),world:known?worldForEventName(known.name):'unknown',group:known?.group||'未登録イベント',subgroup:known?.subgroup||type,
-        label:describeEvent(known,type,id),id:Number.isSafeInteger(id)?id:null,kind:type,eventName:known?.name??null,areaKey:areaLabel(known?.name||''),
+      row(rows,{tab:known?.tab||defaultTab(type),world:known?worldForEventName(known.name):'unknown',group:known?.group||'未登録イベント',subgroup:classifiedSubgroup,
+        label:describeEvent(known,type,id),id:Number.isSafeInteger(id)?id:null,kind:type,eventName:known?.name??null,eventActive:known?.active??null,structureValid:variants.length===1,areaKey:areaLabel(known?.name||''),
         pointer:`/World/RecurringEvents/${escapePtr(key)}/${escapePtr(type)}/NextOccurrence`,time:entry.NextOccurrence,
         source:'World.RecurringEvents',policy:known?.eventPolicy||'HOLD',reason:reasons.join('／')||'日時編集の実機検証は未完了',
         items:(known?.items||[]).map(x=>({id:x.id,name:safeText(x.en||x.ja),names:itemNames[String(x.id)]??{'en-US':safeText(x.en),'ja':safeText(x.ja)}}))},now);
