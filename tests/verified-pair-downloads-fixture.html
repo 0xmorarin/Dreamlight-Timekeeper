@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Test-only verified pair controller</title>
+<div id="pair" hidden><button id="both">Request both</button><button id="original">Retry original</button><button id="edited">Retry edited</button></div><output id="status"></output>
+<script type="module">
+import {createVerifiedPairDownloadUi} from '../src/ui-verified-pair-downloads.mjs';
+const $=id=>document.getElementById(id);
+let session=1,revision=0,blockEdited=false;const attempts=[];
+const output=createVerifiedPairDownloadUi({
+ currentSession:()=>session,currentPlanRevision:()=>revision,
+ controls:{panel:$('pair'),both:$('both'),original:$('original'),edited:$('edited')},
+ triggerDownload:(kind,file)=>{
+  attempts.push(kind);
+  if(blockEdited&&kind==='edited')throw Error('Second download blocked by browser');
+  const url=URL.createObjectURL(new Blob([file.buffer],{type:'application/octet-stream'}));
+  const a=document.createElement('a');a.download=file.name;a.href=url;a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),10000);
+ },
+ onStatus:(kind,result)=>{$('status').textContent=kind+': '+JSON.stringify(result);}
+});
+const make=(sessionId)=>({status:'WORKER_VERIFIED_PAIR',sessionId,
+ original:{name:'original_synthetic.p1g',buffer:new Uint8Array([80,49,71,0,1]).buffer},
+ edited:{name:'edited_synthetic.p1g',buffer:new Uint8Array([80,49,71,0,2]).buffer}});
+window.__test={install:()=>output.acceptWorkerPair(make(session),{sessionId:session,planRevision:revision}),
+ block:()=>{blockEdited=true},unblock:()=>{blockEdited=false},newPlan:()=>{revision++;output.invalidate()},
+ newSession:()=>{session++;revision=0;output.invalidate()},attempts,output};
+</script></html>
