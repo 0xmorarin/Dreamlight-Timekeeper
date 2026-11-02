@@ -22,6 +22,7 @@ ROOT=Path(__file__).resolve().parents[2]
 ALLOW={
  "/tests/browser-memory/index.html",
  "/tests/browser-memory/p1g-read-worker.mjs",
+ "/tests/browser-memory/source-integrity.mjs",
  "/src/core/p1g-packaged-profile-codec.mjs",
  "/src/core/p1g-envelope-audit.mjs",
  "/src/core/safe-edit-session.mjs",
@@ -123,6 +124,9 @@ def run(args):
       page.goto(endpoint,wait_until="load")
       page.wait_for_function("typeof window.syntheticBrowserProbe === 'object'")
       features=page.evaluate("() => window.syntheticBrowserProbe.features()")
+      mutated=page.evaluate("() => window.syntheticBrowserProbe.negativeSameLengthMutationTest()")
+      if mutated != {"sameLength":True,"rejected":True,"originalUnchanged":True}:
+       raise RuntimeError("SAME_LENGTH_MUTATION_NOT_REJECTED")
       clone=page.evaluate("() => window.syntheticBrowserProbe.begin('clone')")
       transfer=page.evaluate("() => window.syntheticBrowserProbe.begin('transfer')")
       switched=page.evaluate("() => window.syntheticBrowserProbe.switchSession()")
@@ -131,8 +135,16 @@ def run(args):
         raise RuntimeError("WRITER_AUTHORIZATION_OR_READ_INVARIANT_FAILED")
        if result.get("schema")!=626 or result.get("browserPeakAccepted"):
         raise RuntimeError("SCHEMA_OR_BROWSER_PEAK_ASSERTION_FAILED")
+       for flag in ["preSendExactByteMatch","preSendSha256Match",
+        "originalSourceSha256Unchanged","workerReceivedSourceSha256Match"]:
+        if result.get(flag) is not True:
+         raise RuntimeError("SYNTHETIC_SOURCE_EVIDENCE_MISSING_"+flag)
+       if result.get("sourceHashBefore")!=result.get("sourceHashAfter"):
+        raise RuntimeError("ORIGINAL_SOURCE_HASH_DRIFT")
       if not transfer.get("transferDetached"):
        raise RuntimeError("TRANSFER_BUFFER_NOT_DETACHED")
+      if transfer.get("sentInputPostSendByteComparison")!="NOT_POSSIBLE_DETACHED":
+       raise RuntimeError("TRANSFER_DETACHED_SOURCE_CANNOT_BE_COMPARED")
       if switched.get("staleResponseAccepted") or not switched.get("terminated"):
        raise RuntimeError("SESSION_SWITCH_INVARIANT_FAILED")
       # UA-specific memory is optional and not a measured, continuous peak.
@@ -146,7 +158,7 @@ def run(args):
         ]);
       }""")
       reports[name]={"status":"SYNTHETIC_BROWSER_READ_PASS",
-       "features":features,"clone":clone,"transfer":transfer,
+       "features":features,"sameLengthMutation":mutated,"clone":clone,"transfer":transfer,
        "sessionSwitch":switched,"userAgentSpecificMemory":memory,
        "browserPeakMemoryAccepted":False,
        "realSaveWriteAccepted":False}
@@ -158,6 +170,12 @@ def run(args):
      finally:
       if browser:browser.close()
     reports[name]["processRss"]=samples.report()
+    reports[name]["rssValidSampleCount"]=reports[name]["processRss"]["sampleCount"]
+    reports[name]["rssPeakAccepted"]=False
+    if reports[name]["processRss"]["sampleCount"]==0:
+     reports[name]["rssEvidenceStatus"]="NO_VALID_RSS_SAMPLES"
+    else:
+     reports[name]["rssEvidenceStatus"]="SAMPLED_PROCESS_SUM_NOT_EXACT_PEAK"
  finally:
   server.shutdown();server.server_close()
  return {"scenario":"SYNTHETIC_ONLY_NO_REAL_SAVE","mib":args.mib,
