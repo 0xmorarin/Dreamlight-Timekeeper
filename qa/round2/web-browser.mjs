@@ -104,7 +104,8 @@ try{
  assert.equal(await page.locator('#download-backup').isVisible(),true);
  await page.locator('#open-again').focus();
  assert.equal(await page.evaluate(()=>document.activeElement?.id),'open-again');
- const [chooser]=await Promise.all([page.waitForEvent('filechooser'),page.keyboard.press('Enter')]);
+ assert.equal(await page.locator('#open-again').isEnabled(),true);
+ const [chooser]=await Promise.all([page.waitForEvent('filechooser',{timeout:8000}),page.locator('#open-again').press('Enter')]);
  assert.equal(chooser.isMultiple(),false);
  assert.equal(await page.locator('#export-edited').count(),0);
  assert.deepEqual(errors,[]);
