@@ -123,6 +123,16 @@ try{
  await open('broken.json','{');
  await page.locator('#workspace-status').getByText(/Unable to open|読み込み失敗|invalid/i).waitFor({timeout:20000});
  assert.equal(await page.locator('#session-name').innerText(),'C');
+ // Round 5: strict JSON rejects unsafe integral precision even when encoded as decimal/exponent.
+ // These are synthetic source defects, not a user-save rewrite or Worker capability grant.
+ for(const [index,literal] of ['9007199254740993.0','9.007199254740993e15'].entries()){
+  const source=profile('Unsafe','2026-10-01T00:00:00Z')
+   .replace('"Name":"Unsafe"',`"Name":"Unsafe","UnsafeNumeric":${literal}`);
+  await open('unsafe-numeric-'+index+'.json',source);
+  await page.locator('#workspace-status').getByText(/Unsafe JSON integer/i).waitFor({timeout:20000});
+  assert.equal(await page.locator('#session-name').innerText(),'C',
+   'Strict JSON rejection must preserve the prior active backup session.');
+ }
  const tooLargePath=join(folder,'oversized.json');
  await writeFile(tooLargePath,Buffer.alloc(128*1024*1024+1,0x41));
  await page.locator('#save-file').setInputFiles(tooLargePath);
