@@ -26,6 +26,18 @@ export type SessionIdentity = Readonly<{
 }>;
 export type Domain = 'timing' | 'inventory' | 'collections' | 'storage' |
   'world-grid' | 'rooms' | 'progression' | 'quests';
+/** Transport limits are UI rejection guards, not proof that Core fulfilled a full
+ * domain query. Large Grid/Inventory/Quest state must be indexed and projected
+ * as compact typed rows, never transported as one raw nested save subtree. */
+export type ProjectionTransportBounds = Readonly<{
+  maxRows: number;
+  maxRowBytes: number;
+  maxPageBytes: number;
+  maxCursorChars: number;
+}>;
+export const RESEARCH_PROJECTION_TRANSPORT_BOUNDS: ProjectionTransportBounds = Object.freeze({
+  maxRows: 200, maxRowBytes: 65536, maxPageBytes: 2097152, maxCursorChars: 512
+});
 export type ProjectionQuery = Readonly<{
   identity: SessionIdentity;
   domain: Domain;
@@ -34,10 +46,13 @@ export type ProjectionQuery = Readonly<{
   filters?: Readonly<Record<string, string | number | boolean>>;
   sort?: string;
 }>;
-/** Each result is bounded and detached from original bytes/decoded graph. */
+/** Bounded detached rows; complete and nextCursor are mutually exclusive. A
+ * non-complete page requires a nonempty new opaque Core-issued nextCursor.
+ * UI dispatches through issuePageQuery() and rejects stale/out-of-order replies. */
 export type ProjectionPage<Row> = Readonly<{
   identity: SessionIdentity;
   domain: Domain;
+  view: string;
   rows: readonly Readonly<Row>[];
   nextCursor: string | null;
   complete: boolean;
