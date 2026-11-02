@@ -4,7 +4,7 @@ import {readFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import {
  BASELINE,ITEM_IMAGE_CONTRACT,recurringImageTargets,snapshotVisibleItemIds,
- auditItemImageCoverage,resolveItemImageView
+ auditItemImageCoverage,resolveItemImageView,resolveRcItemTextRow,RC_ITEM_TEXT_CONTRACT
 } from '../src/item-image-coverage.mjs';
 const root=fileURLToPath(new URL('../',import.meta.url));
 const json=async path=>JSON.parse(await readFile(new URL('../'+path,import.meta.url),'utf8'));
@@ -220,4 +220,113 @@ test('private generic placeholder source cannot mint ItemID image URL; field5 wo
  assert.equal(new Set(top.map(i=>i.definitionAudit.worldObjectSource.gameObjectGuid)).size,9);
  assert.equal(placeholder.filter(i=>i.unresolvedVariantPriority.tier==='P1').length,12);
  assert.equal(placeholder.filter(i=>i.unresolvedVariantPriority.tier==='P2').length,60);
+});
+
+
+test('RC text fallback serves all 244 with ItemID, localized name, source-qualified category and accessible status',async()=>{
+ const audit=await json('data/item-image-coverage-v1253.json');
+ const counts={MISSING:0,AMBIGUOUS:0,VERIFIED:0},categories=new Map();
+ for(const entry of audit.items){
+  const row=resolveRcItemTextRow(empty,{id:entry.itemId},{locale:'ja',coverageAudit:audit});
+  assert.equal(row.contract,RC_ITEM_TEXT_CONTRACT);
+  assert.equal(row.itemId,entry.itemId);
+  assert.equal(row.locale,'ja');
+  assert.equal(row.idLabel,'ItemID '+entry.itemId);
+  assert.ok(row.name.length>0);
+  assert.ok(row.category.label.length>0);
+  assert.ok(row.textFallback.visibleName.length>0);
+  assert.equal(row.textFallback.visibleItemId,row.idLabel);
+  assert.equal(row.textFallback.visibleCategory,row.category.label);
+  assert.ok(row.textFallback.ariaLabel.includes('ItemID '+entry.itemId));
+  assert.ok(row.textFallback.ariaLabel.includes(row.name));
+  assert.equal(row.textFallback.renderAsPlainText,true);
+  assert.equal(row.textFallback.required,true);
+  assert.equal(row.image.url,null);
+  assert.equal(row.image.width,null);
+  assert.equal(row.image.height,null);
+  assert.equal(row.evidence.privatePixelDoesNotGrantImage,true);
+  assert.equal(row.evidence.worldObjectPrefabDoesNotGrantImage,true);
+  assert.equal(row.evidence.mediaRedistributionPermission,'NOT_ESTABLISHED');
+  assert.equal(row.rcTextDisplaySupported,true);
+  assert.equal(row.fullItemImageReleaseAccepted,false);
+  assert.equal(row.image.status,entry.readOnlyImageResolution.status);
+  assert.ok(!/<[^>]*>/.test(row.name));
+  counts[row.image.status]++;
+  categories.set(row.category.code,(categories.get(row.category.code)||0)+1);
+ }
+ assert.deepEqual(counts,{MISSING:163,AMBIGUOUS:81,VERIFIED:0});
+ assert.deepEqual(Object.fromEntries(categories),{
+  UNCLASSIFIED:138,ACTIVITY_ITEM:35,FURNITURE_SOURCE:52,COMPANION:19
+ });
+ const thorn=resolveRcItemTextRow(empty,{id:31300004},{locale:'ja',coverageAudit:audit});
+ assert.equal(thorn.name,'小さな闇のトゲ');
+ assert.equal(thorn.category.code,'ACTIVITY_ITEM');
+ assert.equal(thorn.category.source,'ORIGINAL_ITEMDB_STREAM');
+ assert.equal(thorn.image.status,'AMBIGUOUS');
+ assert.equal(thorn.textFallback.required,true);
+ const blocker=resolveRcItemTextRow(empty,{id:40600035},{locale:'en',coverageAudit:audit});
+ assert.equal(blocker.category.code,'FURNITURE_SOURCE');
+ assert.equal(blocker.category.label,'Furniture / world object');
+ assert.equal(blocker.image.url,null);
+ const companion=resolveRcItemTextRow(empty,{id:120200017},{locale:'en',coverageAudit:audit});
+ assert.equal(companion.category.code,'COMPANION');
+ assert.equal(companion.image.status,'AMBIGUOUS');
+});
+
+test('RC row falls back safely for dynamic or invalid ItemIDs and does not treat event IDs or private pixel proof as image authority',async()=>{
+ const audit=await json('data/item-image-coverage-v1253.json');
+ const dynamic=resolveRcItemTextRow(empty,{
+   id:99912348,name:'<img src=x onerror=alert(1)>Unknown\u202e item'
+ },{locale:'en',coverageAudit:audit});
+ assert.equal(dynamic.itemId,99912348);
+ assert.equal(dynamic.name,'Unknown item');
+ assert.equal(dynamic.category.code,'UNCLASSIFIED');
+ assert.equal(dynamic.category.verified,false);
+ assert.equal(dynamic.category.source,'NOT_VERIFIED');
+ assert.equal(dynamic.image.url,null);
+ assert.equal(dynamic.image.status,'MISSING');
+ assert.equal(dynamic.textFallback.visibleItemId,'ItemID 99912348');
+ assert.equal(dynamic.fullItemImageReleaseAccepted,false);
+ const event=resolveRcItemTextRow(empty,{id:2010000003},{locale:'ja',coverageAudit:audit});
+ assert.equal(event.image.url,null);
+ assert.equal(event.category.code,'UNCLASSIFIED');
+ const noAudit=resolveRcItemTextRow(empty,{id:31300004,en:'Small Night Thorn'},
+  {locale:'en'});
+ assert.equal(noAudit.image.status,'MISSING'); // No verified audit -> no ambiguous assertion.
+ assert.equal(noAudit.category.verified,false);
+ const forged=structuredClone(audit);forged.source.eventRawSHA256='0'.repeat(64);
+ const tampered=resolveRcItemTextRow(empty,{id:31300004},
+  {coverageAudit:forged});
+ assert.equal(tampered.category.code,'UNCLASSIFIED');
+ assert.equal(tampered.image.status,'MISSING');
+ const privatePixel=resolveRcItemTextRow(empty,{id:120200013},{coverageAudit:audit});
+ assert.equal(privatePixel.image.url,null);
+ assert.equal(privatePixel.image.status,'MISSING');
+ assert.equal(privatePixel.fullItemImageReleaseAccepted,false);
+ assert.throws(()=>resolveRcItemTextRow(empty,{id:31300004},{locale:'fr',coverageAudit:audit}),
+  /Unsupported RC text locale/);
+ const invalid=resolveRcItemTextRow(empty,{id:-1,ja:'仮のアイテム'},
+  {coverageAudit:audit});
+ assert.equal(invalid.itemId,null);
+ assert.equal(invalid.image.url,null);
+ assert.equal(invalid.category.code,'UNCLASSIFIED');
+});
+
+test('RC row grants mock verified URL only from a fully provenance-validated item image manifest, never research audit',async()=>{
+ const audit=await json('data/item-image-coverage-v1253.json');
+ const verified={source:{platform:'Steam/Windows',gameVersion:'1.25.3',status:'VERIFIED_STEAM_ASSETS'},
+  icons:{'31300004':{
+    platform:'Steam',gameVersion:'1.25.3',verified:true,
+    path:'assets/steam/v1253/31300004.webp',
+    sha256:'a'.repeat(64),sourceSha256:'b'.repeat(64),
+    sourceAsset:'CAB|GUID|Sprite|Texture',itemIdEvidence:'ActivityItem field1+4',
+    width:128,height:128
+  }}};
+ const mock=resolveRcItemTextRow(verified,{id:31300004},{locale:'ja',coverageAudit:audit});
+ assert.equal(mock.image.status,'VERIFIED');
+ assert.equal(mock.image.url,'./assets/steam/v1253/31300004.webp');
+ assert.equal(mock.image.alt,'小さな闇のトゲ');
+ assert.equal(mock.textFallback.required,false);
+ assert.equal(mock.fullItemImageReleaseAccepted,false); // One mock path never clears 244 coverage gate.
+ assert.equal(resolveRcItemTextRow(empty,{id:31300004},{coverageAudit:audit}).image.url,null);
 });
