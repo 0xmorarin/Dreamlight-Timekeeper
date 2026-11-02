@@ -16,4 +16,14 @@ function existingAssets(){
   };walk(root);
  }};
 }
-export default defineConfig({plugins:[sveltekit(),existingAssets()]});
+function workerGzipNeutralMime(){
+ return {name:'timekeeper-worker-gzip-static-asset-compat',enforce:'pre' as const,
+  transform(code:string,id:string){
+   if(!id.includes('/src/worker.mjs'))return;
+   const original="../data/item-names-v1250.json.gz";
+   if(!code.includes(original))throw Error('Product Worker item data URL changed; inspect migration');
+   return code.replace(original,"../data/item-names-v1250.json.bin");
+  }
+ };
+}
+export default defineConfig({plugins:[workerGzipNeutralMime(),sveltekit(),existingAssets()]});
