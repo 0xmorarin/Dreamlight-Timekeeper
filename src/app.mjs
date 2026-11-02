@@ -172,12 +172,14 @@ function renderPlan(){
  root.append(make('strong','draft-plan-title',v.count?t('planCount',{n:v.count}):t('planEmpty')));
  const rowsByPointer=new Map(state.snapshot.rows.map(r=>[r.pointer,r]));
  const preflightCodes=new Map((state.preflight?.rows||[]).map(r=>[r.pointer,r.code]));
+ const compatibilityCodes=new Map((state.preflight?.compatibility?.rows||[]).map(r=>[r.pointer,r.code]));
  for(const change of v.entries.slice(0,8)){
   const el=make('div','draft-plan-item');
   const row=rowsByPointer.get(change.pointer);
   el.append(make('strong','',row?recordTitle(row):change.pointer),
    make('span','',fmt(change.originalTime)+' → '+fmt(change.targetTime)));
   if(preflightCodes.has(change.pointer))el.append(make('span','draft-plan-check',t('preflightRow',{code:preflightCodes.get(change.pointer)})));
+  if(compatibilityCodes.has(change.pointer))el.append(make('span','draft-plan-check',t('compatibilityRow',{code:compatibilityCodes.get(change.pointer)})));
   root.append(el);
  }
  if(v.count>8)root.append(make('p','caption',t('planMore',{n:v.count-8})));
@@ -186,6 +188,9 @@ function renderPlan(){
  else if(audit)root.append(make('p','draft-plan-note',t('preflightSummary',{
   observed:audit.structuralShapeObserved,held:audit.heldForReview,rejected:audit.rejected
  })));
+ const research=state.preflight?.compatibility?.summary;
+ if(research&&!state.planPending)root.append(make('p','draft-plan-note',
+  t('compatibilitySummary',{candidates:research.researchCandidate,drift:research.versionReview,excluded:research.excluded})));
  root.append(make('p','draft-plan-note',t('planReadOnly')));
 }
 function renderDetails(){
@@ -222,7 +227,7 @@ async function refreshPreflight(){
   const response=await request('preflight',{sessionId,entries});
   if(seq!==preflightSequence||sessionId!==state.sessionId)return;
   if(response.sessionId!==sessionId)throw new Error('Preflight session changed.');
-  state.preflight=response.report;
+  state.preflight={...response.report,compatibility:response.compatibility};
  }catch(err){
   if(seq===preflightSequence&&sessionId===state.sessionId)
    message(t('preflightFailed',{reason:err.message}),true);
