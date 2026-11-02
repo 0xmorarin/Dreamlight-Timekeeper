@@ -61,6 +61,59 @@ const NATIVE=Object.freeze({
     directRescheduleCall:false,indirectRescheduleViaDispatcherVerified:false,
     pickupOutcomeVerified:false,saveWriteVerified:false
   }),
+  gridStateReadDisambiguation:Object.freeze({
+    method:'ItemSpawning.Execute',
+    accessorCallRVA:'0x057BC5BC',
+    accessorTargetRVA:'0x04E66530',
+    nextLoadRVA:'0x057BC5C4',
+    nextLoadOpcode:'0xF9401420',
+    nextLoadSemantic:'LDR X20,[X0,#0x28]',
+    amountWithStateType:'Definitions.Items.AmountWithState',
+    amountFieldOffset:'0x18',
+    stateFieldOffset:'0x20',
+    assignedPlayerFieldOffset:'0x28',
+    observedSubfield:'AssignedPlayer',
+    observedIsAmountField:false,
+    provesSceneItemCount:false,
+    objectCountViaIndirectDispatchResolved:false
+  }),
+  diffGridObjectCountBoundary:Object.freeze({
+    concreteType:'Meta.Grids.DiffGrid',
+    objectCountEntryRVA:'0x04E8DA90',
+    predicateCountCoreRVA:'0x04E8DAA0',
+    defaultGridFieldOffset:'0x58',
+    modifiedObjectsFieldOffset:'0x40',
+    removedObjectsFieldOffset:'0x48',
+    nextGridObjectIdFieldOffset:'0x50',
+    defaultGridLoadRVA:'0x04E8DBA8',
+    removedObjectsLoadRVA:'0x04E8DBE8',
+    baseCountReadRVA:'0x04E8DBF8',
+    removedCountReadRVA:'0x04E8DBFC',
+    baseMinusRemovedRVA:'0x04E8DC00',
+    modifiedObjectsLoadRVA:'0x04E8DC08',
+    conditionalModifiedCountIncrementRVA:'0x04E8DF04',
+    stage:'STATIC_ONLY',
+    countOnlyModifiedObjectsIsValid:false,
+    defaultObjectMayBeFilteredByRemovedObjects:true,
+    directlyReachedFromW1ExecuteVerified:false,
+    W1IndirectObjectCountDispatchResolved:false,
+    liveAreaPopulationVerified:false
+  }),
+  gridConsumerDirectCallScan:Object.freeze({
+    scope:'Four checked v1.25.3 Execute instruction windows through immediate completion paths',
+    directDiffGridOrGridObjectCountCalls:0,
+    indirectBLRSeen:Object.freeze({ItemSpawning:33,WildCropsSpawningInVillage:12,
+      FlowerSpawningInVillage:10,FishSpawningInVillage:0}),
+    indirectInterfaceCountCallsResolved:false,
+    zeroDirectCallsProvesNoCountChecks:false,
+    directCodeDoesNotProveDisappearanceOfSpawnedObjects:true
+  }),
+  sourceIdentityWitnesses:Object.freeze([
+    Object.freeze({eventId:2010000003,sourceName:'NightThornSpawningVillage!UrbanNightThornSpawn',hint:'ItemSpawning',serializedVariantConfirmed:false,concreteGridObjectIDConfirmed:false}),
+    Object.freeze({eventId:2010000021,sourceName:'Wood!Wetland_Softwood',hint:'ItemSpawning',serializedVariantConfirmed:false,concreteGridObjectIDConfirmed:false}),
+    Object.freeze({eventId:2010400001,sourceName:'UrbanWildCropSpawn',hint:'WildCropsSpawningInVillage',serializedVariantConfirmed:false,concreteGridObjectIDConfirmed:false}),
+    Object.freeze({eventId:2010500008,sourceName:'UrbanDandelionYellow',hint:'FlowerSpawningInVillage',serializedVariantConfirmed:false,concreteGridObjectIDConfirmed:false})
+  ]),
   w1GenerationConsumers:Object.freeze({
     ItemSpawning:Object.freeze({
       executeRVA:'0x057B9BC0',
