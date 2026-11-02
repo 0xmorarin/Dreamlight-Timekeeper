@@ -58,10 +58,13 @@ export async function auditSveltekitBuild(root,{sourceRoot=process.cwd()}={}){
    const index=workerAssets.indexOf(rule);
    if(seenWorkerAssets.has(index))throw Error('DUPLICATE_WORKER_DATA:'+path);
    seenWorkerAssets.add(index);
-   if(index===2){
-    const original=await readFile(join(sourceRoot,'data/item-names-v1250.json.gz'));
-    if(!original.equals(bytes))throw Error('WORKER_GZIP_MISMATCH');
-   }
+   const sourceName=[
+    'data/events-v1253.json',
+    'data/timing-review-rules-v1253.json',
+    'data/item-names-v1250.json.gz'
+   ][index];
+   const original=await readFile(join(sourceRoot,sourceName));
+   if(!original.equals(bytes))throw Error('WORKER_DATA_SOURCE_MISMATCH:'+path);
   }
   result.push({path,bytes:bytes.length,sha256:checksum,
    class:isIcon?'OWNER_ORIGINAL_PROVISIONAL_SVG':isNotice?'INFORMATIONAL_NOTICE':
