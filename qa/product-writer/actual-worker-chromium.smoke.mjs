@@ -187,8 +187,8 @@ try{
  // Direct native Worker command negatives on separately created browser Worker;
  // bypasses UI to prove product Worker does NOT trust forged UI-origin review.
  const cases=await page.evaluate(async ({buffer,comment,old})=>{
-  const results=[];
-  const run=async (input,selectedSchema=626)=>{
+  const run=async input=>{
+   const results=[];
    const worker=new Worker('/src/worker.mjs',{type:'module'});
    let n=0;const send=(type,payload={})=>new Promise((resolve,reject)=>{
     const id=++n;const onMessage=e=>{
