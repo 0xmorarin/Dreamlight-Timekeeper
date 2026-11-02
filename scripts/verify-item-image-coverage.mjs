@@ -103,8 +103,10 @@ if(audit?.evidence!=='FRAMED_ITEMLIST_PROTOBUF_THREE_SOURCE_DIRECT_READ_ONLY'||
   audit.commonGuid!==defaultGuid||audit.commonGuidCountInGaps!==81||
   audit.otherGuidCountInGaps!==25||audit.commonGuidOccurrencesInCompleteThreeStreams!==1798||
   audit.distinctSourceIconAddressGuidsInGaps!==25||
-  audit.sourceGuidOnly!==true||audit.spriteTextureProof!==3||
-  audit.privatePrototypeRgbaMatched!==3||audit.privatePrototypeWebpBytes!==827014||
+  audit.sourceGuidOnly!==true||audit.spriteTextureProof!==7||
+  audit.privatePrototypeRgbaMatched!==7||audit.privatePrototypeWebpBytes!==1101746||
+  audit.additionalFourEvidenceSha256!=='7b10a20060e25bcc38821b86dfba38f55a7840d1954f53cf187a3a37dd10a710'||
+  audit.remainingUnverifiedSpriteTexture!==99||audit.privatePixelsNotPublished!==true||
   audit.privatePixelEvidenceJsonSha256!=='59e2e920570f83812210f4eebcf2013935322ed21dcf43dae4c8eaba48b5c0b8'||
   audit.publicImageProof!==0||audit.rights!=='NOT_ESTABLISHED')
  fail('unreviewed 106-gap source definition evidence promotion or count drift');
@@ -113,7 +115,11 @@ let activity=0,furniture=0,companion=0,shared=0,specific=0;
 const reviewedProto=new Map([
  [30000072,['202f205f8ad0fd94daddf84fe6862586','acb7b4da1b360e37a9dc7b1b0781199d64c5269a37524335c68f4050e89161b7','17931729342756677081','18223675087384405465','625c099f45597453abc802a65f85d24d849e9c22d4ab5aee6b6cea6faed15f47','de221ff74dd28451ef580aad2da3f11bbbd10759ce81658d28012c212f0b662c',42492]],
  [31400000,['c2d8a0bf85476b545b2a322f99c2bcff','15056b25a79bf546131625d3dc87c50bbb56b153dee5e1af5f2d7a40d5718cc9','12235514117036361459','3735864404189103859','4cc6cc0b77b017a41c0ecec80db924fe915225b00d9df17fd895edab9662b529','8b0cfba58f29ea9b4d489c36e0293591a0aaa51fd0f6537a80e19b57f98f6266',396534]],
- [31400039,['ff56d467e029f7643ba98059c63e2332','15056b25a79bf546131625d3dc87c50bbb56b153dee5e1af5f2d7a40d5718cc9','5390452463298091721','8430391546967694025','7401fca7a415ba7736324c3d101e3f1ff100b61ef53c9878f864d4e13f5afc6e','93a1399ba7f0fb2db3ca72684f4d8a9308d9edac2035eef56e6f8a66a61388be',387988]]
+ [31400039,['ff56d467e029f7643ba98059c63e2332','15056b25a79bf546131625d3dc87c50bbb56b153dee5e1af5f2d7a40d5718cc9','5390452463298091721','8430391546967694025','7401fca7a415ba7736324c3d101e3f1ff100b61ef53c9878f864d4e13f5afc6e','93a1399ba7f0fb2db3ca72684f4d8a9308d9edac2035eef56e6f8a66a61388be',387988]],
+ [31300003,['838a1cf8fac848d46b1f2b5843326baf','a30f6f48634f9fbf11123528054c14ca5bdc7b0392fd546988bdc38d603a24fa','14966761252799059766','11691139849580189494','a772a2a79332d347333eaffd354f55931837682fe0db9a579776b4390835136f','9113fb9e1f836daf51ccdaf9a46ddae16ea9de82a546048a31ca65fc87aea209',89876]],
+ [31300083,['eb3483344601e374480bce50a60de07c','a30f6f48634f9fbf11123528054c14ca5bdc7b0392fd546988bdc38d603a24fa','4121661351448327022','15645414128663311214','53cd9e456b7db39e12ea207966831fa08779087eb93eebbf1caa391b65e05815','7c71d09f30a4f20cf09006b0b0283c495f64237818f31db60622959aa589021f',98158]],
+ [31300128,['6a16e4ccb94256f4a8c808f189cb4c1f','a30f6f48634f9fbf11123528054c14ca5bdc7b0392fd546988bdc38d603a24fa','13521612063694381670','9812015709117080166','6a04e61ef03fa9b6d0fb99b57e571eee5e22f23961bec0cc5170ec82a4acdad4','9ca5e8a0e19ecb8ebe5a22aaaa3aa8030ee2c794be00fb62239a507cf9191692',50486]],
+ [31300210,['042b02d3a1339664f917f00df79d0bee','a30f6f48634f9fbf11123528054c14ca5bdc7b0392fd546988bdc38d603a24fa','5506874613869679538','16880184784457667506','0faa2fa8246a473c39c1f78c70d87f9831a5c51fa689ec7d49a30d0e3f820e71','a3cf3763cb2e958adf30df6b2ec4ccdea2d50a08f88e9ebd0aee33dfed355c8f',36212]]
 ]);
 for(const row of deficit){
  const x=row.definitionAudit,expected=reviewedProto.get(row.itemId);
@@ -145,4 +151,27 @@ for(const row of deficit){
 if(deficit.length!==106||activity!==35||furniture!==52||companion!==19||
    shared!==81||specific!==25||exceptionalGuid.size!==25)
  fail('ItemID gap source family census changed');
-console.log('Gap typed source PASS: 106/106 ItemID definitions (Activity35/Furniture52/Companion19), 81 common GUID; private Sprite/Texture 3, published WebP 0');
+
+const readOnly=pinned.readOnlyResolutionContract;
+if(readOnly?.schema!=='timekeeper.item-image-resolution.v1'||
+ JSON.stringify(readOnly.allowedStatuses)!==JSON.stringify(['VERIFIED','MISSING','AMBIGUOUS'])||
+ readOnly.recurringTotal!==244||readOnly.verifiedPublished!==0||
+ readOnly.ambiguousWithoutUrl!==83||readOnly.missingWithoutUrl!==161||
+ readOnly.privatePixelProofsNotPublished!==7||readOnly.unverifiedSourceSpriteTargets!==99||
+ readOnly.unapprovedMediaPublishable!==false||
+ readOnly.additionalRealSaveVisibleItemIDs!=='UNKNOWN_SESSION_NOT_PROVIDED')
+ fail('read-only status and release permission drift');
+let ambiguous=0,missing=0;
+for(const row of pinned.items){
+ const r=row.readOnlyImageResolution;
+ const generic=row.definitionAudit?.declaredIconAddressGuid===defaultGuid;
+ const companionAlias=row.itemId===120200013||row.itemId===120200016;
+ const reason=generic?'SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS':
+  companionAlias?'TWO_ITEMIDS_SHARE_UNVERIFIED_COMPANION_ICON_ADDRESS':'NO_APPROVED_PACKAGED_ITEM_IMAGE';
+ const state=(generic||companionAlias)?'AMBIGUOUS':'MISSING';
+ if(r?.status!==state||r.reason!==reason||r.url!==null)fail('unreviewed read-only ItemID mapping '+row.itemId);
+ if(state==='AMBIGUOUS')ambiguous++;else missing++;
+}
+if(ambiguous!==83||missing!==161)fail('image resolution status counts drift');
+
+console.log('Gap typed source PASS: 106/106 ItemID definitions (Activity35/Furniture52/Companion19), 81 common GUID; private Sprite/Texture 7, 99 source unresolved, published WebP 0');
