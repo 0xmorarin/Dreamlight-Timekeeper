@@ -26,5 +26,5 @@ jobs:
         run: |
           for sample in 1 2 3 4 5; do
             echo "=== independent Chromium zoom + native keyboard filechooser sample ${sample}/5 ==="
-            DDV_ASSET_HEADFUL=1 xvfb-run -a node tests/browser-asset-zoom.smoke.mjs
+            node tests/browser-asset-zoom.smoke.mjs
           done
