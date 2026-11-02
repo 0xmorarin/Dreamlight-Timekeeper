@@ -19,7 +19,7 @@ test('Round3 combined app has both semantic icons and Session/backup/preflight, 
   /resolveGameUiIcon\(manifest,key\)/,
   /refreshActionIcons\(\)/,
   /decorateWithIcon\(b,'game_ui','tab\.'\+tab\)/,
-  /img\.setAttribute\('aria-hidden','true'\)/,
+  /image\.setAttribute\('aria-hidden','true'\)/,
   /Promise\.all\(definitions\.map/,
  ])assert.match(app,pattern);
  assert.match(worker,/type:'backup',sessionId:activeSessionId/);
