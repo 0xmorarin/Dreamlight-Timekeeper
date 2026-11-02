@@ -1,0 +1,83 @@
+name: 05 QR Release Notice Only Fixed HEAD Acceptance
+
+on:
+  pull_request:
+    paths:
+      - 'qa/release-notice/**'
+      - '.github/workflows/qa-release-notice-only.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  notice-static-and-immutable-worker:
+    name: Verify exact three blobs and notice-only Node DOM contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: qa-source
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: f6af69ec88d59336040737cd449abef586926073
+          fetch-depth: 2
+          path: target
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Parent and exact changed-file/Blob fingerprint gates
+        run: |
+          cd target
+          test "$(git rev-parse HEAD)" = "f6af69ec88d59336040737cd449abef586926073"
+          test "$(git rev-parse HEAD^)" = "0917eb4578fe09c51e55572ee1366406ecf3b90d"
+          git diff --name-only HEAD^ HEAD > /tmp/qr-notice-diff
+          printf '%s\n' assets/app/release-notice.css index.html tests/ui.test.mjs > /tmp/qr-notice-expected
+          diff -u /tmp/qr-notice-expected /tmp/qr-notice-diff
+          test "$(git rev-parse HEAD:assets/app/release-notice.css)" = "3ca53aeef0618e65106fcc0c7614105ab8bdde04"
+          test "$(git rev-parse HEAD:index.html)" = "891bc2b874cc0ad3c30b52588b7cdd4f22891f8a"
+          test "$(git rev-parse HEAD:tests/ui.test.mjs)" = "b9f8ea1074f0ea3e9d2c1e948657d8aa25283a08"
+          git diff --quiet HEAD^ HEAD -- src/worker.mjs src/app.mjs src/core src/w1-minimal-write-contract.mjs src/timing-native-semantics.mjs src/ui-verified-pair-downloads.mjs src/ui-separate-downloads.mjs
+          cp ../qa-source/qa/release-notice/notice-contract.test.mjs tests/qa-release-notice-contract.test.mjs
+      - name: Run new independent notice checks and only new notice Owner UI tests
+        run: |
+          cd target
+          node --test tests/qa-release-notice-contract.test.mjs tests/ui.test.mjs
+
+  notice-actual-chromium-zoom-mobile:
+    name: Actual Chromium native 200 percent zoom, mobile, keyboard, bilingual ARIA
+    runs-on: ubuntu-24.04
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: qa-source
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: f6af69ec88d59336040737cd449abef586926073
+          path: target
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Stage only new independent notice Chromium script, no Writer tests
+        run: |
+          test "$(git -C target rev-parse HEAD)" = "f6af69ec88d59336040737cd449abef586926073"
+          cp qa-source/qa/release-notice/notice-chromium.smoke.mjs target/tests/qa-release-notice-chromium.smoke.mjs
+          cd target
+          node --check tests/qa-release-notice-chromium.smoke.mjs
+      - name: Install Chromium
+        run: |
+          cd target
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Run ONLY notice semantics and responsive UX; never re-run existing Writer QA
+        run: |
+          cd target
+          node tests/qa-release-notice-chromium.smoke.mjs
