@@ -15,7 +15,7 @@ const read=async name=>JSON.parse(await readFile(new URL('../'+name,import.meta.
 const KEY=Buffer.from('62357168683873614a38556c444a557a545a5864325467366d626f3857386e35','hex');
 const source=()=>({GameInfo:{Version:626},Player:{Name:'QR Synthetic'},World:{RecurringEvents:{
  '0':{ItemSpawning:{RecurringEventItemID:2010000021,NextOccurrence:'2126-08-20T00:00:00Z',
-    Unrecognized:{array:[null,'001',false]}}}},Other:{list:[{key:'2'},null,'keep']}});
+    Unrecognized:{array:[null,'001',false]}}}},Other:{list:[{key:'2'},null,'keep']}}});
 function transform(original,mutate){
  const dec=createDecipheriv('aes-256-ecb',KEY,null);
  const zip=Buffer.concat([dec.update(original),dec.final()]);
