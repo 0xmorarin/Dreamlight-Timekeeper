@@ -1,3 +1,4 @@
+import {parseSafeJson} from './safe-edit-session.mjs';
 const MAX_INPUT_BYTES = 128 * 1024 * 1024;
 const MAX_ARCHIVE_BYTES = 256 * 1024 * 1024;
 const MAX_PROFILE_BYTES = 128 * 1024 * 1024;
@@ -105,10 +106,14 @@ function checkedVersion(value) {
 function parseRequiredProfileJson(text) {
     let root;
     try {
-        root = JSON.parse(text);
+        root = parseSafeJson(text);
     }
-    catch {
-        throw new Error('PROFILE_JSON_INVALID');
+    catch (error) {
+        if (error instanceof SyntaxError)
+            throw new Error('PROFILE_JSON_INVALID');
+        // Preserve strict parser diagnostics for duplicate keys, unsafe numeric
+        // tokens, and depth limits: every codec entrypoint enforces them.
+        throw error;
     }
     if (!asObject(root) || !asObject(root.GameInfo))
         throw new Error('PROFILE_ROOT_INVALID');
