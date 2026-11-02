@@ -1,3 +1,5 @@
+import {parseSafeJson} from './safe-edit-session.mjs';
+import {auditP1gEnvelope} from './p1g-envelope-audit.mjs';
 const MAX_INPUT_BYTES = 128 * 1024 * 1024;
 const MAX_ARCHIVE_BYTES = 256 * 1024 * 1024;
 const MAX_PROFILE_BYTES = 128 * 1024 * 1024;
@@ -61,10 +63,33 @@ export const p1gPackagedProfileCodec = Object.freeze({
         if (metadata.zip.archiveComment.length !== 0) {
             throw new Error('ZIP_UNSUPPORTED_ARCHIVE_COMMENT_FOR_MODIFIED_ENCODE');
         }
+        // Only a fully observed simple source envelope can enter this
+        // synthetic/research codec repack path. This is a rejection gate,
+        // never a Writer capability or modified-user-save authorization.
+        const envelope = auditP1gEnvelope({format: 'packaged', metadata});
+        if (!envelope.repackageShapeObserved)
+            throw new Error('ZIP_SOURCE_ENVELOPE_REBUILD_UNVERIFIED');
+        // Snapshot each audited ZIP field before the first asynchronous deflate
+        // await. The caller still owns the metadata object and must not be able
+        // to change the representation used by the synthetic repacker mid-flight.
+        const observedEntry = metadata.zip.profileEntry;
+        const stableEntry = Object.freeze({
+            compressType: observedEntry.compressType,
+            flagBits: observedEntry.flagBits,
+            dosTime: observedEntry.dosTime,
+            dosDate: observedEntry.dosDate,
+            extractVersion: observedEntry.extractVersion,
+            createSystem: observedEntry.createSystem,
+            createVersion: observedEntry.createVersion,
+            internalAttr: observedEntry.internalAttr,
+            externalAttr: observedEntry.externalAttr,
+            extra: observedEntry.extra.slice(),
+            comment: observedEntry.comment.slice()
+        });
         const profileBytes = encoder.encode(text);
         if (profileBytes.length > MAX_PROFILE_BYTES)
             throw new Error('PROFILE_ENTRY_TOO_LARGE');
-        const archive = await buildSingleProfileZip(profileBytes, metadata.zip.profileEntry);
+        const archive = await buildSingleProfileZip(profileBytes, stableEntry);
         const encrypted = encryptAes256EcbPkcs7(archive);
         const reopened = await this.loadProfile(encrypted);
         const expectedRoot = JSON.parse(text);
@@ -105,10 +130,14 @@ function checkedVersion(value) {
 function parseRequiredProfileJson(text) {
     let root;
     try {
-        root = JSON.parse(text);
+        root = parseSafeJson(text);
     }
-    catch {
-        throw new Error('PROFILE_JSON_INVALID');
+    catch (error) {
+        if (error instanceof SyntaxError)
+            throw new Error('PROFILE_JSON_INVALID');
+        // Preserve strict parser diagnostics for duplicate keys, unsafe numeric
+        // tokens, and depth limits: every codec entrypoint enforces them.
+        throw error;
     }
     if (!asObject(root) || !asObject(root.GameInfo))
         throw new Error('PROFILE_ROOT_INVALID');
@@ -389,7 +418,8 @@ async function extractProfileFromZip(archive) {
         throw new Error('ZIP_LOCAL_PROFILE_NAME_MISMATCH');
     const localExtra = archive.slice(local + 30 + localNameLen, dataStart);
     const compressed = archive.slice(dataStart, dataEnd);
-    const profileBytes = entry.method === ZIP_METHOD_STORE ? compressed : await transformDeflate(compressed, false);
+    const profileBytes = entry.method === ZIP_METHOD_STORE ? compressed :
+        await transformDeflate(compressed, false, entry.uncompressedSize);
     if (profileBytes.length !== entry.uncompressedSize || profileBytes.length > MAX_PROFILE_BYTES)
         throw new Error('PROFILE_ENTRY_SIZE_MISMATCH');
     if (crc32(profileBytes) !== entry.crc)
@@ -516,7 +546,7 @@ function findEocd(bytes, view) {
     }
     throw new Error('ZIP_ARCHIVE_INVALID');
 }
-async function transformDeflate(data, compress) {
+async function transformDeflate(data, compress, maxOutputBytes = compress ? MAX_ARCHIVE_BYTES : MAX_PROFILE_BYTES) {
     const Ctor = compress ? globalThis.CompressionStream : globalThis.DecompressionStream;
     if (typeof Ctor !== 'function')
         throw new Error(compress ? 'COMPRESSION_STREAM_UNAVAILABLE' : 'DECOMPRESSION_STREAM_UNAVAILABLE');
@@ -527,10 +557,38 @@ async function transformDeflate(data, compress) {
     catch {
         throw new Error('DEFLATE_RAW_UNSUPPORTED');
     }
+    const hardLimit = compress ? MAX_ARCHIVE_BYTES : MAX_PROFILE_BYTES;
+    if (!Number.isSafeInteger(maxOutputBytes) || maxOutputBytes < 0 || maxOutputBytes > hardLimit)
+        throw new Error('ZIP_STREAM_OUTPUT_BOUND_INVALID');
+    // Reject zip bombs as chunks arrive, BEFORE building an unbounded arrayBuffer.
+    // On read, the central ZIP uncompressed size is an additional hard ceiling.
     const output = new Blob([data]).stream().pipeThrough(stream);
-    const bytes = new Uint8Array(await new Response(output).arrayBuffer());
-    if (bytes.length > (compress ? MAX_ARCHIVE_BYTES : MAX_PROFILE_BYTES))
-        throw new Error(compress ? 'COMPRESSED_DATA_TOO_LARGE' : 'PROFILE_ENTRY_TOO_LARGE');
+    const reader = output.getReader();
+    const chunks = [];
+    let length = 0;
+    try {
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            if (!(value instanceof Uint8Array) || value.byteLength > maxOutputBytes - length)
+                throw new Error(compress ? 'COMPRESSED_DATA_TOO_LARGE' : 'PROFILE_ENTRY_TOO_LARGE');
+            length += value.byteLength;
+            chunks.push(value);
+        }
+    }
+    catch (error) {
+        await reader.cancel().catch(() => {});
+        throw error;
+    }
+    finally {
+        reader.releaseLock();
+    }
+    const bytes = new Uint8Array(length);
+    let offset = 0;
+    for (const chunk of chunks) {
+        bytes.set(chunk, offset);
+        offset += chunk.byteLength;
+    }
     return bytes;
 }
 function requireUint8(value, label) {

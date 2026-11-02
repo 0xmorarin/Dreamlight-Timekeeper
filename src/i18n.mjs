@@ -15,6 +15,8 @@ Object.assign(es,{tab_spawn:'Apariciones',tab_resources:'Recolección y producci
 Object.assign(it,{tab_spawn:'Apparizioni',tab_resources:'Raccolta e produzione',tab_shops:'Negozi e bancarelle',tab_daily:'Giornalieri e altro'});
 Object.assign(pt,{tab_spawn:'Aparições',tab_resources:'Coleta e produção',tab_shops:'Lojas e barracas',tab_daily:'Diário e outros'});
 Object.assign(zh,{tab_spawn:'生成事件',tab_resources:'采集与生产',tab_shops:'商店与摊位',tab_daily:'每日与其他'});
+Object.assign(en,{pairConfirmBuild:'I confirm this is a Nintendo Switch v1.25.3 save (BID 9A239D3DB569756D).',pairPrepare:'Verify and prepare edited P1G copy',pairReady:'Edited P1G copy verified. Download the original first.',pairPrepareFailed:'Edited copy not prepared: {reason}',pairWarning:'Download request is not confirmation that the file was saved. Your browser may block a second download.',pairBoth:'Request original, then edited copy',pairRetryOriginal:'Retry original',pairRetryEdited:'Retry edited copy',pairRequested:'Requested; save unconfirmed',pairBlocked:'Download request failed or blocked',pairNotAttempted:'Not attempted',pairBothStatus:'Original: {original}; edited: {edited}'});
+Object.assign(ja,{pairConfirmBuild:'このセーブがNintendo Switch版DDV v1.25.3（BID 9A239D3DB569756D）由来であることを確認しました。',pairPrepare:'編集済みP1Gコピーを検証・準備',pairReady:'編集済みコピーを検証しました。原本を先にダウンロードしてください。',pairPrepareFailed:'編集済みコピーの準備に失敗：{reason}',pairWarning:'ダウンロード要求は保存完了を証明しません。2件目はブラウザーに拒否される場合があります。',pairBoth:'原本→編集済みコピーの順に要求',pairRetryOriginal:'原本を個別再試行',pairRetryEdited:'編集済みコピーを個別再試行',pairRequested:'要求済み・保存完了は未確認',pairBlocked:'ダウンロード要求が失敗または拒否されました',pairNotAttempted:'未試行',pairBothStatus:'原本：{original}／編集済み：{edited}'});
 const dictionaries={'en-US':en,'ja':ja,'de':de,'fr':fr,'es':es,'it':it,'pt-BR':pt,'zh-CN':zh};
 export function resolveLocale(preferred=[]){const list=Array.isArray(preferred)?preferred:[preferred];for(const choice of list){if(typeof choice!=='string')continue;const v=choice.toLowerCase();if(v.startsWith('zh-hant'))continue;if(v.startsWith('zh'))return 'zh-CN';if(v.startsWith('pt'))return 'pt-BR';if(v.startsWith('en'))return 'en-US';for(const key of ['de','es','fr','it','ja'])if(v===key||v.startsWith(key+'-'))return key;}return 'en-US';}
 export function initialLocale(nav=globalThis.navigator,store=undefined){let saved;try{saved=(store??globalThis.localStorage)?.getItem('dreamlight-timekeeper-locale')}catch{}return saved&&SUPPORTED_LOCALES.includes(saved)?saved:resolveLocale(nav?.languages?.length?nav.languages:[nav?.language]);}
@@ -24,4 +26,16 @@ export function categoryName(locale,raw){if(locale==='ja')return String(raw??'')
 const areas={'Urban':{en:'Plaza',ja:'広場'},'Meadow':{en:'Peaceful Meadow',ja:'平和の草原'},'Beach':{en:'Dazzle Beach',ja:'輝きの浜辺'},'Forest':{en:'Forest of Valor',ja:'勇気の森'},'Glade':{en:'Glade of Trust',ja:'信頼の湿地'},'Plateau':{en:'Sunlit Plateau',ja:'太陽の台地'},'Frosted':{en:'Frosted Heights',ja:'氷の高原'},'Forgotten':{en:'Forgotten Lands',ja:'忘却の地'}};
 export function areaName(locale,key){const entry=areas[key];if(!entry)return '';return locale==='ja'?entry.ja:entry.en;}
 export function localDate(value,locale='en-US',opts={}){if(!value)return translate(locale,'timeUnknown');const d=new Date(value);if(!Number.isFinite(d.getTime()))return translate(locale,'timeUnknown');return new Intl.DateTimeFormat(locale,{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',timeZoneName:'short',...opts}).format(d);}
-export function parseLocalDateTime(value){if(typeof value!=='string'||!/^\d{4}-\d\d-\d\dT\d\d:\d\d$/.test(value))return null;const d=new Date(value);if(!Number.isFinite(d.getTime()))return null;const f=n=>String(n).padStart(2,'0');if(`${d.getFullYear()}-${f(d.getMonth()+1)}-${f(d.getDate())}T${f(d.getHours())}:${f(d.getMinutes())}`!==value)return null;return d.toISOString();}
+export function parseLocalDateTime(value){
+ if(typeof value!=='string'||!/^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}$/.test(value))return null;
+ const d=new Date(value);
+ if(!Number.isFinite(d.getTime()))return null;
+ const f=n=>String(n).padStart(2,'0');
+ const wall=x=>`${x.getFullYear()}-${f(x.getMonth()+1)}-${f(x.getDate())}T${f(x.getHours())}:${f(x.getMinutes())}`;
+ if(wall(d)!==value)return null;
+ for(let minutes=15;minutes<=180;minutes+=15){
+  if(wall(new Date(d.getTime()-minutes*60000))===value||wall(new Date(d.getTime()+minutes*60000))===value)
+   return null;
+ }
+ return d.toISOString();
+}

@@ -23,3 +23,19 @@
 .draft-plan-note{font-size:10px;color:#e1c49a;margin:8px 0 0}
 
 .draft-plan-check{font-size:10px;line-height:1.5;overflow-wrap:anywhere;color:#d8b78a}
+
+.semantic-icon{width:17px;height:17px;object-fit:contain;vertical-align:middle;flex:none;pointer-events:none}.tabs button:has(.semantic-icon){display:inline-flex;align-items:center;justify-content:center;flex-direction:row-reverse;gap:8px}.filter-list button .semantic-icon{width:15px;height:15px}.workspace-actions button .semantic-icon,.detail-bottom button .semantic-icon,.welcome button .semantic-icon{margin-left:8px}
+
+.semantic-icon{width:20px;height:20px;min-width:20px;object-fit:contain;vertical-align:middle;flex:none;pointer-events:none}.primary .semantic-icon{filter:brightness(0) saturate(100%)}.subtle,.filter-list button{min-height:44px}.tabs button{min-height:48px}.record-timing .semantic-icon{width:18px;height:18px;min-width:18px}
+
+.list-controls{position:relative}.list-controls>.semantic-icon{position:absolute;left:12px;top:12px;z-index:1;width:20px;height:20px;min-width:20px}.list-controls>#filter-input{padding-left:43px}.technical summary,.time-config label[for="time-mode"]{display:flex;align-items:center;gap:9px}.technical summary>.semantic-icon{width:18px;height:18px;min-width:18px}.filter-list button>.semantic-icon{width:22px;height:22px;min-width:22px}
+
+/* 03 WEB verified P1G copy-only controls; original source is immutable. */
+.verified-downloads{display:grid;gap:8px;margin-top:10px;padding:12px;border:1px solid #38545a;border-radius:8px}
+.verified-downloads[hidden]{display:none}
+.verified-downloads .safety-note{font-size:11px;line-height:1.6}
+.verified-download-retries{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.verified-downloads button{min-height:36px;white-space:normal}
+.confirm-build{display:flex;align-items:flex-start;gap:8px;font-size:11px;line-height:1.5}
+.confirm-build input{flex:none;margin-top:3px}
+#verified-pair-status{font-size:11px;line-height:1.6;color:#d8cbb3;overflow-wrap:anywhere;margin:0}

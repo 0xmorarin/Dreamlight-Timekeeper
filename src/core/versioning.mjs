@@ -21,6 +21,19 @@ export const BuildMatchStatus = Object.freeze({
 });
 export const CURRENT_V125_BUILD_CONTRACTS = Object.freeze([
     Object.freeze({
+        id: 'ddv-switch-v1.25.3-9A239D3DB569756D-v626',
+        platform: PlatformFamily.Switch,
+        gameVersion: '1.25.3',
+        profileGameInfoVersion: 626,
+        buildIdentity: Object.freeze({
+            kind: BuildIdentityKind.SwitchBid,
+            value: '9A239D3DB569756D'
+        }),
+        codecContract: 'p1g-v0',
+        // Copy-only eligibility is independent of the prohibited in-place Writer.
+        persistentWriteAuthorized: false
+    }),
+    Object.freeze({
         id: 'ddv-switch-v1.25.0-52BD625D9B4E0053-v624',
         platform: PlatformFamily.Switch,
         gameVersion: '1.25.0',

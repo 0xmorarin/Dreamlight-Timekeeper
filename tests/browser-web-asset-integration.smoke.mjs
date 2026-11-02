@@ -1,0 +1,86 @@
+import assert from 'node:assert/strict';
+import {spawn} from 'node:child_process';
+import {once} from 'node:events';
+import {createServer} from 'node:net';
+import {readFile,mkdtemp,rm} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {chromium} from 'playwright';
+
+const root=fileURLToPath(new URL('../',import.meta.url));
+const temporary=await mkdtemp(join(tmpdir(),'timekeeper-web-asset-'));
+const probe=createServer();probe.listen(0,'127.0.0.1');await once(probe,'listening');
+const port=probe.address().port;probe.close();await once(probe,'close');
+const site='http://127.0.0.1:'+port+'/';
+const server=spawn('python3',['-m','http.server',String(port),'--bind','127.0.0.1'],{cwd:root,stdio:'ignore'});
+let browser;
+const profile=JSON.stringify({GameInfo:{Version:626},Player:{Name:'Icon Contract Fixture'},
+ World:{RecurringEvents:{'0':{ItemSpawning:{RecurringEventItemID:2010000021,NextOccurrence:'2126-08-20T00:00:00Z'}}}}});
+try{
+ let ready=false;
+ for(let i=0;i<100;i++){
+  try{if((await fetch(site)).ok){ready=true;break;}}catch{}
+  await new Promise(resolve=>setTimeout(resolve,125));
+ }
+ assert(ready,'Site did not start.');
+ browser=await chromium.launch({headless:true,args:['--no-sandbox']});
+ const context=await browser.newContext({acceptDownloads:true,viewport:{width:1366,height:900},timezoneId:'Asia/Tokyo'});
+ const errors=[],page=await context.newPage();
+ page.on('pageerror',err=>errors.push(err.message));
+ await page.goto(site,{waitUntil:'domcontentloaded'});
+ await page.waitForFunction(()=>window.__dreamlightBooted===true);
+ const open=page.locator('#open-welcome');
+ const icon=open.locator('img.semantic-icon');
+ await icon.waitFor({state:'visible'});
+ assert.equal(await icon.evaluate(img=>img.complete&&img.naturalWidth===24&&img.alt===''&&img.getAttribute('aria-hidden')==='true'),true);
+ await open.focus();
+ const [chooser]=await Promise.all([page.waitForEvent('filechooser',{timeout:12000}),open.press('Enter')]);
+ await chooser.setFiles({name:'icon-contract.json',mimeType:'application/json',buffer:Buffer.from(profile)});
+ await page.locator('#workspace').waitFor({state:'visible'});
+ assert.equal(await page.locator('#tabs button').count(),4);
+ assert.equal(await page.locator('#download-backup img.semantic-icon').count(),1);
+ await page.locator('#records input[type="checkbox"]').first().check();
+ await page.locator('#stage-preview').click();
+ await page.locator('#undo-plan').click();
+ assert.equal(await page.locator('#redo-plan').isEnabled(),true);
+ await page.locator('#redo-plan').click();
+ const [download]=await Promise.all([page.waitForEvent('download'),page.locator('#download-backup').click()]);
+ const saved=join(temporary,'original.json');await download.saveAs(saved);
+ assert.equal(await readFile(saved,'utf8'),profile);
+ assert.equal(await page.locator('#export-edited').count(),0);
+ await page.selectOption('#workspace-language','ja');
+ assert.match(await page.locator('.readonly-flag').innerText(),/読取り専用/);
+ assert.equal(await page.locator('#download-backup img.semantic-icon').count(),1);
+ await page.setViewportSize({width:390,height:844});
+ assert.equal(await page.locator('#download-backup').isVisible(),true);
+ const fallback=await context.newPage();const failed=[];
+ await fallback.route('**/assets/**',route=>{failed.push(route.request().url());return route.abort();});
+ await fallback.route('**/data/app-ui-icons.json',route=>route.abort());
+ await fallback.route('**/data/steam-ui-icons-v1253.json',route=>route.abort());
+ const fallbackErrors=[];fallback.on('pageerror',e=>fallbackErrors.push(e.message));
+ await fallback.goto(site,{waitUntil:'domcontentloaded'});
+ await fallback.waitForFunction(()=>window.__dreamlightBooted===true);
+ await fallback.waitForTimeout(500);
+ assert.equal(await fallback.locator('#open-welcome img.semantic-icon').count(),0);
+ assert.match(await fallback.locator('#open-welcome').innerText(),/Open save|セーブを開く/);
+ await fallback.locator('#save-file').setInputFiles({name:'missing-icons.json',mimeType:'application/json',buffer:Buffer.from(profile)});
+ await fallback.locator('#workspace').waitFor({state:'visible'});
+ assert.equal(await fallback.locator('#tabs button').count(),4);
+ await fallback.locator('#records input[type="checkbox"]').first().check();
+ await fallback.selectOption('#time-mode','century');
+ assert.match(await fallback.locator('#preview').innerText(),/212[0-9]/);
+ await fallback.locator('#stage-preview').click();
+ await fallback.locator('#undo-plan').click();
+ assert.equal(await fallback.locator('#redo-plan').isEnabled(),true);
+ await fallback.locator('#redo-plan').click();
+ await fallback.locator('#clear-plan').click();
+ const [fallbackDownload]=await Promise.all([fallback.waitForEvent('download'),fallback.locator('#download-backup').click()]);
+ const savedFallback=join(temporary,'fallback.json');await fallbackDownload.saveAs(savedFallback);
+ assert.equal(await readFile(savedFallback,'utf8'),profile);
+ await fallback.locator('#open-again').focus();
+ assert.equal(await fallback.evaluate(()=>document.activeElement?.id),'open-again');
+ assert.deepEqual(fallbackErrors,[]);
+ assert.deepEqual(errors,[]);
+ console.log('WEB + ASSET synthetic integration PASS: validated icons, missing manifest/asset fallback, keyboard, backup bytes, four tabs, presets, Undo/Redo, 390px mobile.');
+}finally{if(browser)await browser.close();server.kill();await rm(temporary,{recursive:true,force:true});}

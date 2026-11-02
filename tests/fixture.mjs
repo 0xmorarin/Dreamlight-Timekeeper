@@ -1,4 +1,4 @@
-import { createCipheriv } from 'node:crypto';
+import { createCipheriv, createDecipheriv } from 'node:crypto';
 import { deflateRawSync } from 'node:zlib';
 const KEY = Buffer.from('62357168683873614A38556C444A557A545A5864325467366D626F3857386e35', 'hex');
 const name = Buffer.from('profile', 'utf8');
@@ -64,6 +64,23 @@ export function syntheticProfile(deviceType = 'DeviceType_Switch') {
         Opaque: { keep: { future: true, values: [1, 2, 3] } }
     };
 }
+
+/**
+ * Deliberately corrupt one permitted field of the synthetic test ZIP central
+ * header without reusing/exposing the fixture's encryption key in QA tests.
+ * offsets: CRC32=16, compressed size=20, uncompressed size=24.
+ */
+export function corruptSyntheticP1gCentralHeader(encrypted, fieldOffset) {
+    if (![16,20,24].includes(fieldOffset)) throw new Error('Invalid synthetic corruption field.');
+    const decrypt = createDecipheriv('aes-256-ecb', KEY, null);
+    const zip = Buffer.concat([decrypt.update(Buffer.from(encrypted)), decrypt.final()]);
+    const pos = zip.lastIndexOf(Buffer.from([0x50,0x4b,0x01,0x02]));
+    if (pos < 0 || pos + fieldOffset + 4 > zip.length) throw new Error('Missing synthetic central header.');
+    zip.writeUInt32LE((zip.readUInt32LE(pos + fieldOffset) + 1) >>> 0, pos + fieldOffset);
+    const encrypt = createCipheriv('aes-256-ecb', KEY, null);
+    return Buffer.concat([encrypt.update(zip), encrypt.final()]);
+}
+
 function crc32(data) {
     let c = 0xffffffff;
     for (const b of data) {

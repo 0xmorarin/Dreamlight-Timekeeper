@@ -6,6 +6,7 @@
 <meta name="color-scheme" content="dark">
 <title>Dreamlight Timekeeper</title>
 <link rel="stylesheet" href="./styles.css">
+<link rel="stylesheet" href="./assets/app/release-notice.css">
 </head>
 <body>
 <input id="save-file" type="file" hidden aria-label="Choose a save file">
@@ -15,7 +16,7 @@
     <div class="brand-mark" aria-hidden="true">✦</div>
     <h1>Dreamlight Timekeeper</h1>
     <div class="support">
-      <span class="support-title" data-i18n="official">Official support</span>
+      <span class="support-title">Version details / 対応バージョン</span>
       <span><span data-i18n="gameVersion">Game version</span>: v1.25.3</span>
       <span><span data-i18n="saveVersion">Save version</span>: 626</span>
       <span><span data-i18n="updated">Last updated</span>: 2026-11-01</span>
@@ -27,6 +28,10 @@
     <button id="open-welcome" class="primary large" type="button" data-i18n="openSave">Open save</button>
     <label class="welcome-language"><span data-i18n="language">Language</span> <select id="welcome-language" aria-label="Language"></select></label>
     <p id="welcome-status" class="status" role="status" aria-live="polite"></p>
+    <div class="release-notice" role="note" aria-label="Unofficial tool notice">
+      <p lang="en">Unofficial fan-made tool. Not affiliated with, sponsored, endorsed, or approved by Disney or Gameloft. Disney Dreamlight Valley and game-derived images, characters, logos, and other materials are the property of Disney, Gameloft, and their respective rights holders.</p>
+      <p lang="ja">非公式のファン制作ツールです。DisneyおよびGameloftとは提携・後援関係になく、承認・推奨も受けていません。『ディズニー ドリームライトバレー』およびゲーム由来の画像・キャラクター・ロゴ等の権利は、Disney、Gameloftおよび各権利者に帰属します。</p>
+    </div>
   </div>
 </section>
 <section id="workspace" class="workspace" aria-label="Timing records" hidden>
@@ -79,6 +84,23 @@
       <div class="detail-bottom">
         <p class="safety-note">Preview only. Changes to the save file are disabled.</p>
         <button id="download-backup" type="button" class="subtle backup" disabled data-i18n="backup">Save original backup</button>
+        <div class="release-notice" role="note" aria-label="Unofficial tool notice">
+      <p lang="en">Unofficial fan-made tool. Not affiliated with, sponsored, endorsed, or approved by Disney or Gameloft. Disney Dreamlight Valley and game-derived images, characters, logos, and other materials are the property of Disney, Gameloft, and their respective rights holders.</p>
+      <p lang="ja">非公式のファン制作ツールです。DisneyおよびGameloftとは提携・後援関係になく、承認・推奨も受けていません。『ディズニー ドリームライトバレー』およびゲーム由来の画像・キャラクター・ロゴ等の権利は、Disney、Gameloftおよび各権利者に帰属します。</p>
+    </div>
+        <section id="prepare-edited-panel" class="verified-downloads" hidden aria-label="Edited P1G copy preparation">
+          <label class="confirm-build"><input id="confirm-switch-build" type="checkbox"><span data-i18n="pairConfirmBuild">I confirm this is a Switch DDV v1.25.3 save, BID 9A239D3DB569756D</span></label>
+          <button id="prepare-edited" type="button" class="subtle" disabled data-i18n="pairPrepare">Verify and prepare edited P1G copy</button>
+        </section>
+        <section id="verified-pair-downloads" class="verified-downloads" hidden aria-label="Verified separate downloads">
+          <p class="safety-note" data-i18n="pairWarning">Download requests do not prove files were saved. Your browser might block the second.</p>
+          <button id="download-verified-both" type="button" class="subtle" disabled data-i18n="pairBoth">Request original, then edited copy</button>
+          <div class="verified-download-retries">
+            <button id="retry-verified-original" type="button" class="subtle" disabled data-i18n="pairRetryOriginal">Retry original</button>
+            <button id="retry-verified-edited" type="button" class="subtle" disabled data-i18n="pairRetryEdited">Retry edited copy</button>
+          </div>
+          <p id="verified-pair-status" role="status" aria-live="polite"></p>
+        </section>
       </div>
     </aside>
   </div>

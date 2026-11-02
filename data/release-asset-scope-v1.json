@@ -1,0 +1,158 @@
+{
+  "kind": "TIMEKEEPER_INITIAL_RELEASE_ASSET_SCOPE_V1",
+  "referenceHead": "f6af69ec88d59336040737cd449abef586926073",
+  "decision": "OWNER_00_CTRL_PENDING",
+  "permissionFromNotice": false,
+  "writerAuthorizationUnchanged": true,
+  "profiles": {
+    "current_repo_game_ui": {
+      "status": "EXISTING_REPOSITORY_FILES_NOT_RELEASE_LICENSE",
+      "gameUiWebpCount": 4,
+      "ownerSvgCount": 16,
+      "itemImageCount": 0,
+      "shipOriginalGameWebp": true
+    },
+    "owner_svg_text_only": {
+      "status": "CANDIDATE_NOT_SELECTED_OR_RELEASED",
+      "gameUiWebpCount": 0,
+      "ownerSvgCount": 16,
+      "itemImageCount": 0,
+      "shipOriginalGameWebp": false
+    }
+  },
+  "gameUi": [
+    {
+      "key": "skill.mining",
+      "path": "assets/steam/v1253/ui/skill/mining.webp",
+      "sha256": "dcc381b5480280bbd771fe6beea374993fd678b955ee605ddb9596bdea351197",
+      "rights": "NOT_ESTABLISHED",
+      "alreadyInRepo": true
+    },
+    {
+      "key": "status.warning",
+      "path": "assets/steam/v1253/ui/status/warning.webp",
+      "sha256": "d9ecb95ae3b5e7483f8a4d7ee1cf51ded8b86323aed3459a4806e6b9e482b70e",
+      "rights": "NOT_ESTABLISHED",
+      "alreadyInRepo": true
+    },
+    {
+      "key": "world.exp1",
+      "path": "assets/steam/v1253/ui/world/exp1.webp",
+      "sha256": "5fdfec6c047467a16b607f25a087b01263da151c48345fd0e21940de99d0e735",
+      "rights": "NOT_ESTABLISHED",
+      "alreadyInRepo": true
+    },
+    {
+      "key": "world.valley",
+      "path": "assets/steam/v1253/ui/world/valley.webp",
+      "sha256": "c8de879d8f96eb678fad5bb2317b62a6bdce9523b8fe743ae348f62d4436e7ad",
+      "rights": "NOT_ESTABLISHED",
+      "alreadyInRepo": true
+    }
+  ],
+  "ownerSvg": [
+    {
+      "key": "action.backup",
+      "path": "assets/app/ui/action/backup.svg",
+      "sha256": "7e2502159ee862616df4b230a0a64439279375fa7d479e4648aafc63e1afca60",
+      "source": "OWNER_ORIGINAL_PROVISIONAL"
+    },
+    {
+      "key": "action.calendar",
+      "path": "assets/app/ui/action/calendar.svg",
+      "sha256": "40d7e4c22ff305b10e15099cc3cd29794baacfc30c4bf74a362ce858fecb503c",
+      "source": "OWNER_ORIGINAL_PROVISIONAL"
+    },
+    {
+      "key": "action.clock",
+      "path": "assets/app/ui/action/clock.svg",
+      "sha256": "0776e0ad5ac88ca0755e95bd88ace40d27220b30620c3b9bc4cdbb3a4e415b2f",
+      "source": "OWNER_ORIGINAL_PROVISIONAL"
+    },
+    {
+      "key": "action.collapse",
+      "path": "assets/app/ui/action/collapse.svg",
+      "sha256": "97f047aba6798ae05eb5fe08a39bd252b0026722ac213f0ad95d55b75ddccac9",
+      "source": "OWNER_ORIGINAL_PROVISIONAL"
+    },
+    {
+      "key": "action.expand",
+      "path": "assets/app/ui/action/expand.svg",
+      "sha256": "c79885738922bc316664841ba377a59ac35b05d00a5f62fc06b449e409a8345e",
+      "source": "OWNER_ORIGINAL_PROVISIONAL"
+    },
+    {
+      "key": "action.filter",
+      "path": "assets/app/ui/action/filter.svg",
+      "sha256": "b41a0dcfca41089677e99cb0a2cb866db1d61df8215134c55b8673473e01bff6",
+      "source": "OWNER_ORIGINAL_PROVISIONAL"
+    },
+    {
+      "key": "action.local-time",
+      "path": "assets/app/ui/action/local-time.svg",
+      "sha256": "b38d21441e24520adc43f54172a0e6950fed9bb79ca704c20fae7029fa2013c7",
+      "source": "OWNER_ORIGINAL_PROVISIONAL"
+    },
+    {
+      "key": "action.open-another",
+      "path": "assets/app/ui/action/open-another.svg",
+      "sha256": "2c133ce24e9b9eb71ae508f6fb82a85c7d431b856b4bbde656425cdd853f7972",
+      "source": "OWNER_ORIGINAL_PROVISIONAL"
+    },
+    {
+      "key": "action.open-save",
+      "path": "assets/app/ui/action/open-save.svg",
+      "sha256": "7f0ae21c1568bbe0ec301ba380d99aa2e30c2c3a25a055ba0c938bb72a0e747d",
+      "source": "OWNER_ORIGINAL_PROVISIONAL"
+    },
+    {
+      "key": "action.search",
+      "path": "assets/app/ui/action/search.svg",
+      "sha256": "b192be61bfda3eadca57d9f638f4d425a8dd3e4bd0f3ea70386bbfa9e6db9a6d",
+      "source": "OWNER_ORIGINAL_PROVISIONAL"
+    },
+    {
+      "key": "action.technical-details",
+      "path": "assets/app/ui/action/technical-details.svg",
+      "sha256": "4bdc56b0dcd54badb67a3d3bd3955ca862e60b4aea29a8ad467f91851aff4981",
+      "source": "OWNER_ORIGINAL_PROVISIONAL"
+    },
+    {
+      "key": "action.utc",
+      "path": "assets/app/ui/action/utc.svg",
+      "sha256": "c66228134601630e81f5768948249e57316cc202132eb4b0bb211ba5fd123fb2",
+      "source": "OWNER_ORIGINAL_PROVISIONAL"
+    },
+    {
+      "key": "status.error",
+      "path": "assets/app/ui/status/error.svg",
+      "sha256": "6d5c8eef26181f8aa217526c1d1dcca227766da97fd84fae2859d0c0cd74e0fd",
+      "source": "OWNER_ORIGINAL_PROVISIONAL"
+    },
+    {
+      "key": "status.missing-asset",
+      "path": "assets/app/ui/status/missing-asset.svg",
+      "sha256": "f0ea02a5606c906a364c94cc8717aefd3f265f280698967de0f1b9a9c1ff7390",
+      "source": "OWNER_ORIGINAL_PROVISIONAL"
+    },
+    {
+      "key": "status.success",
+      "path": "assets/app/ui/status/success.svg",
+      "sha256": "ab00ee3422b6235bc989384a9788dcc000c7fe6d9a54749d114717c16697a170",
+      "source": "OWNER_ORIGINAL_PROVISIONAL"
+    },
+    {
+      "key": "status.warning",
+      "path": "assets/app/ui/status/warning.svg",
+      "sha256": "e3729b8548179dc6487f7a87d92b60f07ac454d81abaad4abf8787cc15833709",
+      "source": "OWNER_ORIGINAL_PROVISIONAL"
+    }
+  ],
+  "itemImageCount": 0,
+  "excludedHeldCandidates": [
+    "world.hgw",
+    "tab.shops",
+    "tab.daily"
+  ],
+  "note": "Publishing no-game build must exclude game WebP bytes from hosted artifacts; historical Git content is not erased. Non-affiliation text is not rights permission. Both options leave Writer gates untouched."
+}

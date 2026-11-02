@@ -1,0 +1,37 @@
+name: Release asset profiles — isolated media-scope acceptance
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  release-profile-browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify versioned release media scope and isolated stage creation
+        run: node --test tests/release-asset-scope.test.mjs
+      - name: Prepare the two competing profiles without modifying repository files
+        run: |
+          node scripts/stage-release-asset-profile.mjs current_repo_game_ui "$RUNNER_TEMP/timekeeper-with-game"
+          node scripts/stage-release-asset-profile.mjs owner_svg_text_only "$RUNNER_TEMP/timekeeper-svg-only"
+          test "$(find "$RUNNER_TEMP/timekeeper-with-game/assets/steam" -name '*.webp' | wc -l)" -eq 4
+          test ! -d "$RUNNER_TEMP/timekeeper-svg-only/assets/steam"
+          test "$(find "$RUNNER_TEMP/timekeeper-svg-only/assets/app/ui" -name '*.svg' | wc -l)" -eq 16
+      - name: Install isolated Chromium test dependencies
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Existing game WebP + original SVG profile — actual synthetic edit and downloads
+        env:
+          DDV_RELEASE_STATIC_ROOT: ${{ runner.temp }}/timekeeper-with-game
+        run: node tests/browser-web-phaseb-edited-p1g.smoke.mjs
+      - name: Original SVG and text only — actual synthetic edit and downloads, no game requests
+        env:
+          DDV_RELEASE_STATIC_ROOT: ${{ runner.temp }}/timekeeper-svg-only
+          DDV_RELEASE_ASSERT_NO_GAME: '1'
+        run: node tests/browser-web-phaseb-edited-p1g.smoke.mjs

@@ -1,0 +1,4 @@
+/* Release-only informational copy. No icon/Writer/runtime entitlement behavior. */
+.release-notice{width:100%;max-width:660px;margin:16px auto 0;padding:11px 12px 0;border-top:1px solid #38505a;color:#b7cccf;font-size:11px;line-height:1.6;overflow-wrap:anywhere;text-align:center}
+.release-notice p{margin:0 0 6px}
+.detail-bottom .release-notice{max-width:none;margin-top:13px;padding:11px 0 0;text-align:left}
