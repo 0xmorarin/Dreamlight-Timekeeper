@@ -2,6 +2,7 @@ import {TAB_ORDER,WORLD_ORDER,previewScope,safeText} from './reader.mjs';
 import {resolveTimePreset} from './time-presets.mjs';
 import {createTimingDraft} from './core/timing-draft.mjs';
 import {createOriginalBackupCoordinator} from './ui-backup-coordinator.mjs';
+import {createVerifiedPairDownloadUi} from './ui-verified-pair-downloads.mjs';
 import {SUPPORTED_LOCALES,initialLocale,translate,categoryName,areaName,localDate,parseLocalDateTime} from './i18n.mjs';
 const $=id=>document.getElementById(id);
 const make=(tag,cls='',value)=>{const el=document.createElement(tag);if(cls)el.className=cls;if(value!==undefined)el.textContent=String(value);return el;};
@@ -10,6 +11,7 @@ const state={snapshot:null,draft:null,sessionId:null,preflight:null,planPending:
 const t=(key,values)=>translate(state.locale,key,values);
 const fmt=value=>localDate(value,state.locale);
 let worker=null,seq=0,noticeCount=0,iconManifest=null,preflightSequence=0;
+let outputPlanRevision=0;
 const pending=new Map();
 function failWorker(message){for(const p of pending.values())p.reject(new Error(message));pending.clear();if(worker){worker.terminate();worker=null;}}
 function request(type,payload={},transfer=[]){return new Promise((resolve,reject)=>{
@@ -66,7 +68,7 @@ function renderAudit(){
 function showEditor(){
  $('welcome').hidden=true;$('workspace').hidden=false;
  $('session-name').textContent=state.snapshot.identity.name||'Save opened';
- $('download-backup').disabled=false;
+ $('download-backup').disabled=false;verifiedOutputs.sync();
  renderAudit();renderTabs();renderFilters();renderList();renderDetails();
 }
 function showWelcome(){if(state.snapshot)return;$('welcome').hidden=false;$('workspace').hidden=true;}
@@ -79,9 +81,42 @@ const backupCoordinator=createOriginalBackupCoordinator({
   setTimeout(()=>URL.revokeObjectURL(url),10000);
  }
 });
+
+// Phase A: presentation-only download wiring. No Writer command or receipt
+// producer is connected. CORE/02 TIME/05 QR must first authorize an exact
+// SourceHash+Session+Plan contract; UI must never mint WORKER_VERIFIED_PAIR.
+const verifiedOutputs=createVerifiedPairDownloadUi({
+ currentSession:()=>state.loading?null:state.sessionId,
+ currentPlanRevision:()=>outputPlanRevision,
+ controls:{panel:$('verified-pair-downloads'),both:$('download-verified-both'),
+  original:$('retry-verified-original'),edited:$('retry-verified-edited')},
+ triggerDownload:(kind,file)=>{
+  if(state.loading||!state.sessionId||!(file?.buffer instanceof ArrayBuffer)||
+     !/^[^/\\\u0000-\u001f]{1,180}\.p1g$/i.test(file.name)||
+     !file.name.startsWith(kind+'_'))
+   throw new Error('Verified output filename/session is invalid.');
+  const url=URL.createObjectURL(new Blob([file.buffer],{type:'application/octet-stream'}));
+  try{
+   const anchor=make('a');
+   anchor.href=url;anchor.download=file.name;anchor.click();
+  }finally{setTimeout(()=>URL.revokeObjectURL(url),10000);}
+ },
+ onStatus:(kind,result)=>{
+  const label=value=>value==='TRIGGER_REQUESTED_UNCONFIRMED'?t('pairRequested'):
+    value==='TRIGGER_FAILED'?t('pairBlocked'):t('pairNotAttempted');
+  const status=$('verified-pair-status');
+  status.textContent=kind==='error'?String(result):typeof result==='string'
+   ?label(result):t('pairBothStatus',{original:label(result.original),edited:label(result.edited)});
+ }
+});
+function invalidateVerifiedOutput(){++outputPlanRevision;verifiedOutputs.invalidate();$('verified-pair-status').textContent='';}
+// Future Phase B may call acceptWorkerPair ONLY on a CORE-authenticated Worker
+// result with matching source hash, event/path old values, session and plan.
+// Deliberately no product invocation exists while writerAuthorized=false.
+
 async function openSave(file){
  if(!file||state.loading)return;
- backupCoordinator.invalidate();++preflightSequence;state.planPending=false;
+ backupCoordinator.invalidate();invalidateVerifiedOutput();++preflightSequence;state.planPending=false;
  state.loading=true;$('open-welcome').disabled=true;$('open-again').disabled=true;
  const old=state.snapshot,oldDraft=state.draft,oldSession=state.sessionId,oldPreflight=state.preflight;
  let workerSessionCommitted=false;
@@ -262,7 +297,7 @@ function stagePreview(){
   });
   if(preview.affected.length!==rows.length)throw new Error('Preview selection was not consistent.');
   state.draft.stage(preview.affected.map(r=>r.pointer),preview.previewTime);
-  renderDetails();void refreshPreflight();message(t('planUpdated'));
+  invalidateVerifiedOutput();renderDetails();void refreshPreflight();message(t('planUpdated'));
  }catch(err){message(t('planFail',{reason:err.message}),true);}
 }
 async function backup(){try{await backupCoordinator.download(state.sessionId);}catch(err){message(t('backupError',{reason:err.message}),true);}}
@@ -290,9 +325,9 @@ function boot(){
  $('save-file').addEventListener('change',e=>{const file=e.target.files?.[0];if(file)openSave(file);});
  $('download-backup').addEventListener('click',backup);
  $('stage-preview').addEventListener('click',stagePreview);
- $('undo-plan').addEventListener('click',()=>{if(state.loading)return;state.draft?.undo();renderDetails();void refreshPreflight();});
- $('redo-plan').addEventListener('click',()=>{if(state.loading)return;state.draft?.redo();renderDetails();void refreshPreflight();});
- $('clear-plan').addEventListener('click',()=>{if(state.loading)return;state.draft?.clear();renderDetails();void refreshPreflight();});
+ $('undo-plan').addEventListener('click',()=>{if(state.loading)return;state.draft?.undo();invalidateVerifiedOutput();renderDetails();void refreshPreflight();});
+ $('redo-plan').addEventListener('click',()=>{if(state.loading)return;state.draft?.redo();invalidateVerifiedOutput();renderDetails();void refreshPreflight();});
+ $('clear-plan').addEventListener('click',()=>{if(state.loading)return;state.draft?.clear();invalidateVerifiedOutput();renderDetails();void refreshPreflight();});
  $('filter-input').addEventListener('input',e=>{state.query=e.target.value.trim().toLocaleLowerCase();state.limit=120;state.selected.clear();renderList();renderDetails();});
  $('sort-order').addEventListener('change',e=>{state.sort=e.target.value;state.limit=120;renderList();});
  $('select-visible').addEventListener('click',()=>{for(const row of visibleRows())state.selected.add(row.pointer);renderList();renderDetails();});
