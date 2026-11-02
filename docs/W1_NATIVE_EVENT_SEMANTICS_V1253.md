@@ -16,10 +16,10 @@
 | `IsReadyForNextOccurence` | `0x05A65440` | `CMP` and `CSET HS` time-eligibility predicate | All callsites, side effects, any alternative readiness gates |
 | `IRecurringEventExtensions.Reschedule` | `0x05AF24D0` | 10 direct BL callsites in reviewed binary: 9 Execute, 1 AddRecurringEvent | Indirect calls; pickup/remove/restart path |
 | `IsEventOver` | `0x05AF3050` | Separate expiration test | EndDate conditions per event |
-| `Profile.ActualizeRecurringEvents` | `0x05A2A170` | For overdue schedules with a bounded maximum: at `0x05A2AE20` SUB, `0x05A2AE24` CMP, `0x05A2AE28` B.LE; correction invokes DateTime subtraction `0x05A2B434`, Timestamp conversion `0x05A2B470`, and virtual NextOccurrence setter `0x05A2B534` | Future-date setter origin; every event variant's catch-up policy |
+| `Profile.ActualizeRecurringEvents` | `0x05A2A170` | Interface slots GetMaxIntervalToFullyExecute=6, context Now=0, NextOccurrence getter=1, setter=2; for overdue schedules with a bounded maximum: at `0x05A2AE20` SUB, `0x05A2AE24` CMP, `0x05A2AE28` B.LE; correction invokes DateTime subtraction `0x05A2B434`, Timestamp conversion `0x05A2B470`, and virtual NextOccurrence setter `0x05A2B534` | Future-date setter origin; every event variant's catch-up policy |
 | `ItemSpawning.GetMaxIntervalToFullyExecute` | `0x057C0140` | Interval and minimum/maximum-based overdue catch-up bound | Exact result for each ID and area |
 | `ItemSpawningRecurringEventItemData.GetMaximumAmount` | `0x047AB7F0` | Base maximum, optional area selector references | Actual world population/cap enforcement |
-| `FlowerSpawningInVillage.Execute` | `0x057C99E0` | BL `IsReadyForNextOccurence` then TBNZ readiness branch | Spawn allocation, existing caps, event-specific reschedule and collection |
+| `ItemSpawning.Execute` completion side (entry RVA still unresolved) | `0x057BF058` / `0x057BF068` / `0x057BF0C4` | `Timestamp.FromDateTime`, store to `LastOccurrence` at IL2CPP offset `+0x30`, then BL `Reschedule` | Exact entry RVA, generation success/skip condition, pickup callbacks |\n| `FlowerSpawningInVillage.Execute` | `0x057C99E0` | BL `IsReadyForNextOccurence` then TBNZ readiness branch | Spawn allocation, existing caps, event-specific reschedule and collection |
 
 **No complete `Execute` RVA is evidenced by the current canonical static report for ItemSpawning, WildCropsSpawningInVillage or FishSpawningInVillage.** `ItemSpawning.Execute 0x057C...` is incomplete and must not be normalized into an exact address or ported to a later build.
 
@@ -58,3 +58,5 @@ One existing owner sample contains 323/468 shared `2126-08-20T00:00:00Z` entries
 2. Build per-event-ID conditional and capacity matrix: item/source type, Area/Grid placement, active GridObject provenance, maximum/minimum, quest/DLC dependencies, event history, repeat/catch-up.
 3. Controlled disposable-console scenarios: record baseline world + timestamps; test deliberate Now/+100y, presence of already spawned items, collection before/after change, save/exit/restart, then validate spawn/cap effects and resource integrity. Source-only tests cannot replace console testing.
 4. Independently reconcile 01 CORE's per-operation Codec/ZIP/serialization and 05 QR's release gates. Until accepted, **all Writer, edited export, Grid delete and Moonstone move capabilities remain false**.
+
+Additional reused detailed originals: [Native Follow-up 3](https://drive.google.com/file/d/1u1yqHNNWpre2aUv2zMwK9S_Q9uHQeEQP/view), [Actualize and Spawn Recovery](https://drive.google.com/file/d/17JrRAVkslcAuq62wvy8RpzJvZuxeGyVD/view). The repeated-action path initializes a counter to 100 at 0x05A2AFC4, but the post-action decrement/test order does NOT independently establish exactly 100 executions. No hard cap is asserted here.
