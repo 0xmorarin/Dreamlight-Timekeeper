@@ -13,6 +13,8 @@
  import {createOriginalBackupCoordinator} from '../ui-backup-coordinator.mjs';
  import {createVerifiedPairDownloadUi} from '../ui-verified-pair-downloads.mjs';
  import ItemThumb from '$lib/timekeeper/ItemThumb.svelte';
+ import itemTypeAudit from '../../data/web-text-item-types-v1253.json';
+ import {rcTextOnlyItem} from '$lib/timekeeper/item-text-only.mjs';
 
  let localeCode='en',snapshot:TimingSnapshot|null=null,sessionId=0,sourceFormat='';
  let t=(key:string,params:Record<string,unknown>={})=>wandTranslate(key,params);
@@ -245,7 +247,11 @@
         <input type="checkbox" checked={selected.has(r.pointer)} on:change={(e)=>toggle(r.pointer,e.currentTarget.checked)}
           aria-label={labelRow(r)}/>
         <ItemThumb item={r.items?.[0]??null} localeCode={localeCode}/>
-        <span class="row-text"><strong>{labelRow(r)}</strong><small>{location(r)} · {r.kind} · ID {r.id}</small></span>
+        <span class="row-text"><strong>{labelRow(r)}</strong><small>{location(r)} · {r.kind} · EventID {r.id}</small>
+         {#if r.items?.length}
+          <small class="item-type" aria-label={rcTextOnlyItem(r.items[0],localeCode,itemTypeAudit).ariaLabel}>{rcTextOnlyItem(r.items[0],localeCode,itemTypeAudit).displayLine}</small>
+         {/if}
+        </span>
         <span class="row-time">{dateLabel(r.time,localeCode)}</span>
        </label>
       {:else}<p class="empty">{t('tk.none')}</p>{/each}
