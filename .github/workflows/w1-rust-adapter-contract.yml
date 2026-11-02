@@ -1,0 +1,24 @@
+name: 02 TIME W1 Rust adapter contract oracle
+
+on:
+  pull_request:
+    paths:
+      - 'src/w1-rust-adapter-oracle.mjs'
+      - 'tests/w1-rust-adapter-oracle.test.mjs'
+      - 'docs/W1_RUST_SEMANTIC_ADAPTER_V1253.md'
+      - '.github/workflows/w1-rust-adapter-contract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  w1-semantic-oracle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify W1 Rust DTO vs existing JS semantic oracle
+        run: node --test tests/w1-rust-adapter-oracle.test.mjs tests/w1-minimal-write-contract.test.mjs tests/timing-native-semantics.test.mjs
