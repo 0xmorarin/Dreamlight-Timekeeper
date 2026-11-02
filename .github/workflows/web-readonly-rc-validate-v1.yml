@@ -1,0 +1,47 @@
+name: 03 WEB Text-Only RC Contract v1 (review, no deploy)
+on:
+  pull_request:
+    paths:
+      - 'src/routes/+page.svelte'
+      - 'src/lib/timekeeper/item-text-only.mjs'
+      - 'src/lib/timekeeper/worker-projection-bounds.mjs'
+      - 'src/lib/timekeeper/session-response-fence.mjs'
+      - 'data/web-text-item-types-v1253.json'
+      - 'contracts/web-readonly-core-worker-v1.json'
+      - 'contracts/web-readonly-rc-release-v1.json'
+      - 'tests/web-readonly-rc-contract.test.mjs'
+      - '.github/workflows/web-readonly-rc-validate-v1.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-and-browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install SvelteKit dependencies (no publish/install script bypass)
+        run: npm install --no-audit --no-fund
+      - name: Verify draft text-only RC and existing Projection/Worker regressions
+        run: |
+          node --test tests/web-readonly-rc-contract.test.mjs tests/save-session-response-fence.test.mjs tests/web-projection-qr-fixtures.test.mjs tests/web-rust-session-alignment.test.mjs
+          node --test tests/sveltekit-migration-contract.test.mjs tests/reader.test.mjs tests/worker.test.mjs tests/ui-separate-downloads.test.mjs
+      - name: Type-check Svelte, JS and eight-locale UI
+        run: npm run check
+      - name: Build only — isolated static BASE_PATH, never deploy
+        env:
+          BASE_PATH: /Dreamlight-Timekeeper
+        run: |
+          npm run build
+          node scripts/audit-sveltekit-build.mjs build .release-audit/web-readonly-rc-build-inventory.json
+          test -s .release-audit/web-readonly-rc-build-inventory.json
+          node -e "const c=require('./contracts/web-readonly-rc-release-v1.json');if(c.status!=='DRAFT_NEVER_DEPLOY'||c.releaseGates.publicReleaseApproved!==false||c.product.writerEnabled!==false||c.product.editedCopyOutputEnabled!==false)process.exit(9)"
+      - name: Existing Chromium 4-tab / 8-locale / 320px / zoom / Worker regression
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+          node tests/browser-sveltekit-migration.smoke.mjs
+          node tests/browser-sveltekit-zoom.smoke.mjs
