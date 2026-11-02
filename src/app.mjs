@@ -52,6 +52,15 @@ function renderAudit(){
  detail.append(make('p','audit-uncertainty',t('auditNoRepair')));
  detail.append(make('p','audit-provenance',t('auditUnknown')));
  root.append(detail);
+ const envelope=state.snapshot?.containerAudit;
+ if(envelope&&envelope.writerAuthorized===false){
+  const box=make('details','audit-details container-audit');
+  box.append(make('summary','',t('containerAuditTitle')));
+  box.append(make('p','audit-provenance',t('containerAuditStatus',{status:envelope.status})));
+  for(const code of envelope.findings||[])box.append(make('p','audit-provenance',code));
+  box.append(make('p','audit-uncertainty',t('containerAuditNoWrite')));
+  root.append(box);
+ }
 }
 function showEditor(){
  $('welcome').hidden=true;$('workspace').hidden=false;
