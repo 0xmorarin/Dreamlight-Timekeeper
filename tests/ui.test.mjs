@@ -67,3 +67,10 @@ test('preflight is source-authoritative and does not introduce an edited save do
  assert.doesNotMatch(page,/id="export-edited"/);
  assert.doesNotMatch(app,/request\('encode'|request\('export'/);
 });
+
+test('save container rebuild risks are diagnostic only in the UI',()=>{
+ assert.match(app,/containerAudit/);
+ assert.match(app,/containerAuditNoWrite/);
+ assert.match(app,/containerAuditTitle/);
+ assert.doesNotMatch(page,/id="export-edited"/);
+});
