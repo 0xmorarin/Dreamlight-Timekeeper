@@ -123,3 +123,13 @@ test('unknown schema, inactive fish, Moonstone, ambiguous oneof and parallel unr
  const unknown=root();unknown.World.RecurringEvents['0'].OpaqueFutureVariant={NextOccurrence:OLD};
  await assert.rejects(createW1EditedP1gCopy(ctx({profile:unknown,plan:[edits()[0]]})),/PREFLIGHT/);
 });
+
+test('live Worker session getter rejects an old session after awaited Encode, without returning edited bytes',async()=>{
+ const context=ctx({plan:[edits()[0]]});
+ let checkCount=0;
+ context.getActiveSessionId=()=>++checkCount<3?context.sourceSessionId:context.sourceSessionId+1;
+ const original=Buffer.from(context.sourceBytes);
+ await assert.rejects(createW1EditedP1gCopy(context),/W1_STALE_SESSION_AFTER_ENCODE/);
+ assert.equal(checkCount>=3,true);
+ assert.deepEqual(Buffer.from(context.sourceBytes),original);
+});
