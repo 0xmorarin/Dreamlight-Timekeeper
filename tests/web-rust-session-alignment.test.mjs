@@ -44,3 +44,15 @@ test('research read-only status cannot grant a Writer capability or fake a verif
  assert(fixture.integration.prerequisites.some(x=>x.includes('05 QR')));
  assert(fixture.integration.prerequisites.some(x=>x.includes('P1G')));
 });
+
+test('post-freeze Wand synthetic P1G and W1 witnesses do not grant product writer',()=>{
+ const later=fixture.observedAfterFreeze;
+ assert.equal(later.wandPr312Head,'c587f04855db0543896c51f3defa068ccf002b43');
+ assert.equal(later.sourceBlobs.p1g,'c8cacdc5fa6afc7a60f388af561522e2867f5c9b');
+ assert(later.additions.some(x=>x.includes('create_p1g_copy_research')&&x.includes('product_encode_copy_authorized=false')));
+ assert(later.additions.some(x=>x.includes('inspect_w1_source_research')&&x.includes('encode_copy_authorized=false')));
+ assert(later.additions.some(x=>x.includes('cross_domain_reference_closure_complete=false')));
+ for(const k of ['productP1gAccepted','completeDomainProjectionAccepted','stableWasmWorkerApiAccepted','writerGranted'])
+  assert.equal(later[k],false,k);
+ assert.equal(fixture.integration.phaseB,'BLOCKED');
+});
