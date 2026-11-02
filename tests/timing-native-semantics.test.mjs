@@ -729,3 +729,85 @@ test('Profile.AddRecurringEvent has explicit slot62 reschedule notification edge
   assert.equal(native.native.reschedule.setterDispatchIsStaticOnly,true);
   assert.equal(native.native.fieldLayout.directSavePersistenceVerified,false);
 });
+
+
+test('all four W1 NextOccurrence setters only store +0x20 and GC-write-barrier, not slot62',()=>{
+  const n=native.native.nextOccurrenceSetterCallGraph;
+  const expected=[
+    ['ItemSpawning','0x057B8AA0','0x057B8AA8'],
+    ['WildCropsSpawningInVillage','0x057C1CC0','0x057C1CC8'],
+    ['FlowerSpawningInVillage','0x057C8AE0','0x057C8AE8'],
+    ['FishSpawningInVillage','0x057C58B0','0x057C58B8']
+  ];
+  assert.deepEqual(n.setters.map(x=>[x.kind,x.entryRVA,x.writeRVA]),expected);
+  const word=Number.parseInt(n.writeInstructionWord,16);
+  assert.equal(word,0xF8020C01);
+  assert.equal(word&31,1); // Timestamp X1
+  assert.equal((word>>>5)&31,0); // this X0
+  assert.equal((word>>>12)&0x1ff,0x20); // preindex +0x20
+  assert.equal(n.eachSetterWindowBytes,0x50);
+  assert.equal(n.eachSetterDirectBLCalls,0);
+  assert.equal(n.eachSetterIndirectBLRCalls,0);
+  assert.equal(n.setterDirectlyEmitsSlot62,false);
+  assert.equal(n.callerCanEmitSeparateNotification,true);
+  assert.equal(n.anySetterCausesClientWaitRearmVerified,false);
+});
+test('slot62 emitter opcode scoped to AddRecurringEvent; absence in other paths does not rule out indirect dispatch',()=>{
+  const a=native.native.slot62EmissionSiteAudit;
+  assert.equal(a.slotRegisterWord,'0x528007C2');
+  assert.equal(a.checkedWindows.length,7);
+  assert.deepEqual(a.checkedWindows[0].movW2Slot62Rvas,['0x05A2A0F0']);
+  assert.equal(a.checkedWindows[0].method,'Profile.AddRecurringEvent');
+  assert(a.checkedWindows.slice(1).every(w=>w.movW2Slot62Rvas.length===0));
+  const op=Number.parseInt(a.slotRegisterWord,16);
+  assert.equal(op&31,2);
+  assert.equal((op>>>5)&0xffff,62);
+  assert.equal(a.absenceOfInstructionDoesNotExcludeVirtualOrIndirectNotification,true);
+  assert.equal(a.actualizeClientNotificationVerified,false);
+  assert.equal(a.executeClientNotificationVerified,false);
+  assert.equal(native.native.clientRecurringRescheduleNotification.notificationFiredByEverySetterVerified,false);
+});
+test('Client wait lifecycle creates per EventID linked cancellation and Clock.Appointment from timestamp',()=>{
+  const c=native.native.clientNextOccurrenceWaitLifecycle;
+  assert.equal(c.waitEntryRVA,'0x0604E770');
+  assert.equal(c.waitStateMachineRVA,'0x060B4D80');
+  assert.equal(decodeBL(0x0604E65C,0x94000045),0x0604E770);
+  assert.equal(decodeBL(0x0604EC7C,0x97FFFEBD),0x0604E770);
+  assert.equal(c.clientRecurringEventCTSOffset,'0xE8');
+  assert.equal(c.profileCTSOffset,'0xC0');
+  assert.equal(c.perEventSourceType,'Dictionary<uint,CancellationTokenSource>');
+  assert.equal(c.stateMachineSavedSourceOffset,'0x48');
+  assert.equal(c.stateMachineLinkedSourceOffset,'0x50');
+  assert.equal(c.eventDataOneofLoadRVA,'0x060B51B0');
+  assert.equal(decodeBL(0x060B5388,0x977373BE),0x03D92280);
+  assert.equal(decodeBL(0x060B53F0,0x97EBFD58),0x05BB4950);
+  assert.equal(decodeBL(0x060B57EC,0x976A84D1),0x03B56B30);
+  assert.equal(decodeBL(0x060B5838,0x94119EAE),0x0651D2F0);
+  assert.equal(decodeBL(0x060B59FC,0x976A70D1),0x03B51D40);
+  assert.equal(decodeBL(0x060B5AA4,0x9411A6C3),0x0651F5B0);
+  assert.equal(c.exactWaiterCancellationRaceResolved,false);
+  assert.equal(c.automaticSavedTimestampChangeNotification,false);
+  assert.equal(c.sceneSpawnAfterWaitVerified,false);
+  assert.equal(c.gameRestartRestorationVerified,false);
+});
+test('Client.OnRecurringEventRemoved cancels, disposes and removes matching CTS, independent of bare timestamp setter',()=>{
+  const r=native.native.clientRecurringEventRemovalLifecycle;
+  assert.equal(r.callbackRVA,'0x0604ECF0');
+  assert.equal(r.dictionaryLoadRVA,'0x0604ED48');
+  assert.equal(decodeBL(0x0604ED68,0x976C1F72),0x03B56B30);
+  assert.equal(decodeBL(0x0604ED88,0x9413395A),0x0651D2F0);
+  assert.equal(decodeBL(0x0604ED98,0x94133B22),0x0651DA20);
+  assert.equal(decodeBL(0x0604EDB4,0x976C1B17),0x03B55A10);
+  assert.equal(r.cancellationConditionalOnMatchingSource,true);
+  assert.equal(r.invocationOnTimestampEditVerified,false);
+  assert.equal(r.gameRuntimeObserved,false);
+  for(const [id,kind] of [[2010000003,'ItemSpawning'],[2010000021,'ItemSpawning'],
+    [2010400001,'WildCropsSpawningInVillage'],[2010500008,'FlowerSpawningInVillage']]){
+    const row=native.query(id,kind);
+    assert.equal(row.nativePerEventEvidence,'UNKNOWN');
+    assert.equal(row.operationEvidence,'BLOCKED');
+    assert.equal(row.writerAuthorized,false);
+    assert.equal(row.editedExportAuthorized,false);
+    assert.equal(row.gridDeletionAuthorized,false);
+  }
+});
