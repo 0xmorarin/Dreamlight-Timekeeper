@@ -219,7 +219,7 @@ export function compileW1NativeSemantics(sourceEvents,{woodTagPack}={}){
       conditionalEventHistoryDependency:'UNKNOWN',
       gridObjectProvenance:'UNKNOWN',
       sourceRecordEvidence:'CONFIRMED',
-      nativePerEventEvidence:'STATIC_ONLY',
+      nativePerEventEvidence:'UNKNOWN',variantConsumerStaticEvidence:'UNKNOWN',
       actualAppearanceEvidence:'UNKNOWN',operationEvidence:'BLOCKED',
       ...baseline
     });
@@ -233,6 +233,7 @@ export function compileW1NativeSemantics(sourceEvents,{woodTagPack}={}){
       if(!isId(eventId)||!byId.has(eventId))
         return Object.freeze({eventId,saveKind,status:'UNKNOWN_EVENT_ID',
           sourceRecordEvidence:'UNKNOWN',nativePerEventEvidence:'UNKNOWN',
+          variantConsumerStaticEvidence:'UNKNOWN',
           actualAppearanceEvidence:'UNKNOWN',operationEvidence:'BLOCKED',...baseline});
       const r=byId.get(eventId);
       let status;
@@ -246,7 +247,9 @@ export function compileW1NativeSemantics(sourceEvents,{woodTagPack}={}){
       // A source-family hint is intentionally weaker than an observed native
       // discriminator, serialized profile field, or runtime behavior.
       return Object.freeze({...r,saveKind,status,
-        nativePerEventEvidence:status==='SOURCE_VARIANT_HINT_ONLY'?'STATIC_ONLY':
+        nativePerEventEvidence:
+          (status==='PROTECTED_MOONSTONE_CHEST'||status==='NON_W1_SOURCE_POLICY'||status==='INACTIVE_SOURCE_DEFINITION')?'BLOCKED':'UNKNOWN',
+        variantConsumerStaticEvidence:status==='SOURCE_VARIANT_HINT_ONLY'?'STATIC_ONLY':
           (status==='PROTECTED_MOONSTONE_CHEST'||status==='NON_W1_SOURCE_POLICY'||status==='INACTIVE_SOURCE_DEFINITION'?'BLOCKED':'UNKNOWN'),
         actualAppearanceEvidence:'UNKNOWN',operationEvidence:'BLOCKED',
         trace:W1_SET.has(saveKind)?trace[saveKind]:null,
