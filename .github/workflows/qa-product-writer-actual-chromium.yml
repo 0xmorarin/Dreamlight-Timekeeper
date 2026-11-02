@@ -50,3 +50,28 @@ jobs:
         run: |
           test "$(git -C target rev-parse HEAD)" = "0917eb4578fe09c51e55572ee1366406ecf3b90d"
           echo "PASS_SCOPE=ACTUAL_PRODUCT_WORKER_SYNTHETIC_P1G_CHROMIUM_ONLY; no real save/Switch runtime; no overwrite"
+
+  product-core-plan-revision:
+    name: Independent plan-revision negative Node tests (new changes only)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: qa-source
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: 0917eb4578fe09c51e55572ee1366406ecf3b90d
+          path: target
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run only independent CORE plan revision and product Worker boundary tests
+        run: |
+          test "$(git -C target rev-parse HEAD)" = "0917eb4578fe09c51e55572ee1366406ecf3b90d"
+          cp qa-source/qa/product-writer/plan-revision.test.mjs target/tests/qa-product-writer-revision.test.mjs
+          cd target
+          node --test tests/qa-product-writer-revision.test.mjs
