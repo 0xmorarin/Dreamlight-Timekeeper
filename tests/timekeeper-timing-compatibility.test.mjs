@@ -67,3 +67,13 @@ test('missing or tampered static rule provenance is rejected',()=>{
  assert.throws(()=>assessTimekeeperTimingCompatibility(p,{...s,timingReview:{...s.timingReview,writerAuthorization:true}},t),/provenance/);
  assert.throws(()=>assessTimekeeperTimingCompatibility(p,{...s,timingReview:null},t),/provenance/);
 });
+
+
+test('unknown definition activation state cannot be a W1 research candidate',()=>{
+ const p=save(),s=snapshot(p),row=s.rows.find(x=>x.id===2010000021);
+ const modified={...s,rows:s.rows.map(x=>x.pointer===row.pointer?{...x,eventActive:null}:x)};
+ const r=assessTimekeeperTimingCompatibility(p,modified,stage(s,[2010000021]));
+ assert.equal(r.rows[0].code,'DEFINITION_ACTIVITY_UNKNOWN');
+ assert.equal(r.summary.researchCandidate,0);
+ assert.equal(r.saveWriterAllowed,false);
+});
