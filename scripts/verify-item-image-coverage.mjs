@@ -207,10 +207,58 @@ if(sharedAlias.length!==2||sharedAlias[0].definitionAudit.privatePixelProof.spri
   sharedAlias[0].definitionAudit.privatePixelProof.decodedRgbaSha256!==sharedAlias[1].definitionAudit.privatePixelProof.decodedRgbaSha256)
  fail('unverified two-ItemID source Sprite alias');
 
+
+const genericAsset=pinned.sharedPlaceholderAssetInspection;
+if(genericAsset?.sourceSha256!=='b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf'||
+ genericAsset.evidence!=='ORIGINAL_UNITYFS_METADATA_AND_PRIVATE_PIXEL_MATCH_NOT_ITEM_SPECIFIC'||
+ genericAsset.cab!=='CAB-5cfb74fab599979a6c24300d60fa8800'||
+ genericAsset.declaredIconAddressGuid!==defaultGuid||
+ genericAsset.assetBundleGuidMatches!==2||genericAsset.sourceObjectCount!==60||
+ genericAsset.genericSpriteName!=='icon_2x2'||
+ genericAsset.genericSpritePathId!=='13192077654445607906'||
+ genericAsset.genericTexturePathId!=='15528772250824494050'||
+ genericAsset.genericSpriteLinksTexture!==true||
+ genericAsset.genericTextureWidth!==265||genericAsset.genericTextureHeight!==246||
+ genericAsset.genericTextureFormat!=='RGBA32'||genericAsset.rawTextureRgbaBytes!==260760||
+ genericAsset.rawTextureRgbaSha256!=='42daa1b8ebadd81fc48eef2a8ecc2fb3f8eac4878f4f57d28b3dd44a40e28add'||
+ genericAsset.privateLosslessWebpSha256!=='34be7222ed315fec5ee36b840fa163997a2fb4e1e764ac8f2cb180714ad34408'||
+ genericAsset.privateLosslessWebpBytes!==4316||genericAsset.privateReopenedRgbaIdentical!==true||
+ genericAsset.privatePrototypeIsItemThumbnail!==false||
+ genericAsset.perItemRuntimeVariant!=='UNKNOWN'||genericAsset.perItemSourceSpriteTexture!=='UNPROVEN'||
+ genericAsset.pixelsOrGameBundlePublished!==false||genericAsset.rights!=='NOT_ESTABLISHED'||
+ genericAsset.confidence!=='STATIC_SOURCE_GENERIC_ONLY')
+ fail('unreviewed generic placeholder sprite or rights promotion');
+const exactClassCounts={"1":10,"4":10,"21":10,"23":5,"28":11,"33":5,"43":3,"65":1,"114":3,"142":1,"213":1};
+if(Object.keys(genericAsset.sourceClasses||{}).length!==Object.keys(exactClassCounts).length||
+ Object.entries(exactClassCounts).some(([k,v])=>genericAsset.sourceClasses[k]!==v))
+ fail('generic UnityFS source object-class inventory drift');
+const priorities=pinned.sharedPlaceholderPriority,priorityCounts={P0:0,P1:0,P2:0};
+if(priorities?.sourceTotal!==81||priorities.sourceReferences!==173||
+ priorities.runtimeVariantAcceptance!=='UNKNOWN'||
+ priorities.ownersAdditionalSaveTargets!=='UNKNOWN_NOT_AUTHORIZED'||
+ priorities.effect!=='RESEARCH_ORDER_ONLY')
+ fail('research priority must never authorize art');
+
 let ambiguous=0,missing=0;
 for(const row of pinned.items){
  const r=row.readOnlyImageResolution;
  const generic=row.definitionAudit?.declaredIconAddressGuid===defaultGuid;
+ if(generic){
+  const dependency=row.definitionAudit.catalogDependency;
+  const expectedTier=row.references>=4?'P0':row.references>=2?'P1':'P2';
+  if(dependency?.genericSourceSpritePathId!==genericAsset.genericSpritePathId||
+     dependency?.genericSourceTexturePathId!==genericAsset.genericTexturePathId||
+     dependency?.perItemSpritePathId!==null||dependency?.perItemTexturePathId!==null||
+     dependency?.variantStatus!=='UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC'||
+     dependency?.genericTextureEvidenceState!=='PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM'||
+     dependency?.releaseImageUrl!==null||row.definitionAudit.spriteResolved!==false||
+     row.definitionAudit.textureResolved!==false||row.definitionAudit.webpDecodedRgbaMatched!==false||
+     row.unresolvedVariantPriority?.tier!==expectedTier||
+     row.unresolvedVariantPriority?.notAnImageApproval!==true||
+     row.unresolvedVariantPriority?.references!==row.references)
+     fail('generic image proof must never become per-item image proof '+row.itemId);
+  priorityCounts[expectedTier]++;
+ }
  if(generic&&(
    row.definitionAudit?.catalogDependency?.state!=='CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE'||
    row.definitionAudit?.catalogDependency?.primaryBundle!=='usedplaceholders_assets_all.bundle'||
@@ -224,5 +272,8 @@ for(const row of pinned.items){
  if(state==='AMBIGUOUS')ambiguous++;else missing++;
 }
 if(ambiguous!==81||missing!==163)fail('image resolution status counts drift');
+if(JSON.stringify(priorityCounts)!==JSON.stringify({P0:9,P1:12,P2:60})||
+ JSON.stringify(priorities.counts)!==JSON.stringify(priorityCounts))
+ fail('81 shared-placeholder research priority counts changed');
 
 console.log('Gap typed source PASS: 106/106 ItemID definitions (Activity35/Furniture52/Companion19), 81 common GUID; private Sprite/Texture 25, shared placeholder 81, published WebP 0');
