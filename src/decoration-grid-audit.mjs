@@ -96,9 +96,75 @@ export function auditDecorationGridItemMatches(profile,source,{maxGrids=10000,ma
   }
  }
  matches.sort((a,b)=>a.gridId-b.gridId||a.gridObjectId-b.gridObjectId);
+
+ // Wand 01A resolves active addresses in both Grids and DiffGrids.ModifiedObjects.
+ // DiffGrids are NOT equivalent to direct, freely removable world roots.
+ const diffModifiedMatches=[];
+ let diffModifiedObjectsInspected=0,diffGridsInspected=0;
+ const diffGrids=world.GridCollection.DiffGrids;
+ const diffSourceComplete=diffGrids===undefined||isObject(diffGrids);
+ if(!diffSourceComplete)diagnostics.push({code:'DIFF_GRIDS_STRUCTURE_UNREVIEWED'});
+ if(isObject(diffGrids)){
+  if(Object.keys(diffGrids).length>maxGrids)throw new Error('Diff Grid research limit exceeded.');
+  for(const [key,grid] of Object.entries(diffGrids)){
+   const gridId=id(key);
+   if(gridId===null||!isObject(grid)||id(grid.ID)!==gridId){
+    diagnostics.push({code:'DIFF_GRID_IDENTITY_MISMATCH'});continue;
+   }
+   const modified=grid.ModifiedObjects;
+   if(modified===undefined||modified===null)continue;
+   if(!isObject(modified)){
+    diagnostics.push({gridId,code:'DIFF_MODIFIED_OBJECTS_STRUCTURE_UNREVIEWED'});continue;
+   }
+   diffGridsInspected++;
+   for(const [objectKey,obj] of Object.entries(modified)){
+    if(++objectsInspected>maxObjects)throw new Error('Grid object research budget exceeded.');
+    diffModifiedObjectsInspected++;
+    const objectId=id(objectKey);
+    if(objectId===null||!isObject(obj)||id(obj.ID)!==objectId){
+     diagnostics.push({gridId,code:'DIFF_MODIFIED_OBJECT_ID_MISMATCH'});continue;
+    }
+    const itemId=id(obj.ItemID);
+    if(itemId===null||!byItem.has(itemId))continue;
+    const sources=byItem.get(itemId);
+    const addressed=refs?.byAddress({gridId,gridObjectId:objectId})??[];
+    const active=addressed.filter(x=>x.activity==='ACTIVE');
+    const unknown=addressed.filter(x=>x.activity==='UNKNOWN');
+    const historical=addressed.filter(x=>x.activity==='HISTORICAL');
+    const saved=savedGrids[String(gridId)]?.Objects?.[String(objectId)];
+    const activeSourceReady=refs!==null&&refs.result.activeEventContainerPresent&&
+     refs.result.invalidReferenceCount===0;
+    diffModifiedMatches.push(Object.freeze({
+     gridId,gridObjectId:objectId,itemId,
+     sourceMatchLevel:'ITEM_ID_ONLY_DIFF_MODIFIED',
+     possibleEventIds:Object.freeze([...new Set(sources.map(x=>x.eventId))].sort((a,b)=>a-b)),
+     possibleFamilies:Object.freeze([...new Set(sources.map(x=>x.family))].sort()),
+     exactDirectAreaLinked:direct.has(gridId),
+     savedGridObjectAlsoPresent:isObject(saved),
+     sourceFromRawPresent:Object.hasOwn(obj,'From'),
+     sourceFromSemanticsVerified:false,
+     referenceAssessment:!activeSourceReady?'INCOMPLETE_REFERENCE_GRAPH':
+      active.length?'ACTIVE_IDENTITY_REFERENCE':
+      unknown.length?'UNKNOWN_SYSTEM_REFERENCE':
+      historical.length?'HISTORICAL_ONLY_REQUIRES_OTHER_GATES':
+      'NO_MATCHED_KNOWN_REFERENCE_OTHER_GATES_OPEN',
+     activeConditionalEventIds:Object.freeze([...new Set(active.map(x=>x.contextId))]),
+     unknownSystemReferenceCount:unknown.length,historicalReferenceCount:historical.length,
+     locationRoleVerified:false,sourceProvenanceVerified:false,
+     nativeRemovalVerified:false,bulkDeletionAuthorized:false,timestampEditAuthorized:false
+    }));
+   }
+  }
+ }
+ diffModifiedMatches.sort((x,y)=>x.gridId-y.gridId||x.gridObjectId-y.gridObjectId);
+
  return Object.freeze({
   source:'SAVE_LOCAL_READ_ONLY_GRID_ITEM_MATCH',gridObjectsInspected:objectsInspected,
   directGridsInspected:gridsInspected,missingDirectGrids,
+  diffGridsInspected,diffModifiedObjectsInspected,
+  diffModifiedGridsAreNotDirectAreaRoots:true,
+  diffSourceStructureRecognized:diffSourceComplete,
+  diffModifiedMatches:Object.freeze(diffModifiedMatches),
   indirectAndTechnicalGridsNotAnalyzed:true,
   sourceMatchIsNotSpawnProof:true,writerAuthorized:false,bulkDeletionAuthorized:false,
   wandReferenceIndexSource:'ddv.progression-reference-index@1 (subset)',
