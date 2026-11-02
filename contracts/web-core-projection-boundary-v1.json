@@ -1,0 +1,113 @@
+{
+  "contract": "timekeeper.web-core-projection-boundary.proposal@1",
+  "status": "PROPOSED_NOT_IMPLEMENTED_NOT_ACCEPTED",
+  "owner": {
+    "core": "01 CORE / Wand Rust SaveSession",
+    "transport": "01 CORE Worker bridge",
+    "consumer": "03 WEB rejection-only Svelte",
+    "independentAcceptance": "05 QR"
+  },
+  "reference": {
+    "webPR27": "eb071cc49927c1b154b6780001d2d6f5f8abeca8",
+    "wandPr312": "c6b152512d3bc901fd1474dbcfcb07253ae1b347",
+    "archIssue": 19
+  },
+  "wire": {
+    "protocolTarget": "ddv.common-save-session/1",
+    "currentProductWorker": "timekeeper.save-worker@1",
+    "bindingInstalled": false
+  },
+  "limits": {
+    "rowsMax": 200,
+    "rowUtf8JsonBytesMax": 65536,
+    "responseUtf8JsonBytesMax": 2097152,
+    "cursorCharsMax": 512,
+    "counting": "CORE/Worker must enforce BEFORE postMessage. Count all serialized properties including identity, metadata, escaped JSON, each row and cursor. Structured-clone transport allocations/transfer bytes require conservative independent Worker resource accounting; UI rechecks after receive.",
+    "rejectOversizeNotTruncate": true,
+    "mayReturnFewerRowsThanRequested": true,
+    "noRawUnboundedSubtrees": true,
+    "largeDomains": [
+      "Grid/DiffGrid/SubGrid",
+      "Inventory/Collections/Containers",
+      "Quest/Progression"
+    ]
+  },
+  "response": {
+    "required": [
+      "identity",
+      "domain",
+      "view",
+      "revision",
+      "rows",
+      "complete",
+      "nextCursor"
+    ],
+    "completeCursorInvariant": "complete === (nextCursor === null)",
+    "incompleteRequiresNonemptyRows": true,
+    "cursor": "nonempty opaque string when incomplete, null only for complete page",
+    "noUnprovenFullDomainCompletion": true,
+    "stableOrder": "total deterministic stable sort + unique logical identity tie breaker",
+    "rowProvenance": "source-derived Core index, not client asserted graph",
+    "missingPointers": "explicit error or typed omission reason; never infer end-of-domain from pointer watch subset"
+  },
+  "cursorProvenance": {
+    "authority": "only trusted same Worker/CORE; never Svelte or arbitrary caller",
+    "options": [
+      "opaque random unguessable handle into Worker-private state",
+      "authenticated token verified with Worker-private secret"
+    ],
+    "boundClaims": [
+      "encrypted original P1G SHA256",
+      "Core issued sessionKey and generation",
+      "save schema and explicitly separately verified build provenance",
+      "revision",
+      "index generation",
+      "domain",
+      "view",
+      "canonical filters",
+      "stable sort",
+      "page limit",
+      "next position",
+      "expiry"
+    ],
+    "lifetime": "per local File SaveSession, invalidate on switch/close/reopen/revision/index invalidation; bounded number of outstanding handles and retention",
+    "replay": "single-use continuation, atomic consume before a new page is dispatched, including concurrent query attempts",
+    "tamperOrForeignCursor": "reject, no fallback to first page, never treat as authorization",
+    "uiCursorHandling": "opaque byte-for-byte echo only; UI sequence fences are defense in depth, not provenance"
+  },
+  "concurrency": {
+    "everyResponseSourceShaVerified": true,
+    "staleRequestCancellation": "Core/Worker invalidates and discards pending pages on generation/revision change; no stale postMessage side-effects",
+    "sessionSwitch": "old source File, buffer, Row caches and cursor tickets isolated from next file",
+    "undoRedo": "only Core increases revision and invalidates affected indexes and all stale projections",
+    "fullDomainCompletion": "must derive complete/nextCursor from verified Core index enumeration, no inferred total from 512 watched pointers"
+  },
+  "trust": {
+    "fileSource": "browser File transferable locally, original immutable in trusted Worker",
+    "sourceRoots": [
+      "encrypted original P1G SHA256",
+      "decoded JSON SHA256",
+      "registry SHA256"
+    ],
+    "externalSwitchBID": "separately supplied evidence, never inferred from schema",
+    "allowUIReferenceGraph": false,
+    "allowUIWriterCapability": false,
+    "noBackendUpload": true,
+    "transportOnlyRead": true,
+    "capabilities": {
+      "READ": "NOT_PRODUCT_ACCEPTED",
+      "ENCODE_COPY": "DENIED",
+      "PERSISTENT_REPLACE": "DENIED"
+    }
+  },
+  "acceptance": {
+    "phaseB": "BLOCKED",
+    "prerequisites": [
+      "01 CORE fixed stable encrypted P1G READ-only Worker/WASM ABI with provenance-scoped opaque cursor and bounded output",
+      "exact-head 05 QR adversarial cursor and total/row byte enforcement at trusted Worker boundary",
+      "real Chrome synthetic encrypted P1G/rapid file switch, revision cancellation, large Grid/Inventory/Quest page stress and memory audit",
+      "retain JS Worker/Codec comparison oracle; no product encode copy until independent separate acceptance"
+    ],
+    "crossOriginGraphAuthority": "DENIED"
+  }
+}

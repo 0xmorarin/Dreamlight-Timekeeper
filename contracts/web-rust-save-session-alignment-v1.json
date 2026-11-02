@@ -142,6 +142,31 @@
     "semantics": "large Grid/Inventory/Quest must be Core-indexed as bounded typed rows; UI cannot assert full graph completeness or writer authority"
   },
   "observedLatest": {
+    "wandPr312Head": "c6b152512d3bc901fd1474dbcfcb07253ae1b347",
+    "comparedFrom": "1909dd5e041db69dd3c6fc0f896d0c57e02c5a89",
+    "aheadBy": 14,
+    "sourceBlobs": {
+      "session": "c222695ff1e2e3122170c4c627ccde928bdaabfb",
+      "p1g": "c8cacdc5fa6afc7a60f388af561522e2867f5c9b",
+      "semanticSafety": "0096ba2f0e060baa5239a3e423b42f3a8876a12e",
+      "sourceEvidenceDocument": "b2fad0558734f478c209843bee050423eaecef7e"
+    },
+    "delta": [
+      "Wand common Rust P1G research now has direct synthetic encrypted interop tests against Wand and Timekeeper JS codec; product writer still denied",
+      "session.rs now checks observed GridObject.Container -> Player.ContainerInventories edges from bounded GridCollection/ContainerInventories subtrees; this is NOT full graph closure",
+      "semantic_safety.rs reject_structural_loss rejects nested missing object members, array shortening/container type changes for small recognized subtrees; does NOT prove all unknown values preserved",
+      "query_paged remains numeric pointer-list cursor MAX_PAGE64, MAX_QUERY_WATCH512, 512-byte preview; no Core minted opaque typed domain cursor",
+      "openLocal/backupOriginal/product WorkerTransport unchanged and NOT accepted; validation denies encodeCopy/persistent replace"
+    ],
+    "researchTests": "01 CORE reports 33/33 synthetic tests and direct Wand/Timekeeper JS P1G parity; 01 CORE reports CI #41460360640 and #41460360442 SUCCESS; WEB has not independently re-run Rust suite",
+    "apiGapCount": 10,
+    "productReadAccepted": false,
+    "completeDomainProjectionAccepted": false,
+    "stableWasmWorkerApiAccepted": false,
+    "writerGranted": false,
+    "webPendingProposal": "contracts/web-core-projection-boundary-v1.json"
+  },
+  "observedBeforeCurrent": {
     "wandPr312Head": "1909dd5e041db69dd3c6fc0f896d0c57e02c5a89",
     "comparedFrom": "c587f04855db0543896c51f3defa068ccf002b43",
     "comparison": "7 commits ahead; changed p1g oracle, w1 evidence and tests; added P1G_SOURCE_EVIDENCE_RESEARCH_API_V1.md and source reference tests; no session.rs or p1g.rs change",
