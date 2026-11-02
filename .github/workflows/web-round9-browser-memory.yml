@@ -13,11 +13,11 @@ jobs:
     steps:
       - name: Checkout WEB-owned test branch
         uses: actions/checkout@v4
-      - name: Checkout fixed, independently accepted read-only integrated PR11
+      - name: Checkout fixed integrated PR11 candidate (05 QR acceptance separate)
         uses: actions/checkout@v4
         with:
           repository: 0xmorarin/Dreamlight-Timekeeper
-          ref: dbd6050b72990df547116634d851fe272c0e6c2b
+          ref: 5d23df0cc0cd1ff0ca51616890ba459126faa4db
           path: _round9_target
       - name: Checkout isolated CORE memory probe (not integrated into PR11)
         uses: actions/checkout@v4
@@ -33,7 +33,7 @@ jobs:
           python-version: '3.11'
       - name: Verify immutable HEADs, identical Codec blobs, no product edit capability
         run: |
-          test "$(git -C _round9_target rev-parse HEAD)" = dbd6050b72990df547116634d851fe272c0e6c2b
+          test "$(git -C _round9_target rev-parse HEAD)" = 5d23df0cc0cd1ff0ca51616890ba459126faa4db
           test "$(git -C _round9_core rev-parse HEAD)" = 13e6592facfbcaa0be4b23ca74db758ab0388bd4
           for f in src/core/p1g-packaged-profile-codec.mjs src/core/safe-edit-session.mjs src/core/versioning.mjs src/core/p1g-envelope-audit.mjs; do
             test "$(git -C _round9_target rev-parse HEAD:"$f")" = "$(git -C _round9_core rev-parse HEAD:"$f")"

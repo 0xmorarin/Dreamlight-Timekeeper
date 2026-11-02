@@ -17,14 +17,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: 0xmorarin/Dreamlight-Timekeeper
-          ref: dbd6050b72990df547116634d851fe272c0e6c2b
+          ref: 5d23df0cc0cd1ff0ca51616890ba459126faa4db
           path: _round3_target
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
       - name: Record immutable tested tree and check prohibition boundaries
         run: |
-          test "$(git -C _round3_target rev-parse HEAD)" = dbd6050b72990df547116634d851fe272c0e6c2b
+          test "$(git -C _round3_target rev-parse HEAD)" = 5d23df0cc0cd1ff0ca51616890ba459126faa4db
           ! grep -q "request('export'" _round3_target/src/app.mjs
           ! grep -q "createSeparateDownloadCoordinator" _round3_target/src/app.mjs
           ! grep -q "type==='export'" _round3_target/src/worker.mjs
