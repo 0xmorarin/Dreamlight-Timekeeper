@@ -811,3 +811,100 @@ test('Client.OnRecurringEventRemoved cancels, disposes and removes matching CTS,
     assert.equal(row.gridDeletionAuthorized,false);
   }
 });
+
+
+const decodeBranchImmediate26=(rva,word)=>{
+  assert.equal((word>>>26)&0x3f,0x05); // B, not BL
+  let imm=word&0x03ffffff;if(imm&0x02000000)imm-=0x04000000;
+  return rva+4*imm;
+};
+const decodeConditionalBranch19=(rva,word)=>{
+  assert.equal((word&0xff000010)>>>0,0x54000000);
+  let imm=(word>>>5)&0x7ffff;if(imm&0x40000)imm-=0x80000;
+  return rva+4*imm;
+};
+test('Clock.Update polls currentTimeProvider and requires appointment date strictly before now',()=>{
+  const c=native.native.clockAppointmentEvaluation;
+  assert.equal(c.clockUpdateRVA,'0x05BB4D30');
+  assert.equal(c.clockPausedFieldOffset,'0x28');
+  assert.equal(c.clockPausedLoadRVA,'0x05BB4E08');
+  assert.equal(c.clockAppointmentsFieldOffset,'0x10');
+  assert.equal(c.currentTimeProviderFieldOffset,'0x18');
+  assert.equal(c.timeZoneOffsetProviderFieldOffset,'0x20');
+  assert.equal(c.currentTimeProviderLoadRVA,'0x05BB4E30');
+  assert.equal(c.currentTimeProviderInvokeRVA,'0x05BB4E48');
+  assert.equal(c.appointmentDateTimeFieldOffset,'0x10');
+  assert.equal(c.appointmentCancellationTokenOffset,'0x18');
+  assert.equal(c.appointmentTaskCompletionSourceOffset,'0x20');
+  assert.equal(c.nowTicksMaskRVA,'0x05BB4E70');
+  assert.equal(c.appointmentDateTimeMaskRVA,'0x05BB4F68');
+  assert.equal(c.deadlineCompareRVA,'0x05BB4F6C');
+  assert.equal(c.deadlineSkipBranchRVA,'0x05BB4F70');
+  assert.equal(decodeConditionalBranch19(0x05BB4F70,0x54FFF8A2),0x05BB4E84);
+  assert.equal(0x54FFF8A2&15,2); // B.HS means appointment >= now skips result
+  assert.equal(c.strictDueCondition,'appointmentMaskedDateTime < currentProviderMaskedNow');
+  assert.equal(c.deadlineEqualsNowTriggersCompletion,false);
+  assert.equal(c.providerInvokedAtEachNonPausedClockUpdate,true);
+  assert.equal(c.existingAppointmentReReadsRecurringEventTimestamp,false);
+  assert.equal(c.timezoneOffsetReadWithinUpdate,false);
+  assert.equal(c.directOSClockTimeSourceConfirmed,false);
+  assert.equal(c.timezoneAndDSTBehaviorConfirmed,false);
+  assert.equal(c.consoleClockJumpResultConfirmed,false);
+});
+test('Clock.Update has disjoint cancellation and completed-result calls with list removal',()=>{
+  const c=native.native.clockAppointmentEvaluation;
+  assert.equal(decodeBL(0x05BB4F18,0x977711C6),0x03979630);
+  assert.equal(decodeBL(0x05BB4F90,0x977710E8),0x03979330);
+  assert.equal(decodeBL(0x05BB4FA4,0x97814EEB),0x03C08B50);
+  assert.equal(c.cancellationTrySetCanceledTargetRVA,'0x03979630');
+  assert.equal(c.completionTrySetResultTargetRVA,'0x03979330');
+  assert.equal(c.listRemoveAtTargetRVA,'0x03C08B50');
+  assert.notEqual(c.cancellationTrySetCanceledCallRVA,c.completionTrySetResultCallRVA);
+});
+test('Client.Update invokes Clock.Update for three independently constructed clocks',()=>{
+  const c=native.native.clockClientPolling;
+  assert.equal(c.clientUpdateRVA,'0x0604C460');
+  assert.equal(c.profilePresentGuardRVA,'0x0604C4F0');
+  assert.deepEqual(c.clockCtorRvas,['0x0604A7EC','0x0604A980','0x0604AB20']);
+  assert.deepEqual(c.clocks.map(x=>x.offset),['0xF0','0xF8','0x100']);
+  assert.deepEqual(c.clocks.map(x=>x.clientField),['Clock','ClockOnline','ClockPortal']);
+  assert.equal(decodeBL(0x0604C500,0x97EDA20C),0x05BB4D30);
+  assert.equal(decodeBL(0x0604C510,0x97EDA208),0x05BB4D30);
+  assert.equal(decodeBranchImmediate26(0x0604C52C,0x17EDA201),0x05BB4D30);
+  assert.equal(c.constructorCreatesThreeDistinctClockObjects,true);
+  assert.equal(c.worldRecurringEventUsesMainClockConfirmed,false);
+  assert.equal(c.clientUpdateEntryCalledInRuntimeVerified,false);
+  assert.equal(c.updateLoopDoesNotRearmAppointments,true);
+});
+test('Client.OnRecurringEventRescheduled early-returns while explicit block flag is set',()=>{
+  const c=native.native.recurringEventClientDispatchGuards;
+  assert.equal(c.handlerRVA,'0x0604E9B0');
+  assert.equal(c.blockFlagField,'blockRecurringEventReschedule');
+  assert.equal(c.blockFlagOffset,'0x1D0');
+  assert.equal(c.flagLoadRVA,'0x0604EA34');
+  assert.equal(c.earlyReturnBranchRVA,'0x0604EA3C');
+  assert.equal(c.branchTargetRVA,'0x0604EA58');
+  assert.equal((0x39474268>>>10)&0xfff,0x1D0);
+  assert.equal(0x39474268&31,8);
+  assert.equal(c.earlyReturnWhenBlockFlagNonzero,true);
+  assert.equal(c.isWorldAuthoritativeCallRVA,'0x0604EA5C');
+  assert.equal(decodeBL(0x0604EA5C,0x97FFE499),0x06047CC0);
+  assert.equal(c.handlerContainsDirectSetterCall,false);
+  assert.equal(c.handlerIsNotProofOfSubscription,true);
+});
+test('profile-set and debug-time-skip paths each re-enumerate recurring waits, debug guard remains distinct',()=>{
+  const c=native.native.recurringWaitRecreationCallsites;
+  assert.equal(c.startOrProfileSet.stateMachineRVA,'0x060A9B70');
+  assert.equal(decodeBL(0x060AA13C,0x97FE8E25),0x0604D9D0);
+  assert.equal(c.debugTimeSkip.stateMachineRVA,'0x060911E0');
+  assert.equal(c.debugTimeSkip.blockFlagSetRVA,'0x060912B8');
+  assert.equal(c.debugTimeSkip.blockFlagClearRVA,'0x06091580');
+  assert.equal(decodeBL(0x060915E0,0x97FEF0FC),0x0604D9D0);
+  assert.equal((0x39074288>>>10)&0xfff,0x1D0);
+  assert.equal((0x390742DF>>>10)&0xfff,0x1D0);
+  assert.equal(c.debugTimeSkip.debugOnlyPathNotAuthorizedProductFlow,true);
+  assert.equal(c.newProfileWaitEnumeratesCandidates,true);
+  assert.equal(c.existingCTSGenerationAndCleanupAcrossReloadVerified,false);
+  assert.equal(c.coldLoadAndRestartRuntimeVerified,false);
+  assert.equal(c.noMutationOfOwnersActualSave,true);
+});
