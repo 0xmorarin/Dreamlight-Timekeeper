@@ -93,3 +93,20 @@ test('QR-R2 CORE malformed ZIP metadata and unchanged input prohibit writer prom
  assert.equal(auditP1gEnvelope({format:'json'}).editedCopyAuthorized,false);
  assert.deepEqual(Buffer.from(source),Buffer.from(makeSyntheticP1gProfile(profile())));
 });
+
+test('QR-R2 CORE streaming inflation aborts before collecting output exceeding central declared size',async()=>{
+ const Original=globalThis.DecompressionStream;
+ const size=zip.profileEntry.uncompressedSize+1;
+ globalThis.DecompressionStream=class {
+  constructor(type){
+   assert.equal(type,'deflate-raw');
+   return new TransformStream({transform(_chunk,controller){
+    controller.enqueue(new Uint8Array(size));
+   }});
+  }
+ };
+ try{
+  await assert.rejects(()=>p1gPackagedProfileCodec.loadProfile(source),/PROFILE_ENTRY_TOO_LARGE/);
+ }finally{globalThis.DecompressionStream=Original;}
+ assert.equal(report(zip).writerAuthorized,false);
+});
