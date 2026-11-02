@@ -1,0 +1,26 @@
+name: 05 QR WEB27 Independent Session and Bounded Page Delta
+on:
+  pull_request:
+    paths:
+      - 'qa/05qr-web27-fence-independent.test.mjs'
+      - '.github/workflows/qa-web27-fence.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent-fence:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Verify fixed WEB product source unchanged by QA branch
+        run: |
+          git diff --quiet eb071cc49927c1b154b6780001d2d6f5f8abeca8 HEAD -- src/lib/timekeeper/session-response-fence.mjs src/lib/timekeeper/save-session-contract.ts
+          node --version
+      - name: Independent WEB27 negative fence matrix
+        run: node --test qa/05qr-web27-fence-independent.test.mjs
+      - name: Capability boundary
+        run: echo 'UI rejection only; Worker-minted cursor authenticity and real P1G Writer NOT ACCEPTED'
