@@ -5,6 +5,7 @@
 import {SafeProfileEditSession,diffPaths} from './safe-edit-session.mjs';
 import {p1gPackagedProfileCodec} from './p1g-packaged-profile-codec.mjs';
 import {inspectTimingPlan} from './timing-plan-preflight.mjs';
+import {auditP1gEnvelope} from './p1g-envelope-audit.mjs';
 import {projectProfile,validTime} from '../reader.mjs';
 import {BuildIdentityKind,PlatformFamily,RuntimeGateStatus} from './versioning.mjs';
 
@@ -121,8 +122,27 @@ export async function createW1EditedP1gCopy({
   throw Error('W1_SOURCE_SCHEMA_OR_SHA_MISMATCH');
  if(session.getPreflightContext().inputFormat!=='packaged')
   throw Error('W1_P1G_REQUIRED');
+ const envelope=auditP1gEnvelope({format:'packaged',metadata:session.originalMetadata});
+ if(!envelope.repackageShapeObserved||envelope.writerAuthorized||
+    envelope.editedCopyAuthorized)
+  throw Error('W1_SOURCE_ZIP_REBUILD_UNSUPPORTED');
  const original=session.getSnapshot();
  const snapshot=projectProfile(original,eventRegistry);
+ // Refuse duplicate saved EventIDs; row index is NOT event definition ID.
+ const savedCounts=new Map();
+ for(const container of Object.values(original.World.RecurringEvents??{})){
+  if(!record(container))continue;
+  for(const value of Object.values(container)){
+   if(!record(value)||!Object.hasOwn(value,'RecurringEventItemID'))continue;
+   const id=value.RecurringEventItemID;
+   if(Number.isSafeInteger(id)||typeof id==='string'){
+    const key=String(id);
+    savedCounts.set(key,(savedCounts.get(key)??0)+1);
+   }
+  }
+ }
+ for(const entry of entries)if(savedCounts.get(String(entry.eventId))!==1)
+  throw Error('W1_DUPLICATE_SAVED_EVENT_ID');
  const paths=checkPlan(snapshot,entries,allowedPairs);
  const report=inspectTimingPlan(original,snapshot,entries);
  if(report.summary.requested!==entries.length||
