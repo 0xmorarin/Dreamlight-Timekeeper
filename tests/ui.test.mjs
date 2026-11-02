@@ -58,3 +58,12 @@ test('preview plan UI provides reversible staging without enabling save writes',
  assert.doesNotMatch(app,/request\('export'\)/);
  assert.doesNotMatch(page,/id="export-edited"/);
 });
+
+test('preflight is source-authoritative and does not introduce an edited save download path',()=>{
+ assert.match(app,/request\('preflight',\{sessionId,entries\}\)/);
+ assert.match(app,/request\('backup',\{sessionId:state\.sessionId\}\)/);
+ assert.match(app,/preflightSequence/);
+ assert.match(app,/preflightSummary/);
+ assert.doesNotMatch(page,/id="export-edited"/);
+ assert.doesNotMatch(app,/request\('encode'|request\('export'/);
+});
