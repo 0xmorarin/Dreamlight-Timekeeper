@@ -66,7 +66,7 @@ const NATIVE=Object.freeze({
     accessorCallRVA:'0x057BC5BC',
     accessorTargetRVA:'0x04E66530',
     nextLoadRVA:'0x057BC5C4',
-    nextLoadOpcode:'0xF9401420',
+    nextLoadOpcode:'0xF9401414',
     nextLoadSemantic:'LDR X20,[X0,#0x28]',
     amountWithStateType:'Definitions.Items.AmountWithState',
     amountFieldOffset:'0x18',
