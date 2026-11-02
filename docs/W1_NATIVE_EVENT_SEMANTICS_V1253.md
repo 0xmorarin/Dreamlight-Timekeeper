@@ -1,5 +1,59 @@
 # 02 TIME — W1 per-event Native semantics ledger (Switch v1.25.3)
 
+## Round 4 — W1 catch-up quantity, expiry, state and removal (2026-11-02)
+
+**Evidence: RAW_NSO_STATIC_VERIFIED, no runtime/source-Event-ID dispatch acceptance.** Reused the exact Round 3 SHA-checked private NSO and v1.25.3 IL2CPP `dump.cs`; the raw executable was not uploaded to GitHub, and source hash acceptance was not repeated as a new finding. Original `main` SHA256 `16957e6ed546daeb196f296362d5ded885fad9eeff70584870f645e1204ca94a`, text SHA256 `15d17f0b9e95d022368bbd89ec8feacec6f1feb2439bc9a37fe2f6bf2078a328`, BID `9A239D3DB569756D`. All RVAs below are **module RVA**, not absolute virtual addresses.
+
+### 1. Four distinct native `GetMaxIntervalToFullyExecute` calculations
+
+The same interval helper `RecurringEventIntervalData.GetMaxTimeBetweenExecutions` at RVA `0x047941D0` is called by each W1 override, but the multiplicity is variant-specific; C-style signed integer division truncation applies to the three SDIV paths. The formulas are derived from exact signed AArch64 `SDIV`, `MUL`, `LDR` and `BL` words, matched to per-type native field offsets in `dump.cs`. **These are catch-up horizons, not the numbers guaranteed to appear on screen, and not guarantees about GridObject IDs.**
+
+| W1 type / method RVA | Number expression multiplying the maximum interval | RVA / opcode landmarks |
+| --- | --- | --- |
+| `ItemSpawning`, `0x057C0140` | `GetMaximumAmount() / MinNumberOfSpawn`, where `MinNumberOfSpawn` is +`0x54`; the maximum helper may use Area-choice overrides | Helper `0x057C02C0 BL 0x047941D0`; max `0x057C02E4 BL 0x047AB7F0`; `0x057C02E8 LDR W8,[X19,#0x54]`; `0x057C02EC SDIV W8,W0,W8`; `0x057C02F8 MUL X0,X20,X8` |
+| `WildCropsSpawningInVillage`, `0x057C4350` | `GetMaximumAmount() / NumberOfGardensToSpawn`, denominator field +`0x58`, maximum helper RVA `0x047BCFA0` | Interval `0x057C44D0 BL 0x047941D0`; maximum `0x057C44F4 BL 0x047BCFA0`; `0x057C44F8 LDR W8,[X19,#0x58]`; `0x057C44FC SDIV`; `0x057C4508 MUL` |
+| `FlowerSpawningInVillage`, `0x057CB7C0` | `MaximumAmount / NumberOfFlowersToSpawn`, direct fields +`0x60` and +`0x54` | Interval `0x057CB940 BL 0x047941D0`; `0x057CB95C LDR W8,[X19,#0x60]`; `0x057CB960 LDR W9,[X19,#0x54]`; `0x057CB964 SDIV`; `0x057CB970 MUL` |
+| `FishSpawningInVillage`, `0x057C7EC0` | `MaxNumberOfPendingFishes` directly (no integer division), field +`0x60` | Interval `0x057C8098 BL 0x047941D0`; `0x057C80B0 LDRSW X8,[X19,#0x60]`; `0x057C80B4 MUL X0,X20,X8` |
+
+No default positive/zero denominator assumptions, per-ID numeric values, Area actual count equality, overflow handling, or runtime successful spawns are asserted from these snippets. `WildCrops` and `ItemSpawning` call separate `GetMaximumAmount` methods; `Flower` uses direct fields; `Fish` describes PendingFish state, not GridObject allocation. TimeBending HOLD area-choice references `2010000093/2010000120` remain protected, not W1 exceptions.
+
+### 2. `IsEventOver` is not a comparison of `Now` with EndDate
+
+`IRecurringEventExtensions.IsEventOver` RVA `0x05AF3050` obtains `EndDate` through interface slot **3**, `NextOccurrence` through slot **1**, converts timestamps to date ticks, masks both values with `0x3FFFFFFFFFFFFFFF`, and at `0x05AF3230 CMP X8,X9` / `0x05AF3234 CSET W0,HI` returns true if **masked NextOccurrence > masked EndDate**. A null EndDate can return false; other invalid/no-result/error branches are not runtime tested. Source `Profile.ActualizeRecurringEvents` directly calls this helper at `0x05A2AF4C`, `0x05A2AF84`, `0x05A2B044`, `0x05A2B058`, with source BL words decoding exactly to `0x05AF3050`. This is a planned-occurrence/EndDate comparison; it is not a generic check for a wall-clock date being past EndDate, and is not proof that the event is removed from serialized save data. It constrains the catch-up loop, not the meaning of all other expiry/quest guards.
+
+### 3. NextOccurrence, LastOccurrence, Grid and persistence are separate
+
+The matching v1.25.3 IL2CPP serialized W1 structures have **`RecurringEventItemID` (+`0x18`), `NextOccurrence` (+`0x20`), `EndDate` (+`0x28`)** in all four variants. Only `ItemSpawning` also declares **`LastOccurrence` protobuf field #4 at +`0x30`**, with the previously verified Execute `0x057BF058 BL Timestamp.FromDateTime` and `0x057BF068 STR X0,[X8,#0x30]!` before `0x057BF0C4 Reschedule`. WildCrops, Flower and Fish lack this same serialized field; do not synthesize LastOccurrence for them.
+
+`Reschedule` may produce a new NextOccurrence via virtual slot-2 setter; `ActualizeRecurringEvents` may also set it after the overdue clamp. Neither in-memory setter **proves** that a packaged save was written, that Grid objects already present were deleted or were left untouched by the wider game, or that subsequent loading will retain the new timestamp. In particular setting a future date does not directly delete an already spawned GridObject. The full object allocation/count/ID and save persistence paths require independent tracing and runtime acceptance.
+
+### 4. Fish PendingFish remove is a distinct state mutation
+
+Source `ProfileWorld.AddPendingFish` RVA `0x0598E6E0` is called from Fish.Execute at `0x057C70F4`. Separate `ProfileWorld.RemovePendingFish` RVA `0x0598E800` calls `MapField<TKey,TValue>.Remove` (instantiation RVA `0x03C141D0`) at `0x0598E874`, then optionally dispatches an event via slot argument 39 `0x0598E8B8 MOV W2,#39` / `0x0598E8E4 BLR X8`. It contains **no direct BL** to `Reschedule` `0x05AF24D0`, consistent with the previous 10-callsite whole-text scan. The dispatcher consumer and any indirect reaction, actual fish collection callbacks, server-origin update, or new occurrence update remain UNKNOWN. `PendingFish` key is not automatically a placed `GridObjectID`; a successful MapField removal does not prove a ripple was removed in a loaded scene.
+
+### 5. Per-Event-ID evidence boundary (508 records, no write promotion)
+
+For every source definition, `sourceRecordEvidence=CONFIRMED` refers **only** to the existing byte-verified v1.25.3 508-record source inventory. Before the caller supplies an independently known saved variant, `nativePerEventEvidence=UNKNOWN` and `variantConsumerStaticEvidence=UNKNOWN`; a matching caller-supplied W1 hint yields **`variantConsumerStaticEvidence=STATIC_ONLY`**, **not** `nativePerEventEvidence=STATIC_ONLY`, because the EventID→native stored variant mapping remains unverified. All observed game outcomes remain `UNKNOWN`; all operations remain `BLOCKED`.
+
+| Example EventID | Source-only/W1 classification | Native matching saved subtype | Existing object, pickup, cooldown and actual next event |
+| --- | --- | --- | --- |
+| `2010000021` | Wood ItemSpawning candidate, source CONFIRMED | Type-level STATIC_ONLY when caller supplies ItemSpawning; **per-ID UNKNOWN** | UNKNOWN |
+| `2010400001` | WildCrops candidate, source CONFIRMED | Type-level STATIC_ONLY when caller supplies WildCrops; per-ID UNKNOWN | UNKNOWN |
+| `2010500008` | Flower candidate, source CONFIRMED | Type-level STATIC_ONLY when caller supplies Flower; per-ID UNKNOWN | UNKNOWN |
+| `2010200014` | Inactive Fish definition | **BLOCKED** | UNKNOWN |
+| `2010000064` | MoonstoneChest | **BLOCKED** separate online/reward gate | UNKNOWN |
+| `2010000093`, `2010000120` | TimeBending HOLD exceptions | **BLOCKED** separate family | UNKNOWN |
+| Unknown or mismatch ID/type | UNKNOWN | UNKNOWN | UNKNOWN |
+
+The sample owner's `2126-08-20T00:00:00Z` value is allowed and may be deliberate decoration suppression. A future timestamp cannot be classified as damage by its magnitude. No writer allowlist, edited export, Area Grid deletion, or Moonstone movement was opened.
+
+### 6. Falsification/QA next paths
+
+Follow the **source-ID→concrete serialized RecurringEvent oneof discriminator→Execute implementation dispatch** at the appropriate save version; inspect explicit `GetMaximumAmount` handling and live grid item count sources, event activation/Quest/DLC conditions; trace the virtual PendingFish removal event listeners and real player pickup flow; distinguish already created GridObjects from future scheduled additions; find the transaction-to-persistent-save boundary in collaboration with 01 CORE without changing codec. Run read-only console comparisons with before/after area object manifests and cold reload when a safe QA environment exists. No static branch may become a guarantee of spawn or a product-level Writer PASS.
+
+---
+
+
 ## Round 3 primary binary verification — current authoritative Native outcome (2026-11-02)
 
 **Evidence classification: RAW_NSO_STATIC_VERIFIED, NOT RUNTIME_TESTED.** Round 1/2 sections further below are retained as research history where they disagree with the new direct-binary facts. Original Nintendo Switch v1.25.3 DDVRE private `ExeFS/main` Drive file ID `1towEM6WrKL6ZMwepI76xyPfpzxuqS6BN` was retrieved and verified **read-only**. Original same-version `Il2CppDump/dump.cs` Drive ID `17_y_G-olsu7zzOBcKwJg5YTFOW9JQbto` was retrieved as the method RVA index. Neither was committed or distributed.
