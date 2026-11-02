@@ -61,7 +61,8 @@ test('RSP-Q01 two NEW external staged candidates are truly independent, source i
   assert.deepEqual(gf.filter(p=>p.endsWith('.webp')),scope.gameUi.map(x=>x.path).sort());
   assert.equal(gf.filter(p=>p.endsWith('.svg')).length,16);
   assert.equal(sf.filter(p=>p.endsWith('.svg')).length,16);
-  assert.deepEqual(sf.filter(p=>p.startsWith('assets/')),scope.ownerSvg.map(x=>x.path).sort());
+  assert.deepEqual(sf.filter(p=>p.startsWith('assets/')&&p.endsWith('.svg')),scope.ownerSvg.map(x=>x.path).sort());
+  assert(sf.includes('assets/app/release-notice.css'),'Static bilingual disclaimer CSS must be present');
   assert.equal(gf.some(x=>x.startsWith('tests/')||x.startsWith('.github/')),false);
   assert.equal(sf.some(x=>x.startsWith('tests/')||x.startsWith('.github/')),false);
   const [gm,sm]=await Promise.all([
