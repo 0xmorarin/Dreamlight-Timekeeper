@@ -20,7 +20,7 @@ function root(schema=626){
  return {GameInfo:{Version:schema,InitialVersion:518,LastSaveDeviceInfo:{deviceType:'DeviceType_Switch'}},
  Player:{Name:'Synthetic'},World:{RecurringEvents:{
   '0':{ItemSpawning:{RecurringEventItemID:2010000021,NextOccurrence:base,Opaque:{b:true}}},
-  '1':{FlowerSpawningInVillage:{RecurringEventItemID:2010500008,NextOccurrence:base}}},
+  '1':{FlowerSpawningInVillage:{RecurringEventItemID:2010500008,NextOccurrence:base}},
   Extra:{unknown:{value:'9007199254740993'},flags:[false,null,17]}
  },Unrecognized:{nested:[0,{k:'untouched'},true]}}};
 }
