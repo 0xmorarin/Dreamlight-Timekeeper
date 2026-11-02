@@ -165,7 +165,17 @@ test('stale saved EventID, duplicate oneof, wrong index and old-value CAS cannot
  assert.equal(compare(save,original,snapshot).dto.status,'DENIED');
  save.World.RecurringEvents['7'].ItemSpawning.NextOccurrence=OLD;
  const wrong=[{...original[0],pointer:'/World/RecurringEvents/8/WildCropsSpawningInVillage/NextOccurrence'}];
- assert.equal(compare(save,wrong,snapshot).dto.status,'DENIED');
+ // The legacy plan is keyed by pointer alone. A caller swapping it to another
+ // valid row selects THAT row, not a forged EventID. This is NOT permission.
+ // Future Rust SemanticCommand must bind the explicit requested EventID/index/
+ // oneof tuple to the pointer and reject any mismatched request.
+ const pointerOnly=compare(save,wrong,snapshot).dto;
+ assert.equal(pointerOnly.status,'STRUCTURAL_CANDIDATE_ONLY');
+ assert.equal(pointerOnly.operations[0].sourceEventId,2010400001);
+ assert.equal(pointerOnly.operations[0].savedIndex,8);
+ assert.notEqual(pointerOnly.operations[0].sourceEventId,v.eventId);
+ assert.equal(pointerOnly.capabilityGranted,false);
+ assert.equal(pointerOnly.writerAuthorized,false);
 });
 test('NoOp, invalid UTC, and intentional 2126 scheduling remain distinct',()=>{
  const save=mockSave(),snap=review(save),eventId=vectors.cases[0].eventId;
