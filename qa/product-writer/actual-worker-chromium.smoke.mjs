@@ -91,10 +91,10 @@ try{
  });
  await page.goto(baseUrl,{waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>window.__dreamlightBooted===true);
- assert.equal(await page.locator('#tabs button').count(),4);
  assert.equal(await page.locator('#prepare-edited-panel').isHidden(),true);
  await page.locator('#save-file').setInputFiles({name:'qa-first.p1g',mimeType:'application/octet-stream',buffer:source});
  await page.locator('#session-name').getByText('QA Profile').waitFor({timeout:20000});
+ assert.equal(await page.locator('#tabs button').count(),4);
  assert.equal(await page.locator('#prepare-edited').isDisabled(),true);
  // Explicit plan and BID confirmation are required; default disabled.
  await page.locator('#records input[type=checkbox]').first().check();
