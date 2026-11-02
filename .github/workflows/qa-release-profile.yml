@@ -1,0 +1,82 @@
+name: 05 QR Final Release Profile Exact HEAD Independent Acceptance
+on:
+  pull_request:
+    paths:
+      - 'qa/release-profile/**'
+      - '.github/workflows/qa-release-profile.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent-staging-boundary:
+    name: Independent new-release staging + malicious path negatives (no Writer rerun)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: qa-source
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: 00c382c8c12c56ef25e40e09ad1f25c4e0db8a85
+          path: target
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Enforce exact commit parent and only six changed files
+        run: |
+          cd target
+          test "$(git rev-parse HEAD)" = "00c382c8c12c56ef25e40e09ad1f25c4e0db8a85"
+          test "$(git rev-parse HEAD^)" = "f6af69ec88d59336040737cd449abef586926073"
+          git diff --name-only HEAD^ HEAD > /tmp/release-qa-diff
+          printf '%s\n' .github/workflows/release-asset-profiles.yml data/release-asset-scope-v1.json docs/INITIAL_RELEASE_ASSET_SCOPE.md scripts/stage-release-asset-profile.mjs tests/browser-web-phaseb-edited-p1g.smoke.mjs tests/release-asset-scope.test.mjs > /tmp/release-qa-expect
+          diff -u /tmp/release-qa-expect /tmp/release-qa-diff
+          test "$(git rev-parse HEAD:.github/workflows/release-asset-profiles.yml)" = "acc035d40a0d7febbfa87007bb0c17554859bcbe"
+          test "$(git rev-parse HEAD:data/release-asset-scope-v1.json)" = "0d1b26084fc895fbfbab688a0b1d46c416df2890"
+          test "$(git rev-parse HEAD:docs/INITIAL_RELEASE_ASSET_SCOPE.md)" = "0990b00d76e1a7b28b78a083ae21ce40a650adc5"
+          test "$(git rev-parse HEAD:scripts/stage-release-asset-profile.mjs)" = "6aeb45603310cc97d9bc8a9373fe0907da2b9be8"
+          test "$(git rev-parse HEAD:tests/browser-web-phaseb-edited-p1g.smoke.mjs)" = "17b20a05ffe6498e7cd8018efda165b53b64ce68"
+          test "$(git rev-parse HEAD:tests/release-asset-scope.test.mjs)" = "8e4bfe16c5868881ab367723ab2c69f6043dbad5"
+          git diff --quiet HEAD^ HEAD -- src/worker.mjs src/app.mjs src/core src/w1-minimal-write-contract.mjs src/timing-native-semantics.mjs src/ui-verified-pair-downloads.mjs src/ui-separate-downloads.mjs data/steam-ui-icons-v1253.json
+          cp ../qa-source/qa/release-profile/independent-negative.test.mjs tests/qa-release-profile-negative.test.mjs
+      - name: Run new focused independent staged profile invariants and adversarial boundaries
+        run: |
+          cd target
+          node --test tests/qa-release-profile-negative.test.mjs
+
+  independent-staged-chromium:
+    name: Independent Chromium both staged media profiles only (not old product Writer suite)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: qa-source
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: 00c382c8c12c56ef25e40e09ad1f25c4e0db8a85
+          path: target
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Stage new QA-only independent browser test against exact product
+        run: |
+          test "$(git -C target rev-parse HEAD)" = "00c382c8c12c56ef25e40e09ad1f25c4e0db8a85"
+          cp qa-source/qa/release-profile/both-staged-chromium.smoke.mjs target/tests/qa-release-profile-browser.smoke.mjs
+          node --check target/tests/qa-release-profile-browser.smoke.mjs
+      - name: Install isolated native Chromium
+        run: |
+          cd target
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Only both newly staged candidate roots, four tabs and independent synthetic P1G reopened
+        run: |
+          cd target
+          node tests/qa-release-profile-browser.smoke.mjs
