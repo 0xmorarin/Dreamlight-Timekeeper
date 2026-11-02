@@ -110,7 +110,7 @@ test('decoded ZIP archive preamble and unparsed trailing bytes are not silently 
  assert(report.findings.includes('ZIP_PREFIX_BYTES_PRESENT'));
  assert(report.findings.includes('PROFILE_TO_CENTRAL_TRAILING_BYTES'));
  assert(report.findings.includes('CENTRAL_TO_EOCD_GAP_BYTES'));
- assert.equal(report.repackageShapeObserved,true);
+ assert.equal(report.repackageShapeObserved,false);
  assert.equal(report.status,'CONTAINER_REBUILD_REQUIRES_REVIEW');
  assert.equal(report.writerAuthorized,false);
 });
@@ -125,4 +125,57 @@ test('legacy metadata without local evidence explicitly remains inconclusive',as
  assert(audit.findings.includes('LOCAL_HEADER_BYTES_NOT_EXPOSED'));
  assert.equal(audit.repackageShapeObserved,false);
  assert.equal(audit.writerAuthorized,false);
+});
+
+test('missing or noninteger ZIP boundary lengths never masquerade as zero-length source layout',async()=>{
+ const loaded=await p1gPackagedProfileCodec.loadProfile(makeSyntheticP1gProfile(fixture()));
+ const zip=loaded.metadata.zip;
+ for(const [key,value,code] of [
+  ['archivePrefixBytes',undefined,'ARCHIVE_PREFIX_LENGTH_UNKNOWN'],
+  ['profileTrailingRegionBytes',-1,'PROFILE_TRAILING_LENGTH_UNKNOWN'],
+  ['centralDirectoryTrailingBytes',NaN,'CENTRAL_TRAILING_LENGTH_UNKNOWN']
+ ]){
+  const altered={...zip,[key]:value};
+  const report=auditP1gEnvelope({format:'packaged',metadata:{zip:altered}});
+  assert(report.findings.includes(code),key);
+  assert.equal(report.status,'CONTAINER_REBUILD_REQUIRES_REVIEW');
+  assert.equal(report.repackageShapeObserved,false);
+  assert.equal(report.writerAuthorized,false);
+  assert.equal(report.editedCopyAuthorized,false);
+ }
+});
+test('source descriptor flags are not confused with reconstructable ZIP even when local and central flags agree',async()=>{
+ const loaded=await p1gPackagedProfileCodec.loadProfile(makeSyntheticP1gProfile(fixture()));
+ const zip=loaded.metadata.zip,entry=zip.profileEntry;
+ const report=auditP1gEnvelope({format:'packaged',metadata:{zip:{...zip,profileEntry:{
+  ...entry,flagBits:0x0008,localHeader:{...entry.localHeader,flagBits:0x0008}
+ }}}});
+ assert.equal(report.localHeaderFieldsMatchCentral,true);
+ assert(report.findings.includes('DATA_DESCRIPTOR_FLAG_WOULD_BE_REMOVED'));
+ assert.equal(report.repackageShapeObserved,false);
+ assert.equal(report.status,'CONTAINER_REBUILD_REQUIRES_REVIEW');
+ assert.equal(report.writerAuthorized,false);
+});
+test('matching source extras are still unverified rebuild semantics, not simple export shape',async()=>{
+ const loaded=await p1gPackagedProfileCodec.loadProfile(makeSyntheticP1gProfile(fixture()));
+ const zip=loaded.metadata.zip,entry=zip.profileEntry,extra=new Uint8Array([0xab,0xcd]);
+ const report=auditP1gEnvelope({format:'packaged',metadata:{zip:{...zip,profileEntry:{
+  ...entry,extra,localHeader:{...entry.localHeader,extra}
+ }}}});
+ assert.equal(report.localExtraMatchesCentral,true);
+ assert.equal(report.localHeaderFieldsMatchCentral,true);
+ assert(report.findings.includes('ZIP_EXTRA_FIELDS_REBUILD_SEMANTICS_UNVERIFIED'));
+ assert.equal(report.repackageShapeObserved,false);
+ assert.equal(report.editedCopyAuthorized,false);
+});
+test('unknown central numeric fields and rebuild attributes fail closed independently',async()=>{
+ const loaded=await p1gPackagedProfileCodec.loadProfile(makeSyntheticP1gProfile(fixture()));
+ const zip=loaded.metadata.zip,entry=zip.profileEntry;
+ for(const changed of [{compressedSize:undefined},{crc32:0x100000000},{createVersion:undefined},
+   {internalAttr:NaN},{externalAttr:-1}]){
+  const report=auditP1gEnvelope({format:'packaged',metadata:{zip:{...zip,profileEntry:{...entry,...changed}}}});
+  assert.equal(report.status,'CONTAINER_REBUILD_REQUIRES_REVIEW');
+  assert.equal(report.repackageShapeObserved,false);
+  assert.equal(report.writerAuthorized,false);
+ }
 });
