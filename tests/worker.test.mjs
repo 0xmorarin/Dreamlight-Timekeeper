@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import test from 'node:test';
 import {fileURLToPath} from 'node:url';
+import {makeSyntheticP1gProfile} from './fixture.mjs';
 const originalFetch=globalThis.fetch;
 globalThis.fetch=async url=>{const bytes=await readFile(fileURLToPath(url));return new Response(bytes,{status:200,headers:{'content-type':String(url).endsWith('.gz')?'application/octet-stream':'application/json'}})};
 let reply;
@@ -50,6 +51,27 @@ test('Worker identifies plain JSON container contract without claiming a P1G wri
  assert.equal(result.view.containerAudit.sourceMetadataPresent,false);
 });
 
+
+test('Worker packaged P1G audit is non-mutating and session-scoped backup retains the source bytes',async()=>{
+ const p={GameInfo:{Version:626},Player:{Name:'Synthetic'},World:{RecurringEvents:{}}};
+ const bytes=makeSyntheticP1gProfile(p);
+ const buffer=bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength);
+ const result=await new Promise((resolve,reject)=>{
+  const timeout=setTimeout(()=>reject(new Error('Worker did not respond')),3000);
+  reply=data=>{clearTimeout(timeout);resolve(data)};
+  self.onmessage({data:{id:2,type:'open',name:'profile.p1g',buffer}});
+ });
+ assert.equal(result.ok,true);
+ assert.equal(result.format,'packaged');
+ const a=result.view.containerAudit;
+ assert.equal(a.status,'SIMPLE_ENVELOPE_OBSERVED_REBUILD_UNVERIFIED');
+ assert.equal(a.writerAuthorized,false);
+ assert.equal(a.bytePreservationVerified,false);
+ assert(a.findings.includes('LOCAL_HEADER_BYTES_NOT_EXPOSED'));
+ const original=await send('backup','','profile.p1g',{sessionId:result.sessionId});
+ assert.equal(original.ok,true);
+ assert.deepEqual(new Uint8Array(original.buffer),bytes);
+});
 test('malformed profile.json returns a visible error result',async()=>{
   const result=await send('open','{invalid');
   assert.equal(result.ok,false);
