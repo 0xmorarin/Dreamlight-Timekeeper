@@ -1,5 +1,37 @@
 # 02 TIME — W1 per-event Native semantics ledger (Switch v1.25.3)
 
+## Round 10 — Client.Clock Appointment → ExecuteRecurringEvent transaction continuation (2026-11-02)
+
+**New RAW_NSO_STATIC_VERIFIED evidence, not runtime execution:** reused the exact privately retained and previously hash-checked Switch v1.25.3 `ExeFS/main`, SHA256 `16957e6ed546daeb196f296362d5ded885fad9eeff70584870f645e1204ca94a`, NSO text SHA256 `15d17f0b9e95d022368bbd89ec8feacec6f1feb2439bc9a37fe2f6bf2078a328`, BID `9A239D3DB569756D`, and original version-matched `dump.cs`. No runtime command, real save modification, game source distribution or Writer action. Prior Clock.Update, W1 GetMaxInterval, expiry, Grid, setter and CTS findings reused; they are not new Runtime PASS.
+
+### 1. W1 scheduled Clock instance and appointment list placement are now statically identified
+
+`Client.<WaitForNextOccurrence>d__262.MoveNext` RVA **`0x060B4D80`** loads `Client.Clock` from **`Client +0xF0`** at **`0x060B5188 LDR X26,[X19,#0xF0]`** (raw instruction **`F9407A7A`**). This identifies the scheduler's local Clock instance specifically: not `Client.ClockOnline +0xF8` nor `ClockPortal +0x100`. The same instance is constructed with **`0x0604A7EC BL Clock.ctor 0x05BB4670`** and stored in the Client object at **`0x0604A7F8`**.
+
+The async state machine creates `Clock.Appointment` at **`0x060B53F0 BL 0x05BB4950`** (opcode `97EBFD58`), gets **`Clock.appointments` from `+0x10`** at `0x060B53F4`, and adds the appointment through **`0x060B5408 BL 0x0230BDD0`** (opcode `97095A72`). The list Add target is also used by **`Clock.WaitUntil` `0x05BB48FC BL 0x0230BDD0`** (opcode `971D5D35`), tying the state machine's list insertion to the same `Clock` implementation used by Clock.Update. Runtime list insertion success, future time provider identity, OS clock binding and cancellation races remain UNKNOWN.
+
+Thus the *type-scoped, version-specific* chain is `RecurringEvent.NextOccurrence` → `Timestamp.ToDateTime` → `Clock.Appointment` → **`Client.Clock`** → `Clock.Update` strict deadline comparison; an existing appointment does not continuously re-read the mutated save's Timestamp. The existence of this chain is not evidence that modifying a save outside a running game automatically re-arms an already-created waiting task.
+
+### 2. The continuation issues a typed transaction, not a direct subtype Execute BL
+
+Within **the same** `Client.<WaitForNextOccurrence>d__262.MoveNext` routine, the post-await branch creates an **`ExecuteRecurringEvent.Types.Request`**. The original IL2CPP type declares `RecurringEventID` as **protobuf field number 1**, backing **`uint recurringEventID_ +0x20`**. Native **`0x060B5E7C STR W8,[X20,#0x20]`**, word **`B9002288`**, sets the request Event ID. Native **`0x060B5F30 BL 0x0565EE90`**, raw word **`97D6A3D8`**, calls `TransactionService.TransactionServiceClient.ExecuteRecurringEventAsync(ExecuteRecurringEvent.Types.Request, CallOptions, CancellationToken)`. The state-machine structure includes the corresponding `TaskAwaiter<ExecuteRecurringEvent.Types.Response>` at **`+0x68`**. The earlier authorization/authority branch **`0x060B4FDC BL 0x06047CC0`** calls `Client.get_IsWorldAuthoritative`, and there are other branch exits; RPC issuance is not unconditional on every appointment creation, nor does Clock completion itself prove transaction success.
+
+This answers the previously open Scheduler Consumer gap at the **Client request** level, but **not** the underlying server/transaction dispatch: the specific `ExecuteRecurringEvent` validator, `Profile` mutation path, W1 oneof subtype selection, successful generation, indirect setter/slot62 delivery, or saved Grid/DiffGrid delta have not been followed to runtime completion. Do not assert a Client-side direct call to `ItemSpawning.Execute`, `WildCrops.Execute`, `Flower.Execute`, or `Fish.Execute` from these instructions; only the typed RPC request and event ID are confirmed.
+
+### 3. Subscription scan: narrow negative, not evidence of no subscriptions
+
+A complete **direct BL instruction** scan over the SHA-checked NSO text returned **zero direct BL** to `ProfileEventDispatcher.add_OnRecurringEventRescheduled` `0x05A8E990`, `remove_OnRecurringEventRescheduled` `0x05A8EAD0`, `add_OnRecurringEventRemoved` `0x05A8EE40`, and `remove_OnRecurringEventRemoved` `0x05A8EF80`. This means only that **these four exact concrete methods have no direct BL callsites**. IL2CPP delegate/event registration may use generic, reflection, virtual or interface calls, and this search does **not** show that no subscription exists or that live slot62 notifications are delivered.
+
+A separate whole-text direct BL scan to `Client.WaitForRecurringEvents` RVA `0x0604D9D0` returned **three** sites, not just the two previously identified: `0x0091C620` (caller context UNKNOWN), `0x060915E0` (debug time-skip state machine), and `0x060AA13C` (set-profile state machine). This adds one unclassified callsite to the lifecycle inventory without inventing its semantics. Existing Client EventID→CTS cancel-and-replace, handler block flag `+0x1D0`, and explicit `Profile.AddRecurringEvent` slot62 emission remain separate mechanisms.
+
+### 4. Minimal revised hardware observables and scope
+
+For each **separately verified saved oneof W1 instance** (NightThorn, Wood, WildCrop, Flower are presently *source-only witness IDs*), collect a reproducible before/after trace of: source EventID, actual serialized subtype, `Client.Clock` identity/currentTimeProvider and paused state, Appointment DateTime, EventID-keyed CTS and cancellation/continuation outcomes, `ExecuteRecurringEvent.Types.Request.RecurringEventID`, RPC success/error and server-side response, subtype dispatch into `IRecurringEvent.Execute`, `NextOccurrence` and `EndDate`, existing default/modified/removed GridObjects, assigned-player counts, harvest/pickup, Area caps, normal save, full app exit and cold relaunch. Distinguish future (including intentional 2126), exact Now, overdue, blocked slot62, existing objects and newly generated objects. A list insertion, an elapsed appointment or a queued RPC does **not** prove a spawn, reschedule persistence or recovery from time manipulation.
+
+No test performed on a physical Switch; STATIC_ONLY is retained. All 46 inactive Fish source definitions, Moonstone Chest, TimeBending HOLD, W2, unknown IDs and newer schemas remain protected. Writer, edited export, GridObject deletion and Moonstone relocation remain false. Source EventID, linked ItemID, serialized oneof, ConditionalEvent reference, transaction request EventID and concrete GridObject.ID must remain separate evidence categories.
+
+---
+
 ## Round 9 — Clock.Update scheduler comparison, Client block gate and profile re-wait (2026-11-02)
 
 **Evidence classification: RAW_NSO_STATIC_VERIFIED only; no new save, Switch runtime, native test-harness execution, or writer acceptance.** Reused privately retained, unchanged original Nintendo Switch v1.25.3 BID `9A239D3DB569756D`, `main` SHA256 `16957e6ed546daeb196f296362d5ded885fad9eeff70584870f645e1204ca94a`, decompressed text SHA256 `15d17f0b9e95d022368bbd89ec8feacec6f1feb2439bc9a37fe2f6bf2078a328`, exact IL2CPP `dump.cs`. Rehash and prior setter/slot62/CTS disassembly from Rounds 1–8 were **reused**, not promoted. All RVA below are module RVAs. No raw game bytes, original save or user data committed.
