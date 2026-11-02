@@ -34,7 +34,7 @@ try{
   }
   assert.ok(ready,'Local asset test server unavailable.');
   context=await chromium.launchPersistentContext(join(temporary,'profile'),{
-    channel:'chromium',headless:true,viewport:{width:1280,height:900},
+    channel:'chromium',headless:process.env.DDV_ASSET_HEADFUL!=='1',viewport:{width:1280,height:900},
     args:['--no-sandbox','--disable-extensions-except='+extension,'--load-extension='+extension]
   });
   const worker=context.serviceWorkers()[0]??await context.waitForEvent('serviceworker',{timeout:15000});
