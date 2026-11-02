@@ -1,0 +1,25 @@
+name: 05 QR Nov RC WEB31 Projection Producer Contract
+on:
+  pull_request:
+    paths:
+      - 'qa/05qr-nov-rc-web31-boundary.test.mjs'
+      - '.github/workflows/qa-nov-rc-web31-projection.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  web31-delta:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Pin WEB31 source (no product code changes)
+        run: |
+          git diff --quiet 302e877456c35ab4de46e409d59e6b6ebae60e46 HEAD -- contracts src tests/fixtures tests/web-projection-qr-fixtures.test.mjs
+      - name: Independently validate new WEB31 corpus and producer trust limitation
+        run: node --test qa/05qr-nov-rc-web31-boundary.test.mjs
+      - name: No producer or release permission
+        run: echo 'PROPOSED_NOT_IMPLEMENTED, producer queryPage NOT_ACCEPTED; Writer denied'
