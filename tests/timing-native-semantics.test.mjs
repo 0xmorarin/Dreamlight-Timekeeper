@@ -424,3 +424,22 @@ test('every Event ID has separately scoped evidence states and all operations ar
   }
   assert.equal(native.query(2010009999,'ItemSpawning').sourceRecordEvidence,'UNKNOWN');
 });
+
+test('RemovePendingFish mutates PendingFish map and notifies a dispatcher, not direct Reschedule',()=>{
+  const p=native.native.pendingFishRemoval;
+  assert.equal(p.rva,'0x0598E800');
+  assert.equal(p.pendingFishMapRemoveCallRVA,'0x0598E874');
+  assert.equal(p.pendingFishMapRemoveTargetRVA,'0x03C141D0');
+  assert.equal(p.dispatcherSlotArgumentRVA,'0x0598E8B8');
+  assert.equal(p.dispatcherSlotArgument,39);
+  assert.equal(p.dispatcherVirtualCallRVA,'0x0598E8E4');
+  assert.equal(p.directRescheduleCall,false);
+  assert.equal(p.indirectRescheduleViaDispatcherVerified,false);
+  assert.equal(p.pickupOutcomeVerified,false);
+  assert.equal(p.saveWriteVerified,false);
+  assert.equal(decodeBL(0x0598E874,0x978A1657),0x03C141D0);
+  const fish=native.query(2010200014,'FishSpawningInVillage');
+  assert.equal(fish.pickupOrRemovalRescheduleVerified,false);
+  assert.equal(fish.status,'INACTIVE_SOURCE_DEFINITION');
+  assert.equal(fish.editedExportAuthorized,false);
+});
