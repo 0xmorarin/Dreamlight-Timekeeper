@@ -174,7 +174,7 @@ const NATIVE=Object.freeze({
     clockCtorRvas:Object.freeze(['0x0604A7EC','0x0604A980','0x0604AB20']),
     constructorCreatesThreeDistinctClockObjects:true,
     clientUpdateEntryCalledInRuntimeVerified:false,
-    worldRecurringEventUsesMainClockConfirmed:true,
+    worldRecurringEventUsesMainClockConfirmed:false,
     updateLoopDoesNotRearmAppointments:true
   }),
   recurringEventClientDispatchGuards:Object.freeze({
