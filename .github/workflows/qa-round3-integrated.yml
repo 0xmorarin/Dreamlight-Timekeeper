@@ -38,7 +38,7 @@ jobs:
           test "$(git -C target rev-parse HEAD)" = "cd38b7801fe14d9dda3a7786fcfc92e634c693de"
           cp qa-source/qa/round3/integration.test.mjs target/tests/qa-round3-integration.test.mjs
           cp qa-source/qa/round4/integration.test.mjs target/tests/qa-round4-integration.test.mjs
-          cp qa-source/qa/round5/integration.test.mjs target/tests/qa-round5-integration.test.mjs tests/qa-round6-integration.test.mjs
+          cp qa-source/qa/round5/integration.test.mjs target/tests/qa-round5-integration.test.mjs
           cp qa-source/qa/round6/integration.test.mjs target/tests/qa-round6-integration.test.mjs
       - name: Install offline lossless WebP CLI required by existing ASSET importer test
         run: |
