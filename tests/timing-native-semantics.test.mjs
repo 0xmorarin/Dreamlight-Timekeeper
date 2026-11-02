@@ -908,3 +908,67 @@ test('profile-set and debug-time-skip paths each re-enumerate recurring waits, d
   assert.equal(c.coldLoadAndRestartRuntimeVerified,false);
   assert.equal(c.noMutationOfOwnersActualSave,true);
 });
+
+
+test('WaitForNextOccurrence loads Client.Clock +0xF0, not ClockOnline or ClockPortal',()=>{
+  const c=native.native.recurringAppointmentToTransaction;
+  assert.equal(c.stateMachineRVA,'0x060B4D80');
+  assert.equal(c.clientClock,'Client.Clock');
+  assert.equal(c.clientClockFieldOffset,'0xF0');
+  const ldr=0xF9407A7A;
+  assert.equal(ldr&31,26);
+  assert.equal((ldr>>>5)&31,19);
+  assert.equal(((ldr>>>10)&0xfff)*8,0xF0);
+  assert.equal(c.clockLoadWord,'0xF9407A7A');
+  assert.equal(decodeBL(0x0604A7EC,0x97EDA7A1),0x05BB4670);
+  assert.equal(c.clientClockStoreRVA,'0x0604A7F8');
+  assert.equal(c.transactionServerConsumerToW1SubtypeVerified,false);
+});
+test('the Clock appointment is constructed and added to the same Clock list used by Clock.WaitUntil',()=>{
+  const c=native.native.recurringAppointmentToTransaction;
+  assert.equal(decodeBL(0x060B53F0,0x97EBFD58),0x05BB4950);
+  assert.equal(c.appointmentListFieldOffset,'0x10');
+  assert.equal(c.appointmentListLoadRVA,'0x060B53F4');
+  assert.equal(decodeBL(0x060B5408,0x97095A72),0x0230BDD0);
+  assert.equal(decodeBL(0x05BB48FC,0x971D5D35),0x0230BDD0);
+  assert.equal(c.waitTaskCompletionIsNotTransactionSuccess,true);
+  assert.equal(c.consoleCallbackRuntimeVerified,false);
+});
+test('appointment continuation builds typed ExecuteRecurringEvent transaction with event ID, not direct subtype Execute',()=>{
+  const c=native.native.recurringAppointmentToTransaction;
+  assert.equal(c.transactionRequestType,'ExecuteRecurringEvent.Types.Request');
+  assert.equal(c.transactionRequestField,'RecurringEventID');
+  assert.equal(c.transactionRequestFieldNumber,1);
+  assert.equal(c.transactionRequestFieldOffset,'0x20');
+  const store=0xB9002288;
+  assert.equal(store&31,8);
+  assert.equal((store>>>5)&31,20);
+  assert.equal(((store>>>10)&0xfff)*4,0x20);
+  assert.equal(c.transactionRequestIdStoreWord,'0xB9002288');
+  assert.equal(decodeBL(0x060B5F30,0x97D6A3D8),0x0565EE90);
+  assert.equal(c.awaiterType,'TaskAwaiter<ExecuteRecurringEvent.Types.Response>');
+  assert.equal(c.awaiterFieldOffset,'0x68');
+  assert.equal(decodeBL(0x060B4FDC,0x97FE4B39),0x06047CC0);
+  assert.equal(c.transactionRpcCanBeSkippedByBranches,true);
+  assert.equal(c.transactionIsNotDirectW1SubtypeExecute,true);
+  assert.equal(c.actualGridMutationAndPersistenceVerified,false);
+});
+test('subscriber direct BL scan cannot disprove delegate/virtual subscription or certify slot62 runtime',()=>{
+  const s=native.native.recurringEventSubscriptionDirectCallAudit;
+  assert.equal(s.scope.includes('direct AArch64 BL'),true);
+  assert.equal(s.eventDispatcherAddRescheduledRVA,'0x05A8E990');
+  assert.equal(s.eventDispatcherRemoveRescheduledRVA,'0x05A8EAD0');
+  assert.equal(s.eventDispatcherAddRemovedRVA,'0x05A8EE40');
+  assert.equal(s.eventDispatcherRemoveRemovedRVA,'0x05A8EF80');
+  assert.deepEqual(s.matchingDirectBLCounts,{addRescheduled:0,removeRescheduled:0,addRemoved:0,removeRemoved:0});
+  assert.equal(s.interfaceOrDelegateSubscriptionDisproved,false);
+  assert.equal(s.profileCallbackAndDispatcherRegistrationResolved,false);
+  assert.deepEqual(s.waitForRecurringEventsDirectBLRvas,['0x0091C620','0x060915E0','0x060AA13C']);
+  assert.equal(s.additionalCallerAt0091C620Resolved,false);
+  assert.equal(s.runtimeSubscriptionConfirmed,false);
+  const row=native.query(2010000003,'ItemSpawning');
+  assert.equal(row.nativePerEventEvidence,'UNKNOWN');
+  assert.equal(row.operationEvidence,'BLOCKED');
+  assert.equal(row.writerAuthorized,false);
+  assert.equal(row.editedExportAuthorized,false);
+});
