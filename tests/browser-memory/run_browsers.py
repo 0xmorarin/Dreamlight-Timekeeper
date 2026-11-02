@@ -94,7 +94,10 @@ class SampledProcessRSS:
    "sampleCount":len(values),
    "maxObservedRssSumBytes":max([s["rssSumBytes"] for s in values],default=None),
    "maxObservedProcessCount":max([s["processes"] for s in values],default=None),
-   "sharedPagesMayBeDoubleCounted":True
+   "rssEvidenceAvailable":len(values)>0,
+   "maxObservedRssIsExactPeak":False,
+   "sharedPagesMayBeDoubleCounted":True,
+   "shortLivedSpikesMayBeMissed":True
   }
 
 def run(args):
