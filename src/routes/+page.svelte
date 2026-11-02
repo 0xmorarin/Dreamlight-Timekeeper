@@ -64,7 +64,7 @@
   resolveTimePreset(mode,{now:Date.now()});
  $: preview=(()=>{
   if(!snapshot||!chosen.length||!targetTime)return null;
-  try{return previewScope(snapshot,{pointers:chosen.map(r=>r.pointer),world:'all',
+  try{return (previewScope as any)(snapshot,{tab,pointers:chosen.map(r=>r.pointer),world:'all',
    mode:'custom',customTime:targetTime,now:Date.now()});}
   catch{return null;}
  })();
