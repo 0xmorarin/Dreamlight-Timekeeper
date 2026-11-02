@@ -47,3 +47,14 @@ test('preview UI exposes approved past and future presets without enabling any w
  assert.match(app,/mode:state\.mode==='now'\?'now':'custom'/);
  assert.doesNotMatch(page,/id="export-edited"/);
 });
+
+test('preview plan UI provides reversible staging without enabling save writes',()=>{
+ for(const id of ['stage-preview','undo-plan','redo-plan','clear-plan','draft-plan'])assert.match(page,new RegExp('id="'+id+'"'));
+ assert.match(app,/createTimingDraft\(result\.view\)/);
+ assert.match(app,/state\.draft\.stage\(/);
+ assert.match(app,/state\.draft\?\.undo\(\)/);
+ assert.match(app,/state\.draft\?\.redo\(\)/);
+ assert.match(app,/state\.draft\?\.clear\(\)/);
+ assert.doesNotMatch(app,/request\('export'\)/);
+ assert.doesNotMatch(page,/id="export-edited"/);
+});
