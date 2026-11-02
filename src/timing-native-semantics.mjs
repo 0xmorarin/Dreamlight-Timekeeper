@@ -14,7 +14,43 @@ const W1=Object.freeze([
   'FlowerSpawningInVillage','FishSpawningInVillage'
 ]);
 const W1_SET=new Set(W1);
+const CATCHUP=Object.freeze({
+  ItemSpawning:Object.freeze({getterRVA:'0x057C0140',maxIntervalCallRVA:'0x057C02C0',
+    maximumCallRVA:'0x057C02E4',maximumMethod:'ItemSpawningRecurringEventItemData.GetMaximumAmount',
+    amountField:'MinNumberOfSpawn',amountFieldOffset:'0x54',divisionRVA:'0x057C02EC',
+    multiplicationRVA:'0x057C02F8',formula:'intervalTicks * trunc(GetMaximumAmount / MinNumberOfSpawn)',
+    finalObjectCountGuarantee:false}),
+  WildCropsSpawningInVillage:Object.freeze({getterRVA:'0x057C4350',maxIntervalCallRVA:'0x057C44D0',
+    maximumCallRVA:'0x057C44F4',maximumMethod:'WildCropsSpawningInVillageRecurringEventItemData.GetMaximumAmount',
+    amountField:'NumberOfGardensToSpawn',amountFieldOffset:'0x58',divisionRVA:'0x057C44FC',
+    multiplicationRVA:'0x057C4508',formula:'intervalTicks * trunc(GetMaximumAmount / NumberOfGardensToSpawn)',
+    finalObjectCountGuarantee:false}),
+  FlowerSpawningInVillage:Object.freeze({getterRVA:'0x057CB7C0',maxIntervalCallRVA:'0x057CB940',
+    maximumCallRVA:null,maximumMethod:null,maximumField:'MaximumAmount',
+    maximumFieldOffset:'0x60',amountField:'NumberOfFlowersToSpawn',amountFieldOffset:'0x54',
+    divisionRVA:'0x057CB964',multiplicationRVA:'0x057CB970',
+    formula:'intervalTicks * trunc(MaximumAmount / NumberOfFlowersToSpawn)',
+    finalObjectCountGuarantee:false}),
+  FishSpawningInVillage:Object.freeze({getterRVA:'0x057C7EC0',maxIntervalCallRVA:'0x057C8098',
+    maximumCallRVA:null,maximumMethod:null,maximumField:'MaxNumberOfPendingFishes',
+    maximumFieldOffset:'0x60',amountField:null,divisionRVA:null,
+    multiplicationRVA:'0x057C80B4',
+    formula:'intervalTicks * MaxNumberOfPendingFishes',
+    finalObjectCountGuarantee:false})
+});
+const STORAGE=Object.freeze({
+  commonFields:Object.freeze(['RecurringEventItemID','NextOccurrence','EndDate']),
+  itemSpawningOnlyLastOccurrence:Object.freeze({
+    field:'LastOccurrence',fieldNumber:4,fieldOffset:'0x30',
+    writeRVA:'0x057BF068',fromDateTimeRVA:'0x057BF058',
+    onlyW1VariantWithThisSerializedField:true
+  }),
+  directSavePersistenceVerified:false,gameRestartRetentionVerified:false,
+  existingGridObjectRemovedOnTimestampChange:false
+});
 const NATIVE=Object.freeze({
+  catchupByVariant:CATCHUP,
+  fieldLayout:STORAGE,
   primaryBinary:Object.freeze({
     file:'DDVRE v1.25.3 ExeFS/main',bytes:96027926,
     mainSHA256:SOURCE.mainSHA256,moduleIdPrefix:SOURCE.buildId,
@@ -40,7 +76,12 @@ const NATIVE=Object.freeze({
   readiness:Object.freeze({rva:'0x05A65440',method:'IsReadyForNextOccurence',
     evidence:'0x05A65640 CMP X8,X9 / 0x05A65644 CSET W0,HS; time-eligibility predicate, not a complete spawn outcome'}),
   expiry:Object.freeze({rva:'0x05AF3050',method:'IsEventOver',
-    evidence:'separate expiry predicate; EndDate is not NextOccurrence'}),
+    evidence:'raw NSO: checks optional EndDate then compares NextOccurrence vs EndDate; strict NextOccurrence > EndDate (not context.Now > EndDate)',
+    nextOccurrenceGetterSlot:1,endDateGetterSlot:3,
+    maskedCompareRVA:'0x05AF3228',conditionRVA:'0x05AF3230',
+    resultRVA:'0x05AF3234',condition:'masked NextOccurrence > masked EndDate',
+    actualizeDirectCallRvas:Object.freeze(['0x05A2AF4C','0x05A2AF84','0x05A2B044','0x05A2B058']),
+    saveEffectVerified:false,runtimeVerified:false}),
   reschedule:Object.freeze({rva:'0x05AF24D0',method:'IRecurringEventExtensions.Reschedule',
     evidence:'Raw main: 10 direct BL sites (9 Execute and 1 AddRecurringEvent); dispatch on Interval oneof; virtual setter slot 2 confirmed, runtime call reachability unknown',
     intervalOneofFieldLoadRVA:'0x05AF25E8',
@@ -72,6 +113,7 @@ const NATIVE=Object.freeze({
 });
 const trace=Object.freeze({
   ItemSpawning:Object.freeze({
+    catchupBound:CATCHUP.ItemSpawning,
     executeRVA:'0x057B9BC0',readinessCallsiteVerified:true,
     readinessCallRvas:Object.freeze(['0x057BA660','0x057BA684']),
     rescheduleCallRVA:'0x057BF0C4',readinessFalseBypassesDirectReschedule:true,
@@ -85,6 +127,7 @@ const trace=Object.freeze({
     spawnedGridObjectProvenanceVerified:false
   }),
   WildCropsSpawningInVillage:Object.freeze({
+    catchupBound:CATCHUP.WildCropsSpawningInVillage,
     executeRVA:'0x057C2BC0',readinessCallsiteVerified:true,
     readinessCallRvas:Object.freeze(['0x057C2FC8']),
     rescheduleCallRVA:'0x057C4260',readinessFalseBypassesDirectReschedule:true,
@@ -93,10 +136,11 @@ const trace=Object.freeze({
       Object.freeze({rva:'0x057C38E8',method:'WildCropsSpawningInVillageRecurringEventItemData.GetMaximumAmount'}),
       Object.freeze({rva:'0x057C41D4',method:'CreateGardeningTile.SetupGardenProduction'})
     ]),
-    catchupBoundRVA:null,maxAmountRVA:'0x047BCFA0',
+    catchupBoundRVA:CATCHUP.WildCropsSpawningInVillage.getterRVA,maxAmountRVA:'0x047BCFA0',
     spawnedGridObjectProvenanceVerified:false
   }),
   FlowerSpawningInVillage:Object.freeze({
+    catchupBound:CATCHUP.FlowerSpawningInVillage,
     executeRVA:NATIVE.flowerExecute.rva,readinessCallsiteVerified:true,
     readinessCallRvas:Object.freeze(['0x057C9DD4','0x057C9DF4']),
     rescheduleCallRVA:'0x057CAE58',readinessFalseBypassesDirectReschedule:true,
@@ -105,10 +149,11 @@ const trace=Object.freeze({
       Object.freeze({rva:'0x057CAE20',method:'FlowerSpawningInVillage.TryPlaceFlowers'}),
       Object.freeze({rva:'0x057CAE38',method:'FlowerSpawningInVillage.TryPlaceFlowers'})
     ]),
-    catchupBoundRVA:null,maxAmountRVA:null,
+    catchupBoundRVA:CATCHUP.FlowerSpawningInVillage.getterRVA,maxAmountRVA:null,
     spawnedGridObjectProvenanceVerified:false
   }),
   FishSpawningInVillage:Object.freeze({
+    catchupBound:CATCHUP.FishSpawningInVillage,
     executeRVA:'0x057C6890',readinessCallsiteVerified:false,
     readinessCallRvas:Object.freeze([]), // no direct BL to common readiness in exact Execute
     rescheduleCallRVA:'0x057C7110',readinessFalseBypassesDirectReschedule:null,
@@ -118,7 +163,7 @@ const trace=Object.freeze({
       Object.freeze({rva:'0x057C6E68',method:'FishSpawningInVillage.CountMatchingPendingFishForLocation'}),
       Object.freeze({rva:'0x057C70F4',method:'ProfileWorld.AddPendingFish'})
     ]),
-    catchupBoundRVA:null,maxAmountRVA:null,
+    catchupBoundRVA:CATCHUP.FishSpawningInVillage.getterRVA,maxAmountRVA:null,
     spawnedGridObjectProvenanceVerified:false
   })
 });
@@ -139,7 +184,8 @@ const baseline=Object.freeze({
   sourceVariantHypothesisIsNativeProof:false,
   userFutureTimestampIsCorruption:false,
   nowGuaranteesImmediateSpawn:false,futureGuaranteesSuppression:false,
-  operationAllowlisted:false,writerAuthorized:false,gridDeletionAuthorized:false
+  operationAllowlisted:false,writerAuthorized:false,gridDeletionAuthorized:false,
+  editedExportAuthorized:false,moonstoneMovementAuthorized:false
 });
 const isId=n=>Number.isSafeInteger(n)&&n>0;
 
@@ -162,6 +208,9 @@ export function compileW1NativeSemantics(sourceEvents,{woodTagPack}={}){
       areaChoiceMaximumReference:[2010000093,2010000120].includes(r.eventId),
       conditionalEventHistoryDependency:'UNKNOWN',
       gridObjectProvenance:'UNKNOWN',
+      sourceRecordEvidence:'CONFIRMED',
+      nativePerEventEvidence:'STATIC_ONLY',
+      actualAppearanceEvidence:'UNKNOWN',operationEvidence:'BLOCKED',
       ...baseline
     });
     byId.set(row.eventId,row);
@@ -172,7 +221,9 @@ export function compileW1NativeSemantics(sourceEvents,{woodTagPack}={}){
     sourceEventCount:508,rows:Object.freeze(rows),
     query(eventId,saveKind){
       if(!isId(eventId)||!byId.has(eventId))
-        return Object.freeze({eventId,saveKind,status:'UNKNOWN_EVENT_ID',...baseline});
+        return Object.freeze({eventId,saveKind,status:'UNKNOWN_EVENT_ID',
+          sourceRecordEvidence:'UNKNOWN',nativePerEventEvidence:'UNKNOWN',
+          actualAppearanceEvidence:'UNKNOWN',operationEvidence:'BLOCKED',...baseline});
       const r=byId.get(eventId);
       let status;
       if(r.eventId===2010000064)status='PROTECTED_MOONSTONE_CHEST';
@@ -185,6 +236,9 @@ export function compileW1NativeSemantics(sourceEvents,{woodTagPack}={}){
       // A source-family hint is intentionally weaker than an observed native
       // discriminator, serialized profile field, or runtime behavior.
       return Object.freeze({...r,saveKind,status,
+        nativePerEventEvidence:status==='SOURCE_VARIANT_HINT_ONLY'?'STATIC_ONLY':
+          (status==='PROTECTED_MOONSTONE_CHEST'||status==='NON_W1_SOURCE_POLICY'||status==='INACTIVE_SOURCE_DEFINITION'?'BLOCKED':'UNKNOWN'),
+        actualAppearanceEvidence:'UNKNOWN',operationEvidence:'BLOCKED',
         trace:W1_SET.has(saveKind)?trace[saveKind]:null,
         ...baseline});
     }
