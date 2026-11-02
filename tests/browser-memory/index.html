@@ -6,93 +6,128 @@
 <p>For QA only; no original save, Writer, edited export, or network beyond localhost.</p>
 <output id="status">Ready</output></main>
 <script type="module">
+import {bytesEqual} from './source-integrity.mjs';
+// Synthetic-only browser probe controller. This never enables a product Writer.
 const timeoutMs=90000;
-let active=null,revision=0;
+let active=null,revision=0,staleResponsesDropped=0;
 const status=document.getElementById('status');
-function measure(){
- const nonstandard=performance.memory;
- return {elapsedMs:performance.now(),
-  chromiumNonstandardHeapUsed:typeof nonstandard?.usedJSHeapSize==='number'?
-   nonstandard.usedJSHeapSize:null,
-  crossOriginIsolated:self.crossOriginIsolated===true,
-  windowPeakBytes:null};
-}
-async function getSyntheticFile(){
- const r=await fetch('/synthetic.p1g',{cache:'no-store'});
+const measure=()=>({elapsedMs:performance.now(),
+ chromiumNonstandardHeapUsed:typeof performance.memory?.usedJSHeapSize==='number'?
+  performance.memory.usedJSHeapSize:null,
+ crossOriginIsolated:self.crossOriginIsolated===true,windowPeakBytes:null});
+const digest=async bytes=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))]
+ .map(x=>x.toString(16).padStart(2,'0')).join('');
+async function getSyntheticFile(signal){
+ const r=await fetch('/synthetic.p1g',{cache:'no-store',signal});
  if(!r.ok)throw Error('SYNTHETIC_FIXTURE_HTTP_'+r.status);
  return new Uint8Array(await r.arrayBuffer());
 }
 function stopActive(reason='cancelled'){
  if(!active)return null;
- const old=active;
- old.worker.terminate();
- active=null;
+ const old=active;active=null;old.cancelled=true;
+ old.abort.abort();old.worker?.terminate();
+ old.reject?.(Error('SYNTHETIC_SESSION_TERMINATED:'+reason));
  return {sessionId:old.sessionId,reason,phaseCount:old.phases.length,
-  sourceCopied:old.sourceCopied};
+  preSendCopyAllocated:old.preSendCopyAllocated,staleResponsesDropped};
 }
 async function begin(mode='clone'){
  if(mode!=='clone'&&mode!=='transfer')throw Error('INVALID_TRANSFER_MODE');
  stopActive('new-session');
- const sessionId=++revision;
- const original=await getSyntheticFile();
- // Always preserve the original; transfer is performed on a fresh copy.
- const input=original.slice();
- if(!input.every((value,index)=>value===original[index]))throw Error('SYNTHETIC_BYTES_MISMATCH');
- const worker=new Worker('/tests/browser-memory/p1g-read-worker.mjs',{type:'module'});
- const state={sessionId,worker,phases:[],sourceCopied:true};
+ const state={sessionId:++revision,worker:null,abort:new AbortController(),
+  cancelled:false,phases:[],preSendCopyAllocated:false,reject:null};
  active=state;
- const mainMeasurements=[{phase:'before-send',...measure(),encryptedBytes:original.byteLength}];
- const result=new Promise((resolve,reject)=>{
-  const timer=setTimeout(()=>reject(Error('SYNTHETIC_WORKER_TIMEOUT')),timeoutMs);
-  const fail=err=>{clearTimeout(timer);reject(err instanceof Error?err:Error(String(err)));};
-  worker.onerror=e=>fail(Error(e.message||'SYNTHETIC_WORKER_ERROR'));
-  worker.onmessage=({data})=>{
-   if(active!==state||data.sessionId!==sessionId)return;
-   if(data.type==='PHASE'){state.phases.push(data.measurement);mainMeasurements.push({
-    phase:'worker-'+data.measurement.phase,...measure()});return;}
-   clearTimeout(timer);
-   if(data.type==='ERROR'){fail(Error(data.code));return;}
-   if(data.type==='DONE'){resolve({...data,mainMeasurements,
-    mode,originalBytes:original.byteLength,sourceCopyPreserved:
-     original.byteLength===input.byteLength||mode==='transfer',
-    transferDetached:mode==='transfer'?input.byteLength===0:false,
-    browserPeakAccepted:false});}
-  };
- });
- worker.postMessage({type:'READ_SYNTHETIC',sessionId,source:input},
-  mode==='transfer'?[input.buffer]:[]);
- mainMeasurements.push({phase:'after-send',...measure()});
+ const sessionId=state.sessionId;
  try{
+  const original=await getSyntheticFile(state.abort.signal);
+  if(state.cancelled||active!==state)throw Error('SYNTHETIC_SESSION_SUPERSEDED_DURING_FETCH');
+  // Independent copies remain on the sender; transfer detaches only input.
+  const input=original.slice();
+  state.preSendCopyAllocated=true;
+  if(!bytesEqual(original,input))throw Error('SYNTHETIC_PRE_SEND_BYTE_MISMATCH');
+  const originalHash=await digest(original);
+  if(originalHash!==await digest(input))throw Error('SYNTHETIC_PRE_SEND_HASH_MISMATCH');
+  if(state.cancelled||active!==state)throw Error('SYNTHETIC_SESSION_SUPERSEDED_DURING_HASH');
+  const worker=new Worker('/tests/browser-memory/p1g-read-worker.mjs',{type:'module'});
+  state.worker=worker;
+  const mainMeasurements=[{phase:'before-send',...measure(),encryptedBytes:original.byteLength}];
+  const result=new Promise((resolve,reject)=>{
+   let settled=false;
+   const timer=setTimeout(()=>finish(Error('SYNTHETIC_WORKER_TIMEOUT')),timeoutMs);
+   function finish(error,value){
+    if(settled)return;
+    settled=true;clearTimeout(timer);state.reject=null;
+    error?reject(error):resolve(value);
+   }
+   state.reject=error=>finish(error);
+   worker.onerror=e=>finish(Error(e.message||'SYNTHETIC_WORKER_ERROR'));
+   worker.onmessage=({data})=>{
+    if(active!==state||data.sessionId!==sessionId){staleResponsesDropped++;return;}
+    if(data.type==='PHASE'){
+     state.phases.push(data.measurement);
+     mainMeasurements.push({phase:'worker-'+data.measurement.phase,...measure()});return;
+    }
+    if(data.type==='ERROR'){finish(Error(data.code));return;}
+    if(data.type!=='DONE'){finish(Error('SYNTHETIC_WORKER_UNKNOWN_MESSAGE'));return;}
+    finish(null,data);
+   };
+  });
+  worker.postMessage({type:'READ_SYNTHETIC',sessionId,source:input},
+   mode==='transfer'?[input.buffer]:[]);
+  mainMeasurements.push({phase:'after-send',...measure()});
   const done=await result;
+  if(state.cancelled||active!==state)throw Error('SYNTHETIC_SESSION_SUPERSEDED');
+  // Never compare against the detached sender input after transfer.
+  const afterHash=await digest(original);
+  if(originalHash!==afterHash)throw Error('SYNTHETIC_SOURCE_HASH_DRIFT');
+  if(done.workerReceivedSourceSha256!==originalHash)
+   throw Error('SYNTHETIC_WORKER_RECEIVED_HASH_MISMATCH');
+  if(mode==='transfer'&&input.byteLength!==0)throw Error('TRANSFER_NOT_DETACHED');
+  if(mode==='clone'&&input.byteLength!==original.byteLength)throw Error('CLONE_DETACHED');
+  if(state.cancelled||active!==state)throw Error('SYNTHETIC_SESSION_SUPERSEDED_AFTER_HASH');
   status.textContent='Read-only synthetic session '+sessionId+' complete';
-  return done;
- }finally{
-  if(active===state){stopActive('complete');}
- }
+  return {...done,mainMeasurements,mode,originalBytes:original.byteLength,
+   sourceHashBefore:originalHash,sourceHashAfter:afterHash,
+   preSendExactByteMatch:true,preSendSha256Match:true,
+   originalSourceSha256Unchanged:true,workerReceivedSourceSha256Match:true,
+   sentInputPostSendByteComparison:mode==='transfer'?'NOT_POSSIBLE_DETACHED':'NOT_PERFORMED',
+   transferDetached:mode==='transfer',staleResponsesDropped,
+   browserPeakAccepted:false};
+ }finally{if(active===state)stopActive('complete');}
+}
+function negativeSameLengthMutationTest(){
+ const original=Uint8Array.of(3,5,7,9);
+ const modified=original.slice();modified[2]^=1;
+ return {sameLength:original.byteLength===modified.byteLength,
+  rejected:!bytesEqual(original,modified),originalUnchanged:original[2]===7};
 }
 async function switchSession(){
- stopActive('before-switch');
- // Start a Worker that might or might not have begun its codec operation.
- const bytes=await getSyntheticFile();
- const first=new Worker('/tests/browser-memory/p1g-read-worker.mjs',{type:'module'});
- const firstId=++revision;
- active={sessionId:firstId,worker:first,phases:[],sourceCopied:true};
- first.postMessage({type:'READ_SYNTHETIC',sessionId:firstId,source:bytes});
- const terminated=stopActive('session-switch');
- // Worker termination is an explicit cancellation boundary, not an
- // assertion about internal AbortSignal support during Inflate.
- const next=await begin('clone');
- return {terminated,subsequent:next,staleResponseAccepted:false,
+ stopActive('session-switch');
+ const first=begin('clone');
+ // Immediately supersede before old fetch/codec can commit stale results.
+ const subsequent=begin('clone');
+ const settled=await Promise.allSettled([first,subsequent]);
+ if(settled[0].status!=='rejected'||settled[1].status!=='fulfilled')
+  throw Error('SESSION_SWITCH_FENCE_FAILED');
+ return {terminated:true,oldRejected:true,subsequent:settled[1].value,
+  staleResponseAccepted:false,staleResponsesDropped,
   codecCancellationSignalSupported:false};
 }
+async function cancelDuringLoad(){
+ const pending=begin('clone');
+ const terminated=stopActive('explicit-cancel-test');
+ const result=await Promise.allSettled([pending]);
+ if(result[0].status!=='rejected')throw Error('CANCEL_DID_NOT_REJECT');
+ return {terminated,wasCancelled:true,writerAuthorized:false};
+}
 window.syntheticBrowserProbe={
- begin,switchSession,cancel:()=>stopActive('explicit-cancel'),measure,
- features:()=>({
-  browser: navigator.userAgent,
-  crossOriginIsolated:self.crossOriginIsolated===true,
-  performanceMemoryAvailable:typeof performance.memory?.usedJSHeapSize==='number',
-  userAgentSpecificMemoryAvailable:typeof performance.measureUserAgentSpecificMemory==='function',
-  canUseWorker:typeof Worker==='function'
+ begin,switchSession,cancelDuringLoad,negativeSameLengthMutationTest,
+ cancel:()=>stopActive('explicit-cancel'),measure,features:()=>({
+ browser:navigator.userAgent,crossOriginIsolated:self.crossOriginIsolated===true,
+ secureContext:isSecureContext,webCryptoSubtle:!!crypto.subtle,
+ deflateRawSupported:(()=>{try{new DecompressionStream('deflate-raw');return true;}catch{return false;}})(),
+ performanceMemoryAvailable:typeof performance.memory?.usedJSHeapSize==='number',
+ userAgentSpecificMemoryAvailable:typeof performance.measureUserAgentSpecificMemory==='function',
+ canUseWorker:typeof Worker==='function'
  })
 };
 </script></body></html>
