@@ -122,6 +122,8 @@ function ownParent(root,pointer){
  * - sourceBytes: originally selected encrypted P1G, not uploaded anywhere.
  * - activeSessionId / sourceSessionId: from Worker and request respectively.
  * - getActiveSessionId: Worker-owned live session getter (not a UI payload).
+ * - expectedPlanRevision/getActivePlanRevision: optional paired Worker-owned
+ *   plan-revision fence. Caller must also check before posting a pair.
  * - expectedSourceSha256: SHA of source at initial Worker open.
  * - eventRegistry: indexEvents(verified local data/events-v1253.json).
  * - w1TargetReview: result of 02 TIME assessMinimalW1WriteTargets(),
@@ -134,6 +136,7 @@ function ownParent(root,pointer){
  */
 export async function createW1EditedP1gCopy({
  sourceBytes,sourceSessionId,activeSessionId,getActiveSessionId,expectedSourceSha256,
+ expectedPlanRevision,getActivePlanRevision,
  targetBuild,eventRegistry,w1TargetReview,entries
 }={}){
  if(!(sourceBytes instanceof Uint8Array)||sourceBytes.length===0)
@@ -142,6 +145,18 @@ export async function createW1EditedP1gCopy({
     typeof getActiveSessionId!=='function'||
     sourceSessionId!==activeSessionId||getActiveSessionId()!==sourceSessionId)
   throw Error('W1_STALE_SESSION');
+ // Existing integrations without a plan revision keep their previous behavior.
+ // If the Worker opts in, both pieces must be present and Worker-owned.
+ const hasRevision=expectedPlanRevision!==undefined||
+   getActivePlanRevision!==undefined;
+ if(hasRevision&&(!Number.isSafeInteger(expectedPlanRevision)||
+    expectedPlanRevision<0||typeof getActivePlanRevision!=='function'))
+  throw Error('W1_PLAN_REVISION_CONTRACT_INVALID');
+ const checkPlanRevision=()=>{
+  if(hasRevision&&getActivePlanRevision()!==expectedPlanRevision)
+   throw Error('W1_PLAN_REVISION_STALE');
+ };
+ checkPlanRevision();
  if(typeof expectedSourceSha256!=='string'||!SHA.test(expectedSourceSha256))
   throw Error('W1_SOURCE_HASH_REQUIRED');
  if(!record(targetBuild)||targetBuild.platform!==EXPECTED_BUILD.platform||
@@ -155,6 +170,7 @@ export async function createW1EditedP1gCopy({
   sourceBytes,sourcePlatform:PlatformFamily.Switch,codec:p1gPackagedProfileCodec
  });
  if(getActiveSessionId()!==sourceSessionId)throw Error('W1_STALE_SESSION_AFTER_OPEN');
+ checkPlanRevision();
  const identity=session.getSaveIdentity();
  if(identity.profileGameInfoVersion!==626||
     identity.sourceRawSha256!==expectedSourceSha256)
@@ -208,6 +224,7 @@ export async function createW1EditedP1gCopy({
   }
  });
  if(getActiveSessionId()!==sourceSessionId)throw Error('W1_STALE_SESSION_AFTER_ENCODE');
+ checkPlanRevision();
  if(changed.noOp||!changed.authorization?.capabilities?.encodeCopy||
     changed.authorization.capabilities.persistentReplace)
   throw Error('W1_COPY_AUTHORIZATION_FAILED');
