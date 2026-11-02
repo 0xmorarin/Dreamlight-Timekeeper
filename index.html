@@ -79,6 +79,15 @@
       <div class="detail-bottom">
         <p class="safety-note">Preview only. Changes to the save file are disabled.</p>
         <button id="download-backup" type="button" class="subtle backup" disabled data-i18n="backup">Save original backup</button>
+        <section id="verified-pair-downloads" class="verified-downloads" hidden aria-label="Verified separate downloads">
+          <p class="safety-note" data-i18n="pairWarning">Download requests are not proof that the browser saved the files.</p>
+          <button id="download-verified-both" type="button" class="subtle" disabled data-i18n="pairBoth">Request original, then edited copy</button>
+          <div class="verified-download-retries">
+            <button id="retry-verified-original" type="button" class="subtle" disabled data-i18n="pairRetryOriginal">Retry original</button>
+            <button id="retry-verified-edited" type="button" class="subtle" disabled data-i18n="pairRetryEdited">Retry edited copy</button>
+          </div>
+          <p id="verified-pair-status" role="status" aria-live="polite"></p>
+        </section>
       </div>
     </aside>
   </div>
