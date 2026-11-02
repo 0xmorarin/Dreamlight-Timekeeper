@@ -27,11 +27,17 @@ try{
  page.on('pageerror',error=>errors.push(error.message));
  page.on('download',download=>downloads.push(download));
  await page.addInitScript(()=>{
-  const NativeWorker=window.Worker;window.__backupHeld=false;
+  const NativeWorker=window.Worker;window.__backupHeld=false;window.__preflightHeld=false;window.__secondBackupHeld=false;window.__secondBackupRequests=0;
   window.Worker=class {
    constructor(...args){
     this.inner=new NativeWorker(...args);this.onmessage=null;this.onerror=null;this.onmessageerror=null;
     this.inner.onmessage=event=>{
+     if(event.data?.type==='preflight'&&event.data.sessionId===1){
+      window.__preflightHeld=true;window.__releaseOldPreflight=()=>this.onmessage?.(event);return;
+     }
+     if(event.data?.type==='backup'&&event.data.name==='second.json'){
+      window.__secondBackupHeld=true;window.__releaseSecondBackup=()=>this.onmessage?.(event);return;
+     }
      if(event.data?.type==='backup'&&event.data.name==='first.json'){
       window.__backupHeld=true;window.__releaseOldBackup=()=>this.onmessage?.(event);return;
      }
@@ -40,7 +46,10 @@ try{
     this.inner.onerror=event=>this.onerror?.(event);
     this.inner.onmessageerror=event=>this.onmessageerror?.(event);
    }
-   postMessage(...args){return this.inner.postMessage(...args);}
+   postMessage(...args){
+    if(args[0]?.type==='backup'&&args[0]?.sessionId===2)window.__secondBackupRequests++;
+    return this.inner.postMessage(...args);
+   }
    terminate(){return this.inner.terminate();}
   };
  });
@@ -52,15 +61,25 @@ try{
  await page.locator('#workspace').waitFor({state:'visible',timeout:20000});
  await page.locator('#session-name').getByText('First').waitFor();
  assert.equal(await page.locator('#tabs button').count(),4);
+ await page.locator('#records input[type="checkbox"]').first().check();
+ await page.locator('#stage-preview').click();
+ await page.waitForFunction(()=>window.__preflightHeld===true);
  await page.locator('#download-backup').click();
  await page.waitForFunction(()=>window.__backupHeld===true);
  await page.locator('#save-file').setInputFiles({name:'second.json',mimeType:'application/json',buffer:Buffer.from(second)});
  await page.locator('#session-name').getByText('Second').waitFor();
- await page.evaluate(()=>window.__releaseOldBackup());
+ await page.evaluate(()=>{window.__releaseOldPreflight();window.__releaseOldBackup();});
  await page.waitForTimeout(250);
+ assert.equal(await page.locator('#undo-plan').isEnabled(),false,'Old draft cannot be applied to the new save.');
+ assert.equal(await page.locator('#redo-plan').isEnabled(),false,'Old redo cannot be applied to the new save.');
+ assert.doesNotMatch(await page.locator('#draft-plan').innerText(),/Source shape observed|構造確認/,'Old source preflight must not update current plan.');
  assert.equal(downloads.length,0,'Stale first-session backup must not be downloaded.');
  const downloaded=page.waitForEvent('download');
  await page.locator('#download-backup').click();
+ await page.waitForFunction(()=>window.__secondBackupHeld===true);
+ await page.locator('#download-backup').click();
+ assert.equal(await page.evaluate(()=>window.__secondBackupRequests),1,'Duplicate click must not issue a second Worker backup request.');
+ await page.evaluate(()=>window.__releaseSecondBackup());
  const latest=await downloaded;assert.equal(latest.suggestedFilename(),'original_second.json');
  const path=join(folder,'backup.json');await latest.saveAs(path);
  assert.equal(await readFile(path,'utf8'),second,'Original download must preserve bytes.');
