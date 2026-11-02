@@ -241,6 +241,8 @@ test('RC text fallback serves all 244 with ItemID, localized name, source-qualif
   assert.ok(row.textFallback.ariaLabel.includes(row.name));
   assert.equal(row.textFallback.renderAsPlainText,true);
   assert.equal(row.textFallback.required,true);
+  assert.equal(row.textFallback.visibleByDefault,true);
+  assert.equal(row.textFallback.onImageErrorMustShow,true);
   assert.equal(row.image.url,null);
   assert.equal(row.image.width,null);
   assert.equal(row.image.height,null);
@@ -326,7 +328,9 @@ test('RC row grants mock verified URL only from a fully provenance-validated ite
  assert.equal(mock.image.status,'VERIFIED');
  assert.equal(mock.image.url,'./assets/steam/v1253/31300004.webp');
  assert.equal(mock.image.alt,'小さな闇のトゲ');
- assert.equal(mock.textFallback.required,false);
+ assert.equal(mock.textFallback.required,true);
+ assert.equal(mock.textFallback.visibleByDefault,false);
+ assert.equal(mock.textFallback.onImageErrorMustShow,true);
  assert.equal(mock.fullItemImageReleaseAccepted,false); // One mock path never clears 244 coverage gate.
  assert.equal(resolveRcItemTextRow(empty,{id:31300004},{coverageAudit:audit}).image.url,null);
 });
