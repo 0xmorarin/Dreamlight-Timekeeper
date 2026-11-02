@@ -1,6 +1,7 @@
 import {TAB_ORDER,WORLD_ORDER,previewScope,safeText} from './reader.mjs';
 import {resolveTimePreset} from './time-presets.mjs';
 import {createTimingDraft} from './core/timing-draft.mjs';
+import {createOriginalBackupCoordinator} from './ui-backup-coordinator.mjs';
 import {SUPPORTED_LOCALES,initialLocale,translate,categoryName,areaName,localDate,parseLocalDateTime} from './i18n.mjs';
 const $=id=>document.getElementById(id);
 const make=(tag,cls='',value)=>{const el=document.createElement(tag);if(cls)el.className=cls;if(value!==undefined)el.textContent=String(value);return el;};
@@ -69,8 +70,18 @@ function showEditor(){
  renderAudit();renderTabs();renderFilters();renderList();renderDetails();
 }
 function showWelcome(){if(state.snapshot)return;$('welcome').hidden=false;$('workspace').hidden=true;}
+const backupCoordinator=createOriginalBackupCoordinator({
+ requestBackup:sessionId=>request('backup',{sessionId}),
+ isCurrentSession:sessionId=>!state.loading&&state.sessionId===sessionId,
+ saveOriginal:data=>{
+  const blob=new Blob([data.buffer],{type:'application/octet-stream'}),url=URL.createObjectURL(blob);
+  const anchor=make('a');anchor.href=url;anchor.download=`original_${data.name}`;anchor.click();
+  setTimeout(()=>URL.revokeObjectURL(url),10000);
+ }
+});
 async function openSave(file){
  if(!file||state.loading)return;
+ backupCoordinator.invalidate();++preflightSequence;state.planPending=false;
  state.loading=true;$('open-welcome').disabled=true;$('open-again').disabled=true;
  const old=state.snapshot,oldDraft=state.draft,oldSession=state.sessionId,oldPreflight=state.preflight;
  let workerSessionCommitted=false;
@@ -203,8 +214,8 @@ function renderDetails(){
  if(n===1)selected.append(make('p','',recordTitle(rows[0])));
  const preview=$('preview');preview.replaceChildren();const custom=$('custom-time').value;
  const clock=Date.now();
- const when=state.mode==='custom'?parseLocalDateTime(custom):state.mode==='now'?null:resolveTimePreset(state.mode,{now:clock});
  try{
+  const when=state.mode==='custom'?parseLocalDateTime(custom):state.mode==='now'?null:resolveTimePreset(state.mode,{now:clock});
   if(state.mode==='custom'&&custom&&!when)throw new Error(t('errorInvalidLocal'));
   const result=previewScope(state.snapshot,{tab:state.tab,pointers:rows.map(r=>r.pointer),world:'all',mode:state.mode==='now'?'now':'custom',customTime:when,now:clock});
   const summary=make('div','preview-summary');summary.append(make('span','',t('previewScope',{n:result.affected.length})),make('strong','',`${t('previewTime')}: ${fmt(result.previewTime)}`));preview.append(summary);
@@ -254,7 +265,7 @@ function stagePreview(){
   renderDetails();void refreshPreflight();message(t('planUpdated'));
  }catch(err){message(t('planFail',{reason:err.message}),true);}
 }
-async function backup(){try{if(state.loading)throw new Error('Save is still loading.');const data=await request('backup',{sessionId:state.sessionId});const blob=new Blob([data.buffer],{type:'application/octet-stream'}),url=URL.createObjectURL(blob);const anchor=make('a');anchor.href=url;anchor.download=`original_${data.name}`;anchor.click();setTimeout(()=>URL.revokeObjectURL(url),10000);}catch(err){message(t('backupError',{reason:err.message}),true);}}
+async function backup(){try{await backupCoordinator.download(state.sessionId);}catch(err){message(t('backupError',{reason:err.message}),true);}}
 function bindDrop(){
  const overlay=$('drop-overlay'),fileDrag=e=>Array.from(e.dataTransfer?.types||[]).includes('Files');
  document.addEventListener('dragenter',e=>{if(fileDrag(e)){e.preventDefault();overlay.hidden=false;}});
