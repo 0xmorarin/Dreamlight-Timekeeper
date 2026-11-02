@@ -1,0 +1,34 @@
+name: WEB x ASSET integration rehearsal
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  integration:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 14
+    steps:
+      - name: Checkout current 03 WEB branch
+        uses: actions/checkout@v4
+      - name: Pin 04 ASSET source independently
+        uses: actions/checkout@v4
+        with:
+          repository: 0xmorarin/Dreamlight-Timekeeper
+          ref: b9b5823827fe7b2f530e14736c6a4bdae263ff27
+          path: _asset_reference
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated Chromium runner
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Build isolated merge rehearsal without changing either PR
+        run: |
+          node scripts/build-web-asset-rehearsal.mjs "$PWD/_asset_reference" "$PWD/.integration-preview"
+          test -f .integration-preview/integration-rehearsal.json
+      - name: Verify actual Chromium UI icons and fail-closed fallback
+        run: node .integration-preview/tests/browser-web-asset-integration.smoke.mjs
+      - name: Recheck original-only Session flow in combined UI
+        run: node .integration-preview/tests/browser-web-session.smoke.mjs
