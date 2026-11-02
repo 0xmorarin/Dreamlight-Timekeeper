@@ -60,3 +60,45 @@ test('source data must never grant deletion authority',()=>{
  assert.throws(()=>auditDecorationGridItemMatches(fixture(),source,{maxObjects:2}));
  assert.throws(()=>auditDecorationGridItemMatches(fixture(),source,{maxGrids:1}));
 });
+
+test('Wand 01A active and system GridObjectAddress references veto tempting item matches',()=>{
+ const p=fixture();
+ p.Player={LastUsedLinkedEnvironmentEnter:{'scene':{GridID:11,GridObjectID:3}},
+  AchievementsData:[{GridObjectsCollected:{GridObjectAddresses:[{GridID:11,GridObjectID:4}]}}]};
+ p.GameInfo={Version:626};
+ p.ConditionalEventHistory={ActiveEvents:{
+  '1520002098':{SpawnState:{SpawnedObjects:[
+   {GridID:10,GridObjectID:4},{GridID:878,GridObjectID:41}
+  ]}}
+ }};
+ const original=JSON.stringify(p);
+ const result=auditDecorationGridItemMatches(p,source);
+ const active=result.matches.find(x=>x.gridId===10&&x.gridObjectId===4);
+ assert.equal(active.referenceAssessment,'ACTIVE_IDENTITY_REFERENCE');
+ assert.deepEqual(active.activeConditionalEventIds,['1520002098']);
+ assert.equal(active.bulkDeletionAuthorized,false);
+ const system=result.matches.find(x=>x.gridId===11&&x.gridObjectId===3);
+ assert.equal(system.referenceAssessment,'UNKNOWN_SYSTEM_REFERENCE');
+ assert.equal(system.unknownSystemReferenceCount,1);
+ const historic=result.matches.find(x=>x.gridId===11&&x.gridObjectId===4);
+ assert.equal(historic.referenceAssessment,'HISTORICAL_ONLY_REQUIRES_OTHER_GATES');
+ assert.equal(historic.historicalReferenceCount,1);
+ assert.equal(historic.bulkDeletionAuthorized,false);
+ assert.equal(result.wandReferenceSnapshot.activeReferenceCount,2);
+ assert.equal(result.wandReferenceSnapshot.schema626Revalidated,false);
+ assert.equal(result.wandReferenceSnapshot.writerAuthorized,false);
+ assert.equal(result.absenceOfReferenceIsNotRemovalAuthorization,true);
+ assert.equal(JSON.stringify(p),original);
+});
+test('unknown reference shapes and unavailable Wand source never imply clearance',()=>{
+ const p=fixture();
+ const without=auditDecorationGridItemMatches(p,source);
+ assert.equal(without.wandReferenceSnapshot,null);
+ assert.equal(without.matches[0].referenceAssessment,'NOT_EVALUATED');
+ p.Player={};
+ p.ConditionalEventHistory={ActiveEvents:{'42':{SpawnState:{SpawnedObjects:[{GridID:10}]}}}};
+ const invalid=auditDecorationGridItemMatches(p,source);
+ assert.equal(invalid.wandReferenceSnapshot.invalidReferenceCount,1);
+ assert.equal(invalid.matches[0].referenceAssessment,'INCOMPLETE_REFERENCE_GRAPH');
+ assert.equal(invalid.bulkDeletionAuthorized,false);
+});
