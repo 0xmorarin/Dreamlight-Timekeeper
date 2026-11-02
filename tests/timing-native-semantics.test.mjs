@@ -47,6 +47,9 @@ test('flower branch and global predicates are distinguished from untraced W1 con
     assert.equal(native.traces[kind].executeRVA,null);
     assert.equal(native.traces[kind].readinessCallsiteVerified,false);
   }
+  assert.equal(native.native.itemExecuteCompletion.entryRVA,null);
+  assert.equal(native.native.itemExecuteCompletion.lastOccurrenceStoreRVA,'0x057BF068');
+  assert.equal(native.native.itemExecuteCompletion.rescheduleCallRVA,'0x057BF0C4');
   assert.equal(native.traces.ItemSpawning.catchupBoundRVA,'0x057C0140');
   assert.equal(native.traces.ItemSpawning.maxAmountRVA,'0x047AB7F0');
 });
