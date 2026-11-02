@@ -567,11 +567,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -599,11 +606,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -631,11 +645,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -663,11 +684,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -725,11 +753,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -3228,11 +3263,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -3275,11 +3317,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -3322,11 +3371,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -3355,11 +3411,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -3439,11 +3502,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -3471,11 +3541,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -3503,11 +3580,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -3535,11 +3619,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -3567,11 +3658,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -3599,11 +3697,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -3631,11 +3736,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -3711,11 +3823,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -3743,11 +3862,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -3775,11 +3901,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -3807,11 +3940,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -3839,11 +3979,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -3873,11 +4020,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -3905,11 +4059,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -3939,11 +4100,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -4019,11 +4187,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -4148,11 +4323,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -4181,11 +4363,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -4214,11 +4403,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -4673,11 +4869,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -4705,11 +4908,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -4737,11 +4947,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -4769,11 +4986,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -4801,11 +5025,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -4833,11 +5064,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -4865,11 +5103,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -4897,11 +5142,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -4929,11 +5181,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -4961,11 +5220,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -4993,11 +5259,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5025,11 +5298,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5057,11 +5337,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5089,11 +5376,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5121,11 +5415,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5153,11 +5454,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5185,11 +5493,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5217,11 +5532,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5249,11 +5571,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5294,11 +5623,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5326,11 +5662,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5358,11 +5701,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5390,11 +5740,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5422,11 +5779,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5454,11 +5818,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5486,11 +5857,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5518,11 +5896,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5550,11 +5935,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5584,11 +5976,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5618,11 +6017,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5652,11 +6058,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5686,11 +6099,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5718,11 +6138,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5750,11 +6177,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5782,11 +6216,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5814,11 +6255,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5846,11 +6294,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5878,11 +6333,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5910,11 +6372,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5942,11 +6411,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -5974,11 +6450,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -6006,11 +6489,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -6038,11 +6528,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -6070,11 +6567,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -6102,11 +6606,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -6134,11 +6645,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -6166,11 +6684,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -6198,11 +6723,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -6233,11 +6765,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -6268,11 +6807,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -6303,11 +6849,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -6338,11 +6891,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -6364,13 +6924,34 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "status": "DECLARED_ICON_ADDRESS_RESOLVED_PRIVATE_SOURCE",
         "sourceStream": "Companion.json",
         "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
         "declaredIconAddressGuid": "fae01c1f6435960469d3a732e16efcee",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "craftingmaterial_a01be543.bundle",
+          "bundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c",
+          "unityCab": "CAB-dc96f4e2a160bea829b0dccdd5e870ad",
+          "spritePathId": "7756764702196383526",
+          "texturePathId": "6443733243470036774",
+          "spriteName": "SnippetBird01Red",
+          "width": 256,
+          "height": 256,
+          "compression": "BC7",
+          "decodedRgbaSha256": "b4fe9375502cb220af1c95090b20df682328df00e37f0c299031b054fa5793e2",
+          "prototypeWebpSha256": "3a87f48bc03a16067c5cb8c8a4401f06ac965c925343840a6e18041086110128",
+          "prototypeWebpBytes": 44628,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        },
+        "catalogDependency": {
+          "state": "CATALOG_EXACT_SPRITE_AND_TEXTURE_PRIVATE_PIXEL_PROOF",
+          "primaryBundle": "ui-images-generatedicons_assets_assets/craftingmaterial_a01be543.bundle",
+          "primaryBundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c"
+        }
       },
       "readOnlyImageResolution": {
         "status": "MISSING",
@@ -6396,13 +6977,34 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "status": "DECLARED_ICON_ADDRESS_RESOLVED_PRIVATE_SOURCE",
         "sourceStream": "Companion.json",
         "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
         "declaredIconAddressGuid": "40b0d5635c0c38546bf2fabf5e89829b",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "craftingmaterial_a01be543.bundle",
+          "bundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c",
+          "unityCab": "CAB-dc96f4e2a160bea829b0dccdd5e870ad",
+          "spritePathId": "17502384800903466116",
+          "texturePathId": "12397690991502167172",
+          "spriteName": "SnippetBird02",
+          "width": 256,
+          "height": 256,
+          "compression": "BC7",
+          "decodedRgbaSha256": "bf460332c90b2506bc9b51b864d4b806fb3fadf655be457b8aa7cdfb3a103126",
+          "prototypeWebpSha256": "f908a668e2881b9c4f0d2df738a92ea7518b4b902514197356efb270d951bdd1",
+          "prototypeWebpBytes": 45410,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        },
+        "catalogDependency": {
+          "state": "CATALOG_EXACT_SPRITE_AND_TEXTURE_PRIVATE_PIXEL_PROOF",
+          "primaryBundle": "ui-images-generatedicons_assets_assets/craftingmaterial_a01be543.bundle",
+          "primaryBundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c"
+        }
       },
       "readOnlyImageResolution": {
         "status": "MISSING",
@@ -6428,13 +7030,34 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "status": "DECLARED_ICON_ADDRESS_RESOLVED_PRIVATE_SOURCE",
         "sourceStream": "Companion.json",
         "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
         "declaredIconAddressGuid": "641b2b54dfaeb904390e69758d74dba6",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "craftingmaterial_a01be543.bundle",
+          "bundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c",
+          "unityCab": "CAB-dc96f4e2a160bea829b0dccdd5e870ad",
+          "spritePathId": "16075367132738279401",
+          "texturePathId": "16996465965528766441",
+          "spriteName": "SnippetBird03Green",
+          "width": 256,
+          "height": 256,
+          "compression": "BC7",
+          "decodedRgbaSha256": "176615e8af99b8eddc9e0d0ee82c6615243996ce55fda6c90b95dcf629dca19e",
+          "prototypeWebpSha256": "0ee31e790b7e79e40d4d8714617144a69edf548952729cc79bcdd200ff846954",
+          "prototypeWebpBytes": 42912,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        },
+        "catalogDependency": {
+          "state": "CATALOG_EXACT_SPRITE_AND_TEXTURE_PRIVATE_PIXEL_PROOF",
+          "primaryBundle": "ui-images-generatedicons_assets_assets/craftingmaterial_a01be543.bundle",
+          "primaryBundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c"
+        }
       },
       "readOnlyImageResolution": {
         "status": "MISSING",
@@ -6460,13 +7083,34 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "status": "DECLARED_ICON_ADDRESS_RESOLVED_PRIVATE_SOURCE",
         "sourceStream": "Companion.json",
         "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
         "declaredIconAddressGuid": "c19d982a7abc5814e98721cd7e32e672",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "craftingmaterial_a01be543.bundle",
+          "bundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c",
+          "unityCab": "CAB-dc96f4e2a160bea829b0dccdd5e870ad",
+          "spritePathId": "9735819940291077441",
+          "texturePathId": "2574915995918787905",
+          "spriteName": "SnippetBird04",
+          "width": 256,
+          "height": 256,
+          "compression": "BC7",
+          "decodedRgbaSha256": "7a24d2c8f11c5be8a4040bcb2ff0286695e5c8db156a7dc79561cf4336f7686d",
+          "prototypeWebpSha256": "1e36bc684b182f4a7afd0e337f35c624e77470e5b421a999d8e33d171819642b",
+          "prototypeWebpBytes": 44616,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        },
+        "catalogDependency": {
+          "state": "CATALOG_EXACT_SPRITE_AND_TEXTURE_PRIVATE_PIXEL_PROOF",
+          "primaryBundle": "ui-images-generatedicons_assets_assets/craftingmaterial_a01be543.bundle",
+          "primaryBundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c"
+        }
       },
       "readOnlyImageResolution": {
         "status": "MISSING",
@@ -6493,13 +7137,34 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "status": "DECLARED_ICON_ADDRESS_RESOLVED_PRIVATE_SOURCE",
         "sourceStream": "Companion.json",
         "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
         "declaredIconAddressGuid": "d50c69cb2009eba41bad38889fb84620",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "craftingmaterial_a01be543.bundle",
+          "bundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c",
+          "unityCab": "CAB-dc96f4e2a160bea829b0dccdd5e870ad",
+          "spritePathId": "5726337504945729447",
+          "texturePathId": "16692297949018156967",
+          "spriteName": "SnippetFrog01Blue",
+          "width": 256,
+          "height": 256,
+          "compression": "BC7",
+          "decodedRgbaSha256": "fac6dabd0ba790a141d214a05e86e966a1ab991870cfa57c7957a5193f98201f",
+          "prototypeWebpSha256": "fb854fd6be1e28c958dc7b5ef44919da706310e8af373f97282b2e870d8bfeea",
+          "prototypeWebpBytes": 35230,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        },
+        "catalogDependency": {
+          "state": "CATALOG_EXACT_SPRITE_AND_TEXTURE_PRIVATE_PIXEL_PROOF",
+          "primaryBundle": "ui-images-generatedicons_assets_assets/craftingmaterial_a01be543.bundle",
+          "primaryBundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c"
+        }
       },
       "readOnlyImageResolution": {
         "status": "MISSING",
@@ -6526,13 +7191,34 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "status": "DECLARED_ICON_ADDRESS_RESOLVED_PRIVATE_SOURCE",
         "sourceStream": "Companion.json",
         "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
         "declaredIconAddressGuid": "3bf980814e35609418f98243615dfd21",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "craftingmaterial_a01be543.bundle",
+          "bundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c",
+          "unityCab": "CAB-dc96f4e2a160bea829b0dccdd5e870ad",
+          "spritePathId": "4625635885339563904",
+          "texturePathId": "3817497434896455552",
+          "spriteName": "SnippetFrog02Pink",
+          "width": 256,
+          "height": 256,
+          "compression": "BC7",
+          "decodedRgbaSha256": "2e9306af6b58e3538accf25f04394a95f8d5db282714d31ff3814302a969d1c2",
+          "prototypeWebpSha256": "101137451730dcf81e4376e55680fde7e102d0e7a49b42c603eb3a044ff5d465",
+          "prototypeWebpBytes": 36350,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        },
+        "catalogDependency": {
+          "state": "CATALOG_EXACT_SPRITE_AND_TEXTURE_PRIVATE_PIXEL_PROOF",
+          "primaryBundle": "ui-images-generatedicons_assets_assets/craftingmaterial_a01be543.bundle",
+          "primaryBundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c"
+        }
       },
       "readOnlyImageResolution": {
         "status": "MISSING",
@@ -6558,13 +7244,34 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "status": "DECLARED_ICON_ADDRESS_RESOLVED_PRIVATE_SOURCE",
         "sourceStream": "Companion.json",
         "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
         "declaredIconAddressGuid": "116140f426394314c86c635b281fac1b",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "craftingmaterial_a01be543.bundle",
+          "bundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c",
+          "unityCab": "CAB-dc96f4e2a160bea829b0dccdd5e870ad",
+          "spritePathId": "10886762412541053486",
+          "texturePathId": "16090552650992093742",
+          "spriteName": "SnippetFrog03Purple",
+          "width": 256,
+          "height": 256,
+          "compression": "BC7",
+          "decodedRgbaSha256": "3b84854141319a14ce49700a114fbf61014ed7d5585fa7dae29f75f712121ca4",
+          "prototypeWebpSha256": "004fb8f61665a22b31e1f1c956e0f780f1ddb9cd2b8135ef1aa1d406c907eb8e",
+          "prototypeWebpBytes": 37202,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        },
+        "catalogDependency": {
+          "state": "CATALOG_EXACT_SPRITE_AND_TEXTURE_PRIVATE_PIXEL_PROOF",
+          "primaryBundle": "ui-images-generatedicons_assets_assets/craftingmaterial_a01be543.bundle",
+          "primaryBundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c"
+        }
       },
       "readOnlyImageResolution": {
         "status": "MISSING",
@@ -6590,13 +7297,34 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "status": "DECLARED_ICON_ADDRESS_RESOLVED_PRIVATE_SOURCE",
         "sourceStream": "Companion.json",
         "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
         "declaredIconAddressGuid": "d14e8bb65a3e3424094f6b66f66046de",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "craftingmaterial_a01be543.bundle",
+          "bundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c",
+          "unityCab": "CAB-dc96f4e2a160bea829b0dccdd5e870ad",
+          "spritePathId": "7950742958448064576",
+          "texturePathId": "12920717573174605888",
+          "spriteName": "SnippetFrog04Yellow",
+          "width": 256,
+          "height": 256,
+          "compression": "BC7",
+          "decodedRgbaSha256": "e50c350ada7ccba23debd3e6f94baae01fdabab5af35a9d008670ff50eccce43",
+          "prototypeWebpSha256": "e3e485b9b5077bcbd55b405e8d60ac07704d8c4643803c6daad9deac45f4f340",
+          "prototypeWebpBytes": 35092,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        },
+        "catalogDependency": {
+          "state": "CATALOG_EXACT_SPRITE_AND_TEXTURE_PRIVATE_PIXEL_PROOF",
+          "primaryBundle": "ui-images-generatedicons_assets_assets/craftingmaterial_a01be543.bundle",
+          "primaryBundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c"
+        }
       },
       "readOnlyImageResolution": {
         "status": "MISSING",
@@ -6623,13 +7351,34 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "status": "DECLARED_ICON_ADDRESS_RESOLVED_PRIVATE_SOURCE",
         "sourceStream": "Companion.json",
         "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
         "declaredIconAddressGuid": "03af512ae744ade48b5f3dd8c07e5503",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "craftingmaterial_a01be543.bundle",
+          "bundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c",
+          "unityCab": "CAB-dc96f4e2a160bea829b0dccdd5e870ad",
+          "spritePathId": "7753941468324018936",
+          "texturePathId": "14605058682423458552",
+          "spriteName": "DemonSnippet01Pink",
+          "width": 256,
+          "height": 256,
+          "compression": "BC7",
+          "decodedRgbaSha256": "1cb59e860429db86acc8530ac858b6733da724a1b3f0e7afa47a25721a49dd08",
+          "prototypeWebpSha256": "ba619de54343c2e7faa17b01b3f6b3a900d6f4abb2bd0895a605db20dbf5d028",
+          "prototypeWebpBytes": 28770,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        },
+        "catalogDependency": {
+          "state": "CATALOG_EXACT_SPRITE_AND_TEXTURE_PRIVATE_PIXEL_PROOF",
+          "primaryBundle": "ui-images-generatedicons_assets_assets/craftingmaterial_a01be543.bundle",
+          "primaryBundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c"
+        }
       },
       "readOnlyImageResolution": {
         "status": "MISSING",
@@ -6656,13 +7405,34 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "status": "DECLARED_ICON_ADDRESS_RESOLVED_PRIVATE_SOURCE",
         "sourceStream": "Companion.json",
         "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
         "declaredIconAddressGuid": "a74986a1cf3a28c488254a10f41c02b3",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "craftingmaterial_a01be543.bundle",
+          "bundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c",
+          "unityCab": "CAB-dc96f4e2a160bea829b0dccdd5e870ad",
+          "spritePathId": "12299178960354665663",
+          "texturePathId": "17270605522404435135",
+          "spriteName": "DemonSnippet02Blue",
+          "width": 256,
+          "height": 256,
+          "compression": "BC7",
+          "decodedRgbaSha256": "ff348781df4d0b0c7c109be6050decfb4bcae75963437fa567ac6c96e2f598df",
+          "prototypeWebpSha256": "ae39cbeeea96389c29bacdbd40941c67f96e496ad0d886ca8d83b4415bccb043",
+          "prototypeWebpBytes": 30060,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        },
+        "catalogDependency": {
+          "state": "CATALOG_EXACT_SPRITE_AND_TEXTURE_PRIVATE_PIXEL_PROOF",
+          "primaryBundle": "ui-images-generatedicons_assets_assets/craftingmaterial_a01be543.bundle",
+          "primaryBundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c"
+        }
       },
       "readOnlyImageResolution": {
         "status": "MISSING",
@@ -6688,13 +7458,34 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "status": "DECLARED_ICON_ADDRESS_RESOLVED_PRIVATE_SOURCE",
         "sourceStream": "Companion.json",
         "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
         "declaredIconAddressGuid": "d39cbee3b273b664d8c00f0ff8c45bc2",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "craftingmaterial_a01be543.bundle",
+          "bundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c",
+          "unityCab": "CAB-dc96f4e2a160bea829b0dccdd5e870ad",
+          "spritePathId": "2808177740459990297",
+          "texturePathId": "9951406058916666649",
+          "spriteName": "DemonSnippet03Red",
+          "width": 256,
+          "height": 256,
+          "compression": "BC7",
+          "decodedRgbaSha256": "e614d3eadf29a631f41490ca8a9705e3e3c10e0a7c3e9e395111a6ce6455d817",
+          "prototypeWebpSha256": "b27eded16398ece892ccbb62ad3885cac1b14c8d2c7c0a0c8b6c9b7024a5ece3",
+          "prototypeWebpBytes": 29534,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        },
+        "catalogDependency": {
+          "state": "CATALOG_EXACT_SPRITE_AND_TEXTURE_PRIVATE_PIXEL_PROOF",
+          "primaryBundle": "ui-images-generatedicons_assets_assets/craftingmaterial_a01be543.bundle",
+          "primaryBundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c"
+        }
       },
       "readOnlyImageResolution": {
         "status": "MISSING",
@@ -6720,13 +7511,34 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "status": "DECLARED_ICON_ADDRESS_RESOLVED_PRIVATE_SOURCE",
         "sourceStream": "Companion.json",
         "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
         "declaredIconAddressGuid": "b56521a8fa9904c419f856b5df830298",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "craftingmaterial_a01be543.bundle",
+          "bundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c",
+          "unityCab": "CAB-dc96f4e2a160bea829b0dccdd5e870ad",
+          "spritePathId": "5174699171218947657",
+          "texturePathId": "8099182664095137353",
+          "spriteName": "DemonSnippet04Green",
+          "width": 256,
+          "height": 256,
+          "compression": "BC7",
+          "decodedRgbaSha256": "5fd9ee9e64d8f5fd38f37f41bd9a4408b35f4adf8e228a64f2be59b6809ffc6f",
+          "prototypeWebpSha256": "53657d6942681748e028e52a4fb5751d9ec7cb4b60b9083e3e0b2f57006c5492",
+          "prototypeWebpBytes": 29104,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        },
+        "catalogDependency": {
+          "state": "CATALOG_EXACT_SPRITE_AND_TEXTURE_PRIVATE_PIXEL_PROOF",
+          "primaryBundle": "ui-images-generatedicons_assets_assets/craftingmaterial_a01be543.bundle",
+          "primaryBundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c"
+        }
       },
       "readOnlyImageResolution": {
         "status": "MISSING",
@@ -6759,13 +7571,34 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "status": "DECLARED_ICON_ADDRESS_RESOLVED_PRIVATE_SOURCE",
         "sourceStream": "Companion.json",
         "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
         "declaredIconAddressGuid": "0243ca5583384e846b11145c2243350a",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "craftingmaterial_a01be543.bundle",
+          "bundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c",
+          "unityCab": "CAB-dc96f4e2a160bea829b0dccdd5e870ad",
+          "spritePathId": "9312081296863438611",
+          "texturePathId": "17373823076028884755",
+          "spriteName": "SnippetBird05White",
+          "width": 256,
+          "height": 256,
+          "compression": "BC7",
+          "decodedRgbaSha256": "30b6f77557ac55db4ea77db3fbc71a36a3d13c1e5b0dad8d8d01925e1a5a3782",
+          "prototypeWebpSha256": "1a8374a794a11723d3ec59b04cbfda5fe8658774e51a435574dcb1aeff3a32e6",
+          "prototypeWebpBytes": 39486,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        },
+        "catalogDependency": {
+          "state": "CATALOG_EXACT_SPRITE_AND_TEXTURE_PRIVATE_PIXEL_PROOF",
+          "primaryBundle": "ui-images-generatedicons_assets_assets/craftingmaterial_a01be543.bundle",
+          "primaryBundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c"
+        }
       },
       "readOnlyImageResolution": {
         "status": "MISSING",
@@ -6792,17 +7625,38 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "status": "DECLARED_ICON_ADDRESS_RESOLVED_PRIVATE_SOURCE",
         "sourceStream": "Companion.json",
         "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
         "declaredIconAddressGuid": "4e5d2c8f467f0d54dadd733797dbd5fa",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "craftingmaterial_a01be543.bundle",
+          "bundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c",
+          "unityCab": "CAB-dc96f4e2a160bea829b0dccdd5e870ad",
+          "spritePathId": "13675158827118910876",
+          "texturePathId": "14978919999936028060",
+          "spriteName": "DemonEvil",
+          "width": 256,
+          "height": 256,
+          "compression": "BC7",
+          "decodedRgbaSha256": "abee1205bd8bb3110deb802733bd9fb1f64ef600d57cad55fa4ded3924a7ce93",
+          "prototypeWebpSha256": "639b0c43dd1ddf2a5f78a5296ea86618757ebf67eca853ff19d6af7977cbcc79",
+          "prototypeWebpBytes": 19686,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        },
+        "catalogDependency": {
+          "state": "CATALOG_EXACT_SPRITE_AND_TEXTURE_PRIVATE_PIXEL_PROOF",
+          "primaryBundle": "ui-images-generatedicons_assets_assets/craftingmaterial_a01be543.bundle",
+          "primaryBundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c"
+        }
       },
       "readOnlyImageResolution": {
-        "status": "AMBIGUOUS",
-        "reason": "TWO_ITEMIDS_SHARE_UNVERIFIED_COMPANION_ICON_ADDRESS",
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
       }
     },
@@ -6824,17 +7678,38 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "status": "DECLARED_ICON_ADDRESS_RESOLVED_PRIVATE_SOURCE",
         "sourceStream": "Companion.json",
         "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
         "declaredIconAddressGuid": "4e5d2c8f467f0d54dadd733797dbd5fa",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "craftingmaterial_a01be543.bundle",
+          "bundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c",
+          "unityCab": "CAB-dc96f4e2a160bea829b0dccdd5e870ad",
+          "spritePathId": "13675158827118910876",
+          "texturePathId": "14978919999936028060",
+          "spriteName": "DemonEvil",
+          "width": 256,
+          "height": 256,
+          "compression": "BC7",
+          "decodedRgbaSha256": "abee1205bd8bb3110deb802733bd9fb1f64ef600d57cad55fa4ded3924a7ce93",
+          "prototypeWebpSha256": "639b0c43dd1ddf2a5f78a5296ea86618757ebf67eca853ff19d6af7977cbcc79",
+          "prototypeWebpBytes": 19686,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        },
+        "catalogDependency": {
+          "state": "CATALOG_EXACT_SPRITE_AND_TEXTURE_PRIVATE_PIXEL_PROOF",
+          "primaryBundle": "ui-images-generatedicons_assets_assets/craftingmaterial_a01be543.bundle",
+          "primaryBundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c"
+        }
       },
       "readOnlyImageResolution": {
-        "status": "AMBIGUOUS",
-        "reason": "TWO_ITEMIDS_SHARE_UNVERIFIED_COMPANION_ICON_ADDRESS",
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
       }
     },
@@ -6863,11 +7738,18 @@
         "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "webpDecodedRgbaMatched": false,
+        "catalogDependency": {
+          "state": "CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE",
+          "primaryBundle": "usedplaceholders_assets_all.bundle",
+          "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+          "catalogKeyIndex": 20671,
+          "spriteResolved": false
+        }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
-        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
       }
     },
@@ -6889,13 +7771,34 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "status": "DECLARED_ICON_ADDRESS_RESOLVED_PRIVATE_SOURCE",
         "sourceStream": "Companion.json",
         "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
         "declaredIconAddressGuid": "b458e8ee6d0368149abe6de8b65a47fc",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "craftingmaterial_a01be543.bundle",
+          "bundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c",
+          "unityCab": "CAB-dc96f4e2a160bea829b0dccdd5e870ad",
+          "spritePathId": "4024072249596504596",
+          "texturePathId": "6617565033332533780",
+          "spriteName": "SnippetBird06black",
+          "width": 256,
+          "height": 256,
+          "compression": "BC7",
+          "decodedRgbaSha256": "ff333e8674d262ff17e0b56f301c9d0c9aa8f498f939d7cc4308ab678e4d0930",
+          "prototypeWebpSha256": "71948864508f6a0caaf9696442627d7989e47602d4fc9385f09c3693b44abdb1",
+          "prototypeWebpBytes": 38888,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        },
+        "catalogDependency": {
+          "state": "CATALOG_EXACT_SPRITE_AND_TEXTURE_PRIVATE_PIXEL_PROOF",
+          "primaryBundle": "ui-images-generatedicons_assets_assets/craftingmaterial_a01be543.bundle",
+          "primaryBundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c"
+        }
       },
       "readOnlyImageResolution": {
         "status": "MISSING",
@@ -6926,13 +7829,34 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "status": "DECLARED_ICON_ADDRESS_RESOLVED_PRIVATE_SOURCE",
         "sourceStream": "Companion.json",
         "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
         "declaredIconAddressGuid": "eb27800f72c6f354a9498434681d15f3",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "craftingmaterial_a01be543.bundle",
+          "bundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c",
+          "unityCab": "CAB-dc96f4e2a160bea829b0dccdd5e870ad",
+          "spritePathId": "1550381504464423600",
+          "texturePathId": "6045959905295862448",
+          "spriteName": "DemonSnippet05Black",
+          "width": 256,
+          "height": 256,
+          "compression": "BC7",
+          "decodedRgbaSha256": "f13c005ecd62402b9795d81b4210d205fd381172a4b8c45cceb0c65dc308e0ab",
+          "prototypeWebpSha256": "766c9649b301b2ca7116a2a30d55dbc9dd27afc781b92c5583f80cd303d9a8dc",
+          "prototypeWebpBytes": 26632,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        },
+        "catalogDependency": {
+          "state": "CATALOG_EXACT_SPRITE_AND_TEXTURE_PRIVATE_PIXEL_PROOF",
+          "primaryBundle": "ui-images-generatedicons_assets_assets/craftingmaterial_a01be543.bundle",
+          "primaryBundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c"
+        }
       },
       "readOnlyImageResolution": {
         "status": "MISSING",
@@ -6958,13 +7882,34 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "status": "DECLARED_ICON_ADDRESS_RESOLVED_PRIVATE_SOURCE",
         "sourceStream": "Companion.json",
         "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
         "declaredIconAddressGuid": "15d2f864db647d84c90a737e06ec6c2b",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "craftingmaterial_a01be543.bundle",
+          "bundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c",
+          "unityCab": "CAB-dc96f4e2a160bea829b0dccdd5e870ad",
+          "spritePathId": "1221565336383122836",
+          "texturePathId": "7727287043878415764",
+          "spriteName": "SnippetFrog05Black",
+          "width": 256,
+          "height": 256,
+          "compression": "BC7",
+          "decodedRgbaSha256": "5f64656c1bca81d0a24b90074f425f88995fc7c98e42c0797d52d6515b26e4c5",
+          "prototypeWebpSha256": "bc74546bc2fb78ec0ca3c10a9c6b743257ac24fae10b74322de09e397939de95",
+          "prototypeWebpBytes": 34516,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        },
+        "catalogDependency": {
+          "state": "CATALOG_EXACT_SPRITE_AND_TEXTURE_PRIVATE_PIXEL_PROOF",
+          "primaryBundle": "ui-images-generatedicons_assets_assets/craftingmaterial_a01be543.bundle",
+          "primaryBundleSha256": "85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c"
+        }
       },
       "readOnlyImageResolution": {
         "status": "MISSING",
@@ -6991,19 +7936,28 @@
     "commonGuidCountInGaps": 81,
     "otherGuidCountInGaps": 25,
     "sourceGuidOnly": true,
-    "spriteTextureProof": 7,
+    "spriteTextureProof": 25,
     "publicImageProof": 0,
     "rights": "NOT_ESTABLISHED",
-    "note": "106 exact ItemID→typed-definition IconAddress relationships; 7 original source CAB Sprite/Texture/VP8L-RGBA private matches (3 previous +4 newly verified), 99 remain without source Sprite/Texture proof. 81 share common GUID; Companion pair 120200013/016 shares another. No published game ItemID images.",
+    "note": "v1.25.3 typed ItemID→IconAddress GUID 106/106; exact Catalog dependency across all 25 distinct GUIDs; 25/106 privately original Sprite/Texture + decoded VP8L RGBA parity (7 old + 18 Companion); 81 generic GUID route to usedplaceholders_assets_all.bundle (shared fallback, NOT item-specific image). No deployable game ItemID images.",
     "companionRecords": 19,
     "commonGuidOccurrencesInCompleteThreeStreams": 1798,
     "distinctSourceIconAddressGuidsInGaps": 25,
-    "privatePrototypeRgbaMatched": 7,
-    "privatePrototypeWebpBytes": 1101746,
+    "privatePrototypeRgbaMatched": 25,
+    "privatePrototypeWebpBytes": 1719548,
     "privatePixelEvidenceJsonSha256": "59e2e920570f83812210f4eebcf2013935322ed21dcf43dae4c8eaba48b5c0b8",
     "additionalFourEvidenceSha256": "7b10a20060e25bcc38821b86dfba38f55a7840d1954f53cf187a3a37dd10a710",
-    "remainingUnverifiedSpriteTexture": 99,
-    "privatePixelsNotPublished": true
+    "remainingUnverifiedSpriteTexture": 81,
+    "privatePixelsNotPublished": true,
+    "privateCompanionPixelRecords": 18,
+    "privateCompanionDistinctSprites": 17,
+    "privateCompanionDuplicatedSourceSpriteItemIDs": [
+      120200013,
+      120200016
+    ],
+    "privateCompanionWebpBytes": 617802,
+    "privateCompanionEvidenceJsonSha256": "25c73f727a4a0e248aeeba25f6134034177413229ef89da86f89c9a9aea63667",
+    "catalogPlaceholderItemIDs": 81
   },
   "readOnlyResolutionContract": {
     "schema": "timekeeper.item-image-resolution.v1",
@@ -7018,11 +7972,33 @@
     "allCandidateMetadataNonPublishing": true,
     "recurringTotal": 244,
     "verifiedPublished": 0,
-    "ambiguousWithoutUrl": 83,
-    "missingWithoutUrl": 161,
-    "privatePixelProofsNotPublished": 7,
-    "unverifiedSourceSpriteTargets": 99,
+    "ambiguousWithoutUrl": 81,
+    "missingWithoutUrl": 163,
+    "privatePixelProofsNotPublished": 25,
+    "unverifiedSourceSpriteTargets": 81,
     "additionalRealSaveVisibleItemIDs": "UNKNOWN_SESSION_NOT_PROVIDED",
     "unapprovedMediaPublishable": false
+  },
+  "addressablesCatalogAudit": {
+    "platform": "Steam/Windows",
+    "gameVersion": "1.25.3",
+    "buildResultHash": "45e494c1968542bb73ff51e4e727271e",
+    "catalogJsonSha256": "69351845e0b99db577ff70af2512de780f815d561027ceccab9f8f19d081c562",
+    "entryDataSha256": "807fd38db08a107dada03cc207a1eecc5c41bc157b060091377fefce577d1619",
+    "keyDataSha256": "cef9d3431ca327b560ed30e045a908615c31d7628c3d8c83acd85c69b8aded1a",
+    "bucketDataSha256": "c8a4b215b07988e988b34085f77e4d616ca7f5b0cc13bee13763e36c0ebdf4e6",
+    "internalIdsSha256": "1822422bcf53e31b2b5653d28b36059bf591ec163a5721a8eecd630e4f8ec5ad",
+    "extraDataSha256": "2f4fa960223d518a79a4c3c94a243bbbfbabafe4f223e46a3dd541993707ace0",
+    "privateMetadataSha256": "941c152b2dc239dfa495ffeab0f4c6d3652df5afd6983cc4b83c2a29a2efadb1",
+    "catalogItemIDs": 106,
+    "distinctGUIDs": 25,
+    "componentBundles": {
+      "default": 1,
+      "ephemeral": 4,
+      "lootpresent": 2,
+      "craftingmaterial": 18,
+      "sharedPlaceholders": 81
+    },
+    "status": "EXACT_CATALOG_DEPENDENCY_ONLY_NOT_RENDERED_ITEM_VARIATION_PROOF"
   }
 }
