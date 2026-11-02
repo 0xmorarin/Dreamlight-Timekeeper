@@ -152,6 +152,11 @@ const sourceCategories=Object.freeze({
   'Companion.json':Object.freeze({code:'COMPANION',en:'Companion',ja:'コンパニオン'})
 });
 const unclassifiedCategory=Object.freeze({code:'UNCLASSIFIED',en:'Unclassified item',ja:'種類未確認'});
+const originalTypeHashes=Object.freeze({
+  'ActivityItem.json':'20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4',
+  'Furniture.json':'823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674',
+  'Companion.json':'26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea'
+});
 const textSafe=value=>safeName(value)
   .replace(/<[^>]*>/g,'')
   .replace(/[\u200b\u200c\u200d\u2060\u202a-\u202e\u2066-\u2069]/g,'')
@@ -179,8 +184,13 @@ export function resolveRcItemTextRow(manifest,item,{locale='ja',basePath='./',co
     (itemId===null?'Unknown item':'Item '+itemId);
   const jaName=textSafe(pinned?.jaNames?.[0])||textSafe(item?.ja)||enName;
   const name=language==='ja'?jaName:enName;
-  const sourceCategory=pinned?.definitionAudit?.sourceStream;
-  const typed=sourceCategories[sourceCategory];
+  const sourceWitness=pinned?.itemSourceType;
+  const sourceCategory=sourceWitness?.status==='ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED'&&
+    sourceWitness.itemIdField===1&&
+    sourceWitness.sourceSha256===originalTypeHashes[sourceWitness.sourceStream]&&
+    sourceWitness.itemSourceCategoryOnly===true&&sourceWitness.notImageProof===true?
+      sourceWitness.sourceStream:null;
+  const typed=sourceCategory?sourceCategories[sourceCategory]:null;
   const category=typed||unclassifiedCategory;
   const image=resolveItemImageView(manifest,{id:itemId,en:enName,ja:jaName},
     {basePath,coverageAudit});
