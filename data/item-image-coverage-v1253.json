@@ -119,7 +119,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "202f205f8ad0fd94daddf84fe6862586",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 30200045,
@@ -434,7 +443,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 30400220,
@@ -452,7 +470,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 30400229,
@@ -470,7 +497,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 30400237,
@@ -488,7 +524,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 30400256,
@@ -531,7 +576,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 30400267,
@@ -2452,7 +2506,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "838a1cf8fac848d46b1f2b5843326baf",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31300004,
@@ -2485,7 +2548,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31300005,
@@ -2518,7 +2590,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31300006,
@@ -2551,7 +2632,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31300076,
@@ -2570,7 +2660,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31300083,
@@ -2590,7 +2689,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "eb3483344601e374480bce50a60de07c",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31300084,
@@ -2610,7 +2718,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31300105,
@@ -2628,7 +2745,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31300106,
@@ -2646,7 +2772,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31300107,
@@ -2664,7 +2799,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31300117,
@@ -2682,7 +2826,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31300118,
@@ -2700,7 +2853,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31300127,
@@ -2718,7 +2880,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31300128,
@@ -2736,7 +2907,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "6a16e4ccb94256f4a8c808f189cb4c1f",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31300129,
@@ -2754,7 +2934,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31300130,
@@ -2772,7 +2961,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31300131,
@@ -2790,7 +2988,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31300132,
@@ -2808,7 +3015,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31300133,
@@ -2826,7 +3042,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31300168,
@@ -2846,7 +3071,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31300175,
@@ -2864,7 +3098,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31300178,
@@ -2884,7 +3127,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31300210,
@@ -2902,7 +3154,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "042b02d3a1339664f917f00df79d0bee",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31300211,
@@ -2920,7 +3181,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31400000,
@@ -2938,7 +3208,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "c2d8a0bf85476b545b2a322f99c2bcff",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31400039,
@@ -2956,7 +3235,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "ff56d467e029f7643ba98059c63e2332",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31400047,
@@ -2975,7 +3263,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31400048,
@@ -2994,7 +3291,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31400049,
@@ -3013,7 +3319,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 31700002,
@@ -3373,7 +3688,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600001,
@@ -3391,7 +3715,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600002,
@@ -3409,7 +3742,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600003,
@@ -3427,7 +3769,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600004,
@@ -3445,7 +3796,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600005,
@@ -3463,7 +3823,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600006,
@@ -3481,7 +3850,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600007,
@@ -3499,7 +3877,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600008,
@@ -3517,7 +3904,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600009,
@@ -3535,7 +3931,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600010,
@@ -3553,7 +3958,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600011,
@@ -3571,7 +3985,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600012,
@@ -3589,7 +4012,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600013,
@@ -3607,7 +4039,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600014,
@@ -3625,7 +4066,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600030,
@@ -3643,7 +4093,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600031,
@@ -3661,7 +4120,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600032,
@@ -3679,7 +4147,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600033,
@@ -3697,7 +4174,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600035,
@@ -3728,7 +4214,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600036,
@@ -3746,7 +4241,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600037,
@@ -3764,7 +4268,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600038,
@@ -3782,7 +4295,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600039,
@@ -3800,7 +4322,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600040,
@@ -3818,7 +4349,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600041,
@@ -3836,7 +4376,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600042,
@@ -3854,7 +4403,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600043,
@@ -3872,7 +4430,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600132,
@@ -3892,7 +4459,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600133,
@@ -3912,7 +4488,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600134,
@@ -3932,7 +4517,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600135,
@@ -3952,7 +4546,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600136,
@@ -3970,7 +4573,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600137,
@@ -3988,7 +4600,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600138,
@@ -4006,7 +4627,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600139,
@@ -4024,7 +4654,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600140,
@@ -4042,7 +4681,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600141,
@@ -4060,7 +4708,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600245,
@@ -4078,7 +4735,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600254,
@@ -4096,7 +4762,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600255,
@@ -4114,7 +4789,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600259,
@@ -4132,7 +4816,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600260,
@@ -4150,7 +4843,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600261,
@@ -4168,7 +4870,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600303,
@@ -4186,7 +4897,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600304,
@@ -4204,7 +4924,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600305,
@@ -4222,7 +4951,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600306,
@@ -4240,7 +4978,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600448,
@@ -4261,7 +5008,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600449,
@@ -4282,7 +5038,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600450,
@@ -4303,7 +5068,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 40600451,
@@ -4324,7 +5098,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 120200000,
@@ -4342,7 +5125,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
+        "sourceStream": null,
+        "sourceSha256": null,
+        "declaredIconAddressGuid": null,
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 120200001,
@@ -4360,7 +5152,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
+        "sourceStream": null,
+        "sourceSha256": null,
+        "declaredIconAddressGuid": null,
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 120200002,
@@ -4378,7 +5179,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
+        "sourceStream": null,
+        "sourceSha256": null,
+        "declaredIconAddressGuid": null,
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 120200003,
@@ -4396,7 +5206,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
+        "sourceStream": null,
+        "sourceSha256": null,
+        "declaredIconAddressGuid": null,
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 120200004,
@@ -4415,7 +5234,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
+        "sourceStream": null,
+        "sourceSha256": null,
+        "declaredIconAddressGuid": null,
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 120200005,
@@ -4434,7 +5262,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
+        "sourceStream": null,
+        "sourceSha256": null,
+        "declaredIconAddressGuid": null,
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 120200006,
@@ -4452,7 +5289,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
+        "sourceStream": null,
+        "sourceSha256": null,
+        "declaredIconAddressGuid": null,
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 120200007,
@@ -4470,7 +5316,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
+        "sourceStream": null,
+        "sourceSha256": null,
+        "declaredIconAddressGuid": null,
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 120200008,
@@ -4489,7 +5344,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
+        "sourceStream": null,
+        "sourceSha256": null,
+        "declaredIconAddressGuid": null,
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 120200009,
@@ -4508,7 +5372,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
+        "sourceStream": null,
+        "sourceSha256": null,
+        "declaredIconAddressGuid": null,
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 120200010,
@@ -4526,7 +5399,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
+        "sourceStream": null,
+        "sourceSha256": null,
+        "declaredIconAddressGuid": null,
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 120200011,
@@ -4544,7 +5426,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
+        "sourceStream": null,
+        "sourceSha256": null,
+        "declaredIconAddressGuid": null,
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 120200012,
@@ -4569,7 +5460,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
+        "sourceStream": null,
+        "sourceSha256": null,
+        "declaredIconAddressGuid": null,
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 120200013,
@@ -4588,7 +5488,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
+        "sourceStream": null,
+        "sourceSha256": null,
+        "declaredIconAddressGuid": null,
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 120200016,
@@ -4606,7 +5515,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
+        "sourceStream": null,
+        "sourceSha256": null,
+        "declaredIconAddressGuid": null,
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 120200017,
@@ -4625,7 +5543,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
+        "sourceStream": null,
+        "sourceSha256": null,
+        "declaredIconAddressGuid": null,
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 120200022,
@@ -4643,7 +5570,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
+        "sourceStream": null,
+        "sourceSha256": null,
+        "declaredIconAddressGuid": null,
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 120200023,
@@ -4666,7 +5602,16 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
+        "sourceStream": null,
+        "sourceSha256": null,
+        "declaredIconAddressGuid": null,
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     },
     {
       "itemId": 120200024,
@@ -4684,7 +5629,39 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
+      "definitionAudit": {
+        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
+        "sourceStream": null,
+        "sourceSha256": null,
+        "declaredIconAddressGuid": null,
+        "spriteResolved": false,
+        "textureResolved": false,
+        "webpDecodedRgbaMatched": false
+      }
     }
-  ]
+  ],
+  "unresolvedDefinitionAudit": {
+    "version": "v1.25.3 Steam/Windows",
+    "evidence": "FRAMED_ITEMLIST_PROTOBUF_DIRECT_SOURCE_READ_ONLY",
+    "sourceHashes": {
+      "ActivityItem.json": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+      "Furniture.json": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674"
+    },
+    "framedItemIdAndIconAddressField": "ItemID field1 / IconAddress GUID field4",
+    "unlinkedTotal": 106,
+    "typedSourceRecordsConfirmed": 87,
+    "activityItemRecords": 35,
+    "furnitureRecords": 52,
+    "sourceRecordsNotFoundInTheseTwoStreams": 19,
+    "commonGuid": "04495f960b1edba4181ec51efa5e07d9",
+    "commonGuidCountInGaps": 80,
+    "otherGuidCountInGaps": 7,
+    "commonGuidOccurrencesInCompleteTwoStreams": 1794,
+    "sourceGuidOnly": true,
+    "spriteTextureProof": 0,
+    "publicImageProof": 0,
+    "rights": "NOT_ESTABLISHED",
+    "note": "IconAddress GUID is not proof of unique per-ItemID image, Sprite or Texture mapping; Snippet source remains unresolved."
+  }
 }
