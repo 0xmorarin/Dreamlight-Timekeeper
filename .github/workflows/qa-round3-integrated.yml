@@ -36,6 +36,10 @@ jobs:
           test "$(git -C target rev-parse HEAD)" = "51aba6924ab39c1c83682cb29ad58c63abef1fdc"
           cp qa-source/qa/round3/integration.test.mjs target/tests/qa-round3-integration.test.mjs
           cp qa-source/qa/round4/integration.test.mjs target/tests/qa-round4-integration.test.mjs
+      - name: Install offline lossless WebP CLI required by existing ASSET importer test
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq webp
       - name: Independently run impact-scoped CORE/TIME/ASSET and both QA negative suites
         run: |
           cd target
