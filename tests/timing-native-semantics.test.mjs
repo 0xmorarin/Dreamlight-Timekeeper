@@ -651,3 +651,81 @@ test('DiffGrid conditional allocation sets object ID and ItemID without EventID 
   assert.equal(x.runtimeSuccessfulPlacementObserved,false);
   assert.equal(x.postSavePersistenceVerified,false);
 });
+
+
+test('ItemSpawning directly updates an owner-keyed dictionary, not scene-global ObjectCount',()=>{
+  const c=native.native.itemOwnerGroupedCount;
+  assert.equal(c.helperRVA,'0x057BF720');
+  assert.deepEqual(c.directCallsites,['0x057BC0EC','0x057BC5EC']);
+  assert.equal(decodeBL(0x057BC0EC,0x94000D8D),0x057BF720);
+  assert.equal(decodeBL(0x057BC5EC,0x94000C4D),0x057BF720);
+  assert.equal(c.argumentType,'Nullable<int> playerId');
+  assert.equal(c.closureField,'numberOfItemsOnValidGrid');
+  assert.equal(c.closureType,'Dictionary<int,int>');
+  assert.equal(decodeBL(0x057BF82C,0x978E5CC1),0x03B56B30);
+  assert.equal(0x11000529&0x1f,9);
+  assert.equal((0x11000529>>>10)&0xfff,1);
+  assert.equal(decodeBL(0x057BF878,0x978E4932),0x03B51D40);
+  assert.equal(c.amountWithStateAssignedPlayerRVA,'0x057BC5C4');
+  assert.equal(c.recordedValueNotProofOfTotalGridObjects,true);
+  assert.equal(c.runtimeGroupPopulationUnverified,true);
+  assert.equal(c.activeConditionalEventAttributionUnverified,true);
+});
+test('WildCrops existing-object enumerator counts only up to closure maximum, not all area objects',()=>{
+  const c=native.native.wildCropsBoundedExistingCount;
+  assert.equal(c.helperRVA,'0x057C49A0');
+  assert.equal(c.inputType,'Item seedItem');
+  assert.equal(c.closureMaxField,'maximumAmount');
+  assert.equal(c.closureMaxFieldOffset,'0x10');
+  assert.equal(c.gridEnumerationSelectorRVA,'0x057C4810');
+  assert.equal(c.gridSelectorInterfaceSlot,6);
+  assert.equal(c.enumeratorCountInitRVA,'0x057C4D10');
+  assert.equal(c.countIncrementRVA,'0x057C4E0C');
+  assert.equal(c.countVsMaximumCompareRVA,'0x057C4E10');
+  assert.equal(c.repeatIfBelowMaximumRVA,'0x057C4E14');
+  assert.equal(c.returnCountRVA,'0x057C4E84');
+  assert.equal(0x11000694&0x1f,20);
+  assert.equal((0x11000694>>>10)&0xfff,1);
+  assert.equal((0x6B08029F>>>16)&0x1f,8);
+  assert.equal(c.exactPerItemFilterAndEffectiveGridCompleteness,'UNKNOWN');
+  assert.equal(c.isCappedEnumeratorNotNativeIntervalMax,true);
+  assert.equal(c.successfulGardenSpawnObserved,false);
+});
+test('Client has a separate recurring-event reschedule notification consumer, not fish-removal handler',()=>{
+  const c=native.native.clientRecurringRescheduleNotification;
+  assert.equal(c.dispatcherInterface,'IWorldEventDispatcher.RaiseRecurringEventRescheduled');
+  assert.equal(c.dispatcherInterfaceSlot,62);
+  assert.equal(c.profileDispatcherMethodRVA,'0x05A8EC10');
+  assert.equal(c.profileDispatcherDelegateFieldOffset,'0x208');
+  assert.equal(c.clientHandlerRVA,'0x0604E9B0');
+  assert.equal(decodeBL(0x0604EB9C,0x976F1629),0x03C14440);
+  assert.equal(decodeBL(0x0604EBF8,0x97EA9116),0x05AF3050);
+  assert.equal(decodeBL(0x0604EC0C,0x97EA9111),0x05AF3050);
+  assert.equal(decodeBL(0x0604EC7C,0x97FFFEBD),0x0604E770);
+  assert.equal(c.fishRemovedDispatcherInterfaceSlot,39);
+  assert.notEqual(c.dispatcherInterfaceSlot,c.fishRemovedDispatcherInterfaceSlot);
+  assert.equal(c.clientHandlerDirectRescheduleCall,false);
+  assert.equal(c.notificationFiredByEverySetterVerified,false);
+  assert.equal(c.handlerSubscriptionRuntimeVerified,false);
+  assert.equal(c.eventIdToConcreteSaveVariantVerified,false);
+  assert.equal(c.normalSaveTimingVerified,false);
+});
+
+
+test('Profile.AddRecurringEvent has explicit slot62 reschedule notification edge; not every setter',()=>{
+  const c=native.native.clientRecurringRescheduleNotification;
+  assert.equal(c.profileAddRecurringEventRVA,'0x05A29920');
+  assert.equal(c.profileAddNotificationSlotRVA,'0x05A2A0F0');
+  assert.equal(c.profileAddNotificationSlotOpcode,'0x528007C2');
+  const mov=0x528007C2;
+  assert.equal(mov&31,2); // W2
+  assert.equal((mov>>>5)&0xffff,62);
+  assert.equal(c.profileAddNotificationVirtualCallRVA,'0x05A2A118');
+  assert.equal(c.profileAddNotificationConditionalOnDispatcher,true);
+  assert.equal(c.endDatePreventsClientWaitOnMatchedRecordByStaticBranch,true);
+  assert.equal(c.actualizeRaisesRescheduleNotificationVerified,false);
+  assert.equal(c.notificationFiredByEverySetterVerified,false);
+  assert.equal(c.handlerSubscriptionRuntimeVerified,false);
+  assert.equal(native.native.reschedule.setterDispatchIsStaticOnly,true);
+  assert.equal(native.native.fieldLayout.directSavePersistenceVerified,false);
+});

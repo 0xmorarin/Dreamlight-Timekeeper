@@ -1,0 +1,94 @@
+{
+  "kind": "STEAM_UI_CONSUMER_SOURCE_EVIDENCE_NON_RELEASE",
+  "verification": "REAL_STEAM_V1253_MENU_HUD_SERIALIZED_OBJECT_SCAN_NOT_RUNTIME",
+  "source": {
+    "platform": "Steam/Windows",
+    "gameVersion": "1.25.3",
+    "fullVersion": "releases_1.25-v1.25.3-44-g0b41250d9ac0-incremental-22",
+    "menuBundle": "menu-hud_assets_all.bundle",
+    "menuBundleBytes": 665041,
+    "menuBundleSha256": "9d24816c940159ae96020373ef0422ccea27560ddab070c26a847fa03a76425c",
+    "menuCab": "CAB-fba8a0306b5d2dd3c06e808dc8e96887",
+    "menuCabSha256": "6151b026636b138672ab3acb1cc503b487c16de8b368d74b338e0c82baf18337",
+    "externalFileID": 2,
+    "externalCab": "CAB-fe2bbf4dc0b20d2a3f3b5ff35a49ffe8",
+    "targetAtlasBundleSha256": "8fb0c3dbc4f937bee5d2918dfd2b9bef115dd6626e15af712f3669becc102b3d",
+    "serializedObjects": 12364
+  },
+  "scope": {
+    "bundlesInspected": [
+      "menu-hud_assets_all.bundle"
+    ],
+    "otherBundlesNotChecked": true,
+    "componentFieldLayout": "UNTYPED_SERIALIZED_PPTR_PATTERN",
+    "runtimeUIObserved": false,
+    "semanticTabMatchConfirmed": false
+  },
+  "candidates": {
+    "world.hgw": {
+      "state": "SOURCE_HUD_VILLAGE_AREA_DISPLAY_REF_CONFIRMED",
+      "spritePathId": "15526096041384401868",
+      "texturePathId": "9168973084813024204",
+      "ownerClassId": 114,
+      "ownerPathId": "13373502458456674114",
+      "ownerByteLength": 1080,
+      "gameObjectClassId": 1,
+      "gameObjectPathId": "7519985283486682946",
+      "gameObjectName": "VillageAreaDisplay",
+      "externalFileID": 2,
+      "spriteReferenceOffsets": [
+        780,
+        796,
+        812,
+        828
+      ],
+      "scopeNote": "Four 12-byte external PPtr-shaped references in one MonoBehaviour attached to VillageAreaDisplay; an additional occurrence in a class-142 inventory object is NOT counted as consumer.",
+      "uiRole": "HUD_VILLAGE_AREA_DISPLAY_REFERENCE_ONLY",
+      "confirmedMenuTab": "UNKNOWN",
+      "visualRuntimeVerified": false,
+      "sourcePixelEquality": true,
+      "published": false,
+      "releaseApproved": false
+    },
+    "tab.shops": {
+      "state": "NOT_FOUND_IN_MENU_HUD_ONLY",
+      "spritePathId": "1870431927978895815",
+      "texturePathId": "712869362402470343",
+      "externalFileID": 2,
+      "spriteReferenceOffsets": [],
+      "scopeNote": "No 12-byte fileID=2 + SpritePathID occurrence in scanned menu-hud source. Does not rule out references in other menus, Addressables or runtime.",
+      "uiRole": "UNKNOWN",
+      "confirmedMenuTab": "UNKNOWN",
+      "visualRuntimeVerified": false,
+      "sourcePixelEquality": true,
+      "published": false,
+      "releaseApproved": false
+    },
+    "tab.daily": {
+      "state": "NOT_FOUND_IN_MENU_HUD_ONLY",
+      "spritePathId": "18271839876007890476",
+      "texturePathId": "9833321933812502060",
+      "externalFileID": 2,
+      "spriteReferenceOffsets": [],
+      "scopeNote": "No 12-byte fileID=2 + SpritePathID occurrence in scanned menu-hud source. Does not rule out references in other menus, Addressables or runtime.",
+      "uiRole": "UNKNOWN",
+      "confirmedMenuTab": "UNKNOWN",
+      "visualRuntimeVerified": false,
+      "sourcePixelEquality": true,
+      "published": false,
+      "releaseApproved": false
+    }
+  },
+  "legal": {
+    "publisher": "Gameloft",
+    "termsUrl": "https://www.gameloft.com/en/conditions-of-use",
+    "basis": "Section V.A Proprietary Rights; Section V.E Disney-licensed User Content (authorization-conditioned)",
+    "explicitPermissionToRedistributeExtractedGameSprites": "NOT_VERIFIED",
+    "legalConclusion": "NOT_A_LEGAL_OPINION",
+    "newImagePublicDeployment": "HOLD",
+    "existingFourPublishedImages": "EXISTING_BASELINE_SEPARATE_RIGHTS_REVIEW",
+    "releaseApproved": false
+  },
+  "publicAssetsUnchanged": true,
+  "writerAuthorization": false
+}
