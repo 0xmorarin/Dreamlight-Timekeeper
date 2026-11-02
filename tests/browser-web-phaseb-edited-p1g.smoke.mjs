@@ -81,6 +81,7 @@ try{
  await page.locator('#prepare-edited').click();
  await page.locator('#verified-pair-downloads').waitFor({state:'visible',timeout:30000});
  assert.equal(await page.locator('#download-verified-both').isEnabled(),true);
+ assert.equal(await page.locator('#retry-verified-edited').isDisabled(),true,'Edited retry is prohibited before original request');
  await page.locator('#download-verified-both').click();
  await page.waitForFunction(()=>document.querySelector('#verified-pair-status')?.textContent?.includes('save unconfirmed'),{timeout:15000});
  await page.waitForTimeout(500);
@@ -108,7 +109,11 @@ try{
  const retryOriginalPath=join(folder,'original-again.p1g');
  await originalAgain.saveAs(retryOriginalPath);
  assert.deepEqual(await readFile(retryOriginalPath),Buffer.from(bytes));
- // Plan change invalidates BOTH already prepared outputs.
+ // Changing the date controls invalidates both prepared outputs.
+ await page.locator('#custom-time').fill('2026-11-03T10:15');
+ await page.locator('#custom-time').dispatchEvent('change');
+ assert.equal(await page.locator('#verified-pair-downloads').isHidden(),true);
+ // Plan change invalidates both prepared outputs as well.
  await page.locator('#undo-plan').click();
  assert.equal(await page.locator('#verified-pair-downloads').isHidden(),true);
  assert.equal(await page.locator('#download-verified-both').isDisabled(),true);
