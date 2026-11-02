@@ -187,7 +187,7 @@ if(readOnly?.schema!=='timekeeper.item-image-resolution.v1'||
 const catalog=pinned.addressablesCatalogAudit;
 if(catalog?.platform!=='Steam/Windows'||catalog.gameVersion!=='1.25.3'||
  catalog.buildResultHash!=='45e494c1968542bb73ff51e4e727271e'||
- catalog.catalogJsonSha256!=='69351845e0b99db577ff70af2512de780f815d561027ceccab9f8ff19d081c562'||
+ catalog.catalogJsonSha256!=='69351845e0b99db577ff70af2512de780f815d561027ceccab9f8f19d081c562'||
  catalog.entryDataSha256!=='807fd38db08a107dada03cc207a1eecc5c41bc157b060091377fefce577d1619'||
  catalog.keyDataSha256!=='cef9d3431ca327b560ed30e045a908615c31d7628c3d8c83acd85c69b8aded1a'||
  catalog.bucketDataSha256!=='c8a4b215b07988e988b34085f77e4d616ca7f5b0cc13bee13763e36c0ebdf4e6'||
