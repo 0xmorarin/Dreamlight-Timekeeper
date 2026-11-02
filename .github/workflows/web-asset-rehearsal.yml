@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: 0xmorarin/Dreamlight-Timekeeper
-          ref: b9b5823827fe7b2f530e14736c6a4bdae263ff27
+          ref: 449b208d98d51332c48c65583485fcde5a230616
           path: _asset_reference
       - uses: actions/setup-node@v4
         with:

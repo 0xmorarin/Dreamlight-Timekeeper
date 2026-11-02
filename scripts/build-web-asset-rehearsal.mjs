@@ -57,7 +57,7 @@ const webCss=await read(repo,'styles.css'),assetCss=await read(asset,'styles.css
 const cssOffset=assetCss.indexOf('\n.semantic-icon');
 assert(cssOffset>0);
 await writeFile(join(output,'styles.css'),webCss+'\n'+assetCss.slice(cssOffset+1));
-const audit={assetReference:process.env.ASSET_FIXED_SHA||'b9b5823827fe7b2f530e14736c6a4bdae263ff27',
+const audit={assetReference:process.env.ASSET_FIXED_SHA||'449b208d98d51332c48c65583485fcde5a230616',
  previewOnly:true,originalWriterEnabled:false,appIconSource:'04 ASSET PR3',workerAuthority:'03 WEB PR10',
  originalBackupCoordinatorPreserved:true};
 await writeFile(join(output,'integration-rehearsal.json'),JSON.stringify(audit,null,2)+'\n');

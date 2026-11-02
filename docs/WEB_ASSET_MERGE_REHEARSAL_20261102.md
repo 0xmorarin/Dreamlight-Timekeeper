@@ -5,7 +5,7 @@ STATUS: **INTEGRATION REHEARSAL ONLY**. No permanent merged UI build, release st
 ## Fixed input provenance
 
 - WEB/Session: PR #10 `feat/web-session-backup-guards`, parent PR #2 `9ebdac063b81934eee37a62e5694749b1cf1aa65`. Existing read-only Worker, exact pointer preflight, Session checks, original-byte backup, DST handling, datetime previews and Undo/Redo are authoritative.
-- ASSET: PR #3 `b9b5823827fe7b2f530e14736c6a4bdae263ff27`, parent PR #1 `e647fe6ed15d7ee37fa5201d8d2dc9c82c105aed`. Validated game_ui/app_ui manifest and source images, original SVG16, icon presentation hooks and CSS are owned by 04 ASSET.
+- ASSET: PR #3 `449b208d98d51332c48c65583485fcde5a230616`, parent PR #1 `e647fe6ed15d7ee37fa5201d8d2dc9c82c105aed`. Validated game_ui/app_ui manifest and source images, original SVG16, icon presentation hooks and CSS are owned by 04 ASSET.
 - **No PR #3 Worker implementation may replace PR #10 Worker.** PR #3's old `request('backup')` does not carry a Session identity and is intentionally excluded.
 - Final merge ordering and final `src/app.mjs` review belong to 00 CTRL; 04 ASSET owns any manifest/SVG/WebP source changes, 03 WEB owns Session/Worker/backup/stage/preflight and integration regression.
 
@@ -36,8 +36,8 @@ npm test
 npm install --no-save playwright@1.56.1
 npx playwright install --with-deps chromium
 git clone --no-checkout https://github.com/0xmorarin/Dreamlight-Timekeeper.git _asset_reference
-git -C _asset_reference checkout b9b5823827fe7b2f530e14736c6a4bdae263ff27
-test "$(git -C _asset_reference rev-parse HEAD)" = b9b5823827fe7b2f530e14736c6a4bdae263ff27
+git -C _asset_reference checkout 449b208d98d51332c48c65583485fcde5a230616
+test "$(git -C _asset_reference rev-parse HEAD)" = 449b208d98d51332c48c65583485fcde5a230616
 node scripts/build-web-asset-rehearsal.mjs "$PWD/_asset_reference" "$PWD/.integration-preview"
 node tests/browser-web-session.smoke.mjs
 node .integration-preview/tests/browser-web-asset-integration.smoke.mjs
