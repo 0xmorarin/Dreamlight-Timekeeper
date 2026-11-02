@@ -4,7 +4,7 @@ import {join,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {validateIconManifest,inspectLosslessWebP} from '../src/icon-assets.mjs';
 import {validateUiManifest,verifyUiAssetBytes} from '../src/ui-assets.mjs';
-import {auditSteamUiPublicationLedger} from '../src/steam-ui-provenance.mjs';
+import {auditSteamUiPublicationLedger,auditSteamUiPrivatePixelEvidence} from '../src/steam-ui-provenance.mjs';
 
 const root = resolve(process.argv[2]||fileURLToPath(new URL('../',import.meta.url)));
 const manifest = JSON.parse(await readFile(join(root,'data','steam-icons-v1253.json'),'utf8'));
@@ -29,6 +29,11 @@ const gameManifest=JSON.parse(await readFile(join(root,'data','steam-ui-icons-v1
 const ledger=auditSteamUiPublicationLedger(catalog,gameManifest);
 console.log('Steam UI source ledger STATIC crosscheck: '+ledger.publishedCount+'/'+ledger.candidateCount+
   ' deployed; HOLD '+ledger.heldKeys.join(', ')+' (not release-verified).');
+const privateEvidence=JSON.parse(await readFile(join(root,'data','steam-ui-private-pixel-evidence-v1253.json'),'utf8'));
+const privateCheck=auditSteamUiPrivatePixelEvidence(catalog,privateEvidence);
+console.log('HOLD Steam UI real-source pixel SHA records: '+privateCheck.verifiedHashRecords+
+  '/3 metadata crosschecked; no source bytes shipped, publication remains disabled.');
+
 
 for(const [path,kind] of [['data/steam-ui-icons-v1253.json','game_ui'],['data/app-ui-icons.json','app_ui']]){
   const manifest=JSON.parse(await readFile(join(root,path),'utf8'));

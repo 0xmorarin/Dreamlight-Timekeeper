@@ -215,3 +215,41 @@ Round 4 QA must inspect these exact code and test deltas against the prior accep
 
 **Cross-stream gate:** 01 CORE may confirm only `READ_PACKAGE`, `READ_PROFILE`, strict JSON and synthetic serialization evidence. 02 TIME must confirm native `NextOccurrence` consumer/event-specific behavior. 05 QR must independently validate fixed HEAD, negative tests, version compatibility and required Switch hardware acceptance. 00 CTRL manages integration and final release. 03 WEB merely renders Worker-owned diagnostic capabilities. `writerAuthorized=false`, `editedCopyAuthorized=false`, `operationAllowlisted=false`, and `persistentReplaceAuthorized=false` remain unconditional here.
 
+
+## 01 CORE Round 6 — exact-JS real schema626 load and research Codec provenance boundary (2026-11-02)
+
+### New genuine read-only code-path evidence (scope upgrade only)
+
+The previously open question "was the **full current JavaScript** `p1gPackagedProfileCodec.loadProfile()` executed against the approved original?" is **YES in Round 6**, limited to `REAL_SAVE_READ_ONLY`. A private isolated Node.js 22.16.0 workspace used exactly four source modules fetched from PR #8's unchanged Round 5 HEAD `9579e6a02bc7b874e6181ae641759153e287c4b4`, individually **verified against canonical Git blob SHA-1**, with no modifications:
+- `src/core/p1g-packaged-profile-codec.mjs` blob `0185fe691b588e90ccfe046959a66bb0a0d7a3fc`
+- `src/core/safe-edit-session.mjs` blob `51f1ad4a95be10d5a40ddf98d3dd5244c09c9059`
+- `src/core/versioning.mjs` blob `09cec8e0390773668f6caa10ea24112f07817013`
+- `src/core/p1g-envelope-audit.mjs` blob `aae18cfd45916ad934feb61f12dc976e234ddfc4`
+
+The exact previously approved 01E Switch v1.25.3 original was used **read-only**. Its ciphertext measured `457,696` bytes and SHA-256 `86b24cb861e4d65bb22f6627ac275d6a8c3bd4cfb968d2399cb5d328313dcb10` matched the upstream 01E acceptance before **and after** the complete JS read. No synthetic substitution of source or manually projected ZIP metadata in this new run.
+
+The exact `p1gPackagedProfileCodec.loadProfile(source)` succeeded: AES-256-ECB/PKCS7 unwrap, ZIP central/local selection and Deflate8 with CRC and declared size, strict UTF-8+JSON parse, root validation, `GameInfo.Version=626`, and native JavaScript Zip metadata output. Independent invocation of exact `auditP1gEnvelope({format:'packaged', metadata:loaded.metadata})` returned `SIMPLE_ENVELOPE_OBSERVED_REBUILD_UNVERIFIED`, `repackageShapeObserved=true`, `writerAuthorized=false`, `editedCopyAuthorized=false`. ZIP header flags 0/0, one `profile` entry, compressed 457,575 bytes, inflated 5,252,207 bytes, local/central extra 0/0, archive comment 0. This **now confirms the exact codec-to-envelope observation path**, not only Round 3 independent Node ZIP parsing + exact JS audit in isolation.
+
+The same approved original was independently opened with the exact `SafeProfileEditSession.open({sourceBytes,sourcePlatform:PlatformFamily.Switch,codec:p1gPackagedProfileCodec})`, returning packaged format, codec contract `p1g-v0`, schema626, and original byte hash unchanged. This method's automatic immutable in-memory source copy and strict JSON parse ran; **`exportVerifiedCopy` was NEVER called on the private original**. No edit, encode, repackage, encrypted modified-save bytes, product download, persistent write, diagnostic private-field output or Switch runtime action was performed. Only redacted aggregate fields and source hashes were retained; private raw source/temp source-transfer artifact/local scripts were cleaned. Node read took about 309 ms in this isolated run and final process RSS snapshot was ~74 MB; **neither number is a guaranteed browser/Worker peak**.
+
+### New independent synthetic negative coverage (3 tests, not actual-save write)
+
+`tests/p1g-serialization-contract.test.mjs` now additionally verifies:
+1. `SafeProfileEditSession.open` on purely synthetic bytes, `exportVerifiedCopy` **no-op** path returns two independent byte-identical source copies, `noOp=true`, `authorization=null` and **zero research Encode calls**. A distinct attempted non-no-op with a deliberately unsupported target Switch BID fails `Writer build gate failed` **before** internal Encode or independent reopen is attempted; source and parsed snapshot remain unchanged. No-op byte-copy semantics are NOT a product edited-export release.
+2. A **synthetic forged source ZIP metadata tuple** may retain exact local/central consistency and `repackageShapeObserved=true` despite falsely supplied DOS date/time. Internal research `createEncodedProfile` can re-emit this forged timestamp in a synthetic encrypted output: consequently, the source-shape audit neither authenticates caller-supplied metadata nor proves provenance/source byte fidelity. Both audit Writer booleans remain false. Any future edit must bind metadata to the original byte hash, snapshot and session contract instead of trusting caller-authored parity.
+3. A highly compressible **12 MiB string** within a synthetic schema626 profile (compression ratio > 100:1) is decoded as declared, with original ciphertext unchanged. This tests one bounded compression-ratio regime; it does not assert max 128 MiB inflation or browser Worker process-memory acceptance.
+
+### Serializer and Writer capability boundary — unchanged
+
+**Semantic preservation:** isolated clone + `diffPaths` may prove unchanged JSON *values* and array contents for synthetic operations. **Byte preservation:** original JSON syntax, numeric spellings, Unicode escapes, integer-index-key order, ZIP local/central metadata, unknown extra/comment, descriptor, Deflate bitstream, and encrypted bytes require separate evidence. During editing, even a simple ZIP's CRC/sizes/compressed bytes/ciphertext change; no real rewritten schema626 sample has been accepted.
+
+**Input/computation bounds:** `MAX_INPUT_BYTES=128 MiB` encrypted bytes, `MAX_ARCHIVE_BYTES=256 MiB` decrypted ZIP and research compressed output ceiling, `MAX_PROFILE_BYTES=128 MiB` inflated profile (also central declared uncompressed limit), plus Zip entry count 1024 and nested JSON depth 256. The streaming Inflate ceiling is not an overall peak RSS or a bounded browser `Worker` transfer estimate; extra copies arise for input bytes, AES bridge, ZIP archive, decompression chunks, JSON text/object graph and clone/reopen. Browser peak must be independently measured under realistic memory pressure; source ZIP compressed ratio and object graph fan-out matter.
+
+**Acceptance split:**
+- 01 CORE: exact source original hash, package/JSON/ZIP read, stable source snapshot and pointer CAS, preservation plan, synthetically verified single isolated Encode + independent reopen only. Not privileged to assert runtime semantics or new build compatibility from schema alone.
+- 02 TIME: version-specific native `NextOccurrence` scheduling/consumer/side effects and operation-specific allowlist.
+- 05 QR: independently validate fixed HEAD/negative paths; future isolated real modified-save metadata/JSON preservation only after safety prerequisites; Switch game load, normal save, full shutdown/relaunch and restore; Release Gate.
+- 00 CTRL: PR stack, parent/QA dependency and integration. 03 WEB consumes Worker-owned facts but never decides Writer authority.
+
+**Remaining BLOCKED/UNKNOWN:** real schema626 edited-copy Encode/Reopen and JSON/ZIP opaque extension preservation; exact executable BID from save alone; metadata provenance-bound writer design; data descriptor/ZIP extensions on unusual *real* sources; 128 MiB Worker-peak memory; Switch load/save/exit/relaunch; 05 QR independent acceptance of this Round 6 HEAD. Keep `operationAllowlisted=false`, `writerAuthorized=false`, `editedCopyAuthorized=false`, `persistentReplaceAuthorized=false`; original/edited files remain separately prepared only after a future accepted **backup-first → exact pointer CAS → isolated clone delta → single Encode → independent Reopen** sequence. Do not modify the Wand common Writer gate or PR #11 integration from this stream.
+

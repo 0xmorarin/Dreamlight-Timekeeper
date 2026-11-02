@@ -7,7 +7,8 @@ import {createCipheriv,createDecipheriv} from 'node:crypto';
 import {makeSyntheticP1gProfile} from './fixture.mjs';
 import {p1gPackagedProfileCodec} from '../src/core/p1g-packaged-profile-codec.mjs';
 import {auditP1gEnvelope} from '../src/core/p1g-envelope-audit.mjs';
-import {parseSafeJson,diffPaths} from '../src/core/safe-edit-session.mjs';
+import {SafeProfileEditSession,parseSafeJson,diffPaths} from '../src/core/safe-edit-session.mjs';
+import {PlatformFamily} from '../src/core/versioning.mjs';
 import {indexEvents,projectProfile} from '../src/reader.mjs';
 import {inspectTimingPlan} from '../src/core/timing-plan-preflight.mjs';
 import {auditTimingDeltaIsolated} from '../src/core/timing-delta-audit.mjs';
@@ -131,4 +132,79 @@ test('unmodified original encrypted bytes are stable across multiple independent
  assert.equal(a.metadata.profileVersion,b.metadata.profileVersion);
  assert.deepEqual(Buffer.from(source),copy);
  assert.equal(auditP1gEnvelope({format:'packaged',metadata:a.metadata}).writerAuthorized,false);
+});
+
+
+test('SYNTHETIC ONLY: no-op backup is original bytes, while non-noop unsupported build rejects before first Encode',async()=>{
+ const original=profile(),source=makeSyntheticP1gProfile(original),backup=Buffer.from(source);
+ let encodes=0,opens=0;
+ const trackingCodec={
+  ...p1gPackagedProfileCodec,
+  async loadProfile(input){opens++;return p1gPackagedProfileCodec.loadProfile(input);},
+  async createEncodedProfile(text,meta){encodes++;return p1gPackagedProfileCodec.createEncodedProfile(text,meta);}
+ };
+ const session=await SafeProfileEditSession.open({
+  sourceBytes:source,sourcePlatform:PlatformFamily.Switch,codec:trackingCodec
+ });
+ assert.equal(opens,1);
+ const noOp=await session.exportVerifiedCopy({
+  exactAllowedPaths:[],edit:()=>{},targetBuild:null,operation:null
+ });
+ assert.equal(noOp.noOp,true);
+ assert.equal(noOp.authorization,null);
+ assert.deepEqual(noOp.changedPaths,[]);
+ assert.deepEqual(Buffer.from(noOp.backupOriginalBytes),backup);
+ assert.deepEqual(Buffer.from(noOp.editedBytes),backup);
+ assert.notEqual(noOp.backupOriginalBytes,source,'backup is a copy');
+ assert.equal(encodes,0);
+ const row=snapshot(session.getSnapshot()).rows.find(x=>x.id===2010000021);
+ await assert.rejects(session.exportVerifiedCopy({
+  exactAllowedPaths:[row.pointer],
+  edit(draft){draft.World.RecurringEvents['0'].ItemSpawning.NextOccurrence='2127-03-01T12:00:00.000Z';},
+  targetBuild:{platform:'switch',kind:'switch-bid',value:'INVALID_SYNTHETIC_BID'},
+  operation:{id:'NO_WRITER',owner:'test',runtimeGate:'UNKNOWN'}
+ }),/Writer build gate failed/);
+ assert.equal(encodes,0,'unsupported build must not invoke encode');
+ assert.equal(opens,1,'unsupported build must not invoke independent reopen');
+ assert.equal(session.getSnapshot().World.RecurringEvents['0'].ItemSpawning.NextOccurrence,TIME);
+ assert.deepEqual(Buffer.from(source),backup);
+});
+
+test('SYNTHETIC ONLY: forged source ZIP timestamps may pass shape audit but are not provenance or writer authority',async()=>{
+ const source=makeSyntheticP1gProfile(profile()),backup=Buffer.from(source);
+ const loaded=await p1gPackagedProfileCodec.loadProfile(source);
+ const zip=loaded.metadata.zip,entry=zip.profileEntry;
+ const forgedEntry={
+  ...entry,
+  dosDate:0x1234,dosTime:0x2468,
+  localHeader:{...entry.localHeader,dosDate:0x1234,dosTime:0x2468}
+ };
+ const forged={...loaded.metadata,zip:{...zip,profileEntry:forgedEntry}};
+ const audit=auditP1gEnvelope({format:'packaged',metadata:forged});
+ assert.equal(audit.repackageShapeObserved,true,'shape audit does not authenticate metadata');
+ assert.equal(audit.bytePreservationVerified,false);
+ assert.equal(audit.metadataPreservationVerified,false);
+ assert.equal(audit.writerAuthorized,false);
+ assert.equal(audit.editedCopyAuthorized,false);
+ // The research codec only proves its output follows supplied synthetic metadata.
+ const edited=await p1gPackagedProfileCodec.createEncodedProfile(
+  JSON.stringify({...profile(),FutureSyntheticField:1}),forged);
+ const reopened=await p1gPackagedProfileCodec.loadProfile(edited);
+ assert.equal(reopened.metadata.zip.profileEntry.dosDate,forgedEntry.dosDate);
+ assert.equal(reopened.metadata.zip.profileEntry.dosTime,forgedEntry.dosTime);
+ assert.notEqual(reopened.metadata.zip.profileEntry.dosDate,entry.dosDate);
+ assert.deepEqual(Buffer.from(source),backup);
+});
+
+test('SYNTHETIC ONLY: extremely compressible 12 MiB profile read remains bounded by declared inflation, not compressed length',async()=>{
+ const root=profile();
+ root.FutureOpaque.large='R'.repeat(12*1024*1024);
+ const source=makeSyntheticP1gProfile(root),original=Buffer.from(source);
+ const loaded=await p1gPackagedProfileCodec.loadProfile(source);
+ const z=loaded.metadata.zip.profileEntry;
+ assert.equal(z.uncompressedSize>12*1024*1024,true);
+ assert.equal(z.uncompressedSize/z.compressedSize>100,true);
+ assert.equal(parseSafeJson(loaded.jsonText).FutureOpaque.large.length,12*1024*1024);
+ assert.equal(auditP1gEnvelope({format:'packaged',metadata:loaded.metadata}).writerAuthorized,false);
+ assert.deepEqual(Buffer.from(source),original);
 });

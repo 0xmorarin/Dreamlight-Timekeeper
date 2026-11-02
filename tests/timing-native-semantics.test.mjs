@@ -539,3 +539,115 @@ test('hardware minimum matrix is static, immutable and never authorizes a source
   assert.equal(native.query(2010000021,'ItemSpawning').operationEvidence,'BLOCKED');
   assert.equal(native.query(2010000021,'ItemSpawning').editedExportAuthorized,false);
 });
+
+
+const decodeLdrXUnsigned=(word)=>{
+  assert.equal((word & 0xFFC00000)>>>0,0xF9400000);
+  return {rt:word&31,rn:(word>>>5)&31,byteOffset:8*((word>>>10)&0xfff)};
+};
+test('ItemSpawning GridState ItemAmountState reads AssignedPlayer, NOT Amount or live scene count',()=>{
+  const x=native.native.gridStateReadDisambiguation;
+  assert.equal(decodeBL(0x057BC5BC,0x97DAA7DD),0x04E66530);
+  assert.deepEqual(decodeLdrXUnsigned(0xF9401414),{rt:20,rn:0,byteOffset:0x28});
+  assert.equal(x.nextLoadRVA,'0x057BC5C4');
+  assert.equal(x.nextLoadOpcode,'0xF9401414');
+  assert.equal(x.amountFieldOffset,'0x18');
+  assert.equal(x.stateFieldOffset,'0x20');
+  assert.equal(x.assignedPlayerFieldOffset,'0x28');
+  assert.equal(x.observedSubfield,'AssignedPlayer');
+  assert.equal(x.observedIsAmountField,false);
+  assert.equal(x.provesSceneItemCount,false);
+  assert.equal(x.objectCountViaIndirectDispatchResolved,false);
+  assert.notEqual(x.assignedPlayerFieldOffset,x.amountFieldOffset);
+});
+test('DiffGrid ObjectCount uses default layout, removed and modified components, not ModifiedObjects alone',()=>{
+  const g=native.native.diffGridObjectCountBoundary;
+  assert.equal(g.objectCountEntryRVA,'0x04E8DA90');
+  assert.equal(g.predicateCountCoreRVA,'0x04E8DAA0');
+  assert.deepEqual(decodeLdrXUnsigned(0xF9402EB3),{rt:19,rn:21,byteOffset:0x58});
+  assert.deepEqual(decodeLdrXUnsigned(0xF94026A9),{rt:9,rn:21,byteOffset:0x48});
+  assert.deepEqual(decodeLdrXUnsigned(0xF94022A0),{rt:0,rn:21,byteOffset:0x40});
+  assert.equal(g.defaultGridLoadRVA,'0x04E8DBA8');
+  assert.equal(g.removedObjectsLoadRVA,'0x04E8DBE8');
+  assert.equal(g.baseCountReadRVA,'0x04E8DBF8');
+  assert.equal(g.removedCountReadRVA,'0x04E8DBFC');
+  assert.equal(g.baseMinusRemovedRVA,'0x04E8DC00');
+  assert.equal(g.conditionalModifiedCountIncrementRVA,'0x04E8DF04');
+  const sub=0x4B090108;
+  assert.equal(sub&31,8); // destination W8
+  assert.equal((sub>>>5)&31,8); // source W8
+  assert.equal((sub>>>16)&31,9); // W9 removed count
+  const add=0x11000508;
+  assert.equal(add&31,8);
+  assert.equal((add>>>10)&0xfff,1);
+  assert.equal(g.countOnlyModifiedObjectsIsValid,false);
+  assert.equal(g.directlyReachedFromW1ExecuteVerified,false);
+  assert.equal(g.W1IndirectObjectCountDispatchResolved,false);
+  assert.equal(g.liveAreaPopulationVerified,false);
+});
+test('absence of direct ObjectCount BL cannot prove W1 lacks indirect quantity checks',()=>{
+  const s=native.native.gridConsumerDirectCallScan;
+  assert.equal(s.directDiffGridOrGridObjectCountCalls,0);
+  assert.deepEqual(s.indirectBLRSeen,{
+    ItemSpawning:33,WildCropsSpawningInVillage:12,
+    FlowerSpawningInVillage:10,FishSpawningInVillage:0
+  });
+  assert.equal(s.indirectInterfaceCountCallsResolved,false);
+  assert.equal(s.zeroDirectCallsProvesNoCountChecks,false);
+  assert.equal(s.directCodeDoesNotProveDisappearanceOfSpawnedObjects,true);
+});
+test('NightThorn, Wood, WildCrop and Flower IDs are source witnesses only, never GridObject identities',()=>{
+  const witnessed=[
+    [2010000003,'NightThornSpawningVillage!UrbanNightThornSpawn','ItemSpawning'],
+    [2010000021,'Wood!Wetland_Softwood','ItemSpawning'],
+    [2010400001,'UrbanWildCropSpawn','WildCropsSpawningInVillage'],
+    [2010500008,'UrbanDandelionYellow','FlowerSpawningInVillage']
+  ];
+  const items=native.native.sourceIdentityWitnesses;
+  assert.equal(items.length,4);
+  assert.equal(new Set(items.map(x=>x.eventId)).size,4);
+  for(let i=0;i<4;i++){
+    const [id,name,hint]=witnessed[i];
+    const r=items[i],src=events.events.find(x=>x.id===id),view=native.query(id,hint);
+    assert.equal(r.eventId,id);
+    assert.equal(r.sourceName,name);
+    assert.equal(src.name,name);
+    assert.equal(src.active,true);
+    assert.equal(r.hint,hint);
+    assert.equal(r.serializedVariantConfirmed,false);
+    assert.equal(r.concreteGridObjectIDConfirmed,false);
+    assert.equal(view.status,'SOURCE_VARIANT_HINT_ONLY');
+    assert.equal(view.nativePerEventEvidence,'UNKNOWN');
+    assert.equal(view.spawnedGridObjectIdentityVerified,false);
+    assert.equal(view.writerAuthorized,false);
+    assert.equal(view.editedExportAuthorized,false);
+    assert.equal(view.gridDeletionAuthorized,false);
+  }
+});
+
+test('DiffGrid conditional allocation sets object ID and ItemID without EventID identity proof',()=>{
+  const x=native.native.diffGridConditionalAddObject;
+  assert.equal(x.implementationRVA,'0x04E8BC70');
+  assert.equal(x.innerAddObjectRVA,'0x04E8BEA0');
+  assert.equal(x.nextObjectIdFieldOffset,'0x50');
+  assert.equal(x.gridObjectIdFieldOffset,'0x18');
+  assert.equal(x.gridObjectItemIdFieldOffset,'0x1C');
+  assert.equal(x.nextObjectIdLoadRVA,'0x04E8BDB4');
+  assert.equal(x.nextObjectIdIncrementRVA,'0x04E8BDB8');
+  assert.equal(x.nextObjectIdStoreRVA,'0x04E8BDBC');
+  assert.equal(x.gridObjectIdentityStoreRVA,'0x04E8BDC8');
+  assert.equal(decodeBL(0x04E8BF70,0x9400E40C),0x04EC4FA0);
+  assert.equal(decodeTBZTarget(0x04E8BF7C,0x36000828),0x04E8C080);
+  assert.equal(decodeBL(0x04E8BFA0,0x97B61F54),0x03C13CF0);
+  assert.deepEqual(decodeLdrXUnsigned(0xF94022A0),{rt:0,rn:21,byteOffset:0x40});
+  assert.equal(x.conditionalAllocationPathProvedByNative,true);
+  assert(Number(x.nextObjectIdStoreRVA)<Number(x.validationCallRVA));
+  assert.equal(x.idAdvanceBeforeInnerPlacementValidation,true);
+  assert.equal(x.idAdvanceEquatesSuccessfulPlacement,false);
+  assert.equal(x.failedResultCounterRollbackVerified,false);
+  assert.equal(x.sourceEventIdWrittenIntoGridObject,false);
+  assert.equal(x.fromFieldProvenToBePopulated,false);
+  assert.equal(x.directW1CallToThisConcreteImplementationVerified,false);
+  assert.equal(x.runtimeSuccessfulPlacementObserved,false);
+  assert.equal(x.postSavePersistenceVerified,false);
+});
