@@ -4,6 +4,18 @@
 
 The machine-readable list `contracts/web-rust-save-session-alignment-v1.json` records the **10 concrete mismatches**. It is **source analysis**, not an implemented bridge or accepted P1G Writer. Rust uses `SESSION_CONTRACT="dreamwish.ddv.unified-save-session.research@1"`; Timekeeper's `COMMON_SAVE_SESSION_PORT="ddv.common-save-session/1"` is a **different proposed future UI transport interface**. No identical version means no compatibility promise.
 
+## Upstream PR #312 advanced during review — frozen follow-up observation
+
+The pinned initial comparison above is **PR #312 `473acaab...`**, which did not yet contain a P1G encryption/decryption Rust slice. A separate subsequent upstream observation at `c587f04855db0543896c51f3defa068ccf002b43` added these **research-only** capabilities:
+
+- `src/p1g.rs` (blob `c8cacdc5fa6afc7a60f388af561522e2867f5c9b`): limited single-profile AES256/ZIP/CRC synthetic research decoding, encrypted test-copy generation and self-reopen. ZIP comments/extras/descriptors/unsupported entry layouts are rejected. Its `ResearchVerifiedCopy.product_encode_copy_authorized` and `persistent_replace_authorized` remain `false`. This **supersedes only** the earlier statement that *no Rust encrypted-P1G research code existed*; it is **not** a validated production encrypted P1G Writer.
+- `src/w1_evidence.rs` (blob `7cc71d31eb19b9fc3306e7b0f99e2109a77c8cb0`): source-/registry-hash checks, explicit Switch BID/schema626, W1 variant/ID/index/old-time path witness. Native/registry semantic and required reference closure are still unverified; `encode_copy_authorized:false`.
+- `src/session.rs` (new blob `5eaaaf5f503253f05d25bf15475d3f82df02e200`): source-derived reference path evidence, **not complete domain reference closure**. `cross_domain_reference_closure_complete:false`, `domain_reference_semantics_verified:false`, `usable_for_product_writer:false`. Existing session API, numeric cursor and decoded JSON-only source SHA boundaries remain research-only.
+
+Upstream commits continued advancing; this is a **specific observed HEAD**, not an assertion that it remains Wand's latest. Before Phase B, 01 CORE must supply a fixed formal ABI, independent benchmark/QA verdict and product operation capabilities, and WEB must perform a new diff against that accepted exact HEAD. The new research modules are not imported into this WEB branch. See `contracts/web-rust-save-session-alignment-v1.json.observedAfterFreeze`. The **no-P1G capability** gap must now be read as **no accepted product-level P1G SaveSession/Writer**, not as a claim that synthetic encrypted Rust P1G experiments do not exist.
+
+---
+
 ## Concrete Phase A gaps and bounds
 
 | Concern | Wand Rust research current behavior | WEB port decision |
