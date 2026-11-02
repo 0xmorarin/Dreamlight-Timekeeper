@@ -19,6 +19,9 @@ const PTR=/^\/World\/RecurringEvents\/(0|[1-9][0-9]*)\/([A-Za-z]+)\/NextOccurren
 const SHA=/^[a-f0-9]{64}$/;
 const record=x=>x!==null&&typeof x==='object'&&!Array.isArray(x);
 const distinct=xs=>new Set(xs).size===xs.length;
+const canonicalEventId=v=>Number.isSafeInteger(v)&&v>=0?v:
+ typeof v==='string'&&/^(?:0|[1-9][0-9]*)$/.test(v)&&Number.isSafeInteger(Number(v))?
+ Number(v):null;
 
 // Only accept 02 TIME's structural *target* assessment as a prerequisite.
 // Its writerAuthorized=false is correct: CORE owns separate encode-copy gates.
@@ -195,7 +198,7 @@ export async function createW1EditedP1gCopy({
    for(const entry of entries){
     const {parent,field}=ownParent(draft,entry.pointer);
     if(typeof parent[field]!=='string'||parent[field]!==entry.originalTime||
-       parent.RecurringEventItemID!==entry.eventId)
+       canonicalEventId(parent.RecurringEventItemID)!==entry.eventId)
      throw Error('W1_EXACT_OLD_VALUE_CAS_FAILED');
     parent[field]=entry.targetTime;
    }
