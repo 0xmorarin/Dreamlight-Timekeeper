@@ -35,7 +35,7 @@ try{
  await icon.waitFor({state:'visible'});
  assert.equal(await icon.evaluate(img=>img.complete&&img.naturalWidth===24&&img.alt===''&&img.getAttribute('aria-hidden')==='true'),true);
  await open.focus();
- const [chooser]=await Promise.all([page.waitForEvent('filechooser'),page.keyboard.press('Enter')]);
+ const [chooser]=await Promise.all([page.waitForEvent('filechooser',{timeout:12000}),open.press('Enter')]);
  await chooser.setFiles({name:'icon-contract.json',mimeType:'application/json',buffer:Buffer.from(profile)});
  await page.locator('#workspace').waitFor({state:'visible'});
  assert.equal(await page.locator('#tabs button').count(),4);
