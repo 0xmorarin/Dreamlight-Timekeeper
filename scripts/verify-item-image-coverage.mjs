@@ -103,15 +103,33 @@ if(audit?.evidence!=='FRAMED_ITEMLIST_PROTOBUF_THREE_SOURCE_DIRECT_READ_ONLY'||
   audit.commonGuid!==defaultGuid||audit.commonGuidCountInGaps!==81||
   audit.otherGuidCountInGaps!==25||audit.commonGuidOccurrencesInCompleteThreeStreams!==1798||
   audit.distinctSourceIconAddressGuidsInGaps!==25||
-  audit.sourceGuidOnly!==true||audit.spriteTextureProof!==0||
+  audit.sourceGuidOnly!==true||audit.spriteTextureProof!==3||
+  audit.privatePrototypeRgbaMatched!==3||audit.privatePrototypeWebpBytes!==827014||
+  audit.privatePixelEvidenceJsonSha256!=='59e2e920570f83812210f4eebcf2013935322ed21dcf43dae4c8eaba48b5c0b8'||
   audit.publicImageProof!==0||audit.rights!=='NOT_ESTABLISHED')
  fail('unreviewed 106-gap source definition evidence promotion or count drift');
 const deficit=pinned.items.filter(row=>row.sourceCrosswalk==='NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES');
 let activity=0,furniture=0,companion=0,shared=0,specific=0;
+const reviewedProto=new Map([
+ [30000072,['202f205f8ad0fd94daddf84fe6862586','acb7b4da1b360e37a9dc7b1b0781199d64c5269a37524335c68f4050e89161b7','17931729342756677081','18223675087384405465','625c099f45597453abc802a65f85d24d849e9c22d4ab5aee6b6cea6faed15f47','de221ff74dd28451ef580aad2da3f11bbbd10759ce81658d28012c212f0b662c',42492]],
+ [31400000,['c2d8a0bf85476b545b2a322f99c2bcff','15056b25a79bf546131625d3dc87c50bbb56b153dee5e1af5f2d7a40d5718cc9','12235514117036361459','3735864404189103859','4cc6cc0b77b017a41c0ecec80db924fe915225b00d9df17fd895edab9662b529','8b0cfba58f29ea9b4d489c36e0293591a0aaa51fd0f6537a80e19b57f98f6266',396534]],
+ [31400039,['ff56d467e029f7643ba98059c63e2332','15056b25a79bf546131625d3dc87c50bbb56b153dee5e1af5f2d7a40d5718cc9','5390452463298091721','8430391546967694025','7401fca7a415ba7736324c3d101e3f1ff100b61ef53c9878f864d4e13f5afc6e','93a1399ba7f0fb2db3ca72684f4d8a9308d9edac2035eef56e6f8a66a61388be',387988]]
+]);
 for(const row of deficit){
- const x=row.definitionAudit;
- if(!x||x.spriteResolved!==false||x.textureResolved!==false||
-    x.webpDecodedRgbaMatched!==false||row.publishedImage!=='MISSING')fail('false image proof '+row.itemId);
+ const x=row.definitionAudit,expected=reviewedProto.get(row.itemId);
+ if(!x||row.publishedImage!=='MISSING')fail('false published image '+row.itemId);
+ if(x.spriteResolved!==!!expected||x.textureResolved!==!!expected||
+    x.webpDecodedRgbaMatched!==!!expected)fail('false pixel proof status '+row.itemId);
+ if(expected){
+   const v=x.privatePixelProof;
+   if(!v||v.status!=='PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED'||
+     v.encoder!=='Pillow/libwebp lossless=true method=6 exact=true'||
+     v.bundleSha256!==expected[1]||v.spritePathId!==expected[2]||
+     v.texturePathId!==expected[3]||v.decodedRgbaSha256!==expected[4]||
+     v.prototypeWebpSha256!==expected[5]||v.prototypeWebpBytes!==expected[6]||
+     x.declaredIconAddressGuid!==expected[0])
+     fail('private per-item VP8L proof drift '+row.itemId);
+ } else if('privatePixelProof' in x)fail('unsupported pixel claim '+row.itemId);
  const stream=row.itemId>=120000000?'Companion.json':
    row.itemId>=40000000?'Furniture.json':'ActivityItem.json';
  if(stream==='Companion.json')companion++;
@@ -127,4 +145,4 @@ for(const row of deficit){
 if(deficit.length!==106||activity!==35||furniture!==52||companion!==19||
    shared!==81||specific!==25||exceptionalGuid.size!==25)
  fail('ItemID gap source family census changed');
-console.log('Gap typed source PASS: 106/106 ItemID definitions (Activity35/Furniture52/Companion19), 81 common GUID; resolved Sprite/Texture 0, published WebP 0');
+console.log('Gap typed source PASS: 106/106 ItemID definitions (Activity35/Furniture52/Companion19), 81 common GUID; private Sprite/Texture 3, published WebP 0');
