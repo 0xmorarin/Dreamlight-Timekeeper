@@ -22,5 +22,9 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Verify actual UI images and read-only flow in Chromium
         run: node tests/browser-ui.smoke.mjs
-      - name: Verify all 20 published images at real Chrome 200% tab zoom
-        run: node tests/browser-asset-zoom.smoke.mjs
+      - name: Verify all 20 published images and keyboard chooser at real Chrome 200% (5 independent runs)
+        run: |
+          for sample in 1 2 3 4 5; do
+            echo "=== independent Chromium zoom + native keyboard filechooser sample ${sample}/5 ==="
+            node tests/browser-asset-zoom.smoke.mjs
+          done
