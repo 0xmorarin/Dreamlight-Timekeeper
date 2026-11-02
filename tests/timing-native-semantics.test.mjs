@@ -110,7 +110,7 @@ test('future schedule: reviewed readiness false and overdue correction branch fa
   assert.equal(r.status,'STATIC_PREDICATE_MODEL_ONLY');
   assert.equal(r.readinessCondition,false);
   assert.equal(r.overdueClampCondition,false);
-  assert.equal(r.actualizeBranchReached,false);
+  assert.equal(r.actualizeBranchReached,null);
   assert.equal(r.runtimeVerified,false);
   assert.equal(r.writerAuthorized,false);
   assert.equal(r.spawnObserved,false);
@@ -133,7 +133,7 @@ test('overdue catch-up condition is strict greater-than, not greater-than-or-equ
   const greater=analyzeW1StaticBranches(native,{...p,nextOccurrenceTicks:699_999n});
   assert.equal(equal.overdueClampCondition,false);
   assert.equal(greater.overdueClampCondition,true);
-  assert.equal(greater.actualizeBranchReached,false);
+  assert.equal(greater.actualizeBranchReached,null);
   assert.equal(greater.pickupRescheduleVerified,false);
 });
 test('unknown catch-up interval is not silently guessed, even when readiness predicate is true',()=>{
@@ -175,4 +175,17 @@ test('static branches reject unsafe operands and unrecognized evidence ledger',(
   assert.throws(()=>analyzeW1StaticBranches(null,p),/provenance/);
   const r=analyzeW1StaticBranches(native,p);
   assert.throws(()=>{r.readinessCondition=false;},TypeError);
+});
+
+
+test('native evidence metadata contradiction is explicit and cannot be promoted to verified x25 assignment',()=>{
+  const c=native.native.actualizeSourceConflict;
+  assert.equal(c.rva,'0x05A2AC94');
+  assert.equal(c.status,'EVIDENCE_METADATA_CONFLICT');
+  assert.equal(c.reportedAsm,'mov x25, x0');
+  // 0xB0... is ADRP encoding class, not ORR register alias MOV.
+  assert.equal(0xB002B8C8 & 0x9F000000,0x90000000);
+  assert.notEqual(0xB002B8C8,0xAA0003F9); // actual MOV X25, X0 encoding
+  assert.equal(c.independentlyDecodedMnemonic,'adrp x8');
+  assert.equal(native.native.actualize.rva,'0x05A2A170');
 });
