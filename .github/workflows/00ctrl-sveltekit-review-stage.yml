@@ -1,0 +1,36 @@
+name: 00 CTRL SvelteKit isolated review stage (no deploy)
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/stage-sveltekit-review-only.mjs'
+      - 'tests/ctrl-sveltekit-review-stage.test.mjs'
+      - '.github/workflows/00ctrl-sveltekit-review-stage.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reviewed-compiled-bytes:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install UI build tools
+        run: npm install --no-audit --no-fund
+      - name: Compile isolated SvelteKit static artifact
+        run: npm run build
+        env:
+          BASE_PATH: /Dreamlight-Timekeeper
+      - name: Validate 00 CTRL review-stage negative matrix
+        run: node --test tests/ctrl-sveltekit-review-stage.test.mjs
+      - name: Create review copy only in runner temp, never publish
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/stage-sveltekit-review-only.mjs build "${RUNNER_TEMP}/timekeeper-ctrl-review-${GITHUB_RUN_ID}"
+          echo "Review-only compiled copy exists only in isolated runner temp. NO deployment/upload/release."
