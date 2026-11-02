@@ -67,7 +67,9 @@ test('Worker packaged P1G audit is non-mutating and session-scoped backup retain
  assert.equal(a.status,'SIMPLE_ENVELOPE_OBSERVED_REBUILD_UNVERIFIED');
  assert.equal(a.writerAuthorized,false);
  assert.equal(a.bytePreservationVerified,false);
- assert(a.findings.includes('LOCAL_HEADER_BYTES_NOT_EXPOSED'));
+ assert.equal(a.localHeaderObserved,true);
+ assert.equal(a.localHeaderFieldsMatchCentral,true);
+ assert(a.findings.includes('REBUILT_ZIP_RAW_BYTE_PARITY_NOT_PROVEN'));
  const original=await send('backup','','profile.p1g',{sessionId:result.sessionId});
  assert.equal(original.ok,true);
  assert.deepEqual(new Uint8Array(original.buffer),bytes);
