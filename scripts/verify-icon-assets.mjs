@@ -4,7 +4,7 @@ import {join,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {validateIconManifest,inspectLosslessWebP} from '../src/icon-assets.mjs';
 import {validateUiManifest,verifyUiAssetBytes} from '../src/ui-assets.mjs';
-import {auditSteamUiPublicationLedger,auditSteamUiPrivatePixelEvidence} from '../src/steam-ui-provenance.mjs';
+import {auditSteamUiPublicationLedger,auditSteamUiPrivatePixelEvidence,auditSteamUiConsumerLinks} from '../src/steam-ui-provenance.mjs';
 
 const root = resolve(process.argv[2]||fileURLToPath(new URL('../',import.meta.url)));
 const manifest = JSON.parse(await readFile(join(root,'data','steam-icons-v1253.json'),'utf8'));
@@ -31,6 +31,12 @@ console.log('Steam UI source ledger STATIC crosscheck: '+ledger.publishedCount+'
   ' deployed; HOLD '+ledger.heldKeys.join(', ')+' (not release-verified).');
 const privateEvidence=JSON.parse(await readFile(join(root,'data','steam-ui-private-pixel-evidence-v1253.json'),'utf8'));
 const privateCheck=auditSteamUiPrivatePixelEvidence(catalog,privateEvidence);
+const consumerEvidence=JSON.parse(await readFile(join(root,'data','steam-ui-consumer-links-v1253.json'),'utf8'));
+const consumerCheck=auditSteamUiConsumerLinks(catalog,consumerEvidence);
+console.log('Steam UI source consumers: '+consumerCheck.sourceLinkedKeys.join(', ')+
+  ' linked to bounded VillageAreaDisplay; '+consumerCheck.boundedNegativeKeys.join(', ')+
+  ' not in scanned menu-hud only; no public approval.');
+
 console.log('HOLD Steam UI real-source pixel SHA records: '+privateCheck.verifiedHashRecords+
   '/3 metadata crosschecked; no source bytes shipped, publication remains disabled.');
 

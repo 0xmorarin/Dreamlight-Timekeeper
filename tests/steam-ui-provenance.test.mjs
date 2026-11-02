@@ -1,11 +1,12 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {auditSteamUiPublicationLedger,auditSteamUiPrivatePixelEvidence} from '../src/steam-ui-provenance.mjs';
+import {auditSteamUiPublicationLedger,auditSteamUiPrivatePixelEvidence,auditSteamUiConsumerLinks} from '../src/steam-ui-provenance.mjs';
 
 const catalog=JSON.parse(await readFile(new URL('../data/steam-ui-candidates-v1253.json',import.meta.url),'utf8'));
 const manifest=JSON.parse(await readFile(new URL('../data/steam-ui-icons-v1253.json',import.meta.url),'utf8'));
 const pixelEvidence=JSON.parse(await readFile(new URL('../data/steam-ui-private-pixel-evidence-v1253.json',import.meta.url),'utf8'));
+const consumerEvidence=JSON.parse(await readFile(new URL('../data/steam-ui-consumer-links-v1253.json',import.meta.url),'utf8'));
 const copy=x=>structuredClone(x);
 const run=(c=catalog,m=manifest)=>auditSteamUiPublicationLedger(c,m);
 const publishedKey='skill.mining';
@@ -124,4 +125,47 @@ test('private pixel provenance source, dimensions, alpha, PPtr or release promot
   const c3=copy(catalog);
   c3.candidates.find(x=>x.key==='world.hgw').pixelTrial='NOT_TESTED';
   assert.throws(()=>runPixel(c3));
+});
+
+test('real Steam HUD source reference evidence is bounded and no HOLD image is publishable',()=>{
+  const r=auditSteamUiConsumerLinks(catalog,consumerEvidence);
+  assert.deepEqual(r.sourceLinkedKeys,['world.hgw']);
+  assert.deepEqual(r.boundedNegativeKeys,['tab.shops','tab.daily']);
+  assert.equal(r.verificationLevel,'REAL_MENU_HUD_SERIALIZED_REFERENCE_RECORD_ONLY');
+  assert.equal(r.releaseApproved,false);
+  for(const key of ['world.hgw','tab.shops','tab.daily'])
+    assert.equal(Object.hasOwn(manifest.icons,key),false);
+});
+
+test('consumer linking, game-specific semantic or redistribution claims require independent evidence',()=>{
+  const reject=next=>assert.throws(()=>auditSteamUiConsumerLinks(catalog,next));
+  const changes=[
+    x=>{x.source.menuBundleSha256='0'.repeat(64);},
+    x=>{x.source.menuCabSha256='0'.repeat(64);},
+    x=>{x.source.externalFileID=1;},
+    x=>{x.source.externalCab='CAB-other';},
+    x=>{x.source.serializedObjects=0;},
+    x=>{x.source.targetAtlasBundleSha256='0'.repeat(64);},
+    x=>{x.scope.bundlesInspected.push('menu-collection');},
+    x=>{x.scope.runtimeUIObserved=true;},
+    x=>{x.scope.componentFieldLayout='NATIVE_TYPED_PPTR';},
+    x=>{x.candidates['world.hgw'].gameObjectName='WrongMap';},
+    x=>{x.candidates['world.hgw'].ownerPathId='1';},
+    x=>{x.candidates['world.hgw'].spriteReferenceOffsets=[780,796,812,836];},
+    x=>{x.candidates['world.hgw'].uiRole='WORLD_MAP_CATEGORY_CONFIRMED';},
+    x=>{x.candidates['world.hgw'].confirmedMenuTab='world.hgw';},
+    x=>{x.candidates['tab.shops'].state='SOURCE_CONFIRMED';},
+    x=>{x.candidates['tab.daily'].spriteReferenceOffsets=[12];},
+    x=>{x.candidates['tab.daily'].visualRuntimeVerified=true;},
+    x=>{x.candidates['tab.daily'].releaseApproved=true;},
+    x=>{x.legal.explicitPermissionToRedistributeExtractedGameSprites='GRANTED';},
+    x=>{x.legal.newImagePublicDeployment='APPROVED';},
+    x=>{x.legal.existingFourPublishedImages='AUTOMATICALLY_APPROVED';},
+    x=>{x.publicAssetsUnchanged=false;},
+    x=>{delete x.candidates['tab.daily'];}
+  ];
+  for(const change of changes){const next=copy(consumerEvidence);change(next);reject(next);}
+  const altered=copy(catalog);
+  altered.candidates.find(x=>x.key==='world.hgw').reviewState='STATIC_REFERENCE_VERIFIED';
+  assert.throws(()=>auditSteamUiConsumerLinks(altered,consumerEvidence));
 });

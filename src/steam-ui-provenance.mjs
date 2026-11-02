@@ -127,3 +127,80 @@ export function auditSteamUiPrivatePixelEvidence(catalog,evidence){
   }
   return {verifiedHashRecords:3,verificationLevel:'PRIVATE_REAL_SOURCE_PIXEL_HASH_RECORD_CROSSCHECK_ONLY',releaseApproved:false};
 }
+
+
+/**
+ * Bound the meaning of source-only external Sprite references to the one
+ * Steam v1.25.3 HUD bundle actually inspected. Not evidence of rendering,
+ * live Native consumer semantics, copyright permission, or release approval.
+ */
+export function auditSteamUiConsumerLinks(catalog,record){
+  if(!object(record)||record.kind!=='STEAM_UI_CONSUMER_SOURCE_EVIDENCE_NON_RELEASE'||
+     record.verification!=='REAL_STEAM_V1253_MENU_HUD_SERIALIZED_OBJECT_SCAN_NOT_RUNTIME'||
+     !object(record.source)||!object(record.scope)||!object(record.candidates)||
+     !object(record.legal)||record.publicAssetsUnchanged!==true||
+     record.writerAuthorization!==false)
+    throw new Error('UI consumer record missing or incorrectly authorized.');
+  const source=record.source,catalogSource=catalog?.source;
+  if(!object(catalogSource)||source.platform!==catalogSource.platform||
+     source.gameVersion!==catalogSource.gameVersion||
+     source.fullVersion!==catalogSource.fullVersion||
+     source.targetAtlasBundleSha256!==catalogSource.bundleSHA256||
+     source.menuBundle!=='menu-hud_assets_all.bundle'||source.menuBundleBytes!==665041||
+     source.menuBundleSha256!=='9d24816c940159ae96020373ef0422ccea27560ddab070c26a847fa03a76425c'||
+     source.menuCab!=='CAB-fba8a0306b5d2dd3c06e808dc8e96887'||
+     source.menuCabSha256!=='6151b026636b138672ab3acb1cc503b487c16de8b368d74b338e0c82baf18337'||
+     source.externalFileID!==2||
+     source.externalCab!=='CAB-fe2bbf4dc0b20d2a3f3b5ff35a49ffe8'||
+     source.serializedObjects!==12364)
+    throw new Error('Menu-HUD serialized consumer source drift.');
+  if(record.scope.bundlesInspected?.length!==1||
+     record.scope.bundlesInspected[0]!==source.menuBundle||
+     record.scope.otherBundlesNotChecked!==true||
+     record.scope.componentFieldLayout!=='UNTYPED_SERIALIZED_PPTR_PATTERN'||
+     record.scope.runtimeUIObserved!==false||
+     record.scope.semanticTabMatchConfirmed!==false)
+    throw new Error('Menu-HUD scan scope was overstated.');
+  const keys=Object.keys(record.candidates);
+  if(keys.length!==3||['world.hgw','tab.shops','tab.daily'].some(k=>!keys.includes(k)))
+    throw new Error('Incomplete held candidate consumer audit.');
+  for(const key of keys){
+    const candidate=record.candidates[key],row=catalog.candidates.find(x=>x.key===key);
+    if(!object(candidate)||!row||!row.reviewState.startsWith('HOLD_')||
+       candidate.spritePathId!==row.spritePathId||
+       candidate.texturePathId!==row.texturePathId||
+       candidate.externalFileID!==2||!Array.isArray(candidate.spriteReferenceOffsets)||
+       candidate.confirmedMenuTab!=='UNKNOWN'||candidate.visualRuntimeVerified!==false||
+       candidate.sourcePixelEquality!==true||
+       candidate.published!==false||candidate.releaseApproved!==false||
+       typeof candidate.scopeNote!=='string'||!candidate.scopeNote.trim())
+      throw new Error('Held consumer evidence fails closed: '+key);
+    if(key==='world.hgw'){
+      if(candidate.state!=='SOURCE_HUD_VILLAGE_AREA_DISPLAY_REF_CONFIRMED'||
+         candidate.ownerClassId!==114||candidate.ownerPathId!=='13373502458456674114'||
+         candidate.ownerByteLength!==1080||candidate.gameObjectClassId!==1||
+         candidate.gameObjectPathId!=='7519985283486682946'||
+         candidate.gameObjectName!=='VillageAreaDisplay'||
+         candidate.uiRole!=='HUD_VILLAGE_AREA_DISPLAY_REFERENCE_ONLY'||
+         JSON.stringify(candidate.spriteReferenceOffsets)!=='[780,796,812,828]')
+        throw new Error('World HGW source HUD reference changed without independent evidence.');
+    }else if(candidate.state!=='NOT_FOUND_IN_MENU_HUD_ONLY'||
+             candidate.uiRole!=='UNKNOWN'||candidate.spriteReferenceOffsets.length!==0)
+      throw new Error('Other menu consumer identities are unverified: '+key);
+  }
+  const rights=record.legal;
+  if(rights.publisher!=='Gameloft'||
+     rights.termsUrl!=='https://www.gameloft.com/en/conditions-of-use'||
+     rights.explicitPermissionToRedistributeExtractedGameSprites!=='NOT_VERIFIED'||
+     rights.legalConclusion!=='NOT_A_LEGAL_OPINION'||
+     rights.newImagePublicDeployment!=='HOLD'||
+     rights.existingFourPublishedImages!=='EXISTING_BASELINE_SEPARATE_RIGHTS_REVIEW'||
+     rights.releaseApproved!==false)
+    throw new Error('Game image distribution authorization cannot be inferred from source provenance.');
+  return {
+    sourceLinkedKeys:['world.hgw'],
+    boundedNegativeKeys:['tab.shops','tab.daily'],
+    verificationLevel:'REAL_MENU_HUD_SERIALIZED_REFERENCE_RECORD_ONLY',
+    releaseApproved:false
+  };
+}
