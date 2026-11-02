@@ -236,10 +236,12 @@ try{
  assert.equal(positive.ok,true,'valid plan must succeed despite forged ignored UI props');
  assert.equal(positive.receiptStatus,'WORKER_VERIFIED_PAIR');
  assert(positive.editedByteLength>0&&positive.originalByteLength>0);
- assert.equal(cases.comment[0]?.name,'open');
- // Physically present unsupported archive comment may be decoded for read but Writer must fail.
- if(!cases.comment[0] || cases.comment[0].name!=='open'){
+ // Physically present unsupported archive comment may decode for read; Writer must fail.
+ if(cases.comment[0]?.name==='open'){
+  assert.equal(cases.comment[0].ok,false,'Unreadable archive may not prepare output');
+ }else{
   const rejected=cases.comment.find(x=>x.name==='forged-authorization-ignored');
+  assert(rejected,'Comment source Worker must be checked');
   assert.equal(rejected.ok,false);
   assert(!rejected.receiptStatus);
  }
