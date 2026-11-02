@@ -239,6 +239,7 @@ try{
  assert.equal(positive.ok,true,'valid plan must succeed despite forged ignored UI props');
  assert.equal(positive.receiptStatus,'WORKER_VERIFIED_PAIR');
  assert(positive.editedByteLength>0&&positive.originalByteLength>0);
+ console.log('QR_PHYSICAL_ZIP_COMMENT_RESULT',JSON.stringify(cases.comment));
  // Physically present unsupported archive comment may decode for read; Writer must fail.
  if(cases.comment[0]?.name==='open'){
   assert.equal(cases.comment[0].ok,false,'Unreadable archive may not prepare output');
