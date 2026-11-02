@@ -27,7 +27,7 @@ export function assessTimekeeperTimingCompatibility(profile,snapshot,plan){
   else if(row.review?.semantic!=='nextOccurrence'||!row.review.nativeEvidence)
    code='NATIVE_EVIDENCE_RULE_MISSING';
   else if(row.policy!=='W1')code='EVENT_POLICY_NOT_W1';
-  else if(row.eventActive===false)code='DEFINITION_MARKED_INACTIVE';
+  else if(row.eventActive!==true)code=row.eventActive===false?'DEFINITION_MARKED_INACTIVE':'DEFINITION_ACTIVITY_UNKNOWN';
   else if(row.structureValid!==true)code='EVENT_SERIALIZATION_AMBIGUOUS';
   else if(preflight.schema!==SOURCE.schema)code='SCHEMA_VERSION_DRIFT_REVIEW';
   else code='STATIC_W1_RESEARCH_CANDIDATE';
