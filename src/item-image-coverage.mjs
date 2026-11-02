@@ -154,7 +154,7 @@ const sourceCategories=Object.freeze({
 const unclassifiedCategory=Object.freeze({code:'UNCLASSIFIED',en:'Unclassified item',ja:'種類未確認'});
 const originalTypeHashes=Object.freeze({
   'ActivityItem.json':'20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4',
-  'Furniture.json':'823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674',
+  'Furniture.json':'823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674',
   'Companion.json':'26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea'
 });
 const textSafe=value=>safeName(value)
