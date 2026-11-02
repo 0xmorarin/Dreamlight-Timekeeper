@@ -21,7 +21,7 @@ test('R9 real browser Worker imports the SAME P1G codec and session; opaque orig
  assert.match(runner,/"SAMPLED_NOT_EXACT_PEAK"/);
  assert.doesNotMatch(worker,/\.createEncodedProfile\(|\.exportVerifiedCopy\(/);
  assert.match(staging,/JSON\.parse\(e\.data\)/);
- assert.match(staging,/exactCodecExecuted":False/);
+ assert.match(staging,/exactCodecExecuted:false/);
  assert.match(staging,/browserCodecAccepted":False/);
  assert.match(staging,/OPAQUE_ORIGIN_SYNTHETIC_WORKER_STAGING_ONLY/);
  assert.equal(worker.includes('browserMemoryAccepted:false'),true);
