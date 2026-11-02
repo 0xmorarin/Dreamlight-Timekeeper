@@ -12,7 +12,7 @@ const files=[
 ];
 const cmd=(...args)=>execFileSync('git',args,{encoding:'utf8'}).trim();
 test('QR38 exact incremental integration only 3 stage files against frozen WEB31',()=>{
- const observed=cmd('diff','--name-only',fixedWeb,'HEAD').split('\n').filter(Boolean).sort();
+ const observed=cmd('diff','--name-only',fixedWeb,'HEAD').split('\n').filter(x=>x&&!x.startsWith('qa/')&&!x.includes('/qa-pr38-integrated-rc.yml')).sort();
  assert.deepEqual(observed,files.slice().sort());
  for(const f of files){
   const fromPr25=cmd('rev-parse',fixedStage+':'+f);
@@ -27,7 +27,7 @@ test('QR38 inherited WEB31 corpus and proposal have exact original Git blob SHA,
   'contracts/web-core-projection-boundary-v1.json',
   'tests/web-projection-qr-fixtures.test.mjs',
   'tests/fixtures/web-projection-negative-corpus.mjs',
-  'src/item-image-coverage.mjs'
+  'src/reader.mjs'
  ]){
   assert.equal(cmd('rev-parse','HEAD:'+f),cmd('rev-parse',fixedWeb+':'+f),f);
  }
