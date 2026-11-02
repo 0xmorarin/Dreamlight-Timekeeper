@@ -99,7 +99,7 @@ test('original framed three-stream ItemID IconAddress census closes 106 typed pr
  const pinned=await json('data/item-image-coverage-v1253.json');
  const gaps=pinned.items.filter(x=>x.sourceCrosswalk==='NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES');
  const census=new Map(),guids=new Map();
- const privatelyVerified=new Set([30000072,31400000,31400039,31300003,31300083,31300128,31300210]);
+ const privatelyVerified=new Set([30000072,31400000,31400039,31300003,31300083,31300128,31300210,...[120200000,120200001,120200002,120200003,120200004,120200005,120200006,120200007,120200008,120200009,120200010,120200011,120200012,120200013,120200016,120200022,120200023,120200024]]);
  for(const row of gaps){
    const evidence=row.definitionAudit,proven=privatelyVerified.has(row.itemId);
    assert.equal(evidence?.spriteResolved,proven);
@@ -127,15 +127,15 @@ test('original framed three-stream ItemID IconAddress census closes 106 typed pr
  assert.equal(guids.get('04495f960b1edba4181ec51efa5e07d9'),81);
  assert.equal(gaps.find(x=>x.itemId===120200013).definitionAudit.declaredIconAddressGuid,
   gaps.find(x=>x.itemId===120200016).definitionAudit.declaredIconAddressGuid);
- assert.equal(pinned.unresolvedDefinitionAudit.spriteTextureProof,7);
- assert.equal(pinned.unresolvedDefinitionAudit.remainingUnverifiedSpriteTexture,99);
+ assert.equal(pinned.unresolvedDefinitionAudit.spriteTextureProof,25);
+ assert.equal(pinned.unresolvedDefinitionAudit.remainingUnverifiedSpriteTexture,81);
  assert.equal(pinned.unresolvedDefinitionAudit.publicImageProof,0);
  assert.equal(pinned.summary.publishedVerifiedItemImages,0);
  assert.equal(pinned.summary.publishedMissingRecurringItemIDs,244);
 });
 
 
-test('strict ItemID read-only resolution leaves all 244 unshipped with 83 AMBIGUOUS URL-denied candidates',async()=>{
+test('strict ItemID read-only resolution leaves all 244 unshipped with 81 AMBIGUOUS URL-denied candidates',async()=>{
  const pinned=await json('data/item-image-coverage-v1253.json');
  const stats=new Map();
  for(const entry of pinned.items){
@@ -145,8 +145,8 @@ test('strict ItemID read-only resolution leaves all 244 unshipped with 83 AMBIGU
   stats.set(view.status,(stats.get(view.status)||0)+1);
   assert.equal(entry.publishedImage,'MISSING');
  }
- assert.deepEqual(Object.fromEntries(stats),{MISSING:161,AMBIGUOUS:83});
- for(const id of [31300004,31300005,120200013,120200016]){
+ assert.deepEqual(Object.fromEntries(stats),{MISSING:163,AMBIGUOUS:81});
+ for(const id of [31300004,31300005,30400219,40600013]){
   assert.equal(resolveItemImageView(empty,{id},{coverageAudit:pinned}).status,'AMBIGUOUS');
  }
  for(const id of [31300003,31300083,31300128,31300210]){
@@ -154,6 +154,16 @@ test('strict ItemID read-only resolution leaves all 244 unshipped with 83 AMBIGU
   assert.equal(x.definitionAudit.privatePixelProof.status,'PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED');
   assert.equal(resolveItemImageView(empty,{id},{coverageAudit:pinned}).status,'MISSING');
  }
+ for(const id of [120200013,120200016]){
+  const a=pinned.items.find(r=>r.itemId===id);
+  assert.equal(a.definitionAudit.privatePixelProof.spriteName,'DemonEvil');
+  assert.equal(a.definitionAudit.webpDecodedRgbaMatched,true);
+  assert.equal(resolveItemImageView(empty,{id},{coverageAudit:pinned}).status,'MISSING');
+ }
+ const proofCount=pinned.items.filter(r=>r.definitionAudit?.privatePixelProof?.status==='PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED').length;
+ assert.equal(proofCount,25);
+ assert.equal(pinned.addressablesCatalogAudit.catalogItemIDs,106);
+ assert.equal(pinned.addressablesCatalogAudit.componentBundles.sharedPlaceholders,81);
  assert.equal(resolveItemImageView(empty,{id:99999999},{coverageAudit:pinned}).status,'MISSING');
  const bogus=structuredClone(pinned);
  bogus.source.eventRawSHA256='f'.repeat(64);
