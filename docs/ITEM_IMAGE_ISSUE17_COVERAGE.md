@@ -43,3 +43,21 @@ Actual markup belongs to 03 WEB: `loading="lazy"`, `decoding="async"`, meaningfu
 5. 03 WEB SvelteKit thumbnail/ARIA/virtualization/performance acceptance; 05 QR independent fixed-head source mapping, RGBA identity, browser and staging review. The unchanged Writer's prior synthetic acceptance need not be rerun.
 
 **Status:** First deterministic source/manifest baseline and versioned API/QA foundation complete. **Image coverage incomplete**, `FINAL_RELEASE_IMAGE_GATE=BLOCKED` until items above close or the Owner explicitly waives narrowly described image gaps.
+
+
+## 2026-11-02 — 106 gap closure at typed Item-definition level (NOT Sprite closure)
+
+This evidence **supersedes only** the prior statement that the 106 IDs lacked an exact *typed Item-definition/declared IconAddress source*. They still lack verified **Sprite/Texture/WebP** mappings across the original seven bundles. Direct read-only reuse of the original v1.25.3 framed itemlist streams (outer index and protobuf ItemID field1, IconAddress GUID field4) established **106/106** exact ItemID→declaring stream→GUID relationships:
+
+| Framed original Steam/Windows v1.25.3 stream | SHA-256 | Previously 7-bundle-unlinked IDs |
+|---|---|---:|
+| ActivityItem.json | \`20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4\` | 35 |
+| Furniture.json | \`823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674\` | 52 |
+| Companion.json | \`26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea\` | 19 |
+| **TOTAL** | | **106** |
+
+This also resolves the misleading label *Snippet 19* in the earlier prefix census: these are **Companion ItemType12 definitions**, with internal names such as \`Bird!SnippetBird01\`, \`Frog!SnippetFrog01Blue\`, \`Demon!SnippetDemon01Pink\`; do not search nonexistent \`Snippet.json\` or conflate ItemType namespace, localized display name and Sprite family. Source-definition match is exact; icon decode remains pending.
+
+The 106 declared IconAddress values have **25 distinct GUIDs**: one very common GUID \`04495f960b1edba4181ec51efa5e07d9\` is assigned to **81/106** target definitions (28 ActivityItem, 52 Furniture, 1 Companion) and appears **1,798 times across the entire three source streams** (298+1,496+4). It is **NOT evidence of 81 correct identical game thumbnails**; likely shared/fallback behavior requires visual/asset-resolution proof. Of the remaining 25 targets, one Companion pair \`120200013/120200016\` shares the same declared GUID, so a shared GUID may be valid identity reuse rather than conflicting ItemID. All 106 exact records and GUID assignments are embedded as **metadata only** in \`data/item-image-coverage-v1253.json\` under \`definitionAudit\`; strict test gate \`scripts/verify-item-image-coverage.mjs\` rejects mismatch, speculative Sprite/Texture status, or public image promotion. Original binary itemlist and UnityFS files are **not** copied to GitHub.
+
+**Release state remains unchanged:** previously source-linked seven-bundle static 138, outside-seven-bundle 106 (now definition-GUID known 106), deployed verified ItemID WebP **0/244**, additional real-save-derived ItemID count UNKNOWN, public rights NOT_ESTABLISHED. Next research is not another numeric ItemID guess: resolve the 106 declared GUIDs through authoritative versioned Addressables/AssetBundle container, confirm correct Sprite/Texture variant, extract/compare source decoded RGBA versus VP8L output privately, and obtain independent QR acceptance. No web manifest icon entry, item image URL, Writer, UI or original app SVG was changed by this evidence.
