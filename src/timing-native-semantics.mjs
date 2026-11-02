@@ -6,6 +6,7 @@ const SOURCE=Object.freeze({
   platform:'Nintendo Switch',gameVersion:'1.25.3',buildId:'9A239D3DB569756D',
   saveSchema:626,mainSHA256:'16957e6ed546daeb196f296362d5ded885fad9eeff70584870f645e1204ca94a',
   recurringSourceSHA256:'028a206635d37bffd7f3a8ff820958bdaa201887bacf35e10faa8328d20022ea',
+  nsoTextSHA256:'15d17f0b9e95d022368bbd89ec8feacec6f1feb2439bc9a37fe2f6bf2078a328',
   evidence:'STATIC_ONLY'
 });
 const W1=Object.freeze([
@@ -109,5 +110,48 @@ export function compileW1NativeSemantics(sourceEvents,{woodTagPack}={}){
         trace:W1_SET.has(saveKind)?trace[saveKind]:null,
         ...baseline});
     }
+  });
+}
+
+
+// The ONLY executable operations modeled here are two previously documented
+// AArch64 predicate results. They are conditional observations, not the game's
+// scheduler, native runtime, or an edit permission.
+const MAX_MASKED_DOTNET_TICKS=(1n<<62n)-1n;
+const timingTicksOK=x=>typeof x==='bigint'&&x>=0n&&x<=MAX_MASKED_DOTNET_TICKS;
+/**
+ * Interpret the reviewed CMP/CSET HS readiness check and signed SUB/CMP/B.LE
+ * overdue branch for one statically plausible W1 source event.
+ * Callers must NOT infer actual spawn, removal, release, or write eligibility.
+ * maxIntervalTicks=null means the event's effective bound is not known.
+ */
+export function analyzeW1StaticBranches(ledger,{eventId,saveKind,nowTicks,
+  nextOccurrenceTicks,maxIntervalTicks=null}={}){
+  if(ledger?.source!==SOURCE||ledger?.native!==NATIVE||typeof ledger.query!=='function')
+    throw new Error('Unrecognized Native evidence ledger or build provenance.');
+  const event=ledger.query(eventId,saveKind);
+  const allowed=event.status==='SOURCE_VARIANT_HINT_ONLY';
+  const noAuthority={operationAllowlisted:false,writerAuthorized:false,
+    runtimeVerified:false,spawnObserved:false,removedObjectsUnchangedByThisModel:true};
+  if(!allowed)return Object.freeze({
+    eventId,saveKind,status:'EVENT_OUTSIDE_STATIC_W1_BRANCH_SCOPE',
+    eventEvidenceStatus:event.status,readinessCondition:null,
+    overdueClampCondition:null,...noAuthority
+  });
+  if(!timingTicksOK(nowTicks)||!timingTicksOK(nextOccurrenceTicks)||
+     (maxIntervalTicks!==null&&!timingTicksOK(maxIntervalTicks)))
+    throw new Error('Require nonnegative bigint masked tick operands from the reviewed Native flow.');
+  const lag=nowTicks-nextOccurrenceTicks;
+  return Object.freeze({
+    eventId,saveKind,status:'STATIC_PREDICATE_MODEL_ONLY',
+    eventEvidenceStatus:event.status,
+    readinessCondition:nowTicks>=nextOccurrenceTicks,
+    overdueClampCondition:maxIntervalTicks===null?null:lag>maxIntervalTicks,
+    overdueClampIntervalKnown:maxIntervalTicks!==null,
+    // The static conditional does NOT attest the callsite is reached or
+    // the actual native setter executed in the current save or game.
+    actualizeBranchReached:false,executePathVerified:false,
+    afterExecuteRescheduleVerified:false,pickupRescheduleVerified:false,
+    gameRestartRetentionVerified:false,...noAuthority
   });
 }
