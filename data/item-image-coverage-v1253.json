@@ -70,6 +70,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -93,6 +102,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -116,6 +134,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -164,6 +191,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -187,6 +223,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -210,6 +255,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -237,6 +291,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -260,6 +323,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -283,6 +355,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -306,6 +387,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -332,6 +422,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -355,6 +454,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -379,6 +487,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -402,6 +519,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -426,6 +552,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -449,6 +584,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -472,6 +616,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -495,6 +648,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -518,6 +680,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -541,6 +712,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -601,6 +781,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -661,6 +850,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -721,6 +919,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -781,6 +988,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -808,6 +1024,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -873,6 +1098,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 4,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -899,6 +1133,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -925,6 +1168,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -948,6 +1200,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -971,6 +1232,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -994,6 +1264,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1017,6 +1296,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1040,6 +1328,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1063,6 +1360,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1086,6 +1392,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1109,6 +1424,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1132,6 +1456,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1155,6 +1488,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1178,6 +1520,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1201,6 +1552,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1224,6 +1584,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1247,6 +1616,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1270,6 +1648,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1293,6 +1680,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1316,6 +1712,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1339,6 +1744,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1362,6 +1776,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1385,6 +1808,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1408,6 +1840,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1431,6 +1872,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1454,6 +1904,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1477,6 +1936,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1500,6 +1968,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1523,6 +2000,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1546,6 +2032,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1569,6 +2064,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1592,6 +2096,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1615,6 +2128,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1638,6 +2160,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1661,6 +2192,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1684,6 +2224,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1707,6 +2256,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1730,6 +2288,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1753,6 +2320,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1776,6 +2352,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1799,6 +2384,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1822,6 +2416,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1845,6 +2448,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1868,6 +2480,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1891,6 +2512,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1914,6 +2544,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1937,6 +2576,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1960,6 +2608,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -1983,6 +2640,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2006,6 +2672,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2029,6 +2704,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2052,6 +2736,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2075,6 +2768,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2098,6 +2800,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2121,6 +2832,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2144,6 +2864,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2167,6 +2896,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2190,6 +2928,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2213,6 +2960,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2236,6 +2992,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2259,6 +3024,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2282,6 +3056,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2305,6 +3088,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2328,6 +3120,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2351,6 +3152,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2374,6 +3184,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2397,6 +3216,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2420,6 +3248,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2443,6 +3280,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2466,6 +3312,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2489,6 +3344,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2512,6 +3376,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2535,6 +3408,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2558,6 +3440,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2581,6 +3472,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2604,6 +3504,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2631,6 +3540,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2658,6 +3576,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2685,6 +3612,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2712,6 +3648,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2738,6 +3683,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2764,6 +3718,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2790,6 +3753,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2816,6 +3788,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2842,6 +3823,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2868,6 +3858,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2894,6 +3893,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2920,6 +3928,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2946,6 +3963,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2972,6 +3998,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -2998,6 +4033,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -3024,6 +4068,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -3050,6 +4103,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -3076,6 +4138,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -3102,6 +4173,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -3128,6 +4208,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -3151,6 +4240,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -3174,6 +4272,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -3197,6 +4304,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -3220,6 +4336,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -3243,6 +4368,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -3266,6 +4400,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -3329,6 +4472,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -3406,6 +4558,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 16,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -3483,6 +4644,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 16,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -3560,6 +4730,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 16,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -3621,6 +4800,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 2,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -3671,6 +4859,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -3733,6 +4930,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 3,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -3793,6 +4999,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -3853,6 +5068,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -3913,6 +5137,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -3973,6 +5206,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -4033,6 +5275,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -4093,6 +5344,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -4141,6 +5401,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -4201,6 +5470,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -4261,6 +5539,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -4321,6 +5608,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -4381,6 +5677,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -4441,6 +5746,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -4503,6 +5817,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 3,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -4563,6 +5886,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -4625,6 +5957,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 3,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -4673,6 +6014,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -4733,6 +6083,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -4781,6 +6140,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -4829,6 +6197,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -4890,6 +6267,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 2,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -4951,6 +6337,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 2,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5012,6 +6407,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 2,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5035,6 +6439,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5061,6 +6474,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5092,6 +6514,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5122,6 +6553,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5145,6 +6585,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5171,6 +6620,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5194,6 +6652,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5217,6 +6684,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5240,6 +6716,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5263,6 +6748,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5286,6 +6780,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5310,6 +6813,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5334,6 +6846,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5361,6 +6882,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5387,6 +6917,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5413,6 +6952,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5439,6 +6987,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "ActivityItem.json",
+        "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5499,6 +7056,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5559,6 +7125,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5619,6 +7194,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5679,6 +7263,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5739,6 +7332,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5799,6 +7401,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5859,6 +7470,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5919,6 +7539,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -5979,6 +7608,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -6039,6 +7677,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -6099,6 +7746,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -6159,6 +7815,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -6219,6 +7884,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -6279,6 +7953,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -6339,6 +8022,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -6399,6 +8091,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -6459,6 +8160,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -6519,6 +8229,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -6579,6 +8298,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -6654,6 +8382,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 14,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -6714,6 +8451,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -6774,6 +8520,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -6834,6 +8589,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -6894,6 +8658,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -6954,6 +8727,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -7014,6 +8796,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -7074,6 +8865,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -7134,6 +8934,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -7196,6 +9005,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 3,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -7258,6 +9076,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 3,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -7320,6 +9147,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 3,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -7382,6 +9218,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 3,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -7442,6 +9287,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -7502,6 +9356,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -7562,6 +9425,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -7622,6 +9494,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -7682,6 +9563,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -7742,6 +9632,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -7802,6 +9701,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -7862,6 +9770,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -7922,6 +9839,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -7982,6 +9908,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -8042,6 +9977,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -8102,6 +10046,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -8162,6 +10115,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -8222,6 +10184,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -8282,6 +10253,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -8342,6 +10322,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 1,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -8407,6 +10396,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 4,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -8472,6 +10470,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 4,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -8537,6 +10544,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 4,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -8602,6 +10618,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 4,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Furniture.json",
+        "sourceSha256": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -8655,6 +10680,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -8708,6 +10742,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -8761,6 +10804,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -8814,6 +10866,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -8868,6 +10929,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -8922,6 +10992,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -8975,6 +11054,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -9028,6 +11116,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -9082,6 +11179,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -9136,6 +11242,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -9189,6 +11304,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -9242,6 +11366,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -9302,6 +11435,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -9356,6 +11498,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -9409,6 +11560,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -9470,6 +11630,15 @@
         "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
         "references": 2,
         "notAnImageApproval": true
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -9523,6 +11692,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -9581,6 +11759,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     },
     {
@@ -9634,6 +11821,15 @@
         "status": "MISSING",
         "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
         "url": null
+      },
+      "itemSourceType": {
+        "status": "ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "itemIdField": 1,
+        "itemSourceCategoryOnly": true,
+        "notRuntimeGameCategory": true,
+        "notImageProof": true
       }
     }
   ],
@@ -9813,5 +12009,39 @@
     "publicImageUrlsGranted": 0,
     "rights": "NOT_ESTABLISHED",
     "note": "81 have independent GameObject catalog addresses for their WORLD OBJECTS separate from the shared field4 IconAddress, but those 81 GameObject assets DO NOT establish the actual game UI thumbnail image/2D render pipeline; release AMBIGUOUS must remain."
+  },
+  "originalItemTypeCensus": {
+    "gameVersion": "1.25.3",
+    "platform": "Steam/Windows",
+    "evidence": "ACTUAL_SOURCE_FRAMED_PROTOBUF_FIELD1_ITEMID_READ_ONLY",
+    "sourceHashes": {
+      "ActivityItem.json": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+      "Furniture.json": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de5c5eb87aaa674",
+      "Companion.json": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea"
+    },
+    "originalRecordCounts": {
+      "ActivityItem.json": 3716,
+      "Furniture.json": 6233,
+      "Companion.json": 362
+    },
+    "supportedRecurringItemIDs": 244,
+    "matchedByItemDbField1": 244,
+    "distinctSourceStreamsPerItemId": 1,
+    "streamCounts": {
+      "ActivityItem.json": 173,
+      "Furniture.json": 52,
+      "Companion.json": 19
+    },
+    "formerlyUnclassified138ActivityItemProof": {
+      "count": 138,
+      "canonicalSortedItemIdAndStreamSha256": "553cc22aef519f8e5cb4e3873e4aa74a1aa0eb358c1e7dd8e2a93d5761b9e012",
+      "sourceStream": "ActivityItem.json",
+      "inFurniture": 0,
+      "inCompanion": 0
+    },
+    "categoryIsOriginalSourceTypeOnly": true,
+    "notNativeGameplayCategory": true,
+    "visualsGranted": 0,
+    "rightsGranted": false
   }
 }
