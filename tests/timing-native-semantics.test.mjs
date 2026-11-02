@@ -309,13 +309,9 @@ test('raw Reschedule uses interval-variant branching and a virtual slot-2 NextOc
   assert.equal(r.setterInterfaceSlotRVA,'0x05AF2C7C');
   assert.equal(r.setterArgumentRVA,'0x05AF2CA0');
   assert.equal(r.setterCallRVA,'0x05AF2CA4');
-  // Directly verified source opcodes. LDR W8,[X0,#0x20] -> CMP #2/#1,
-  // interface slot-2 dispatch then MOV X1,X20 and BLR X8.
-  assert.equal(0x7100091f,0x7100091f);
-  assert.equal(0x7100051f,0x7100051f);
-  assert.equal(0x52800042,0x52800042);
-  assert.equal(0xaa1403e1,0xaa1403e1);
-  assert.equal(0xd63f0100,0xd63f0100);
+  // Two direct calls inside Reschedule converge on its TimeOfDay helper.
+  assert.equal(decodeBL(0x05AF2A60,0x940000C0),0x05AF2D60);
+  assert.equal(decodeBL(0x05AF2C30,0x9400004C),0x05AF2D60);
   assert.equal(r.setterDispatchIsStaticOnly,true);
   const model=analyzeW1StaticBranches(native,{eventId:2010000021,saveKind:'ItemSpawning',
     nowTicks:120n,nextOccurrenceTicks:100n});
