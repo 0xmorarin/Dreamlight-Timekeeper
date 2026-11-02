@@ -68,6 +68,11 @@ test('checked-in 244 ItemID status ledger is fail-closed and explicitly missing 
  assert.equal(report.summary.assetGUIDLinkAmbiguitiesNotPromoted,3);
  assert.equal(report.scope.additionalRealSaveItemIDs,'UNKNOWN_NOT_ENUMERATED_ON_THIS_STATIC_BASELINE');
  assert.equal(report.policy.permissionState,'NOT_ESTABLISHED');
- assert.ok(report.items.every(x=>x.publishedImage==='MISSING'&&
-  x.rgbaVerifiedForThisItem==='NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD'));
+ assert.ok(report.items.every(x=>x.publishedImage==='MISSING'));
+ assert.equal(report.items.filter(x=>x.rgbaVerifiedForThisItem==='PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED').length,138);
+ assert.equal(report.items.filter(x=>x.rgbaVerifiedForThisItem==='NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD').length,106);
+ assert.equal(report.summary.recurringPrivatePrototypeRgbaPassed,138);
+ assert.equal(report.summary.recurringPrivatePrototypeLosslessWebpBytes,11517640);
+ assert.match(report.summary.privateItemByItemEvidenceSha256,/^[0-9a-f]{64}$/);
+ assert.equal(report.summary.fullyDecodedItemImageVP8LInProduct,0);
 });

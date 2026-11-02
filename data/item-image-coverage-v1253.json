@@ -30,14 +30,23 @@
     "assetGUIDLinkAmbiguitiesNotPromoted": 3,
     "priorGlobalPrivateRGBAEvidence": "396/396 across Ingredient/Flower/Fish/Seed only; not 244 deployed images",
     "fullyDecodedItemImageVP8LInProduct": 0,
-    "sourceStatus": "NO_STEAM_ASSET_BYTES_VERIFIED"
+    "sourceStatus": "NO_STEAM_ASSET_BYTES_VERIFIED",
+    "recurringPrivatePrototypeRgbaChecked": 138,
+    "recurringPrivatePrototypeRgbaPassed": 138,
+    "recurringPrivatePrototypeLosslessWebpBytes": 11517640,
+    "recurringPrivatePrototypeLosslessWebpMaxBytes": 168296,
+    "recurringPrivatePrototypeLosslessWebpP95Bytes": 151390,
+    "privatePrototypeEncoding": "Pillow/libwebp lossless=true method=0 exact=true",
+    "privateItemByItemEvidenceSha256": "18f5f496cf995db15565cb718e8f91cf396a4759a9214c59fd979f29b9a689ae",
+    "privatePixelProofScope": "PRIVATE_EXTRACTED_SOURCE_EQ_LOCAL_WEBP_DECODE_NOT_PUBLISHED"
   },
   "policy": {
     "allowGameImagePublication": false,
     "permissionState": "NOT_ESTABLISHED",
     "manifestUnmodified": true,
     "symbolicStatus": "SOURCE_LINKED_CANDIDATE is NOT verified image and has no publishable URL",
-    "dataScope": "Only ItemID/EventID/name/static state; no private save or bundle bytes"
+    "dataScope": "Only ItemID/EventID/name/static state; no private save or bundle bytes",
+    "privateSourcePixelsNotInRepository": true
   },
   "items": [
     {
@@ -56,7 +65,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30000063,
@@ -74,7 +83,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30000064,
@@ -92,7 +101,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30000072,
@@ -128,7 +137,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30200091,
@@ -146,7 +155,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30200147,
@@ -168,7 +177,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30200221,
@@ -186,7 +195,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30400120,
@@ -204,7 +213,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30400121,
@@ -222,7 +231,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30400122,
@@ -243,7 +252,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30400123,
@@ -261,7 +270,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30400124,
@@ -280,7 +289,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30400125,
@@ -298,7 +307,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30400126,
@@ -317,7 +326,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30400195,
@@ -335,7 +344,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30400196,
@@ -353,7 +362,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30400197,
@@ -371,7 +380,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30400198,
@@ -389,7 +398,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30400199,
@@ -407,7 +416,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30400219,
@@ -501,7 +510,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30400263,
@@ -543,7 +552,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30400275,
@@ -564,7 +573,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800054,
@@ -582,7 +591,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800055,
@@ -600,7 +609,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800058,
@@ -618,7 +627,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800059,
@@ -636,7 +645,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800060,
@@ -654,7 +663,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800061,
@@ -672,7 +681,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800062,
@@ -690,7 +699,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800063,
@@ -708,7 +717,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800064,
@@ -726,7 +735,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800065,
@@ -744,7 +753,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800066,
@@ -762,7 +771,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800067,
@@ -780,7 +789,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800068,
@@ -798,7 +807,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800069,
@@ -816,7 +825,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800071,
@@ -834,7 +843,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800072,
@@ -852,7 +861,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800073,
@@ -870,7 +879,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800074,
@@ -888,7 +897,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800075,
@@ -906,7 +915,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800076,
@@ -924,7 +933,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800077,
@@ -942,7 +951,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800078,
@@ -960,7 +969,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800079,
@@ -978,7 +987,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800080,
@@ -996,7 +1005,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800081,
@@ -1014,7 +1023,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800082,
@@ -1032,7 +1041,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800083,
@@ -1050,7 +1059,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800084,
@@ -1068,7 +1077,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800085,
@@ -1086,7 +1095,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800086,
@@ -1104,7 +1113,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800087,
@@ -1122,7 +1131,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800088,
@@ -1140,7 +1149,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800089,
@@ -1158,7 +1167,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800090,
@@ -1176,7 +1185,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800091,
@@ -1194,7 +1203,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800092,
@@ -1212,7 +1221,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800093,
@@ -1230,7 +1239,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800094,
@@ -1248,7 +1257,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800095,
@@ -1266,7 +1275,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800096,
@@ -1284,7 +1293,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800108,
@@ -1302,7 +1311,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800109,
@@ -1320,7 +1329,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800110,
@@ -1338,7 +1347,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800111,
@@ -1356,7 +1365,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800112,
@@ -1374,7 +1383,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800113,
@@ -1392,7 +1401,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800114,
@@ -1410,7 +1419,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800115,
@@ -1428,7 +1437,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800116,
@@ -1446,7 +1455,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800117,
@@ -1464,7 +1473,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800118,
@@ -1482,7 +1491,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800119,
@@ -1500,7 +1509,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800120,
@@ -1518,7 +1527,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800121,
@@ -1536,7 +1545,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800122,
@@ -1554,7 +1563,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800123,
@@ -1572,7 +1581,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800124,
@@ -1590,7 +1599,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800125,
@@ -1608,7 +1617,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800126,
@@ -1626,7 +1635,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800127,
@@ -1644,7 +1653,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800135,
@@ -1662,7 +1671,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800139,
@@ -1680,7 +1689,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800140,
@@ -1698,7 +1707,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800141,
@@ -1716,7 +1725,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800142,
@@ -1734,7 +1743,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800143,
@@ -1752,7 +1761,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800144,
@@ -1770,7 +1779,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800145,
@@ -1788,7 +1797,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800146,
@@ -1806,7 +1815,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800147,
@@ -1824,7 +1833,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800148,
@@ -1842,7 +1851,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800149,
@@ -1860,7 +1869,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800150,
@@ -1878,7 +1887,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800164,
@@ -1900,7 +1909,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800165,
@@ -1922,7 +1931,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800166,
@@ -1944,7 +1953,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800167,
@@ -1966,7 +1975,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800173,
@@ -1987,7 +1996,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800174,
@@ -2008,7 +2017,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800175,
@@ -2029,7 +2038,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800176,
@@ -2050,7 +2059,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800177,
@@ -2071,7 +2080,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800178,
@@ -2092,7 +2101,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800179,
@@ -2113,7 +2122,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800180,
@@ -2134,7 +2143,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800181,
@@ -2155,7 +2164,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800182,
@@ -2176,7 +2185,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800183,
@@ -2197,7 +2206,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800184,
@@ -2218,7 +2227,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800185,
@@ -2239,7 +2248,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800186,
@@ -2260,7 +2269,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800187,
@@ -2281,7 +2290,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 30800188,
@@ -2302,7 +2311,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 31000084,
@@ -2320,7 +2329,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 31100030,
@@ -2338,7 +2347,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 31100031,
@@ -2356,7 +2365,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 31100032,
@@ -2374,7 +2383,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 31100072,
@@ -2392,7 +2401,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 31100164,
@@ -2410,7 +2419,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 31300003,
@@ -3022,7 +3031,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 31700003,
@@ -3043,7 +3052,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 31700008,
@@ -3069,7 +3078,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 31700014,
@@ -3094,7 +3103,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 31700034,
@@ -3112,7 +3121,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 31700038,
@@ -3133,7 +3142,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 31700063,
@@ -3151,7 +3160,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 31700102,
@@ -3169,7 +3178,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 31700121,
@@ -3187,7 +3196,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 31700131,
@@ -3205,7 +3214,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 31700148,
@@ -3223,7 +3232,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 31700151,
@@ -3242,7 +3251,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 31700152,
@@ -3261,7 +3270,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 31700156,
@@ -3283,7 +3292,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 31700164,
@@ -3304,7 +3313,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 31700171,
@@ -3325,7 +3334,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 31700176,
@@ -3346,7 +3355,7 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
     },
     {
       "itemId": 40600000,

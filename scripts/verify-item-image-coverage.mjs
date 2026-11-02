@@ -39,6 +39,15 @@ for(const row of pinned.items)tally.set(row.sourceCrosswalk,(tally.get(row.sourc
 if(tally.get('SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE')!==pinned.summary.recurringStaticSourceLinkedCandidateIDs||
  tally.get('NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES')!==pinned.summary.recurringNotLinkedByThoseSourceBundles)
  fail('source reference research counts drift');
+const privatePassed=pinned.items.filter(row=>row.rgbaVerifiedForThisItem==='PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED');
+const untested=pinned.items.filter(row=>row.rgbaVerifiedForThisItem==='NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD');
+if(privatePassed.length!==138||untested.length!==106||
+ pinned.summary.recurringPrivatePrototypeRgbaChecked!==138||
+ pinned.summary.recurringPrivatePrototypeRgbaPassed!==138||
+ pinned.summary.fullyDecodedItemImageVP8LInProduct!==0||
+ privatePassed.some(row=>row.sourceCrosswalk!=='SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE')||
+ untested.some(row=>row.sourceCrosswalk!=='NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES'))
+ fail('unreviewed promotion of private pixel parity to public image');
 if(pinned.policy.permissionState!=='NOT_ESTABLISHED'||pinned.policy.allowGameImagePublication!==false||
   pinned.policy.manifestUnmodified!==true||pinned.scope.additionalRealSaveItemIDs!=='UNKNOWN_NOT_ENUMERATED_ON_THIS_STATIC_BASELINE')
  fail('unreviewed copyright or dynamic-save capability upgrade');
