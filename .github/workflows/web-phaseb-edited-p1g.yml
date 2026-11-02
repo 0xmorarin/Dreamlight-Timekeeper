@@ -1,7 +1,7 @@
 name: 03 WEB Phase B actual edited P1G Chromium
 on:
   push:
-    branches: [feat/web-phaseb-verified-p1g-worker]
+    branches: [feat/web-phaseb-verified-p1g-worker, integration/00ctrl-readonly-firstwave-20261102]
   workflow_dispatch:
 permissions:
   contents: read
