@@ -42,10 +42,11 @@ export class JsWorkerAdapter implements SaveEnginePort {
  }
  async open(file:File,onProgress?:(p:ProgressUpdate)=>void){
   this.invalidate('SAVE_SWITCH');
+  const gen=this.generation;
   onProgress?.({phase:'reading',loaded:0,total:file.size});
   const buffer=await file.arrayBuffer();
+  if(gen!==this.generation)throw new Error('STALE_FILE_READ');
   onProgress?.({phase:'transferring',loaded:file.size,total:file.size});
-  const gen=this.generation;
   if(!buffer.byteLength)throw new Error('Empty source file');
   const p=this.request<Extract<SaveResponse,{type:'opened'}>>({type:'open',buffer,name:file.name},[buffer]);
   onProgress?.({phase:'decoding'});
