@@ -117,10 +117,10 @@ test('W1-Q01 independent actual TIME assessor feeds CORE: three changes, unrelat
  assert.deepEqual(c.p,frozenRoot);
  assert.notDeepEqual(Buffer.from(result.editedBytes),originalBytes);
  const edited=parseSafeJson((await codec.loadProfile(result.editedBytes)).jsonText);
- const paths=c.entries.map(e=>e.pointer).sort();
+ const paths=c.args.entries.map(e=>e.pointer).sort();
  assert.deepEqual(diffPaths(frozenRoot,edited).sort(),paths);
  assert.deepEqual(result.changedPaths.slice().sort(),paths);
- for(let i=0;i<3;i++)assert.equal(edited.World.RecurringEvents[i][events[i][1]].NextOccurrence,c.entries[i].targetTime);
+ for(let i=0;i<3;i++)assert.equal(edited.World.RecurringEvents[i][events[i][1]].NextOccurrence,c.args.entries[i].targetTime);
  for(const j of [3,4,5,6,7])assert.deepEqual(edited.World.RecurringEvents[j],frozenRoot.World.RecurringEvents[j]);
  assert.deepEqual(edited.World.OpaqueGrid,frozenRoot.World.OpaqueGrid);
  assert.deepEqual(edited.GameInfo,frozenRoot.GameInfo);
@@ -142,11 +142,11 @@ test('W1-Q02 exact BID/schema626 copy gate, different BID, platform, schema and 
  ])await assert.rejects(createW1EditedP1gCopy(bad));
  const newer=makeContext(profile(655));
  assert.equal(newer.review.status,'BLOCKED_W1_WRITE_TARGETS');
- await assert.rejects(createW1EditedP1gCopy({...newer.args,w1TargetReview:c.review,entries:c.entries}));
+ await assert.rejects(createW1EditedP1gCopy({...newer.args,w1TargetReview:c.review,entries:c.args.entries}));
  assert.deepEqual(Buffer.from(c.bytes),original);
 });
 test('W1-Q03 caller replay, no-op, stale original, forged pointer/index/kind, duplicate plan and invalid dates deny',async()=>{
- const c=makeContext(),e=c.entries[0];
+ const c=makeContext(),e=c.args.entries[0];
  const invalid=[
   [{...e,originalTime:'2025-01-01T00:00:00Z'}],
   [{...e,targetTime:e.originalTime}],
@@ -183,12 +183,12 @@ test('W1-Q05 mixed valid + protected batch and duplicate saved EventID fail whol
  const rev=assessMinimalW1WriteTargets(c.p,s,plan,definitions,ledger);
  assert.equal(rev.status,'BLOCKED_W1_WRITE_TARGETS');
  assert.deepEqual(rev.candidateTargets,[]);
- await assert.rejects(createW1EditedP1gCopy({...c.args,w1TargetReview:rev,entries:[c.entries[0],badEntry(c,2010000064)]}));
+ await assert.rejects(createW1EditedP1gCopy({...c.args,w1TargetReview:rev,entries:[c.args.entries[0],badEntry(c,2010000064)]}));
  const p=profile();
  p.World.RecurringEvents['9']={ItemSpawning:{RecurringEventItemID:2010000021,NextOccurrence:OLD}};
  const duplicated=makeContext(p);
  assert.equal(duplicated.review.status,'BLOCKED_W1_WRITE_TARGETS');
- await assert.rejects(createW1EditedP1gCopy({...duplicated.args,w1TargetReview:c.review,entries:c.entries}));
+ await assert.rejects(createW1EditedP1gCopy({...duplicated.args,w1TargetReview:c.review,entries:c.args.entries}));
 });
 test('W1-Q06 unknown oneof branch or multiple recognized variants deny even when selected known W1 path is valid',async()=>{
  const original=makeContext();
@@ -200,7 +200,7 @@ test('W1-Q06 unknown oneof branch or multiple recognized variants deny even when
   const p=profile();modifier(p);
   const c=makeContext(p,[2010000021]);
   assert.equal(c.review.status,'BLOCKED_W1_WRITE_TARGETS');
-  await assert.rejects(createW1EditedP1gCopy({...c.args,w1TargetReview:original.review,entries:[original.entries[0]]}));
+  await assert.rejects(createW1EditedP1gCopy({...c.args,w1TargetReview:original.review,entries:[original.args.entries[0]]}));
  }
 });
 test('W1-Q07 altered TIME review, false authority, candidate mutation, mismatching source fields reject',async()=>{
