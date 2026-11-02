@@ -34,5 +34,6 @@ jobs:
           grep -q Dreamlight-Timekeeper build/index.html
       - name: Real Chromium UI, typed Worker and synthetic P1G read/edit/download
         run: |
+          npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
           node tests/browser-sveltekit-migration.smoke.mjs
