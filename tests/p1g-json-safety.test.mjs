@@ -6,6 +6,7 @@ import {deflateRawSync,crc32} from 'node:zlib';
 import {makeSyntheticP1gProfile} from './fixture.mjs';
 import {p1gPackagedProfileCodec} from '../src/core/p1g-packaged-profile-codec.mjs';
 import {auditP1gEnvelope} from '../src/core/p1g-envelope-audit.mjs';
+import {diffPaths,parseSafeJson} from '../src/core/safe-edit-session.mjs';
 
 const KEY=Buffer.from('62357168683873614a38556c444a557a545a5864325467366d626f3857386e35','hex');
 const minimal='"GameInfo":{"Version":626},"Player":{},"World":{}';
@@ -73,4 +74,63 @@ test('synthetic larger profile preserves unknown nested data under strict codec 
  assert.equal(envelope.writerAuthorized,false);
  assert.equal(envelope.editedCopyAuthorized,false);
  assert.deepEqual(Buffer.from(source),original);
+});
+
+test('decimal/exponent unsafe integer aliases and escaped duplicate keys fail all direct codec entrypoints',async()=>{
+ const base=makeSyntheticP1gProfile({GameInfo:{Version:626},Player:{},World:{}});
+ const metadata=(await p1gPackagedProfileCodec.loadProfile(base)).metadata;
+ const malformed=[
+  [jsonWith('"FutureOpaque":{"unsafe":9007199254740993.0}'),/Unsafe JSON integer/],
+  [jsonWith('"FutureOpaque":{"unsafe":9.007199254740993e15}'),/Unsafe JSON integer/],
+  [jsonWith('"FutureOpaque":{"unsafe":1e20}'),/Unsafe JSON integer/],
+  [jsonWith('"FutureOpaque":{"escaped":1,"\\u0065scaped":2}'),/Duplicate JSON object key/]
+ ];
+ for(const [text,reason] of malformed){
+  const cipher=rawTextP1g(text),before=Buffer.from(cipher);
+  assert.throws(()=>p1gPackagedProfileCodec.parseProfileText(text),reason);
+  await assert.rejects(p1gPackagedProfileCodec.loadProfile(cipher),reason);
+  await assert.rejects(p1gPackagedProfileCodec.createEncodedProfile(text,metadata),reason);
+  assert.deepEqual(Buffer.from(cipher),before);
+ }
+ const accepted=jsonWith('"FutureOpaque":{"float":0.125,"safeExponent":6.26e2,"safeLimit":9007199254740991e0}');
+ assert.equal(p1gPackagedProfileCodec.parseProfileText(accepted).metadata.profileVersion,626);
+});
+
+test('unknown Unicode, key order and numeric spellings preserve JSON semantics, not lexical bytes, on synthetic edit',async()=>{
+ const original=String.raw`{"GameInfo":{"Version":626},"Player":{"Name":"\u00e9"},
+"World":{"Opaque":{"emoji":"\uD83D\uDE00","numericString":"9007199254740993",
+"keyOrder":{"12":"twelve","2":"two"},"fraction":1.0,"exponent":1e2,
+"loneSurrogate":"\ud800"}}}`;
+ const source=rawTextP1g(original),saved=Buffer.from(source);
+ const loaded=await p1gPackagedProfileCodec.loadProfile(source);
+ assert.equal(loaded.jsonText,original);
+ const profile=parseSafeJson(original),candidate=structuredClone(profile);
+ candidate.World.ExplicitSyntheticChange='date-independent';
+ const text=JSON.stringify(candidate);
+ assert.notEqual(text,original,'lexical representation changes under JSON.stringify');
+ assert.equal(text.includes('"fraction":1.0'),false);
+ assert.equal(text.includes('"exponent":1e2'),false);
+ assert.equal(text.includes('"12":"twelve","2":"two"'),false);
+ assert.deepEqual(diffPaths(profile,candidate),['/World/ExplicitSyntheticChange']);
+ const copy=await p1gPackagedProfileCodec.createEncodedProfile(text,loaded.metadata);
+ const reopened=await p1gPackagedProfileCodec.loadProfile(copy);
+ const changed=parseSafeJson(reopened.jsonText);
+ assert.deepEqual(changed,candidate);
+ assert.deepEqual(diffPaths(profile,changed),['/World/ExplicitSyntheticChange']);
+ assert.equal(changed.World.Opaque.emoji,'😀');
+ assert.equal(changed.World.Opaque.numericString,'9007199254740993');
+ assert.equal(changed.World.Opaque.loneSurrogate,'\ud800');
+ const envelope=auditP1gEnvelope({format:'packaged',metadata:loaded.metadata});
+ assert.equal(envelope.writerAuthorized,false);
+ assert.equal(envelope.editedCopyAuthorized,false);
+ assert.deepEqual(Buffer.from(source),saved);
+});
+
+test('large synthetic array of safe numeric tokens is checked without per-token suffix copies',()=>{
+ const numbers=Array.from({length:50000},(_,i)=>String(i)).join(',');
+ const text=jsonWith('"FutureOpaque":{"values":['+numbers+']}');
+ const parsed=parseSafeJson(text);
+ assert.equal(parsed.FutureOpaque.values.length,50000);
+ assert.equal(parsed.FutureOpaque.values.at(-1),49999);
+ assert.equal(p1gPackagedProfileCodec.parseProfileText(text).metadata.profileVersion,626);
 });
