@@ -193,3 +193,100 @@ test('streamed inflation rejects bytes exceeding the central directory size befo
  await assert.rejects(p1gPackagedProfileCodec.loadProfile(source),/PROFILE_ENTRY_TOO_LARGE/);
  assert.deepEqual(Buffer.from(source),before);
 });
+
+function rearrangedEncryptedFixture(rearrange) {
+ const initial=Buffer.from(makeSyntheticP1gProfile(fixture()));
+ const decipher=createDecipheriv('aes-256-ecb',KEY,null);
+ const archive=Buffer.concat([decipher.update(initial),decipher.final()]);
+ const changed=rearrange(archive);
+ assert(Buffer.isBuffer(changed));
+ const cipher=createCipheriv('aes-256-ecb',KEY,null);
+ return new Uint8Array(Buffer.concat([cipher.update(changed),cipher.final()]));
+}
+test('valid synthetic ZIP with actual signed data descriptor remains read-only, never simple',async()=>{
+ const source=rearrangedEncryptedFixture(plain=>{
+  const eocd=plain.length-22,central=plain.readUInt32LE(eocd+16);
+  const descriptor=Buffer.alloc(16);
+  descriptor.writeUInt32LE(0x08074b50,0);
+  descriptor.writeUInt32LE(plain.readUInt32LE(central+16),4);
+  descriptor.writeUInt32LE(plain.readUInt32LE(central+20),8);
+  descriptor.writeUInt32LE(plain.readUInt32LE(central+24),12);
+  const zip=Buffer.concat([plain.subarray(0,central),descriptor,plain.subarray(central)]);
+  zip.writeUInt16LE(0x0008,6);
+  zip.writeUInt32LE(0,14);zip.writeUInt32LE(0,18);zip.writeUInt32LE(0,22);
+  zip.writeUInt16LE(0x0008,central+16+8);
+  zip.writeUInt32LE(central+16,eocd+16+16);
+  return zip;
+ });
+ const original=Buffer.from(source);
+ const decoded=await p1gPackagedProfileCodec.loadProfile(source);
+ const audit=auditP1gEnvelope({format:'packaged',metadata:decoded.metadata});
+ assert.equal(decoded.metadata.profileVersion,626);
+ assert.equal(audit.lengths.profileTrailingRegion,16);
+ assert.equal(audit.flagBits,0x0008);
+ assert.equal(audit.localHeaderFieldsMatchCentral,false);
+ for(const code of ['DATA_DESCRIPTOR_FLAG_WOULD_BE_REMOVED',
+  'PROFILE_TO_CENTRAL_TRAILING_BYTES','LOCAL_CENTRAL_CRC_DIFFERS',
+  'LOCAL_CENTRAL_SIZES_DIFFER']) assert(audit.findings.includes(code),code);
+ assert.equal(audit.repackageShapeObserved,false);
+ assert.equal(audit.writerAuthorized,false);
+ assert.deepEqual(Buffer.from(source),original);
+});
+test('synthetic local-only extra field is observed from ZIP bytes and never inferred from central extra',async()=>{
+ const source=rearrangedEncryptedFixture(plain=>{
+  const eocd=plain.length-22,central=plain.readUInt32LE(eocd+16);
+  const nameEnd=30+plain.readUInt16LE(26);
+  const extra=Buffer.from([0xad,0xde,0x00,0x00]); // unknown, empty ZIP extra record
+  const zip=Buffer.concat([plain.subarray(0,nameEnd),extra,plain.subarray(nameEnd)]);
+  zip.writeUInt16LE(extra.length,28);
+  zip.writeUInt32LE(central+extra.length,eocd+extra.length+16);
+  return zip;
+ });
+ const original=Buffer.from(source);
+ const decoded=await p1gPackagedProfileCodec.loadProfile(source);
+ const report=auditP1gEnvelope({format:'packaged',metadata:decoded.metadata});
+ assert.equal(report.lengths.localExtra,4);
+ assert.equal(report.lengths.centralExtra,0);
+ assert.equal(report.localExtraMatchesCentral,false);
+ assert(report.findings.includes('LOCAL_CENTRAL_EXTRA_BYTES_DIFFER'));
+ assert.equal(report.repackageShapeObserved,false);
+ assert.equal(report.editedCopyAuthorized,false);
+ assert.deepEqual(Buffer.from(source),original);
+});
+test('central-directory to EOCD padding is audited from actual synthetic ZIP layout',async()=>{
+ const source=rearrangedEncryptedFixture(plain=>{
+  const eocd=plain.length-22;
+  return Buffer.concat([plain.subarray(0,eocd),Buffer.from([0x61,0x62,0x63]),
+   plain.subarray(eocd)]);
+ });
+ const loaded=await p1gPackagedProfileCodec.loadProfile(source);
+ const report=auditP1gEnvelope({format:'packaged',metadata:loaded.metadata});
+ assert.equal(report.lengths.centralDirectoryTrailing,3);
+ assert(report.findings.includes('CENTRAL_TO_EOCD_GAP_BYTES'));
+ assert.equal(report.repackageShapeObserved,false);
+ assert.equal(report.writerAuthorized,false);
+});
+test('a compressed highly repetitive synthetic profile does not bypass central declared-size bound',async()=>{
+ const big={...fixture(),SyntheticPadding:'Z'.repeat(2*1024*1024)};
+ const source=new Uint8Array(makeSyntheticP1gProfile(big));
+ const cipher=createDecipheriv('aes-256-ecb',KEY,null);
+ const plain=Buffer.concat([cipher.update(source),cipher.final()]);
+ const eocd=plain.length-22,central=plain.readUInt32LE(eocd+16);
+ assert(plain.readUInt32LE(central+24)>2*1024*1024);
+ assert(plain.readUInt32LE(central+20)<16384); // compression-bomb-like ratio
+ plain.writeUInt32LE(1024,central+24);
+ const recipher=createCipheriv('aes-256-ecb',KEY,null);
+ const malformed=new Uint8Array(Buffer.concat([recipher.update(plain),recipher.final()]));
+ const before=Buffer.from(malformed);
+ await assert.rejects(p1gPackagedProfileCodec.loadProfile(malformed),/PROFILE_ENTRY_TOO_LARGE/);
+ assert.deepEqual(Buffer.from(malformed),before);
+});
+test('declared profile larger than absolute 128 MiB ceiling is rejected before inflation',async()=>{
+ const source=alteredEncryptedFixture(plain=>{
+  const eocd=plain.length-22,central=plain.readUInt32LE(eocd+16);
+  plain.writeUInt32LE(128*1024*1024+1,central+24);
+ });
+ const original=Buffer.from(source);
+ await assert.rejects(p1gPackagedProfileCodec.loadProfile(source),/PROFILE_ENTRY_TOO_LARGE/);
+ assert.deepEqual(Buffer.from(source),original);
+});
