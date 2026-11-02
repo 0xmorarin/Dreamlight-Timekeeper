@@ -64,3 +64,17 @@ test('02 TIME review provenance, exact target and denial flags are not bypassabl
  ])await assert.rejects(createW1EditedP1gCopy({...base,w1TargetReview:invalid}),/W1_TIME_/);
  assert.equal(sha(source),base.expectedSourceSha256);
 });
+
+test('canonical decimal-string saved EventID is compared without changing its original JSON type',async()=>{
+ const profile=sourceProfile();
+ profile.World.RecurringEvents['0'].ItemSpawning.RecurringEventItemID='2010000021';
+ const bytes=makeSyntheticP1gProfile(profile);
+ const result=await createW1EditedP1gCopy(args(bytes));
+ assert.equal(result.changedPaths.length,1);
+ const {p1gPackagedProfileCodec}=await import('../src/core/p1g-packaged-profile-codec.mjs');
+ const reopened=await p1gPackagedProfileCodec.loadProfile(result.editedBytes);
+ const edited=JSON.parse(reopened.jsonText);
+ assert.equal(edited.World.RecurringEvents['0'].ItemSpawning.RecurringEventItemID,'2010000021');
+ assert.equal(edited.World.RecurringEvents['0'].ItemSpawning.NextOccurrence,target);
+ assert.deepEqual(Buffer.from(result.backupOriginalBytes),Buffer.from(bytes));
+});
