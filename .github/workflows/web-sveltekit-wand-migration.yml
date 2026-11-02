@@ -31,6 +31,8 @@ jobs:
           npm run build
           test -f build/index.html
           test -f build/404.html
+          find build/_app/immutable/workers/assets -name 'item-names*.bin' -print -quit | grep -q .
+          ! find build/_app/immutable/workers/assets -name 'item-names*.gz' -print -quit | grep -q .
           grep -q Dreamlight-Timekeeper build/index.html
       - name: Real Chromium UI, typed Worker and synthetic P1G read/edit/download
         run: |
