@@ -24,4 +24,16 @@ export function categoryName(locale,raw){if(locale==='ja')return String(raw??'')
 const areas={'Urban':{en:'Plaza',ja:'広場'},'Meadow':{en:'Peaceful Meadow',ja:'平和の草原'},'Beach':{en:'Dazzle Beach',ja:'輝きの浜辺'},'Forest':{en:'Forest of Valor',ja:'勇気の森'},'Glade':{en:'Glade of Trust',ja:'信頼の湿地'},'Plateau':{en:'Sunlit Plateau',ja:'太陽の台地'},'Frosted':{en:'Frosted Heights',ja:'氷の高原'},'Forgotten':{en:'Forgotten Lands',ja:'忘却の地'}};
 export function areaName(locale,key){const entry=areas[key];if(!entry)return '';return locale==='ja'?entry.ja:entry.en;}
 export function localDate(value,locale='en-US',opts={}){if(!value)return translate(locale,'timeUnknown');const d=new Date(value);if(!Number.isFinite(d.getTime()))return translate(locale,'timeUnknown');return new Intl.DateTimeFormat(locale,{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',timeZoneName:'short',...opts}).format(d);}
-export function parseLocalDateTime(value){if(typeof value!=='string'||!/^\d{4}-\d\d-\d\dT\d\d:\d\d$/.test(value))return null;const d=new Date(value);if(!Number.isFinite(d.getTime()))return null;const f=n=>String(n).padStart(2,'0');if(`${d.getFullYear()}-${f(d.getMonth()+1)}-${f(d.getDate())}T${f(d.getHours())}:${f(d.getMinutes())}`!==value)return null;return d.toISOString();}
+export function parseLocalDateTime(value){
+ if(typeof value!=='string'||!/^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}$/.test(value))return null;
+ const d=new Date(value);
+ if(!Number.isFinite(d.getTime()))return null;
+ const f=n=>String(n).padStart(2,'0');
+ const wall=x=>`${x.getFullYear()}-${f(x.getMonth()+1)}-${f(x.getDate())}T${f(x.getHours())}:${f(x.getMinutes())}`;
+ if(wall(d)!==value)return null;
+ for(let minutes=15;minutes<=180;minutes+=15){
+  if(wall(new Date(d.getTime()-minutes*60000))===value||wall(new Date(d.getTime()+minutes*60000))===value)
+   return null;
+ }
+ return d.toISOString();
+}

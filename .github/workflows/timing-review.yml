@@ -3,6 +3,9 @@ name: Verify Timing Review
 on:
   pull_request:
     paths:
+      - 'src/timing-native-semantics.mjs'
+      - 'tests/timing-native-semantics.test.mjs'
+      - 'tests/qa-release-gate-independent.test.mjs'
       - 'src/timing-review.mjs'
       - 'src/timing-audit.mjs'
       - 'src/time-presets.mjs'
@@ -48,6 +51,9 @@ on:
   push:
     branches: [main]
     paths:
+      - 'src/timing-native-semantics.mjs'
+      - 'tests/timing-native-semantics.test.mjs'
+      - 'tests/qa-release-gate-independent.test.mjs'
       - 'src/timing-review.mjs'
       - 'src/timing-audit.mjs'
       - 'src/time-presets.mjs'

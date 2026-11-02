@@ -49,7 +49,7 @@ self.onmessage=async({data})=>{
     if(data.type==='backup'){
       if(!original||data.sessionId!==activeSessionId)throw new Error('セーブの読み込みセッションが一致しません');
       const payload=original.slice().buffer;
-      self.postMessage({id,ok:true,type:'backup',name:originalName,buffer:payload},[payload]);
+      self.postMessage({id,ok:true,type:'backup',sessionId:activeSessionId,name:originalName,buffer:payload},[payload]);
       return;
     }
     if(data.type==='preflight'){

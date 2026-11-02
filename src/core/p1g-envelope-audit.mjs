@@ -3,6 +3,8 @@
 const obj=x=>x!==null&&typeof x==='object'&&!Array.isArray(x);
 const bytes=x=>x instanceof Uint8Array?x:null;
 const integer=x=>Number.isSafeInteger(x)&&x>=0;
+const uint16=x=>integer(x)&&x<=0xffff;
+const uint32=x=>integer(x)&&x<=0xffffffff;
 const equalBytes=(a,b)=>a.length===b.length&&a.every((x,i)=>x===b[i]);
 const safeCount=n=>integer(n)?n:null;
 export function auditP1gEnvelope({format,metadata=null}={}){
@@ -19,7 +21,7 @@ export function auditP1gEnvelope({format,metadata=null}={}){
  const zip=metadata?.zip,entry=zip?.profileEntry;
  if(!obj(metadata)||!obj(zip)||!obj(entry)||
     !integer(zip.entryCount)||!integer(zip.profileEntryCount)||
-    !integer(entry.flagBits)||!integer(entry.compressType))
+    !uint16(entry.flagBits)||!uint16(entry.compressType))
   throw new Error('Incomplete decoded P1G envelope metadata.');
  const archiveComment=bytes(zip.archiveComment);
  const centralExtra=bytes(entry.extra),centralComment=bytes(entry.comment);
@@ -27,6 +29,18 @@ export function auditP1gEnvelope({format,metadata=null}={}){
   throw new Error('Unsafe decoded P1G envelope extension metadata.');
  const findings=[];
  const add=(condition,code)=>{if(condition)findings.push(code)};
+ // Missing lengths must never be mistaken for an observed empty ZIP region.
+ for(const [field,value] of [
+  ['ARCHIVE_PREFIX_LENGTH_UNKNOWN',zip.archivePrefixBytes],
+  ['PROFILE_TRAILING_LENGTH_UNKNOWN',zip.profileTrailingRegionBytes],
+  ['CENTRAL_TRAILING_LENGTH_UNKNOWN',zip.centralDirectoryTrailingBytes]
+ ])add(!integer(value),field);
+ const centralHeaderComplete=[entry.extractVersion,entry.dosTime,entry.dosDate].every(uint16)&&
+  [entry.crc32,entry.compressedSize,entry.uncompressedSize].every(uint32);
+ add(!centralHeaderComplete,'CENTRAL_HEADER_FIELDS_INCOMPLETE');
+ const rebuildAttributesComplete=[entry.createSystem,entry.createVersion].every(x=>integer(x)&&x<=0xff)&&
+  uint16(entry.internalAttr)&&uint32(entry.externalAttr);
+ add(!rebuildAttributesComplete,'REBUILD_SOURCE_ATTRIBUTES_INCOMPLETE');
  add(zip.entryCount!==1||zip.profileEntryCount!==1,'MULTI_ENTRY_OR_INVALID_PROFILE_COUNT');
  add(archiveComment.length>0,'ARCHIVE_COMMENT_PRESENT');
  add(centralComment.length>0,'ENTRY_COMMENT_PRESENT');
@@ -38,10 +52,10 @@ export function auditP1gEnvelope({format,metadata=null}={}){
  add(safeCount(zip.profileTrailingRegionBytes)>0,'PROFILE_TO_CENTRAL_TRAILING_BYTES');
  add(safeCount(zip.centralDirectoryTrailingBytes)>0,'CENTRAL_TO_EOCD_GAP_BYTES');
  const local=entry.localHeader;
- const localPresent=obj(local)&&integer(local.flagBits)&&integer(local.compressType)&&
-  bytes(local.extra)!==null&&integer(local.extractVersion)&&
-  integer(local.dosTime)&&integer(local.dosDate)&&integer(local.crc32)&&
-  integer(local.compressedSize)&&integer(local.uncompressedSize);
+ const localPresent=obj(local)&&uint16(local.flagBits)&&uint16(local.compressType)&&
+  bytes(local.extra)!==null&&uint16(local.extractVersion)&&
+  uint16(local.dosTime)&&uint16(local.dosDate)&&uint32(local.crc32)&&
+  uint32(local.compressedSize)&&uint32(local.uncompressedSize);
  let localFieldsMatchCentral=null;
  let extraEqual=null;
  if(!localPresent){
@@ -54,7 +68,7 @@ export function auditP1gEnvelope({format,metadata=null}={}){
   add(local.compressType!==entry.compressType,'LOCAL_CENTRAL_METHOD_DIFFERS');
   add(local.extractVersion!==entry.extractVersion,'LOCAL_CENTRAL_VERSION_DIFFERS');
   add(local.dosTime!==entry.dosTime||local.dosDate!==entry.dosDate,'LOCAL_CENTRAL_DOS_TIME_DIFFERS');
-  if([entry.crc32,entry.compressedSize,entry.uncompressedSize].every(integer)){
+  if([entry.crc32,entry.compressedSize,entry.uncompressedSize].every(uint32)){
    add(local.crc32!==entry.crc32,'LOCAL_CENTRAL_CRC_DIFFERS');
    add(local.compressedSize!==entry.compressedSize||
        local.uncompressedSize!==entry.uncompressedSize,'LOCAL_CENTRAL_SIZES_DIFFER');
@@ -62,7 +76,7 @@ export function auditP1gEnvelope({format,metadata=null}={}){
   localFieldsMatchCentral=extraEqual&&local.flagBits===entry.flagBits&&
    local.compressType===entry.compressType&&local.extractVersion===entry.extractVersion&&
    local.dosTime===entry.dosTime&&local.dosDate===entry.dosDate&&
-   integer(entry.crc32)&&integer(entry.compressedSize)&&integer(entry.uncompressedSize)&&
+   uint32(entry.crc32)&&uint32(entry.compressedSize)&&uint32(entry.uncompressedSize)&&
    local.crc32===entry.crc32&&local.compressedSize===entry.compressedSize&&
    local.uncompressedSize===entry.uncompressedSize;
   add(centralExtra.length>0,'ZIP_EXTRA_FIELDS_REBUILD_SEMANTICS_UNVERIFIED');
@@ -87,9 +101,16 @@ export function auditP1gEnvelope({format,metadata=null}={}){
    centralDirectoryTrailing:safeCount(zip.centralDirectoryTrailingBytes)
   }),
   findings:Object.freeze(findings),
-  repackageShapeObserved:zip.entryCount===1&&zip.profileEntryCount===1&&
-   archiveComment.length===0&&(entry.compressType===0||entry.compressType===8)&&
-   (localFieldsMatchCentral===true),
+  // "Simple" describes a fully observed source layout only. It is NOT a write gate.
+  repackageShapeObserved:findings.every(code=>benign.has(code))&&
+   centralHeaderComplete&&rebuildAttributesComplete&&
+   zip.entryCount===1&&zip.profileEntryCount===1&&
+   archiveComment.length===0&&centralExtra.length===0&&centralComment.length===0&&
+   zip.archivePrefixBytes===0&&zip.profileTrailingRegionBytes===0&&
+   zip.centralDirectoryTrailingBytes===0&&
+   (entry.flagBits===0||entry.flagBits===0x0800)&&
+   (entry.compressType===0||entry.compressType===8)&&
+   localFieldsMatchCentral===true,
   // Even perfect local/central SOURCE parity does not prove that the new
   // ZIP header/extra/compressed bytes or the encrypted archive are identical.
   localHeaderParityVerified:false,bytePreservationVerified:false,

@@ -1,6 +1,9 @@
 import {TAB_ORDER,WORLD_ORDER,previewScope,safeText} from './reader.mjs';
 import {resolveTimePreset} from './time-presets.mjs';
 import {createTimingDraft} from './core/timing-draft.mjs';
+import {createOriginalBackupCoordinator} from './ui-backup-coordinator.mjs';
+import {validateIconManifest,resolveIconAsset} from './icon-assets.mjs';
+import {validateUiManifest,resolveGameUiIcon,resolveAppUiIcon} from './ui-assets.mjs';
 import {SUPPORTED_LOCALES,initialLocale,translate,categoryName,areaName,localDate,parseLocalDateTime} from './i18n.mjs';
 const $=id=>document.getElementById(id);
 const make=(tag,cls='',value)=>{const el=document.createElement(tag);if(cls)el.className=cls;if(value!==undefined)el.textContent=String(value);return el;};
@@ -8,7 +11,7 @@ const click=(label,handler,cls='subtle')=>{const el=make('button',cls,label);el.
 const state={snapshot:null,draft:null,sessionId:null,preflight:null,planPending:false,tab:'spawn',world:'all',group:null,subgroup:null,query:'',sort:'name',selected:new Set(),limit:120,mode:'now',loading:false,locale:initialLocale()};
 const t=(key,values)=>translate(state.locale,key,values);
 const fmt=value=>localDate(value,state.locale);
-let worker=null,seq=0,noticeCount=0,iconManifest=null,preflightSequence=0;
+let worker=null,seq=0,noticeCount=0,iconManifest=null,gameUiManifest=null,appUiManifest=null,preflightSequence=0;
 const pending=new Map();
 function failWorker(message){for(const p of pending.values())p.reject(new Error(message));pending.clear();if(worker){worker.terminate();worker=null;}}
 function request(type,payload={},transfer=[]){return new Promise((resolve,reject)=>{
@@ -69,8 +72,18 @@ function showEditor(){
  renderAudit();renderTabs();renderFilters();renderList();renderDetails();
 }
 function showWelcome(){if(state.snapshot)return;$('welcome').hidden=false;$('workspace').hidden=true;}
+const backupCoordinator=createOriginalBackupCoordinator({
+ requestBackup:sessionId=>request('backup',{sessionId}),
+ isCurrentSession:sessionId=>!state.loading&&state.sessionId===sessionId,
+ saveOriginal:data=>{
+  const blob=new Blob([data.buffer],{type:'application/octet-stream'}),url=URL.createObjectURL(blob);
+  const anchor=make('a');anchor.href=url;anchor.download=`original_${data.name}`;anchor.click();
+  setTimeout(()=>URL.revokeObjectURL(url),10000);
+ }
+});
 async function openSave(file){
  if(!file||state.loading)return;
+ backupCoordinator.invalidate();++preflightSequence;state.planPending=false;
  state.loading=true;$('open-welcome').disabled=true;$('open-again').disabled=true;
  const old=state.snapshot,oldDraft=state.draft,oldSession=state.sessionId,oldPreflight=state.preflight;
  let workerSessionCommitted=false;
@@ -106,9 +119,50 @@ function recordTitle(r){
 }
 function recordLocation(r){const region=t(r.world);const biome=areaName(state.locale,r.areaKey);return biome?`${region} · ${biome}`:region;}
 function recordSearch(r){return [recordTitle(r),r.label,r.id,r.kind,r.group,r.subgroup,r.eventName,...r.items.flatMap(x=>[x.id,x.name,...Object.values(x.names||{})])].filter(Boolean).join(' ').toLocaleLowerCase();}
+function semanticIcon(kind,key){
+ const manifest=kind==='game_ui'?gameUiManifest:appUiManifest;
+ const record=kind==='game_ui'?resolveGameUiIcon(manifest,key):resolveAppUiIcon(manifest,key);
+ if(!record)return null;
+ const image=make('img','semantic-icon');
+ image.alt='';
+ image.setAttribute('aria-hidden','true');
+ image.decoding='async';
+ image.loading='lazy';
+ image.src=new URL('../'+record.path,import.meta.url).href;
+ image.addEventListener('error',()=>image.remove());
+ return image;
+}
+function decorateWithIcon(element,kind,key){
+ const icon=semanticIcon(kind,key);
+ if(icon)element.append(icon);
+ return element;
+}
+function refreshActionIcons(){
+ for(const [id,key] of [['open-welcome','action.open-save'],['open-again','action.open-another'],
+   ['download-backup','action.backup']]){
+   const el=$(id);
+   if(!el)continue;
+   el.querySelectorAll('.semantic-icon').forEach(icon=>icon.remove());
+   decorateWithIcon(el,'app_ui',key);
+ }
+ for(const [selector,key] of [['.technical summary','action.technical-details'],
+   ['.time-config label[for="time-mode"]','action.clock']]){
+   const el=document.querySelector(selector);
+   if(!el)continue;
+   el.querySelectorAll('.semantic-icon').forEach(icon=>icon.remove());
+   decorateWithIcon(el,'app_ui',key);
+ }
+ const search=$('filter-input');
+ if(search){
+  const old=search.previousElementSibling;
+  if(old?.classList.contains('semantic-icon'))old.remove();
+  const icon=semanticIcon('app_ui','action.search');
+  if(icon)search.before(icon);
+ }
+}
 function renderTabs(){
  const root=$('tabs');root.replaceChildren();
- for(const [tab] of TAB_ORDER){const b=click(t('tab_'+tab),()=>{state.tab=tab;state.world='all';state.group=null;state.subgroup=null;state.selected.clear();state.limit=120;renderTabs();renderFilters();renderList();renderDetails();},'');b.className=state.tab===tab?'active':'';b.setAttribute('aria-current',String(state.tab===tab));root.append(b);}
+ for(const [tab] of TAB_ORDER){const b=click(t('tab_'+tab),()=>{state.tab=tab;state.world='all';state.group=null;state.subgroup=null;state.selected.clear();state.limit=120;renderTabs();renderFilters();renderList();renderDetails();},'');b.className=state.tab===tab?'active':'';b.setAttribute('aria-current',String(state.tab===tab));root.append(decorateWithIcon(b,'game_ui','tab.'+tab));}
 }
 const tabRows=()=>state.snapshot?.rows.filter(r=>r.tab===state.tab)||[];
 const worldRows=()=>tabRows().filter(r=>state.world==='all'||r.world===state.world);
@@ -121,17 +175,17 @@ function visibleRows(){
  if(state.sort==='future')clone.sort((a,b)=>Number(['FUTURE','DISTANT_FUTURE_UNVERIFIED','SPECIAL_2126_UNRESOLVED'].includes(b.status))-Number(['FUTURE','DISTANT_FUTURE_UNVERIFIED','SPECIAL_2126_UNRESOLVED'].includes(a.status))||recordTitle(a).localeCompare(recordTitle(b),state.locale));
  return clone;
 }
-function filterButton(name,count,active,fn){const b=click(name,fn,'');b.className=active?'active':'';b.append(make('small','',count));return b;}
+function filterButton(name,count,active,fn,iconKey=null){const b=click(name,fn,'');b.className=active?'active':'';if(iconKey)decorateWithIcon(b,'game_ui',iconKey);b.append(make('small','',count));return b;}
 function renderFilters(){
  const rows=tabRows(),regions=$('regions');regions.replaceChildren();
- for(const [id] of WORLD_ORDER){const count=rows.filter(r=>id==='all'||r.world===id).length;if(id!=='all'&&!count)continue;regions.append(filterButton(t(id==='all'?'allRegions':id),count,state.world===id,()=>{state.world=id;state.group=null;state.subgroup=null;state.selected.clear();state.limit=120;renderFilters();renderList();renderDetails();}));}
+ for(const [id] of WORLD_ORDER){const count=rows.filter(r=>id==='all'||r.world===id).length;if(id!=='all'&&!count)continue;regions.append(filterButton(t(id==='all'?'allRegions':id),count,state.world===id,()=>{state.world=id;state.group=null;state.subgroup=null;state.selected.clear();state.limit=120;renderFilters();renderList();renderDetails();},id==='all'||id==='unknown'?null:'world.'+id));}
  const grouped=worldRows(),groups=$('groups');groups.replaceChildren();
  groups.append(filterButton(t('all'),grouped.length,state.group===null,()=>{state.group=null;state.subgroup=null;state.selected.clear();state.limit=120;renderFilters();renderList();renderDetails();}));
  const byGroup=new Map();
  for(const r of grouped){if(!byGroup.has(r.group))byGroup.set(r.group,new Map());const inner=byGroup.get(r.group);inner.set(r.subgroup,(inner.get(r.subgroup)||0)+1);}
- for(const [group,subs] of byGroup){const total=[...subs.values()].reduce((a,b)=>a+b,0);const list=make('div');list.append(filterButton(categoryName(state.locale,group),total,state.group===group&&state.subgroup===null,()=>{state.group=group;state.subgroup=null;state.selected.clear();state.limit=120;renderFilters();renderList();renderDetails();}));if(subs.size>1){const details=make('details');details.open=state.group===group;const summary=make('summary','',categoryName(state.locale,group));details.append(summary);for(const [sub,count] of subs)details.append(filterButton(categoryName(state.locale,sub),count,state.group===group&&state.subgroup===sub,()=>{state.group=group;state.subgroup=sub;state.selected.clear();state.limit=120;renderFilters();renderList();renderDetails();}));list.append(details);}groups.append(list);}
+ for(const [group,subs] of byGroup){const total=[...subs.values()].reduce((a,b)=>a+b,0);const list=make('div');list.append(filterButton(categoryName(state.locale,group),total,state.group===group&&state.subgroup===null,()=>{state.group=group;state.subgroup=null;state.selected.clear();state.limit=120;renderFilters();renderList();renderDetails();},({'採掘':'skill.mining','釣り':'skill.fishing','栽培・成長':'skill.gardening','果樹・茂み':'skill.foraging'}[group]||null)));if(subs.size>1){const details=make('details');details.open=state.group===group;const summary=make('summary','',categoryName(state.locale,group));details.append(summary);for(const [sub,count] of subs)details.append(filterButton(categoryName(state.locale,sub),count,state.group===group&&state.subgroup===sub,()=>{state.group=group;state.subgroup=sub;state.selected.clear();state.limit=120;renderFilters();renderList();renderDetails();}));list.append(details);}groups.append(list);}
 }
-function iconFor(item){const record=iconManifest?.icons?.[String(item.id)];if(!record||record.platform!=='Steam'||record.gameVersion!=='1.25.3'||record.verified!==true||typeof record.path!=='string'||!/^assets\/steam\/v1253\/[a-zA-Z0-9_/-]+\.(?:webp|png)$/.test(record.path)||!(/^[0-9a-f]{64}$/.test(record.sha256||'')))return null;return new URL('../'+record.path,import.meta.url).href;}
+function iconFor(item){const record=resolveIconAsset(iconManifest,item.id);return record?new URL('../'+record.path,import.meta.url).href:null;}
 function imageCluster(r){
  const root=make('span','record-art');const all=r.items.slice(0,3);
  if(!all.length){const empty=make('span','record-art-empty','✦');empty.setAttribute('aria-label',t('imagesUnavailable'));root.append(empty);return root;}
@@ -148,7 +202,7 @@ function makeRecord(r){
  const body=make('span','record-data');body.append(make('span','record-title',recordTitle(r)),make('span','record-subtitle',recordLocation(r)));
  if(r.items.length>1)body.append(make('span','record-items',r.items.length<=3?r.items.map(localizedItem).join(' · '):t('multiItems',{n:r.items.length})));
  const timing=make('span','record-timing');timing.append(make('span','record-timing-label',t(r.timingKey||'timeStored')),make('span','record-time',fmt(r.time)));
- if(['SPECIAL_2126_UNRESOLVED','DISTANT_FUTURE_UNVERIFIED'].includes(r.status)){timing.classList.add('record-warning');timing.append(make('span','record-timing-note',t(r.status==='SPECIAL_2126_UNRESOLVED'?'statusSentinel':'statusDistant')));}
+ if(['SPECIAL_2126_UNRESOLVED','DISTANT_FUTURE_UNVERIFIED'].includes(r.status)){timing.classList.add('record-warning');timing.append(make('span','record-timing-note',t(r.status==='SPECIAL_2126_UNRESOLVED'?'statusSentinel':'statusDistant')));decorateWithIcon(timing,'game_ui','status.warning');}
  label.append(check,imageCluster(r),body,timing);return label;
 }
 function renderSelectionLabel(){const n=state.selected.size;$('selection-label').textContent=n?t('selected',{n}):t('unselected');}
@@ -203,8 +257,8 @@ function renderDetails(){
  if(n===1)selected.append(make('p','',recordTitle(rows[0])));
  const preview=$('preview');preview.replaceChildren();const custom=$('custom-time').value;
  const clock=Date.now();
- const when=state.mode==='custom'?parseLocalDateTime(custom):state.mode==='now'?null:resolveTimePreset(state.mode,{now:clock});
  try{
+  const when=state.mode==='custom'?parseLocalDateTime(custom):state.mode==='now'?null:resolveTimePreset(state.mode,{now:clock});
   if(state.mode==='custom'&&custom&&!when)throw new Error(t('errorInvalidLocal'));
   const result=previewScope(state.snapshot,{tab:state.tab,pointers:rows.map(r=>r.pointer),world:'all',mode:state.mode==='now'?'now':'custom',customTime:when,now:clock});
   const summary=make('div','preview-summary');summary.append(make('span','',t('previewScope',{n:result.affected.length})),make('strong','',`${t('previewTime')}: ${fmt(result.previewTime)}`));preview.append(summary);
@@ -254,7 +308,7 @@ function stagePreview(){
   renderDetails();void refreshPreflight();message(t('planUpdated'));
  }catch(err){message(t('planFail',{reason:err.message}),true);}
 }
-async function backup(){try{if(state.loading)throw new Error('Save is still loading.');const data=await request('backup',{sessionId:state.sessionId});const blob=new Blob([data.buffer],{type:'application/octet-stream'}),url=URL.createObjectURL(blob);const anchor=make('a');anchor.href=url;anchor.download=`original_${data.name}`;anchor.click();setTimeout(()=>URL.revokeObjectURL(url),10000);}catch(err){message(t('backupError',{reason:err.message}),true);}}
+async function backup(){try{await backupCoordinator.download(state.sessionId);}catch(err){message(t('backupError',{reason:err.message}),true);}}
 function bindDrop(){
  const overlay=$('drop-overlay'),fileDrag=e=>Array.from(e.dataTransfer?.types||[]).includes('Files');
  document.addEventListener('dragenter',e=>{if(fileDrag(e)){e.preventDefault();overlay.hidden=false;}});
@@ -267,12 +321,29 @@ function refreshLanguage(){
  document.documentElement.lang=state.locale;
  for(const el of document.querySelectorAll('[data-i18n]'))el.textContent=t(el.dataset.i18n);
  $('filter-input').placeholder=t('search');
+ refreshActionIcons();
  for(const id of ['welcome-language','workspace-language'])$(id).value=state.locale;
  const overlay=$('drop-overlay').querySelector('.drop-message');overlay.lastChild.textContent=' '+t('dropHint');
  if(state.snapshot){renderAudit();renderTabs();renderFilters();renderList();renderDetails();}
 }
 function setLanguage(locale){if(!SUPPORTED_LOCALES.includes(locale))return;state.locale=locale;try{localStorage.setItem('dreamlight-timekeeper-locale',locale);}catch{}refreshLanguage();}
-async function loadIcons(){try{const r=await fetch(new URL('../data/steam-icons-v1253.json',import.meta.url));if(!r.ok)return;const file=await r.json();if(file?.source?.platform==='Steam/Windows'&&file?.source?.gameVersion==='1.25.3'&&file.icons&&typeof file.icons==='object')iconManifest=file;}catch{}}
+async function loadIcons(){
+ const definitions=[
+  ['../data/steam-icons-v1253.json',validateIconManifest,manifest=>{iconManifest=manifest;}],
+  ['../data/steam-ui-icons-v1253.json',manifest=>validateUiManifest(manifest,'game_ui'),manifest=>{gameUiManifest=manifest;}],
+  ['../data/app-ui-icons.json',manifest=>validateUiManifest(manifest,'app_ui'),manifest=>{appUiManifest=manifest;}]
+ ];
+ await Promise.all(definitions.map(async ([path,validate,apply])=>{
+  try{
+   const response=await fetch(new URL(path,import.meta.url));
+   if(!response.ok)return;
+   const data=await response.json();
+   if(validate(data))apply(data);
+  }catch{}
+ }));
+ refreshActionIcons();
+ if(state.snapshot){renderTabs();renderFilters();renderList();renderDetails();}
+}
 function boot(){
  for(const id of ['welcome-language','workspace-language']){const el=$(id);for(const locale of SUPPORTED_LOCALES){const name=new Intl.DisplayNames([locale],{type:'language'}).of(locale);el.append(make('option','',name));el.lastChild.value=locale;}el.addEventListener('change',()=>setLanguage(el.value));}
  $('open-welcome').addEventListener('click',fileDialog);$('open-again').addEventListener('click',fileDialog);
@@ -290,7 +361,7 @@ function boot(){
  $('time-mode').addEventListener('change',setTime);
  $('custom-time').addEventListener('change',renderDetails);
  bindDrop();refreshLanguage();window.__dreamlightBooted=true;
- loadIcons().then(()=>{if(state.snapshot)renderList();});
+ loadIcons();
  request('check').catch(err=>message('Initialization error: '+err.message,true));
 }
 boot();
