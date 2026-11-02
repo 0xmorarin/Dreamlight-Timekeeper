@@ -6,13 +6,16 @@ import {once} from 'node:events';
 import {createServer} from 'node:net';
 import {readFile,mkdtemp,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
-import {join} from 'node:path';
+import {join,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {chromium} from 'playwright';
 import {makeSyntheticP1gProfile} from './fixture.mjs';
 import {p1gPackagedProfileCodec} from '../src/core/p1g-packaged-profile-codec.mjs';
 import {parseSafeJson,diffPaths} from '../src/core/safe-edit-session.mjs';
-const root=fileURLToPath(new URL('../',import.meta.url));
+const root=process.env.DDV_RELEASE_STATIC_ROOT?
+  resolve(process.env.DDV_RELEASE_STATIC_ROOT):fileURLToPath(new URL('../',import.meta.url));
+const testNoGame=process.env.DDV_RELEASE_ASSERT_NO_GAME==='1';
+const gameRequests=[];
 const probe=createServer();probe.listen(0,'127.0.0.1');await once(probe,'listening');
 const port=probe.address().port;probe.close();await once(probe,'close');
 const server=spawn('python3',['-m','http.server',String(port),'--bind','127.0.0.1'],{cwd:root,stdio:'ignore'});
@@ -39,6 +42,9 @@ try{
  const page=await context.newPage(),downloads=[],errors=[];
  page.on('pageerror',error=>errors.push(error.message));
  page.on('download',d=>downloads.push(d));
+ if(testNoGame)page.on('request',request=>{
+  if(/\/assets\/steam\/.*\.webp(?:\?|$)/.test(request.url()))gameRequests.push(request.url());
+ });
  await page.addInitScript(()=>{
   const NativeWorker=window.Worker;
   window.__holdNextPrepared=false;window.__heldPrepared=false;
@@ -68,6 +74,19 @@ try{
  await page.locator('#workspace').waitFor({state:'visible',timeout:20000});
  await page.locator('#session-name').getByText('Test').waitFor();
  assert.equal(await page.locator('#tabs button').count(),4);
+ if(testNoGame){
+  const stage=await page.evaluate(async()=>{
+   const response=await fetch('./data/steam-ui-icons-v1253.json');
+   if(!response.ok)throw new Error('Release manifest HTTP unavailable');
+   const manifest=await response.json();
+   return {status:manifest.source.status,count:Object.keys(manifest.icons).length};
+  });
+  assert.deepEqual(stage,{status:'NO_ASSETS_VERIFIED',count:0},
+   'Media-free deployment must advertise zero original game icons.');
+  assert.equal(gameRequests.length,0,'No original game WebP may be requested.');
+  assert.equal(await page.locator('#welcome .release-notice').count(),1,
+   'Even the media-free deployment requires the bilingual disclaimer.');
+ }
  await page.locator('#prepare-edited-panel').waitFor({state:'visible'});
  assert.equal(await page.locator('#prepare-edited').isDisabled(),true,'Must require a selected plan and explicit BID');
  await page.locator('#records input[type=checkbox]').first().check();
@@ -138,6 +157,11 @@ try{
  await page.locator('#session-name').getByText('JSON source').waitFor({timeout:20000});
  assert.equal(await page.locator('#prepare-edited-panel').isHidden(),true);
  assert.equal(await page.locator('#verified-pair-downloads').isHidden(),true);
+ if(testNoGame){
+  assert.deepEqual(gameRequests,[],
+   'No Steam game image request may be triggered during edit, save, or separate download.');
+  console.log('SVG/TEXT-ONLY RELEASE SCOPE PREVIEW PASS: zero source WebP requests, 4 tabs, synthetic edited P1G Encode/Reopen, original-first two separate downloads and retry.');
+ }
  assert.deepEqual(errors,[]);
  console.log('WEB PHASE B ACTUAL CHROMIUM PASS: synthetic encrypted P1G Worker TIME+CORE Encode/Reopen, exact bytes original, one-pointer edited diff, separate downloads/retry, stale Worker rejection, JSON denial');
 }finally{if(browser)await browser.close();server.kill();await rm(folder,{recursive:true,force:true});}
