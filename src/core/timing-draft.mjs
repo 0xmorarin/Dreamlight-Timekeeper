@@ -7,7 +7,7 @@ export function createTimingDraft(snapshot,{maxEntries=10000,maxHistory=40}={}){
   snapshot.capabilities?.exportEditedAllowed!==false)throw new Error('Read-only timing snapshot required.');
  if(!Number.isSafeInteger(maxEntries)||maxEntries<1||!Number.isSafeInteger(maxHistory)||maxHistory<1)
   throw new Error('Invalid draft limits.');
- if(snapshot.rows.length>maxEntries)throw new Error('Timing draft row limit exceeded.');
+ if(snapshot.rows.length>250000)throw new Error('Timing draft source row limit exceeded.');
  const source=new Map();
  for(const row of snapshot.rows){
   if(!validPointer(row.pointer)||source.has(row.pointer))throw new Error('Invalid or duplicate timing pointer.');
@@ -39,6 +39,7 @@ export function createTimingDraft(snapshot,{maxEntries=10000,maxHistory=40}={}){
    if(row.originalTime===targetTime)next.delete(pointer);
    else next.set(pointer,{...row,targetTime});
   }
+  if(next.size>maxEntries)throw new Error('Timing draft staged entry limit exceeded.');
   return change(next);
  };
  const undo=()=>{
