@@ -9,6 +9,26 @@ const ident=v=>positive(v)?v:null;
 const esc=x=>String(x).replaceAll('~','~0').replaceAll('/','~1');
 const values=v=>Array.isArray(v)?v:record(v)?Object.values(v):[];
 const addrKey=(g,o)=>`${g}:${o}`;
+const savedObject=(grids,g,o,field)=>{
+ const grid=record(grids)?grids[String(g)]:null;
+ if(!record(grid)||grid.ID!==g||!record(grid[field]))return null;
+ const object=grid[field][String(o)];
+ return record(object)&&object.ID===o?object:null;
+};
+const targetResolution=(profile,g,o)=>{
+ const collection=profile.World.GridCollection;
+ const grids=record(collection)?collection.Grids:null;
+ const diffs=record(collection)?collection.DiffGrids:null;
+ const present=savedObject(grids,g,o,'Objects');
+ if(present)return {status:'GRID_OBJECT_PRESENT',itemId:ident(present.ItemID)};
+ const modified=savedObject(diffs,g,o,'ModifiedObjects');
+ if(modified)return {status:'DIFF_MODIFIED_OBJECT_PRESENT',itemId:ident(modified.ItemID)};
+ const dg=record(diffs)?diffs[String(g)]:null;
+ const removed=record(dg)&&dg.ID===g?dg.RemovedObjects:null;
+ if(Array.isArray(removed)&&removed.some(x=>x===o||(record(x)&&x.ID===o)))
+  return {status:'DIFF_REMOVED_OBJECT',itemId:null};
+ return {status:'SAVE_LOCAL_OBJECT_NOT_MATERIALIZED',itemId:null};
+};
 const freezeRows=rows=>Object.freeze(rows.map(x=>Object.freeze(x)));
 export function inspectWandGridObjectReferences(profile,{
  maxActiveEvents=100000,maxAddresses=250000,maxHistoricalRecords=250000
@@ -27,7 +47,9 @@ export function inspectWandGridObjectReferences(profile,{
   if(!record(value)||!positive(value.GridID)||!positive(value.GridObjectID)){
    issue(path,'INVALID_GRID_OBJECT_ADDRESS');return;
   }
+  const found=targetResolution(profile,value.GridID,value.GridObjectID);
   const row=Object.freeze({path,gridId:value.GridID,gridObjectId:value.GridObjectID,
+   itemId:found.itemId,targetResolution:found.status,
    sourceType,activity,contextId,terminality:'UNKNOWN',
    activeOwnershipVeto:activity!=='HISTORICAL',
    writerAuthorized:false,deleteAuthorized:false});
@@ -99,6 +121,12 @@ export function inspectWandGridObjectReferences(profile,{
   activeReferenceCount:references.filter(x=>x.activity==='ACTIVE').length,
   unknownReferenceCount:references.filter(x=>x.activity==='UNKNOWN').length,
   historicalReferenceCount:references.filter(x=>x.activity==='HISTORICAL').length,
+  activeMaterializedCount:references.filter(x=>x.activity==='ACTIVE'&&
+   ['GRID_OBJECT_PRESENT','DIFF_MODIFIED_OBJECT_PRESENT'].includes(x.targetResolution)).length,
+  activeUnmaterializedCount:references.filter(x=>x.activity==='ACTIVE'&&
+   x.targetResolution==='SAVE_LOCAL_OBJECT_NOT_MATERIALIZED').length,
+  activeDiffRemovedCount:references.filter(x=>x.activity==='ACTIVE'&&
+   x.targetResolution==='DIFF_REMOVED_OBJECT').length,
   invalidReferenceCount:invalid.length,
   sourceCounts:Object.freeze(Object.fromEntries(sourceCounts)),
   references:freezeRows(references),invalid:Object.freeze(invalid),
