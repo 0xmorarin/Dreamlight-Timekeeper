@@ -4,7 +4,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {mkdtemp,mkdir,symlink,lstat,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
-import {join} from 'node:path';
+import {join,dirname,basename} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {stageSveltekitReviewOnly} from '../scripts/stage-sveltekit-review-only.mjs';
 const repo=fileURLToPath(new URL('../',import.meta.url)),build=join(repo,'build');
@@ -42,17 +42,19 @@ test('independent fixed PR25: invalid input leaf refuses before any output creat
   await assert.rejects(lstat(dest),{code:'ENOENT'});
  });
 });
-test('independent observation: ancestor symlink remains a different unresolved boundary',async()=>{
+test('independent counterexample: sourceRoot symlink ANCESTOR is still accepted (not a grant)',async()=>{
  await probe(async base=>{
-  // This test does not assert that the current code rejects *ancestors*.
-  // Source leaf is a directory, but its parent can be a symlink.
-  const alias=join(base,'checkout');
-  await symlink(repo,alias,'dir');
-  const sourceSubdir=join(alias,'data');
-  const dest=join(base,'uncreated');
-  await assert.rejects(stageSveltekitReviewOnly({
-   sourceRoot:sourceSubdir,buildRoot:build,outputRoot:dest
-  }),/REVIEW_STAGE_COMPILED_BUILD_REQUIRED/);
-  await assert.rejects(lstat(dest),{code:'ENOENT'});
+  // This bypasses *leaf-only* lstat without placing a symlink at sourceRoot.
+  const alias=join(base,'checkout-parent');
+  await symlink(dirname(repo),alias,'dir');
+  const sourceWithLinkedParent=join(alias,basename(repo));
+  const dest=join(base,'review');
+  const receipt=await stageSveltekitReviewOnly({
+   sourceRoot:sourceWithLinkedParent,buildRoot:build,outputRoot:dest
+  });
+  assert.equal(receipt.publicReleaseApproved,false);
+  assert.equal(receipt.deployAuthorized,false);
+  assert.equal(receipt.writerAuthorityChanged,false);
+  console.log('05QR_ANCESTOR_SYMLINK_ACCEPTED_LOWER_SCOPE',receipt.fileCount);
  });
 });
