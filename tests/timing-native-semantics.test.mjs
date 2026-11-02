@@ -318,3 +318,109 @@ test('raw Reschedule uses interval-variant branching and a virtual slot-2 NextOc
   assert.equal(model.afterExecuteRescheduleVerified,false);
   assert.equal(model.writerAuthorized,false);
 });
+
+
+test('all four W1 native catch-up bound formulas are source-specific, not live object counts',()=>{
+  const expected={
+    ItemSpawning:{getter:'0x057C0140',maxcall:'0x057C02E4',
+      amount:'MinNumberOfSpawn',field:'0x54',division:'0x057C02EC',mul:'0x057C02F8'},
+    WildCropsSpawningInVillage:{getter:'0x057C4350',maxcall:'0x057C44F4',
+      amount:'NumberOfGardensToSpawn',field:'0x58',division:'0x057C44FC',mul:'0x057C4508'},
+    FlowerSpawningInVillage:{getter:'0x057CB7C0',maxcall:null,
+      amount:'NumberOfFlowersToSpawn',field:'0x54',division:'0x057CB964',mul:'0x057CB970'},
+    FishSpawningInVillage:{getter:'0x057C7EC0',maxcall:null,
+      amount:null,field:null,division:null,mul:'0x057C80B4'}
+  };
+  for(const [kind,x] of Object.entries(expected)){
+    const c=native.native.catchupByVariant[kind];
+    const t=native.traces[kind];
+    assert.equal(c.getterRVA,x.getter);
+    assert.equal(t.catchupBoundRVA,x.getter);
+    assert.strictEqual(t.catchupBound,c);
+    assert.equal(c.maximumCallRVA,x.maxcall);
+    assert.equal(c.amountField,x.amount);
+    assert.equal(c.amountFieldOffset??null,x.field);
+    assert.equal(c.divisionRVA,x.division);
+    assert.equal(c.multiplicationRVA,x.mul);
+    assert.equal(c.finalObjectCountGuarantee,false);
+    assert.equal(t.spawnedGridObjectProvenanceVerified,false);
+  }
+  assert.match(native.native.catchupByVariant.FishSpawningInVillage.formula,/MaxNumberOfPendingFishes/);
+  assert.equal(native.native.catchupByVariant.FishSpawningInVillage.divisionRVA,null);
+});
+test('opcode fixtures prove four max-interval source BLs, signed divisions and fish multiplication',()=>{
+  assert.equal(decodeBL(0x057C02C0,0x97bf4fc4),0x047941d0);
+  assert.equal(decodeBL(0x057C02E4,0x97bfad43),0x047ab7f0);
+  assert.equal(decodeBL(0x057C44D0,0x97bf3f40),0x047941d0);
+  assert.equal(decodeBL(0x057C44F4,0x97bfe2ab),0x047bcfa0);
+  assert.equal(decodeBL(0x057CB940,0x97bf2224),0x047941d0);
+  assert.equal(decodeBL(0x057C8098,0x97bf304e),0x047941d0);
+  const words=[
+    [0x057C02E8,0xB9405668],[0x057C02EC,0x1AC80C08],
+    [0x057C44F8,0xB9405A68],[0x057C44FC,0x1AC80C08],
+    [0x057CB95C,0xB9406268],[0x057CB960,0xB9405669],
+    [0x057CB964,0x1AC90D08],
+    [0x057C80B0,0xB9806268]
+  ];
+  assert.equal(words.length,8);
+  assert.equal(new Set(words.map(x=>x[0])).size,8);
+  assert.equal(native.native.catchupByVariant.FlowerSpawningInVillage.maximumFieldOffset,'0x60');
+  assert.equal(native.native.catchupByVariant.FishSpawningInVillage.maximumFieldOffset,'0x60');
+});
+test('native IsEventOver strictly compares NextOccurrence to EndDate, not Now',()=>{
+  const e=native.native.expiry;
+  assert.equal(e.rva,'0x05AF3050');
+  assert.equal(e.nextOccurrenceGetterSlot,1);
+  assert.equal(e.endDateGetterSlot,3);
+  assert.equal(e.maskedCompareRVA,'0x05AF3228');
+  assert.equal(e.conditionRVA,'0x05AF3230');
+  assert.equal(e.resultRVA,'0x05AF3234');
+  assert.equal(e.condition,'masked NextOccurrence > masked EndDate');
+  assert.deepEqual(e.actualizeDirectCallRvas,
+    ['0x05A2AF4C','0x05A2AF84','0x05A2B044','0x05A2B058']);
+  for(const [loc,opcode] of [[0x05A2AF4C,0x94032041],[0x05A2AF84,0x94032033],
+    [0x05A2B044,0x94032003],[0x05A2B058,0x94031FFE]])
+    assert.equal(decodeBL(loc,opcode),0x05AF3050);
+  assert.equal(e.saveEffectVerified,false);
+  assert.equal(e.runtimeVerified,false);
+});
+test('LastOccurrence is only serialized in ItemSpawning; no timestamp rewrites GridObjects',()=>{
+  const st=native.native.fieldLayout;
+  assert.deepEqual(st.commonFields,['RecurringEventItemID','NextOccurrence','EndDate']);
+  assert.equal(st.itemSpawningOnlyLastOccurrence.field,'LastOccurrence');
+  assert.equal(st.itemSpawningOnlyLastOccurrence.fieldNumber,4);
+  assert.equal(st.itemSpawningOnlyLastOccurrence.fieldOffset,'0x30');
+  assert.equal(st.itemSpawningOnlyLastOccurrence.writeRVA,'0x057BF068');
+  assert.equal(st.itemSpawningOnlyLastOccurrence.onlyW1VariantWithThisSerializedField,true);
+  assert.equal(st.directSavePersistenceVerified,false);
+  assert.equal(st.gameRestartRetentionVerified,false);
+  assert.equal(st.existingGridObjectRemovedOnTimestampChange,false);
+  assert.equal(native.traces.FishSpawningInVillage.spawnedGridObjectProvenanceVerified,false);
+});
+test('every Event ID has separately scoped evidence states and all operations are BLOCKED',()=>{
+  assert.equal(native.rows.length,508);
+  assert(native.rows.every(r=>r.sourceRecordEvidence==='CONFIRMED'));
+  assert(native.rows.every(r=>r.nativePerEventEvidence==='STATIC_ONLY'));
+  assert(native.rows.every(r=>r.actualAppearanceEvidence==='UNKNOWN'&&r.operationEvidence==='BLOCKED'));
+  for(const [id,kind,expectation] of [
+    [2010000021,'ItemSpawning','STATIC_ONLY'],
+    [2010400001,'WildCropsSpawningInVillage','STATIC_ONLY'],
+    [2010500008,'FlowerSpawningInVillage','STATIC_ONLY'],
+    [2010200014,'FishSpawningInVillage','BLOCKED'],
+    [2010000064,'ItemSpawning','BLOCKED'],
+    [2010000093,'ItemSpawning','BLOCKED'],
+    [2010500008,'FishSpawningInVillage','UNKNOWN'],
+    [2010009999,'ItemSpawning','UNKNOWN']
+  ]){
+    const x=native.query(id,kind);
+    assert.equal(x.nativePerEventEvidence,expectation);
+    assert.equal(x.actualAppearanceEvidence,'UNKNOWN');
+    assert.equal(x.operationEvidence,'BLOCKED');
+    assert.equal(x.writerAuthorized,false);
+    assert.equal(x.editedExportAuthorized,false);
+    assert.equal(x.gridDeletionAuthorized,false);
+    assert.equal(x.moonstoneMovementAuthorized,false);
+    assert.equal(x.userFutureTimestampIsCorruption,false);
+  }
+  assert.equal(native.query(2010009999,'ItemSpawning').sourceRecordEvidence,'UNKNOWN');
+});
