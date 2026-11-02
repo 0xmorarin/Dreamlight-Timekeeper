@@ -1,4 +1,4 @@
-name: 05 QR Round 5 Independent Integrated HEAD Acceptance
+name: 05 QR Round 6 Independent Integrated HEAD Acceptance
 
 on:
   pull_request:
@@ -6,6 +6,7 @@ on:
       - 'qa/round3/**'
       - 'qa/round4/**'
       - 'qa/round5/**'
+      - 'qa/round6/**'
       - '.github/workflows/qa-round3-integrated.yml'
   workflow_dispatch:
 
@@ -26,7 +27,7 @@ jobs:
       - name: Checkout exact CTRL PR11 integration, not its moving branch
         uses: actions/checkout@v4
         with:
-          ref: 86d8bdf8cab38826a8b7a06fdddf8b98b3569c9e
+          ref: cd38b7801fe14d9dda3a7786fcfc92e634c693de
           path: target
           persist-credentials: false
       - uses: actions/setup-node@v4
@@ -34,10 +35,11 @@ jobs:
           node-version: '22'
       - name: Assert exact production HEAD and install QA-only synthetic assertions
         run: |
-          test "$(git -C target rev-parse HEAD)" = "86d8bdf8cab38826a8b7a06fdddf8b98b3569c9e"
+          test "$(git -C target rev-parse HEAD)" = "cd38b7801fe14d9dda3a7786fcfc92e634c693de"
           cp qa-source/qa/round3/integration.test.mjs target/tests/qa-round3-integration.test.mjs
           cp qa-source/qa/round4/integration.test.mjs target/tests/qa-round4-integration.test.mjs
-          cp qa-source/qa/round5/integration.test.mjs target/tests/qa-round5-integration.test.mjs
+          cp qa-source/qa/round5/integration.test.mjs target/tests/qa-round5-integration.test.mjs tests/qa-round6-integration.test.mjs
+          cp qa-source/qa/round6/integration.test.mjs target/tests/qa-round6-integration.test.mjs
       - name: Install offline lossless WebP CLI required by existing ASSET importer test
         run: |
           sudo apt-get update -qq
@@ -45,7 +47,7 @@ jobs:
       - name: Independently run impact-scoped CORE/TIME/ASSET plus Round5 QA negative suites
         run: |
           cd target
-          node --test tests/p1g-json-safety.test.mjs tests/p1g-envelope-audit.test.mjs tests/synthetic-p1g-timing-roundtrip.test.mjs tests/timing-native-semantics.test.mjs tests/steam-ui-provenance.test.mjs tests/icon-import.integration.mjs tests/qa-round3-integration.test.mjs tests/qa-round4-integration.test.mjs tests/qa-round5-integration.test.mjs
+          node --test tests/p1g-json-safety.test.mjs tests/p1g-envelope-audit.test.mjs tests/synthetic-p1g-timing-roundtrip.test.mjs tests/p1g-serialization-contract.test.mjs tests/timing-native-semantics.test.mjs tests/steam-ui-provenance.test.mjs tests/icon-import.integration.mjs tests/qa-round3-integration.test.mjs tests/qa-round4-integration.test.mjs tests/qa-round5-integration.test.mjs
 
   integrated-chromium-sessions-and-native-zoom:
     runs-on: ubuntu-24.04
@@ -60,7 +62,7 @@ jobs:
       - name: Checkout exact CTRL PR11 integration
         uses: actions/checkout@v4
         with:
-          ref: 86d8bdf8cab38826a8b7a06fdddf8b98b3569c9e
+          ref: cd38b7801fe14d9dda3a7786fcfc92e634c693de
           path: target
           persist-credentials: false
       - uses: actions/setup-node@v4
@@ -68,7 +70,7 @@ jobs:
           node-version: '22'
       - name: Prepare Chromium runner on isolated synthetic integration only
         run: |
-          test "$(git -C target rev-parse HEAD)" = "86d8bdf8cab38826a8b7a06fdddf8b98b3569c9e"
+          test "$(git -C target rev-parse HEAD)" = "cd38b7801fe14d9dda3a7786fcfc92e634c693de"
           cp qa-source/qa/round2/web-browser.mjs target/tests/qa-round3-session.smoke.mjs
           cp qa-source/qa/round3/native-zoom.smoke.mjs target/tests/qa-round3-native-zoom.smoke.mjs
           cd target
@@ -94,7 +96,7 @@ jobs:
           persist-credentials: false
       - uses: actions/checkout@v4
         with:
-          ref: 86d8bdf8cab38826a8b7a06fdddf8b98b3569c9e
+          ref: cd38b7801fe14d9dda3a7786fcfc92e634c693de
           path: target
           persist-credentials: false
       - uses: actions/setup-python@v5
@@ -102,8 +104,9 @@ jobs:
           python-version: '3.12'
       - name: Verify exact integrated product HEAD and install private negative test only
         run: |
-          test "$(git -C target rev-parse HEAD)" = "86d8bdf8cab38826a8b7a06fdddf8b98b3569c9e"
+          test "$(git -C target rev-parse HEAD)" = "cd38b7801fe14d9dda3a7786fcfc92e634c693de"
           cp qa-source/qa/round5/assets_private_trial_test.py target/tests/qa_round5_asset_private_test.py
+          cp qa-source/qa/round6/assets_private_dds_test.py target/tests/qa_round6_asset_private_test.py
       - name: Install independent RGBA comparators
         run: |
           python -m pip install Pillow lz4
@@ -118,3 +121,5 @@ jobs:
         run: |
           cd target
           python -m unittest discover -s tests -p 'qa_round5_asset_private_test.py' -v
+          python -m unittest discover -s tests -p 'qa_round6_asset_private_test.py' -v
+          python -m unittest discover -s tests -p 'steam_ui_atlas_test.py' -v
