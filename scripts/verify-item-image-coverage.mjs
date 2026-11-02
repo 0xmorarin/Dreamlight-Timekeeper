@@ -103,10 +103,15 @@ if(audit?.evidence!=='FRAMED_ITEMLIST_PROTOBUF_THREE_SOURCE_DIRECT_READ_ONLY'||
   audit.commonGuid!==defaultGuid||audit.commonGuidCountInGaps!==81||
   audit.otherGuidCountInGaps!==25||audit.commonGuidOccurrencesInCompleteThreeStreams!==1798||
   audit.distinctSourceIconAddressGuidsInGaps!==25||
-  audit.sourceGuidOnly!==true||audit.spriteTextureProof!==7||
-  audit.privatePrototypeRgbaMatched!==7||audit.privatePrototypeWebpBytes!==1101746||
+  audit.sourceGuidOnly!==true||audit.spriteTextureProof!==25||
+  audit.privatePrototypeRgbaMatched!==25||audit.privatePrototypeWebpBytes!==1719548||
+  audit.privateCompanionPixelRecords!==18||audit.privateCompanionDistinctSprites!==17||
+  JSON.stringify(audit.privateCompanionDuplicatedSourceSpriteItemIDs)!==JSON.stringify([120200013,120200016])||
+  audit.privateCompanionWebpBytes!==617802||
+  audit.privateCompanionEvidenceJsonSha256!=='25c73f727a4a0e248aeeba25f6134034177413229ef89da86f89c9a9aea63667'||
+  audit.catalogPlaceholderItemIDs!==81||
   audit.additionalFourEvidenceSha256!=='7b10a20060e25bcc38821b86dfba38f55a7840d1954f53cf187a3a37dd10a710'||
-  audit.remainingUnverifiedSpriteTexture!==99||audit.privatePixelsNotPublished!==true||
+  audit.remainingUnverifiedSpriteTexture!==81||audit.privatePixelsNotPublished!==true||
   audit.privatePixelEvidenceJsonSha256!=='59e2e920570f83812210f4eebcf2013935322ed21dcf43dae4c8eaba48b5c0b8'||
   audit.publicImageProof!==0||audit.rights!=='NOT_ESTABLISHED')
  fail('unreviewed 106-gap source definition evidence promotion or count drift');
@@ -124,8 +129,11 @@ const reviewedProto=new Map([
 for(const row of deficit){
  const x=row.definitionAudit,expected=reviewedProto.get(row.itemId);
  if(!x||row.publishedImage!=='MISSING')fail('false published image '+row.itemId);
- if(x.spriteResolved!==!!expected||x.textureResolved!==!!expected||
-    x.webpDecodedRgbaMatched!==!!expected)fail('false pixel proof status '+row.itemId);
+ const companionTarget=row.itemId>=120200000&&row.itemId<=120200024&&x.sourceStream==='Companion.json'&&
+    x.declaredIconAddressGuid!==defaultGuid;
+ const hasProof=!!expected||companionTarget;
+ if(x.spriteResolved!==hasProof||x.textureResolved!==hasProof||
+    x.webpDecodedRgbaMatched!==hasProof)fail('false pixel proof status '+row.itemId);
  if(expected){
    const v=x.privatePixelProof;
    if(!v||v.status!=='PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED'||
@@ -135,6 +143,19 @@ for(const row of deficit){
      v.prototypeWebpSha256!==expected[5]||v.prototypeWebpBytes!==expected[6]||
      x.declaredIconAddressGuid!==expected[0])
      fail('private per-item VP8L proof drift '+row.itemId);
+ } else if(companionTarget){
+   const v=x.privatePixelProof;
+   if(!v||v.sourceBundle!=='craftingmaterial_a01be543.bundle'||
+      v.bundleSha256!=='85255ade497a5fcf9945d569624286d518c7d07d874f32b84ad612173436137c'||
+      v.unityCab!=='CAB-dc96f4e2a160bea829b0dccdd5e870ad'||
+      !/^[1-9][0-9]*$/.test(v.spritePathId)||!/^[1-9][0-9]*$/.test(v.texturePathId)||
+      !/^[0-9a-f]{64}$/.test(v.decodedRgbaSha256)||
+      !/^[0-9a-f]{64}$/.test(v.prototypeWebpSha256)||
+      v.width!==256||v.height!==256||v.compression!=='BC7'||
+      !(v.prototypeWebpBytes>=19000&&v.prototypeWebpBytes<=46000)||
+      v.encoder!=='Pillow/libwebp lossless=true method=6 exact=true'||
+      v.status!=='PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED')
+      fail('unreviewed private Companion image '+row.itemId);
  } else if('privatePixelProof' in x)fail('unsupported pixel claim '+row.itemId);
  const stream=row.itemId>=120000000?'Companion.json':
    row.itemId>=40000000?'Furniture.json':'ActivityItem.json';
@@ -156,22 +177,51 @@ const readOnly=pinned.readOnlyResolutionContract;
 if(readOnly?.schema!=='timekeeper.item-image-resolution.v1'||
  JSON.stringify(readOnly.allowedStatuses)!==JSON.stringify(['VERIFIED','MISSING','AMBIGUOUS'])||
  readOnly.recurringTotal!==244||readOnly.verifiedPublished!==0||
- readOnly.ambiguousWithoutUrl!==83||readOnly.missingWithoutUrl!==161||
- readOnly.privatePixelProofsNotPublished!==7||readOnly.unverifiedSourceSpriteTargets!==99||
+ readOnly.ambiguousWithoutUrl!==81||readOnly.missingWithoutUrl!==163||
+ readOnly.privatePixelProofsNotPublished!==25||readOnly.unverifiedSourceSpriteTargets!==81||
  readOnly.unapprovedMediaPublishable!==false||
  readOnly.additionalRealSaveVisibleItemIDs!=='UNKNOWN_SESSION_NOT_PROVIDED')
  fail('read-only status and release permission drift');
+
+const catalog=pinned.addressablesCatalogAudit;
+if(catalog?.platform!=='Steam/Windows'||catalog.gameVersion!=='1.25.3'||
+ catalog.buildResultHash!=='45e494c1968542bb73ff51e4e727271e'||
+ catalog.catalogJsonSha256!=='69351845e0b99db577ff70af2512de780f815d561027ceccab9f8ff19d081c562'||
+ catalog.entryDataSha256!=='807fd38db08a107dada03cc207a1eecc5c41bc157b060091377fefce577d1619'||
+ catalog.keyDataSha256!=='cef9d3431ca327b560ed30e045a908615c31d7628c3d8c83acd85c69b8aded1a'||
+ catalog.bucketDataSha256!=='c8a4b215b07988e988b34085f77e4d616ca7f5b0cc13bee13763e36c0ebdf4e6'||
+ catalog.internalIdsSha256!=='1822422bcf53e31b2b5653d28b36059bf591ec163a5721a8eecd630e4f8ec5ad'||
+ catalog.catalogItemIDs!==106||catalog.distinctGUIDs!==25||
+ JSON.stringify(catalog.componentBundles)!==JSON.stringify({default:1,ephemeral:4,lootpresent:2,craftingmaterial:18,sharedPlaceholders:81})||
+ catalog.status!=='EXACT_CATALOG_DEPENDENCY_ONLY_NOT_RENDERED_ITEM_VARIATION_PROOF')
+ fail('v1.25.3 Addressables source/catalog provenance drift');
+const privateCompanionRows=deficit.filter(row=>row.definitionAudit.sourceStream==='Companion.json'&&row.definitionAudit.webpDecodedRgbaMatched===true);
+const uniqueCompanionSource=new Set(privateCompanionRows.map(row=>row.definitionAudit.privatePixelProof.spritePathId));
+const uniqueCompanionTextures=new Set(privateCompanionRows.map(row=>row.definitionAudit.privatePixelProof.texturePathId));
+if(privateCompanionRows.length!==18||uniqueCompanionSource.size!==17||uniqueCompanionTextures.size!==17||
+ privateCompanionRows.reduce((n,row)=>n+row.definitionAudit.privatePixelProof.prototypeWebpBytes,0)!==617802)
+ fail('Companion Sprite alias or VP8L source pixel inventory mismatch');
+const sharedAlias=privateCompanionRows.filter(row=>row.itemId===120200013||row.itemId===120200016);
+if(sharedAlias.length!==2||sharedAlias[0].definitionAudit.privatePixelProof.spritePathId!==sharedAlias[1].definitionAudit.privatePixelProof.spritePathId||
+  sharedAlias[0].definitionAudit.privatePixelProof.decodedRgbaSha256!==sharedAlias[1].definitionAudit.privatePixelProof.decodedRgbaSha256)
+ fail('unverified two-ItemID source Sprite alias');
+
 let ambiguous=0,missing=0;
 for(const row of pinned.items){
  const r=row.readOnlyImageResolution;
  const generic=row.definitionAudit?.declaredIconAddressGuid===defaultGuid;
- const companionAlias=row.itemId===120200013||row.itemId===120200016;
- const reason=generic?'SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS':
+ if(generic&&(
+   row.definitionAudit?.catalogDependency?.state!=='CATALOG_SHARED_PLACEHOLDER_NO_ITEM_SPECIFIC_IMAGE'||
+   row.definitionAudit?.catalogDependency?.primaryBundle!=='usedplaceholders_assets_all.bundle'||
+   row.definitionAudit?.catalogDependency?.spriteResolved!==false))
+   fail('generic IconAddress must remain placeholder only '+row.itemId);
+ const companionAlias=false; // Exact original CAB binds both to the same verified Sprite/Texture.
+ const reason=generic?'SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS':
   companionAlias?'TWO_ITEMIDS_SHARE_UNVERIFIED_COMPANION_ICON_ADDRESS':'NO_APPROVED_PACKAGED_ITEM_IMAGE';
  const state=(generic||companionAlias)?'AMBIGUOUS':'MISSING';
  if(r?.status!==state||r.reason!==reason||r.url!==null)fail('unreviewed read-only ItemID mapping '+row.itemId);
  if(state==='AMBIGUOUS')ambiguous++;else missing++;
 }
-if(ambiguous!==83||missing!==161)fail('image resolution status counts drift');
+if(ambiguous!==81||missing!==163)fail('image resolution status counts drift');
 
-console.log('Gap typed source PASS: 106/106 ItemID definitions (Activity35/Furniture52/Companion19), 81 common GUID; private Sprite/Texture 7, 99 source unresolved, published WebP 0');
+console.log('Gap typed source PASS: 106/106 ItemID definitions (Activity35/Furniture52/Companion19), 81 common GUID; private Sprite/Texture 25, shared placeholder 81, published WebP 0');
