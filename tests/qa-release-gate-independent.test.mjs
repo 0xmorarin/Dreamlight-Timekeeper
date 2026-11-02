@@ -16,6 +16,7 @@ const parked='2126-08-20T00:00:00Z';
 const target='2022-09-06T00:00:00Z';
 const input=(schema=626)=>({
  GameInfo:{Version:schema},
+ Player:{Name:'Synthetic'},
  World:{RecurringEvents:{'0':{ItemSpawning:{
   RecurringEventItemID:2010000021,NextOccurrence:parked,
   UnknownFutureField:{retain:[7,8,9]}
