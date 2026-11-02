@@ -5127,10 +5127,10 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
-        "sourceStream": null,
-        "sourceSha256": null,
-        "declaredIconAddressGuid": null,
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "declaredIconAddressGuid": "fae01c1f6435960469d3a732e16efcee",
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
@@ -5154,10 +5154,10 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
-        "sourceStream": null,
-        "sourceSha256": null,
-        "declaredIconAddressGuid": null,
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "declaredIconAddressGuid": "40b0d5635c0c38546bf2fabf5e89829b",
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
@@ -5181,10 +5181,10 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
-        "sourceStream": null,
-        "sourceSha256": null,
-        "declaredIconAddressGuid": null,
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "declaredIconAddressGuid": "641b2b54dfaeb904390e69758d74dba6",
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
@@ -5208,10 +5208,10 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
-        "sourceStream": null,
-        "sourceSha256": null,
-        "declaredIconAddressGuid": null,
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "declaredIconAddressGuid": "c19d982a7abc5814e98721cd7e32e672",
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
@@ -5236,10 +5236,10 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
-        "sourceStream": null,
-        "sourceSha256": null,
-        "declaredIconAddressGuid": null,
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "declaredIconAddressGuid": "d50c69cb2009eba41bad38889fb84620",
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
@@ -5264,10 +5264,10 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
-        "sourceStream": null,
-        "sourceSha256": null,
-        "declaredIconAddressGuid": null,
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "declaredIconAddressGuid": "3bf980814e35609418f98243615dfd21",
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
@@ -5291,10 +5291,10 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
-        "sourceStream": null,
-        "sourceSha256": null,
-        "declaredIconAddressGuid": null,
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "declaredIconAddressGuid": "116140f426394314c86c635b281fac1b",
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
@@ -5318,10 +5318,10 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
-        "sourceStream": null,
-        "sourceSha256": null,
-        "declaredIconAddressGuid": null,
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "declaredIconAddressGuid": "d14e8bb65a3e3424094f6b66f66046de",
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
@@ -5346,10 +5346,10 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
-        "sourceStream": null,
-        "sourceSha256": null,
-        "declaredIconAddressGuid": null,
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "declaredIconAddressGuid": "03af512ae744ade48b5f3dd8c07e5503",
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
@@ -5374,10 +5374,10 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
-        "sourceStream": null,
-        "sourceSha256": null,
-        "declaredIconAddressGuid": null,
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "declaredIconAddressGuid": "a74986a1cf3a28c488254a10f41c02b3",
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
@@ -5401,10 +5401,10 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
-        "sourceStream": null,
-        "sourceSha256": null,
-        "declaredIconAddressGuid": null,
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "declaredIconAddressGuid": "d39cbee3b273b664d8c00f0ff8c45bc2",
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
@@ -5428,10 +5428,10 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
-        "sourceStream": null,
-        "sourceSha256": null,
-        "declaredIconAddressGuid": null,
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "declaredIconAddressGuid": "b56521a8fa9904c419f856b5df830298",
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
@@ -5462,10 +5462,10 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
-        "sourceStream": null,
-        "sourceSha256": null,
-        "declaredIconAddressGuid": null,
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "declaredIconAddressGuid": "0243ca5583384e846b11145c2243350a",
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
@@ -5490,10 +5490,10 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
-        "sourceStream": null,
-        "sourceSha256": null,
-        "declaredIconAddressGuid": null,
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "declaredIconAddressGuid": "4e5d2c8f467f0d54dadd733797dbd5fa",
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
@@ -5517,10 +5517,10 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
-        "sourceStream": null,
-        "sourceSha256": null,
-        "declaredIconAddressGuid": null,
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "declaredIconAddressGuid": "4e5d2c8f467f0d54dadd733797dbd5fa",
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
@@ -5545,10 +5545,10 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
-        "sourceStream": null,
-        "sourceSha256": null,
-        "declaredIconAddressGuid": null,
+        "status": "SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
@@ -5572,10 +5572,10 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
-        "sourceStream": null,
-        "sourceSha256": null,
-        "declaredIconAddressGuid": null,
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "declaredIconAddressGuid": "b458e8ee6d0368149abe6de8b65a47fc",
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
@@ -5604,10 +5604,10 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
-        "sourceStream": null,
-        "sourceSha256": null,
-        "declaredIconAddressGuid": null,
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "declaredIconAddressGuid": "eb27800f72c6f354a9498434681d15f3",
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
@@ -5631,10 +5631,10 @@
       "texturePathId": null,
       "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD",
       "definitionAudit": {
-        "status": "TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS",
-        "sourceStream": null,
-        "sourceSha256": null,
-        "declaredIconAddressGuid": null,
+        "status": "DECLARED_ICON_ADDRESS_UNRESOLVED",
+        "sourceStream": "Companion.json",
+        "sourceSha256": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea",
+        "declaredIconAddressGuid": "15d2f864db647d84c90a737e06ec6c2b",
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
@@ -5643,25 +5643,28 @@
   ],
   "unresolvedDefinitionAudit": {
     "version": "v1.25.3 Steam/Windows",
-    "evidence": "FRAMED_ITEMLIST_PROTOBUF_DIRECT_SOURCE_READ_ONLY",
+    "evidence": "FRAMED_ITEMLIST_PROTOBUF_THREE_SOURCE_DIRECT_READ_ONLY",
     "sourceHashes": {
       "ActivityItem.json": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
-      "Furniture.json": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674"
+      "Furniture.json": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+      "Companion.json": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea"
     },
     "framedItemIdAndIconAddressField": "ItemID field1 / IconAddress GUID field4",
     "unlinkedTotal": 106,
-    "typedSourceRecordsConfirmed": 87,
+    "typedSourceRecordsConfirmed": 106,
     "activityItemRecords": 35,
     "furnitureRecords": 52,
-    "sourceRecordsNotFoundInTheseTwoStreams": 19,
+    "sourceRecordsNotFoundInTheseTwoStreams": 0,
     "commonGuid": "04495f960b1edba4181ec51efa5e07d9",
-    "commonGuidCountInGaps": 80,
-    "otherGuidCountInGaps": 7,
-    "commonGuidOccurrencesInCompleteTwoStreams": 1794,
+    "commonGuidCountInGaps": 81,
+    "otherGuidCountInGaps": 25,
     "sourceGuidOnly": true,
     "spriteTextureProof": 0,
     "publicImageProof": 0,
     "rights": "NOT_ESTABLISHED",
-    "note": "IconAddress GUID is not proof of unique per-ItemID image, Sprite or Texture mapping; Snippet source remains unresolved."
+    "note": "All 106 missing seven-bundle links have exact v1.25.3 typed itemlist and IconAddress GUIDs (35 ActivityItem + 52 Furniture + 19 Companion). No original Sprite/Texture mapping or deployable WebP follows from this; one Companion GUID aliases two IDs and 81 targets share a common GUID.",
+    "companionRecords": 19,
+    "commonGuidOccurrencesInCompleteThreeStreams": 1798,
+    "distinctSourceIconAddressGuidsInGaps": 25
   }
 }
