@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - 'qa/05qr-sveltekit-stage-independent.test.mjs'
+      - 'qa/05qr-web-fence-independent.test.mjs'
       - '.github/workflows/qa-pr25-compiled-stage.yml'
   workflow_dispatch:
 permissions:
@@ -23,7 +24,7 @@ jobs:
         env:
           BASE_PATH: /Dreamlight-Timekeeper
       - name: Independent QA boundary and negative matrix
-        run: node --test qa/05qr-sveltekit-stage-independent.test.mjs
+        run: node --test qa/05qr-sveltekit-stage-independent.test.mjs qa/05qr-web-fence-independent.test.mjs
       - name: Scope warning
         run: |
           echo 'QA_SYNTEXACT=REVIEW_ONLY; no deployment upload or game-media permission'
