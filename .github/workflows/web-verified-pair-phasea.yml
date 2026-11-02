@@ -1,0 +1,36 @@
+name: 03 WEB verified-pair presentation-only Phase A
+on:
+  push:
+    branches:
+      - feat/web-verified-pair-download-phasea
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  download-pair-phasea:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate fail-closed product wiring and test-only receipt producer
+        run: |
+          node --check src/app.mjs
+          node --check src/worker.mjs
+          node --check src/ui-verified-pair-downloads.mjs
+          ! grep -q "request('export'" src/app.mjs
+          ! grep -q "request('prepareEdited" src/app.mjs
+          ! grep -q "type==='export'" src/worker.mjs
+          ! grep -q "WORKER_VERIFIED_PAIR" src/worker.mjs
+      - name: Run Node synthetic staged file and Session negative checks
+        run: node --test tests/ui-separate-downloads.test.mjs tests/ui-verified-pair-downloads.test.mjs
+      - name: Install Chromium for real browser test
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Real Chromium request original then edited, block and retry, preserve base UI
+        run: node tests/browser-verified-pair-downloads.smoke.mjs
+      - name: Regression original Worker/session/read-only browser
+        run: node tests/browser-web-session.smoke.mjs
