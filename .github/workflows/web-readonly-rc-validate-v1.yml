@@ -4,6 +4,9 @@ on:
     paths:
       - 'src/routes/+page.svelte'
       - 'src/lib/timekeeper/item-text-only.mjs'
+      - 'src/lib/timekeeper/read-only-rc-mode.mjs'
+      - 'src/worker.mjs'
+      - 'tests/browser-sveltekit-readonly-text-rc.smoke.mjs'
       - 'src/lib/timekeeper/worker-projection-bounds.mjs'
       - 'src/lib/timekeeper/session-response-fence.mjs'
       - 'data/web-text-item-types-v1253.json'
@@ -34,6 +37,7 @@ jobs:
       - name: Build only — isolated static BASE_PATH, never deploy
         env:
           BASE_PATH: /Dreamlight-Timekeeper
+          VITE_WEB_READONLY_RC: '1'
         run: |
           npm run build
           node scripts/audit-sveltekit-build.mjs build .release-audit/web-readonly-rc-build-inventory.json
@@ -43,5 +47,5 @@ jobs:
         run: |
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
-          node tests/browser-sveltekit-migration.smoke.mjs
+          node tests/browser-sveltekit-readonly-text-rc.smoke.mjs
           node tests/browser-sveltekit-zoom.smoke.mjs
