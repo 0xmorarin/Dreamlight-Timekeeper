@@ -171,8 +171,9 @@ export function assessMinimalW1WriteTargets(profile,snapshot,plan,registry,ledge
      snapshot.timingReview.writerAuthorization!==false)
     throw new Error('Unrecognized timing-review provenance.');
   const savedCounts=countSavedIDs(profile.World);
+  const rowsByPointer=new Map(snapshot.rows.map(row=>[row.pointer,row]));
   const rows=freezeRows(preflight.rows.map(p=>{
-    const source=snapshot.rows.find(s=>s.pointer===p.pointer);
+    const source=rowsByPointer.get(p.pointer);
     return assessOne(p,source,profile,snapshot,definitions,ledger,savedCounts);
   }));
   const allValid=rows.length>0&&rows.every(r=>r.targetStructurallyEligible);
