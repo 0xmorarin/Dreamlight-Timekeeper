@@ -20,27 +20,23 @@ jobs:
           persist-credentials: false
       - uses: actions/checkout@v4
         with:
-          ref: 00c382c8c12c56ef25e40e09ad1f25c4e0db8a85
+          ref: 982c7800b42986001464160c42cb932e853a5ba1
           path: target
           fetch-depth: 2
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Enforce exact commit parent and only six changed files
+      - name: Enforce exact repair parent and only two changed files
         run: |
           cd target
-          test "$(git rev-parse HEAD)" = "00c382c8c12c56ef25e40e09ad1f25c4e0db8a85"
-          test "$(git rev-parse HEAD^)" = "f6af69ec88d59336040737cd449abef586926073"
+          test "$(git rev-parse HEAD)" = "982c7800b42986001464160c42cb932e853a5ba1"
+          test "$(git rev-parse HEAD^)" = "00c382c8c12c56ef25e40e09ad1f25c4e0db8a85"
           git diff --name-only HEAD^ HEAD > /tmp/release-qa-diff
-          printf '%s\n' .github/workflows/release-asset-profiles.yml data/release-asset-scope-v1.json docs/INITIAL_RELEASE_ASSET_SCOPE.md scripts/stage-release-asset-profile.mjs tests/browser-web-phaseb-edited-p1g.smoke.mjs tests/release-asset-scope.test.mjs > /tmp/release-qa-expect
+          printf '%s\n' scripts/stage-release-asset-profile.mjs tests/release-asset-scope.test.mjs > /tmp/release-qa-expect
           diff -u /tmp/release-qa-expect /tmp/release-qa-diff
-          test "$(git rev-parse HEAD:.github/workflows/release-asset-profiles.yml)" = "acc035d40a0d7febbfa87007bb0c17554859bcbe"
-          test "$(git rev-parse HEAD:data/release-asset-scope-v1.json)" = "0d1b26084fc895fbfbab688a0b1d46c416df2890"
-          test "$(git rev-parse HEAD:docs/INITIAL_RELEASE_ASSET_SCOPE.md)" = "0990b00d76e1a7b28b78a083ae21ce40a650adc5"
-          test "$(git rev-parse HEAD:scripts/stage-release-asset-profile.mjs)" = "6aeb45603310cc97d9bc8a9373fe0907da2b9be8"
-          test "$(git rev-parse HEAD:tests/browser-web-phaseb-edited-p1g.smoke.mjs)" = "17b20a05ffe6498e7cd8018efda165b53b64ce68"
-          test "$(git rev-parse HEAD:tests/release-asset-scope.test.mjs)" = "8e4bfe16c5868881ab367723ab2c69f6043dbad5"
+          test "$(git rev-parse HEAD:scripts/stage-release-asset-profile.mjs)" = "9f5411aab7e18f7ee94ad03208e9f5413b653f24"
+          test "$(git rev-parse HEAD:tests/release-asset-scope.test.mjs)" = "21048495267b9767834323ba7308ba2366848f47"
           git diff --quiet HEAD^ HEAD -- src/worker.mjs src/app.mjs src/core src/w1-minimal-write-contract.mjs src/timing-native-semantics.mjs src/ui-verified-pair-downloads.mjs src/ui-separate-downloads.mjs data/steam-ui-icons-v1253.json
           cp ../qa-source/qa/release-profile/independent-negative.test.mjs tests/qa-release-profile-negative.test.mjs
       - name: Run new focused independent staged profile invariants and adversarial boundaries
@@ -60,7 +56,7 @@ jobs:
           persist-credentials: false
       - uses: actions/checkout@v4
         with:
-          ref: 00c382c8c12c56ef25e40e09ad1f25c4e0db8a85
+          ref: 982c7800b42986001464160c42cb932e853a5ba1
           path: target
           persist-credentials: false
       - uses: actions/setup-node@v4
@@ -68,7 +64,7 @@ jobs:
           node-version: '22'
       - name: Stage new QA-only independent browser test against exact product
         run: |
-          test "$(git -C target rev-parse HEAD)" = "00c382c8c12c56ef25e40e09ad1f25c4e0db8a85"
+          test "$(git -C target rev-parse HEAD)" = "982c7800b42986001464160c42cb932e853a5ba1"
           cp qa-source/qa/release-profile/both-staged-chromium.smoke.mjs target/tests/qa-release-profile-browser.smoke.mjs
           node --check target/tests/qa-release-profile-browser.smoke.mjs
       - name: Install isolated native Chromium
