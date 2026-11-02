@@ -32,3 +32,5 @@ jobs:
         run: node .integration-preview/tests/browser-web-asset-integration.smoke.mjs
       - name: Recheck original-only Session flow in combined UI
         run: node .integration-preview/tests/browser-web-session.smoke.mjs
+      - name: Verify actual native Chromium 200 percent tab zoom
+        run: node .integration-preview/tests/browser-web-asset-zoom.smoke.mjs
