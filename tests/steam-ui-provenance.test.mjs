@@ -1,12 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {auditSteamUiPublicationLedger,auditSteamUiPrivatePixelEvidence,auditSteamUiConsumerLinks} from '../src/steam-ui-provenance.mjs';
+import {auditSteamUiPublicationLedger,auditSteamUiPrivatePixelEvidence,auditSteamUiConsumerLinks,auditExistingGameUiPublicationRights} from '../src/steam-ui-provenance.mjs';
 
 const catalog=JSON.parse(await readFile(new URL('../data/steam-ui-candidates-v1253.json',import.meta.url),'utf8'));
 const manifest=JSON.parse(await readFile(new URL('../data/steam-ui-icons-v1253.json',import.meta.url),'utf8'));
 const pixelEvidence=JSON.parse(await readFile(new URL('../data/steam-ui-private-pixel-evidence-v1253.json',import.meta.url),'utf8'));
 const consumerEvidence=JSON.parse(await readFile(new URL('../data/steam-ui-consumer-links-v1253.json',import.meta.url),'utf8'));
+const publicRightsReview=JSON.parse(await readFile(new URL('../data/steam-ui-existing-rights-review-v1253.json',import.meta.url),'utf8'));
 const copy=x=>structuredClone(x);
 const run=(c=catalog,m=manifest)=>auditSteamUiPublicationLedger(c,m);
 const publishedKey='skill.mining';
@@ -168,4 +169,42 @@ test('consumer linking, game-specific semantic or redistribution claims require 
   const altered=copy(catalog);
   altered.candidates.find(x=>x.key==='world.hgw').reviewState='STATIC_REFERENCE_VERIFIED';
   assert.throws(()=>auditSteamUiConsumerLinks(altered,consumerEvidence));
+});
+
+test('four already deployed game sprites each require separate rights review despite verified source hashes',()=>{
+  const result=auditExistingGameUiPublicationRights(manifest,publicRightsReview);
+  assert.equal(result.existingDeployedCount,4);
+  assert.equal(result.rightsConfirmedCount,0);
+  assert.equal(result.rightsReviewRequiredCount,4);
+  assert.equal(result.publicationPermissionGranted,false);
+  assert.equal(result.verificationLevel,'STATIC_EXISTING_DEPLOYMENT_RIGHTS_RECORD_ONLY');
+  for(const key of ['skill.mining','status.warning','world.valley','world.exp1'])
+    assert.equal(publicRightsReview.reviewedItems[key].copyrightRedistributionPermission,'NOT_ESTABLISHED');
+});
+
+test('published image rights metadata fails closed on changed source or false permission',()=>{
+  const verify=(m=manifest,r=publicRightsReview)=>auditExistingGameUiPublicationRights(m,r);
+  const mutations=[
+    e=>{e.rightsApproval=true;},
+    e=>{e.releasePermissionFromPixelEquality=true;},
+    e=>{e.originalMediaBytesIncluded=true;},
+    e=>{e.terms.url='https://invalid.example';},
+    e=>{e.terms.sections=[];},
+    e=>{e.terms.specificExtractedSpritesPublicReusePermission='GRANTED';},
+    e=>{e.status='RELEASE_APPROVED';},
+    e=>{e.sourceBundleSha256='0'.repeat(64);},
+    e=>{delete e.reviewedItems['world.exp1'];},
+    e=>{e.reviewedItems['tab.daily']=copy(e.reviewedItems['world.exp1']);},
+    e=>{e.reviewedItems['world.valley'].rightsReviewRequired=false;},
+    e=>{e.reviewedItems['world.valley'].releaseRightsApproved=true;},
+    e=>{e.reviewedItems['world.valley'].nativeGameConsumer='RUNTIME_CONFIRMED';},
+    e=>{e.reviewedItems['skill.mining'].copyrightRedistributionPermission='GRANTED';},
+    e=>{e.reviewedItems['status.warning'].publicSha256='x';},
+    e=>{e.reviewedItems['status.warning'].sourceAsset='WRONG';},
+    e=>{e.reviewedItems['world.exp1'].timekeeperUse='SHOP_CATEGORY';}
+  ];
+  for(const modify of mutations){const r=copy(publicRightsReview);modify(r);assert.throws(()=>verify(manifest,r));}
+  const altered=copy(manifest);
+  altered.icons['world.valley'].spritePathId='1';
+  assert.throws(()=>verify(altered));
 });

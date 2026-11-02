@@ -1,5 +1,96 @@
 # 02 TIME — W1 per-event Native semantics ledger (Switch v1.25.3)
 
+## Round 9 — Clock.Update scheduler comparison, Client block gate and profile re-wait (2026-11-02)
+
+**Evidence classification: RAW_NSO_STATIC_VERIFIED only; no new save, Switch runtime, native test-harness execution, or writer acceptance.** Reused privately retained, unchanged original Nintendo Switch v1.25.3 BID `9A239D3DB569756D`, `main` SHA256 `16957e6ed546daeb196f296362d5ded885fad9eeff70584870f645e1204ca94a`, decompressed text SHA256 `15d17f0b9e95d022368bbd89ec8feacec6f1feb2439bc9a37fe2f6bf2078a328`, exact IL2CPP `dump.cs`. Rehash and prior setter/slot62/CTS disassembly from Rounds 1–8 were **reused**, not promoted. All RVA below are module RVAs. No raw game bytes, original save or user data committed.
+
+### 1. Clock.Update is a provider-time polling loop; an existing appointment does not re-read its RecurringEvent
+
+IL2CPP original `Meta.Util.Clock` fields: `List<Clock.Appointment> appointments` +`0x10`, `Func<DateTime> currentTimeProvider` +`0x18`, `Func<TimeSpan> timeZoneOffsetProvider` +`0x20`, `IsPaused` +`0x28`. `Clock.Appointment` fields: fixed `DateTime` +`0x10`, `CancellationToken` +`0x18`, `TaskCompletionSource<bool>` +`0x20`.
+
+The exact v1.25.3 `Clock.Update` RVA **`0x05BB4D30`** first tests `IsPaused` at `0x05BB4E08 LDRB W8,[X19,#0x28]`, leaving without processing appointments when paused. It reads and invokes the `currentTimeProvider` delegate at **`0x05BB4E30` → `0x05BB4E48 BLR X9`**, masks the resulting DateTime ticks at **`0x05BB4E70 AND X28,X9,#0x3FFFFFFFFFFFFFFF`**, and enumerates the current appointment list. Each appointment's DateTime is read from `+0x10` and masked at **`0x05BB4F68`**; **`0x05BB4F6C CMP X8,X28`** followed by **`0x05BB4F70 B.HS 0x05BB4E84`** (`54FFF8A2`) means **an appointment is completed by the clock-date comparison only when `appointmentDateTime < providerNow`**. At *exact equality*, the comparison alone does not complete the appointment; the next effective Update may. This is not the W1 `IsReadyForNextOccurence` `Now >= NextOccurrence` predicate and not the `Actualize` catch-up guard.
+
+There are **separate cancellation and success edges** before list removal: `0x05BB4F18 BL 0x03979630` = `TaskCompletionSource<T>.TrySetCanceled` for the observed cancellation-state path; `0x05BB4F90 BL 0x03979330` = `TaskCompletionSource<T>.TrySetResult` in the elapsed-appointment path; and `0x05BB4FA4 BL 0x03C08B50` = `List<T>.RemoveAt` to retire the item from the list. A cancellation can complete an appointment independently of its scheduled time. The `Clock.Update` loop reads **the stored appointment timestamp**, not the `RecurringEvent.NextOccurrence` protobuf pointer. It references the `currentTimeProvider` delegate, **not `timeZoneOffsetProvider` directly**. The separate `Clock.WaitUntilLocal` uses the time-zone offset provider, but does **not** prove its provider's OS/DST semantics, nor does it prove that the W1 appointment uses a local-time callsite. Consequently, time zone, daylight-saving changes, system-clock jumps, paused/unpaused timing, and thread frame rate require independent runtime evidence. Static comparison proves only the ordering and conditional branch.
+
+### 2. Client.Update drives three different Clock instances, subject to profile availability
+
+The exact `Client.Update` entry is **`0x0604C460`**. With a non-null Client.profile guard `0x0604C4F0`, it loads the three Client fields and invokes `Clock.Update`:
+
+| Client-owned Clock object | Client offset | Call instruction |
+| --- | --- | --- |
+| `Clock` | `+0xF0` | `0x0604C500 BL 0x05BB4D30` (`97EDA20C`) |
+| `ClockOnline` | `+0xF8` | `0x0604C510 BL 0x05BB4D30` (`97EDA208`) |
+| `ClockPortal` | `+0x100` | `0x0604C52C B 0x05BB4D30` (`17EDA201`, tail branch) |
+
+The corresponding `Clock.ctor` direct calls in the Client constructor are `0x0604A7EC`, `0x0604A980`, `0x0604AB20`. The three instances can have different time providers; the exact W1 appointment-to-Clock instance mapping, provider implementation and call cadence of `Client.Update` in a running Switch build have **not** been independently established here. Do not infer actual OS wall time or that every Unity frame invokes the same update path.
+
+### 3. OnRecurringEventRescheduled has an explicit Client-side gate
+
+`Client.OnRecurringEventRescheduled(uint recurringEventID)` starts at `0x0604E9B0`. **`0x0604EA34 LDRB W8,[X19,#0x1D0]`** reads `Client.blockRecurringEventReschedule` (+`0x1D0`); `0x0604EA3C CBZ W8,0x0604EA58` branches to normal processing if zero. When nonzero the handler returns before `Client.get_IsWorldAuthoritative` (`0x0604EA5C`), EventID lookup `0x0604EB9C`, `IsEventOver`, and `WaitForNextOccurrence`. Therefore a **delivered slot62 event does not always imply waiter rearming**, even assuming the corresponding listener is subscribed. The handler checks world authority and chooses subsequent data retrieval paths separately; exact cross-host semantics remain untested.
+
+This strengthens, but does not erase, Round 8's negative: W1 `set_NextOccurrence` has no slot62 emission within the setter body. `Profile.AddRecurringEvent` emits slot62 in a conditional path; no universal slot62 call is proved for W1.Execute/Reschedule/Actualize, and even an emitted event may be blocked at Client.
+
+### 4. Explicit profile-set and debug-time-skip re-enumeration; no cold-restart PASS
+
+Whole binary direct BL scan to `Client.WaitForRecurringEvents(CancellationToken)` RVA `0x0604D9D0` identified the relevant callsites `0x060AA13C` within **`Client.<SetProfile>d__126.MoveNext`** (`0x060A9B70`) and `0x060915E0` within **`Client.<DebugSkipTime>d__553.MoveNext`** (`0x060911E0`). In the debug-only path `0x060912B8 STRB W8,[X20,#0x1D0]` writes true to `blockRecurringEventReschedule`; later **`0x06091580 STRB WZR,[X22,#0x1D0]`** clears it and **`0x060915E0 BL 0x0604D9D0`** re-enumerates waits. This makes a *specialized debug time-skip lifecycle* distinguishable from a bare timestamp assignment. It must **not** be generalized to arbitrary console OS-time changes, user timestamp editing, or a supported Timekeeper repair mechanism. `Client.<SetProfile>d__126` likewise calls the wait-enumeration function, supporting a profile-initialization/replacement route. Existing per-ID CTS disposition across set-profile calls, normal save/load lifecycle, unsubscribing and re-subscribing to dispatcher events, the relative order of `ActualizeRecurringEvents` and wait creation, and cold-restart results are **UNKNOWN**. The absence of an easily identified direct add_OnRecurringEventRescheduled BL is not evidence of absent subscription; delegate registration may be through other call paths.
+
+### 5. Revised minimum Switch evidence matrix
+
+For an isolated, fully restorable Switch test save **after** 01 CORE and independent QA can verify a compatible runtime fixture, read-only record: (A) fresh cold load with a verified saved EventID/oneof, next occurrence in future and pre-existing GridObjects; (B) exact-now schedule, then advance without changing serialized field; (C) overdue schedule and an empty versus full effective Grid/DiffGrid Area; (D) pickup/harvest/removal without a timestamp edit; (E) slot62 notification with `blockRecurringEventReschedule` observed false versus blocked and a new linked CTS; (F) profile reload / process restart and recreation of Clock appointment/CTS; (G) time-zone/OS clock forward/backward changes while an appointment is already sleeping. Each needs actual original/next saved timestamp, profile CTS and per-event CTS identity, `Clock.currentTimeProvider` values, paused flag, appointment DateTime, appointment completion/cancel outcome, notification subscription/delivery, event activity/Scene/Area, successful spawn count, `GridObjectID` and `DiffGrids` overlay, and full save/restart trace. A source EventID, a source ItemID, a saved oneof, a ConditionalEvent GridObjectAddress, and a generated GridObject ID are **distinct** and must not be merged by guesswork. No matrix case executed this round.
+
+All previous source-only types remain unpromoted: NightThorn `2010000003`, Wood `2010000021`, WildCrop `2010400001`, Flower `2010500008` are source witnesses, not confirmed saved-instance mappings. The 46 inactive Fish W1 definitions and Fish slot39 removal are not a general spawn release; Moonstone Chest, TimeBending HOLD, W2, inactive/unknown IDs and unknown/new schemas remain excluded. **Intentional 2126 NextOccurrence is not corruption.** Writer, edited export, GridObject deletion, Moonstone relocation remain false, and `RUNTIME_TESTED` has not been reached.
+
+---
+
+## Round 8 — setter-only write vs dispatcher notification, Client per-event waiting and cancellation (2026-11-02)
+
+**RAW_NSO_STATIC_VERIFIED, NOT RUNTIME_TESTED.** New work reuses the same previously SHA-verified private Switch v1.25.3 NSO and IL2CPP `dump.cs`: BID `9A239D3DB569756D`, main SHA256 `16957e6ed546daeb196f296362d5ded885fad9eeff70584870f645e1204ca94a`, text SHA256 `15d17f0b9e95d022368bbd89ec8feacec6f1feb2439bc9a37fe2f6bf2078a328`; schema626 read-only evidence is a **separate** 01E acceptance, not a write or runtime authorization. No original binary/save bytes were committed. All RVAs refer to original module offsets.
+
+### 1. Four concrete W1 NextOccurrence setter functions: no implicit Client notification
+
+Every checked W1 subtype implements `IRecurringEvent.set_NextOccurrence(Timestamp)` with the **same immediate** timestamp pointer store `STR X1,[X0,#0x20]!`, AArch64 opcode `F8020C01`:
+
+| Saved oneof subtype | Setter entry | Native store | Following instructions |
+| --- | --- | --- | --- |
+| `ItemSpawning` | `0x057B8AA0` | `0x057B8AA8` | conditional card-table/write-barrier, return `0x057B8AE4` |
+| `WildCropsSpawningInVillage` | `0x057C1CC0` | `0x057C1CC8` | same, return `0x057C1D04` |
+| `FlowerSpawningInVillage` | `0x057C8AE0` | `0x057C8AE8` | same, return `0x057C8B24` |
+| `FishSpawningInVillage` | `0x057C58B0` | `0x057C58B8` | same, return `0x057C58F4` |
+
+The checked 0x50-byte setter functions have **no direct BL and no indirect BLR**. The post-store sequence updates GC write-barrier metadata; it is **not** a `IWorldEventDispatcher.RaiseRecurringEventRescheduled` call. Therefore `IRecurringEventExtensions.Reschedule` invoking the interface setter **does not by itself imply** slot-62 Client notification, task cancellation or immediate re-spawn. The caller might separately invoke a dispatcher; these setters alone cannot rule out such a subsequent action.
+
+Whole checked function-range audit for the signature `MOV W2,#62` (opcode `528007C2`, the interface virtual-method argument used at Round 7 `0x05A2A0F0`): `Profile.AddRecurringEvent [0x05A29920,0x05A2A170)` has exactly **one**, at `0x05A2A0F0`, followed by `0x05A2A118 BLR X8`; `Profile.ActualizeRecurringEvents [0x05A2A170,0x05A2B650)`, common `Reschedule [0x05AF24D0,0x05AF2CC0)`, and all four checked W1 Execute windows have **zero**. This is **pattern-scoped static proof**, not a universal negative proof about other registers, different callsite patterns or other indirect dispatch. The actual dispatcher subscription and delivery conditions remain separately UNKNOWN.
+
+### 2. Client async wait: EventID-keyed cancellation and timestamp-to-appointment
+
+Native IL2CPP `Client` declares `Dictionary<uint,CancellationTokenSource> recurringEventCTS` at object `+0xE8` and `CancellationTokenSource _profileCTS` at `+0xC0`. The wrapper `Client.WaitForNextOccurrence(RecurringEvent,CancellationToken)` is at **`0x0604E770`**; its compiler-generated `Client.<WaitForNextOccurrence>d__262.MoveNext` at **`0x060B4D80`** retains a `RecurringEvent`, a cancellation token, a key-value pair, `cancellationTokenSource +0x48`, and `linkedCTS +0x50`.
+
+Two distinct *callers* pass the event and cancellation token to the same waiting wrapper: initial `Client.WaitForRecurringEvents` at **`0x0604E65C BL 0x0604E770`** and slot-62 event handler `Client.OnRecurringEventRescheduled` at **`0x0604EC7C BL 0x0604E770`** (the latter was identified in Round 7). Within the async state machine, `0x060B51B0` loads the oneof event-data member from `RecurringEvent +0x18`, then the path obtains an occurrence timestamp via subtype/interface dispatch; **`0x060B5388 BL 0x03D92280`** invokes `Google.Protobuf.WellKnownTypes.Timestamp.ToDateTime`, and **`0x060B53F0 BL 0x05BB4950`** constructs `Clock.Appointment(DateTime,CancellationToken)`. This verifies a concrete **new wait uses a timestamp obtained from the referenced RecurringEvent**, distinct from a per-event fixed deadline encoded in the source registry. It does **not** show that a currently sleeping appointment continuously re-reads a changed timestamp.
+
+The waiting state machine loads the Client's EventID→CTS dictionary at **`0x060B5734`**; a `Dictionary.TryGetValue` occurs at **`0x060B57EC BL 0x03B56B30`**. If an existing non-null CTS is found, it checks cancellation state and calls **`0x060B5838 BL 0x0651D2F0`** (`CancellationTokenSource.NotifyCancellation(false)`); it later updates the per-event dictionary via **`0x060B59FC BL 0x03B51D40`** and builds a linked source at **`0x060B5AA4 BL 0x0651F5B0`** (`CancellationTokenSource.CreateLinkedTokenSource(token1,token2)`). This establishes **conditional cancel-and-replace machinery when a new waiting path executes**. The complete async race, request task outcome, wait timer arrival, callback subscription at runtime, any transaction side effects, clock source, and cold-restart guarantees remain unverified.
+
+### 3. Removal means cancel/dispose/remove, not just a future timestamp
+
+`Client.OnRecurringEventRemoved(uint recurringEventID)` has its own concrete handler RVA **`0x0604ECF0`**. It loads `recurringEventCTS` at **`0x0604ED48`**, conditionally gets the matching event ID via **`0x0604ED68 BL 0x03B56B30`**, then on the matched non-null CTS path executes **`0x0604ED88 BL 0x0651D2F0`** (NotifyCancellation(false)), **`0x0604ED98 BL 0x0651DA20`** (`CancellationTokenSource.Dispose`), and **`0x0604EDB4 BL 0x03B55A10`** (`Dictionary.Remove`). This is a static event-removal cancellation path. It must **not** be inferred to run merely because `NextOccurrence` is in 2126, changed offline, overdue, or passed through a setter.
+
+### 4. Explicit distinct mechanisms and hardware proof obligations
+
+| Scenario | Static mechanics that are supported | Still required for Switch runtime acceptance |
+| --- | --- | --- |
+| Existing save `NextOccurrence` far in future | Stored timestamp field; not auto-corruption. Source setter alone does not notify slot 62. | Cold load and live Client wait creation, actual event oneof, occurrence deadline, no unrelated side effects |
+| `Now` / overdue before first wait | `WaitForRecurringEvents` can create a fresh wait using a subtype timestamp and Clock.Appointment; `Actualize` may separately clamp overdue values | Initial-load order (Actualize vs Client wait), due callback path, Area cap/placement result, timer transaction |
+| Overdue after Client has already armed an appointment | Existing timeout is represented by a Clock.Appointment with cancellable token | Whether a clock change, explicit reschedule or scene event emits slot62; task cancellation/recreation; stale-task outcome |
+| `Reschedule` via Execute | `NextOccurrence` setter plus source-specific Execute result; no slot-62 `MOV W2,#62` in checked Execute windows | Indirect notification after transaction, successful spawn vs failed placement and next occurrence persistence |
+| Add new RecurringEvent | `Profile.AddRecurringEvent` has explicit slot62 callsite; Client listener has read→expiry→wait branch | Subscription/delivery, precise event type and active source/scene eligibility |
+| Remove RecurringEvent | Client removal handler conditionally cancels, disposes and removes matching CTS | Confirm slot64/removal emission, lack of orphan waits, game save/reopen lifecycle |
+| Already placed / harvested Item, Garden, Flower, PendingFish | Independent Grid/DiffGrid/owner-count and Fish slot39 paths from Round 5–7 | Existing direct+overlay objects, conditional references, Area and seed predicates, collection callbacks, timestamps, reload identity |
+
+Re-use authoritative **Wand 01A/01B/01E** for actual Grid/ConditionalEvent and save oneof observations; do not duplicate existing Grid or Codec source or equate source EventID with generated GridObjectID. Source IDs NightThorn 2010000003, Wood 2010000021, WildCrop 2010400001, Flower 2010500008 are source-defined hints only; real schema626 saved variant and concrete GridObject provenance remain **UNKNOWN**. Fish slot39 PendingFish removal is a separate notification family; neither it nor the present Client slot62 trace proves a Fish pickup causes `Reschedule`. MaximumAmount, Area cap and conditional object-refs remain outside the confirmed wait lifecycle.
+
+**Safety gate unchanged:** No Switch execution this round, no verified write semantics, no released Writer or edited export, no GridObject delete, no Moonstone relocation. Intentional year-2126 suppression timestamps are normal valid research inputs, and Moonstone Chest, TimeBending HOLD, W2, inactive Fish and newer/unknown schemas remain fail-closed.
+
+---
+
 ## Round 7 — per-player Item count, WildCrops bounded census and Client reschedule notification (2026-11-02)
 
 **New static evidence scope**: original private Nintendo Switch v1.25.3 `ExeFS/main` SHA256 `16957e6ed546daeb196f296362d5ded885fad9eeff70584870f645e1204ca94a`, NSO decompressed text SHA256 `15d17f0b9e95d022368bbd89ec8feacec6f1feb2439bc9a37fe2f6bf2078a328`, BID `9A239D3DB569756D`, exact matching `dump.cs`. Reuses original file/section checks, W1 Execute/Reschedule, DiffGrid overlay and Native RVA ledger; no new game version, console test, live event execution or save write. Method signatures and field offsets are taken from the original v1.25.3 IL2CPP dump. The source is privately held; do not commit `main`, decoded text, `dump.cs`, or a real save.

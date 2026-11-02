@@ -204,3 +204,54 @@ export function auditSteamUiConsumerLinks(catalog,record){
     releaseApproved:false
   };
 }
+
+
+/**
+ * Review the four *already shipped* Steam sprites independently of their
+ * pixel provenance and runtime UI placement. A passing review is evidence of
+ * an unresolved distribution-rights gate, NEVER a licence or deployment grant.
+ */
+export function auditExistingGameUiPublicationRights(manifest,review){
+  validateUiManifest(manifest,'game_ui');
+  if(!object(review)||review.kind!=='GAME_UI_EXISTING_PUBLICATION_RIGHTS_REVIEW_ONLY'||
+     review.gameVersion!=='1.25.3'||review.platform!=='Steam/Windows'||
+     review.sourceBundleSha256!==manifest.source.sourceBundleSha256||
+     !object(review.terms)||!object(review.reviewedItems)||
+     review.terms.url!=='https://www.gameloft.com/en/conditions-of-use'||
+     JSON.stringify(review.terms.sections)!==
+       JSON.stringify(['V.A Proprietary Rights','V.E Disney User Content conditional authorization'])||
+     review.terms.specificExtractedSpritesPublicReusePermission!=='NOT_ESTABLISHED'||
+     review.status!=='EXISTING_SHIPMENT_NOT_RIGHTS_APPROVAL'||
+     review.rightsApproval!==false||review.releasePermissionFromPixelEquality!==false||
+     review.originalMediaBytesIncluded!==false)
+    throw new Error('Existing Steam UI rights status is missing or overstated.');
+  const keys=Object.keys(review.reviewedItems);
+  if(keys.length!==baselinePublishedKeys.length||
+     keys.some(key=>!baselinePublishedKeys.includes(key))||
+     Object.keys(manifest.icons).length!==baselinePublishedKeys.length)
+    throw new Error('Existing Steam UI rights review must cover exactly the four shipped keys.');
+  for(const key of baselinePublishedKeys){
+    const entry=manifest.icons[key],item=review.reviewedItems[key];
+    const role=key==='skill.mining'?'MINING_ACTIVITY_DECORATIVE_ICON':
+      key==='status.warning'?'ANOMALOUS_TIMER_DECORATIVE_STATUS':
+      key==='world.valley'?'MAIN_VALLEY_WORLD_FILTER':'ETERNITY_ISLE_WORLD_FILTER';
+    if(!entry||!object(item)||item.publicPath!==entry.path||
+       item.publicSha256!==entry.sha256||
+       item.originalDecodedSourceSha256!==entry.sourceSha256||
+       item.sourceAsset!==entry.sourceAsset||
+       item.spritePathId!==entry.spritePathId||
+       item.texturePathId!==entry.texturePathId||
+       item.width!==entry.width||item.height!==entry.height||
+       item.pixelProof!=='PRIOR_SOURCE_RECORDED_NOT_RERUN_ROUND9'||
+       item.nativeGameConsumer!=='UNKNOWN_NOT_TYPED_OR_RUNTIME_CONFIRMED'||
+       item.timekeeperUse!==role||
+       item.currentDeployment!=='PUBLISHED_PREEXISTING'||
+       item.copyrightRedistributionPermission!=='NOT_ESTABLISHED'||
+       item.rightsReviewRequired!==true||item.releaseRightsApproved!==false)
+      throw new Error('Existing Steam UI sprite rights or source evidence drift: '+key);
+  }
+  return {existingDeployedCount:baselinePublishedKeys.length,
+    rightsConfirmedCount:0,rightsReviewRequiredCount:baselinePublishedKeys.length,
+    verificationLevel:'STATIC_EXISTING_DEPLOYMENT_RIGHTS_RECORD_ONLY',
+    publicationPermissionGranted:false};
+}
