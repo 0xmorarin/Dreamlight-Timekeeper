@@ -4,6 +4,7 @@ import {indexEvents,projectProfile} from './reader.mjs';
 import {indexTimingReviewRules,assessTimingSnapshot} from './timing-review.mjs';
 import {auditTimingSnapshot} from './timing-audit.mjs';
 import {inspectTimingPlan} from './core/timing-plan-preflight.mjs';
+import {auditP1gEnvelope} from './core/p1g-envelope-audit.mjs';
 const decoder=new TextDecoder('utf-8',{fatal:true});
 let indexPromise;
 let namesPromise;
@@ -29,14 +30,15 @@ self.onmessage=async({data})=>{
     if(data.type==='open'){
       const bytes=new Uint8Array(data.buffer);
       if(bytes.length===0||bytes.length>128*1024*1024)throw new Error('セーブファイルが空、または128MiBを超えています');
-      let text,format;
+      let text,format,decodedMetadata=null;
       if(bytes[0]===123||bytes[0]===32||bytes[0]===10||bytes[0]===13||bytes[0]===9||bytes[0]===0xef){text=decoder.decode(bytes).replace(/^\uFEFF/,'');format='json'}
-      else {const loaded=await p1gPackagedProfileCodec.loadProfile(bytes);text=loaded.jsonText;format='packaged'}
+      else {const loaded=await p1gPackagedProfileCodec.loadProfile(bytes);text=loaded.jsonText;format='packaged';decodedMetadata=loaded.metadata}
       const profile=parseSafeJson(text);
       const [registry,names,rules]=await Promise.all([getIndex(),getNames(),getRules()]);
        const observedAt=Date.now();
       const reviewed=assessTimingSnapshot(projectProfile(profile,registry,{itemNames:names,now:observedAt}),rules);
-      const view={...reviewed,timingAudit:auditTimingSnapshot(reviewed,{now:observedAt})};
+      const view={...reviewed,timingAudit:auditTimingSnapshot(reviewed,{now:observedAt}),
+       containerAudit:auditP1gEnvelope({format,metadata:decodedMetadata})};
       original=bytes.slice();originalName=String(data.name||'profile.json').slice(0,180);
       activeProfile=profile;activeReview=reviewed;activeSessionId++;
 
