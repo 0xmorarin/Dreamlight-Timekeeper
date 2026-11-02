@@ -236,6 +236,7 @@ export async function createW1EditedP1gCopy({
  // by SafeProfileEditSession.exportVerifiedCopy; no second encoder exists here.
  return Object.freeze({
   status:'WORKER_VERIFIED_EDITED_P1G_COPY',sourceSessionId,
+  planRevision:hasRevision?expectedPlanRevision:null,
   sourceRawSha256:identity.sourceRawSha256,
   backupOriginalBytes:changed.backupOriginalBytes,
   editedBytes:changed.editedBytes,
