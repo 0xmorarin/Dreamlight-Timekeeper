@@ -1,0 +1,104 @@
+name: 03 WEB Round 9 cross-browser synthetic P1G Worker research
+on:
+  push:
+    branches:
+      - test/web-round3-negative-boundaries
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-memory:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 28
+    steps:
+      - name: Checkout WEB-owned test branch
+        uses: actions/checkout@v4
+      - name: Checkout fixed, independently accepted read-only integrated PR11
+        uses: actions/checkout@v4
+        with:
+          repository: 0xmorarin/Dreamlight-Timekeeper
+          ref: dbd6050b72990df547116634d851fe272c0e6c2b
+          path: _round9_target
+      - name: Checkout isolated CORE memory probe (not integrated into PR11)
+        uses: actions/checkout@v4
+        with:
+          repository: 0xmorarin/Dreamlight-Timekeeper
+          ref: 13e6592facfbcaa0be4b23ca74db758ab0388bd4
+          path: _round9_core
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify immutable HEADs, identical Codec blobs, no product edit capability
+        run: |
+          test "$(git -C _round9_target rev-parse HEAD)" = dbd6050b72990df547116634d851fe272c0e6c2b
+          test "$(git -C _round9_core rev-parse HEAD)" = 13e6592facfbcaa0be4b23ca74db758ab0388bd4
+          for f in src/core/p1g-packaged-profile-codec.mjs src/core/safe-edit-session.mjs src/core/versioning.mjs src/core/p1g-envelope-audit.mjs; do
+            test "$(git -C _round9_target rev-parse HEAD:"$f")" = "$(git -C _round9_core rev-parse HEAD:"$f")"
+          done
+          ! grep -q "request('export'" _round9_target/src/app.mjs
+          ! grep -q "createSeparateDownloadCoordinator" _round9_target/src/app.mjs
+          ! grep -q "type==='export'" _round9_target/src/worker.mjs
+          test ! -e _round9_target/tests/browser-memory
+          cp -a _round9_core/tests/browser-memory _round9_target/tests/browser-memory
+          test -f _round9_target/tests/browser-memory/p1g-read-worker.mjs
+          # Test-only overlay: no Git commit or product source modification.
+      - name: Install isolated Playwright and process sampling dependencies
+        run: |
+          python -m pip install playwright==1.56.0 psutil
+          python -m playwright install --with-deps chromium firefox webkit
+      - name: Run real Chromium Firefox WebKit synthetic 1MiB Codec Worker and teardown
+        run: |
+          python _round9_target/tests/browser-memory/run_browsers.py --browser all --mib 1 > browser-memory-all-1mib.json
+          python -m json.tool browser-memory-all-1mib.json > /dev/null
+      - name: Run real Chromium synthetic 8MiB Codec Worker and teardown
+        run: |
+          python _round9_target/tests/browser-memory/run_browsers.py --browser chromium --mib 8 > browser-memory-chromium-8mib.json
+          python -m json.tool browser-memory-chromium-8mib.json > /dev/null
+      - name: Validate actual Codec read and fail closed on unavailable browser or unsafe claims
+        run: |
+          python - <<'PY'
+          import json
+          for file, engines, mib in [
+            ('browser-memory-all-1mib.json',('chromium','firefox','webkit'),1),
+            ('browser-memory-chromium-8mib.json',('chromium',),8)
+          ]:
+            report=json.load(open(file,encoding='utf-8'))
+            assert report['scenario']=='SYNTHETIC_ONLY_NO_REAL_SAVE'
+            assert report['mib']==mib and report['releaseAuthorized'] is False
+            assert report['memoryAccuracy']=='SAMPLED_NOT_EXACT_PEAK'
+            for engine in engines:
+              item=report['testResults'][engine]
+              assert item['status']=='SYNTHETIC_BROWSER_READ_PASS',(engine,item.get('reason'))
+              assert item['browserPeakMemoryAccepted'] is False
+              assert item['realSaveWriteAccepted'] is False
+              assert item['features']['canUseWorker'] is True
+              for kind in ('clone','transfer'):
+                data=item[kind]
+                assert data['readOnly'] is True
+                assert data['writerAuthorized'] is False and data['editedCopyAuthorized'] is False
+                assert data['schema']==626 and data['browserPeakAccepted'] is False
+                assert data['measurementsArePeak'] is False and data['browserMemoryAccepted'] is False
+                assert data['inputBytes']>0 and data['inflatedBytes']>mib*1024*1024
+                assert [p['phase'] for p in data['checks']]==[
+                  'received','loaded','parsed','cloned','serialized','session-open']
+                assert all(p['workerPeakBytes'] is None for p in data['checks'])
+              assert item['transfer']['transferDetached'] is True
+              sw=item['sessionSwitch']
+              assert sw['terminated'] and sw['staleResponseAccepted'] is False
+              assert sw['subsequent']['readOnly'] is True
+              rss=item['processRss']
+              assert rss['method']=='OS_PROCESS_RSS_SUM_SAMPLED_30MS_NOT_EXACT_PEAK'
+              print('BROWSER_P1G_CODEC_READ_ONLY_PASS',engine,'expandedMiB',mib,
+                    'rssSamples',rss['sampleCount'],'noBrowserPeakClaim',True)
+          PY
+      - name: Retain only synthetic aggregate measurements and failure diagnosis
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-round9-browser-memory-synthetic-json
+          path: browser-memory-*.json
+          if-no-files-found: ignore
+          retention-days: 7
