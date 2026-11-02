@@ -22,3 +22,5 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Verify actual UI images and read-only flow in Chromium
         run: node tests/browser-ui.smoke.mjs
+      - name: Verify all 20 published images at real Chrome 200% tab zoom
+        run: node tests/browser-asset-zoom.smoke.mjs

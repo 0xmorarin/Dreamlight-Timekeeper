@@ -40,6 +40,23 @@ The original PNG decoded from the actual Unity BC7 source and the generated WebP
 
 The 1920×1080 `img_expansion_storybook_vale`, `img_expansion_wishblossom_ranch` and `img_expansionMini_honeyglow_woods` sprites are expansion key art, not equivalent to small category icons. Do **not** resize or mislabel them as equivalent world UI symbols. Until suitable matching icons are verified, world filters retain plain translated text and counts.
 
+## PR #10 (03 WEB) integration boundary — 2026-11-02
+
+PR #10 (`feat/versioned-timing-review` derived) and PR #3 (`feat/lossless-webp-asset-pipeline` derived) independently change `src/app.mjs`. Integration is **not** a direct file overwrite or merge of either branch; 00 CTRL/03 WEB must preserve PR #10's original-backup coordinator, draft/Session lifecycle, existing safety gates and read-only export state while explicitly adapting the following presentational hooks:
+
+- Static imports: `validateIconManifest,resolveIconAsset` from `./icon-assets.mjs`; `validateUiManifest,resolveGameUiIcon,resolveAppUiIcon` from `./ui-assets.mjs`.
+- Keep separate `iconManifest`, `gameUiManifest`, `appUiManifest` session-independent display caches. `loadIcons()` must validate each fetched manifest (strict source namespace, canonical semantic path, version, declared writer false). Fetch before first icon decoration, or rerender the current screen when asynchronous manifests arrive; never gate Worker/session loading on image failure.
+- `semanticIcon(kind,key)` uses only `game_ui` or `app_ui` resolver and returns `null` when missing. Set `alt=""`, `aria-hidden="true"`, keep readable text, and remove broken `<img>` on `error`. Reapply icons to newly generated controls on rerender, avoiding duplicate insertions.
+- Item thumbnails use `resolveIconAsset(iconManifest,item.id)` only, without guessing source image identity or mixing game UI keys. Current item manifest is empty; display the existing translated image-unavailable fallback without breaking selection.
+- Path returned by a resolver is a repository-root-relative, verified local asset path. In `src/app.mjs`, use `new URL('../'+record.path,import.meta.url).href`; **never** form a URL from a raw semantic key or arbitrary user-save fields.
+- No Icon API call grants `Writer`, timing edit, or backup authority. PR #10 `createOriginalBackupCoordinator` and its session invalidation must remain intact. The PR #3 Chromium smoke test using the original pre-PR #10 backup handler is not evidence that the combined app has been independently accepted.
+
+These hooks are a **consumer contract**, not a committed integration into PR #10. Coordinate edits to shared `src/app.mjs` with 00 CTRL; 04 ASSET does not change it here.
+
+## Round 2 real browser asset validation
+
+The asset-only Chromium workflow uses a temporary, test-only Chrome extension with `chrome.tabs.setZoom(tabId,2)` and verifies `getZoom()===2` plus viewport scaling (not merely a 640 CSS px emulation). All 16 author-authored app SVGs and all 4 shipped Steam UI VP8L files are decoded by Chromium and checked against manifest dimensions; the missing open-save SVG is blocked and keyboard access/file chooser are verified at 200%. The test extension is not a project runtime dependency. A successful CI establishes only this narrow Chromium image/display behavior, not visual design approval, rights/publication authority, non-Chromium coverage or Switch gameplay/runtime acceptance.
+
 ## Resolution and verification
 
 `resolveIconAsset(itemManifest,itemId)` remains numeric. `resolveGameUiIcon(gameUiManifest,key)` only uses the original-versioned WebP manifest, while `resolveAppUiIcon(appUiManifest,key)` only uses original SVG metadata. The same UI function may use both resolvers, but neither can fall through into the wrong asset namespace. Both return null on invalid or missing provenance. No icon affects gameplay or save-field policy.
