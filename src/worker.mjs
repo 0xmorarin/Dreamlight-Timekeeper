@@ -5,6 +5,7 @@ import {indexTimingReviewRules,assessTimingSnapshot} from './timing-review.mjs';
 import {auditTimingSnapshot} from './timing-audit.mjs';
 import {inspectTimingPlan} from './core/timing-plan-preflight.mjs';
 import {auditP1gEnvelope} from './core/p1g-envelope-audit.mjs';
+import {assessTimekeeperTimingCompatibility} from './core/timekeeper-timing-compatibility.mjs';
 const decoder=new TextDecoder('utf-8',{fatal:true});
 let indexPromise;
 let namesPromise;
@@ -55,7 +56,8 @@ self.onmessage=async({data})=>{
       if(!activeProfile||!activeReview||data.sessionId!==activeSessionId)
        throw new Error('Timing preflight session is stale or missing.');
       const report=inspectTimingPlan(activeProfile,activeReview,data.entries);
-      self.postMessage({id,ok:true,type:'preflight',sessionId:activeSessionId,report});
+      const compatibility=assessTimekeeperTimingCompatibility(activeProfile,activeReview,data.entries);
+      self.postMessage({id,ok:true,type:'preflight',sessionId:activeSessionId,report,compatibility});
       return;
     }
     if(data.type==='check'){
