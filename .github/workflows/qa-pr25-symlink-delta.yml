@@ -1,0 +1,28 @@
+name: 05 QR PR25 Symlink Security Delta (review only)
+on:
+  pull_request:
+    paths:
+      - 'qa/05qr-pr25-symlink-delta.test.mjs'
+      - '.github/workflows/qa-pr25-symlink-delta.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  qa-pr25-delta:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build compiled SvelteKit only to exercise path guards
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+        env:
+          BASE_PATH: /Dreamlight-Timekeeper
+      - name: Independent delta symlink/abort tests ONLY
+        run: node --test qa/05qr-pr25-symlink-delta.test.mjs
+      - name: No release
+        run: echo 'NO_DEPLOY=true; WRITER=false; compilation hash reproducibility and JS content policy remain OPEN'
