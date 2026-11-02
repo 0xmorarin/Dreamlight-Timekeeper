@@ -244,7 +244,7 @@ test('W1-Q09 running session invalidates at start, after first decode or after E
   assert.deepEqual(Buffer.from(c.bytes),untouched);
  }
 });
-test('W1-Q10 no persistent write, no original overwrite, and only research-restricted direct API exists before WEB',async()=>{
+test('W1-Q10 bounded in-memory copy API never authorizes original overwrite (historical API-only or Worker-integrated source)',async()=>{
  const c=makeContext();
  const result=await createW1EditedP1gCopy(c.args);
  assert.equal(result.persistentReplaceAuthorized,false);
@@ -253,6 +253,16 @@ test('W1-Q10 no persistent write, no original overwrite, and only research-restr
  assert.equal(result.browserRuntimeVerified,false);
  assert.equal(result.deviceLoadVerified,false);
  const worker=await readFile(new URL('../src/worker.mjs',import.meta.url),'utf8');
- assert.doesNotMatch(worker,/createW1EditedP1gCopy/);
+ // This QA test first ran against an older API-only integration. A newer
+ // product HEAD may now expose a limited prepareEdited Worker command.
+ // Neither era permits direct replacement of the selected original.
+ if(worker.includes('createW1EditedP1gCopy')){
+  assert.match(worker,/data\.type==='prepareEdited'/);
+  assert.match(worker,/assessMinimalW1WriteTargets\(/);
+  assert.match(worker,/WORKER_VERIFIED_PAIR/);
+  assert.match(worker,/originalOverwritePerformed!==false/);
+ }else{
+  assert.doesNotMatch(worker,/data\.type==='prepareEdited'/);
+ }
  assert.doesNotMatch(worker,/type\s*===\s*['"]exportEdited['"]/);
 });
