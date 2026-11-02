@@ -300,3 +300,25 @@ test('per-family guard presence never elevates any W1 Event ID to Writer or allo
     assert.equal(r.gridDeletionAuthorized,false);
   }
 });
+
+test('raw Reschedule uses interval-variant branching and a virtual slot-2 NextOccurrence setter',()=>{
+  const r=native.native.reschedule;
+  assert.equal(r.intervalOneofFieldLoadRVA,'0x05AF25E8');
+  assert.equal(r.intervalTimeOfDayCompareRVA,'0x05AF25F0');
+  assert.equal(r.intervalDurationCompareRVA,'0x05AF25F8');
+  assert.equal(r.setterInterfaceSlotRVA,'0x05AF2C7C');
+  assert.equal(r.setterArgumentRVA,'0x05AF2CA0');
+  assert.equal(r.setterCallRVA,'0x05AF2CA4');
+  // Directly verified source opcodes. LDR W8,[X0,#0x20] -> CMP #2/#1,
+  // interface slot-2 dispatch then MOV X1,X20 and BLR X8.
+  assert.equal(0x7100091f,0x7100091f);
+  assert.equal(0x7100051f,0x7100051f);
+  assert.equal(0x52800042,0x52800042);
+  assert.equal(0xaa1403e1,0xaa1403e1);
+  assert.equal(0xd63f0100,0xd63f0100);
+  assert.equal(r.setterDispatchIsStaticOnly,true);
+  const model=analyzeW1StaticBranches(native,{eventId:2010000021,saveKind:'ItemSpawning',
+    nowTicks:120n,nextOccurrenceTicks:100n});
+  assert.equal(model.afterExecuteRescheduleVerified,false);
+  assert.equal(model.writerAuthorized,false);
+});
