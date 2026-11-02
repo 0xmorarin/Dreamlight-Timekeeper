@@ -1,0 +1,54 @@
+name: 05 QR Minimal Writer Phase A Negative Preparation (NOT Writer PASS)
+
+on:
+  pull_request:
+    paths:
+      - 'qa/minimal-writer/**'
+      - '.github/workflows/qa-minimal-writer-phase-a.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  phase-a-new-negatives-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact QA HEAD for independent tests
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: qa-source
+          persist-credentials: false
+      - name: Checkout PREVIOUSLY ACCEPTED read-only source SHA (not a Writer)
+        uses: actions/checkout@v4
+        with:
+          ref: 5d23df0cc0cd1ff0ca51616890ba459126faa4db
+          path: target
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Assert exact source; stage only new Writer preflight negative tests
+        run: |
+          test "$(git -C target rev-parse HEAD)" = "5d23df0cc0cd1ff0ca51616890ba459126faa4db"
+          cp qa-source/qa/minimal-writer/phase-a-negative.test.mjs target/tests/qa-minimal-writer-phase-a.test.mjs
+      - name: Run ONLY NEW Phase A negative tests (never rerun Round 10 accepted suite)
+        run: |
+          cd target
+          node --test tests/qa-minimal-writer-phase-a.test.mjs
+      - name: Check Writer matrix and Owner waiver evidence labels do not claim QA runtime PASS
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const d=JSON.parse(fs.readFileSync('qa-source/qa/minimal-writer/acceptance-contract.json','utf8'));
+          assert.equal(d.releaseStatus,'PENDING_CORE_WEB_IMPLEMENTATION');
+          assert.equal(d.ownerRuntimeDecision.status,'WAIVED_BY_OWNER');
+          assert.equal(d.ownerRuntimeDecision.independentlyQaRuntimeVerified,false);
+          assert.equal(d.preintegrationEvidence.productWriterAvailable,false);
+          assert.equal(d.requiredCases.length,10);
+          assert.deepEqual(d.requiredCases.map(x=>x.id),Array.from({length:10},(_,i)=>'MW'+String(i+1).padStart(2,'0')));
+          console.log('Minimal Writer ten-case Phase B contract ready; owner physical test waiver NOT QA runtime PASS');
+          JS

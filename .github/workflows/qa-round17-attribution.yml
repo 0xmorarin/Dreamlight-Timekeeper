@@ -1,0 +1,79 @@
+name: 05 QR Round17 Exact Attribution Only Independent Acceptance
+on:
+  pull_request:
+    paths:
+      - 'qa/round17/**'
+      - '.github/workflows/qa-round17-attribution.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent-attribution-static:
+    name: Exact 3 blobs, unchanged Writer, and 5 independent attribution contracts
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: qa-source
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: 393222e7832461ef5fea847b6fff475fedc45017
+          path: target
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Immutable parent, 3 exact Git blobs, no Worker/Writer/Codec/runtime stage changes
+        run: |
+          cd target
+          test "$(git rev-parse HEAD)" = "393222e7832461ef5fea847b6fff475fedc45017"
+          test "$(git rev-parse HEAD^)" = "982c7800b42986001464160c42cb932e853a5ba1"
+          git diff --name-only HEAD^ HEAD > /tmp/qa-r17-diff
+          printf '%s\n' docs/INITIAL_RELEASE_ASSET_SCOPE.md index.html tests/ui.test.mjs > /tmp/qa-r17-expected
+          diff -u /tmp/qa-r17-expected /tmp/qa-r17-diff
+          test "$(git rev-parse HEAD:docs/INITIAL_RELEASE_ASSET_SCOPE.md)" = "be36afaa2bc1be126928c24cbec7cdd84d85e05e"
+          test "$(git rev-parse HEAD:index.html)" = "45481eabbff49164ebd6c15476beebb537a43773"
+          test "$(git rev-parse HEAD:tests/ui.test.mjs)" = "6bdaf14c1f3cf9fbd918669d6473b44a98b1600a"
+          git diff --quiet HEAD^ HEAD -- src/worker.mjs src/app.mjs src/core src/w1-minimal-write-contract.mjs src/timing-native-semantics.mjs src/ui-verified-pair-downloads.mjs src/ui-separate-downloads.mjs scripts/stage-release-asset-profile.mjs assets/app/release-notice.css
+          cp ../qa-source/qa/round17/attribution-contract.test.mjs tests/qa-round17-attribution-contract.test.mjs
+      - name: Only new attribution contract and source UI tests (no Writer or staging)
+        run: |
+          cd target
+          node --test tests/qa-round17-attribution-contract.test.mjs tests/ui.test.mjs
+
+  independent-attribution-chromium:
+    name: Native 200 percent Chrome, mobile, keyboard, ARIA, no Writer test
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: qa-source
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: 393222e7832461ef5fea847b6fff475fedc45017
+          path: target
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Stage independent attribution browser script on immutable HEAD
+        run: |
+          test "$(git -C target rev-parse HEAD)" = "393222e7832461ef5fea847b6fff475fedc45017"
+          cp qa-source/qa/round17/attribution-chromium.smoke.mjs target/tests/qa-round17-attribution-chromium.smoke.mjs
+          node --check target/tests/qa-round17-attribution-chromium.smoke.mjs
+      - name: Install actual native Chromium
+        run: |
+          cd target
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Only attribution visibility, zoom, mobile and source backup DOM
+        run: |
+          cd target
+          node tests/qa-round17-attribution-chromium.smoke.mjs

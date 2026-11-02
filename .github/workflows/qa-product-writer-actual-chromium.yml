@@ -1,0 +1,77 @@
+name: 05 QR Product Edited P1G Independent Chromium Fixed HEAD
+
+on:
+  pull_request:
+    paths:
+      - 'qa/product-writer/**'
+      - '.github/workflows/qa-product-writer-actual-chromium.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  product-worker-chromium:
+    name: Independent real Chromium product Worker synthetic P1G and download negatives
+    runs-on: ubuntu-24.04
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: qa-source
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: 0917eb4578fe09c51e55572ee1366406ecf3b90d
+          path: target
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prove immutable product HEAD and stage only QA-owned new browser test
+        run: |
+          test "$(git -C target rev-parse HEAD)" = "0917eb4578fe09c51e55572ee1366406ecf3b90d"
+          cp qa-source/qa/product-writer/actual-worker-chromium.smoke.mjs target/tests/qa-product-writer-chromium.smoke.mjs
+          cd target
+          node --check src/worker.mjs
+          node --check src/app.mjs
+          node --check tests/qa-product-writer-chromium.smoke.mjs
+      - name: Install actual Chromium
+        run: |
+          cd target
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Independent product real Worker, synthetic edited P1G, browser blocked download and stale negatives
+        run: |
+          cd target
+          node tests/qa-product-writer-chromium.smoke.mjs
+      - name: Exact QA receipt scope
+        run: |
+          test "$(git -C target rev-parse HEAD)" = "0917eb4578fe09c51e55572ee1366406ecf3b90d"
+          echo "PASS_SCOPE=ACTUAL_PRODUCT_WORKER_SYNTHETIC_P1G_CHROMIUM_ONLY; no real save/Switch runtime; no overwrite"
+
+  product-core-plan-revision:
+    name: Independent plan-revision negative Node tests (new changes only)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: qa-source
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: 0917eb4578fe09c51e55572ee1366406ecf3b90d
+          path: target
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run only independent CORE plan revision and product Worker boundary tests
+        run: |
+          test "$(git -C target rev-parse HEAD)" = "0917eb4578fe09c51e55572ee1366406ecf3b90d"
+          cp qa-source/qa/product-writer/plan-revision.test.mjs target/tests/qa-product-writer-revision.test.mjs
+          cd target
+          node --test tests/qa-product-writer-revision.test.mjs

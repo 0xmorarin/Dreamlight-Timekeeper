@@ -1,0 +1,79 @@
+name: 05 QR Round 2 Independent Fixed-HEAD Acceptance
+
+on:
+  pull_request:
+    paths:
+      - 'qa/round2/**'
+      - '.github/workflows/qa-round2-independent.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fixed-head-node:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - stream: core
+            source_sha: 72c972ad7b4fa3c2ae46d506c1140d25ca33c22b
+          - stream: time
+            source_sha: 91b640bf23ec05dcd32ce36de054f8d1964210fd
+          - stream: web
+            source_sha: e39066d1142113b0d8879aa4b8afa58baabc3640
+    steps:
+      - name: Checkout independent QA tests
+        uses: actions/checkout@v4
+        with:
+          path: qa-source
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Checkout exact isolated Owner HEAD
+        uses: actions/checkout@v4
+        with:
+          path: target
+          ref: ${{ matrix.source_sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify target fixed HEAD and test only new independent cases
+        run: |
+          test "$(git -C target rev-parse HEAD)" = "${{ matrix.source_sha }}"
+          cp "qa-source/qa/round2/${{ matrix.stream }}.mjs" target/tests/qa-round2-fixed.test.mjs
+          cd target
+          node --test tests/qa-round2-fixed.test.mjs
+
+  fixed-head-chromium-web:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - name: Checkout independent QA browser test
+        uses: actions/checkout@v4
+        with:
+          path: qa-source
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Checkout exact PR10 WEB Owner HEAD
+        uses: actions/checkout@v4
+        with:
+          path: target
+          ref: e39066d1142113b0d8879aa4b8afa58baabc3640
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated Chromium runner
+        run: |
+          cd target
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Independent delayed Worker response browser proof
+        run: |
+          test "$(git -C target rev-parse HEAD)" = "e39066d1142113b0d8879aa4b8afa58baabc3640"
+          cp qa-source/qa/round2/web-browser.mjs target/tests/qa-round2-browser.smoke.mjs
+          cd target
+          node tests/qa-round2-browser.smoke.mjs

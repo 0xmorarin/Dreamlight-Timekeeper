@@ -1,0 +1,145 @@
+{
+  "kind": "QA_MINIMAL_WRITER_NEGATIVE_ACCEPTANCE_CONTRACT",
+  "version": 1,
+  "releaseStatus": "PENDING_CORE_WEB_IMPLEMENTATION",
+  "baselineIntegratedHead": "5d23df0cc0cd1ff0ca51616890ba459126faa4db",
+  "baselineQaHead": "f43923da7b8aea985bd2889449da79475ca7ed2e",
+  "ownerRuntimeDecision": {
+    "status": "WAIVED_BY_OWNER",
+    "scope": "Additional Switch physical runtime tests of verified NextOccurrence spawn suppression",
+    "ownerReportedObservation": "NextOccurrence-based spawn suppression confirmed on owner's physical Switch",
+    "independentlyQaRuntimeVerified": false,
+    "doesNotGrant": "Writer, unsupported build/schema, ZIP fidelity, non-W1 modification, arbitrary grid or Moonstone mutation"
+  },
+  "preintegrationEvidence": {
+    "scope": "TARGETED_SYNTHETIC_NEGATIVE_PREPARATION_ONLY",
+    "oldRound10CiRerunRequired": false,
+    "productWriterAvailable": false
+  },
+  "requiredCases": [
+    {
+      "id": "MW01",
+      "category": "build",
+      "checks": [
+        "Switch BID 9A239D3DB569756D and GameInfo.Version 626 exact operation contract",
+        "other BID and unknown schema reject",
+        "codec read is not write entitlement"
+      ],
+      "accept": "EXACT_OR_REJECT"
+    },
+    {
+      "id": "MW02",
+      "category": "identity",
+      "checks": [
+        "EventID canonical and exact save identity",
+        "single permitted oneof only",
+        "canonical JSON Pointer and own-property target",
+        "exact original value CAS including repeated row modifications"
+      ],
+      "accept": "REJECT_INVALID"
+    },
+    {
+      "id": "MW03",
+      "category": "semantic_scope",
+      "checks": [
+        "protected Moonstone Chest 2010000064 deny",
+        "TimeBending 2010000093/2010000120 deny",
+        "Snippet/quest/DLC/nonW1 and inactive definitions deny",
+        "unknown source event deny"
+      ],
+      "accept": "REJECT_PROTECTED"
+    },
+    {
+      "id": "MW04",
+      "category": "original_preservation",
+      "checks": [
+        "input source bytes preserved across every failure and success",
+        "raw hash and original snapshot match before use",
+        "original download still separately available"
+      ],
+      "accept": "BYTE_IDENTICAL"
+    },
+    {
+      "id": "MW05",
+      "category": "delta",
+      "checks": [
+        "selected NextOccurrence fields ONLY",
+        "strict old-value-to-target plan delta equality",
+        "no unknown/unselected JSON value mutation",
+        "no opaque object reordering/normalization misrepresented as byte perfect"
+      ],
+      "accept": "EXACT_SELECTED_PATHS"
+    },
+    {
+      "id": "MW06",
+      "category": "zip",
+      "checks": [
+        "physically present unknown ZIP local/central extra, comments, descriptor, flags",
+        "preserve ALL necessary ZIP metadata exactly or fail closed",
+        "no metadata-only simulated flag counted as physical archive acceptance"
+      ],
+      "accept": "PRESERVE_OR_REJECT"
+    },
+    {
+      "id": "MW07",
+      "category": "encoding",
+      "checks": [
+        "exactly one Encode for a verified edit",
+        "independent Reopen and semantic comparison",
+        "wrong schema/metadata/codec fails with no edited output"
+      ],
+      "accept": "ONE_ENCODE_INDEPENDENT_REOPEN"
+    },
+    {
+      "id": "MW08",
+      "category": "invalid",
+      "checks": [
+        "no-op denied as edited export even if legacy helper yields original copy",
+        "invalid date/time and boundary time rejected",
+        "duplicate/ambiguous JSON and unsafe numbers reject",
+        "stale session, stale worker reply, changed file reject"
+      ],
+      "accept": "REJECT_INVALID"
+    },
+    {
+      "id": "MW09",
+      "category": "downloads",
+      "checks": [
+        "Worker-prepared original and edited output are separate names/buffers",
+        "original trigger strictly before edited",
+        "failed original prevents automatic edited",
+        "browser denied second download permits explicit edited retry",
+        "stale receipt cannot retry"
+      ],
+      "accept": "ORIGINAL_FIRST_INDIVIDUAL_RETRY"
+    },
+    {
+      "id": "MW10",
+      "category": "authorization",
+      "checks": [
+        "only exact checked Worker capability can enable UI",
+        "no Writer on plain read, source hints, synthetic codec PASS alone",
+        "proof of release gate conditions scoped to operation",
+        "no input overwrite or background sending"
+      ],
+      "accept": "FAIL_CLOSED"
+    }
+  ],
+  "phaseB": {
+    "trigger": "New immutable CORE and WEB implementation HEADs, followed by 00 CTRL integrated product SHA if integrated acceptance requested",
+    "mandatory": [
+      "resolve actual exported API and bind real Worker+UI harness",
+      "author independent negative case assertions against implementation not only metadata",
+      "pin exact SHA and compare parent/blob SHA",
+      "run changed Node, relevant browser and isolated Python only",
+      "separate code/source pass from owner physical runtime waiver",
+      "record PR11 plus SSoT only after integrated fixed HEAD pass"
+    ],
+    "doesNotAllow": [
+      "claim direct UI filechooser reliability without gating",
+      "promote old read-only pass to Writer",
+      "mark WAIVED_BY_OWNER as QR RUNTIME_TESTED",
+      "require unrelated native reverse engineering or peak-memory measurement"
+    ]
+  }
+}

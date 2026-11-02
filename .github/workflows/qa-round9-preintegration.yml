@@ -1,0 +1,130 @@
+name: 05 QR Round 9 Phase A Owner-Branch Preintegration (NOT PR11 acceptance)
+
+on:
+  pull_request:
+    paths:
+      - 'qa/round9/**'
+      - '.github/workflows/qa-round9-preintegration.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  core-synthetic-real-browser-codec:
+    name: CORE synthetic browser Codec preintegration (NOT real-save)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: qa-source
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: 13e6592facfbcaa0be4b23ca74db758ab0388bd4
+          path: target
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Assert owner CORE SHA and install QA-only contract
+        run: |
+          test "$(git -C target rev-parse HEAD)" = "13e6592facfbcaa0be4b23ca74db758ab0388bd4"
+          cp qa-source/qa/round9/core-contract.test.mjs target/tests/qa-round9-core-contract.test.mjs
+      - name: Run new CORE contract assertions only (not entire prior QA suite)
+        run: |
+          cd target
+          node --test tests/p1g-browser-memory-contract.test.mjs tests/qa-round9-core-contract.test.mjs
+      - name: Install actual Chromium + Python probe dependencies
+        run: |
+          python -m pip install playwright==1.56.0 psutil
+          python -m playwright install --with-deps chromium
+      - name: Actual browser synthetic P1G Codec + Session (NOT opaque-origin JSON fallback)
+        run: |
+          cd target
+          python tests/browser-memory/run_browsers.py --browser chromium --mib 1 > "$RUNNER_TEMP/round9-core-browser.json"
+          python - <<'PY'
+          import json,os,pathlib
+          d=json.loads((pathlib.Path(os.environ["RUNNER_TEMP"])/"round9-core-browser.json").read_text())
+          r=d["testResults"]["chromium"]
+          assert d["scenario"]=="SYNTHETIC_ONLY_NO_REAL_SAVE"
+          assert d["releaseAuthorized"] is False
+          assert r["status"]=="SYNTHETIC_BROWSER_READ_PASS",r
+          assert r["clone"]["readOnly"] is True
+          assert r["clone"]["schema"]==626
+          assert r["clone"]["codecContract"]=="p1g-v0"
+          assert r["clone"]["editedSaveProduced"] is False
+          assert r["clone"]["measurementsArePeak"] is False
+          assert r["clone"]["browserMemoryAccepted"] is False
+          assert r["transfer"]["transferDetached"] is True
+          assert r["sessionSwitch"]["staleResponseAccepted"] is False
+          assert r["browserPeakMemoryAccepted"] is False
+          print("05 QR CORE actual Chromium synthetic P1G Codec/Session PASS; no real save, peak, or Writer acceptance")
+          PY
+
+  time-native-static:
+    name: TIME opcode-fixture STATIC_ONLY preintegration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: qa-source
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: e73d80bd33acf97e44678e686afdc00c9a06762a
+          path: target
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Assert exact owner TIME SHA and run only changed semantics source
+        run: |
+          test "$(git -C target rev-parse HEAD)" = "e73d80bd33acf97e44678e686afdc00c9a06762a"
+          cp qa-source/qa/round9/time-static.test.mjs target/tests/qa-round9-time-static.test.mjs
+          cd target
+          node --test tests/qa-round9-time-static.test.mjs tests/timing-native-semantics.test.mjs
+
+  asset-trusted-file-input:
+    name: ASSET trusted Enter and synthetic P1G (native chooser non-gating)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: qa-source
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: 8a00e2ae9eab6d81bd48bce35b5de1e52bd62d5a
+          path: target
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Assert ASSET owner SHA and independent test contract
+        run: |
+          test "$(git -C target rev-parse HEAD)" = "8a00e2ae9eab6d81bd48bce35b5de1e52bd62d5a"
+          cp qa-source/qa/round9/asset-scope.test.mjs target/tests/qa-round9-asset-scope.test.mjs
+          cd target
+          node --test tests/qa-round9-asset-scope.test.mjs
+      - name: Install actual Chromium for changed smoke only
+        run: |
+          cd target
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Independently check two fresh actual Chrome contexts (NOT native OS chooser gate)
+        run: |
+          cd target
+          for sample in 1 2; do
+            echo "05 QR scoped fresh Chromium file-input sample $sample/2"
+            node tests/browser-asset-zoom.smoke.mjs
+          done
