@@ -1,0 +1,42 @@
+name: 03 WEB Wand-compatible SvelteKit Migration
+on:
+  push:
+    branches: [feat/web-sveltekit-wand-foundation]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  svelte-migration:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Wand-compatible SvelteKit dependency range
+        run: npm install --no-audit --no-fund
+      - name: Independent migration source contract and old Node regression
+        run: |
+          node --test tests/sveltekit-migration-contract.test.mjs
+          node --test tests/reader.test.mjs tests/worker.test.mjs tests/timing-draft.test.mjs tests/ui-separate-downloads.test.mjs tests/ui-verified-pair-downloads.test.mjs tests/timekeeper-timing-compatibility.test.mjs
+          # Legacy release staging's strict source whitelist intentionally excludes
+          # all newly authored Svelte files; it remains a separate old-HTML artifact gate.
+      - name: Svelte/TypeScript check
+        run: npm run check
+      - name: Static GitHub Pages build with project BASE_PATH
+        env:
+          BASE_PATH: /Dreamlight-Timekeeper
+        run: |
+          npm run build
+          test -f build/index.html
+          test -f build/404.html
+          find build/_app/immutable/workers/assets -name 'item-names*.bin' -print -quit | grep -q .
+          ! find build/_app/immutable/workers/assets -name 'item-names*.gz' -print -quit | grep -q .
+          grep -q Dreamlight-Timekeeper build/index.html
+      - name: Real Chromium UI, typed Worker and synthetic P1G read/edit/download
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+          node tests/browser-sveltekit-migration.smoke.mjs
+          node tests/browser-sveltekit-zoom.smoke.mjs
