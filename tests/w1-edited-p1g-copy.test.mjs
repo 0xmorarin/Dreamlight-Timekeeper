@@ -31,11 +31,24 @@ const edits=()=>[
  {pointer:path(1,'FlowerSpawningInVillage'),eventId:2010500008,kind:'FlowerSpawningInVillage',originalTime:OLD,targetTime:'2127-08-20T00:00:00Z'}
 ];
 const sha=b=>createHash('sha256').update(b).digest('hex');
-function ctx({profile=root(),plan=edits(),contracts=allowed,build=BID,sessionId=12}={}){
+const timeReview=plan=>({
+ status:'STRUCTURAL_W1_TARGETS_ONLY',contractVersion:'minimal-w1-target-v1',
+ targetScopeVerified:true,writerAuthorized:false,editedExportAuthorized:false,
+ source:{buildId:'9A239D3DB569756D',saveSchema:626,definitionCount:508,
+  rawEventSHA256:'028a206635d37bffd7f3a8ff820958bdaa201887bacf35e10faa8328d20022ea'},
+ candidateTargets:plan.map(e=>({
+  pointer:e.pointer,eventId:e.eventId,variant:e.kind,
+  savedIndex:Number(e.pointer.split('/')[3]),originalTime:e.originalTime,
+  targetTime:e.targetTime,writerAuthorized:false
+ }))
+});
+// Synthetic stand-in for 02 TIME's production assessMinimalW1WriteTargets()
+// until 00 CTRL integrates PR7. The product Worker MUST invoke actual 02 TIME.
+function ctx({profile=root(),plan=edits(),review=timeReview(plan),build=BID,sessionId=12}={}){
  const sourceBytes=makeSyntheticP1gProfile(profile);
  return {sourceBytes,sourceSessionId:sessionId,activeSessionId:sessionId,
   expectedSourceSha256:sha(sourceBytes),targetBuild:build,eventRegistry:registry,
-  w1Contracts:contracts,entries:plan};
+  w1TargetReview:review,entries:plan};
 }
 test('exact Switch v1.25.3 BID/schema626 authorizes copy only',()=>{
  const contract=CURRENT_V125_BUILD_CONTRACTS.find(x=>x.profileGameInfoVersion===626);
@@ -82,7 +95,7 @@ test('stale session, wrong hash/BID, plan replay, wrong kind, no-op and old-valu
   {...initial,expectedSourceSha256:'a'.repeat(64)},
   {...initial,targetBuild:{...BID,value:'UNKNOWN'}},
   {...initial,targetBuild:{...BID,kind:'steam-full-version'}},
-  {...initial,w1Contracts:[]},
+  {...initial,w1TargetReview:null},
   {...initial,entries:[{...edits()[0],targetTime:OLD}]},
   {...initial,entries:[{...edits()[0],originalTime:'2025-01-01T00:00:00Z'}]},
   {...initial,entries:[edits()[0],edits()[0]]},
@@ -100,10 +113,9 @@ test('unknown schema, inactive fish, Moonstone, ambiguous oneof and parallel unr
  const fish=root();fish.World.RecurringEvents['3']={
   FishSpawningInVillage:{RecurringEventItemID:2010200014,NextOccurrence:OLD}};
  const fishPlan=[{pointer:path(3,'FishSpawningInVillage'),eventId:2010200014,kind:'FishSpawningInVillage',originalTime:OLD,targetTime:TARGET}];
- await assert.rejects(createW1EditedP1gCopy(ctx({profile:fish,plan:fishPlan,contracts:[{eventId:2010200014,kind:'FishSpawningInVillage'}]})),/NOT_ACTIVE/);
+ await assert.rejects(createW1EditedP1gCopy(ctx({profile:fish,plan:fishPlan})),/NOT_ACTIVE/);
  const moon=root();moon.World.RecurringEvents['3']={ItemSpawning:{RecurringEventItemID:2010000064,NextOccurrence:OLD}};
- await assert.rejects(createW1EditedP1gCopy(ctx({profile:moon,plan:[{pointer:path(3,'ItemSpawning'),eventId:2010000064,kind:'ItemSpawning',originalTime:OLD,targetTime:TARGET}],
-  contracts:[{eventId:2010000064,kind:'ItemSpawning'}]})),/NOT_ACTIVE/);
+ await assert.rejects(createW1EditedP1gCopy(ctx({profile:moon,plan:[{pointer:path(3,'ItemSpawning'),eventId:2010000064,kind:'ItemSpawning',originalTime:OLD,targetTime:TARGET}]})),/NOT_ACTIVE/);
  const ambiguous=root();ambiguous.World.RecurringEvents['0'].FlowerSpawningInVillage={
   RecurringEventItemID:2010500008,NextOccurrence:OLD};
  await assert.rejects(createW1EditedP1gCopy(ctx({profile:ambiguous,plan:[edits()[0]]})),/MISMATCH|PREFLIGHT/);
