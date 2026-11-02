@@ -277,15 +277,6 @@
       <label><input type="checkbox" bind:checked={confirmedSwitch} on:change={updateRevision}/>{t('tk.confirm')}</label>
       <button type="button" class="primary" disabled={!canPrepare} on:click={prepare}>{t('tk.edit')}</button>
      </div>
-     <section bind:this={pairPanel} hidden class="verified-pair" aria-label="Verified separate P1G downloads">
-      <p>{oldText(localeCode,'pairWarning')}</p>
-      <button bind:this={pairBoth} type="button" disabled>{t('tk.request')}</button>
-      <div class="plan-tools">
-       <button bind:this={pairOriginal} type="button" disabled>{oldText(localeCode,'pairRetryOriginal')}</button>
-       <button bind:this={pairEdited} type="button" disabled>{oldText(localeCode,'pairRetryEdited')}</button>
-      </div>
-      <p aria-live="polite">{preparedMessage}</p>
-     </section>
      <details class="audit"><summary>{t('tk.diagnostics')}</summary>
       <p>Source: {sourceFormat}, session {sessionId}</p>
       {#if snapshot.timingAudit}<pre>{JSON.stringify(snapshot.timingAudit).slice(0,3200)}</pre>{/if}
@@ -295,6 +286,17 @@
     </aside>
    </div>
   {/if}
+  <div class="output-bottom" hidden={!snapshot}>
+   <section bind:this={pairPanel} hidden class="verified-pair" aria-label="Verified separate P1G downloads">
+    <p>{oldText(localeCode,'pairWarning')}</p>
+    <button bind:this={pairBoth} type="button" disabled>{t('tk.request')}</button>
+    <div class="plan-tools">
+     <button bind:this={pairOriginal} type="button" disabled>{oldText(localeCode,'pairRetryOriginal')}</button>
+     <button bind:this={pairEdited} type="button" disabled>{oldText(localeCode,'pairRetryEdited')}</button>
+    </div>
+    <p aria-live="polite">{preparedMessage}</p>
+   </section>
+  </div>
   {#if progress}<p class="progress" role="status">{progress}</p>{/if}
   {#if error}<p class="alert" role="alert">{error}</p>{/if}
   {#if notice}<p class="progress" role="status">{notice}</p>{/if}
@@ -340,6 +342,7 @@
  .plan-entry{border-top:1px solid #47616b;padding:6px 0;font-size:11px;overflow-wrap:anywhere}
  .plan-entry small{display:block}.write-controls{border-top:1px solid #526974;margin-top:18px;padding-top:12px}
  .write-controls label{display:flex;align-items:flex-start;gap:8px;font-size:12px}.write-controls button{margin-top:8px}
+ .output-bottom{width:min(100%,340px);margin:12px 0 12px auto}.output-bottom[hidden]{display:none}
  .verified-pair{border:1px solid #d7b87c;border-radius:8px;margin-top:10px;padding:9px}.verified-pair[hidden],.write-controls[hidden]{display:none}
  .verified-pair p{font-size:11px}.verified-pair button{margin:4px 0}.audit{border-top:1px solid #47616b;margin-top:16px;padding-top:10px}
  pre{font-size:10px;white-space:pre-wrap;overflow-wrap:anywhere}.progress{color:#c0dfcd}.alert{color:#ffd2c7}
