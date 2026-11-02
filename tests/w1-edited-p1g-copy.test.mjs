@@ -133,3 +133,38 @@ test('live Worker session getter rejects an old session after awaited Encode, wi
  assert.equal(checkCount>=3,true);
  assert.deepEqual(Buffer.from(context.sourceBytes),original);
 });
+
+test('Phase B Worker optional plan revision fence rejects stale plan before and after awaited encode',async()=>{
+ const baseline=ctx({plan:[edits()[0]]});
+ const before=Buffer.from(baseline.sourceBytes);
+ await assert.rejects(
+  createW1EditedP1gCopy({...baseline,expectedPlanRevision:7}),
+  /W1_PLAN_REVISION_CONTRACT_INVALID/
+ );
+ await assert.rejects(
+  createW1EditedP1gCopy({...baseline,getActivePlanRevision:()=>7}),
+  /W1_PLAN_REVISION_CONTRACT_INVALID/
+ );
+ await assert.rejects(
+  createW1EditedP1gCopy({...baseline,expectedPlanRevision:7,getActivePlanRevision:()=>8}),
+  /W1_PLAN_REVISION_STALE/
+ );
+ let calls=0;
+ await assert.rejects(
+  createW1EditedP1gCopy({...baseline,expectedPlanRevision:7,
+   getActivePlanRevision:()=>++calls===3?8:7}),
+  /W1_PLAN_REVISION_STALE/
+ );
+ assert.equal(calls,3);
+ assert.deepEqual(Buffer.from(baseline.sourceBytes),before);
+});
+test('Phase B optional plan revision allows matching current revision without granting persistent replace',async()=>{
+ const args=ctx({plan:[edits()[0]]});
+ args.expectedPlanRevision=0;
+ args.getActivePlanRevision=()=>0;
+ const result=await createW1EditedP1gCopy(args);
+ assert.deepEqual(result.changedPaths,[edits()[0].pointer]);
+ assert.equal(result.persistentReplaceAuthorized,false);
+ assert.equal(result.userDownloadPerformed,false);
+ assert.equal(result.planRevision,0);
+});

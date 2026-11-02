@@ -29,3 +29,17 @@ SYNTHETIC_TESTED: schema626 generated P1G modified, changed pointers only, sourc
 REAL_SAVE_READ_ONLY: prior authorized owner original canonical JavaScript codec and SafeSession opened, with no edited output. Real edited P1G compatibility not tested.
 
 OWNER_REPORTED_RUNTIME_CONFIRMED: Owner observed NextOccurrence suppression on Switch; per-EventID independent verification NOT asserted. Further cold-load/save/exit/restart was WAIVED_BY_OWNER, never PASS. No automatic normalization of intentional 2126 timestamps, real save modification, in-place Writer or Wand Writer authority changes in this CORE PR.
+
+
+## 01 CORE — Phase B Worker handoff (incremental, additive)
+
+The same createW1EditedP1gCopy() API now additionally supports a **paired optional plan-revision fence**:
+
+- expectedPlanRevision: nonnegative safe integer captured by the Worker at prepareEdited acceptance.
+- getActivePlanRevision: a function constructed in the **Worker closure**, never copied from UI input, returning the latest Worker-accepted plan revision.
+- If either argument is present, BOTH are required. The API compares revision values before opening, after asynchronous open, and after the awaited Encode/Reopen operation. A revision change causes W1_PLAN_REVISION_STALE, with no byte pair returned.
+- Successful result includes planRevision (null if the old caller did not opt in); also returns sourceSessionId, sourceRawSha256, editedRawSha256, changedPaths and separate original/edited bytes. This is not proof of a disk download.
+- Compatibility: existing real TIME→CORE integration calls without revision arguments remain valid. **03 WEB product prepareEdited MUST opt in** and check both Session ID and revision again immediately before postMessage/transfer. The UI must check the matching receipt revision before accepting WORKER_VERIFIED_PAIR. Changing the selected file, staged edits, Undo/Redo, cleared plan or explicit build target invalidates any pending pair and increments the Worker-visible plan revision.
+- The Worker must construct eventRegistry, native ledger and w1TargetReview locally from its verified source, and pass only plan entry proposals from UI after deriving source/Session identity. Do not accept UI claims of preflight status, writerAuthorized, source SHA, native evidence, event registry, review object or live getter. A raw Saved schema626 does not authenticate Switch BID.
+- CORE never produces or installs a WORKER_VERIFIED_PAIR UI receipt; that belongs to 03 WEB. CORE's WORKER_VERIFIED_EDITED_P1G_COPY status is a byte-pair result from a synthetic-tested producer. Neither status grants in-place overwrite or browser download success.
+- No additional Codec/ZIP implementation, native research or memory work is needed for this amendment. Scope of the new unit tests: absent half of the revision contract rejected, stale revision before processing or after awaited Encode rejected, matching revision returns a copy and echoed revision, original source remains unchanged. Release remains 00 CTRL / 05 QR scoped QA.
