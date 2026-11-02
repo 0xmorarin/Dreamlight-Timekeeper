@@ -99,11 +99,19 @@ test('original framed three-stream ItemID IconAddress census closes 106 typed pr
  const pinned=await json('data/item-image-coverage-v1253.json');
  const gaps=pinned.items.filter(x=>x.sourceCrosswalk==='NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES');
  const census=new Map(),guids=new Map();
+ const privatelyVerified=new Set([30000072,31400000,31400039]);
  for(const row of gaps){
-   const evidence=row.definitionAudit;
-   assert.equal(evidence?.spriteResolved,false);
-   assert.equal(evidence?.textureResolved,false);
-   assert.equal(evidence?.webpDecodedRgbaMatched,false);
+   const evidence=row.definitionAudit,proven=privatelyVerified.has(row.itemId);
+   assert.equal(evidence?.spriteResolved,proven);
+   assert.equal(evidence?.textureResolved,proven);
+   assert.equal(evidence?.webpDecodedRgbaMatched,proven);
+   assert.equal(!!evidence?.privatePixelProof,proven);
+   if(proven){
+     assert.equal(evidence.privatePixelProof.status,'PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED');
+     assert.match(evidence.privatePixelProof.decodedRgbaSha256,/^[0-9a-f]{64}$/);
+     assert.match(evidence.privatePixelProof.prototypeWebpSha256,/^[0-9a-f]{64}$/);
+     assert.ok(evidence.privatePixelProof.prototypeWebpBytes>0);
+   }
    assert.equal(row.publishedImage,'MISSING');
    assert.equal(row.spritePathId,null);assert.equal(row.texturePathId,null);
    assert.match(evidence.declaredIconAddressGuid,/^[0-9a-f]{32}$/);
@@ -119,7 +127,8 @@ test('original framed three-stream ItemID IconAddress census closes 106 typed pr
  assert.equal(guids.get('04495f960b1edba4181ec51efa5e07d9'),81);
  assert.equal(gaps.find(x=>x.itemId===120200013).definitionAudit.declaredIconAddressGuid,
   gaps.find(x=>x.itemId===120200016).definitionAudit.declaredIconAddressGuid);
- assert.equal(pinned.unresolvedDefinitionAudit.spriteTextureProof,0);
+ assert.equal(pinned.unresolvedDefinitionAudit.spriteTextureProof,3);
+ assert.equal(pinned.unresolvedDefinitionAudit.publicImageProof,0);
  assert.equal(pinned.summary.publishedVerifiedItemImages,0);
  assert.equal(pinned.summary.publishedMissingRecurringItemIDs,244);
 });
