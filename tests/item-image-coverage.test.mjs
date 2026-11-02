@@ -236,6 +236,8 @@ test('RC text fallback serves all 244 with ItemID, localized name, source-qualif
   assert.ok(row.category.label.length>0);
   assert.ok(row.textFallback.visibleName.length>0);
   assert.equal(row.textFallback.visibleItemId,row.idLabel);
+  assert.equal(row.category.source,'ORIGINAL_ITEMDB_STREAM');
+  assert.equal(row.category.verified,true);
   assert.equal(row.textFallback.visibleCategory,row.category.label);
   assert.ok(row.textFallback.ariaLabel.includes('ItemID '+entry.itemId));
   assert.ok(row.textFallback.ariaLabel.includes(row.name));
@@ -258,7 +260,14 @@ test('RC text fallback serves all 244 with ItemID, localized name, source-qualif
  }
  assert.deepEqual(counts,{MISSING:163,AMBIGUOUS:81,VERIFIED:0});
  assert.deepEqual(Object.fromEntries(categories),{
-  UNCLASSIFIED:138,ACTIVITY_ITEM:35,FURNITURE_SOURCE:52,COMPANION:19
+  ACTIVITY_ITEM:173,FURNITURE_SOURCE:52,COMPANION:19
+ });
+ const legacy=resolveRcItemTextRow(empty,{id:30000062},{locale:'ja',coverageAudit:audit});
+ assert.equal(legacy.category.code,'ACTIVITY_ITEM');
+ assert.equal(legacy.category.verified,true);
+ assert.equal(audit.originalItemTypeCensus.matchedByItemDbField1,244);
+ assert.deepEqual(audit.originalItemTypeCensus.streamCounts,{
+   'ActivityItem.json':173,'Furniture.json':52,'Companion.json':19
  });
  const thorn=resolveRcItemTextRow(empty,{id:31300004},{locale:'ja',coverageAudit:audit});
  assert.equal(thorn.name,'小さな闇のトゲ');
