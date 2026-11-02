@@ -162,11 +162,13 @@ function renderPlan(){
  if(!v){root.textContent=t('planEmpty');return;}
  root.append(make('strong','draft-plan-title',v.count?t('planCount',{n:v.count}):t('planEmpty')));
  const rowsByPointer=new Map(state.snapshot.rows.map(r=>[r.pointer,r]));
+ const preflightCodes=new Map((state.preflight?.rows||[]).map(r=>[r.pointer,r.code]));
  for(const change of v.entries.slice(0,8)){
   const el=make('div','draft-plan-item');
   const row=rowsByPointer.get(change.pointer);
   el.append(make('strong','',row?recordTitle(row):change.pointer),
    make('span','',fmt(change.originalTime)+' → '+fmt(change.targetTime)));
+  if(preflightCodes.has(change.pointer))el.append(make('span','draft-plan-check',t('preflightRow',{code:preflightCodes.get(change.pointer)})));
   root.append(el);
  }
  if(v.count>8)root.append(make('p','caption',t('planMore',{n:v.count-8})));
