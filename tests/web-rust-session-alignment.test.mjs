@@ -21,7 +21,7 @@ test('research API shape and limits do not silently become a typed product bindi
  const port=await source('src/lib/timekeeper/save-session-contract.ts');
  const legacy=await source('src/lib/timekeeper/worker-adapter.ts');
  for(const api of ['openLocal','queryPage','planCAS','validate','history','backupOriginal','encodeCopy'])
-  assert.match(port,new RegExp('\\b'+api+'\\('));
+  assert.match(port,new RegExp('\\b'+api+'(?:<[^>]+>)?\\('));
  assert.match(port,/RUST_SAVE_SESSION_INTEGRATION/);
  assert.match(port,/wasmInstalled:false, writerGranted:false/);
  assert.match(legacy,/timekeeper.save-worker@1/);
