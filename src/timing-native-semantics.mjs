@@ -51,6 +51,16 @@ const STORAGE=Object.freeze({
 const NATIVE=Object.freeze({
   catchupByVariant:CATCHUP,
   fieldLayout:STORAGE,
+  pendingFishRemoval:Object.freeze({
+    method:'ProfileWorld.RemovePendingFish',rva:'0x0598E800',
+    pendingFishMapRemoveCallRVA:'0x0598E874',
+    pendingFishMapRemoveTargetRVA:'0x03C141D0',
+    dispatcherSlotArgumentRVA:'0x0598E8B8',
+    dispatcherVirtualCallRVA:'0x0598E8E4',
+    dispatcherSlotArgument:39,
+    directRescheduleCall:false,indirectRescheduleViaDispatcherVerified:false,
+    pickupOutcomeVerified:false,saveWriteVerified:false
+  }),
   primaryBinary:Object.freeze({
     file:'DDVRE v1.25.3 ExeFS/main',bytes:96027926,
     mainSHA256:SOURCE.mainSHA256,moduleIdPrefix:SOURCE.buildId,
