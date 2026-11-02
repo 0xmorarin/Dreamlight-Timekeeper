@@ -25,7 +25,11 @@
     "staticSourceTypes": 244,
     "textFallbackRequired": true,
     "originalJsWorkerKeptForComparison": true,
-    "reviewerSvelteUiIncludesHistoricalJsEdit": false
+    "historicalJsEditInOrdinaryDevelopmentBuild": true,
+    "readonlyRcBuildTimeFlag": "VITE_WEB_READONLY_RC=1",
+    "readonlyRcWorkerDeniedRequest": "prepareEdited",
+    "buildTimeRcFlagCannotBeEnabledByUi": true,
+    "publicReleaseStillBlockedDespiteMode": true
   },
   "staging": {
     "owner": "00 CTRL",
@@ -46,7 +50,8 @@
     "versionedReleaseProvenanceApproved": false,
     "legacyHtmlVerifyGreen": false,
     "publicPreviewApproved": false,
-    "publicReleaseApproved": false
+    "publicReleaseApproved": false,
+    "workerSideBuildModeBehaviorVerified": false
   },
   "strategy": "new workflow verifies versioned contract, Svelte build, tests and review-only audit WITHOUT altering CTRL stage or publishing; production deploy requires explicit 00 CTRL+QR verified artifact pin",
   "allowedFailure": "legacy old HTML Verify/Release red remains release blocker, never waived"
