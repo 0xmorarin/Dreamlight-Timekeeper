@@ -94,6 +94,11 @@ test('Worker preflight uses the active decoded save and blocks stale session tok
  const result=await send('preflight','', 'source.json',{sessionId:opened.sessionId,entries});
  assert.equal(result.ok,true);
  assert.equal(result.report.rows[0].code,'STRUCTURE_OBSERVED');
+ assert.equal(result.compatibility.status,'TIMEKEEPER_FIELD_COMPATIBILITY_RESEARCH_ONLY');
+ assert.equal(result.compatibility.rows[0].code,'SCHEMA_VERSION_DRIFT_REVIEW');
+ assert.equal(result.compatibility.sourceBuildVerified,false);
+ assert.equal(result.compatibility.saveWriterAllowed,false);
+ assert.equal(result.compatibility.editedCopyAuthorized,false);
  assert.equal(result.report.schema,628);
  assert.equal(result.report.editedCopyAuthorized,false);
  assert.equal(result.report.writerAuthorized,false);
