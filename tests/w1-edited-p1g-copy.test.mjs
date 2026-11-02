@@ -166,4 +166,5 @@ test('Phase B optional plan revision allows matching current revision without gr
  assert.deepEqual(result.changedPaths,[edits()[0].pointer]);
  assert.equal(result.persistentReplaceAuthorized,false);
  assert.equal(result.userDownloadPerformed,false);
+ assert.equal(result.planRevision,0);
 });
