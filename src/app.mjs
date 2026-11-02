@@ -63,17 +63,19 @@ function showWelcome(){if(state.snapshot)return;$('welcome').hidden=false;$('wor
 async function openSave(file){
  if(!file||state.loading)return;
  state.loading=true;$('open-welcome').disabled=true;$('open-again').disabled=true;
- const old=state.snapshot,oldDraft=state.draft;
+ const old=state.snapshot,oldDraft=state.draft;let workerSessionCommitted=false;
  message(t('loading',{name:file.name}));
  try{
   const buffer=await file.arrayBuffer();
   if(!buffer.byteLength)throw new Error('Empty file');
   const result=await request('open',{buffer,name:file.name},[buffer]);
+  workerSessionCommitted=true;
   state.snapshot=result.view;state.draft=createTimingDraft(result.view);state.tab='spawn';state.world='all';state.group=null;state.subgroup=null;state.selected.clear();state.query='';state.limit=120;state.mode='now';
   $('filter-input').value='';$('sort-order').value='name';$('time-mode').value='now';$('custom-time').value='';$('custom-time').disabled=true;
   showEditor();message(t('opened',{format:result.format}));
  }catch(err){
-  if(old){state.snapshot=old;state.draft=oldDraft;showEditor();}else{state.snapshot=null;state.draft=null;showWelcome();}
+  if(!workerSessionCommitted&&old){state.snapshot=old;state.draft=oldDraft;showEditor();}
+  else{state.snapshot=null;state.draft=null;showWelcome();}
   message(t('loadError',{name:file.name,reason:err instanceof Error?err.message:String(err)}),true);
  }finally{state.loading=false;$('open-welcome').disabled=false;$('open-again').disabled=false;$('save-file').value='';}
 }
