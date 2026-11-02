@@ -184,7 +184,7 @@ test('native evidence metadata contradiction is explicit and cannot be promoted 
   assert.equal(c.status,'EVIDENCE_METADATA_CONFLICT');
   assert.equal(c.reportedAsm,'mov x25, x0');
   // 0xB0... is ADRP encoding class, not ORR register alias MOV.
-  assert.equal(0xB002B8C8 & 0x9F000000,0x90000000);
+  assert.equal((0xB002B8C8 & 0x9F000000)>>>0,0x90000000);
   assert.notEqual(0xB002B8C8,0xAA0003F9); // actual MOV X25, X0 encoding
   assert.equal(c.independentlyDecodedMnemonic,'adrp x8');
   assert.equal(native.native.actualize.rva,'0x05A2A170');
