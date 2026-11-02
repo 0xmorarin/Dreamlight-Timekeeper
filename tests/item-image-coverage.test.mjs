@@ -79,6 +79,35 @@ test('read-only SvelteKit image contract uses exact ItemID, alt and text fallbac
  assert.throws(()=>resolveItemImageView(verified,{id:31300003},{basePath:'../'}),/Invalid static/);
 });
 
+test('RC thumbnails require whole-manifest provenance and local static URL roots',()=>{
+ const accepted={source:{platform:'Steam/Windows',gameVersion:'1.25.3',status:'VERIFIED_STEAM_ASSETS'},
+  icons:{'31300004':{platform:'Steam',gameVersion:'1.25.3',verified:true,
+   path:'assets/steam/v1253/31300004.webp',sha256:'a'.repeat(64),
+   sourceSha256:'b'.repeat(64),sourceAsset:'CAB|Sprite|Texture',
+   itemIdEvidence:'field1 ItemID + original IconAddress',width:128,height:128}}};
+ const subject={id:31300004,en:'Small Night Thorn',ja:'小さな闇のトゲ'};
+ const good=resolveRcItemTextRow(accepted,subject,{locale:'ja',basePath:'/Dreamlight-Timekeeper/'});
+ assert.equal(good.image.url,'/Dreamlight-Timekeeper/assets/steam/v1253/31300004.webp');
+ for(const altered of [
+   m=>{delete m.icons['31300004'].width;},
+   m=>{m.icons['31300004'].itemIdEvidence='';},
+   m=>{m.icons['31300004'].sourceAsset='';},
+   m=>{m.icons['31300004'].height=0;},
+   m=>{m.source.platform='Nintendo Switch';},
+   m=>{m.icons['31300005']={...m.icons['31300004']};} // duplicate output path
+ ]){
+  const untrusted=structuredClone(accepted);altered(untrusted);
+  const missing=resolveRcItemTextRow(untrusted,subject,{locale:'ja'});
+  assert.equal(missing.image.status,'MISSING');
+  assert.equal(missing.image.url,null);
+  assert.equal(missing.textFallback.visibleByDefault,true);
+  assert.match(missing.textFallback.ariaLabel,/ItemID 31300004/);
+ }
+ for(const root of ['https://external.example/','//external.example/','../','/a/../','/a?b/','javascript:alert(1)/'])
+  assert.throws(()=>resolveRcItemTextRow(accepted,subject,{basePath:root}),/Invalid static image URL base/);
+ assert.equal(resolveRcItemTextRow(empty,{id:99912347},{locale:'en'}).category.code,'UNCLASSIFIED');
+});
+
 test('reject forged event source, duplicate event IDs, forged image provenance and output conflicts',()=>{
  const other=structuredClone(registry);other.source.rawEventSHA256='0'.repeat(64);
  assert.throws(()=>recurringImageTargets(other),/Untrusted event/);
