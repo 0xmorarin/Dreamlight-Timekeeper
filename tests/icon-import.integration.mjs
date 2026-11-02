@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {mkdtemp,mkdir,writeFile,readFile,rm} from 'node:fs/promises';
+import {mkdtemp,mkdir,writeFile,readFile,copyFile,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
-import {join} from 'node:path';
+import {join,dirname} from 'node:path';
 import {deflateSync} from 'node:zlib';
 import {createHash} from 'node:crypto';
 import {execFile} from 'node:child_process';
@@ -45,10 +45,20 @@ test('offline importer preserves visible and fully transparent RGBA and verifies
   const importer=join(root,'scripts','import-steam-icons.mjs');
   const verifier=join(root,'scripts','verify-icon-assets.mjs');
   await exec(process.execPath,[importer,planPath,output],{maxBuffer:8*1024*1024});
+  for(const file of ['steam-ui-icons-v1253.json','app-ui-icons.json','steam-ui-candidates-v1253.json','steam-ui-private-pixel-evidence-v1253.json','steam-ui-consumer-links-v1253.json','steam-ui-existing-rights-review-v1253.json','steam-ui-publication-options-v1253.json'])
+   await copyFile(join(root,'data',file),join(output,'data',file));
   const manifest=JSON.parse(await readFile(join(output,'data','steam-icons-v1253.json'),'utf8'));
   assert.equal(manifest.icons[id].sourceSha256,sha(png));
   assert.equal(manifest.icons[id].verified,true);
   assert.equal(manifest.icons[id].itemIdEvidence,'TEST_SYNTHETIC_MAPPING');
+  for(const name of ['steam-ui-icons-v1253.json','app-ui-icons.json']){
+   const published=JSON.parse(await readFile(join(output,'data',name),'utf8'));
+   for(const entry of Object.values(published.icons)){
+    const destination=join(output,entry.path);
+    await mkdir(dirname(destination),{recursive:true});
+    await copyFile(join(root,entry.path),destination);
+   }
+  }
   await exec(process.execPath,[verifier,output]);
   await assert.rejects(exec(process.execPath,[importer,planPath,output]),/already published/);
   const saved=await readFile(join(output,'assets','steam','v1253',id+'.webp'));

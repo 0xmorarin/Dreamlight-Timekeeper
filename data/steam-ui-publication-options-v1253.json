@@ -1,0 +1,144 @@
+{
+  "schema": "STEAM_V1253_PUBLICATION_CONTROL_REVIEW_V1",
+  "status": "OWNER_00_CTRL_DECISION_REQUIRED",
+  "decisionTaken": false,
+  "appliedToDeployment": false,
+  "gameUiOriginalCount": 4,
+  "originalSvgCount": 16,
+  "newItemIconCount": 0,
+  "privateSourceBytesIncluded": false,
+  "terms": {
+    "gameloft": "https://www.gameloft.com/en/conditions-of-use",
+    "gameloftSections": [
+      "V.A",
+      "V.E"
+    ],
+    "disneyGeneral": "https://disneytermsofuse.com/english/",
+    "disneyDirectApplicabilityToDdv": "NOT_EVALUATED",
+    "ddvSpecificAssetLicense": "NOT_FOUND_IN_REVIEWED_PUBLIC_SOURCES",
+    "thirdPartyWikiPolicyIsNotPublisherPermission": true
+  },
+  "existing": {
+    "skill.mining": {
+      "file": "assets/steam/v1253/ui/skill/mining.webp",
+      "sha256": "dcc381b5480280bbd771fe6beea374993fd678b955ee605ddb9596bdea351197",
+      "owner": "GAMELOFT_OR_DISNEY_LICENSED_SOURCE",
+      "basis": "GAME_ASSET_EXTRACTED_FROM_PROPRIETARY_STEAM_UNITYFS",
+      "pixelProof": "PREVIOUSLY_RECORDED_NOT_RETESTED_ROUND10",
+      "nativeConsumer": "NOT_TYPED_OR_RUNTIME_VERIFIED",
+      "redistributionPermission": "NOT_DOCUMENTED",
+      "sourceAttribution": "STEAM_1_25_3_BUNDLE",
+      "existingShip": true,
+      "newPublicationAllowed": false
+    },
+    "status.warning": {
+      "file": "assets/steam/v1253/ui/status/warning.webp",
+      "sha256": "d9ecb95ae3b5e7483f8a4d7ee1cf51ded8b86323aed3459a4806e6b9e482b70e",
+      "owner": "GAMELOFT_OR_DISNEY_LICENSED_SOURCE",
+      "basis": "GAME_ASSET_EXTRACTED_FROM_PROPRIETARY_STEAM_UNITYFS",
+      "pixelProof": "PREVIOUSLY_RECORDED_NOT_RETESTED_ROUND10",
+      "nativeConsumer": "NOT_TYPED_OR_RUNTIME_VERIFIED",
+      "redistributionPermission": "NOT_DOCUMENTED",
+      "sourceAttribution": "STEAM_1_25_3_BUNDLE",
+      "existingShip": true,
+      "newPublicationAllowed": false
+    },
+    "world.valley": {
+      "file": "assets/steam/v1253/ui/world/valley.webp",
+      "sha256": "c8de879d8f96eb678fad5bb2317b62a6bdce9523b8fe743ae348f62d4436e7ad",
+      "owner": "GAMELOFT_OR_DISNEY_LICENSED_SOURCE",
+      "basis": "GAME_ASSET_EXTRACTED_FROM_PROPRIETARY_STEAM_UNITYFS",
+      "pixelProof": "PREVIOUSLY_RECORDED_NOT_RETESTED_ROUND10",
+      "nativeConsumer": "NOT_TYPED_OR_RUNTIME_VERIFIED",
+      "redistributionPermission": "NOT_DOCUMENTED",
+      "sourceAttribution": "STEAM_1_25_3_BUNDLE",
+      "existingShip": true,
+      "newPublicationAllowed": false
+    },
+    "world.exp1": {
+      "file": "assets/steam/v1253/ui/world/exp1.webp",
+      "sha256": "5fdfec6c047467a16b607f25a087b01263da151c48345fd0e21940de99d0e735",
+      "owner": "GAMELOFT_OR_DISNEY_LICENSED_SOURCE",
+      "basis": "GAME_ASSET_EXTRACTED_FROM_PROPRIETARY_STEAM_UNITYFS",
+      "pixelProof": "PREVIOUSLY_RECORDED_NOT_RETESTED_ROUND10",
+      "nativeConsumer": "NOT_TYPED_OR_RUNTIME_VERIFIED",
+      "redistributionPermission": "NOT_DOCUMENTED",
+      "sourceAttribution": "STEAM_1_25_3_BUNDLE",
+      "existingShip": true,
+      "newPublicationAllowed": false
+    }
+  },
+  "held": {
+    "world.hgw": {
+      "pixelProof": "REAL_STEAM_ORIGINAL_RGBA_CONFIRMED",
+      "semantic": "HUD_VILLAGE_AREA_DISPLAY_UNTYPED_REFERENCE_ONLY",
+      "permission": "NOT_DOCUMENTED",
+      "publish": false
+    },
+    "tab.shops": {
+      "pixelProof": "REAL_STEAM_ORIGINAL_RGBA_CONFIRMED",
+      "semantic": "UNKNOWN_ONLY_MENU_HUD_SCANNED",
+      "permission": "NOT_DOCUMENTED",
+      "publish": false
+    },
+    "tab.daily": {
+      "pixelProof": "REAL_STEAM_ORIGINAL_RGBA_CONFIRMED",
+      "semantic": "UNKNOWN_ONLY_MENU_HUD_SCANNED",
+      "permission": "NOT_DOCUMENTED",
+      "publish": false
+    }
+  },
+  "choices": [
+    {
+      "id": "retain_current_pending_rights_review",
+      "state": "CONSIDERATION_ONLY",
+      "assetChanges": false,
+      "rightsResolved": false,
+      "exposure": "EXISTING_4_ORIGINAL_GAME_IMAGES_STILL_SHIPPED",
+      "requires": [
+        "OWNER_DECISION",
+        "RIGHTS_BASIS_REVIEW",
+        "05_QR_SCOPED_ACCEPTANCE"
+      ]
+    },
+    {
+      "id": "exclude_game_raster_files_from_distribution",
+      "state": "CONSIDERATION_ONLY",
+      "assetChanges": true,
+      "rightsResolved": false,
+      "exposure": "SHIP_NO_PROPRIETARY_RASTER",
+      "requires": [
+        "OWNER_DECISION",
+        "03_WEB_UI_FALLBACK_CONTRACT",
+        "00_CTRL_PACKAGING",
+        "05_QR_BROWSER_A11Y"
+      ]
+    },
+    {
+      "id": "owner_authored_app_svg_or_plain_text",
+      "state": "CONSIDERATION_ONLY",
+      "assetChanges": true,
+      "rightsResolved": false,
+      "exposure": "ONLY_INDEPENDENT_OWNER_CREATED_UI_GRAPHICS_OR_TEXT",
+      "requires": [
+        "OWNER_SELECTS_APPROPRIATE_ARTWORK",
+        "03_WEB_MAPPING",
+        "04_ASSET_ORIGINALITY_VERIFICATION",
+        "05_QR_A11Y"
+      ]
+    },
+    {
+      "id": "user_supplied_local_media_not_shipped",
+      "state": "RESEARCH_ONLY",
+      "assetChanges": true,
+      "rightsResolved": false,
+      "exposure": "USER_MANAGES_PRIVATE_LOCAL_INPUT_NON_UPLOADED",
+      "requires": [
+        "OWNER_PRODUCT_DECISION",
+        "01_CORE_03_WEB_SECURITY_CONTRACT",
+        "INDIVIDUAL_RIGHTS_REVIEW",
+        "05_QR"
+      ]
+    }
+  ]
+}
