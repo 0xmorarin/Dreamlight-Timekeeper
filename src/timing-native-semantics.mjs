@@ -15,17 +15,21 @@ const W1=Object.freeze([
 const W1_SET=new Set(W1);
 const NATIVE=Object.freeze({
   readiness:Object.freeze({rva:'0x05A65440',method:'IsReadyForNextOccurence',
-    evidence:'CMP/CSET HS time-eligibility predicate; not proof of a complete spawn outcome'}),
+    evidence:'0x05A65640 CMP X8,X9 / 0x05A65644 CSET W0,HS; time-eligibility predicate, not a complete spawn outcome'}),
   expiry:Object.freeze({rva:'0x05AF3050',method:'IsEventOver',
     evidence:'separate expiry predicate; EndDate is not NextOccurrence'}),
   reschedule:Object.freeze({rva:'0x05AF24D0',method:'IRecurringEventExtensions.Reschedule',
     evidence:'10 direct BL sites in reviewed native text: 9 Execute and 1 AddRecurringEvent; indirect callers unresolved'}),
   actualize:Object.freeze({rva:'0x05A2A170',method:'Profile.ActualizeRecurringEvents',
-    evidence:'overdue catch-up clamp when Now minus scheduled time is greater than maximum interval; future-date release not shown'}),
+    evidence:'interface slots GetMaxInterval=6, Now=0, NextOccurrence getter=1, setter=2; overdue clamp only; future-date release not shown'}),
   itemCatchup:Object.freeze({rva:'0x057C0140',method:'ItemSpawning.GetMaxIntervalToFullyExecute',
     evidence:'uses interval and amount bounds; not a universal cooldown rule'}),
   itemMaximum:Object.freeze({rva:'0x047AB7F0',method:'ItemSpawningRecurringEventItemData.GetMaximumAmount',
     evidence:'base maximum and optional area-choice maximum; not proof of actual grid population'}),
+  itemExecuteCompletion:Object.freeze({entryRVA:null,method:'ItemSpawning.Execute completion-side',
+    lastOccurrenceFromDateTimeRVA:'0x057BF058',lastOccurrenceStoreRVA:'0x057BF068',
+    rescheduleCallRVA:'0x057BF0C4',
+    evidence:'writes LastOccurrence field +0x30 before direct BL Reschedule; entry and spawn-result prerequisites unresolved'}),
   flowerExecute:Object.freeze({rva:'0x057C99E0',method:'FlowerSpawningInVillage.Execute',
     evidence:'BL readiness predicate followed by TBNZ branch; effects and reschedule still require full trace'})
 });
