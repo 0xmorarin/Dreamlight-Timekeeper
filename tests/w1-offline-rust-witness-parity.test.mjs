@@ -172,3 +172,30 @@ testWand('separate Inventory/Grid/Quest data do not become W1 permissions or com
  assert.equal(p.Player.ListInventories[0][0].Quantity,1);
  assert.equal(p.World.QuestState.X.Active,false);
 });
+
+
+testWand('legacy pointer-only JS plan does NOT bind intended EventID: Rust trusted identity must deny swapped selector',()=>{
+ const p=make(2010000021,'ItemSpawning');
+ p.World.RecurringEvents[8]={FlowerSpawningInVillage:{
+   RecurringEventItemID:2010500008,NextOccurrence:OLD
+ }};
+ const s=snapshot(p);
+ const wanted=select(s,2010000021);
+ const wrong=select(s,2010500008);
+ assert.notEqual(wanted.pointer,wrong.pointer);
+ // The existing low-level planner only sees an independently valid pointer,
+ // and cannot know that a caller INTENDED the other EventID.
+ const pointerOnly=js(p,s,[wrong]);
+ assert.equal(pointerOnly.status,'STRUCTURAL_CANDIDATE_ONLY');
+ assert.equal(pointerOnly.operations[0].sourceEventId,2010500008);
+ assert.equal(pointerOnly.operations[0].savedIndex,8);
+ // The actual Rust research witness binds eventId+savedIndex+oneof explicitly.
+ assert.equal(rust(raw(p),2010000021,8,'FlowerSpawningInVillage').reason,
+   'W1_SAVED_EVENT_ID_CAS_FAILED');
+ const correct=rust(raw(p),2010500008,8,'FlowerSpawningInVillage');
+ assert.equal(correct.eventId,2010500008);
+ assert.equal(correct.encodeCopyAuthorized,false);
+ // Product command MUST carry independently trusted desired EventID in addition
+ // to a pointer; the JS lower-level API never granted Writer permission.
+ assert.equal(pointerOnly.writerAuthorized,false);
+});
