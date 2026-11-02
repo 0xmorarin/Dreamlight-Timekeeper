@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {spawn} from 'node:child_process';
 import {once} from 'node:events';
 import {createServer} from 'node:net';
-import {mkdtemp,mkdir,writeFile,rm} from 'node:fs/promises';
+import {mkdtemp,mkdir,writeFile,readFile,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -57,9 +57,9 @@ try{
   assert.ok(dimensions.width<baseline.width,'200% tab zoom must reduce available CSS viewport.');
   assert.ok(dimensions.dpr>baseline.dpr,'200% Chrome zoom must increase devicePixelRatio.');
   const [item,game,app]=await Promise.all([
-    fetch(new URL('../data/steam-icons-v1253.json',import.meta.url)).then(r=>r.json()),
-    fetch(new URL('../data/steam-ui-icons-v1253.json',import.meta.url)).then(r=>r.json()),
-    fetch(new URL('../data/app-ui-icons.json',import.meta.url)).then(r=>r.json())
+    readFile(new URL('../data/steam-icons-v1253.json',import.meta.url),'utf8').then(JSON.parse),
+    readFile(new URL('../data/steam-ui-icons-v1253.json',import.meta.url),'utf8').then(JSON.parse),
+    readFile(new URL('../data/app-ui-icons.json',import.meta.url),'utf8').then(JSON.parse)
   ]);
   assert.equal(Object.keys(item.icons).length,0,'ItemID images remain unpublished.');
   assert.equal(Object.keys(game.icons).length,4,'Expected four approved Steam UI images.');
