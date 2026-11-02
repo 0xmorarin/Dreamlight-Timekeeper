@@ -15,6 +15,7 @@
  import ItemThumb from '$lib/timekeeper/ItemThumb.svelte';
  import itemTypeAudit from '../../data/web-text-item-types-v1253.json';
  import {rcTextOnlyItem} from '$lib/timekeeper/item-text-only.mjs';
+ import {READONLY_TEXT_RC_BUILD} from '$lib/timekeeper/read-only-rc-mode.mjs';
 
  let localeCode='en',snapshot:TimingSnapshot|null=null,sessionId=0,sourceFormat='';
  let t=(key:string,params:Record<string,unknown>={})=>wandTranslate(key,params);
@@ -71,7 +72,7 @@
    mode:'custom',customTime:targetTime,now:Date.now()});}
   catch{return null;}
  })();
- $: canPrepare=Boolean(snapshot&&sourceFormat==='packaged'&&!busy&&!preparing&&!prepared&&
+ $: canPrepare=Boolean(!READONLY_TEXT_RC_BUILD&&snapshot&&sourceFormat==='packaged'&&!busy&&!preparing&&!prepared&&
    !planPending&&confirmedSwitch&&plan?.count&&plan.count<=100);
 
  function resetScope(){selected=new Set();limit=80;}
@@ -190,6 +191,9 @@
   </div>
  </header>
  <main id="main">
+  {#if READONLY_TEXT_RC_BUILD}
+   <p class="progress" role="status">READ-only text RC candidate · edited-copy output disabled · original backup remains available</p>
+  {/if}
   <div class="notice" role="note"><span lang="en">Unofficial fan-made tool. Not affiliated with Disney or Gameloft. No rights to game images or trademarks claimed.</span><span lang="ja">非公式のファン制作ツールです。Disney／Gameloftとは無関係です。ゲーム画像や商標等の権利は主張しません。</span></div>
   <input bind:this={uploaded} id="tk-save-file" class="visually-hidden" type="file" accept=".p1g,.json,application/json" on:change={(e)=>open(e.currentTarget.files?.[0])}/>
   {#if !snapshot}
@@ -285,7 +289,7 @@
       <p class="plan-entry">{row.pointer}<small>{dateLabel(row.originalTime,localeCode)} → {dateLabel(row.targetTime,localeCode)}</small></p>
      {/each}
      {#if planPending}<p role="status">Preflight…</p>{/if}
-     <div class="write-controls" hidden={sourceFormat!=='packaged'}>
+     <div class="write-controls" hidden={READONLY_TEXT_RC_BUILD||sourceFormat!=='packaged'}>
       <label><input type="checkbox" bind:checked={confirmedSwitch} on:change={updateRevision}/>{t('tk.confirm')}</label>
       <button type="button" class="primary" disabled={!canPrepare} on:click={prepare}>{t('tk.edit')}</button>
      </div>
@@ -298,7 +302,7 @@
     </aside>
    </div>
   {/if}
-  <div class="output-bottom" hidden={!snapshot}>
+  <div class="output-bottom" hidden={READONLY_TEXT_RC_BUILD||!snapshot}>
    <section bind:this={pairPanel} hidden class="verified-pair" aria-label="Verified separate P1G downloads">
     <p>{oldText(localeCode,'pairWarning')}</p>
     <button bind:this={pairBoth} type="button" disabled>{t('tk.request')}</button>
