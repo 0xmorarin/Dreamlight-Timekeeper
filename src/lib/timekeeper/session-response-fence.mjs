@@ -77,6 +77,9 @@ function assertIdentity(x) {
     !Number.isSafeInteger(x.schema)||x.schema<1||x.origin!=='local-file'||
     !sha.test(x.originalSha256)||!x.capabilities||
     x.capabilities.READ?.state!=='AVAILABLE'||
+    ['READ','ENCODE_COPY','PERSISTENT_REPLACE'].some(k=>
+     !x.capabilities[k]||!['AVAILABLE','DENIED','UNKNOWN'].includes(x.capabilities[k].state)||
+     !['CONFIRMED','STATIC_ONLY','SYNTHETIC_TESTED','REAL_SAVE_READ_ONLY','RUNTIME_TESTED','UNKNOWN','BLOCKED'].includes(x.capabilities[k].evidence))||
     x.capabilities.PERSISTENT_REPLACE?.state==='AVAILABLE')
   throw new Error('SESSION_CORE_IDENTITY_INVALID');
  return x;
@@ -139,7 +142,7 @@ export function createSessionResponseFence({maxPageSize=200,maxRowBytes=65536,ma
    throw Error('STALE_PROJECTION');
   if(result.domain!==query.domain||result.view!==query.view||
      !Array.isArray(result.rows)||result.rows.length>query.page.limit||
-     typeof result.complete!=='boolean')
+     typeof result.complete!=='boolean'||!Object.hasOwn(result,'nextCursor'))
    throw Error('INVALID_BOUNDED_PROJECTION');
   let next;
   try{next=parseCursor(result.nextCursor);}
@@ -170,7 +173,8 @@ export function createSessionResponseFence({maxPageSize=200,maxRowBytes=65536,ma
      next.originalSha256!==active.originalSha256||next.schema!==active.schema||
      next.revision<=active.revision)
    throw new Error('INVALID_CORE_REVISION');
-  active=Object.freeze({...next,capabilities:Object.freeze({...next.capabilities})});
+  active=Object.freeze({...next,capabilities:Object.freeze(Object.fromEntries(
+   ['READ','ENCODE_COPY','PERSISTENT_REPLACE'].map(k=>[k,Object.freeze({...next.capabilities[k]})])))});
   clearPages();
   return active;
  };
