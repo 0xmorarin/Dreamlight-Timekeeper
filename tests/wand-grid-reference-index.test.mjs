@@ -21,6 +21,9 @@ test('Wand active GridObjectAddress veto remains active even when no Grid object
  const p=profile(),original=JSON.stringify(p);
  const {result,byAddress}=inspectWandGridObjectReferences(p);
  assert.equal(result.activeReferenceCount,2);
+ assert.equal(result.activeMaterializedCount,1);
+ assert.equal(result.activeUnmaterializedCount,1);
+ assert.equal(result.activeDiffRemovedCount,0);
  assert.equal(result.unknownReferenceCount,1);
  assert.equal(result.historicalReferenceCount,2);
  assert.equal(result.activeEventContainerPresent,true);
@@ -30,6 +33,9 @@ test('Wand active GridObjectAddress veto remains active even when no Grid object
  assert.equal(byAddress({gridId:10,gridObjectId:4})[0].sourceType,
   'CONDITIONAL_EVENT_ACTIVE_SPAWNED_OBJECT');
  assert.equal(byAddress({gridId:878,gridObjectId:41})[0].activity,'ACTIVE');
+ assert.equal(byAddress({gridId:878,gridObjectId:41})[0].targetResolution,'SAVE_LOCAL_OBJECT_NOT_MATERIALIZED');
+ assert.equal(byAddress({gridId:10,gridObjectId:4})[0].targetResolution,'GRID_OBJECT_PRESENT');
+ assert.equal(byAddress({gridId:10,gridObjectId:4})[0].itemId,31700014);
  assert.equal(byAddress({gridId:878,gridObjectId:41})[0].activeOwnershipVeto,true);
  assert.equal(byAddress({gridId:10,gridObjectId:5})[0].activity,'UNKNOWN');
  assert.equal(byAddress({gridId:10,gridObjectId:6})[0].activity,'HISTORICAL');
@@ -60,4 +66,27 @@ test('bounded source index rejects large or incompatible reference inputs',()=>{
  assert.throws(()=>inspectWandGridObjectReferences(profile(),{maxHistoricalRecords:1}));
  assert.throws(()=>inspectWandGridObjectReferences({World:{},Player:null}));
  assert.throws(()=>inspectWandGridObjectReferences(profile(),{maxAddresses:NaN}));
+});
+
+test('Wand DiffGrids modifications and removed target IDs are not mistaken for no references',()=>{
+ const p=profile();
+ p.World.GridCollection.DiffGrids={
+  '878':{ID:878,ModifiedObjects:{'41':{ID:41,ItemID:31700131}}},
+  '10':{ID:10,RemovedObjects:[5]}
+ };
+ const a=inspectWandGridObjectReferences(p);
+ assert.equal(a.result.activeMaterializedCount,2);
+ assert.equal(a.result.activeUnmaterializedCount,0);
+ const diff=a.byAddress({gridId:878,gridObjectId:41})[0];
+ assert.equal(diff.targetResolution,'DIFF_MODIFIED_OBJECT_PRESENT');
+ assert.equal(diff.itemId,31700131);
+ assert.equal(diff.activity,'ACTIVE');assert.equal(diff.activeOwnershipVeto,true);
+ assert.equal(a.byAddress({gridId:10,gridObjectId:5})[0].targetResolution,'GRID_OBJECT_PRESENT');
+ const removed=profile();
+ removed.World.GridCollection.Grids['10'].Objects['5']=null;
+ removed.World.GridCollection.DiffGrids={'10':{ID:10,RemovedObjects:[5]}};
+ const r=inspectWandGridObjectReferences(removed);
+ assert.equal(r.byAddress({gridId:10,gridObjectId:5})[0].targetResolution,'DIFF_REMOVED_OBJECT');
+ assert.equal(r.byAddress({gridId:10,gridObjectId:5})[0].activity,'UNKNOWN');
+ assert.equal(r.result.bulkDeletionAuthorized,false);
 });
