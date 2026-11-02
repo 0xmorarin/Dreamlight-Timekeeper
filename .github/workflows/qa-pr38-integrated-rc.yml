@@ -1,0 +1,24 @@
+name: 05 QR PR38 Integrated Read-Only RC Delta
+on:
+  pull_request:
+    paths:
+      - 'qa/05qr-pr38-integrated-delta.test.mjs'
+      - '.github/workflows/qa-pr38-integrated-rc.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  integration-delta:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Fixed composed product code
+        run: git diff --quiet 1a466847a1ab6a174a4dbbc9ad863346fff0542d HEAD -- scripts src tests/ctrl-sveltekit-review-stage.test.mjs contracts .github/workflows/00ctrl-sveltekit-review-stage.yml
+      - name: Only three audited inherited Git blobs and read-only invariant
+        run: node --test qa/05qr-pr38-integrated-delta.test.mjs
+      - name: Product release gate separate
+        run: echo 'INTEGRATED_READ_ONLY_REVIEW_ONLY, PRODUCT_WRITER=OFF, PUBLISH=OFF'
