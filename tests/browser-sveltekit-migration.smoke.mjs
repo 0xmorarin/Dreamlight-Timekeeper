@@ -101,6 +101,27 @@ try{
  assert.equal(await page.locator('.tabs button').count(),4);
  const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth+3);
  assert.equal(overflow,false,'mobile horizontal overflow');
+ // A→B→C switch: the Svelte view must discard the prepared A export and
+ // back up only C's immutable original bytes. No second file is sent to a server.
+ const switchedB=Buffer.from(makeSyntheticP1gProfile({...profile,Player:{Name:'Svelte Switch B'}}));
+ const switchedC=Buffer.from(makeSyntheticP1gProfile({...profile,Player:{Name:'Svelte Switch C'}}));
+ await page.locator('#tk-save-file').setInputFiles({name:'b.p1g',mimeType:'application/octet-stream',buffer:switchedB});
+ await page.getByRole('heading',{name:'Svelte Switch B'}).waitFor({timeout:15000});
+ assert.equal(await page.locator('.verified-pair').isHidden(),true,'B must not inherit A output');
+ assert.equal(await page.locator('.tabs button').count(),4);
+ await page.locator('#tk-save-file').setInputFiles({name:'c.p1g',mimeType:'application/octet-stream',buffer:switchedC});
+ await page.getByRole('heading',{name:'Svelte Switch C'}).waitFor({timeout:15000});
+ assert.equal(await page.locator('.verified-pair').isHidden(),true,'C must not inherit A/B output');
+ assert.equal(await page.locator('.write-controls input[type=checkbox]').isChecked(),false,
+  'Build confirmation must reset on source switch');
+ const cBackupPromise=page.waitForEvent('download');
+ await page.getByRole('button',{name:'Original backup'}).click();
+ const cBackup=await cBackupPromise;
+ assert.equal(cBackup.suggestedFilename(),'original_c.p1g');
+ const cOriginal=join(temp,'original-c.p1g');
+ await cBackup.saveAs(cOriginal);
+ assert.deepEqual(await readFile(cOriginal),switchedC,'C backup must exactly match current source');
+ assert.notDeepEqual(await readFile(cOriginal),original,'C backup cannot reuse A source');
  await page.reload();
  assert.equal(await page.locator('#tk-language option').count(),8);
  assert.deepEqual(errors,[]);
