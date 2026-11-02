@@ -65,7 +65,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30000063,
@@ -83,7 +88,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30000064,
@@ -101,7 +111,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30000072,
@@ -144,6 +159,11 @@
           "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
           "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
         }
+      },
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
       }
     },
     {
@@ -162,7 +182,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30200091,
@@ -180,7 +205,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30200147,
@@ -202,7 +232,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30200221,
@@ -220,7 +255,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30400120,
@@ -238,7 +278,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30400121,
@@ -256,7 +301,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30400122,
@@ -277,7 +327,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30400123,
@@ -295,7 +350,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30400124,
@@ -314,7 +374,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30400125,
@@ -332,7 +397,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30400126,
@@ -351,7 +421,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30400195,
@@ -369,7 +444,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30400196,
@@ -387,7 +467,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30400197,
@@ -405,7 +490,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30400198,
@@ -423,7 +513,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30400199,
@@ -441,7 +536,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30400219,
@@ -468,6 +568,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -495,6 +600,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -522,6 +632,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -549,6 +664,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -571,7 +691,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30400263,
@@ -601,6 +726,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -622,7 +752,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30400275,
@@ -643,7 +778,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800054,
@@ -661,7 +801,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800055,
@@ -679,7 +824,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800058,
@@ -697,7 +847,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800059,
@@ -715,7 +870,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800060,
@@ -733,7 +893,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800061,
@@ -751,7 +916,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800062,
@@ -769,7 +939,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800063,
@@ -787,7 +962,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800064,
@@ -805,7 +985,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800065,
@@ -823,7 +1008,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800066,
@@ -841,7 +1031,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800067,
@@ -859,7 +1054,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800068,
@@ -877,7 +1077,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800069,
@@ -895,7 +1100,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800071,
@@ -913,7 +1123,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800072,
@@ -931,7 +1146,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800073,
@@ -949,7 +1169,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800074,
@@ -967,7 +1192,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800075,
@@ -985,7 +1215,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800076,
@@ -1003,7 +1238,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800077,
@@ -1021,7 +1261,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800078,
@@ -1039,7 +1284,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800079,
@@ -1057,7 +1307,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800080,
@@ -1075,7 +1330,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800081,
@@ -1093,7 +1353,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800082,
@@ -1111,7 +1376,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800083,
@@ -1129,7 +1399,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800084,
@@ -1147,7 +1422,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800085,
@@ -1165,7 +1445,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800086,
@@ -1183,7 +1468,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800087,
@@ -1201,7 +1491,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800088,
@@ -1219,7 +1514,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800089,
@@ -1237,7 +1537,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800090,
@@ -1255,7 +1560,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800091,
@@ -1273,7 +1583,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800092,
@@ -1291,7 +1606,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800093,
@@ -1309,7 +1629,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800094,
@@ -1327,7 +1652,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800095,
@@ -1345,7 +1675,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800096,
@@ -1363,7 +1698,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800108,
@@ -1381,7 +1721,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800109,
@@ -1399,7 +1744,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800110,
@@ -1417,7 +1767,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800111,
@@ -1435,7 +1790,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800112,
@@ -1453,7 +1813,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800113,
@@ -1471,7 +1836,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800114,
@@ -1489,7 +1859,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800115,
@@ -1507,7 +1882,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800116,
@@ -1525,7 +1905,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800117,
@@ -1543,7 +1928,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800118,
@@ -1561,7 +1951,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800119,
@@ -1579,7 +1974,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800120,
@@ -1597,7 +1997,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800121,
@@ -1615,7 +2020,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800122,
@@ -1633,7 +2043,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800123,
@@ -1651,7 +2066,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800124,
@@ -1669,7 +2089,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800125,
@@ -1687,7 +2112,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800126,
@@ -1705,7 +2135,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800127,
@@ -1723,7 +2158,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800135,
@@ -1741,7 +2181,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800139,
@@ -1759,7 +2204,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800140,
@@ -1777,7 +2227,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800141,
@@ -1795,7 +2250,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800142,
@@ -1813,7 +2273,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800143,
@@ -1831,7 +2296,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800144,
@@ -1849,7 +2319,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800145,
@@ -1867,7 +2342,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800146,
@@ -1885,7 +2365,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800147,
@@ -1903,7 +2388,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800148,
@@ -1921,7 +2411,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800149,
@@ -1939,7 +2434,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800150,
@@ -1957,7 +2457,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800164,
@@ -1979,7 +2484,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800165,
@@ -2001,7 +2511,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800166,
@@ -2023,7 +2538,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800167,
@@ -2045,7 +2565,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800173,
@@ -2066,7 +2591,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800174,
@@ -2087,7 +2617,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800175,
@@ -2108,7 +2643,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800176,
@@ -2129,7 +2669,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800177,
@@ -2150,7 +2695,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800178,
@@ -2171,7 +2721,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800179,
@@ -2192,7 +2747,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800180,
@@ -2213,7 +2773,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800181,
@@ -2234,7 +2799,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800182,
@@ -2255,7 +2825,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800183,
@@ -2276,7 +2851,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800184,
@@ -2297,7 +2877,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800185,
@@ -2318,7 +2903,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800186,
@@ -2339,7 +2929,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800187,
@@ -2360,7 +2955,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 30800188,
@@ -2381,7 +2981,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 31000084,
@@ -2399,7 +3004,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 31100030,
@@ -2417,7 +3027,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 31100031,
@@ -2435,7 +3050,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 31100032,
@@ -2453,7 +3073,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 31100072,
@@ -2471,7 +3096,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 31100164,
@@ -2489,7 +3119,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 31300003,
@@ -2528,9 +3163,30 @@
         "sourceStream": "ActivityItem.json",
         "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
         "declaredIconAddressGuid": "838a1cf8fac848d46b1f2b5843326baf",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "ephemeral_a081feaa.bundle",
+          "bundleSha256": "a30f6f48634f9fbf11123528054c14ca5bdc7b0392fd546988bdc38d603a24fa",
+          "unityCab": "CAB-c5c736a5355a6c60c834725721bfb4de",
+          "spritePathId": "14966761252799059766",
+          "texturePathId": "11691139849580189494",
+          "spriteName": "NightThorn_Small1",
+          "width": 512,
+          "height": 512,
+          "compression": "BC7",
+          "decodedRgbaSha256": "a772a2a79332d347333eaffd354f55931837682fe0db9a579776b4390835136f",
+          "prototypeWebpSha256": "9113fb9e1f836daf51ccdaf9a46ddae16ea9de82a546048a31ca65fc87aea209",
+          "prototypeWebpBytes": 89876,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        }
+      },
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
       }
     },
     {
@@ -2573,6 +3229,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -2615,6 +3276,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -2657,6 +3323,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -2685,6 +3356,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -2711,9 +3387,30 @@
         "sourceStream": "ActivityItem.json",
         "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
         "declaredIconAddressGuid": "eb3483344601e374480bce50a60de07c",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "ephemeral_a081feaa.bundle",
+          "bundleSha256": "a30f6f48634f9fbf11123528054c14ca5bdc7b0392fd546988bdc38d603a24fa",
+          "unityCab": "CAB-c5c736a5355a6c60c834725721bfb4de",
+          "spritePathId": "4121661351448327022",
+          "texturePathId": "15645414128663311214",
+          "spriteName": "DreamlightCrack01",
+          "width": 512,
+          "height": 512,
+          "compression": "BC7",
+          "decodedRgbaSha256": "53cd9e456b7db39e12ea207966831fa08779087eb93eebbf1caa391b65e05815",
+          "prototypeWebpSha256": "7c71d09f30a4f20cf09006b0b0283c495f64237818f31db60622959aa589021f",
+          "prototypeWebpBytes": 98158,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        }
+      },
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
       }
     },
     {
@@ -2743,6 +3440,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -2770,6 +3472,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -2797,6 +3504,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -2824,6 +3536,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -2851,6 +3568,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -2878,6 +3600,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -2905,6 +3632,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -2929,9 +3661,30 @@
         "sourceStream": "ActivityItem.json",
         "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
         "declaredIconAddressGuid": "6a16e4ccb94256f4a8c808f189cb4c1f",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "ephemeral_a081feaa.bundle",
+          "bundleSha256": "a30f6f48634f9fbf11123528054c14ca5bdc7b0392fd546988bdc38d603a24fa",
+          "unityCab": "CAB-c5c736a5355a6c60c834725721bfb4de",
+          "spritePathId": "13521612063694381670",
+          "texturePathId": "9812015709117080166",
+          "spriteName": "InkBlocker_fairyTales_2x2",
+          "width": 256,
+          "height": 256,
+          "compression": "BC7",
+          "decodedRgbaSha256": "6a04e61ef03fa9b6d0fb99b57e571eee5e22f23961bec0cc5170ec82a4acdad4",
+          "prototypeWebpSha256": "9ca5e8a0e19ecb8ebe5a22aaaa3aa8030ee2c794be00fb62239a507cf9191692",
+          "prototypeWebpBytes": 50486,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        }
+      },
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
       }
     },
     {
@@ -2959,6 +3712,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -2986,6 +3744,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -3013,6 +3776,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -3040,6 +3808,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -3067,6 +3840,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -3096,6 +3874,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -3123,6 +3906,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -3152,6 +3940,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -3176,9 +3969,30 @@
         "sourceStream": "ActivityItem.json",
         "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
         "declaredIconAddressGuid": "042b02d3a1339664f917f00df79d0bee",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "ephemeral_a081feaa.bundle",
+          "bundleSha256": "a30f6f48634f9fbf11123528054c14ca5bdc7b0392fd546988bdc38d603a24fa",
+          "unityCab": "CAB-c5c736a5355a6c60c834725721bfb4de",
+          "spritePathId": "5506874613869679538",
+          "texturePathId": "16880184784457667506",
+          "spriteName": "HoneyGeyser2x2",
+          "width": 256,
+          "height": 256,
+          "compression": "DXT5",
+          "decodedRgbaSha256": "0faa2fa8246a473c39c1f78c70d87f9831a5c51fa689ec7d49a30d0e3f820e71",
+          "prototypeWebpSha256": "a3cf3763cb2e958adf30df6b2ec4ccdea2d50a08f88e9ebd0aee33dfed355c8f",
+          "prototypeWebpBytes": 36212,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        }
+      },
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
       }
     },
     {
@@ -3206,6 +4020,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -3249,6 +4068,11 @@
           "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
           "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
         }
+      },
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
       }
     },
     {
@@ -3292,6 +4116,11 @@
           "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
           "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
         }
+      },
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
       }
     },
     {
@@ -3320,6 +4149,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -3348,6 +4182,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -3376,6 +4215,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -3394,7 +4238,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 31700003,
@@ -3415,7 +4264,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 31700008,
@@ -3441,7 +4295,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 31700014,
@@ -3466,7 +4325,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 31700034,
@@ -3484,7 +4348,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 31700038,
@@ -3505,7 +4374,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 31700063,
@@ -3523,7 +4397,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 31700102,
@@ -3541,7 +4420,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 31700121,
@@ -3559,7 +4443,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 31700131,
@@ -3577,7 +4466,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 31700148,
@@ -3595,7 +4489,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 31700151,
@@ -3614,7 +4513,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 31700152,
@@ -3633,7 +4537,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 31700156,
@@ -3655,7 +4564,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 31700164,
@@ -3676,7 +4590,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 31700171,
@@ -3697,7 +4616,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 31700176,
@@ -3718,7 +4642,12 @@
       "publishedImage": "MISSING",
       "spritePathId": null,
       "texturePathId": null,
-      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED"
+      "rgbaVerifiedForThisItem": "PRIVATE_PROTO_VP8L_RGBA_MATCH_NOT_PUBLISHED",
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
+      }
     },
     {
       "itemId": 40600000,
@@ -3745,6 +4674,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -3772,6 +4706,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -3799,6 +4738,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -3826,6 +4770,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -3853,6 +4802,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -3880,6 +4834,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -3907,6 +4866,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -3934,6 +4898,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -3961,6 +4930,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -3988,6 +4962,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4015,6 +4994,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4042,6 +5026,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4069,6 +5058,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4096,6 +5090,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4123,6 +5122,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4150,6 +5154,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4177,6 +5186,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4204,6 +5218,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4231,6 +5250,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4271,6 +5295,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4298,6 +5327,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4325,6 +5359,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4352,6 +5391,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4379,6 +5423,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4406,6 +5455,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4433,6 +5487,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4460,6 +5519,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4487,6 +5551,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4516,6 +5585,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4545,6 +5619,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4574,6 +5653,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4603,6 +5687,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4630,6 +5719,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4657,6 +5751,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4684,6 +5783,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4711,6 +5815,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4738,6 +5847,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4765,6 +5879,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4792,6 +5911,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4819,6 +5943,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4846,6 +5975,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4873,6 +6007,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4900,6 +6039,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4927,6 +6071,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4954,6 +6103,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -4981,6 +6135,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -5008,6 +6167,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -5035,6 +6199,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -5065,6 +6234,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -5095,6 +6269,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -5125,6 +6304,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -5155,6 +6339,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -5182,6 +6371,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
       }
     },
     {
@@ -5209,6 +6403,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
       }
     },
     {
@@ -5236,6 +6435,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
       }
     },
     {
@@ -5263,6 +6467,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
       }
     },
     {
@@ -5291,6 +6500,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
       }
     },
     {
@@ -5319,6 +6533,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
       }
     },
     {
@@ -5346,6 +6565,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
       }
     },
     {
@@ -5373,6 +6597,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
       }
     },
     {
@@ -5401,6 +6630,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
       }
     },
     {
@@ -5429,6 +6663,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
       }
     },
     {
@@ -5456,6 +6695,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
       }
     },
     {
@@ -5483,6 +6727,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
       }
     },
     {
@@ -5517,6 +6766,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
       }
     },
     {
@@ -5545,6 +6799,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "TWO_ITEMIDS_SHARE_UNVERIFIED_COMPANION_ICON_ADDRESS",
+        "url": null
       }
     },
     {
@@ -5572,6 +6831,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "TWO_ITEMIDS_SHARE_UNVERIFIED_COMPANION_ICON_ADDRESS",
+        "url": null
       }
     },
     {
@@ -5600,6 +6864,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "AMBIGUOUS",
+        "reason": "SHARED_GENERIC_ICON_ADDRESS_81_ITEMIDS",
+        "url": null
       }
     },
     {
@@ -5627,6 +6896,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
       }
     },
     {
@@ -5659,6 +6933,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
       }
     },
     {
@@ -5686,6 +6965,11 @@
         "spriteResolved": false,
         "textureResolved": false,
         "webpDecodedRgbaMatched": false
+      },
+      "readOnlyImageResolution": {
+        "status": "MISSING",
+        "reason": "NO_APPROVED_PACKAGED_ITEM_IMAGE",
+        "url": null
       }
     }
   ],
@@ -5707,15 +6991,38 @@
     "commonGuidCountInGaps": 81,
     "otherGuidCountInGaps": 25,
     "sourceGuidOnly": true,
-    "spriteTextureProof": 3,
+    "spriteTextureProof": 7,
     "publicImageProof": 0,
     "rights": "NOT_ESTABLISHED",
-    "note": "106/106 original typed definition GUIDs; 3 exact source UnityFS Sprite/Texture references + private lossless WebP decoded RGBA matched, still no public image bytes/permission. Remaining 103 require source relation or correct display variant. 81 share a generic GUI address; no assumption of unique item visual.",
+    "note": "106 exact ItemID→typed-definition IconAddress relationships; 7 original source CAB Sprite/Texture/VP8L-RGBA private matches (3 previous +4 newly verified), 99 remain without source Sprite/Texture proof. 81 share common GUID; Companion pair 120200013/016 shares another. No published game ItemID images.",
     "companionRecords": 19,
     "commonGuidOccurrencesInCompleteThreeStreams": 1798,
     "distinctSourceIconAddressGuidsInGaps": 25,
-    "privatePrototypeRgbaMatched": 3,
-    "privatePrototypeWebpBytes": 827014,
-    "privatePixelEvidenceJsonSha256": "59e2e920570f83812210f4eebcf2013935322ed21dcf43dae4c8eaba48b5c0b8"
+    "privatePrototypeRgbaMatched": 7,
+    "privatePrototypeWebpBytes": 1101746,
+    "privatePixelEvidenceJsonSha256": "59e2e920570f83812210f4eebcf2013935322ed21dcf43dae4c8eaba48b5c0b8",
+    "additionalFourEvidenceSha256": "7b10a20060e25bcc38821b86dfba38f55a7840d1954f53cf187a3a37dd10a710",
+    "remainingUnverifiedSpriteTexture": 99,
+    "privatePixelsNotPublished": true
+  },
+  "readOnlyResolutionContract": {
+    "schema": "timekeeper.item-image-resolution.v1",
+    "allowedStatuses": [
+      "VERIFIED",
+      "MISSING",
+      "AMBIGUOUS"
+    ],
+    "verifiedMeaning": "Only release image manifest entry with approved image bytes and exact integrity/provenance, never private pixel evidence alone.",
+    "ambiguousMeaning": "Shared or unresolved source identity. No image URL and no numerical/name based guessing.",
+    "releaseImageManifest": "data/steam-icons-v1253.json",
+    "allCandidateMetadataNonPublishing": true,
+    "recurringTotal": 244,
+    "verifiedPublished": 0,
+    "ambiguousWithoutUrl": 83,
+    "missingWithoutUrl": 161,
+    "privatePixelProofsNotPublished": 7,
+    "unverifiedSourceSpriteTargets": 99,
+    "additionalRealSaveVisibleItemIDs": "UNKNOWN_SESSION_NOT_PROVIDED",
+    "unapprovedMediaPublishable": false
   }
 }
