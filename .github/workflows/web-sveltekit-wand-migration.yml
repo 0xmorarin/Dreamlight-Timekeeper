@@ -19,7 +19,9 @@ jobs:
       - name: Independent migration source contract and old Node regression
         run: |
           node --test tests/sveltekit-migration-contract.test.mjs
-          npm test
+          node --test tests/reader.test.mjs tests/worker.test.mjs tests/timing-draft.test.mjs tests/ui-separate-downloads.test.mjs tests/ui-verified-pair-downloads.test.mjs tests/timekeeper-timing-compatibility.test.mjs
+          # Legacy release staging's strict source whitelist intentionally excludes
+          # all newly authored Svelte files; it remains a separate old-HTML artifact gate.
       - name: Svelte/TypeScript check
         run: npm run check
       - name: Static GitHub Pages build with project BASE_PATH
