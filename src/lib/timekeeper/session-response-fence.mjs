@@ -142,7 +142,8 @@ export function createSessionResponseFence({maxPageSize=200,maxRowBytes=65536,ma
    throw Error('STALE_PROJECTION');
   if(result.domain!==query.domain||result.view!==query.view||
      !Array.isArray(result.rows)||result.rows.length>query.page.limit||
-     typeof result.complete!=='boolean'||!Object.hasOwn(result,'nextCursor'))
+     typeof result.complete!=='boolean'||!Object.hasOwn(result,'nextCursor')||
+     result.nextCursor!==null&&typeof result.nextCursor!=='string')
    throw Error('INVALID_BOUNDED_PROJECTION');
   let next;
   try{next=parseCursor(result.nextCursor);}
