@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>01 CORE synthetic browser Worker read-only memory probe</title>
+<body><main><h1>Local synthetic-only P1G Worker probe</h1>
+<p>For QA only; no original save, Writer, edited export, or network beyond localhost.</p>
+<output id="status">Ready</output></main>
+<script type="module">
+const timeoutMs=90000;
+let active=null,revision=0;
+const status=document.getElementById('status');
+function measure(){
+ const nonstandard=performance.memory;
+ return {elapsedMs:performance.now(),
+  chromiumNonstandardHeapUsed:typeof nonstandard?.usedJSHeapSize==='number'?
+   nonstandard.usedJSHeapSize:null,
+  crossOriginIsolated:self.crossOriginIsolated===true,
+  windowPeakBytes:null};
+}
+async function getSyntheticFile(){
+ const r=await fetch('/synthetic.p1g',{cache:'no-store'});
+ if(!r.ok)throw Error('SYNTHETIC_FIXTURE_HTTP_'+r.status);
+ return new Uint8Array(await r.arrayBuffer());
+}
+function stopActive(reason='cancelled'){
+ if(!active)return null;
+ const old=active;
+ old.worker.terminate();
+ active=null;
+ return {sessionId:old.sessionId,reason,phaseCount:old.phases.length,
+  sourceCopied:old.sourceCopied};
+}
+async function begin(mode='clone'){
+ if(mode!=='clone'&&mode!=='transfer')throw Error('INVALID_TRANSFER_MODE');
+ stopActive('new-session');
+ const sessionId=++revision;
+ const original=await getSyntheticFile();
+ // Always preserve the original; transfer is performed on a fresh copy.
+ const input=original.slice();
+ if(!input.every((value,index)=>value===original[index]))throw Error('SYNTHETIC_BYTES_MISMATCH');
+ const worker=new Worker('/tests/browser-memory/p1g-read-worker.mjs',{type:'module'});
+ const state={sessionId,worker,phases:[],sourceCopied:true};
+ active=state;
+ const mainMeasurements=[{phase:'before-send',...measure(),encryptedBytes:original.byteLength}];
+ const result=new Promise((resolve,reject)=>{
+  const timer=setTimeout(()=>reject(Error('SYNTHETIC_WORKER_TIMEOUT')),timeoutMs);
+  const fail=err=>{clearTimeout(timer);reject(err instanceof Error?err:Error(String(err)));};
+  worker.onerror=e=>fail(Error(e.message||'SYNTHETIC_WORKER_ERROR'));
+  worker.onmessage=({data})=>{
+   if(active!==state||data.sessionId!==sessionId)return;
+   if(data.type==='PHASE'){state.phases.push(data.measurement);mainMeasurements.push({
+    phase:'worker-'+data.measurement.phase,...measure()});return;}
+   clearTimeout(timer);
+   if(data.type==='ERROR'){fail(Error(data.code));return;}
+   if(data.type==='DONE'){resolve({...data,mainMeasurements,
+    mode,originalBytes:original.byteLength,sourceCopyPreserved:
+     original.byteLength===input.byteLength||mode==='transfer',
+    transferDetached:mode==='transfer'?input.byteLength===0:false,
+    browserPeakAccepted:false});}
+  };
+ });
+ worker.postMessage({type:'READ_SYNTHETIC',sessionId,source:input},
+  mode==='transfer'?[input.buffer]:[]);
+ mainMeasurements.push({phase:'after-send',...measure()});
+ try{
+  const done=await result;
+  status.textContent='Read-only synthetic session '+sessionId+' complete';
+  return done;
+ }finally{
+  if(active===state){stopActive('complete');}
+ }
+}
+async function switchSession(){
+ stopActive('before-switch');
+ // Start a Worker that might or might not have begun its codec operation.
+ const bytes=await getSyntheticFile();
+ const first=new Worker('/tests/browser-memory/p1g-read-worker.mjs',{type:'module'});
+ const firstId=++revision;
+ active={sessionId:firstId,worker:first,phases:[],sourceCopied:true};
+ first.postMessage({type:'READ_SYNTHETIC',sessionId:firstId,source:bytes});
+ const terminated=stopActive('session-switch');
+ // Worker termination is an explicit cancellation boundary, not an
+ // assertion about internal AbortSignal support during Inflate.
+ const next=await begin('clone');
+ return {terminated,subsequent:next,staleResponseAccepted:false,
+  codecCancellationSignalSupported:false};
+}
+window.syntheticBrowserProbe={
+ begin,switchSession,cancel:()=>stopActive('explicit-cancel'),measure,
+ features:()=>({
+  browser: navigator.userAgent,
+  crossOriginIsolated:self.crossOriginIsolated===true,
+  performanceMemoryAvailable:typeof performance.memory?.usedJSHeapSize==='number',
+  userAgentSpecificMemoryAvailable:typeof performance.measureUserAgentSpecificMemory==='function',
+  canUseWorker:typeof Worker==='function'
+ })
+};
+</script></body></html>
