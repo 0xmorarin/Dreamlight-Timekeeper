@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {cp,lstat,mkdtemp,readFile,rm,symlink,writeFile} from 'node:fs/promises';
+import {cp,lstat,mkdtemp,mkdir,readFile,rm,symlink,writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -48,20 +48,24 @@ test('00 CTRL refuses source/output overlap and symlinked parent',async()=>{
 
 test('00 CTRL refuses unexpected media or executable files in compiled stage',async()=>{
  await sandbox(async base=>{
-  const altered=join(base,'build');
+  const source=join(base,'source'),altered=join(source,'build');
+  await mkdir(source);
+  await cp(join(repo,'data'),join(source,'data'),{recursive:true});
   await cp(build,altered,{recursive:true});
   await writeFile(join(altered,'unapproved-game.webp'),Buffer.from('fake'));
   const target=join(base,'should-not-exist');
   await assert.rejects(stageSveltekitReviewOnly({
-   sourceRoot:repo,buildRoot:altered,outputRoot:target
-  }),/COMPILED_BUILD_REQUIRED|OVERLAP|UNAPPROVED|UNKNOWN_BUILD_OUTPUT/);
+   sourceRoot:source,buildRoot:altered,outputRoot:target
+  }),/UNAPPROVED_DISTRIBUTION_PATH/);
   await assert.rejects(lstat(target),{code:'ENOENT'});
  });
 });
 
 test('00 CTRL denies independently changed Owner SVG bytes',async()=>{
  await sandbox(async base=>{
-  const altered=join(base,'build');
+  const source=join(base,'source'),altered=join(source,'build');
+  await mkdir(source);
+  await cp(join(repo,'data'),join(source,'data'),{recursive:true});
   await cp(build,altered,{recursive:true});
   const inventory=await auditSveltekitBuild(build,{sourceRoot:repo});
   const svg=inventory.files.find(x=>x.class==='OWNER_ORIGINAL_PROVISIONAL_SVG');
@@ -71,8 +75,8 @@ test('00 CTRL denies independently changed Owner SVG bytes',async()=>{
   await writeFile(path,Buffer.concat([bytes,Buffer.from('<!--mutation-->')]));
   const target=join(base,'should-not-exist');
   await assert.rejects(stageSveltekitReviewOnly({
-   sourceRoot:repo,buildRoot:altered,outputRoot:target
-  }),/COMPILED_BUILD_REQUIRED|OVERLAP|OWNER_SVG_HASH_DRIFT/);
+   sourceRoot:source,buildRoot:altered,outputRoot:target
+  }),/OWNER_SVG_HASH_DRIFT/);
   await assert.rejects(lstat(target),{code:'ENOENT'});
  });
 });
