@@ -1,0 +1,31 @@
+name: 05 QR Independent PR25 Compiled Stage Negatives (no deploy)
+on:
+  pull_request:
+    paths:
+      - 'qa/05qr-sveltekit-stage-independent.test.mjs'
+      - '.github/workflows/qa-pr25-compiled-stage.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  qa-independent-stage:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compile reviewed SvelteKit code without publishing
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+        env:
+          BASE_PATH: /Dreamlight-Timekeeper
+      - name: Independent QA boundary and negative matrix
+        run: node --test qa/05qr-sveltekit-stage-independent.test.mjs
+      - name: Scope warning
+        run: |
+          echo 'QA_SYNTEXACT=REVIEW_ONLY; no deployment upload or game-media permission'
+          echo 'KNOWN_LIMIT=arbitrary compiled JS content cannot be approved from path allowlist'
+          echo 'WRITER_AUTHORITY=false'
