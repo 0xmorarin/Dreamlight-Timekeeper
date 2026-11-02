@@ -44,6 +44,20 @@ try{
   page.on('pageerror',error=>errors.push(error.message));
   await page.goto(site,{waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>window.__dreamlightBooted===true,{timeout:15000});
+  const welcomeNotice=page.locator('#welcome .release-notice');
+  assert.equal(await welcomeNotice.isVisible(),true,'Public unofficial notice must be visible on landing.');
+  assert.deepEqual(await welcomeNotice.locator('p').evaluateAll(nodes=>nodes.map(x=>x.lang)),['en','ja'],
+    'Public tool notice must remain available in both English and Japanese independently of selected locale.');
+  const disclaimer=await welcomeNotice.innerText();
+  assert.match(disclaimer,/Unofficial fan-made tool/);
+  assert.match(disclaimer,/Not affiliated with, endorsed by, or approved by Disney or Gameloft/);
+  assert.match(disclaimer,/no rights to game images or trademarks/);
+  assert.match(disclaimer,/非公式のファン制作ツール/);
+  assert.match(disclaimer,/承認・推奨も受けていません/);
+  assert.match(disclaimer,/権利は主張しません/);
+  assert.doesNotMatch(await page.locator('.support-title').innerText(),/Official support/i,
+    'Release header must not imply game publisher endorsement.');
+
   const baseline=await page.evaluate(()=>({width:innerWidth,dpr:devicePixelRatio}));
   const zoom=await worker.evaluate(async url=>{
     const tabs=await chrome.tabs.query({});
@@ -155,6 +169,14 @@ try{
     name:'synthetic-zoom.p1g',mimeType:'application/octet-stream',buffer:Buffer.from(synthetic)
   });
   await page.locator('#workspace').waitFor({state:'visible',timeout:20000});
+  const workspaceNotice=page.locator('#workspace .release-notice');
+  assert.equal(await workspaceNotice.isVisible(),true,
+    'Unofficial and rights attribution must remain present after a save is loaded.');
+  assert.equal(await workspaceNotice.innerText(),disclaimer,
+    'Welcome and workspace must use identical legal wording.');
+  assert.equal(await page.locator('#tabs button').count(),4,
+    'The minimal release notice must not alter the existing four timing tabs.');
+
   assert.equal(await page.locator('#download-backup').isEnabled(),true,
     'Keyboard-accessible file input must lead to a usable loaded synthetic save.');
 
