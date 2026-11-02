@@ -5,6 +5,9 @@ on:
     paths:
       - 'src/w1-rust-adapter-oracle.mjs'
       - 'tests/w1-rust-adapter-oracle.test.mjs'
+      - 'tests/w1-offline-rust-witness.test.mjs'
+      - 'tests/fixtures/w1-offline-rust-witness-v1253.json'
+      - 'docs/W1_OFFLINE_NATIVE_AND_RUST_WITNESS_GATE_20261103.md'
       - 'docs/W1_RUST_SEMANTIC_ADAPTER_V1253.md'
       - '.github/workflows/w1-rust-adapter-contract.yml'
   workflow_dispatch:
@@ -21,4 +24,4 @@ jobs:
         with:
           node-version: '22'
       - name: Verify W1 Rust DTO vs existing JS semantic oracle
-        run: node --test tests/w1-rust-adapter-oracle.test.mjs tests/w1-minimal-write-contract.test.mjs tests/timing-native-semantics.test.mjs
+        run: node --test tests/w1-rust-adapter-oracle.test.mjs tests/w1-offline-rust-witness.test.mjs tests/w1-minimal-write-contract.test.mjs tests/timing-native-semantics.test.mjs
