@@ -63,7 +63,7 @@ try{
  await fallback.waitForFunction(()=>window.__dreamlightBooted===true);
  await fallback.waitForTimeout(500);
  assert.equal(await fallback.locator('#open-welcome img.semantic-icon').count(),0);
- assert.match(await fallback.locator('#open-welcome').innerText(),/Open save/);
+ assert.match(await fallback.locator('#open-welcome').innerText(),/Open save|セーブを開く/);
  await fallback.locator('#save-file').setInputFiles({name:'missing-icons.json',mimeType:'application/json',buffer:Buffer.from(profile)});
  await fallback.locator('#workspace').waitFor({state:'visible'});
  assert.equal(await fallback.locator('#tabs button').count(),4);
