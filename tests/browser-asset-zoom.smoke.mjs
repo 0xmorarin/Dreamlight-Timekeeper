@@ -114,10 +114,21 @@ try{
       },true);
     }
   });
-  await control.focus();
+  // Reach the control using only real keyboard traversal, not locator.focus().
+  // The hidden file input must not become a keyboard stop.
+  await page.keyboard.press('Tab');
   await page.waitForFunction(
     ()=>document.hasFocus()&&document.activeElement?.id==='open-welcome',null,{timeout:5000}
   );
+  assert.equal(await control.evaluate(el=>el.matches(':focus-visible')),true,
+    'Tab navigation must expose the browser keyboard-focus indicator.');
+  await page.keyboard.press('Tab');
+  assert.equal(await page.evaluate(()=>document.activeElement?.id),'welcome-language',
+    'After the file-open button, Tab should reach the language selector.');
+  await page.keyboard.press('Shift+Tab');
+  assert.equal(await control.evaluate(el=>document.activeElement===el),true,
+    'Reverse keyboard navigation must restore the Open save button.');
+
   // The native OS filechooser notification is intermittent in both headless
   // and Xvfb-headed Chromium despite a trusted button click and the handler-
   // forwarded input click. Record it, but gate on the observable input path and

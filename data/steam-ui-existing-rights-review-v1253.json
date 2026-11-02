@@ -1,0 +1,88 @@
+{
+  "kind": "GAME_UI_EXISTING_PUBLICATION_RIGHTS_REVIEW_ONLY",
+  "gameVersion": "1.25.3",
+  "platform": "Steam/Windows",
+  "sourceBundleSha256": "8fb0c3dbc4f937bee5d2918dfd2b9bef115dd6626e15af712f3669becc102b3d",
+  "terms": {
+    "url": "https://www.gameloft.com/en/conditions-of-use",
+    "sections": [
+      "V.A Proprietary Rights",
+      "V.E Disney User Content conditional authorization"
+    ],
+    "specificExtractedSpritesPublicReusePermission": "NOT_ESTABLISHED"
+  },
+  "status": "EXISTING_SHIPMENT_NOT_RIGHTS_APPROVAL",
+  "rightsApproval": false,
+  "releasePermissionFromPixelEquality": false,
+  "originalMediaBytesIncluded": false,
+  "reviewedItems": {
+    "skill.mining": {
+      "publicPath": "assets/steam/v1253/ui/skill/mining.webp",
+      "publicSha256": "dcc381b5480280bbd771fe6beea374993fd678b955ee605ddb9596bdea351197",
+      "originalDecodedSourceSha256": "7ba4424ee055c9638022891f11ba9413fc149fe19f41a502c0d392a4cf427b48",
+      "sourceAsset": "CAB-fe2bbf4dc0b20d2a3f3b5ff35a49ffe8|icon_mining",
+      "spritePathId": "8838071592011784765",
+      "texturePathId": "2140947109914567229",
+      "width": 128,
+      "height": 128,
+      "pixelProof": "PRIOR_SOURCE_RECORDED_NOT_RERUN_ROUND9",
+      "nativeGameConsumer": "UNKNOWN_NOT_TYPED_OR_RUNTIME_CONFIRMED",
+      "timekeeperUse": "MINING_ACTIVITY_DECORATIVE_ICON",
+      "currentDeployment": "PUBLISHED_PREEXISTING",
+      "copyrightRedistributionPermission": "NOT_ESTABLISHED",
+      "rightsReviewRequired": true,
+      "releaseRightsApproved": false
+    },
+    "status.warning": {
+      "publicPath": "assets/steam/v1253/ui/status/warning.webp",
+      "publicSha256": "d9ecb95ae3b5e7483f8a4d7ee1cf51ded8b86323aed3459a4806e6b9e482b70e",
+      "originalDecodedSourceSha256": "3fb9cc7ee3e4630afe3f669eabd2641498670b51e7adc3d15aab24c8db6c3a9e",
+      "sourceAsset": "CAB-fe2bbf4dc0b20d2a3f3b5ff35a49ffe8|IconWarning",
+      "spritePathId": "1195881995301868918",
+      "texturePathId": "4550751082103756150",
+      "width": 32,
+      "height": 32,
+      "pixelProof": "PRIOR_SOURCE_RECORDED_NOT_RERUN_ROUND9",
+      "nativeGameConsumer": "UNKNOWN_NOT_TYPED_OR_RUNTIME_CONFIRMED",
+      "timekeeperUse": "ANOMALOUS_TIMER_DECORATIVE_STATUS",
+      "currentDeployment": "PUBLISHED_PREEXISTING",
+      "copyrightRedistributionPermission": "NOT_ESTABLISHED",
+      "rightsReviewRequired": true,
+      "releaseRightsApproved": false
+    },
+    "world.valley": {
+      "publicPath": "assets/steam/v1253/ui/world/valley.webp",
+      "publicSha256": "c8de879d8f96eb678fad5bb2317b62a6bdce9523b8fe743ae348f62d4436e7ad",
+      "originalDecodedSourceSha256": "d4b1ccc4a419d11326dc411da5a9bf882f546bc39419208b6618a4add9668c6e",
+      "sourceAsset": "CAB-fe2bbf4dc0b20d2a3f3b5ff35a49ffe8|export_icon_ips_dream_valley",
+      "spritePathId": "1512533464914153988",
+      "texturePathId": "2722964377584423428",
+      "width": 176,
+      "height": 176,
+      "pixelProof": "PRIOR_SOURCE_RECORDED_NOT_RERUN_ROUND9",
+      "nativeGameConsumer": "UNKNOWN_NOT_TYPED_OR_RUNTIME_CONFIRMED",
+      "timekeeperUse": "MAIN_VALLEY_WORLD_FILTER",
+      "currentDeployment": "PUBLISHED_PREEXISTING",
+      "copyrightRedistributionPermission": "NOT_ESTABLISHED",
+      "rightsReviewRequired": true,
+      "releaseRightsApproved": false
+    },
+    "world.exp1": {
+      "publicPath": "assets/steam/v1253/ui/world/exp1.webp",
+      "publicSha256": "5fdfec6c047467a16b607f25a087b01263da151c48345fd0e21940de99d0e735",
+      "originalDecodedSourceSha256": "5fb47fee4a40c0a266ee5d17b03b42478be3021fa996b37480ab3c720ae75a52",
+      "sourceAsset": "CAB-fe2bbf4dc0b20d2a3f3b5ff35a49ffe8|icon_eternity_isle",
+      "spritePathId": "11850830269409517482",
+      "texturePathId": "7386682675117285290",
+      "width": 152,
+      "height": 152,
+      "pixelProof": "PRIOR_SOURCE_RECORDED_NOT_RERUN_ROUND9",
+      "nativeGameConsumer": "UNKNOWN_NOT_TYPED_OR_RUNTIME_CONFIRMED",
+      "timekeeperUse": "ETERNITY_ISLE_WORLD_FILTER",
+      "currentDeployment": "PUBLISHED_PREEXISTING",
+      "copyrightRedistributionPermission": "NOT_ESTABLISHED",
+      "rightsReviewRequired": true,
+      "releaseRightsApproved": false
+    }
+  }
+}

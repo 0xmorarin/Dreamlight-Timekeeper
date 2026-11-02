@@ -4,7 +4,7 @@ import {join,resolve} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {validateIconManifest,inspectLosslessWebP} from '../src/icon-assets.mjs';
 import {validateUiManifest,verifyUiAssetBytes} from '../src/ui-assets.mjs';
-import {auditSteamUiPublicationLedger,auditSteamUiPrivatePixelEvidence,auditSteamUiConsumerLinks} from '../src/steam-ui-provenance.mjs';
+import {auditSteamUiPublicationLedger,auditSteamUiPrivatePixelEvidence,auditSteamUiConsumerLinks,auditExistingGameUiPublicationRights} from '../src/steam-ui-provenance.mjs';
 
 const root = resolve(process.argv[2]||fileURLToPath(new URL('../',import.meta.url)));
 const manifest = JSON.parse(await readFile(join(root,'data','steam-icons-v1253.json'),'utf8'));
@@ -27,6 +27,11 @@ console.log(total ? `Verified ${total} lossless VP8L icon assets (SHA-256 + dime
 const catalog=JSON.parse(await readFile(join(root,'data','steam-ui-candidates-v1253.json'),'utf8'));
 const gameManifest=JSON.parse(await readFile(join(root,'data','steam-ui-icons-v1253.json'),'utf8'));
 const ledger=auditSteamUiPublicationLedger(catalog,gameManifest);
+const rightsReview=JSON.parse(await readFile(join(root,'data','steam-ui-existing-rights-review-v1253.json'),'utf8'));
+const rightsAudit=auditExistingGameUiPublicationRights(gameManifest,rightsReview);
+console.log('Shipped Steam UI game-raster rights: '+rightsAudit.rightsReviewRequiredCount+
+  '/4 require independent permission review; zero permissions established by static metadata.');
+
 console.log('Steam UI source ledger STATIC crosscheck: '+ledger.publishedCount+'/'+ledger.candidateCount+
   ' deployed; HOLD '+ledger.heldKeys.join(', ')+' (not release-verified).');
 const privateEvidence=JSON.parse(await readFile(join(root,'data','steam-ui-private-pixel-evidence-v1253.json'),'utf8'));
