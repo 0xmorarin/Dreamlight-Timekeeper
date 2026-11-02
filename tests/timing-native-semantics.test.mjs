@@ -641,6 +641,10 @@ test('DiffGrid conditional allocation sets object ID and ItemID without EventID 
   assert.equal(decodeBL(0x04E8BFA0,0x97B61F54),0x03C13CF0);
   assert.deepEqual(decodeLdrXUnsigned(0xF94022A0),{rt:0,rn:21,byteOffset:0x40});
   assert.equal(x.conditionalAllocationPathProvedByNative,true);
+  assert(Number(x.nextObjectIdStoreRVA)<Number(x.validationCallRVA));
+  assert.equal(x.idAdvanceBeforeInnerPlacementValidation,true);
+  assert.equal(x.idAdvanceEquatesSuccessfulPlacement,false);
+  assert.equal(x.failedResultCounterRollbackVerified,false);
   assert.equal(x.sourceEventIdWrittenIntoGridObject,false);
   assert.equal(x.fromFieldProvenToBePopulated,false);
   assert.equal(x.directW1CallToThisConcreteImplementationVerified,false);
