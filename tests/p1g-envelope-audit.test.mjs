@@ -179,3 +179,17 @@ test('unknown central numeric fields and rebuild attributes fail closed independ
   assert.equal(report.writerAuthorized,false);
  }
 });
+
+test('streamed inflation rejects bytes exceeding the central directory size before full materialization',async()=>{
+ const source=alteredEncryptedFixture(plain=>{
+  const eocd=plain.length-22;
+  assert.equal(plain.readUInt32LE(eocd),0x06054b50);
+  const central=plain.readUInt32LE(eocd+16);
+  assert.equal(plain.readUInt32LE(central),0x02014b50);
+  assert.equal(plain.readUInt16LE(central+10),8);
+  plain.writeUInt32LE(1,central+24);
+ });
+ const before=Buffer.from(source);
+ await assert.rejects(p1gPackagedProfileCodec.loadProfile(source),/PROFILE_ENTRY_TOO_LARGE/);
+ assert.deepEqual(Buffer.from(source),before);
+});
