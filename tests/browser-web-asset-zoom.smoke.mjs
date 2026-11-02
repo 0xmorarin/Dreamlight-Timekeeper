@@ -43,7 +43,17 @@ try{
  await page.goto(url,{waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>window.__dreamlightBooted===true);
  try{
-  await page.waitForFunction(()=>window.devicePixelRatio>1.9&&window.devicePixelRatio<2.1,{timeout:12000});
+  const extensionWorker=context.serviceWorkers().find(w=>w.url().startsWith('chrome-extension://'));
+  assert(extensionWorker,'Expected loaded isolated test extension service worker');
+  const result=await extensionWorker.evaluate(async()=>{
+   const tabs=await chrome.tabs.query({});
+   const page=tabs.find(t=>t.url?.startsWith('http://127.0.0.1:'));
+   if(!page)throw new Error('No test site tab available for native zoom: '+JSON.stringify(tabs.map(t=>({id:t.id,url:t.url}))));
+   await chrome.tabs.setZoom(page.id,2);
+   return {tabId:page.id,actualZoom:await chrome.tabs.getZoom(page.id)};
+  });
+  assert.equal(result.actualZoom,2,'Chrome tab zoom API must confirm 200%.');
+  await page.waitForFunction(()=>window.devicePixelRatio>1.9&&window.devicePixelRatio<2.1,null,{timeout:12000});
  }catch(e){
   const diagnostics=await page.evaluate(()=>({dpr:window.devicePixelRatio,width:window.innerWidth,cssWidth:document.documentElement.clientWidth}));
   throw new Error('Browser zoom extension did not set native 200%: '+JSON.stringify(diagnostics)+' workers='+context.serviceWorkers().length,{cause:e});
