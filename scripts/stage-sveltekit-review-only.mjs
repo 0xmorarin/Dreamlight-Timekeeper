@@ -16,6 +16,18 @@ const inside=(parent,child)=>{
  return rel===''||(!rel.startsWith('..'+sep)&&rel!=='..'&&!rel.startsWith(sep));
 };
 
+async function checkInputDirectoryComponents(path,label){
+ let current=resolve(path);
+ for(;;){
+  const stat=await lstat(current);
+  if(stat.isSymbolicLink()||!stat.isDirectory())
+   throw Error('REVIEW_STAGE_SYMLINK_OR_INVALID_'+label+':'+current);
+  const parent=dirname(current);
+  if(parent===current)break;
+  current=parent;
+ }
+}
+
 async function verifyReviewDestination(source,build,output){
  if(inside(source,output)||inside(output,source)||
     inside(build,output)||inside(output,build))
@@ -61,11 +73,8 @@ export async function stageSveltekitReviewOnly({
  // A buildRoot alias must not silently pass the provenance boundary.
  const sourcePath=resolve(sourceRoot);
  const buildPath=resolve(buildRoot??join(sourcePath,'build'));
- const [sourceStat,buildStat]=await Promise.all([lstat(sourcePath),lstat(buildPath)]);
- if(sourceStat.isSymbolicLink()||!sourceStat.isDirectory())
-  throw Error('REVIEW_STAGE_SYMLINK_OR_INVALID_SOURCE_ROOT');
- if(buildStat.isSymbolicLink()||!buildStat.isDirectory())
-  throw Error('REVIEW_STAGE_SYMLINK_OR_INVALID_BUILD_ROOT');
+ await checkInputDirectoryComponents(sourcePath,'SOURCE_ROOT');
+ await checkInputDirectoryComponents(buildPath,'BUILD_ROOT');
  const source=await realpath(sourcePath);
  const build=await realpath(buildPath);
  if(!inside(source,build))
