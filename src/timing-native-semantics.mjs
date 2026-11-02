@@ -23,6 +23,10 @@ const NATIVE=Object.freeze({
     evidence:'10 direct BL sites in reviewed native text: 9 Execute and 1 AddRecurringEvent; indirect callers unresolved'}),
   actualize:Object.freeze({rva:'0x05A2A170',method:'Profile.ActualizeRecurringEvents',
     evidence:'interface slots GetMaxInterval=6, Now=0, NextOccurrence getter=1, setter=2; overdue clamp only; future-date release not shown'}),
+  actualizeSourceConflict:Object.freeze({
+    rva:'0x05A2AC94',reportedAsm:'mov x25, x0',reportedOpcode:'0xB002B8C8',
+    independentlyDecodedMnemonic:'adrp x8',status:'EVIDENCE_METADATA_CONFLICT',
+    consequence:'X25 maxInterval assignment at this exact RVA is NOT opcode-supported; recheck real main before confirming def-use chain'}),
   itemCatchup:Object.freeze({rva:'0x057C0140',method:'ItemSpawning.GetMaxIntervalToFullyExecute',
     evidence:'uses interval and amount bounds; not a universal cooldown rule'}),
   itemMaximum:Object.freeze({rva:'0x047AB7F0',method:'ItemSpawningRecurringEventItemData.GetMaximumAmount',
@@ -150,7 +154,7 @@ export function analyzeW1StaticBranches(ledger,{eventId,saveKind,nowTicks,
     overdueClampIntervalKnown:maxIntervalTicks!==null,
     // The static conditional does NOT attest the callsite is reached or
     // the actual native setter executed in the current save or game.
-    actualizeBranchReached:false,executePathVerified:false,
+    actualizeBranchReached:null,executePathVerified:false,
     afterExecuteRescheduleVerified:false,pickupRescheduleVerified:false,
     gameRestartRetentionVerified:false,...noAuthority
   });
