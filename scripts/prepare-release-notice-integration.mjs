@@ -73,7 +73,7 @@ export function portNoticeUiTest(target,donor){
   return target.replace(originalTestTitle,neutralTestTitle)
     .replace("['official','gameVersion'","['gameVersion'")
     .replace(' assert.match(page,/2026-11-01/);',
-             ' assert.match(page,/2026-11-01/);\n'+assertions.trimEnd());
+             ' assert.match(page,/2026-11-01/);\n'+assertions.trimEnd()+'\n');
 }
 
 /**
