@@ -41,6 +41,9 @@ test('complete/cursor contradiction, empty incomplete and cursor loops fail clos
  const f=createSessionResponseFence(),ep=f.beginOpen(),id=f.acceptOpen(ep,base());
  const q=query(id);
  assert.throws(()=>send(f,ep,q,page(id,[{id:1}],true,'c1')), /INVALID_BOUNDED_PROJECTION/);
+ assert.throws(()=>send(f,ep,q,{...page(id,[{id:1}]),nextCursor:undefined}),/INVALID_BOUNDED_PROJECTION/);
+ const missingCursor=page(id,[{id:1}]);delete missingCursor.nextCursor;
+ assert.throws(()=>send(f,ep,q,missingCursor),/INVALID_BOUNDED_PROJECTION/);
  assert.throws(()=>send(f,ep,q,page(id,[{id:1}],false,null)), /INVALID_BOUNDED_PROJECTION/);
  assert.throws(()=>send(f,ep,q,page(id,[],false,'c1')), /INVALID_BOUNDED_PROJECTION/);
  assert.throws(()=>send(f,ep,q,page(id,[{id:1}],false,'x'.repeat(513))),/INVALID_BOUNDED_PROJECTION/);
@@ -84,6 +87,7 @@ test('source/session/revision, undo/redo and capability boundary reject stale re
 test('invalid query/page geometry, Source fingerprint and malformed payloads fail closed',()=>{
  const f=createSessionResponseFence({maxPageSize:80}),ep=f.beginOpen();
  assert.throws(()=>f.acceptOpen(ep,{...base(),originalSha256:'not-sha'}),/SESSION_CORE_IDENTITY_INVALID/);
+ assert.throws(()=>f.acceptOpen(ep,{...base(),capabilities:{READ:{state:'AVAILABLE',evidence:'CONFIRMED'}}}),/SESSION_CORE_IDENTITY_INVALID/);
  const id=f.acceptOpen(ep,base());
  assert.throws(()=>f.issuePageQuery(ep,query(id,null,201)),/INVALID_PAGE_QUERY/);
  assert.throws(()=>f.issuePageQuery(ep,query(id,'x'.repeat(513))),/INVALID_PAGE_CURSOR/);
