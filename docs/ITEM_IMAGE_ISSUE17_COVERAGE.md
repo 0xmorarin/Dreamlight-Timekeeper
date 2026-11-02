@@ -1,0 +1,45 @@
+# Issue #17 — v1.25.3 ItemID image coverage, source reuse and 03 WEB contract
+
+**Status: P0 PARTIAL / NOT RELEASE COMPLETE.** Reference source: integrated Draft PR #11 `393222e7832461ef5fea847b6fff475fedc45017`. No product Writer/Codec or original game media is changed by this review. The release candidate containing only four decorative UI WebPs and sixteen Owner-created SVGs does **not** meet Issue #17.
+
+## Authoritative counts and evidence levels
+
+- RecurringEvent definitions: **508**, original source SHA `028a206635d37bffd7f3a8ff820958bdaa201887bacf35e10faa8328d20022ea`, event source Nintendo Switch v1.25.3 BID `9A239D3DB569756D`, schema626. Their `items[].id` contains **244 distinct ItemIDs**, enumerated with source EventIDs and localized names in `data/item-image-coverage-v1253.json`. The `event.id` is an EventID, **never** an image lookup key.
+- **Currently packaged ItemID WebP: 0/244.** `data/steam-icons-v1253.json` still has `icons: {}`, `source.status: NO_STEAM_ASSET_BYTES_VERIFIED`. Therefore **244/244 missing deployed item images**. Browser placeholder is a fallback, not complete image coverage.
+- Reused original Steam/Windows v1.25.3 `ActivityItem.json` SHA `20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4`; versioned ItemID `field1` to icon `field4 GUID`, verified CAB `AssetBundle container` to exact Sprite PathID/Texture2D PathID. Seven previously examined category bundles produce **760 distinct ItemIDs**, with **no duplicate ItemID between bundles**; `128?` is NOT the appropriate denominator. Private renewed read-only source audit intersected these seven categories with the 244 recurring ItemIDs: **138/244 source-linked STATIC candidates**, **106/244 not linked through those seven bundles**. This is **NOT 138 validated deployable WebPs**, nor evidence of Image Rights.
+- Linked 138 by category: Flower93, Ingredient8, Fish1, Seed14, Crafting Material17, Crop5, Mineral0. Missing106: 52 `406...` Furniture-type objects, 24 `313...` obstacles, 19 `120...` Snippet, 5 `314...` other, 5 `304...` crops/seeds and 1 `300...` event item. These gaps require **original typed source lookup, not English-name matching**.
+- **Three ambiguous GUID→Sprite/Texture link patterns** observed in the seven private source audits; not promoted to a verified ItemID image. Source aliasing (multiple ItemIDs legitimately sharing the same Sprite) is **not** an ItemID collision.
+- Prior documented off-repository RGBA comparisons covered **396/396** extracted/encoded source icons from Ingredient/Flower/Fish/Seed categories (see `docs/STEAM_V1253_INGREDIENT_ASSET_EVIDENCE.md`). These are not a claim of exact 244-ItemID target parity or deployed WebP hash acceptance. **Newly published 244-target VP8L images: 0; current product pixel-parity acceptance: 0.** Do not reuse generic 396 as a passing 244 target count.
+- Dynamic save-derived items: **not yet enumerated from an actual permitted session snapshot**, so the full supported ItemID target total is **UNKNOWN and at least 244**. `src/reader.mjs` additionally constructs image-bearing `row.items` for `World.GridCollection` and `World.Stores`. `snapshotVisibleItemIds()` collects those in memory, plus a Grid/Store row's ItemID when no name mapping exists. It deliberately never treats a `World.RecurringEvents` row's `row.id` (EventID) as an ItemID. No private saved pointers, original P1G, or JSON bodies belong in this public coverage baseline.
+
+## Deterministic tools — no source rediscovery
+
+`node scripts/verify-item-image-coverage.mjs` validates the 244 records, their exact EventID references and public `steam-icons-v1253.json` state against the reviewed research count. Run `node --test tests/item-image-coverage.test.mjs tests/item-image-source-reconciliation.test.mjs` for scope/version confusion, source forgery, source Sprite alias vs ItemID collision, unknown dynamic ItemIDs, missing-image fallback, and invalid provenance.
+
+For further *private* source mapping reuse, do **not** reimplement UnityFS/Sprite decoding. `scripts/audit-steam-icons.py` is the existing owner-reviewed original decoder and import-plan generator. Its seven `icon-audit.json` metadata outputs may be copied to seven **private** names `ingredient_1c1bf99b.json`, `flower_584a9f69.json`, `fish_3f084647.json`, `seed_8c733f88.json`, `craftingmaterial_a01be543.json`, `crop_7563a03a.json`, `mineral_6fc39434.json` and checked with `node scripts/reconcile-item-image-source-audits.mjs /private/audits`. The reconciliation verifies exact original bundle hashes and ActivityItem hash, rejects cross-source duplicate ItemIDs, rejects missing GUID/Sprite/Texture provenance, and treats identical Sprite across different ItemIDs as a legitimate shared original asset, **without declaring any thumbnail verified or publishable**. Leave all binary originals, raw bundles, PNGs and private extraction plans outside public GitHub. Source reconciliation cannot substitute for source-versus-WebP decoded RGBA proof.
+
+## 03 WEB / SvelteKit read-only ItemID image contract
+
+`src/item-image-coverage.mjs` exports `recurringImageTargets(registry)`, `snapshotVisibleItemIds(snapshot)`, `auditItemImageCoverage(registry,manifest,{snapshot})` and `resolveItemImageView(manifest,item,{basePath})`.
+
+For each unique **ItemID** and exact **game version/platform**, resolve only through validated `data/steam-icons-v1253.json` using the existing `resolveIconAsset`. Response contract:
+```js
+// Verified case: only after source Sprite/Texture proof AND VP8L/RGBA/hash validation.
+{itemId: 123, status: 'VERIFIED', url: './assets/steam/v1253/123.webp',
+ alt: {en:'...',ja:'...'}, width:128,height:128,webpSha256:'...',fallback:'text',lazy:true}
+// Missing/unreviewed/unsupported: never invent URL from a name or guessed ItemID.
+{itemId: 123, status:'MISSING',url:null,alt:{en:'...',ja:'...'},fallback:'text',lazy:true}
+```
+Actual markup belongs to 03 WEB: `loading="lazy"`, `decoding="async"`, meaningful localized alt, fixed reserved thumbnail dimensions, accessible text fallback on broken source, no row-height jump, no image editor, atlas viewer, bulk-download/export link or unrestricted API. Existing HTML `imageCluster()` currently previews only the **first 3** items of a multi-item recurring event; full ItemID *coverage* is broader than this visible three-thumbnail limit. 03 WEB owns SvelteKit integration and on-demand intersection loading, 04 ASSET owns source mapping, cropped variants, byte budget and verified image data. Proposed initial per-thumbnail budgets must be validated against real icons and a mobile Chromium trace; no current 244-icon bandwidth/performance PASS is asserted.
+
+**Boundaries:** The Owner-selected original App SVG16 remain unchanged. Existing game UI WebP4 are decorative, not ItemIDs. Game-origin sprites and artwork are property of Disney/Gameloft/respective rights holders; the existing Welcome/Workspace bilingual nonaffiliation/attribution does **not** establish game-art redistribution licence. Item art is *display-only* in the local browser save reader/editor. No user save upload, no direct save overwrite or new Writer authority.
+
+## P0 unclosed acceptance before any complete v1 release
+
+1. Establish correct image definition/GUID source for remaining 106 static ItemIDs, including 406 furniture, 313 obstacles and 120 snippets; distinguish source item variation vs shared sprite and genuine no-image item.
+2. Materialize 138 + any newly source-linked candidates through reviewed **private** decoded full-rect/atlas-subrect pipelines, verify per-ItemID original pixels ⇔ lossless WebP decoded RGBA, names, source version, SpriteID and TextureID; publish only approved small display media after separate rights decision.
+3. Read a legitimate owner's real save locally through the existing Worker and obtain an **anonymized ID-only snapshot coverage report**; enumerate extra Grid/Store item IDs and build versions, without uploading or logging the original save.
+4. Confirm exact public manifest coverage and no unresolved variants/collisions; update the reviewed staging allowlist/inventory for verified ItemID files while preserving symlink and original-byte safety guards.
+5. 03 WEB SvelteKit thumbnail/ARIA/virtualization/performance acceptance; 05 QR independent fixed-head source mapping, RGBA identity, browser and staging review. The unchanged Writer's prior synthetic acceptance need not be rerun.
+
+**Status:** First deterministic source/manifest baseline and versioned API/QA foundation complete. **Image coverage incomplete**, `FINAL_RELEASE_IMAGE_GATE=BLOCKED` until items above close or the Owner explicitly waives narrowly described image gaps.

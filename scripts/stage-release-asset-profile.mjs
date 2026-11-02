@@ -29,6 +29,7 @@ const approvedRuntimeModules=Object.freeze([
   "src/icon-assets.mjs",
   "src/icon-import-plan.mjs",
   "src/item-id-structure.mjs",
+  "src/item-image-coverage.mjs",
   "src/reader.mjs",
   "src/steam-ui-provenance.mjs",
   "src/time-presets.mjs",

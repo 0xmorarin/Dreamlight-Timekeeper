@@ -1,0 +1,36 @@
+name: Issue17 ItemID Image Coverage — exact static source audit
+on:
+  pull_request:
+    paths:
+      - 'src/item-image-coverage.mjs'
+      - 'data/item-image-coverage-v1253.json'
+      - 'scripts/verify-item-image-coverage.mjs'
+      - 'scripts/reconcile-item-image-source-audits.mjs'
+      - 'tests/item-image-coverage.test.mjs'
+      - 'tests/item-image-source-reconciliation.test.mjs'
+      - 'docs/ITEM_IMAGE_ISSUE17_COVERAGE.md'
+      - '.github/workflows/item-image-coverage.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-itemid-baseline:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify ItemID and EventID are never conflated and unresolved images remain explicit
+        run: |
+          node --check src/item-image-coverage.mjs
+          node --check scripts/reconcile-item-image-source-audits.mjs
+          node --check scripts/verify-item-image-coverage.mjs
+          node --test tests/item-image-coverage.test.mjs tests/item-image-source-reconciliation.test.mjs
+          node scripts/verify-item-image-coverage.mjs
+      - name: Verify no original binary game sprites were added to this audit PR
+        run: |
+          test -f data/item-image-coverage-v1253.json
+          node -e "const p=require('./data/steam-icons-v1253.json'); if(Object.keys(p.icons).length!==0)process.exit(1);"
+          test "$(find assets/steam/v1253 -name '*.webp' | wc -l)" -eq 4

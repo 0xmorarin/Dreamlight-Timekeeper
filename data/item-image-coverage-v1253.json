@@ -1,0 +1,4681 @@
+{
+  "schema": "TIMEKEEPER_ITEM_IMAGE_BASELINE_AUDIT_V1",
+  "source": {
+    "platform": "Nintendo Switch recurring event definitions; Steam/Windows v1.25.3 image candidates",
+    "eventBuildId": "9A239D3DB569756D",
+    "saveSchema": 626,
+    "eventRawSHA256": "028a206635d37bffd7f3a8ff820958bdaa201887bacf35e10faa8328d20022ea",
+    "sourceActivityItemSHA256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+    "imageSourceVersion": "Steam/Windows v1.25.3",
+    "targetCommit": "393222e7832461ef5fea847b6fff475fedc45017"
+  },
+  "scope": {
+    "recurringEventDefinitions": 508,
+    "recurringDistinctItemIDs": 244,
+    "additionalRealSaveItemIDs": "UNKNOWN_NOT_ENUMERATED_ON_THIS_STATIC_BASELINE",
+    "dynamicRowSources": [
+      "World.RecurringEvents",
+      "World.GridCollection",
+      "World.Stores"
+    ],
+    "dynamicCountStatus": "SESSION_DEPENDENT"
+  },
+  "summary": {
+    "gameDbIconStaticRefsAcrossSevenVerifiedSteamSourceBundles": 760,
+    "recurringStaticSourceLinkedCandidateIDs": 138,
+    "recurringNotLinkedByThoseSourceBundles": 106,
+    "publishedVerifiedItemImages": 0,
+    "publishedMissingRecurringItemIDs": 244,
+    "itemIdCollisionsAcrossSevenSources": 0,
+    "assetGUIDLinkAmbiguitiesNotPromoted": 3,
+    "priorGlobalPrivateRGBAEvidence": "396/396 across Ingredient/Flower/Fish/Seed only; not 244 deployed images",
+    "fullyDecodedItemImageVP8LInProduct": 0,
+    "sourceStatus": "NO_STEAM_ASSET_BYTES_VERIFIED"
+  },
+  "policy": {
+    "allowGameImagePublication": false,
+    "permissionState": "NOT_ESTABLISHED",
+    "manifestUnmodified": true,
+    "symbolicStatus": "SOURCE_LINKED_CANDIDATE is NOT verified image and has no publishable URL",
+    "dataScope": "Only ItemID/EventID/name/static state; no private save or bundle bytes"
+  },
+  "items": [
+    {
+      "itemId": 30000062,
+      "eventIds": [
+        2010000177
+      ],
+      "enNames": [
+        "Haunted Crow Feather"
+      ],
+      "jaNames": [
+        "<nobr>不気味な</nobr>​<nobr>カラスの</nobr>​<nobr>羽根</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30000063,
+      "eventIds": [
+        2010000178
+      ],
+      "enNames": [
+        "Haunted Skeleton Fish"
+      ],
+      "jaNames": [
+        "<nobr>不気味な</nobr>​<nobr>スケルトン</nobr>​<nobr>フィッシュ</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30000064,
+      "eventIds": [
+        2010000176
+      ],
+      "enNames": [
+        "Haunted White Rose"
+      ],
+      "jaNames": [
+        "<nobr>不気味な</nobr>​<nobr>白いバラ</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30000072,
+      "eventIds": [
+        2010000214
+      ],
+      "enNames": [
+        "Springy Bamboo"
+      ],
+      "jaNames": [
+        "春の竹"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30200045,
+      "eventIds": [
+        2010000205
+      ],
+      "enNames": [
+        "Sugarcane"
+      ],
+      "jaNames": [
+        "サトウキビ"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30200091,
+      "eventIds": [
+        2010000192
+      ],
+      "enNames": [
+        "Mint"
+      ],
+      "jaNames": [
+        "ミント"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30200147,
+      "eventIds": [
+        2010000113,
+        2010000127,
+        2010000128,
+        2010000129,
+        2010000145
+      ],
+      "enNames": [
+        "Cinnamon"
+      ],
+      "jaNames": [
+        "シナモン"
+      ],
+      "references": 5,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30200221,
+      "eventIds": [
+        2010000191
+      ],
+      "enNames": [
+        "Festive Cocoa Bean"
+      ],
+      "jaNames": [
+        "<nobr>フェスティブ</nobr>​<nobr>カカオ豆</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30400120,
+      "eventIds": [
+        2010400002
+      ],
+      "enNames": [
+        "Basil Seed"
+      ],
+      "jaNames": [
+        "バジルの種"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30400121,
+      "eventIds": [
+        2010400001
+      ],
+      "enNames": [
+        "Oregano Seed"
+      ],
+      "jaNames": [
+        "オレガノの種"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30400122,
+      "eventIds": [
+        2010400003,
+        2010400012,
+        2010400022,
+        2010400038
+      ],
+      "enNames": [
+        "Garlic Seed"
+      ],
+      "jaNames": [
+        "ニンニクの種"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30400123,
+      "eventIds": [
+        2010400006
+      ],
+      "enNames": [
+        "Ginger Seed"
+      ],
+      "jaNames": [
+        "ショウガの種"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30400124,
+      "eventIds": [
+        2010400004,
+        2010400021
+      ],
+      "enNames": [
+        "Vanilla Seed"
+      ],
+      "jaNames": [
+        "バニラの種"
+      ],
+      "references": 2,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30400125,
+      "eventIds": [
+        2010400007
+      ],
+      "enNames": [
+        "Mint Seed"
+      ],
+      "jaNames": [
+        "ミントの種"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30400126,
+      "eventIds": [
+        2010400005,
+        2010400037
+      ],
+      "enNames": [
+        "Mushroom Seed"
+      ],
+      "jaNames": [
+        "キノコの種"
+      ],
+      "references": 2,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30400195,
+      "eventIds": [
+        2010400008
+      ],
+      "enNames": [
+        "Cumin Seed"
+      ],
+      "jaNames": [
+        "<nobr>クミンの</nobr>​<nobr>種</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30400196,
+      "eventIds": [
+        2010400009
+      ],
+      "enNames": [
+        "Majestea Seed"
+      ],
+      "jaNames": [
+        "<nobr>マジェスティーの</nobr>​<nobr>種</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30400197,
+      "eventIds": [
+        2010400010
+      ],
+      "enNames": [
+        "Agave Seed"
+      ],
+      "jaNames": [
+        "<nobr>リュウゼツランの</nobr>​<nobr>種</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30400198,
+      "eventIds": [
+        2010400011
+      ],
+      "enNames": [
+        "Paprika Seed"
+      ],
+      "jaNames": [
+        "<nobr>パプリカ</nobr>​<nobr>パウダーの</nobr>​<nobr>種</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30400199,
+      "eventIds": [
+        2010400013
+      ],
+      "enNames": [
+        "Bamboo Seed"
+      ],
+      "jaNames": [
+        "竹の種"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30400219,
+      "eventIds": [
+        2010400014
+      ],
+      "enNames": [
+        "Cape Gooseberry Seed"
+      ],
+      "jaNames": [
+        "<nobr>食用</nobr>​<nobr>ホオズキの</nobr>​<nobr>種</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30400220,
+      "eventIds": [
+        2010400015
+      ],
+      "enNames": [
+        "Trumpet Snail Seed"
+      ],
+      "jaNames": [
+        "<nobr>ラッパ</nobr>​<nobr>マイマイの</nobr>​<nobr>種</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30400229,
+      "eventIds": [
+        2010400017
+      ],
+      "enNames": [
+        "Lightning Tree Seed"
+      ],
+      "jaNames": [
+        "<nobr>イナズマの</nobr>​<nobr>木の種</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30400237,
+      "eventIds": [
+        2010400019
+      ],
+      "enNames": [
+        "Porcini Seed"
+      ],
+      "jaNames": [
+        "<nobr>ポルチーニ茸の</nobr>​<nobr>種</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30400256,
+      "eventIds": [
+        2010400024,
+        2010400025,
+        2010400026,
+        2010400027,
+        2010400028
+      ],
+      "enNames": [
+        "Dill Seeds"
+      ],
+      "jaNames": [
+        "<nobr>ディルの</nobr>​<nobr>種</nobr>"
+      ],
+      "references": 5,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30400263,
+      "eventIds": [
+        2010400033,
+        2010400034,
+        2010400035,
+        2010400036
+      ],
+      "enNames": [
+        "Button Mushroom Seeds"
+      ],
+      "jaNames": [
+        "<nobr>ボタンマッシュ</nobr>​<nobr>ルームの</nobr>​<nobr>種</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30400267,
+      "eventIds": [
+        2010400029,
+        2010400030,
+        2010400031,
+        2010400032
+      ],
+      "enNames": [
+        "Fairy Sprinkle Seeds"
+      ],
+      "jaNames": [
+        "<nobr>フェアリー</nobr>​<nobr>スプリンクルの</nobr>​<nobr>種</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30400275,
+      "eventIds": [
+        2010400060,
+        2010400061,
+        2010400062,
+        2010400063
+      ],
+      "enNames": [
+        "Truffle Seed"
+      ],
+      "jaNames": [
+        "トリュフの種"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800054,
+      "eventIds": [
+        2010500026
+      ],
+      "enNames": [
+        "Purple Bell Flower"
+      ],
+      "jaNames": [
+        "<nobr>ベルフラワー</nobr>​<nobr>（パープル）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800055,
+      "eventIds": [
+        2010500032
+      ],
+      "enNames": [
+        "Pink Bromeliad"
+      ],
+      "jaNames": [
+        "<nobr>アナナス</nobr>​<nobr>（ピンク）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800058,
+      "eventIds": [
+        2010500015
+      ],
+      "enNames": [
+        "White Daisy"
+      ],
+      "jaNames": [
+        "<nobr>デイジー</nobr>​<nobr>（ホワイト）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800059,
+      "eventIds": [
+        2010500008
+      ],
+      "enNames": [
+        "Dandelion"
+      ],
+      "jaNames": [
+        "タンポポ"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800060,
+      "eventIds": [
+        2010500011
+      ],
+      "enNames": [
+        "Purple Falling Penstemon"
+      ],
+      "jaNames": [
+        "<nobr>フォーリング</nobr>​<nobr>ペンステモン</nobr>​<nobr>（パープル）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800061,
+      "eventIds": [
+        2010500033
+      ],
+      "enNames": [
+        "Pink Houseleek"
+      ],
+      "jaNames": [
+        "<nobr>ヤネバン</nobr>​<nobr>ダイソウ</nobr>​<nobr>（ピンク）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800062,
+      "eventIds": [
+        2010500020
+      ],
+      "enNames": [
+        "Blue Hydrangea"
+      ],
+      "jaNames": [
+        "<nobr>アジサイ</nobr>​<nobr>（ブルー）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800063,
+      "eventIds": [
+        2010500047
+      ],
+      "enNames": [
+        "Purple Impatiens"
+      ],
+      "jaNames": [
+        "<nobr>インパチェンス</nobr>​<nobr>（パープル）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800064,
+      "eventIds": [
+        2010500035
+      ],
+      "enNames": [
+        "White Marsh Milkweed"
+      ],
+      "jaNames": [
+        "<nobr>スワンプ</nobr>​<nobr>ミルク</nobr>​<nobr>ウィード</nobr>​<nobr>（ホワイト）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800065,
+      "eventIds": [
+        2010500045
+      ],
+      "enNames": [
+        "Red Nasturtium"
+      ],
+      "jaNames": [
+        "<nobr>キンレンカ</nobr>​<nobr>（レッド）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800066,
+      "eventIds": [
+        2010500042
+      ],
+      "enNames": [
+        "Red Passion Lily"
+      ],
+      "jaNames": [
+        "<nobr>パッション</nobr>​<nobr>リリー</nobr>​<nobr>（レッド）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800067,
+      "eventIds": [
+        2010500018
+      ],
+      "enNames": [
+        "Purple Rising Penstemon"
+      ],
+      "jaNames": [
+        "<nobr>ライジング</nobr>​<nobr>ペンステモン</nobr>​<nobr>（パープル）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800068,
+      "eventIds": [
+        2010500024
+      ],
+      "enNames": [
+        "Blue Star Lily"
+      ],
+      "jaNames": [
+        "<nobr>ヒメユリ</nobr>​<nobr>（ブルー）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800069,
+      "eventIds": [
+        2010500019
+      ],
+      "enNames": [
+        "Sunflower"
+      ],
+      "jaNames": [
+        "ヒマワリ"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800071,
+      "eventIds": [
+        2010500027
+      ],
+      "enNames": [
+        "Red Bell Flower"
+      ],
+      "jaNames": [
+        "<nobr>ベルフラワー</nobr>​<nobr>（レッド）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800072,
+      "eventIds": [
+        2010500030
+      ],
+      "enNames": [
+        "Red Bromeliad"
+      ],
+      "jaNames": [
+        "<nobr>アナナス</nobr>​<nobr>（レッド）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800073,
+      "eventIds": [
+        2010500028
+      ],
+      "enNames": [
+        "White Bell Flower"
+      ],
+      "jaNames": [
+        "<nobr>ベルフラワー</nobr>​<nobr>（ホワイト）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800074,
+      "eventIds": [
+        2010500029
+      ],
+      "enNames": [
+        "Yellow Bromeliad"
+      ],
+      "jaNames": [
+        "<nobr>アナナス</nobr>​<nobr>（イエロー）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800075,
+      "eventIds": [
+        2010500016
+      ],
+      "enNames": [
+        "Yellow Daisy"
+      ],
+      "jaNames": [
+        "<nobr>デイジー</nobr>​<nobr>（イエロー）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800076,
+      "eventIds": [
+        2010500014
+      ],
+      "enNames": [
+        "Red Daisy"
+      ],
+      "jaNames": [
+        "<nobr>デイジー</nobr>​<nobr>（レッド）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800077,
+      "eventIds": [
+        2010500012
+      ],
+      "enNames": [
+        "Red Falling Penstemon"
+      ],
+      "jaNames": [
+        "<nobr>フォーリング</nobr>​<nobr>ペンステモン</nobr>​<nobr>（レッド）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800078,
+      "eventIds": [
+        2010500009
+      ],
+      "enNames": [
+        "Blue Falling Penstemon"
+      ],
+      "jaNames": [
+        "<nobr>フォーリング</nobr>​<nobr>ペンステモン</nobr>​<nobr>（ブルー）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800079,
+      "eventIds": [
+        2010500013
+      ],
+      "enNames": [
+        "White & Pink Falling Penstemon"
+      ],
+      "jaNames": [
+        "<nobr>フォーリング</nobr>​<nobr>ペンステモン</nobr>​<nobr>（ホワイト&</nobr>​<nobr>ピンク）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800080,
+      "eventIds": [
+        2010500031
+      ],
+      "enNames": [
+        "Orange Houseleek"
+      ],
+      "jaNames": [
+        "<nobr>ヤネバン</nobr>​<nobr>ダイソウ</nobr>​<nobr>（オレンジ）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800081,
+      "eventIds": [
+        2010500021
+      ],
+      "enNames": [
+        "Pink Hydrangea"
+      ],
+      "jaNames": [
+        "<nobr>アジサイ</nobr>​<nobr>（ピンク）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800082,
+      "eventIds": [
+        2010500022
+      ],
+      "enNames": [
+        "Purple Hydrangea"
+      ],
+      "jaNames": [
+        "<nobr>アジサイ</nobr>​<nobr>（パープル）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800083,
+      "eventIds": [
+        2010500023
+      ],
+      "enNames": [
+        "White & Red Hydrangea"
+      ],
+      "jaNames": [
+        "<nobr>アジサイ</nobr>​<nobr>（ホワイト</nobr>​<nobr>&</nobr>​<nobr>レッド）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800084,
+      "eventIds": [
+        2010500048
+      ],
+      "enNames": [
+        "White Impatiens"
+      ],
+      "jaNames": [
+        "<nobr>インパチェンス</nobr>​<nobr>（ホワイト）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800085,
+      "eventIds": [
+        2010500036
+      ],
+      "enNames": [
+        "Orange Marsh Milkweed"
+      ],
+      "jaNames": [
+        "<nobr>スワンプ</nobr>​<nobr>ミルク</nobr>​<nobr>ウィード</nobr>​<nobr>（オレンジ）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800086,
+      "eventIds": [
+        2010500034
+      ],
+      "enNames": [
+        "Purple Marsh Milkweed"
+      ],
+      "jaNames": [
+        "<nobr>スワンプ</nobr>​<nobr>ミルク</nobr>​<nobr>ウィード</nobr>​<nobr>（パープル）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800087,
+      "eventIds": [
+        2010500038
+      ],
+      "enNames": [
+        "Blue Marsh Milkweed"
+      ],
+      "jaNames": [
+        "<nobr>スワンプ</nobr>​<nobr>ミルク</nobr>​<nobr>ウィード</nobr>​<nobr>（ブルー）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800088,
+      "eventIds": [
+        2010500037
+      ],
+      "enNames": [
+        "Orange & Red Marsh Milkweed"
+      ],
+      "jaNames": [
+        "<nobr>スワンプ</nobr>​<nobr>ミルク</nobr>​<nobr>ウィード</nobr>​<nobr>（オレンジ&</nobr>​<nobr>レッド）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800089,
+      "eventIds": [
+        2010500044
+      ],
+      "enNames": [
+        "Orange Nasturtium"
+      ],
+      "jaNames": [
+        "<nobr>キンレンカ</nobr>​<nobr>（オレンジ）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800090,
+      "eventIds": [
+        2010500046
+      ],
+      "enNames": [
+        "Yellow Nasturtium"
+      ],
+      "jaNames": [
+        "<nobr>キンレンカ</nobr>​<nobr>（イエロー）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800091,
+      "eventIds": [
+        2010500043
+      ],
+      "enNames": [
+        "White Passion Lily"
+      ],
+      "jaNames": [
+        "<nobr>パッション</nobr>​<nobr>リリー</nobr>​<nobr>（ホワイト）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800092,
+      "eventIds": [
+        2010500041
+      ],
+      "enNames": [
+        "Green Passion Lily"
+      ],
+      "jaNames": [
+        "<nobr>パッション</nobr>​<nobr>リリー</nobr>​<nobr>（グリーン）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800093,
+      "eventIds": [
+        2010500040
+      ],
+      "enNames": [
+        "Blue Passion Lily"
+      ],
+      "jaNames": [
+        "<nobr>パッション</nobr>​<nobr>リリー</nobr>​<nobr>（ブルー）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800094,
+      "eventIds": [
+        2010500039
+      ],
+      "enNames": [
+        "Black Passion Lily"
+      ],
+      "jaNames": [
+        "<nobr>パッション</nobr>​<nobr>リリー</nobr>​<nobr>（ブラック）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800095,
+      "eventIds": [
+        2010500017
+      ],
+      "enNames": [
+        "Green Rising Penstemon"
+      ],
+      "jaNames": [
+        "<nobr>ライジング</nobr>​<nobr>ペンステモン</nobr>​<nobr>（グリーン）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800096,
+      "eventIds": [
+        2010500025
+      ],
+      "enNames": [
+        "Orange Star Lily"
+      ],
+      "jaNames": [
+        "<nobr>ヒメユリ</nobr>​<nobr>（オレンジ）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800108,
+      "eventIds": [
+        2010500049
+      ],
+      "enNames": [
+        "Orange Bird of Paradise"
+      ],
+      "jaNames": [
+        "<nobr>極楽鳥花</nobr>​<nobr>（オレンジ）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800109,
+      "eventIds": [
+        2010500050
+      ],
+      "enNames": [
+        "Yellow Bird of Paradise"
+      ],
+      "jaNames": [
+        "<nobr>極楽鳥花</nobr>​<nobr>（イエロー）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800110,
+      "eventIds": [
+        2010500051
+      ],
+      "enNames": [
+        "White Bird of Paradise"
+      ],
+      "jaNames": [
+        "<nobr>極楽鳥花</nobr>​<nobr>（ホワイト）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800111,
+      "eventIds": [
+        2010500052
+      ],
+      "enNames": [
+        "Blue Luminescent Flower"
+      ],
+      "jaNames": [
+        "<nobr>発光する花</nobr>​<nobr>（ブルー）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800112,
+      "eventIds": [
+        2010500053
+      ],
+      "enNames": [
+        "Green Luminescent Flower"
+      ],
+      "jaNames": [
+        "<nobr>発光する花</nobr>​<nobr>（グリーン）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800113,
+      "eventIds": [
+        2010500054
+      ],
+      "enNames": [
+        "Pink Luminescent Flower"
+      ],
+      "jaNames": [
+        "<nobr>発光する花</nobr>​<nobr>（ピンク）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800114,
+      "eventIds": [
+        2010500055
+      ],
+      "enNames": [
+        "Red Luminescent Flower"
+      ],
+      "jaNames": [
+        "<nobr>発光する花</nobr>​<nobr>（レッド）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800115,
+      "eventIds": [
+        2010500056
+      ],
+      "enNames": [
+        "Blue Glass-Like Flowers"
+      ],
+      "jaNames": [
+        "<nobr>ガラスのような</nobr>​<nobr>花</nobr>​<nobr>（ブルー）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800116,
+      "eventIds": [
+        2010500057
+      ],
+      "enNames": [
+        "Green Glass-Like Flowers"
+      ],
+      "jaNames": [
+        "<nobr>ガラスのような</nobr>​<nobr>花</nobr>​<nobr>（グリーン）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800117,
+      "eventIds": [
+        2010500058
+      ],
+      "enNames": [
+        "Black Glass-Like Flowers"
+      ],
+      "jaNames": [
+        "<nobr>ガラスのような</nobr>​<nobr>花</nobr>​<nobr>（ブラック）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800118,
+      "eventIds": [
+        2010500059
+      ],
+      "enNames": [
+        "Orange Glass-Like Flowers"
+      ],
+      "jaNames": [
+        "<nobr>ガラスのような</nobr>​<nobr>花</nobr>​<nobr>（オレンジ）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800119,
+      "eventIds": [
+        2010500060
+      ],
+      "enNames": [
+        "Pink Cactus Flower"
+      ],
+      "jaNames": [
+        "<nobr>サボテンの花</nobr>​<nobr>（ピンク）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800120,
+      "eventIds": [
+        2010500061
+      ],
+      "enNames": [
+        "Yellow Cactus Flower"
+      ],
+      "jaNames": [
+        "<nobr>サボテンの花</nobr>​<nobr>（イエロー）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800121,
+      "eventIds": [
+        2010500062
+      ],
+      "enNames": [
+        "White Cactus Flower"
+      ],
+      "jaNames": [
+        "<nobr>サボテンの花</nobr>​<nobr>（ホワイト）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800122,
+      "eventIds": [
+        2010500063
+      ],
+      "enNames": [
+        "Purple Cactus Flower"
+      ],
+      "jaNames": [
+        "<nobr>サボテンの花</nobr>​<nobr>（パープル）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800123,
+      "eventIds": [
+        2010500064
+      ],
+      "enNames": [
+        "Green Fly Trap"
+      ],
+      "jaNames": [
+        "<nobr>ハエトリグサ</nobr>​<nobr>（グリーン）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800124,
+      "eventIds": [
+        2010500065
+      ],
+      "enNames": [
+        "Purple Fly Trap"
+      ],
+      "jaNames": [
+        "<nobr>ハエトリグサ</nobr>​<nobr>（パープル）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800125,
+      "eventIds": [
+        2010500066
+      ],
+      "enNames": [
+        "Red Pitcher Plant"
+      ],
+      "jaNames": [
+        "<nobr>ウツボカズラ</nobr>​<nobr>（レッド）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800126,
+      "eventIds": [
+        2010500067
+      ],
+      "enNames": [
+        "Yellow Pitcher Plant"
+      ],
+      "jaNames": [
+        "<nobr>ウツボカズラ</nobr>​<nobr>（イエロー）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800127,
+      "eventIds": [
+        2010500068
+      ],
+      "enNames": [
+        "Orange Pitcher Plant"
+      ],
+      "jaNames": [
+        "<nobr>ウツボカズラ</nobr>​<nobr>（オレンジ）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800135,
+      "eventIds": [
+        2010500069
+      ],
+      "enNames": [
+        "Flower Button"
+      ],
+      "jaNames": [
+        "<nobr>バッジ</nobr>​<nobr>（フラワー）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800139,
+      "eventIds": [
+        2010500074
+      ],
+      "enNames": [
+        "Crimson Eternal Poppies"
+      ],
+      "jaNames": [
+        "<nobr>エターナル・</nobr>​<nobr>ポピー</nobr>​<nobr>（クリムゾン）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800140,
+      "eventIds": [
+        2010500075
+      ],
+      "enNames": [
+        "Goldenrod Eternal Poppies"
+      ],
+      "jaNames": [
+        "<nobr>エターナル・</nobr>​<nobr>ポピー</nobr>​<nobr>（ゴールド）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800141,
+      "eventIds": [
+        2010500076
+      ],
+      "enNames": [
+        "Teal Eternal Poppies"
+      ],
+      "jaNames": [
+        "<nobr>エターナル・</nobr>​<nobr>ポピー</nobr>​<nobr>（ティール）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800142,
+      "eventIds": [
+        2010500077
+      ],
+      "enNames": [
+        "Fuchsia Eternal Poppies"
+      ],
+      "jaNames": [
+        "<nobr>エターナル・</nobr>​<nobr>ポピー</nobr>​<nobr>（フクシア）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800143,
+      "eventIds": [
+        2010500070
+      ],
+      "enNames": [
+        "Yellow Tale Cone Flowers"
+      ],
+      "jaNames": [
+        "<nobr>ブック</nobr>​<nobr>フラワー</nobr>​<nobr>（イエロー）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800144,
+      "eventIds": [
+        2010500071
+      ],
+      "enNames": [
+        "Blue Tale Cone Flower"
+      ],
+      "jaNames": [
+        "<nobr>ブック</nobr>​<nobr>フラワー</nobr>​<nobr>（ブルー）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800145,
+      "eventIds": [
+        2010500072
+      ],
+      "enNames": [
+        "Olive Green Tale Cone Flower"
+      ],
+      "jaNames": [
+        "<nobr>ブック</nobr>​<nobr>フラワー</nobr>​<nobr>（グリーン）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800146,
+      "eventIds": [
+        2010500073
+      ],
+      "enNames": [
+        "Beige Tale Cone Flower"
+      ],
+      "jaNames": [
+        "<nobr>ブック</nobr>​<nobr>フラワー</nobr>​<nobr>（ベージュ）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800147,
+      "eventIds": [
+        2010500078
+      ],
+      "enNames": [
+        "Dusty Violet Rose"
+      ],
+      "jaNames": [
+        "<nobr>バラ</nobr>​<nobr>（ダスティ</nobr>​<nobr>バイオレット）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800148,
+      "eventIds": [
+        2010500079
+      ],
+      "enNames": [
+        "Slate Gray Rose"
+      ],
+      "jaNames": [
+        "<nobr>バラ</nobr>​<nobr>（スレート</nobr>​<nobr>グレー）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800149,
+      "eventIds": [
+        2010500080
+      ],
+      "enNames": [
+        "White Rose"
+      ],
+      "jaNames": [
+        "<nobr>バラ</nobr>​<nobr>（ホワイト）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800150,
+      "eventIds": [
+        2010500081
+      ],
+      "enNames": [
+        "Pink Rose"
+      ],
+      "jaNames": [
+        "<nobr>バラ</nobr>​<nobr>（ピンク）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800164,
+      "eventIds": [
+        2010500092,
+        2010500096,
+        2010500100,
+        2010500104,
+        2010500108
+      ],
+      "enNames": [
+        "White Crocus"
+      ],
+      "jaNames": [
+        "<nobr>クロッカス</nobr>​<nobr>（ホワイト）</nobr>"
+      ],
+      "references": 5,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800165,
+      "eventIds": [
+        2010500093,
+        2010500097,
+        2010500101,
+        2010500105,
+        2010500109
+      ],
+      "enNames": [
+        "Yellow Crocus"
+      ],
+      "jaNames": [
+        "<nobr>クロッカス</nobr>​<nobr>（イエロー）</nobr>"
+      ],
+      "references": 5,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800166,
+      "eventIds": [
+        2010500091,
+        2010500095,
+        2010500099,
+        2010500103,
+        2010500107
+      ],
+      "enNames": [
+        "Purple Crocus"
+      ],
+      "jaNames": [
+        "<nobr>クロッカス</nobr>​<nobr>（パープル）</nobr>"
+      ],
+      "references": 5,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800167,
+      "eventIds": [
+        2010500090,
+        2010500094,
+        2010500098,
+        2010500102,
+        2010500106
+      ],
+      "enNames": [
+        "Pink Crocus"
+      ],
+      "jaNames": [
+        "<nobr>クロッカス</nobr>​<nobr>（ピンク）</nobr>"
+      ],
+      "references": 5,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800173,
+      "eventIds": [
+        2010500088,
+        2010500126,
+        2010500130,
+        2010500137
+      ],
+      "enNames": [
+        "Black Silk Flower"
+      ],
+      "jaNames": [
+        "<nobr>シルクの花</nobr>​<nobr>（ブラック）</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800174,
+      "eventIds": [
+        2010500087,
+        2010500127,
+        2010500131,
+        2010500136
+      ],
+      "enNames": [
+        "Green Silk Flower"
+      ],
+      "jaNames": [
+        "<nobr>シルクの花</nobr>​<nobr>（グリーン）</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800175,
+      "eventIds": [
+        2010500086,
+        2010500128,
+        2010500132,
+        2010500135
+      ],
+      "enNames": [
+        "Red Silk Flower"
+      ],
+      "jaNames": [
+        "<nobr>シルクの花</nobr>​<nobr>（レッド）</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800176,
+      "eventIds": [
+        2010500089,
+        2010500129,
+        2010500133,
+        2010500134
+      ],
+      "enNames": [
+        "Silver Silk Flower"
+      ],
+      "jaNames": [
+        "<nobr>シルクの花</nobr>​<nobr>（シルバー）</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800177,
+      "eventIds": [
+        2010500111,
+        2010500117,
+        2010500118,
+        2010500119
+      ],
+      "enNames": [
+        "Pink Lily of the Valley"
+      ],
+      "jaNames": [
+        "<nobr>スズラン</nobr>​<nobr>（ピンク）</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800178,
+      "eventIds": [
+        2010500110,
+        2010500114,
+        2010500115,
+        2010500116
+      ],
+      "enNames": [
+        "Blue Lily of the Valley"
+      ],
+      "jaNames": [
+        "<nobr>スズラン</nobr>​<nobr>（ブルー）</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800179,
+      "eventIds": [
+        2010500112,
+        2010500123,
+        2010500124,
+        2010500125
+      ],
+      "enNames": [
+        "Yellow Lily of the Valley"
+      ],
+      "jaNames": [
+        "<nobr>スズラン</nobr>​<nobr>（イエロー）</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800180,
+      "eventIds": [
+        2010500113,
+        2010500120,
+        2010500121,
+        2010500122
+      ],
+      "enNames": [
+        "Purple Lily of the Valley"
+      ],
+      "jaNames": [
+        "<nobr>スズラン</nobr>​<nobr>（パープル）</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800181,
+      "eventIds": [
+        2010500140,
+        2010500164,
+        2010500182,
+        2010500183
+      ],
+      "enNames": [
+        "White Thistle"
+      ],
+      "jaNames": [
+        "<nobr>アザミ</nobr>​<nobr>（ホワイト）</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800182,
+      "eventIds": [
+        2010500139,
+        2010500177,
+        2010500178,
+        2010500179
+      ],
+      "enNames": [
+        "Yellow & Orange Foxglove"
+      ],
+      "jaNames": [
+        "<nobr>フォックスグローブ</nobr>​<nobr>（イエロー&</nobr>​<nobr>オレンジ）</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800183,
+      "eventIds": [
+        2010500145,
+        2010500167,
+        2010500175,
+        2010500176
+      ],
+      "enNames": [
+        "White & Pink Foxglove"
+      ],
+      "jaNames": [
+        "<nobr>フォックスグローブ</nobr>​<nobr>（ホワイト&</nobr>​<nobr>ピンク）</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800184,
+      "eventIds": [
+        2010500142,
+        2010500166,
+        2010500173,
+        2010500174
+      ],
+      "enNames": [
+        "Rose & Cream Foxglove"
+      ],
+      "jaNames": [
+        "<nobr>フォックスグローブ</nobr>​<nobr>（ローズ&</nobr>​<nobr>クリーム）</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800185,
+      "eventIds": [
+        2010500143,
+        2010500165,
+        2010500171,
+        2010500172
+      ],
+      "enNames": [
+        "Purple & White Foxglove"
+      ],
+      "jaNames": [
+        "<nobr>フォックスグローブ</nobr>​<nobr>（パープル&</nobr>​<nobr>ホワイト）</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800186,
+      "eventIds": [
+        2010500141,
+        2010500163,
+        2010500169,
+        2010500170
+      ],
+      "enNames": [
+        "Red Thistle"
+      ],
+      "jaNames": [
+        "<nobr>アザミ</nobr>​<nobr>（レッド）</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800187,
+      "eventIds": [
+        2010500144,
+        2010500168,
+        2010500180,
+        2010500181
+      ],
+      "enNames": [
+        "Purple Thistle"
+      ],
+      "jaNames": [
+        "<nobr>アザミ</nobr>​<nobr>（パーブル）</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 30800188,
+      "eventIds": [
+        2010500138,
+        2010500184,
+        2010500185,
+        2010500186
+      ],
+      "enNames": [
+        "Yellow Thistle"
+      ],
+      "jaNames": [
+        "<nobr>アザミ</nobr>​<nobr>（イエロー）</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31000084,
+      "eventIds": [
+        2010000138
+      ],
+      "enNames": [
+        "Mussel"
+      ],
+      "jaNames": [
+        "ムール貝"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31100030,
+      "eventIds": [
+        2010000082
+      ],
+      "enNames": [
+        "Clam"
+      ],
+      "jaNames": [
+        "ハマグリ"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31100031,
+      "eventIds": [
+        2010000008
+      ],
+      "enNames": [
+        "Oyster"
+      ],
+      "jaNames": [
+        "カキ"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31100032,
+      "eventIds": [
+        2010000083
+      ],
+      "enNames": [
+        "Scallop"
+      ],
+      "jaNames": [
+        "ホタテ"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31100072,
+      "eventIds": [
+        2010000092
+      ],
+      "enNames": [
+        "Wild Spring Egg"
+      ],
+      "jaNames": [
+        "<nobr>春のワイルド</nobr>​<nobr>タマゴ</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31100164,
+      "eventIds": [
+        2010000159
+      ],
+      "enNames": [
+        "Purple Spring Egg"
+      ],
+      "jaNames": [
+        "<nobr>春のタマゴ</nobr>​<nobr>（パープル）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300003,
+      "eventIds": [
+        2010000003,
+        2010000011,
+        2010000012,
+        2010000013,
+        2010000014,
+        2010000015,
+        2010000016,
+        2010000017,
+        2010000026,
+        2010000027,
+        2010000028,
+        2010000029,
+        2010000030,
+        2010000031,
+        2010000032,
+        2010000033
+      ],
+      "enNames": [
+        "Small Night Thorn"
+      ],
+      "jaNames": [
+        "<nobr>小さな</nobr>​<nobr>闇のトゲ</nobr>"
+      ],
+      "references": 16,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300004,
+      "eventIds": [
+        2010000003,
+        2010000011,
+        2010000012,
+        2010000013,
+        2010000014,
+        2010000015,
+        2010000016,
+        2010000017,
+        2010000026,
+        2010000027,
+        2010000028,
+        2010000029,
+        2010000030,
+        2010000031,
+        2010000032,
+        2010000033
+      ],
+      "enNames": [
+        "Small Night Thorn"
+      ],
+      "jaNames": [
+        "<nobr>小さな</nobr>​<nobr>闇のトゲ</nobr>"
+      ],
+      "references": 16,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300005,
+      "eventIds": [
+        2010000003,
+        2010000011,
+        2010000012,
+        2010000013,
+        2010000014,
+        2010000015,
+        2010000016,
+        2010000017,
+        2010000026,
+        2010000027,
+        2010000028,
+        2010000029,
+        2010000030,
+        2010000031,
+        2010000032,
+        2010000033
+      ],
+      "enNames": [
+        "Small Night Thorn"
+      ],
+      "jaNames": [
+        "<nobr>小さな</nobr>​<nobr>闇のトゲ</nobr>"
+      ],
+      "references": 16,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300006,
+      "eventIds": [
+        2010000003,
+        2010000011,
+        2010000012,
+        2010000013,
+        2010000014,
+        2010000015,
+        2010000016,
+        2010000017,
+        2010000026,
+        2010000027,
+        2010000028,
+        2010000029,
+        2010000030,
+        2010000031,
+        2010000032,
+        2010000033
+      ],
+      "enNames": [
+        "Big Night Thorn"
+      ],
+      "jaNames": [
+        "<nobr>大きな</nobr>​<nobr>闇のトゲ</nobr>"
+      ],
+      "references": 16,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300076,
+      "eventIds": [
+        2010000093,
+        2010000120
+      ],
+      "enNames": [
+        "Normal Time Rift"
+      ],
+      "jaNames": [
+        "<nobr>時間の裂け目</nobr>​<nobr>（ノーマル）</nobr>"
+      ],
+      "references": 2,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300083,
+      "eventIds": [
+        2010000095,
+        2010000096,
+        2010000097
+      ],
+      "enNames": [
+        "Splinter of Fate"
+      ],
+      "jaNames": [
+        "運命の結晶"
+      ],
+      "references": 3,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300084,
+      "eventIds": [
+        2010000095,
+        2010000096,
+        2010000097
+      ],
+      "enNames": [
+        "Splinter of Fate"
+      ],
+      "jaNames": [
+        "運命の結晶"
+      ],
+      "references": 3,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300105,
+      "eventIds": [
+        2010000136
+      ],
+      "enNames": [
+        "Riley's Birthday Cake"
+      ],
+      "jaNames": [
+        "<nobr>ライリーの</nobr>​<nobr>バースデー</nobr>​<nobr>ケーキ</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300106,
+      "eventIds": [
+        2010000132
+      ],
+      "enNames": [
+        "Riley's Hockey Trophy"
+      ],
+      "jaNames": [
+        "<nobr>ライリーの</nobr>​<nobr>ホッケー</nobr>​<nobr>トロフィー</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300107,
+      "eventIds": [
+        2010000135
+      ],
+      "enNames": [
+        "Riley's Hockey Gear"
+      ],
+      "jaNames": [
+        "<nobr>ライリーの</nobr>​<nobr>ホッケー</nobr>​<nobr>道具</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300117,
+      "eventIds": [
+        2010000141
+      ],
+      "enNames": [
+        "Inky"
+      ],
+      "jaNames": [
+        "インキー"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300118,
+      "eventIds": [
+        2010000141
+      ],
+      "enNames": [
+        "Inky"
+      ],
+      "jaNames": [
+        "インキー"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300127,
+      "eventIds": [
+        2010000141
+      ],
+      "enNames": [
+        "Inky"
+      ],
+      "jaNames": [
+        "インキー"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300128,
+      "eventIds": [
+        2010000143
+      ],
+      "enNames": [
+        "Inky"
+      ],
+      "jaNames": [
+        "インキー"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300129,
+      "eventIds": [
+        2010000143
+      ],
+      "enNames": [
+        "Inky"
+      ],
+      "jaNames": [
+        "インキー"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300130,
+      "eventIds": [
+        2010000143
+      ],
+      "enNames": [
+        "Inky"
+      ],
+      "jaNames": [
+        "インキー"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300131,
+      "eventIds": [
+        2010000142
+      ],
+      "enNames": [
+        "Inky"
+      ],
+      "jaNames": [
+        "インキー"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300132,
+      "eventIds": [
+        2010000142
+      ],
+      "enNames": [
+        "Inky"
+      ],
+      "jaNames": [
+        "インキー"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300133,
+      "eventIds": [
+        2010000142
+      ],
+      "enNames": [
+        "Inky"
+      ],
+      "jaNames": [
+        "インキー"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300168,
+      "eventIds": [
+        2010000185,
+        2010000186,
+        2010000204
+      ],
+      "enNames": [
+        "{DoNotTranslate}PixieCluster_2x2"
+      ],
+      "jaNames": [
+        "{DoNotTranslate}PixieCluster_2x2"
+      ],
+      "references": 3,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300175,
+      "eventIds": [
+        2010000179
+      ],
+      "enNames": [
+        "Riley's Phone"
+      ],
+      "jaNames": [
+        "<nobr>ライリーの</nobr>​<nobr>スマホ</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300178,
+      "eventIds": [
+        2010000185,
+        2010000186,
+        2010000204
+      ],
+      "enNames": [
+        "{DoNotTranslate}PixieCluster_2x3"
+      ],
+      "jaNames": [
+        "{DoNotTranslate}PixieCluster_2x3"
+      ],
+      "references": 3,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300210,
+      "eventIds": [
+        2010000208
+      ],
+      "enNames": [
+        "Small Honey Swirl"
+      ],
+      "jaNames": [
+        "<nobr>ハチミツの渦</nobr>​<nobr>（小）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31300211,
+      "eventIds": [
+        2010000208
+      ],
+      "enNames": [
+        "Big Honey Swirl"
+      ],
+      "jaNames": [
+        "<nobr>ハチミツの渦</nobr>​<nobr>（大）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31400000,
+      "eventIds": [
+        2010000007
+      ],
+      "enNames": [
+        "Hidden Reward"
+      ],
+      "jaNames": [
+        "秘密の報酬"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31400039,
+      "eventIds": [
+        2010000064
+      ],
+      "enNames": [
+        "Daily Reward"
+      ],
+      "jaNames": [
+        "デイリー報酬"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31400047,
+      "eventIds": [
+        2010000084,
+        2010000089
+      ],
+      "enNames": [
+        "Red Candy Bowl"
+      ],
+      "jaNames": [
+        "<nobr>お菓子入れ</nobr>​<nobr>（レッド）</nobr>"
+      ],
+      "references": 2,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31400048,
+      "eventIds": [
+        2010000085,
+        2010000087
+      ],
+      "enNames": [
+        "Green Candy Bowl"
+      ],
+      "jaNames": [
+        "<nobr>お菓子入れ</nobr>​<nobr>（グリーン）</nobr>"
+      ],
+      "references": 2,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31400049,
+      "eventIds": [
+        2010000086,
+        2010000088
+      ],
+      "enNames": [
+        "Purple Candy Bowl"
+      ],
+      "jaNames": [
+        "<nobr>お菓子入れ</nobr>​<nobr>（パープル）</nobr>"
+      ],
+      "references": 2,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31700002,
+      "eventIds": [
+        2010000079
+      ],
+      "enNames": [
+        "Dark Wood"
+      ],
+      "jaNames": [
+        "<nobr>木材</nobr>​<nobr>（ダーク）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31700003,
+      "eventIds": [
+        2010000075,
+        2010000077,
+        2010000081,
+        2010000182
+      ],
+      "enNames": [
+        "Dry Wood"
+      ],
+      "jaNames": [
+        "<nobr>乾燥</nobr>​<nobr>木材</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31700008,
+      "eventIds": [
+        2010000073,
+        2010000074,
+        2010000076,
+        2010000078,
+        2010000203,
+        2010000206,
+        2010000236,
+        2010000237,
+        2010000238
+      ],
+      "enNames": [
+        "Hardwood"
+      ],
+      "jaNames": [
+        "硬材"
+      ],
+      "references": 9,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31700014,
+      "eventIds": [
+        2010000021,
+        2010000022,
+        2010000024,
+        2010000025,
+        2010000099,
+        2010000121,
+        2010000122,
+        2010000123
+      ],
+      "enNames": [
+        "Softwood"
+      ],
+      "jaNames": [
+        "軟材"
+      ],
+      "references": 8,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31700034,
+      "eventIds": [
+        2010000090
+      ],
+      "enNames": [
+        "Festive Wrapping Paper"
+      ],
+      "jaNames": [
+        "<nobr>ラッピングペーパー</nobr>​<nobr>（フェスティブ）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31700038,
+      "eventIds": [
+        2010000100,
+        2010000124,
+        2010000125,
+        2010000126
+      ],
+      "enNames": [
+        "Tropical Wood"
+      ],
+      "jaNames": [
+        "熱帯木材"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31700063,
+      "eventIds": [
+        2010000098
+      ],
+      "enNames": [
+        "Pixel Shard"
+      ],
+      "jaNames": [
+        "<nobr>ピクセル</nobr>​<nobr>シャード</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31700102,
+      "eventIds": [
+        2010000130
+      ],
+      "enNames": [
+        "Red Button"
+      ],
+      "jaNames": [
+        "<nobr>バッジ</nobr>​<nobr>（レッド）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31700121,
+      "eventIds": [
+        2010000137
+      ],
+      "enNames": [
+        "Moss"
+      ],
+      "jaNames": [
+        "苔"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31700131,
+      "eventIds": [
+        2010000140
+      ],
+      "enNames": [
+        "Pine Cone"
+      ],
+      "jaNames": [
+        "松ぼっくり"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31700148,
+      "eventIds": [
+        2010000152
+      ],
+      "enNames": [
+        "Common Club Rush"
+      ],
+      "jaNames": [
+        "アブラガヤ"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31700151,
+      "eventIds": [
+        2010000153,
+        2010000154
+      ],
+      "enNames": [
+        "Three-Leaf Clover"
+      ],
+      "jaNames": [
+        "<nobr>三つ葉の</nobr>​<nobr>クローバー</nobr>"
+      ],
+      "references": 2,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31700152,
+      "eventIds": [
+        2010000155,
+        2010000156
+      ],
+      "enNames": [
+        "Four-Leaf Clover"
+      ],
+      "jaNames": [
+        "<nobr>四つ葉の</nobr>​<nobr>クローバー</nobr>"
+      ],
+      "references": 2,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31700156,
+      "eventIds": [
+        2010000180,
+        2010000187,
+        2010000188,
+        2010000189,
+        2010000190
+      ],
+      "enNames": [
+        "Reclaimed Barn Wood"
+      ],
+      "jaNames": [
+        "<nobr>古納屋の</nobr>​<nobr>木材</nobr>"
+      ],
+      "references": 5,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31700164,
+      "eventIds": [
+        2010000183,
+        2010000200,
+        2010000201,
+        2010000202
+      ],
+      "enNames": [
+        "Sequin Strands"
+      ],
+      "jaNames": [
+        "<nobr>スパンコールの</nobr>​<nobr>糸</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31700171,
+      "eventIds": [
+        2010000196,
+        2010000197,
+        2010000198,
+        2010000199
+      ],
+      "enNames": [
+        "Copter Seeds"
+      ],
+      "jaNames": [
+        "翼果の種"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 31700176,
+      "eventIds": [
+        2010000207,
+        2010000239,
+        2010000240,
+        2010000241
+      ],
+      "enNames": [
+        "Oak Leaves"
+      ],
+      "jaNames": [
+        "オークの葉"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600000,
+      "eventIds": [
+        2010000058
+      ],
+      "enNames": [
+        "Small Mushroom Cluster"
+      ],
+      "jaNames": [
+        "<nobr>小さなキノコの</nobr>​<nobr>群れ</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600001,
+      "eventIds": [
+        2010000055
+      ],
+      "enNames": [
+        "Big Mushroom Cluster"
+      ],
+      "jaNames": [
+        "<nobr>大きなキノコの</nobr>​<nobr>群れ</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600002,
+      "eventIds": [
+        2010000055
+      ],
+      "enNames": [
+        "Big Mushroom Cluster and Treasure"
+      ],
+      "jaNames": [
+        "<nobr>大きなキノコの</nobr>​<nobr>群れとお宝</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600003,
+      "eventIds": [
+        2010000043
+      ],
+      "enNames": [
+        "Small Rocks"
+      ],
+      "jaNames": [
+        "小さな岩"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600004,
+      "eventIds": [
+        2010000043
+      ],
+      "enNames": [
+        "Big Rocks"
+      ],
+      "jaNames": [
+        "大きな岩"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600005,
+      "eventIds": [
+        2010000043
+      ],
+      "enNames": [
+        "Large Rocks and Treasure"
+      ],
+      "jaNames": [
+        "巨大な岩とお宝"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600006,
+      "eventIds": [
+        2010000059
+      ],
+      "enNames": [
+        "Small Tree Stump"
+      ],
+      "jaNames": [
+        "小さな切り株"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600007,
+      "eventIds": [
+        2010000049
+      ],
+      "enNames": [
+        "Big Tree Stump"
+      ],
+      "jaNames": [
+        "大きな切り株"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600008,
+      "eventIds": [
+        2010000049
+      ],
+      "enNames": [
+        "Big Tree Stump and Treasure"
+      ],
+      "jaNames": [
+        "<nobr>大きな切り株と</nobr>​<nobr>お宝</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600009,
+      "eventIds": [
+        2010000060
+      ],
+      "enNames": [
+        "Small Coral"
+      ],
+      "jaNames": [
+        "小さなサンゴ"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600010,
+      "eventIds": [
+        2010000037
+      ],
+      "enNames": [
+        "Large Coral"
+      ],
+      "jaNames": [
+        "大きなサンゴ"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600011,
+      "eventIds": [
+        2010000037
+      ],
+      "enNames": [
+        "Coral and Treasure"
+      ],
+      "jaNames": [
+        "サンゴとお宝"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600012,
+      "eventIds": [
+        2010000061
+      ],
+      "enNames": [
+        "Small Ice Shards"
+      ],
+      "jaNames": [
+        "小さな氷のかけら"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600013,
+      "eventIds": [
+        2010000040
+      ],
+      "enNames": [
+        "Large Ice Shards"
+      ],
+      "jaNames": [
+        "大きな氷のかけら"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600014,
+      "eventIds": [
+        2010000040
+      ],
+      "enNames": [
+        "Large Ice Shards and Treasure"
+      ],
+      "jaNames": [
+        "<nobr>大きな氷の</nobr>​<nobr>かけらと</nobr>​<nobr>お宝</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600030,
+      "eventIds": [
+        2010000063
+      ],
+      "enNames": [
+        "{Placeholder}Small Fire"
+      ],
+      "jaNames": [
+        "{LegacyPlaceholder}Small Fire"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600031,
+      "eventIds": [
+        2010000063
+      ],
+      "enNames": [
+        "{Placeholder}Wide, Small Fire"
+      ],
+      "jaNames": [
+        "{LegacyPlaceholder}Wide, Small Fire"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600032,
+      "eventIds": [
+        2010000053
+      ],
+      "enNames": [
+        "Big Fire"
+      ],
+      "jaNames": [
+        "大きな火"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600033,
+      "eventIds": [
+        2010000053
+      ],
+      "enNames": [
+        "Big Fire and Treasure"
+      ],
+      "jaNames": [
+        "<nobr>大きな火と</nobr>​<nobr>お宝</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600035,
+      "eventIds": [
+        2010000065,
+        2010000066,
+        2010000067,
+        2010000068,
+        2010000069,
+        2010000070,
+        2010000071,
+        2010000072,
+        2010000164,
+        2010000168,
+        2010000171,
+        2010000172,
+        2010000173,
+        2010000174
+      ],
+      "enNames": [
+        "{Placeholder}Hole in the Ground — Night Shard"
+      ],
+      "jaNames": [
+        "{LegacyPlaceholder}Hole in the Ground — Night Shard"
+      ],
+      "references": 14,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600036,
+      "eventIds": [
+        2010000046
+      ],
+      "enNames": [
+        "Big Gazelle Ribs and Skull"
+      ],
+      "jaNames": [
+        "<nobr>ガゼルの</nobr>​<nobr>大きな</nobr>​<nobr>あばら骨と</nobr>​<nobr>頭蓋骨</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600037,
+      "eventIds": [
+        2010000046
+      ],
+      "enNames": [
+        "Big Gazelle Ribs"
+      ],
+      "jaNames": [
+        "<nobr>ガゼルの</nobr>​<nobr>大きな</nobr>​<nobr>あばら骨</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600038,
+      "eventIds": [
+        2010000062
+      ],
+      "enNames": [
+        "Small Gazelle Rib and Skull"
+      ],
+      "jaNames": [
+        "<nobr>ガゼルの</nobr>​<nobr>小さな</nobr>​<nobr>あばら骨と</nobr>​<nobr>頭蓋骨</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600039,
+      "eventIds": [
+        2010000062
+      ],
+      "enNames": [
+        "Small Gazelle Ribs and Skull"
+      ],
+      "jaNames": [
+        "<nobr>ガゼルの</nobr>​<nobr>小さな</nobr>​<nobr>あばら骨と</nobr>​<nobr>頭蓋骨</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600040,
+      "eventIds": [
+        2010000062
+      ],
+      "enNames": [
+        "Small Gazelle Ribs"
+      ],
+      "jaNames": [
+        "<nobr>ガゼルの</nobr>​<nobr>小さな</nobr>​<nobr>あばら骨</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600041,
+      "eventIds": [
+        2010000046
+      ],
+      "enNames": [
+        "Gazelle Ribs and Treasure"
+      ],
+      "jaNames": [
+        "<nobr>ガゼルの</nobr>​<nobr>あばら骨と</nobr>​<nobr>お宝</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600042,
+      "eventIds": [
+        2010000063
+      ],
+      "enNames": [
+        "{Placeholder}Small Fire and Night Thorn"
+      ],
+      "jaNames": [
+        "{LegacyPlaceholder}Small Fire and Night Thorn"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600043,
+      "eventIds": [
+        2010000063
+      ],
+      "enNames": [
+        "{Placeholder}Small Fire and Rising Night Thorn"
+      ],
+      "jaNames": [
+        "{LegacyPlaceholder}Small Fire and Rising Night Thorn"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600132,
+      "eventIds": [
+        2010000114,
+        2010000116,
+        2010000118
+      ],
+      "enNames": [
+        "{Placeholder}Small Sand Mist Blocker"
+      ],
+      "jaNames": [
+        "{LegacyPlaceholder}Small Sand Mist Blocker"
+      ],
+      "references": 3,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600133,
+      "eventIds": [
+        2010000115,
+        2010000117,
+        2010000119
+      ],
+      "enNames": [
+        "{Placeholder}SandMist Large Blocker"
+      ],
+      "jaNames": [
+        "{LegacyPlaceholder}SandMist Large Blocker"
+      ],
+      "references": 3,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600134,
+      "eventIds": [
+        2010000101,
+        2010000102,
+        2010000103
+      ],
+      "enNames": [
+        "{Placeholder}Small Copper Rock Blocker"
+      ],
+      "jaNames": [
+        "{LegacyPlaceholder}Small Copper Rock Blocker"
+      ],
+      "references": 3,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600135,
+      "eventIds": [
+        2010000104,
+        2010000105,
+        2010000106
+      ],
+      "enNames": [
+        "{Placeholder}Large Copper Rock Blocker"
+      ],
+      "jaNames": [
+        "{LegacyPlaceholder}Large Copper Rock Blocker"
+      ],
+      "references": 3,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600136,
+      "eventIds": [
+        2010000108
+      ],
+      "enNames": [
+        "{Placeholder}Small Rubble Blocker"
+      ],
+      "jaNames": [
+        "{LegacyPlaceholder}Small Rubble Blocker"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600137,
+      "eventIds": [
+        2010000107
+      ],
+      "enNames": [
+        "{Placeholder}Large Rubble Blocker"
+      ],
+      "jaNames": [
+        "{LegacyPlaceholder}Large Rubble Blocker"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600138,
+      "eventIds": [
+        2010000109
+      ],
+      "enNames": [
+        "{Placeholder}Small Glass Stalagmite Blocker"
+      ],
+      "jaNames": [
+        "{LegacyPlaceholder}Small Glass Stalagmite Blocker"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600139,
+      "eventIds": [
+        2010000110
+      ],
+      "enNames": [
+        "{Placeholder}Large Glass Stalagmite Blocker"
+      ],
+      "jaNames": [
+        "{LegacyPlaceholder}Large Glass Stalagmite Blocker"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600140,
+      "eventIds": [
+        2010000112
+      ],
+      "enNames": [
+        "{Placeholder}Small Evil Plant Blocker"
+      ],
+      "jaNames": [
+        "{LegacyPlaceholder}Small Evil Plant Blocker"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600141,
+      "eventIds": [
+        2010000111
+      ],
+      "enNames": [
+        "{Placeholder}Large Evil Plant Blocker"
+      ],
+      "jaNames": [
+        "{LegacyPlaceholder}Large Evil Plant Blocker"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600245,
+      "eventIds": [
+        2010000146
+      ],
+      "enNames": [
+        "Petrified Wood"
+      ],
+      "jaNames": [
+        "木の化石"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600254,
+      "eventIds": [
+        2010000148
+      ],
+      "enNames": [
+        "Shattered Teacup"
+      ],
+      "jaNames": [
+        "割れたティーカップ"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600255,
+      "eventIds": [
+        2010000150
+      ],
+      "enNames": [
+        "Feuding Flame"
+      ],
+      "jaNames": [
+        "抗争の炎"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600259,
+      "eventIds": [
+        2010000147
+      ],
+      "enNames": [
+        "Malevolent Mushroom"
+      ],
+      "jaNames": [
+        "<nobr>悪魔の</nobr>​<nobr>キノコ</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600260,
+      "eventIds": [
+        2010000149
+      ],
+      "enNames": [
+        "Mossy Log"
+      ],
+      "jaNames": [
+        "<nobr>苔むした</nobr>​<nobr>丸太</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600261,
+      "eventIds": [
+        2010000151
+      ],
+      "enNames": [
+        "Hunks of Marble"
+      ],
+      "jaNames": [
+        "大理石の塊"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600303,
+      "eventIds": [
+        2010000160
+      ],
+      "enNames": [
+        "{DoNotTranslate}CheshireChaos_CheshireCrack"
+      ],
+      "jaNames": [
+        "{DoNotTranslate}CheshireChaos_CheshireCrack"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600304,
+      "eventIds": [
+        2010000161
+      ],
+      "enNames": [
+        "{DoNotTranslate}Cheshire Chaos ToyStory paws"
+      ],
+      "jaNames": [
+        "{DoNotTranslate}Cheshire Chaos ToyStory paws"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600305,
+      "eventIds": [
+        2010000162
+      ],
+      "enNames": [
+        "{DoNotTranslate}CheshireChaos LionKing paws"
+      ],
+      "jaNames": [
+        "{DoNotTranslate}CheshireChaos LionKing paws"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600306,
+      "eventIds": [
+        2010000163
+      ],
+      "enNames": [
+        "{DoNotTranslate}CheshireChaos Aladdin paws"
+      ],
+      "jaNames": [
+        "{DoNotTranslate}CheshireChaos Aladdin paws"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600448,
+      "eventIds": [
+        2010000210,
+        2010000251,
+        2010000252,
+        2010000253
+      ],
+      "enNames": [
+        "Small Twistroot"
+      ],
+      "jaNames": [
+        "<nobr>うねった根</nobr>​<nobr>（小）</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600449,
+      "eventIds": [
+        2010000212,
+        2010000248,
+        2010000249,
+        2010000250
+      ],
+      "enNames": [
+        "Large Twistroot"
+      ],
+      "jaNames": [
+        "<nobr>うねった根</nobr>​<nobr>（大）</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600450,
+      "eventIds": [
+        2010000213,
+        2010000245,
+        2010000246,
+        2010000247
+      ],
+      "enNames": [
+        "Small Amber Brushwood"
+      ],
+      "jaNames": [
+        "<nobr>琥珀の塊</nobr>​<nobr>（小）</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 40600451,
+      "eventIds": [
+        2010000211,
+        2010000242,
+        2010000243,
+        2010000244
+      ],
+      "enNames": [
+        "Large Amber Brushwood"
+      ],
+      "jaNames": [
+        "<nobr>琥珀の塊</nobr>​<nobr>（大）</nobr>"
+      ],
+      "references": 4,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 120200000,
+      "eventIds": [
+        2011300000
+      ],
+      "enNames": [
+        "Red Bird Snippet"
+      ],
+      "jaNames": [
+        "鳥の紙精（レッド）"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 120200001,
+      "eventIds": [
+        2011300001
+      ],
+      "enNames": [
+        "Blue Bird Snippet"
+      ],
+      "jaNames": [
+        "<nobr>鳥の紙精</nobr>​<nobr>（ブルー）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 120200002,
+      "eventIds": [
+        2011300002
+      ],
+      "enNames": [
+        "Green Bird Snippet"
+      ],
+      "jaNames": [
+        "<nobr>鳥の紙精</nobr>​<nobr>（グリーン）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 120200003,
+      "eventIds": [
+        2011300006
+      ],
+      "enNames": [
+        "Yellow Bird Snippet"
+      ],
+      "jaNames": [
+        "<nobr>鳥の紙精</nobr>​<nobr>（イエロー）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 120200004,
+      "eventIds": [
+        2011300006,
+        2011300007
+      ],
+      "enNames": [
+        "Blue Frog Snippet"
+      ],
+      "jaNames": [
+        "<nobr>カエルの紙精</nobr>​<nobr>（ブルー）</nobr>"
+      ],
+      "references": 2,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 120200005,
+      "eventIds": [
+        2011300004,
+        2011300007
+      ],
+      "enNames": [
+        "Pink Frog Snippet"
+      ],
+      "jaNames": [
+        "<nobr>カエルの紙精</nobr>​<nobr>（ピンク）</nobr>"
+      ],
+      "references": 2,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 120200006,
+      "eventIds": [
+        2011300008
+      ],
+      "enNames": [
+        "Purple Frog Snippet"
+      ],
+      "jaNames": [
+        "<nobr>カエルの紙精</nobr>​<nobr>（パープル）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 120200007,
+      "eventIds": [
+        2011300009
+      ],
+      "enNames": [
+        "Yellow Frog Snippet"
+      ],
+      "jaNames": [
+        "<nobr>カエルの紙精</nobr>​<nobr>（イエロー）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 120200008,
+      "eventIds": [
+        2011300002,
+        2011300003
+      ],
+      "enNames": [
+        "Pink Demon Snippet"
+      ],
+      "jaNames": [
+        "<nobr>悪魔の紙精</nobr>​<nobr>（ピンク）</nobr>"
+      ],
+      "references": 2,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 120200009,
+      "eventIds": [
+        2011300003,
+        2011300008
+      ],
+      "enNames": [
+        "Blue Demon Snippet"
+      ],
+      "jaNames": [
+        "<nobr>悪魔の紙精</nobr>​<nobr>（ブルー）</nobr>"
+      ],
+      "references": 2,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 120200010,
+      "eventIds": [
+        2011300004
+      ],
+      "enNames": [
+        "Red Demon Snippet"
+      ],
+      "jaNames": [
+        "<nobr>悪魔の紙精</nobr>​<nobr>（レッド）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 120200011,
+      "eventIds": [
+        2011300005
+      ],
+      "enNames": [
+        "Green Demon Snippet"
+      ],
+      "jaNames": [
+        "<nobr>悪魔の紙精</nobr>​<nobr>（グリーン）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 120200012,
+      "eventIds": [
+        2011300012,
+        2011300013,
+        2011300014,
+        2011300015,
+        2011300016,
+        2011300017,
+        2011300018,
+        2011300019
+      ],
+      "enNames": [
+        "White Bird Snippet"
+      ],
+      "jaNames": [
+        "<nobr>鳥の紙精</nobr>​<nobr>（ホワイト）</nobr>"
+      ],
+      "references": 8,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 120200013,
+      "eventIds": [
+        2011300020,
+        2011300021
+      ],
+      "enNames": [
+        "Everafter Demon Snippet"
+      ],
+      "jaNames": [
+        "<nobr>悪魔の紙精</nobr>​<nobr>（おとぎの園）</nobr>"
+      ],
+      "references": 2,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 120200016,
+      "eventIds": [
+        2011300022
+      ],
+      "enNames": [
+        "Everafter Demon Snippet"
+      ],
+      "jaNames": [
+        "<nobr>悪魔の紙精</nobr>​<nobr>（おとぎの園）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 120200017,
+      "eventIds": [
+        2011300025,
+        2011300027
+      ],
+      "enNames": [
+        "Rainbow Demon Snippet"
+      ],
+      "jaNames": [
+        "<nobr>悪魔の紙精</nobr>​<nobr>（レインボー）</nobr>"
+      ],
+      "references": 2,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 120200022,
+      "eventIds": [
+        2011300028
+      ],
+      "enNames": [
+        "Shadowy Bird Snippet"
+      ],
+      "jaNames": [
+        "<nobr>鳥の紙精</nobr>​<nobr>（シャドウ）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 120200023,
+      "eventIds": [
+        2011300029,
+        2011300031,
+        2011300032,
+        2011300033,
+        2011300034,
+        2011300035
+      ],
+      "enNames": [
+        "Shadowy Demon Snippet"
+      ],
+      "jaNames": [
+        "<nobr>悪魔の紙精</nobr>​<nobr>（シャドウ）</nobr>"
+      ],
+      "references": 6,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    },
+    {
+      "itemId": 120200024,
+      "eventIds": [
+        2011300030
+      ],
+      "enNames": [
+        "Shadowy Frog Snippet"
+      ],
+      "jaNames": [
+        "<nobr>カエルの紙精</nobr>​<nobr>（シャドウ）</nobr>"
+      ],
+      "references": 1,
+      "sourceCrosswalk": "NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES",
+      "publishedImage": "MISSING",
+      "spritePathId": null,
+      "texturePathId": null,
+      "rgbaVerifiedForThisItem": "NOT_ATTESTED_IN_PUBLIC_RELEASE_RECORD"
+    }
+  ]
+}
