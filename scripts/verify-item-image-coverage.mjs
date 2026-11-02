@@ -58,3 +58,57 @@ console.log('P0 ItemID coverage baseline PASS: events='+BASELINE.eventDefinition
  ' publishedVerified='+observed.totals.verifiedPublished+
  ' publishedMissing='+observed.totals.missingPublished+
  ' dynamicSave=NOT_OBSERVED, permissions=NOT_ESTABLISHED');
+
+// Original v1.25.3 itemlist files were inspected off-repository; this derived
+// metadata verifies definition identity only, never an actual Sprite or WebP.
+const audit=pinned.unresolvedDefinitionAudit;
+const expectedStreams={
+ 'ActivityItem.json':'20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4',
+ 'Furniture.json':'823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674'
+};
+const exceptionalGuid=new Map(Object.entries({
+ 30000072:'202f205f8ad0fd94daddf84fe6862586',
+ 31300003:'838a1cf8fac848d46b1f2b5843326baf',
+ 31300083:'eb3483344601e374480bce50a60de07c',
+ 31300128:'6a16e4ccb94256f4a8c808f189cb4c1f',
+ 31300210:'042b02d3a1339664f917f00df79d0bee',
+ 31400000:'c2d8a0bf85476b545b2a322f99c2bcff',
+ 31400039:'ff56d467e029f7643ba98059c63e2332'
+}).map(([id,guid])=>[Number(id),guid]));
+const defaultGuid='04495f960b1edba4181ec51efa5e07d9';
+if(audit?.evidence!=='FRAMED_ITEMLIST_PROTOBUF_DIRECT_SOURCE_READ_ONLY'||
+  JSON.stringify(audit.sourceHashes)!==JSON.stringify(expectedStreams)||
+  audit.unlinkedTotal!==106||audit.typedSourceRecordsConfirmed!==87||
+  audit.activityItemRecords!==35||audit.furnitureRecords!==52||
+  audit.sourceRecordsNotFoundInTheseTwoStreams!==19||
+  audit.commonGuid!==defaultGuid||audit.commonGuidCountInGaps!==80||
+  audit.otherGuidCountInGaps!==7||audit.commonGuidOccurrencesInCompleteTwoStreams!==1794||
+  audit.sourceGuidOnly!==true||audit.spriteTextureProof!==0||
+  audit.publicImageProof!==0||audit.rights!=='NOT_ESTABLISHED')
+ fail('unreviewed 106-gap source definition evidence promotion or count drift');
+const deficit=pinned.items.filter(row=>row.sourceCrosswalk==='NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES');
+let activity=0,furniture=0,snippets=0,shared=0,specific=0;
+for(const row of deficit){
+ const x=row.definitionAudit;
+ if(!x||x.spriteResolved!==false||x.textureResolved!==false||
+    x.webpDecodedRgbaMatched!==false||row.publishedImage!=='MISSING')fail('false image proof '+row.itemId);
+ if(row.itemId>=120000000){
+   snippets++;
+   if(x.status!=='TYPED_SOURCE_NOT_FOUND_IN_TWO_ITEMLIST_STREAMS'||
+      x.sourceStream!==null||x.sourceSha256!==null||x.declaredIconAddressGuid!==null)
+     fail('false snippet source '+row.itemId);
+ }else{
+   const stream=row.itemId>=40000000?'Furniture.json':'ActivityItem.json';
+   if(stream==='Furniture.json')furniture++;else activity++;
+   const guid=exceptionalGuid.get(row.itemId)||defaultGuid;
+   if(guid===defaultGuid)shared++;else specific++;
+   if(x.sourceStream!==stream||x.sourceSha256!==expectedStreams[stream]||
+      x.declaredIconAddressGuid!==guid||
+      x.status!==(guid===defaultGuid?'SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC':'DECLARED_ICON_ADDRESS_UNRESOLVED'))
+     fail('mismatched per-item original IconAddress provenance '+row.itemId);
+ }
+}
+if(deficit.length!==106||activity!==35||furniture!==52||snippets!==19||
+   shared!==80||specific!==7||exceptionalGuid.size!==7)
+ fail('ItemID gap source family census changed');
+console.log('Gap definition source audit PASS: ActivityItem 35, Furniture 52, untyped Snippet 19; shared IconAddress 80, distinct GUID 7; resolved Sprite/Texture 0');
