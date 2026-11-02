@@ -12,18 +12,19 @@ export function createVerifiedPairDownloadUi({
     !controls||['panel','both','original','edited'].some(name=>!controls[name]))
   throw new TypeError('Missing verified pair download UI callbacks.');
  const coordinator=createSeparateDownloadCoordinator({currentSession,triggerDownload});
- let prepared=null;
+ let prepared=null,originalTriggered=false;
  const active=()=>Boolean(prepared)&&
    Number.isSafeInteger(currentSession())&&currentSession()===prepared.sessionId&&
    currentPlanRevision()===prepared.planRevision;
  const sync=()=>{
   const ready=active();
   controls.panel.hidden=!ready;
-  for(const key of ['both','original','edited'])controls[key].disabled=!ready;
+  for(const key of ['both','original','edited'])
+   controls[key].disabled=!ready||(key==='edited'&&!originalTriggered);
   return ready;
  };
  const invalidate=()=>{
-  coordinator.invalidate();prepared=null;sync();
+  coordinator.invalidate();prepared=null;originalTriggered=false;sync();
  };
  const acceptWorkerPair=(receipt,context)=>{
   invalidate();
@@ -43,10 +44,17 @@ export function createVerifiedPairDownloadUi({
  const act=kind=>{
   if(!sync()){invalidate();throw new Error('Verified output is no longer current.');}
   let result;
-  if(kind==='both')result=coordinator.downloadBoth();
-  else if(kind==='original')result=coordinator.retryOriginal();
-  else result=coordinator.retryEdited();
-  onStatus(kind,result);
+  if(kind==='both'){
+   result=coordinator.downloadBoth();
+   if(result.original==='TRIGGER_REQUESTED_UNCONFIRMED')originalTriggered=true;
+  }else if(kind==='original'){
+   result=coordinator.retryOriginal();
+   if(result==='TRIGGER_REQUESTED_UNCONFIRMED')originalTriggered=true;
+  }else{
+   if(!originalTriggered)throw new Error('Original download must be requested first.');
+   result=coordinator.retryEdited();
+  }
+  sync();onStatus(kind,result);
   return result;
  };
  controls.both.addEventListener('click',()=>{try{act('both');}catch(e){onStatus('error',e.message);}});
