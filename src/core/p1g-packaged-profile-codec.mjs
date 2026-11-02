@@ -364,7 +364,12 @@ async function extractProfileFromZip(archive) {
     const local = entry.localOffset;
     if (local + 30 > archive.length || u32(view, local) !== ZIP_LOCAL)
         throw new Error('ZIP_LOCAL_HEADER_INVALID');
+    const localVersion = u16(view, local + 4);
     const localFlags = u16(view, local + 6), localMethod = u16(view, local + 8);
+    const localDosTime = u16(view, local + 10), localDosDate = u16(view, local + 12);
+    const localCrc = u32(view, local + 14);
+    const localCompressedSize = u32(view, local + 18);
+    const localUncompressedSize = u32(view, local + 22);
     const localNameLen = u16(view, local + 26), localExtraLen = u16(view, local + 28);
     if ((localFlags & 0x0001) !== 0 || localMethod !== entry.method)
         throw new Error('ZIP_LOCAL_HEADER_MISMATCH');
@@ -382,6 +387,7 @@ async function extractProfileFromZip(archive) {
     }
     if (localName !== PROFILE_NAME)
         throw new Error('ZIP_LOCAL_PROFILE_NAME_MISMATCH');
+    const localExtra = archive.slice(local + 30 + localNameLen, dataStart);
     const compressed = archive.slice(dataStart, dataEnd);
     const profileBytes = entry.method === ZIP_METHOD_STORE ? compressed : await transformDeflate(compressed, false);
     if (profileBytes.length !== entry.uncompressedSize || profileBytes.length > MAX_PROFILE_BYTES)
@@ -394,6 +400,11 @@ async function extractProfileFromZip(archive) {
             entryCount: entriesTotal,
             profileEntryCount: profiles.length,
             archiveComment,
+            // Read-only original layout evidence; never used as an implicit
+            // modified-copy writer authorization.
+            archivePrefixBytes: local,
+            profileTrailingRegionBytes: centralOffset - dataEnd,
+            centralDirectoryTrailingBytes: eocdOffset - (centralOffset + centralSize),
             profileEntry: Object.freeze({
                 createSystem: (entry.versionMadeBy >>> 8) & 0xff,
                 createVersion: entry.versionMadeBy & 0xff,
@@ -405,7 +416,18 @@ async function extractProfileFromZip(archive) {
                 comment: entry.comment,
                 extra: entry.extra,
                 internalAttr: entry.internalAttr,
-                externalAttr: entry.externalAttr
+                externalAttr: entry.externalAttr,
+                localHeader: Object.freeze({
+                    extractVersion: localVersion,
+                    flagBits: localFlags,
+                    compressType: localMethod,
+                    dosTime: localDosTime,
+                    dosDate: localDosDate,
+                    crc32: localCrc,
+                    compressedSize: localCompressedSize,
+                    uncompressedSize: localUncompressedSize,
+                    extra: localExtra
+                })
             })
         })
     };
