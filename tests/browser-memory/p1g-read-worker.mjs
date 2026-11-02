@@ -25,6 +25,10 @@ self.onmessage=async({data})=>{
   };
   try {
     const source=data.source;
+    // Hash the bytes actually received in the Worker (independent of caller metadata).
+    // The sender compares this with its pre-send original hash.
+    const workerReceivedSourceSha256=[...new Uint8Array(await crypto.subtle.digest('SHA-256',source))]
+      .map(byte=>byte.toString(16).padStart(2,'0')).join('');
     report('received',{encryptedBytes:source.byteLength});
     const loaded=await p1gPackagedProfileCodec.loadProfile(source);
     report('loaded',{inflatedBytes:loaded.metadata.zip.profileEntry.uncompressedSize,
@@ -45,7 +49,8 @@ self.onmessage=async({data})=>{
     self.postMessage({type:'DONE',sessionId,
       readOnly:true,writerAuthorized:false,editedCopyAuthorized:false,
       codecVersion:loaded.metadata.codecVersion,codecContract:p1gPackagedProfileCodec.contract,
-      inputBytes:source.byteLength,inflatedBytes:loaded.metadata.zip.profileEntry.uncompressedSize,
+      inputBytes:source.byteLength,workerReceivedSourceSha256,
+      inflatedBytes:loaded.metadata.zip.profileEntry.uncompressedSize,
       auditStatus:audit.status,schema:loaded.metadata.profileVersion,
       checks,measurementsArePeak:false,browserMemoryAccepted:false,
       editedSaveProduced:false});
