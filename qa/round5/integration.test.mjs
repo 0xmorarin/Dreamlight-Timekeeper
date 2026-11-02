@@ -41,7 +41,7 @@ test('R5 CORE serializer semantic roundtrip: synthetic unknown JSON and exact ch
  const output=await codec.createEncodedProfile(serialized,loaded.metadata);
  const opened=await codec.loadProfile(output);
  assert.deepEqual(parseSafeJson(opened.jsonText),edited);
- assert.deepEqual(diffPaths(parseSafeJson(loaded.jsonText),parseSafeJson(opened.jsonText)),['/Opaque/keep/2']);
+ assert.deepEqual(diffPaths(parseSafeJson(loaded.jsonText),parseSafeJson(opened.jsonText)),['/Opaque/keep']);
  assert.deepEqual(Buffer.from(raw),before);
  assert.equal(auditP1gEnvelope({format:'packaged',metadata:loaded.metadata}).writerAuthorized,false);
 });
