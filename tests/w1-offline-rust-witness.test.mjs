@@ -153,7 +153,7 @@ test('all four kinds are atomic: inactive Fish keeps three structural candidates
   ['STRUCTURAL_CANDIDATE','STRUCTURAL_CANDIDATE','STRUCTURAL_CANDIDATE','DENY']);
  assert.equal(dto.writerAuthorized,false);
 });
-test('stale saved EventID, duplicate oneof, wrong index and old-value CAS cannot generate a candidate',()=>{
+test('stale EventID/double oneof/old CAS deny; pointer-only JS selection cannot authenticate original EventID',()=>{
  const save=mockSave(),snapshot=review(save),v=vectors.cases[0],original=request(save,v.eventId,NEW,snapshot);
  save.World.RecurringEvents['7'].ItemSpawning.RecurringEventItemID=2010500008;
  assert.equal(compare(save,original,snapshot).dto.status,'DENIED');
