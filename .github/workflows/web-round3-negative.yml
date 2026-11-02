@@ -1,0 +1,44 @@
+name: 03 WEB Round 3 fixed PR11 negative boundary acceptance
+on:
+  push:
+    branches:
+      - test/web-round3-negative-boundaries
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-negative:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 22
+    steps:
+      - name: Checkout independent 03 WEB test branch
+        uses: actions/checkout@v4
+      - name: Pin and isolate 00 CTRL integrated PR11 tree
+        uses: actions/checkout@v4
+        with:
+          repository: 0xmorarin/Dreamlight-Timekeeper
+          ref: 5d23df0cc0cd1ff0ca51616890ba459126faa4db
+          path: _round3_target
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Record immutable tested tree and check prohibition boundaries
+        run: |
+          test "$(git -C _round3_target rev-parse HEAD)" = 5d23df0cc0cd1ff0ca51616890ba459126faa4db
+          ! grep -q "request('export'" _round3_target/src/app.mjs
+          ! grep -q "createSeparateDownloadCoordinator" _round3_target/src/app.mjs
+          ! grep -q "type==='export'" _round3_target/src/worker.mjs
+      - name: Run local Node 22 baseline and synthetic download negatives
+        run: node --test tests/ui-separate-downloads-round3.test.mjs
+      - name: Install Playwright Chromium locally
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Real Chromium multi-session, reordered response, 128MiB and P1G negative matrix
+        env:
+          TIMEKEEPER_ROUND3_TARGET: ${{ github.workspace }}/_round3_target
+        run: node tests/browser-web-round3-boundaries.smoke.mjs
+      - name: Native 200 percent browser zoom, Japanese/English, invalid manifests and long labels
+        env:
+          TIMEKEEPER_ROUND3_TARGET: ${{ github.workspace }}/_round3_target
+        run: node tests/browser-web-round3-zoom.smoke.mjs
