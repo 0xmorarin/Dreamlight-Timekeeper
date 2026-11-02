@@ -151,3 +151,20 @@ test('MW-A08 original-first two independent downloads: prepared pair, stale, fai
  session=2;assert.throws(()=>c.retryOriginal(),/session changed/);
  assert.throws(()=>c.retryEdited(),/session changed/);
 });
+
+test('MW-A09 protected Chest and non-W1 Snippet structural visibility is NEVER a writer permit',()=>{
+ const p=root();
+ p.World.RecurringEvents['2']={ItemSpawning:{RecurringEventItemID:2010000064,NextOccurrence:base}};
+ p.World.RecurringEvents['3']={SnippetSpawning:{RecurringEventItemID:2011300000,NextOccurrence:base}};
+ const view=projectProfile(p,registry,{now:Date.parse('2026-11-02T00:00:00Z')});
+ for(const id of [2010000064,2011300000]){
+  const row=view.rows.find(r=>r.id===id);
+  assert(row?.pointer,'Protected/non-W1 synthetic event must have a visible read-only row: '+id);
+  const result=inspectTimingPlan(p,view,[{pointer:row.pointer,originalTime:row.time,targetTime:next}]);
+  assert.equal(result.writerAuthorized,false);
+  assert.equal(result.editedCopyAuthorized,false);
+  assert.equal(result.rows[0].writerAuthorized,false);
+  assert.equal(result.rows[0].editedCopyAuthorized,false);
+ }
+ // Phase B must test the actual Writer's veto, not merely this reader/preflight flag.
+});
