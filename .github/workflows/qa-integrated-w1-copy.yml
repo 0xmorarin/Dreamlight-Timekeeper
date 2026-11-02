@@ -1,0 +1,49 @@
+name: 05 QR W1 Copy Writer Independent Fixed Integrated HEAD (synthetic only)
+
+on:
+  pull_request:
+    paths:
+      - 'qa/integrated-w1-copy/**'
+      - '.github/workflows/qa-integrated-w1-copy.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  actual-core-time-synthetic-p1g-writer:
+    name: CORE×TIME synthetic encrypted P1G copy (not WEB export)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: qa-source
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          ref: db54ed0a10a15a0dc68e5d0c8d180cc4df4a017a
+          path: target
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact immutable integration SHA and staged QA-only tests
+        run: |
+          test "$(git -C target rev-parse HEAD)" = "db54ed0a10a15a0dc68e5d0c8d180cc4df4a017a"
+          cp qa-source/qa/integrated-w1-copy/integration.test.mjs target/tests/qa-integrated-w1-copy.test.mjs
+      - name: Run only newly integrated CORE TIME Writer and QA independent negative paths
+        run: |
+          cd target
+          node --test tests/w1-core-time-integration.test.mjs tests/w1-edited-p1g-copy.test.mjs tests/w1-edited-p1g-zip-denial.test.mjs tests/w1-minimal-write-contract.test.mjs tests/qa-integrated-w1-copy.test.mjs
+      - name: Prove unmodified Worker and separate download UI are not accidentally claimed as integrated Writer
+        run: |
+          cd target
+          test "$(git rev-parse HEAD)" = "db54ed0a10a15a0dc68e5d0c8d180cc4df4a017a"
+          grep -q "WORKER_VERIFIED_EDITED_P1G_COPY" src/core/w1-edited-p1g-copy.mjs
+          if grep -q "createW1EditedP1gCopy" src/worker.mjs; then
+            echo 'Unexpected edited Writer Worker integration: re-review before labeling this fixture'
+            exit 1
+          fi
+          echo 'SOURCE/SYNTHETIC_ONLY; no UI Writer or edited export, no owner original, no physical Switch QA runtime'
