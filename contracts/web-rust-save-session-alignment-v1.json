@@ -109,5 +109,24 @@
       "RELAX_128MIB_JS_LIMIT",
       "REPLACE_JS_CODEC"
     ]
+  },
+  "observedAfterFreeze": {
+    "wandPr312Head": "c587f04855db0543896c51f3defa068ccf002b43",
+    "note": "Later upstream research delta only; pinned comparison remains PR312 473acaab; not a stable API or 05 QR acceptance. Recheck the current upstream HEAD before binding.",
+    "sourceBlobs": {
+      "session": "5eaaaf5f503253f05d25bf15475d3f82df02e200",
+      "p1g": "c8cacdc5fa6afc7a60f388af561522e2867f5c9b",
+      "w1Evidence": "7cc71d31eb19b9fc3306e7b0f99e2109a77c8cb0"
+    },
+    "additions": [
+      "p1g::decode_p1g_research validates limited synthetic encrypted single-profile AES256/ZIP/CRC",
+      "p1g::create_p1g_copy_research performs synthetic encrypted copy and self reopen, but product_encode_copy_authorized=false",
+      "w1_evidence::inspect_w1_source_research validates source/registry SHA, external BID, schema626, W1 ID/index/oneof/token witness with required_reference_closure_complete=false and encode_copy_authorized=false",
+      "session::inspect_source_reference_paths issues source-derived path witnesses but reports cross_domain_reference_closure_complete=false, domain_reference_semantics_verified=false and usable_for_product_writer=false"
+    ],
+    "productP1gAccepted": false,
+    "completeDomainProjectionAccepted": false,
+    "stableWasmWorkerApiAccepted": false,
+    "writerGranted": false
   }
 }
