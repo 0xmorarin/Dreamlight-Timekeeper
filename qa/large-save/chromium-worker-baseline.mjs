@@ -91,7 +91,7 @@ function processMemory(){
     const stdout=execFileSync('ps',['-eo','rss=,comm='],{encoding:'utf8',timeout:1500});
     for(const line of stdout.trim().split('\n')){
       const match=line.trim().match(/^(\d+)\s+(\S+)$/);
-      if(match&&/^(chromium|chrome|chrome_crashpad)$/i.test(match[2])){
+      if(match&&/(chromium|chrome|headless)/i.test(match[2])){
         chromeRss+=Number(match[1])*1024;chromeProcesses++;
       }
     }
@@ -314,7 +314,7 @@ try{
     expanded:report.fixture?.expandedBytes,encrypted:report.fixture?.encryptedBytes,
     openMs:report.phases.open?.elapsedMs,planMs:report.phases.planPreflight?.elapsedMs,
     prepareMs:report.phases.casEncodeInternalReopen?.elapsedMs,
-    reopenMs:report.phases.independentReopen?.elapsedMs,peak:report.peakSampledMemory,
+    reopenMs:report.phases.independentReopen?.elapsedMs,rendererHeap:report.browserEnd?.rendererHeapUsedBytes,ui:report.browserEnd?.ui,workerHeap:report.browserEnd?.workerHeap,peak:report.peakSampledMemory,
     errors:report.errors}));
 }
 if(report.verdict.startsWith('FAIL_'))process.exitCode=1;
