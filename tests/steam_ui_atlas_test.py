@@ -5,6 +5,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 from PIL import Image
 import json
+import subprocess
 
 path=Path(__file__).resolve().parents[1]/'scripts'/'audit-steam-ui-atlas.py'
 spec=importlib.util.spec_from_file_location('steam_ui_atlas',path)
@@ -87,6 +88,37 @@ class SteamUiAtlasTests(unittest.TestCase):
             webp.write_bytes(altered)
             with self.assertRaises(ValueError):
                 audit.verify_private_rgba_parity(png,webp,3,2)
+
+
+    def test_private_dds_decoding_independent_roundtrip_and_mutation(self):
+        with TemporaryDirectory() as directory:
+            folder=Path(directory)
+            original=folder/'original.png'
+            compressed=folder/'source.dds'
+            decoded=folder/'exported.png'
+            image=Image.new('RGBA',(8,8))
+            image.putdata([(17*(i%8),23*(i//8),40+i,255) for i in range(64)])
+            image.save(original)
+            subprocess.run(['magick',str(original),'-define','dds:compression=dxt5',str(compressed)],check=True)
+            subprocess.run(['magick',str(compressed),str(decoded)],check=True)
+            provenance=audit.verify_private_dds_rgba(compressed,decoded,8,8)
+            self.assertEqual(len(provenance['compressedSourceDecodedRgbaSha256']),64)
+            self.assertIn('DDS',provenance['sourceTextureDecoders'])
+            with self.assertRaises(ValueError):
+                audit.verify_private_dds_rgba(compressed,decoded,9,8)
+            changed=Image.open(decoded).convert('RGBA')
+            changed.putpixel((0,0),(1,2,3,255))
+            changed.save(decoded)
+            with self.assertRaises(ValueError):
+                audit.verify_private_dds_rgba(compressed,decoded,8,8)
+
+    def test_private_trial_prevents_directory_symlink_redirection(self):
+        ledger=json.loads((Path(__file__).resolve().parents[1]/'data'/'steam-ui-candidates-v1253.json').read_text('utf-8'))
+        with TemporaryDirectory() as directory:
+            external=Path(directory)
+            (external/'private-steam-ui-review').symlink_to(Path(__file__).resolve().parents[1],target_is_directory=True)
+            with self.assertRaises(ValueError):
+                audit.private_trial_candidate(ledger,'world.hgw',external)
 
 if __name__=='__main__':
     unittest.main()

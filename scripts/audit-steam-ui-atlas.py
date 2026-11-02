@@ -185,10 +185,34 @@ def private_trial_candidate(catalog,key,output):
     root=Path(__file__).resolve().parents[1]
     if output.resolve()==root or output.resolve().is_relative_to(root):
         raise ValueError('Private trial output must be outside the public repository')
+    candidate_dir=output/'private-steam-ui-review'
+    if candidate_dir.is_symlink() or (candidate_dir.exists() and not candidate_dir.is_dir()):
+        raise ValueError('Private output directory must not be a symlink or file')
+    if candidate_dir.resolve().is_relative_to(root):
+        raise ValueError('Private output destination redirects into the public repository')
     matches=[row for row in catalog['candidates'] if row['key']==key]
     if len(matches)!=1 or matches[0]['reviewState'] not in ('HOLD_DEPLOYMENT','HOLD_SEMANTIC_REVIEW'):
         raise ValueError('Private review requires one uniquely identified HOLD candidate')
     return matches[0]
+
+def verify_private_dds_rgba(dds,png,width,height):
+    """Use independent DXT/BC texture decoders before trusting the PNG master."""
+    from PIL import Image
+    original=Image.open(dds).convert('RGBA')
+    exported=Image.open(png).convert('RGBA')
+    if original.size!=(width,height) or exported.size!=(width,height):
+        raise ValueError('DDS source or exported PNG dimensions differ')
+    def raw(path):
+        return subprocess.run(['magick',str(path),'-alpha','on','-depth','8','RGBA:-'],
+            stdout=subprocess.PIPE,stderr=subprocess.PIPE,check=True).stdout
+    dds_rgba=raw(dds)
+    png_rgba=raw(png)
+    expected=original.tobytes()
+    if (len(expected)!=width*height*4 or len(dds_rgba)!=len(expected) or
+        dds_rgba!=expected or png_rgba!=expected or exported.tobytes()!=expected):
+        raise ValueError('Independent DDS/PNG RGBA pixel mismatch')
+    return {'compressedSourceDecodedRgbaSha256':sha(expected),
+            'sourceTextureDecoders':'PILLOW_DDS_AND_IMAGEMAGICK_DDS_AND_PNG_EQUAL'}
 
 def verify_private_rgba_parity(png,webp,width,height):
     from PIL import Image
@@ -260,9 +284,10 @@ def main():
             input_rgba=Image.open(png).convert('RGBA')
             if input_rgba.size!=(row['width'],row['height']):
                 raise ValueError('Decoded image changed dimensions: '+key)
+            independent_source=verify_private_dds_rgba(source,png,row['width'],row['height']) if trial else None
             output_path=('private-steam-ui-review/'+key.replace('.','-')+'.webp') if trial else 'assets/steam/v1253/ui/'+key.replace('.','/')+'.webp'
             target=args.output/output_path
-            if target.exists():
+            if target.exists() or target.is_symlink():
                 raise ValueError('Refusing to overwrite icon file: '+str(target))
             target.parent.mkdir(parents=True,exist_ok=True)
             input_rgba.save(target,format='WEBP',lossless=True,method=6,exact=True)
@@ -279,6 +304,8 @@ def main():
                     'texturePathId':row['texturePathId'],'textureFormat':row['textureFormat'],
                     'textureCompressedSha256':sha(pixelbytes),'trialRelativePath':output_path,
                     'rgbaDecoders':'PILLOW_AND_IMAGEMAGICK_EQUAL',
+                    'originalDdsDecodedRgbaSha256':independent_source['compressedSourceDecodedRgbaSha256'],
+                    'ddsDecoders':independent_source['sourceTextureDecoders'],
                     'outputWebpSha256':parity['trialWebpSha256'],
                     'decodedRgbaSha256':parity['rgbaSha256'],
                     'sourcePngSha256':parity['pngSha256'],'width':row['width'],'height':row['height'],
@@ -298,9 +325,10 @@ def main():
         'source':candidates['source'],'histogram':histogram,'candidates':audits},indent=2)+'\n')
     if private_trial is not None:
         report=args.output/'private-steam-ui-review'/'review-only-evidence.json'
-        if report.exists():
+        if report.exists() or report.is_symlink():
             raise ValueError('Refusing to overwrite private candidate evidence: '+str(report))
-        report.write_text(json.dumps(private_trial,indent=2)+'\n')
+        with report.open('x',encoding='utf-8') as fp:
+            fp.write(json.dumps(private_trial,indent=2)+'\n')
     if args.extract:
         manifest={
             'kind':'game_ui',

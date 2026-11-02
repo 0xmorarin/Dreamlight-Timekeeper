@@ -98,3 +98,20 @@ The three held candidates are **different blocks**:
 The exact source GUID-to-Sprite evidence for **760 partial ItemIDs** from eight bundles remains separate from icon deployment bytes and publication rights. Private PNG/WebP parity is documented for **396** mapped trials (Ingredient, Flower, Fish, Seed), not Crafting Material/Crop/Mineral. The Other bundle has 25 sprites but no mapped ItemIDs through ActivityItem; Furniture and Clothing require their own authoritative definition/asset mapping. Prior Wand v1.25.0 Item metadata and Switch v1.24.13 UI evidence can constrain hypotheses but do not certify Steam v1.25.3 image identity, or native screen usage. Public item manifest remains at 0.
 
 **Boundaries:** Source matching ≠ semantic UI consumer ≠ RGBA equality ≠ deployment byte/hash review ≠ rights/publication authorization. This round's proof is STATIC_LEDGER_CROSSCHECK + synthetic trial code; real Steam trial remains BLOCKED until the source bundle can be run in an isolated private environment. App UI SVG16 / shipped Steam UI VP8L4 / shared UI / PR #11 / Writer were not changed.
+
+
+## Round 5 — source locator and independent compressed-texture decode gate (2026-11-02)
+
+A live read of the existing, private **DDVRE Steam GameRoot** established the original Steam/Windows `FullVersion.txt` as `releases_1.25-v1.25.3-44-g0b41250d9ac0-incremental-22` and found `GameRoot/ddv_Data/StreamingAssets/aa/win/ui-imagesatlas_assets_all.bundle` with Drive metadata size **158,399,415 bytes**. The previous Drive keyword search returned no matching raw bundle; folder-by-folder traversal did. The authenticated raw download failed at the connector transport layer; **no local SHA-256 of the source or actual HOLD Sprite pixel conversion was obtained during Round 5**. Existing candidate catalog hashes remain prior recorded evidence rather than a new independent source hash. Do not copy original game bytes into GitHub, and do not publish the Drive raw asset.
+
+To avoid treating one decoder's DDS→PNG conversion as an independent original-texture pixel proof, the `--private-trial-key` path additionally decodes the synthesized source DDS with **Pillow** and **ImageMagick** and requires both original DDS decodes to equal the generated PNG's RGBA bytes before producing an approval-*ineligible* private WebP. It records `originalDdsDecodedRgbaSha256` and the independent decoder contract alongside the existing PNG/VP8L parity fields. This is a strict failure gate: unsupported BC7/DXT5 decoders and any source pixel disagreement fail closed. Synthetic DXT5 tests include decoded pixel mutation/dimension mismatch. The private target directory must not be a symlink redirect into the public source tree; evidence reports refuse existing files.
+
+A successful **synthetic** compressed DDS→PNG decode test is not evidence that Steam v1.25.3 `world.hgw` or any other original compressed texture has passed. Final status per HOLD candidate remains:
+
+| Candidate | Origin identity | Original source decode | Semantic use | VP8L release bytes / rights |
+| --- | --- | --- | --- | --- |
+| `world.hgw` | Existing Steam v1.25.3 static PPtr, 168×168 DXT5; historical private trial | **BLOCKED** on actual bundle access for new independent dual DDS decoder check | **UNKNOWN** | **HOLD**; no final deployed SHA or publication authorization |
+| `tab.shops` | Existing Steam v1.25.3 static PPtr, 152×152 BC7 | **BLOCKED** on actual bundle access | **UNKNOWN**; store upgrade icon is not proven to represent Shops | **HOLD** |
+| `tab.daily` | Existing Steam v1.25.3 static PPtr, 56×64 BC7 | **BLOCKED** on actual bundle access | **UNKNOWN**; shop time icon is not proven to represent Daily | **HOLD** |
+
+Existing 760 partial `ActivityItem`→GUID→Sprite/Texture matches and 396 historical local PNG/WebP RGBA tests are not new, are not complete ItemID coverage, and do not authorize any Item image for public deployment. Public manifests, 16 App SVG originals, 4 published Steam UI VP8L assets, PR #11 shared UI and Writer remain unchanged.
