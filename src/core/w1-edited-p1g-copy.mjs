@@ -20,6 +20,38 @@ const SHA=/^[a-f0-9]{64}$/;
 const record=x=>x!==null&&typeof x==='object'&&!Array.isArray(x);
 const distinct=xs=>new Set(xs).size===xs.length;
 
+// Only accept 02 TIME's structural *target* assessment as a prerequisite.
+// Its writerAuthorized=false is correct: CORE owns separate encode-copy gates.
+function contractsFromTimeReview(review,plan){
+ if(!record(review)||review.status!=='STRUCTURAL_W1_TARGETS_ONLY'||
+    review.contractVersion!=='minimal-w1-target-v1'||
+    review.targetScopeVerified!==true||
+    review.writerAuthorized!==false||review.editedExportAuthorized!==false||
+    review.source?.buildId!==BID||review.source?.saveSchema!==626||
+    review.source?.definitionCount!==508||
+    review.source?.rawEventSHA256!=='028a206635d37bffd7f3a8ff820958bdaa201887bacf35e10faa8328d20022ea'||
+    !Array.isArray(review.candidateTargets)||review.candidateTargets.length!==plan?.length)
+  throw Error('W1_TIME_STRUCTURAL_REVIEW_REQUIRED');
+ const rows=new Map();
+ for(const item of review.candidateTargets){
+  if(!record(item)||item.writerAuthorized!==false||
+     typeof item.pointer!=='string'||rows.has(item.pointer))
+   throw Error('W1_TIME_TARGET_INVALID');
+  rows.set(item.pointer,item);
+ }
+ return plan.map(entry=>{
+  const reviewRow=rows.get(entry.pointer);
+  const match=typeof entry.pointer==='string'?PTR.exec(entry.pointer):null;
+  if(!reviewRow||!match||reviewRow.pointer!==entry.pointer||
+     reviewRow.eventId!==entry.eventId||reviewRow.variant!==entry.kind||
+     reviewRow.savedIndex!==Number(match[1])||
+     reviewRow.originalTime!==entry.originalTime||
+     reviewRow.targetTime!==entry.targetTime)
+   throw Error('W1_TIME_TARGET_PLAN_DRIFT');
+  return {eventId:entry.eventId,kind:entry.kind};
+ });
+}
+
 function validateAllowlist(contracts,registry){
  if(!Array.isArray(contracts)||contracts.length===0||contracts.length>508)
   throw Error('W1_CONTRACTS_REQUIRED');
@@ -88,7 +120,8 @@ function ownParent(root,pointer){
  * - activeSessionId / sourceSessionId: from Worker and request respectively.
  * - expectedSourceSha256: SHA of source at initial Worker open.
  * - eventRegistry: indexEvents(verified local data/events-v1253.json).
- * - w1Contracts: trusted 02 TIME ID+saved-variant bindings, NOT UI input.
+ * - w1TargetReview: result of 02 TIME assessMinimalW1WriteTargets(),
+ *   recomputed from Worker-owned profile/snapshot/registry/ledger, NOT UI input.
  * - entries: UI selected proposed pointers+IDs+old/new timestamps (untrusted).
  * - targetBuild: explicit user-provided/Worker-validated Switch BID.
  *
@@ -97,7 +130,7 @@ function ownParent(root,pointer){
  */
 export async function createW1EditedP1gCopy({
  sourceBytes,sourceSessionId,activeSessionId,expectedSourceSha256,
- targetBuild,eventRegistry,w1Contracts,entries
+ targetBuild,eventRegistry,w1TargetReview,entries
 }={}){
  if(!(sourceBytes instanceof Uint8Array)||sourceBytes.length===0)
   throw Error('W1_SOURCE_INVALID');
@@ -111,7 +144,7 @@ export async function createW1EditedP1gCopy({
   throw Error('W1_EXPLICIT_SWITCH_BID_REQUIRED');
  if(!(eventRegistry instanceof Map)||eventRegistry.size!==508)
   throw Error('W1_VERIFIED_REGISTRY_REQUIRED');
- const allowedPairs=validateAllowlist(w1Contracts,eventRegistry);
+ const allowedPairs=validateAllowlist(contractsFromTimeReview(w1TargetReview,entries),eventRegistry);
  // The existing SafeProfileEditSession is the ONLY Clone/Encode/Reopen writer.
  const session=await SafeProfileEditSession.open({
   sourceBytes,sourcePlatform:PlatformFamily.Switch,codec:p1gPackagedProfileCodec
