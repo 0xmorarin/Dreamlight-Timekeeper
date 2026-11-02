@@ -33,6 +33,8 @@ try{
  await open.locator('img.semantic-icon').waitFor({state:'visible'});
  assert.equal(await open.locator('img.semantic-icon').evaluate(img=>img.complete&&img.naturalWidth===24),true);
  assert.match(await open.innerText(),/Open save/);
+ assert.equal(await open.locator('img.semantic-icon').evaluate(img=>img.alt===''&&img.getAttribute('aria-hidden')==='true'),true);
+
  await page.selectOption('#welcome-language','ja');
  assert.match(await open.innerText(),/セーブを開く/);
  await open.locator('img.semantic-icon').waitFor();
@@ -96,7 +98,9 @@ try{
  assert.ok(blocked>0,'Expected app UI icon request to be blocked.');
  assert.equal(await fallback.locator('#open-welcome img.semantic-icon').count(),0);
  assert.match(await fallback.locator('#open-welcome').innerText(),/Open save/);
- const [chooser]=await Promise.all([fallback.waitForEvent('filechooser'),fallback.locator('#open-welcome').click()]);
+ await fallback.locator('#open-welcome').focus();
+ assert.equal(await fallback.locator('#open-welcome').evaluate(el=>el===document.activeElement),true);
+ const [chooser]=await Promise.all([fallback.waitForEvent('filechooser'),fallback.keyboard.press('Enter')]);
  assert.equal(chooser.isMultiple(),false);
  await fallback.close();
  console.log('Chromium UI smoke PASS: three decoded app UI icons, Steam warning VP8L, locale switch, synthetic read-only save, mobile layout.');
