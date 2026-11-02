@@ -17,7 +17,7 @@ const led=compileW1NativeSemantics(registry,{woodTagPack:wood});
 const ix=indexEvents(registry);
 const old='2126-08-20T00:00:00Z',next='2022-09-06T00:00:00Z';
 const profile=(kind='ItemSpawning',eventId=2010000021)=>({
- GameInfo:{Version:626},World:{RecurringEvents:{'4':{[kind]:{RecurringEventItemID:eventId,NextOccurrence:old}}}},Unknown:{opaque:{utf8:'é',number:1.00}}
+ GameInfo:{Version:626},Player:{Name:'Synthetic',ListInventories:{'0':[{'ItemID':2,Quantity:1}]}},World:{RecurringEvents:{'4':{[kind]:{RecurringEventItemID:eventId,NextOccurrence:old}}}},Unknown:{opaque:{utf8:'é',number:1.00}}
 });
 const run=(p,id,kind,extra='normal',raw)=>{const r=spawnSync(BIN,[String(id),'4',kind,old,next,extra],{
  input:raw??JSON.stringify(p),encoding:'utf8',maxBuffer:300000,timeout:5000});
