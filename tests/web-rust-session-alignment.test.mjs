@@ -56,3 +56,23 @@ test('post-freeze Wand synthetic P1G and W1 witnesses do not grant product write
   assert.equal(later[k],false,k);
  assert.equal(fixture.integration.phaseB,'BLOCKED');
 });
+
+test('Wand latest research SHA scope remains distinct from accepted product API',async()=>{
+ const newest=fixture.observedLatest;
+ assert.equal(newest.wandPr312Head,'1909dd5e041db69dd3c6fc0f896d0c57e02c5a89');
+ assert.equal(newest.sourceBlobs.session,'5eaaaf5f503253f05d25bf15475d3f82df02e200');
+ assert.equal(newest.sourceBlobs.p1g,'c8cacdc5fa6afc7a60f388af561522e2867f5c9b');
+ assert.equal(newest.sourceBlobs.w1Evidence,'a028f82b0b3c2ca59815920291b0dfd45e722efe');
+ assert(newest.researchAvailable.some(x=>x.includes('encrypted copy')&&x.includes('product_encode_copy_authorized=false')));
+ assert(newest.researchAvailable.some(x=>x.includes('cross_domain_reference_closure_complete=false')));
+ for(const k of ['productP1gAccepted','completeDomainProjectionAccepted','stableWasmWorkerApiAccepted','writerGranted'])
+  assert.equal(newest[k],false,k);
+ const bounds=fixture.projectionResponseBoundary;
+ assert.deepEqual([bounds.maxRows,bounds.maxRowBytes,bounds.maxPageBytes,bounds.maxCursorChars],
+  [200,65536,2097152,512]);
+ const port=await source('src/lib/timekeeper/save-session-contract.ts');
+ assert.match(port,/ProjectionTransportBounds/);
+ assert.match(port,/view: string;\s*rows: readonly/);
+ assert.match(port,/wasmInstalled:false, writerGranted:false/);
+ assert.equal(fixture.integration.phaseB,'BLOCKED');
+});
