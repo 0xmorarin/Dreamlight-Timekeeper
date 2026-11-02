@@ -92,7 +92,8 @@ const verifiedOutputs=createVerifiedPairDownloadUi({
   original:$('retry-verified-original'),edited:$('retry-verified-edited')},
  triggerDownload:(kind,file)=>{
   if(state.loading||!state.sessionId||!(file?.buffer instanceof ArrayBuffer)||
-     !/^[^/\\\\\\u0000-\\u001f]{1,180}\\.p1g$/i.test(file.name)||
+     (file.name.length>180||!file.name.toLowerCase().endsWith('.p1g')||
+       [...file.name].some(ch=>ch==='/'||ch===String.fromCharCode(92)||ch.charCodeAt(0)<32))||
      !file.name.startsWith(kind+'_'))
    throw Error('Verified P1G filename or session invalid.');
   const url=URL.createObjectURL(new Blob([file.buffer],{type:'application/octet-stream'}));
