@@ -64,7 +64,7 @@
   resolveTimePreset(mode,{now:Date.now()});
  $: preview=(()=>{
   if(!snapshot||!chosen.length||!targetTime)return null;
-  try{return previewScope(snapshot,{tab,pointers:chosen.map(r=>r.pointer),world:'all',
+  try{return previewScope(snapshot,{pointers:chosen.map(r=>r.pointer),world:'all',
    mode:'custom',customTime:targetTime,now:Date.now()});}
   catch{return null;}
  })();
@@ -150,7 +150,7 @@
    isCurrentSession:(s:number)=>!busy&&s===sessionId&&Boolean(snapshot),
    saveOriginal:(response:{name:string;buffer:ArrayBuffer})=>saveFile('original_'+response.name,response.buffer)
   });
-  verified=createVerifiedPairDownloadUi({
+  verified=(createVerifiedPairDownloadUi as any)({
    currentSession:()=>busy?null:sessionId,
    currentPlanRevision:()=>revision,
    controls:{panel:pairPanel,both:pairBoth,original:pairOriginal,edited:pairEdited},
@@ -185,7 +185,7 @@
   <div class="notice" role="note"><span lang="en">Unofficial fan-made tool. Not affiliated with Disney or Gameloft. No rights to game images or trademarks claimed.</span><span lang="ja">非公式のファン制作ツールです。Disney／Gameloftとは無関係です。ゲーム画像や商標等の権利は主張しません。</span></div>
   <input bind:this={uploaded} id="tk-save-file" class="visually-hidden" type="file" accept=".p1g,.json,application/json" on:change={(e)=>open(e.currentTarget.files?.[0])}/>
   {#if !snapshot}
-   <section class="landing" class:drag on:dragover={(e)=>{e.preventDefault();drag=true;}} on:dragleave={()=>drag=false} on:drop={(e)=>{e.preventDefault();drag=false;void open(e.dataTransfer?.files?.[0]);}}>
+   <section class="landing" role="region" aria-label="Local save file drop area" class:drag on:dragover={(e)=>{e.preventDefault();drag=true;}} on:dragleave={()=>drag=false} on:drop={(e)=>{e.preventDefault();drag=false;void open(e.dataTransfer?.files?.[0]);}}>
     <img src={base+'/assets/app/ui/action/open-save.svg'} alt="" width="58" height="58"/>
     <h1>{t('tk.drop')}</h1>
     <button class="primary" type="button" disabled={busy} on:click={()=>uploaded?.click()}>{t('tk.open')}</button>
