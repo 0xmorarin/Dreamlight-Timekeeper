@@ -17,6 +17,9 @@ test('landing page is translation-ready with neutral version details and bilingu
  assert.match(page,/assets\/app\/release-notice\.css/);
  assert.equal((page.match(/class="release-notice"/g)||[]).length,2);
  assert.equal((page.match(/lang="ja">非公式のファン制作ツールです/g)||[]).length,2);
+ assert.equal((page.match(/Disney Dreamlight Valley and game-derived images, characters, logos/g)||[]).length,2);
+ assert.equal((page.match(/ゲーム由来の画像・キャラクター・ロゴ等の権利は/g)||[]).length,2);
+ assert.equal((page.match(/Disney、Gameloftおよび各権利者に帰属します/g)||[]).length,2);
  assert.equal((page.match(/lang="en">Unofficial fan-made tool/g)||[]).length,2);
 
  assert.doesNotMatch(page,/<header\b|DDV Save Timing Tools|Nintendo Switch/);
