@@ -93,3 +93,33 @@ test('reject forged event source, duplicate event IDs, forged image provenance a
  assert.throws(()=>recurringImageTargets(invalid,{strictBaseline:true}),/baseline drift/);
  assert.throws(()=>snapshotVisibleItemIds({rows:{}}),/rows array/);
 });
+
+
+test('original framed three-stream ItemID IconAddress census closes 106 typed provenance gaps, not image proof',async()=>{
+ const pinned=await json('data/item-image-coverage-v1253.json');
+ const gaps=pinned.items.filter(x=>x.sourceCrosswalk==='NO_STATIC_LINK_IN_SEVEN_CATEGORY_SOURCES');
+ const census=new Map(),guids=new Map();
+ for(const row of gaps){
+   const evidence=row.definitionAudit;
+   assert.equal(evidence?.spriteResolved,false);
+   assert.equal(evidence?.textureResolved,false);
+   assert.equal(evidence?.webpDecodedRgbaMatched,false);
+   assert.equal(row.publishedImage,'MISSING');
+   assert.equal(row.spritePathId,null);assert.equal(row.texturePathId,null);
+   assert.match(evidence.declaredIconAddressGuid,/^[0-9a-f]{32}$/);
+   assert.match(evidence.sourceSha256,/^[0-9a-f]{64}$/);
+   census.set(evidence.sourceStream,(census.get(evidence.sourceStream)||0)+1);
+   guids.set(evidence.declaredIconAddressGuid,(guids.get(evidence.declaredIconAddressGuid)||0)+1);
+ }
+ assert.equal(gaps.length,106);
+ assert.deepEqual(Object.fromEntries(census),{
+  'ActivityItem.json':35,'Furniture.json':52,'Companion.json':19
+ });
+ assert.equal(guids.size,25);
+ assert.equal(guids.get('04495f960b1edba4181ec51efa5e07d9'),81);
+ assert.equal(gaps.find(x=>x.itemId===120200013).definitionAudit.declaredIconAddressGuid,
+  gaps.find(x=>x.itemId===120200016).definitionAudit.declaredIconAddressGuid);
+ assert.equal(pinned.unresolvedDefinitionAudit.spriteTextureProof,0);
+ assert.equal(pinned.summary.publishedVerifiedItemImages,0);
+ assert.equal(pinned.summary.publishedMissingRecurringItemIDs,244);
+});
