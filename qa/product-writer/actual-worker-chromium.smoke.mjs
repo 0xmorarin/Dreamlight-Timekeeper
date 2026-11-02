@@ -86,6 +86,8 @@ try{
      providedSourceHash:Object.hasOwn(data,'expectedSourceSha256')});
     return this.inner.postMessage(data,...rest);
    }
+   addEventListener(...args){return this.inner.addEventListener(...args);}
+   removeEventListener(...args){return this.inner.removeEventListener(...args);}
    terminate(){this.inner.terminate();}
   };
  });
