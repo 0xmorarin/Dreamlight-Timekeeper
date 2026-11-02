@@ -166,7 +166,8 @@ for(const row of deficit){
  if(guid===defaultGuid)shared++;else specific++;
  if(x.sourceStream!==stream||x.sourceSha256!==expectedStreams[stream]||
     x.declaredIconAddressGuid!==guid||
-    x.status!==(guid===defaultGuid?'SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC':'DECLARED_ICON_ADDRESS_UNRESOLVED'))
+    x.status!==(guid===defaultGuid?'SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC':
+       companionTarget?'DECLARED_ICON_ADDRESS_RESOLVED_PRIVATE_SOURCE':'DECLARED_ICON_ADDRESS_UNRESOLVED'))
    fail('mismatched per-item original IconAddress provenance '+row.itemId);
 }
 if(deficit.length!==106||activity!==35||furniture!==52||companion!==19||
