@@ -21,6 +21,7 @@ const makeSave=(schema=626)=>({GameInfo:{Version:schema},Player:{Name:'Synthetic
     '4':{ItemSpawning:{RecurringEventItemID:2010000064,NextOccurrence:FUTURE}},
     '5':{SnippetSpawning:{RecurringEventItemID:2011300000,NextOccurrence:FUTURE}},
     '6':{ItemSpawning:{RecurringEventItemID:2010000093,NextOccurrence:FUTURE}},
+    '9':{ItemSpawning:{RecurringEventItemID:2010000120,NextOccurrence:FUTURE}},
     '7':{ItemSpawning:{RecurringEventItemID:2010000003,NextOccurrence:FUTURE}},
     '8':{ItemSpawning:{RecurringEventItemID:999999999,NextOccurrence:FUTURE}}
   },
@@ -84,7 +85,7 @@ test('inactive Fish, protected Moonstone, W2 Snippet and TimeBending never creat
   const p=makeSave(),s=snapshot(p);
   for(const [id,code] of [[2010200014,'INACTIVE_OR_UNKNOWN_SOURCE'],
     [2010000064,'PROTECTED_OR_NON_W1'],[2011300000,'PATH_OR_VARIANT_OUT_OF_SCOPE'],
-    [2010000093,'PROTECTED_OR_NON_W1']]){
+    [2010000093,'PROTECTED_OR_NON_W1'],[2010000120,'PROTECTED_OR_NON_W1']]){
     const r=assess(p,s,plan(s,[id]));
     assert.equal(r.rows[0].code,code);
     assert.equal(r.summary.candidates,0);
@@ -113,6 +114,13 @@ test('variant conflict, duplicate/unknown variants, event ID mismatch fail close
   delete p.World.RecurringEvents['0'].FutureUnknownVariant;
   p.World.RecurringEvents['0'].ItemSpawning.RecurringEventItemID=2010500008;
   assert.equal(assess(p,s,entry).rows[0].code,'PREFLIGHT_RECURRING_EVENT_ID_MISMATCH');
+  const p2=makeSave();
+  p2.World.RecurringEvents['1']={ItemSpawning:{
+    RecurringEventItemID:2010400001,NextOccurrence:'2026-11-02T00:00:00Z'
+  }};
+  const s2=snapshot(p2);
+  assert.equal(assess(p2,s2,plan(s2,[2010400001])).rows[0].code,
+    'SOURCE_VARIANT_NOT_SUPPORTED');
 });
 test('duplicate saved Event ID, changed pointer index, and unrecognized source definition are blocked',()=>{
   const p=makeSave(),s=snapshot(p),entry=plan(s,[2010000021]);
