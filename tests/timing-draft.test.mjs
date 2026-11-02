@@ -42,7 +42,10 @@ test('safe preview capacity, no-op and redo invalidation',()=>{
  assert.equal(draft.undo().entries[0].targetTime,'2127-01-01T00:00:00Z');
  draft.stage([p],'2129-01-01T00:00:00Z');
  assert.equal(draft.view().canRedo,false);
- assert.throws(()=>createTimingDraft(s,{maxEntries:2}));
+ const limited=createTimingDraft(s,{maxEntries:1});
+ assert.equal(limited.stage([s.rows[0].pointer],'2129-01-01T00:00:00Z').count,1);
+ assert.throws(()=>limited.stage([s.rows[1].pointer],'2129-01-01T00:00:00Z'));
+ assert.equal(limited.view().count,1);
  assert.throws(()=>createTimingDraft({...s,capabilities:{editingAllowed:true,exportEditedAllowed:false}}));
  assert.throws(()=>createTimingDraft({...s,rows:[...s.rows,s.rows[0]]}));
 });
