@@ -63,6 +63,16 @@ function validateSources(registry,ledger){
      !Array.isArray(ledger.rows)||ledger.rows.length!==SOURCE.definitionCount||
      typeof ledger.query!=='function')
     throw new Error('Unrecognized native/source variant ledger.');
+  const ledgerIds=new Set();
+  for(const row of ledger.rows){
+    const def=definitions.get(row.eventId);
+    if(!def||ledgerIds.has(row.eventId)||row.eventName!==def.name||
+       row.sourcePolicy!==def.eventPolicy||row.sourceDefinitionActive!==def.active||
+       !Array.isArray(row.linkedItemIds)||
+       !sameIds([...row.linkedItemIds].sort((a,b)=>a-b),linkedIds(def.items)))
+      throw new Error('Native/source definitions diverge.');
+    ledgerIds.add(row.eventId);
+  }
   return definitions;
 }
 
