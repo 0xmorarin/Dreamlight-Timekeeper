@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {readFile} from 'node:fs/promises';
-import {compileW1NativeSemantics} from '../src/timing-native-semantics.mjs';
+import {compileW1NativeSemantics,analyzeW1StaticBranches} from '../src/timing-native-semantics.mjs';
 const source=JSON.parse(await readFile(new URL('../data/events-v1253.json',import.meta.url)));
 const wood=JSON.parse(await readFile(new URL('../data/wand-iswood-crosswalk-v1253.json',import.meta.url)));
 const ledger=compileW1NativeSemantics(source,{woodTagPack:wood});
@@ -88,4 +88,49 @@ test('QR-R2 TIME modified source provenance and missing Wand pack fail closed wi
  assert.equal(JSON.stringify(source),original);
  assert.equal(JSON.stringify(wood),woodBefore);
  assert.throws(()=>ledger.rows.push({}),TypeError);
+});
+
+test('QR-R2 TIME future/now/overdue are only bounded static predicates, never spawn results',()=>{
+ const common={eventId:2010000021,saveKind:'ItemSpawning',nowTicks:1000n,maxIntervalTicks:300n};
+ const future=analyzeW1StaticBranches(ledger,{...common,nextOccurrenceTicks:1100n});
+ const equal=analyzeW1StaticBranches(ledger,{...common,nextOccurrenceTicks:1000n});
+ const overdue=analyzeW1StaticBranches(ledger,{...common,nextOccurrenceTicks:699n});
+ for(const r of [future,equal,overdue]){
+  assert.equal(r.status,'STATIC_PREDICATE_MODEL_ONLY');
+  assert.equal(r.writerAuthorized,false);
+  assert.equal(r.operationAllowlisted,false);
+  assert.equal(r.runtimeVerified,false);
+  assert.equal(r.spawnObserved,false);
+  assert.equal(r.afterExecuteRescheduleVerified,false);
+  assert.equal(r.pickupRescheduleVerified,false);
+  assert.equal(r.gameRestartRetentionVerified,false);
+ }
+ assert.equal(future.readinessCondition,false);
+ assert.equal(future.overdueClampCondition,false);
+ assert.equal(equal.readinessCondition,true);
+ assert.equal(equal.overdueClampCondition,false);
+ assert.equal(overdue.readinessCondition,true);
+ assert.equal(overdue.overdueClampCondition,true);
+});
+test('QR-R2 TIME protected and unknown IDs cannot enter even a static branch',()=>{
+ for(const [id,kind] of [[2010000064,'ItemSpawning'],[2010000093,'ItemSpawning'],
+  [2010000120,'ItemSpawning'],[2010200014,'FishSpawningInVillage'],
+  [2011300000,'SnippetSpawning'],[2010000021,'FutureUnknownVariant'],[2010009999,'ItemSpawning']]){
+  const r=analyzeW1StaticBranches(ledger,{eventId:id,saveKind:kind,
+   nowTicks:500n,nextOccurrenceTicks:600n,maxIntervalTicks:100n});
+  assert.equal(r.status,'EVENT_OUTSIDE_STATIC_W1_BRANCH_SCOPE');
+  assert.equal(r.readinessCondition,null);
+  assert.equal(r.writerAuthorized,false);
+  assert.equal(r.operationAllowlisted,false);
+ }
+});
+test('QR-R2 TIME native tick operands require bounded bigint and are not inferred from saved ISO timestamps',()=>{
+ const source={eventId:2010500008,saveKind:'FlowerSpawningInVillage',nowTicks:100n,nextOccurrenceTicks:50n};
+ for(const invalid of [
+  {nowTicks:'2026-11-02T00:00:00Z'},{nextOccurrenceTicks:-1n},
+  {nowTicks:1n<<62n},{maxIntervalTicks:-1n},{maxIntervalTicks:1n<<62n}
+ ])assert.throws(()=>analyzeW1StaticBranches(ledger,{...source,...invalid}),/bigint/);
+ const unknown=analyzeW1StaticBranches(ledger,source);
+ assert.equal(unknown.overdueClampCondition,null);
+ assert.equal(unknown.actualizeBranchReached,false);
 });
