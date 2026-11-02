@@ -7,13 +7,13 @@ globalThis.fetch=async url=>{const bytes=await readFile(fileURLToPath(url));retu
 let reply;
 globalThis.self={postMessage:data=>{reply?.(data);}};
 await import('../src/worker.mjs');
-function send(type,contents,name='profile.json'){
+function send(type,contents='',name='profile.json',options={}){
   const source=Buffer.from(contents,'utf8');
   const buffer=source.buffer.slice(source.byteOffset,source.byteOffset+source.byteLength);
   return new Promise((resolve,reject)=>{
     const fail=setTimeout(()=>reject(new Error('Worker did not respond')),3000);
     reply=data=>{clearTimeout(fail);resolve(data)};
-    self.onmessage({data:{id:2,type,name,buffer}});
+    self.onmessage({data:{id:2,type,name,buffer,...options}});
   });
 }
 const profile={GameInfo:{Version:626},Player:{Name:'TEST'},World:{RecurringEvents:{}}};
@@ -47,4 +47,35 @@ test('malformed profile.json returns a visible error result',async()=>{
   assert.equal(typeof result.error,'string');
   assert(result.error.length>0);
 });
+
+test('Worker preflight uses the active decoded save and blocks stale session tokens',async()=>{
+ const input={GameInfo:{Version:628},Player:{Name:'Synthetic'},World:{RecurringEvents:{
+   '12':{ItemSpawning:{RecurringEventItemID:2010000021,NextOccurrence:'2126-08-20T00:00:00Z'}}
+ }}};
+ const source=JSON.stringify(input);
+ const opened=await send('open',source,'source.json');
+ assert.equal(opened.ok,true);
+ assert(Number.isSafeInteger(opened.sessionId));
+ const row=opened.view.rows.find(x=>x.id===2010000021);
+ const entries=[{pointer:row.pointer,originalTime:row.time,targetTime:'2127-02-01T00:00:00Z'}];
+ const result=await send('preflight','', 'source.json',{sessionId:opened.sessionId,entries});
+ assert.equal(result.ok,true);
+ assert.equal(result.report.rows[0].code,'STRUCTURE_OBSERVED');
+ assert.equal(result.report.schema,628);
+ assert.equal(result.report.editedCopyAuthorized,false);
+ assert.equal(result.report.writerAuthorized,false);
+ const stale=await send('preflight','', 'source.json',{sessionId:opened.sessionId-1,entries});
+ assert.equal(stale.ok,false);
+ assert.match(stale.error,/stale/);
+ const backup=await send('backup','','source.json',{sessionId:opened.sessionId});
+ assert.equal(backup.ok,true);
+ assert.equal(Buffer.from(backup.buffer).toString('utf8'),source);
+ const forbiddenBackup=await send('backup','','source.json',{sessionId:opened.sessionId-1});
+ assert.equal(forbiddenBackup.ok,false);
+ const newer=await send('open',JSON.stringify(profile),'replacement.json');
+ assert.equal(newer.ok,true);
+ assert.notEqual(newer.sessionId,opened.sessionId);
+ assert.equal((await send('preflight','', 'source.json',{sessionId:opened.sessionId,entries})).ok,false);
+});
+
 test.after(()=>{globalThis.fetch=originalFetch;delete globalThis.self;});
