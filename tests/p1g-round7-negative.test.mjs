@@ -103,3 +103,39 @@ test('physically present ZIP archive and member comments can be decoded but cann
  }
  assert.deepEqual(Buffer.from(source),sourceCopy);
 });
+
+test('real matching unknown local/central ZIP extra records remain read-only and unrepackable',async()=>{
+ const baseline=makeSyntheticP1gProfile(root()),original=Buffer.from(baseline);
+ const tag=Buffer.from([0x34,0x12,0x00,0x00]); // valid unknown zero-length ZIP extra record
+ const bytes=physicalZip(baseline,zip=>{
+  const oldEocd=zip.length-22,oldCentral=zip.readUInt32LE(oldEocd+16);
+  const oldCentralSize=zip.readUInt32LE(oldEocd+12);
+  const localEnd=30+zip.readUInt16LE(26);
+  const withLocal=Buffer.concat([zip.subarray(0,localEnd),tag,zip.subarray(localEnd)]);
+  const newCentral=oldCentral+tag.length;
+  const centralNameEnd=newCentral+46+withLocal.readUInt16LE(newCentral+28);
+  const both=Buffer.concat([withLocal.subarray(0,centralNameEnd),tag,withLocal.subarray(centralNameEnd)]);
+  const newEocd=oldEocd+tag.length*2;
+  both.writeUInt16LE(tag.length,28);
+  both.writeUInt16LE(tag.length,newCentral+30);
+  both.writeUInt32LE(newCentral,newEocd+16);
+  both.writeUInt32LE(oldCentralSize+tag.length,newEocd+12);
+  return both;
+ });
+ const sourceCopy=Buffer.from(bytes);
+ const loaded=await p1gPackagedProfileCodec.loadProfile(bytes);
+ assert.deepEqual(parseSafeJson(loaded.jsonText),root());
+ assert.deepEqual(Buffer.from(loaded.metadata.zip.profileEntry.extra),tag);
+ assert.deepEqual(Buffer.from(loaded.metadata.zip.profileEntry.localHeader.extra),tag);
+ const report=auditP1gEnvelope({format:'packaged',metadata:loaded.metadata});
+ assert.equal(report.localHeaderFieldsMatchCentral,true);
+ assert.equal(report.localExtraMatchesCentral,true);
+ assert(report.findings.includes('ZIP_EXTRA_FIELDS_REBUILD_SEMANTICS_UNVERIFIED'));
+ assert.equal(report.repackageShapeObserved,false);
+ assert.equal(report.writerAuthorized,false);
+ await assert.rejects(p1gPackagedProfileCodec.createEncodedProfile(
+  JSON.stringify({...root(),FutureSynthetic:1}),loaded.metadata),
+  /ZIP_SOURCE_ENVELOPE_REBUILD_UNVERIFIED/);
+ assert.deepEqual(Buffer.from(bytes),sourceCopy);
+ assert.deepEqual(Buffer.from(baseline),original);
+});
