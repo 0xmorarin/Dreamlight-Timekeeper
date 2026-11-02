@@ -26,4 +26,8 @@ function workerGzipNeutralMime(){
   }
  };
 }
-export default defineConfig({plugins:[workerGzipNeutralMime(),sveltekit(),existingAssets()]});
+// Worker Rollup builds have an independent plugin pipeline in Vite 7.
+export default defineConfig({
+ plugins:[sveltekit(),existingAssets()],
+ worker:{plugins:()=>[workerGzipNeutralMime()]}
+});
