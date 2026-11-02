@@ -61,6 +61,85 @@ const NATIVE=Object.freeze({
     directRescheduleCall:false,indirectRescheduleViaDispatcherVerified:false,
     pickupOutcomeVerified:false,saveWriteVerified:false
   }),
+  w1GenerationConsumers:Object.freeze({
+    ItemSpawning:Object.freeze({
+      executeRVA:'0x057B9BC0',
+      conditionsListEvaluateRVA:'0x057BAA10',
+      sceneGridsReadRVA:'0x057BAC58',
+      areaShouldSpawnRVA:'0x057BB090',
+      itemAmountStateReadRVA:'0x057BC5BC',
+      findValidPositionRVA:'0x057BE080',
+      requestConstructRVA:'0x057BE6F8',
+      conclusion:'Scene/condition/area/item-count/position and PlaceOnGrid request paths exist',
+      placedGridObjectIdProven:false,liveObjectSpawnObserved:false
+    }),
+    WildCropsSpawningInVillage:Object.freeze({
+      executeRVA:'0x057C2BC0',
+      areaShouldSpawnRVA:'0x057C34C0',
+      maxAmountRVA:'0x057C38E8',
+      findValidPositionRVA:'0x057C3EE0',
+      placementResultCallRVA:'0x057C4190',
+      placementResultBranchRVA:'0x057C4194',
+      placementFailureBypassRVA:'0x057C41D8',
+      gridIdLoadRVA:'0x057C41A0',
+      gridObjectIdLoadRVA:'0x057C41A8',
+      setupGardenProductionRVA:'0x057C41D4',
+      setupSignature:'CreateGardeningTile.SetupGardenProduction(Item seedItem, uint gridID, uint gridObjectID, ...)',
+      conclusion:'Successful placement-result branch passes gridID and gridObjectID into production setup',
+      placedGridObjectIdProvenForRuntime:false,liveObjectSpawnObserved:false
+    }),
+    FlowerSpawningInVillage:Object.freeze({
+      executeRVA:'0x057C99E0',
+      tryGetGridRVA:'0x057CA490',
+      placementHelperRVA:'0x057CAFA0',
+      placementCallRvas:Object.freeze(['0x057CAE20','0x057CAE38']),
+      nestedFindValidPositionRVA:'0x057CB464',
+      conclusion:'Two placement helper calls; inner helper searches for valid position and uses indirect grid methods',
+      indirectAddObjectTargetResolved:false,liveObjectSpawnObserved:false
+    }),
+    FishSpawningInVillage:Object.freeze({
+      executeRVA:'0x057C6890',
+      areaLookupRVA:'0x057C6C34',
+      waterCapacityRVA:'0x057C6C44',
+      countPendingFishRVA:'0x057C6E68',
+      rarityChoiceRVA:'0x057C6F94',
+      addPendingFishRVA:'0x057C70F4',
+      sourceDefinitionCandidatesKnownInactive:46,
+      sourceDefinitionCandidatesAllInactive:true,
+      conclusion:'Generates PendingFish records, not direct evidence of GridObject placement',
+      liveRippleObserved:false,gridObjectIdProven:false
+    })
+  }),
+  pendingFishDispatchConsumer:Object.freeze({
+    worldEventInterface:'IWorldEventDispatcher.RaisePendingFishRemoved',
+    interfaceSlot:39,
+    profileDispatcherImplementationRVA:'0x05A8DB40',
+    profileDispatcherEventFieldOffset:'0x1F8',
+    fishingSystemHandlerRVA:'0x033FDB20',
+    fishingSystemListFieldOffset:'0xA8',
+    bodyOfWaterRemoveFishCallRVA:'0x033FDB5C',
+    bodyOfWaterRemoveFishTargetRVA:'0x033E89F0',
+    handlerSubscribedByRuntimeVerified:false,
+    handlerDirectRescheduleCall:false,
+    bodyOfWaterDirectRescheduleCall:false,
+    indirectReschedulePathVerified:false,
+    removedPendingFishIsGridObject:false,
+    gameRuntimeObserved:false
+  }),
+  runtimeAcceptanceCases:Object.freeze([
+    ['ItemSpawning','SOURCE_HINT_ONLY','due_empty_vs_existing_grid','record NextOccurrence, LastOccurrence, grid IDs, counts, actual appearance'],
+    ['ItemSpawning','SOURCE_HINT_ONLY','manual_pickup_or_remove','record LastOccurrence, NextOccurrence, callbacks; compare before/after'],
+    ['WildCropsSpawningInVillage','SOURCE_HINT_ONLY','due_empty_vs_max_gardens','record garden grid IDs, production states and exact quantity'],
+    ['WildCropsSpawningInVillage','SOURCE_HINT_ONLY','harvest_then_reload','record garden tile removal, grid IDs and NextOccurrence'],
+    ['FlowerSpawningInVillage','SOURCE_HINT_ONLY','due_empty_vs_max_flowers','record placement result, area and object IDs'],
+    ['FlowerSpawningInVillage','SOURCE_HINT_ONLY','flower_pickup_then_reload','record removal, NextOccurrence, grid IDs and eventual regeneration'],
+    ['FishSpawningInVillage','INACTIVE_SOURCE_ONLY','passive_pending_fish_add_remove','no activation; observe PendingFish IDs, body of water and alternate scheduler only'],
+    ['PROTECTED_OR_UNKNOWN','BLOCKED','negative_no_mutation','Moonstone, TimeBending, W2, inactive, unknown and new schema remain blocked']
+  ].map(([variant,eligibility,caseId,observations])=>Object.freeze({
+    variant,eligibility,caseId,observations,
+    originalOwnerSaveMutationAllowed:false,
+    requiresSeparateHardwareAcceptance:true,passed:false
+  }))),
   primaryBinary:Object.freeze({
     file:'DDVRE v1.25.3 ExeFS/main',bytes:96027926,
     mainSHA256:SOURCE.mainSHA256,moduleIdPrefix:SOURCE.buildId,

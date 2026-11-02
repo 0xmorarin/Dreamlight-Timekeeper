@@ -444,3 +444,98 @@ test('RemovePendingFish mutates PendingFish map and notifies a dispatcher, not d
   assert.equal(fish.status,'INACTIVE_SOURCE_DEFINITION');
   assert.equal(fish.editedExportAuthorized,false);
 });
+
+
+const decodeTBZTarget=(rva,opcode)=>{
+  assert.equal((opcode&0x7E000000)>>>0,0x36000000);
+  const imm14=(opcode>>>5)&0x3fff;
+  return rva+4*(imm14&0x2000?imm14-0x4000:imm14);
+};
+test('Item spawning gates object candidates by source scene, conditions, Area and grid state',()=>{
+  const c=native.native.w1GenerationConsumers.ItemSpawning;
+  assert.equal(c.executeRVA,native.traces.ItemSpawning.executeRVA);
+  assert.equal(c.conditionsListEvaluateRVA,'0x057BAA10');
+  assert.equal(c.sceneGridsReadRVA,'0x057BAC58');
+  assert.equal(c.areaShouldSpawnRVA,'0x057BB090');
+  assert.equal(c.itemAmountStateReadRVA,'0x057BC5BC');
+  assert.equal(c.findValidPositionRVA,'0x057BE080');
+  assert.equal(c.requestConstructRVA,'0x057BE6F8');
+  assert.equal(decodeBL(0x057BAC58,0x9407040E),0x0597BC90);
+  assert.equal(decodeBL(0x057BB090,0x979A4358),0x03E4BDF0);
+  assert.equal(decodeBL(0x057BE080,0x97DC287C),0x04EC8270);
+  assert.equal(c.placedGridObjectIdProven,false);
+  assert.equal(c.liveObjectSpawnObserved,false);
+});
+test('WildCrops generated grid IDs pass to garden production only after conditional placement result',()=>{
+  const c=native.native.w1GenerationConsumers.WildCropsSpawningInVillage;
+  assert.equal(c.executeRVA,native.traces.WildCropsSpawningInVillage.executeRVA);
+  assert.equal(decodeBL(0x057C3EE0,0x97DC10E4),0x04EC8270);
+  assert.equal(decodeBL(0x057C4190,0x97876478),0x0399D370);
+  assert.equal(decodeTBZTarget(0x057C4194,0x36000220),0x057C41D8);
+  assert.equal(c.placementFailureBypassRVA,'0x057C41D8');
+  assert.equal(c.gridIdLoadRVA,'0x057C41A0');
+  assert.equal(c.gridObjectIdLoadRVA,'0x057C41A8');
+  assert.equal(decodeBL(0x057C41D4,0x97E4B1F3),0x050F09A0);
+  assert.equal(c.setupSignature.includes('uint gridID, uint gridObjectID'),true);
+  assert.equal(c.placedGridObjectIdProvenForRuntime,false);
+});
+test('Flower has two placement-helper callsites with valid-grid search but no runtime result proof',()=>{
+  const c=native.native.w1GenerationConsumers.FlowerSpawningInVillage;
+  assert.equal(c.tryGetGridRVA,'0x057CA490');
+  assert.equal(c.placementHelperRVA,'0x057CAFA0');
+  assert.deepEqual(c.placementCallRvas,['0x057CAE20','0x057CAE38']);
+  assert.equal(decodeBL(0x057CAE20,0x94000060),0x057CAFA0);
+  assert.equal(decodeBL(0x057CAE38,0x9400005A),0x057CAFA0);
+  assert.equal(decodeBL(0x057CB464,0x97DBF383),0x04EC8270);
+  assert.equal(c.indirectAddObjectTargetResolved,false);
+  assert.equal(c.liveObjectSpawnObserved,false);
+});
+test('fish source definitions for ripple spawning are all inactive, not runnable W1 claims',()=>{
+  const fish=events.events.filter(e=>e.group==='釣り'&&e.subgroup==='波紋の生成');
+  assert.equal(fish.length,46);
+  assert(fish.every(e=>e.active===false));
+  const c=native.native.w1GenerationConsumers.FishSpawningInVillage;
+  assert.equal(c.sourceDefinitionCandidatesKnownInactive,46);
+  assert.equal(c.sourceDefinitionCandidatesAllInactive,true);
+  assert.equal(decodeBL(0x057C6E68,0x94000216),0x057C76C0);
+  assert.equal(decodeBL(0x057C6F94,0x940CBE5F),0x05AF6910);
+  assert.equal(decodeBL(0x057C70F4,0x94071D7B),0x0598E6E0);
+  for(const e of fish){
+    const row=native.query(e.id,'FishSpawningInVillage');
+    assert.equal(row.sourceDefinitionActive,false);
+    assert.equal(row.operationEvidence,'BLOCKED');
+    assert.equal(row.writerAuthorized,false);
+  }
+  assert.equal(c.liveRippleObserved,false);
+  assert.equal(c.gridObjectIdProven,false);
+});
+test('RemovePendingFish dispatcher slot 39 maps to pending-fish removal UI consumer, not timer mutation',()=>{
+  const d=native.native.pendingFishDispatchConsumer;
+  assert.equal(native.native.pendingFishRemoval.dispatcherSlotArgument,39);
+  assert.equal(d.worldEventInterface,'IWorldEventDispatcher.RaisePendingFishRemoved');
+  assert.equal(d.interfaceSlot,39);
+  assert.equal(d.profileDispatcherImplementationRVA,'0x05A8DB40');
+  assert.equal(d.profileDispatcherEventFieldOffset,'0x1F8');
+  assert.equal(d.fishingSystemHandlerRVA,'0x033FDB20');
+  assert.equal(d.fishingSystemListFieldOffset,'0xA8');
+  assert.equal(decodeBL(0x033FDB5C,0x97FFABA5),0x033E89F0);
+  assert.equal(d.handlerSubscribedByRuntimeVerified,false);
+  assert.equal(d.handlerDirectRescheduleCall,false);
+  assert.equal(d.bodyOfWaterDirectRescheduleCall,false);
+  assert.equal(d.indirectReschedulePathVerified,false);
+  assert.equal(d.removedPendingFishIsGridObject,false);
+  assert.equal(d.gameRuntimeObserved,false);
+});
+test('hardware minimum matrix is static, immutable and never authorizes a source-hint save write',()=>{
+  const matrix=native.native.runtimeAcceptanceCases;
+  assert.equal(matrix.length,8);
+  assert.equal(new Set(matrix.map(x=>x.caseId)).size,8);
+  assert(matrix.every(x=>x.originalOwnerSaveMutationAllowed===false&&x.requiresSeparateHardwareAcceptance===true&&!x.passed));
+  assert.equal(matrix.filter(x=>x.variant==='FishSpawningInVillage').length,1);
+  assert.equal(matrix.find(x=>x.variant==='FishSpawningInVillage').eligibility,'INACTIVE_SOURCE_ONLY');
+  assert.equal(matrix.find(x=>x.variant==='PROTECTED_OR_UNKNOWN').eligibility,'BLOCKED');
+  assert.throws(()=>{matrix[0].passed=true},TypeError);
+  assert.equal(native.query(2010000021,'ItemSpawning').nativePerEventEvidence,'UNKNOWN');
+  assert.equal(native.query(2010000021,'ItemSpawning').operationEvidence,'BLOCKED');
+  assert.equal(native.query(2010000021,'ItemSpawning').editedExportAuthorized,false);
+});
