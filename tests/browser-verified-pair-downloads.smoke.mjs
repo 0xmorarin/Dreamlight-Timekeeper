@@ -55,7 +55,7 @@ try{
  await page.waitForFunction(()=>window.__test.attempts.length===4);
  assert.deepEqual((await page.evaluate(()=>window.__test.attempts)).slice(-2),['original','edited']);
  assert.match(await page.locator('#status').innerText(),/TRIGGER_FAILED/);
- await page.waitForFunction(n=>window.__test.attempts.length>=4,n=>n,{timeout:5000});
+ // Explicit retry below is a separate user gesture, not the first two-file request.
  await page.evaluate(()=>window.__test.unblock());
  const retry=page.waitForEvent('download');
  await page.locator('#edited').click();
