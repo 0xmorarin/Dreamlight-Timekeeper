@@ -110,13 +110,26 @@ export function auditItemImageCoverage(registry,manifest,{snapshot=null,strictBa
 
 /** Non-UI data contract for 03 WEB's SvelteKit migration. The URL is relative
  * to the app's own static root; do not use item names or guessed image paths. */
-export function resolveItemImageView(manifest,item,{basePath='./'}={}){
+export function resolveItemImageView(manifest,item,{basePath='./',coverageAudit=null}={}){
   const itemId=item?.id;
   const mapped=resolveIconAsset(manifest,itemId);
   const en=safeName(item?.en)||safeName(item?.name)||'Item '+String(itemId??'unknown');
   const ja=safeName(item?.ja);
-  if(!mapped)return {itemId:validId(itemId)?itemId:null,status:'MISSING',
-    url:null,alt:{en,ja:ja||en},fallback:'text',lazy:true};
+  if(!mapped){
+    // Research-side ambiguity can suppress misleading thumbnails, never grant one.
+    // Neither a declared IconAddress GUID nor private-pixel proof supplies a URL.
+    const trustedBaseline=coverageAudit?.schema==='TIMEKEEPER_ITEM_IMAGE_BASELINE_AUDIT_V1'&&
+      coverageAudit?.source?.eventRawSHA256===BASELINE.eventSourceSha256&&
+      coverageAudit?.readOnlyResolutionContract?.schema==='timekeeper.item-image-resolution.v1'&&
+      Array.isArray(coverageAudit.items)&&coverageAudit.items.length===BASELINE.recurringItemIdCount;
+    const sourceRow=trustedBaseline?
+      coverageAudit.items.find(x=>x.itemId===itemId):null;
+    const ambiguous=sourceRow?.readOnlyImageResolution?.status==='AMBIGUOUS'&&
+      sourceRow.readOnlyImageResolution.url===null;
+    return {itemId:validId(itemId)?itemId:null,
+      status:ambiguous?'AMBIGUOUS':'MISSING',
+      url:null,alt:{en,ja:ja||en},fallback:'text',lazy:true};
+  }
   if(typeof basePath!=='string'||basePath.includes('..')||basePath.startsWith('//'))
     throw new Error('Invalid static image URL base.');
   return {itemId,status:'VERIFIED',url:basePath+mapped.path,
