@@ -1,0 +1,33 @@
+name: 03 WEB Phase B actual edited P1G Chromium
+on:
+  push:
+    branches: [feat/web-phaseb-verified-p1g-worker]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-edited-copy:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check product Worker syntax and unchanged narrow writer ownership
+        run: |
+          node --check src/worker.mjs
+          node --check src/app.mjs
+          node --check src/ui-verified-pair-downloads.mjs
+          ! grep -q 'persistentReplaceAuthorized:true' src/worker.mjs
+          ! grep -q 'URL.*upload' src/worker.mjs
+      - name: CORE and TIME bounded synthetic writer and UX-negative regressions
+        run: node --test tests/w1-edited-p1g-copy.test.mjs tests/w1-edited-p1g-zip-denial.test.mjs tests/w1-minimal-write-contract.test.mjs tests/ui-verified-pair-downloads.test.mjs tests/ui-separate-downloads.test.mjs
+      - name: Real Chromium setup
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Actual product Worker encrypted edited P1G encode, downloads and reopen
+        run: node tests/browser-web-phaseb-edited-p1g.smoke.mjs
+      - name: Regression existing read-only source backup and session
+        run: node tests/browser-web-session.smoke.mjs
