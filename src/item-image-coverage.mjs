@@ -112,7 +112,17 @@ export function auditItemImageCoverage(registry,manifest,{snapshot=null,strictBa
  * to the app's own static root; do not use item names or guessed image paths. */
 export function resolveItemImageView(manifest,item,{basePath='./',coverageAudit=null}={}){
   const itemId=item?.id;
-  const mapped=resolveIconAsset(manifest,itemId);
+  // A source hash or an entry-level "verified" flag alone cannot authorize
+  // browser media. Validate the *whole* versioned publication manifest before
+  // exposing any URL (including path uniqueness and all entry provenance).
+  // Fail closed to a text fallback if an optional image manifest is malformed.
+  let mapped=null;
+  try {
+    if(manifest?.source?.status==='VERIFIED_STEAM_ASSETS'){
+      validateIconManifest(manifest);
+      mapped=resolveIconAsset(manifest,itemId);
+    }
+  } catch { /* Unapproved/broken manifest: no image request. */ }
   const en=safeName(item?.en)||safeName(item?.name)||'Item '+String(itemId??'unknown');
   const ja=safeName(item?.ja);
   if(!mapped){
@@ -130,7 +140,7 @@ export function resolveItemImageView(manifest,item,{basePath='./',coverageAudit=
       status:ambiguous?'AMBIGUOUS':'MISSING',
       url:null,alt:{en,ja:ja||en},fallback:'text',lazy:true};
   }
-  if(typeof basePath!=='string'||basePath.includes('..')||basePath.startsWith('//'))
+  if(typeof basePath!=='string'||!/^(?:\.\/|\/|)(?:[A-Za-z0-9_-]+\/)*$/.test(basePath))
     throw new Error('Invalid static image URL base.');
   return {itemId,status:'VERIFIED',url:basePath+mapped.path,
     alt:{en,ja:ja||en},fallback:'text',lazy:true,
