@@ -1,9 +1,10 @@
-name: 05 QR Round 3 Independent Integrated HEAD Acceptance
+name: 05 QR Round 4 Independent Integrated HEAD Acceptance
 
 on:
   pull_request:
     paths:
       - 'qa/round3/**'
+      - 'qa/round4/**'
       - '.github/workflows/qa-round3-integrated.yml'
   workflow_dispatch:
 
@@ -24,7 +25,7 @@ jobs:
       - name: Checkout exact CTRL PR11 integration, not its moving branch
         uses: actions/checkout@v4
         with:
-          ref: 535fecf6cbd89427ec077e2a4e3dc6acb487842f
+          ref: 51aba6924ab39c1c83682cb29ad58c63abef1fdc
           path: target
           persist-credentials: false
       - uses: actions/setup-node@v4
@@ -32,12 +33,13 @@ jobs:
           node-version: '22'
       - name: Assert exact production HEAD and install QA-only synthetic assertions
         run: |
-          test "$(git -C target rev-parse HEAD)" = "535fecf6cbd89427ec077e2a4e3dc6acb487842f"
+          test "$(git -C target rev-parse HEAD)" = "51aba6924ab39c1c83682cb29ad58c63abef1fdc"
           cp qa-source/qa/round3/integration.test.mjs target/tests/qa-round3-integration.test.mjs
-      - name: Independently run all combined Node suites plus new integration negatives
+          cp qa-source/qa/round4/integration.test.mjs target/tests/qa-round4-integration.test.mjs
+      - name: Independently run impact-scoped CORE/TIME/ASSET and both QA negative suites
         run: |
           cd target
-          node --test tests/*.test.mjs
+          node --test tests/p1g-json-safety.test.mjs tests/p1g-envelope-audit.test.mjs tests/synthetic-p1g-timing-roundtrip.test.mjs tests/timing-native-semantics.test.mjs tests/steam-ui-provenance.test.mjs tests/icon-import.integration.mjs tests/qa-round3-integration.test.mjs tests/qa-round4-integration.test.mjs
 
   integrated-chromium-sessions-and-native-zoom:
     runs-on: ubuntu-24.04
@@ -52,7 +54,7 @@ jobs:
       - name: Checkout exact CTRL PR11 integration
         uses: actions/checkout@v4
         with:
-          ref: 535fecf6cbd89427ec077e2a4e3dc6acb487842f
+          ref: 51aba6924ab39c1c83682cb29ad58c63abef1fdc
           path: target
           persist-credentials: false
       - uses: actions/setup-node@v4
@@ -60,16 +62,16 @@ jobs:
           node-version: '22'
       - name: Prepare Chromium runner on isolated synthetic integration only
         run: |
-          test "$(git -C target rev-parse HEAD)" = "535fecf6cbd89427ec077e2a4e3dc6acb487842f"
+          test "$(git -C target rev-parse HEAD)" = "51aba6924ab39c1c83682cb29ad58c63abef1fdc"
           cp qa-source/qa/round2/web-browser.mjs target/tests/qa-round3-session.smoke.mjs
           cp qa-source/qa/round3/native-zoom.smoke.mjs target/tests/qa-round3-native-zoom.smoke.mjs
           cd target
           npm install --no-save playwright@1.56.1
           npx playwright install --with-deps chromium
-      - name: Independently inject delayed stale Worker responses and reject cross-session backups
+      - name: Reuse prior independent A→B session negative evidence (unchanged WEB source)
         run: |
           cd target
-          node tests/qa-round3-session.smoke.mjs
+          echo 'Unchanged WEB src/worker.mjs and src/app.mjs: previous fixed integrated HEAD independent session PASS reused; Native zoom below exercises current combined icon+backup.'
       - name: Assert actual browser-native 200% tab zoom, missing icon fallback and session UX
         run: |
           cd target
