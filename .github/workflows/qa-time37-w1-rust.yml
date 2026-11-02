@@ -1,0 +1,34 @@
+name: 05 QR TIME37 Real Wand Rust W1 Research Witness
+on:
+  pull_request:
+    paths:
+      - 'qa/05qr-pr37-w1-independent.test.mjs'
+      - '.github/workflows/qa-time37-w1-rust.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent-time37:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Ensure TIME37 product code frozen
+        run: git diff --quiet f982f3055cad3569504e1b6a3279abc8d775acdd HEAD -- tests/w1-rust-research-bridge tests/w1-offline-rust-witness-parity.test.mjs src data
+      - uses: actions/checkout@v4
+        with:
+          repository: DreamwishWand/web
+          ref: c6b152512d3bc901fd1474dbcfcb07253ae1b347
+          path: vendor-wand
+          persist-credentials: false
+      - name: Compile actual fixed Wand Rust W1 research bridge
+        run: cargo build --quiet --manifest-path tests/w1-rust-research-bridge/Cargo.toml
+      - name: Independent targeted Rust-versus-JS W1 source identity and denial checks
+        env:
+          WAND_W1_RESEARCH_BINARY: ${{ github.workspace }}/tests/w1-rust-research-bridge/target/debug/timekeeper-w1-witness-probe
+        run: node --test qa/05qr-pr37-w1-independent.test.mjs
+      - name: Research means no product writer
+        run: echo 'STRUCTURAL_ONLY=1; NATIVE_RUNTIME=UNVERIFIED; W1_PRODUCT_WRITER=OFF'
