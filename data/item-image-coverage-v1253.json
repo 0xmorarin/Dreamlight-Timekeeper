@@ -573,13 +573,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -612,13 +625,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -651,13 +677,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -690,13 +729,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -759,13 +811,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P0",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 4,
+        "notAnImageApproval": true
       }
     },
     {
@@ -3269,13 +3334,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P0",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 16,
+        "notAnImageApproval": true
       }
     },
     {
@@ -3323,13 +3401,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P0",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 16,
+        "notAnImageApproval": true
       }
     },
     {
@@ -3377,13 +3468,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P0",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 16,
+        "notAnImageApproval": true
       }
     },
     {
@@ -3417,13 +3521,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P1",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 2,
+        "notAnImageApproval": true
       }
     },
     {
@@ -3508,13 +3625,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P1",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 3,
+        "notAnImageApproval": true
       }
     },
     {
@@ -3547,13 +3677,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -3586,13 +3729,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -3625,13 +3781,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -3664,13 +3833,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -3703,13 +3885,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -3742,13 +3937,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -3829,13 +4037,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -3868,13 +4089,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -3907,13 +4141,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -3946,13 +4193,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -3985,13 +4245,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -4026,13 +4299,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P1",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 3,
+        "notAnImageApproval": true
       }
     },
     {
@@ -4065,13 +4351,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -4106,13 +4405,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P1",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 3,
+        "notAnImageApproval": true
       }
     },
     {
@@ -4193,13 +4505,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -4329,13 +4654,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P1",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 2,
+        "notAnImageApproval": true
       }
     },
     {
@@ -4369,13 +4707,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P1",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 2,
+        "notAnImageApproval": true
       }
     },
     {
@@ -4409,13 +4760,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P1",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 2,
+        "notAnImageApproval": true
       }
     },
     {
@@ -4875,13 +5239,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -4914,13 +5291,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -4953,13 +5343,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -4992,13 +5395,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5031,13 +5447,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5070,13 +5499,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5109,13 +5551,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5148,13 +5603,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5187,13 +5655,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5226,13 +5707,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5265,13 +5759,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5304,13 +5811,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5343,13 +5863,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5382,13 +5915,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5421,13 +5967,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5460,13 +6019,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5499,13 +6071,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5538,13 +6123,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5577,13 +6175,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5629,13 +6240,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P0",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 14,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5668,13 +6292,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5707,13 +6344,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5746,13 +6396,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5785,13 +6448,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5824,13 +6500,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5863,13 +6552,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5902,13 +6604,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5941,13 +6656,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -5982,13 +6710,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P1",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 3,
+        "notAnImageApproval": true
       }
     },
     {
@@ -6023,13 +6764,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P1",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 3,
+        "notAnImageApproval": true
       }
     },
     {
@@ -6064,13 +6818,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P1",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 3,
+        "notAnImageApproval": true
       }
     },
     {
@@ -6105,13 +6872,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P1",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 3,
+        "notAnImageApproval": true
       }
     },
     {
@@ -6144,13 +6924,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -6183,13 +6976,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -6222,13 +7028,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -6261,13 +7080,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -6300,13 +7132,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -6339,13 +7184,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -6378,13 +7236,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -6417,13 +7288,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -6456,13 +7340,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -6495,13 +7392,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -6534,13 +7444,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -6573,13 +7496,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -6612,13 +7548,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -6651,13 +7600,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -6690,13 +7652,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -6729,13 +7704,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P2",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 1,
+        "notAnImageApproval": true
       }
     },
     {
@@ -6771,13 +7759,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P0",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 4,
+        "notAnImageApproval": true
       }
     },
     {
@@ -6813,13 +7814,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P0",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 4,
+        "notAnImageApproval": true
       }
     },
     {
@@ -6855,13 +7869,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P0",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 4,
+        "notAnImageApproval": true
       }
     },
     {
@@ -6897,13 +7924,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P0",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 4,
+        "notAnImageApproval": true
       }
     },
     {
@@ -7744,13 +8784,26 @@
           "primaryBundle": "usedplaceholders_assets_all.bundle",
           "primaryBundleSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
           "catalogKeyIndex": 20671,
-          "spriteResolved": false
+          "spriteResolved": false,
+          "genericSourceSpritePathId": "13192077654445607906",
+          "genericSourceTexturePathId": "15528772250824494050",
+          "perItemSpritePathId": null,
+          "perItemTexturePathId": null,
+          "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
+          "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
+          "releaseImageUrl": null
         }
       },
       "readOnlyImageResolution": {
         "status": "AMBIGUOUS",
         "reason": "SHARED_CATALOG_PLACEHOLDER_81_ITEMIDS",
         "url": null
+      },
+      "unresolvedVariantPriority": {
+        "tier": "P1",
+        "metric": "NUMBER_OF_RECURRING_EVENT_REFERENCES",
+        "references": 2,
+        "notAnImageApproval": true
       }
     },
     {
@@ -8000,5 +9053,61 @@
       "sharedPlaceholders": 81
     },
     "status": "EXACT_CATALOG_DEPENDENCY_ONLY_NOT_RENDERED_ITEM_VARIATION_PROOF"
+  },
+  "sharedPlaceholderAssetInspection": {
+    "evidence": "ORIGINAL_UNITYFS_METADATA_AND_PRIVATE_PIXEL_MATCH_NOT_ITEM_SPECIFIC",
+    "sourceBundle": "usedplaceholders_assets_all.bundle",
+    "sourceSha256": "b839b22a5522e3c0b66a3a5831f427b5baac947d2ab56216e80d8a5273cb2eaf",
+    "unityRevision": "6000.0.62f1",
+    "cab": "CAB-5cfb74fab599979a6c24300d60fa8800",
+    "declaredIconAddressGuid": "04495f960b1edba4181ec51efa5e07d9",
+    "assetBundleGuidMatches": 2,
+    "sourceObjectCount": 60,
+    "sourceClasses": {
+      "1": 10,
+      "4": 10,
+      "21": 10,
+      "23": 5,
+      "28": 11,
+      "33": 5,
+      "43": 3,
+      "65": 1,
+      "114": 3,
+      "142": 1,
+      "213": 1
+    },
+    "genericSpriteName": "icon_2x2",
+    "genericSpritePathId": "13192077654445607906",
+    "genericTexturePathId": "15528772250824494050",
+    "genericSpriteLinksTexture": true,
+    "genericTextureWidth": 265,
+    "genericTextureHeight": 246,
+    "genericTextureFormat": "RGBA32",
+    "rawTextureRgbaBytes": 260760,
+    "rawTextureRgbaSha256": "42daa1b8ebadd81fc48eef2a8ecc2fb3f8eac4878f4f57d28b3dd44a40e28add",
+    "privateLosslessWebpSha256": "34be7222ed315fec5ee36b840fa163997a2fb4e1e764ac8f2cb180714ad34408",
+    "privateLosslessWebpBytes": 4316,
+    "webpEncoder": "Pillow/libwebp lossless=true method=6 exact=true",
+    "privateReopenedRgbaIdentical": true,
+    "privatePrototypeIsItemThumbnail": false,
+    "perItemRuntimeVariant": "UNKNOWN",
+    "perItemSourceSpriteTexture": "UNPROVEN",
+    "pixelsOrGameBundlePublished": false,
+    "rights": "NOT_ESTABLISHED",
+    "confidence": "STATIC_SOURCE_GENERIC_ONLY"
+  },
+  "sharedPlaceholderPriority": {
+    "rule": "P0 if recurring reference count >=4; P1 if 2-3; P2 if 1; no inference from category or ItemID numbering",
+    "counts": {
+      "P0": 9,
+      "P1": 12,
+      "P2": 60
+    },
+    "sourceTotal": 81,
+    "sourceReferences": 173,
+    "runtimeVariantAcceptance": "UNKNOWN",
+    "sortWithinTier": "more recurring references, then ascending ItemID",
+    "ownersAdditionalSaveTargets": "UNKNOWN_NOT_AUTHORIZED",
+    "effect": "RESEARCH_ORDER_ONLY"
   }
 }
