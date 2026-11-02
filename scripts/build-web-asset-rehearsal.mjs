@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {cp,mkdir,readFile,writeFile,rm} from 'node:fs/promises';
+import {cp,mkdir,readdir,readFile,writeFile,rm} from 'node:fs/promises';
 import {join,resolve,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 
@@ -19,7 +19,11 @@ const part=(source,start,end)=>{
  return source.slice(a,b);
 };
 await rm(output,{recursive:true,force:true});
-await cp(repo,output,{recursive:true,filter:path=>!['.git','node_modules','_asset_reference','.integration-preview'].some(s=>path===join(repo,s)||path.startsWith(join(repo,s)+'/'))});
+await mkdir(output,{recursive:true});
+for(const entry of await readdir(repo)){
+ if(['.git','node_modules','_asset_reference','.integration-preview'].includes(entry))continue;
+ await cp(join(repo,entry),join(output,entry),{recursive:true});
+}
 for(const name of ['assets','src/ui-assets.mjs','src/icon-assets.mjs',
  'data/steam-icons-v1253.json','data/app-ui-icons.json','data/steam-ui-icons-v1253.json']){
  await mkdir(dirname(join(output,name)),{recursive:true});
