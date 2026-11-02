@@ -581,6 +581,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -633,6 +641,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -685,6 +701,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -737,6 +761,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -819,6 +851,16 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "EXACT_FIELD5_AND_CATALOG_DEPENDENCY",
+          "gameObjectGuid": "15ab1bf3c1e1b944092df83b56bc722b",
+          "primaryDependencyBundle": "crops_gameplay_assets_assets/buttonmushroom_seed.prefab_8799857c.bundle"
         }
       },
       "readOnlyImageResolution": {
@@ -3342,6 +3384,16 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "EXACT_FIELD5_AND_CATALOG_DEPENDENCY",
+          "gameObjectGuid": "55ec22d60aa43474eb46ee3ee86cf767",
+          "primaryDependencyBundle": "environment-evilweeds_assets_all.bundle"
         }
       },
       "readOnlyImageResolution": {
@@ -3409,6 +3461,16 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "EXACT_FIELD5_AND_CATALOG_DEPENDENCY",
+          "gameObjectGuid": "406457b807226364c8d71d0521f1754f",
+          "primaryDependencyBundle": "environment-evilweeds_assets_all.bundle"
         }
       },
       "readOnlyImageResolution": {
@@ -3476,6 +3538,16 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "EXACT_FIELD5_AND_CATALOG_DEPENDENCY",
+          "gameObjectGuid": "5fe074629bf09c74481951442c105fbc",
+          "primaryDependencyBundle": "environment-evilweeds_assets_all.bundle"
         }
       },
       "readOnlyImageResolution": {
@@ -3529,6 +3601,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -3633,6 +3713,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -3685,6 +3773,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -3737,6 +3833,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -3789,6 +3893,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -3841,6 +3953,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -3893,6 +4013,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -3945,6 +4073,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -4045,6 +4181,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -4097,6 +4241,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -4149,6 +4301,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -4201,6 +4361,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -4253,6 +4421,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -4307,6 +4483,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -4359,6 +4543,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -4413,6 +4605,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -4513,6 +4713,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -4662,6 +4870,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -4715,6 +4931,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -4768,6 +4992,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -5247,6 +5479,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -5299,6 +5539,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -5351,6 +5599,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -5403,6 +5659,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -5455,6 +5719,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -5507,6 +5779,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -5559,6 +5839,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -5611,6 +5899,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -5663,6 +5959,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -5715,6 +6019,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -5767,6 +6079,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -5819,6 +6139,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -5871,6 +6199,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -5923,6 +6259,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -5975,6 +6319,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -6027,6 +6379,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -6079,6 +6439,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -6131,6 +6499,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -6183,6 +6559,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -6248,6 +6632,16 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "EXACT_FIELD5_AND_CATALOG_DEPENDENCY",
+          "gameObjectGuid": "81a93bbe63c8af347b8e85d6d9ca72ac",
+          "primaryDependencyBundle": "environment-gameplay-all_assets_assets/holeblocker_f95b46b3.bundle"
         }
       },
       "readOnlyImageResolution": {
@@ -6300,6 +6694,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -6352,6 +6754,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -6404,6 +6814,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -6456,6 +6874,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -6508,6 +6934,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -6560,6 +6994,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -6612,6 +7054,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -6664,6 +7114,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -6718,6 +7176,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -6772,6 +7238,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -6826,6 +7300,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -6880,6 +7362,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -6932,6 +7422,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -6984,6 +7482,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -7036,6 +7542,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -7088,6 +7602,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -7140,6 +7662,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -7192,6 +7722,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -7244,6 +7782,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -7296,6 +7842,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -7348,6 +7902,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -7400,6 +7962,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -7452,6 +8022,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -7504,6 +8082,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -7556,6 +8142,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -7608,6 +8202,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -7660,6 +8262,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -7712,6 +8322,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -7767,6 +8385,16 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "EXACT_FIELD5_AND_CATALOG_DEPENDENCY",
+          "gameObjectGuid": "1eff20c6a8dc26340bcc5054f3d89005",
+          "primaryDependencyBundle": "environment-gameplay-all_assets_assets/mini01_e8f30f50.bundle"
         }
       },
       "readOnlyImageResolution": {
@@ -7822,6 +8450,16 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "EXACT_FIELD5_AND_CATALOG_DEPENDENCY",
+          "gameObjectGuid": "8dd17e99da5d5f642b01fda950b7b8a1",
+          "primaryDependencyBundle": "environment-gameplay-all_assets_assets/mini01_e8f30f50.bundle"
         }
       },
       "readOnlyImageResolution": {
@@ -7877,6 +8515,16 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "EXACT_FIELD5_AND_CATALOG_DEPENDENCY",
+          "gameObjectGuid": "3ff67a2781a95c743a682fa90e072c47",
+          "primaryDependencyBundle": "environment-gameplay-all_assets_assets/mini01_e8f30f50.bundle"
         }
       },
       "readOnlyImageResolution": {
@@ -7932,6 +8580,16 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "EXACT_FIELD5_AND_CATALOG_DEPENDENCY",
+          "gameObjectGuid": "62386bf96fc0b224081973a98f2cbed2",
+          "primaryDependencyBundle": "environment-gameplay-all_assets_assets/mini01_e8f30f50.bundle"
         }
       },
       "readOnlyImageResolution": {
@@ -8792,6 +9450,14 @@
           "variantStatus": "UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC",
           "genericTextureEvidenceState": "PRIVATE_GENERIC_SOURCE_RGBA_EQ_VP8L_NOT_PER_ITEM",
           "releaseImageUrl": null
+        },
+        "worldObjectSource": {
+          "itemDbField": 5,
+          "status": "V1253_ORIGINAL_GAMEOBJECT_CATALOG_STATIC_ONLY",
+          "catalogResourceType": "UnityEngine.GameObject",
+          "candidateRenderingStrategy": "UNKNOWN_RUNTIME",
+          "doesNotResolve2DThumbnail": true,
+          "additionalSourcePathProof": "SOURCE_CENSUS_ONLY"
         }
       },
       "readOnlyImageResolution": {
@@ -9109,5 +9775,43 @@
     "sortWithinTier": "more recurring references, then ascending ItemID",
     "ownersAdditionalSaveTargets": "UNKNOWN_NOT_AUTHORIZED",
     "effect": "RESEARCH_ORDER_ONLY"
+  },
+  "field5WorldObjectCatalogAudit": {
+    "gameVersion": "1.25.3",
+    "source": "Original framed ActivityItem/Furniture/Companion itemlist protobuf field 5 and original Addressables compact catalog",
+    "censusScope": "81 shared-IconAddress target ItemIDs",
+    "originalCatalogSha256": "69351845e0b99db577ff70af2512de780f815d561027ceccab9f8f19d081c562",
+    "originalCatalogSourceHashes": {
+      "ActivityItem.json": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
+      "Furniture.json": "823316081efe513c3920ff5a870fae03b68fa5f6ff6be2de0de5c5eb87aaa674",
+      "Companion.json": "26534a8ea7f94212ea6a7cc03818ecb632cca60d9789175a80eb1b5ba384abea"
+    },
+    "sourceItemCount": 81,
+    "distinctField5Guids": 81,
+    "gameObjectCatalogEntries": 81,
+    "eachGuidMatchesExactlyOneGameObjectEntry": true,
+    "resourceType": "UnityEngine.GameObject",
+    "uniquePrimaryBundleCount": 32,
+    "originalCatalogDependencyRouteFamilies": {
+      "environment-gameplay-all_assets_assets": 57,
+      "activityitem-ephemeral_assets_assets": 7,
+      "crops_gameplay_assets_assets": 4,
+      "environment-evilweeds_assets_all.bundle": 3,
+      "activities-narrativeassets_assets_assets": 3,
+      "environment-elements_assets_assets": 3,
+      "environment-dreamlightcracks_assets_all.bundle": 1,
+      "activityitem-fishing_assets_assets": 1,
+      "activities-missions_assets_assets": 1,
+      "activities-snippetcatching-snippets_assets_assets": 1
+    },
+    "privateCanonical81RouteMetadataSha256": "6d6d397b527736ade58d472d4693563f9484fd61f4cfe1e912d525a48f3f7057",
+    "privateRouteMetadataRowCount": 81,
+    "highPriorityObjectRoutesRecorded": 9,
+    "field5NativeUsageVerified": false,
+    "actualRuntimeVariantVerified": false,
+    "renderedThumbsMatched": 0,
+    "publicImageUrlsGranted": 0,
+    "rights": "NOT_ESTABLISHED",
+    "note": "81 have independent GameObject catalog addresses for their WORLD OBJECTS separate from the shared field4 IconAddress, but those 81 GameObject assets DO NOT establish the actual game UI thumbnail image/2D render pipeline; release AMBIGUOUS must remain."
   }
 }
