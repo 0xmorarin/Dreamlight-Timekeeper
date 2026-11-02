@@ -43,7 +43,7 @@ async function testProfile(profileName,root){
   assert.equal(await page.locator('#welcome .release-notice [lang="ja"]').isVisible(),true);
   const manifest=await page.evaluate(async()=>{
    const r=await fetch('./data/steam-ui-icons-v1253.json');
-   assert(r.ok);return r.json();
+   if(!r.ok)throw new Error('HTTP runtime manifest unavailable');return r.json();
   });
   const expected=profileName==='owner_svg_text_only'?0:4;
   assert.equal(Object.keys(manifest.icons).length,expected);
