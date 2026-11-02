@@ -21,7 +21,8 @@ test('each UI semantic candidate has distinct Sprite and Texture references, dim
   assert.ok(!keys.has(r.key)&&!spritePaths.has(r.spritePathId)&&!texturePaths.has(r.texturePathId));
   keys.add(r.key);spritePaths.add(r.spritePathId);texturePaths.add(r.texturePathId);
  }
- assert.equal(data.candidates.filter(x=>x.pixelTrial.startsWith('PASS')).length,19);
+ assert.equal(data.candidates.filter(x=>x.pixelTrial.startsWith('PASS')).length,21);
+ assert.deepEqual(data.candidates.filter(x=>x.pixelTrial==='PASS_PRIVATE_REAL_SOURCE_2026-11-02').map(x=>x.key),['tab.shops','tab.daily','world.hgw']);
  assert.equal(data.candidates.filter(x=>x.reviewState.startsWith('HOLD')).length,3);
 });
 test('game-world icon candidates are individually version-verified and held keyart is not misclassified',()=>{
