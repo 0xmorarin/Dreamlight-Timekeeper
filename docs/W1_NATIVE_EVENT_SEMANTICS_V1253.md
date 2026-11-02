@@ -1,5 +1,42 @@
 # 02 TIME — W1 per-event Native semantics ledger (Switch v1.25.3)
 
+## Round 6 — Item amount field correction, DiffGrid overlay count and conditional object-ID allocation (2026-11-02)
+
+**Evidence:** new RVA/word checks from the unchanged v1.25.3 original Switch `main` SHA256 `16957e6ed546daeb196f296362d5ded885fad9eeff70584870f645e1204ca94a`, decompressed NSO text SHA256 `15d17f0b9e95d022368bbd89ec8feacec6f1feb2439bc9a37fe2f6bf2078a328`, BID `9A239D3DB569756D`, and associated exact `dump.cs`. Existing SHA acceptance, catch-up, NextOccurrence / EndDate, Fish event handlers and prior W1 method entries are **reused**, not retested. Source data stays private; only word/RVA fixtures are pinned.
+
+### New negative: ItemSpawning.get_ItemAmountState is not a read of Amount or scene total
+
+`ItemSpawning.Execute` at `0x057BC5BC BL 0x04E66530` calls `GridState.get_ItemAmountState()`. A subsequent null guard leads to `0x057BC5C4` exact opcode `F9401414 = LDR X20,[X0,#0x28]`. In the exact `Definitions.Items.AmountWithState` structure, the **Amount** nullable integer is at `+0x18`, **State** at `+0x20`, and **AssignedPlayer** nullable integer at **`+0x28`**. Hence the consumed subfield at that callsite is **AssignedPlayer**, not Amount. A Round 5 high-level summary treating this accessor as an existing-scene item count was overbroad: it identifies *an AmountWithState access*, but the actual traced load is *not* proof of a numeric live GridObject cap. Other quantity paths, including virtual IGrid/ObjectCount and item-specific count state, remain unresolved. This correction does not mean that no quantity guards exist.
+
+### DiffGrid is a default/modified/removed overlay, NOT just ModifiedObjects
+
+Exact IL2CPP `Meta.Grids.DiffGrid` fields: `ModifiedObjects` map `+0x40`, `RemovedObjects` repeated IDs `+0x48`, `NextGridObjectID` `+0x50`, `defaultGrid` runtime reference `+0x58`. In its `ObjectCount()` entry `0x04E8DA90` / common predicate counter `0x04E8DAA0`, Native `0x04E8DBA8 LDR X19,[X21,#0x58]` obtains defaultGrid; `0x04E8DBE8 LDR X9,[X21,#0x48]` obtains removedObjects; `0x04E8DBF8 LDR W8,[X8,#0x18]`, `0x04E8DBFC LDR W9,[X9,#0x18]`, `0x04E8DC00 SUB W8,W8,W9` calculate a base default-count minus removed-count; `0x04E8DC08 LDR X0,[X21,#0x40]` accesses the modified map; conditional `0x04E8DF04 ADD W8,W8,#1` increments for a matching modified element. This count core also contains predicate-dependent filtering/iteration; the summary **is not** an exact universal Area limit formula. Critically, simply counting `ModifiedObjects` omits default objects and removal overlays.
+
+A direct BL scan over each W1 Execute range found **0 direct** calls to `Grid.ObjectCount` or `DiffGrid.ObjectCount` and **0 direct** calls to concrete `DiffGrid` methods, but the same instruction windows contain indirect BLR calls (Item 33, WildCrops 12, Flower 10, Fish 0). Therefore an `IGrid` virtual call might count objects: **no direct BL does not imply no population checking**. Actual Area-specific count and the object category selected by a virtual count remain UNKNOWN.
+
+### Conditional DiffGrid.AddObject implementation bridges allocated GridObject.ID and ItemID
+
+The exact `DiffGrid.Meta.Grids.IGridInternal.AddObject` entry is `0x04E8BC70`, with inner `DiffGrid.AddObject(GridObject,...)` at `0x04E8BEA0`. The source includes `0x04E8BDB4 LDR W8,[X22,#0x50]`, `0x04E8BDB8 ADD W9,W8,#1`, `0x04E8BDBC STR W9,[X22,#0x50]` to advance the next-ID field. `0x04E8BDC8 STP W8,W27,[X0,#0x18]` places that allocated ID and the item ID into the newly constructed `GridObject` at offsets `+0x18` and `+0x1C`. It then delegates to the inner AddObject. The latter checks a placement validation helper at `0x04E8BF70 BL 0x04EC4FA0`, branches on failure at `0x04E8BF7C TBZ → 0x04E8C080`, and accesses `ModifiedObjects` via `0x04E8BF80 LDR X0,[X21,#0x40]` for a map-update helper `0x04E8BFA0 BL 0x03C13CF0`.
+
+**Ordering matters:** the transient next-ID increment precedes the inner placement-success test. Neither that counter increment nor the intermediate object construction proves a successful placement, persisted map delta, or a stable ID after failed transaction rollback. The inner/outer concrete DiffGrid chain is source-verified, but the W1 Execute sites use interface/transaction paths, and **W1→this concrete implementation dispatch has not been proved for a specific save**. `GridObject.Source/From` may be absent; no `RecurringEventItemID`→`GridObject.ID` linkage is directly established by this field store.
+
+### Four specific event/source witnesses and explicit evidence gates
+
+| Event ID | Verified source definition name and type hint | Required before concluding actual game instance |
+| --- | --- | --- |
+| `2010000003` | `NightThornSpawningVillage!UrbanNightThornSpawn`, ItemSpawning candidate | Exact schema626 saved oneof, Area/Grid routing, actual object ID and unambiguous provenance |
+| `2010000021` | `Wood!Wetland_Softwood`, ItemSpawning candidate | Same plus count of relevant wood ItemIDs in **effective default/modified/removed** grid |
+| `2010400001` | `UrbanWildCropSpawn`, WildCrops candidate | Same plus garden production state and GridObject.ID from successful placement |
+| `2010500008` | `UrbanDandelionYellow`, Flower candidate | Same plus measured successful placement and existing flower counts |
+
+These four source records are active in the exact 508-record definition inventory, but the links to the **actual save subtype and concrete GridObject** are not yet accepted. For real-save read-only provenance, reuse **Wand 01A/01B/01E** rather than reimplementing Grid normalization or ConditionalEvent addresses. In the separate v1.25.3 01E study, only a small subset of many active ConditionalEvent addresses materialized as save-local direct/modified objects; `GridObject.From` was frequently absent. This is a strong negative on ID-by-item inference, not a W1 runtime proof. See [existing Wand read-only consumer contract](https://docs.google.com/document/d/1YrlS4uudzzDEXzSn29DkfmBOs9YkqYSfip6By5gSzYQ/edit) and [01B World/Grid handoff](https://docs.google.com/document/d/1d4l-GG5W0F3cSRIltgZyA_ZTzf8Nv7r0QG1h7Sr2x2w/edit).
+
+### Timing and required minimal observation (not executed)
+
+Retain Round 5's eight-case matrix. For each **active, actually identified saved variant** compare: (A) future `NextOccurrence` with existing objects, (B) overdue due-schedule with empty vs near-cap effective Grid, (C) pickup/removal without timestamp edit, and (D) normal save, exit and cold reload. Observe both direct `Grid.Objects` and DiffGrid default + modified − removed overlay, next-ID counters, `ItemID`, `GridObject.ID`, optional `From`, conditional event address references and category state, not just JSON string counts. `Actualize` branch true and `GetMaxIntervalToFullyExecute` computed value alone never prove spawn or population. Source EventID, ItemID, GridObjectID and PendingFishID remain separate. Moonstone, TimeBending, W2, inactive Fish, unknown variants and newer schema are BLOCKED. Intentional 2126 timestamps are valid inputs. **No Writer, edited export, Grid deletion or Moonstone relocation. STATIC_ONLY remains STATIC_ONLY; all hardware cases unexecuted.**
+
+---
+
 ## Round 5 — Execute creation Consumers, fish dispatcher & minimum hardware acceptance (2026-11-02)
 
 **NEW source-static evidence only.** The following RVAs and AArch64 words were read from the existing verified v1.25.3 NSO text (raw main SHA-256 `16957e6ed546daeb196f296362d5ded885fad9eeff70584870f645e1204ca94a`; decompressed text SHA-256 `15d17f0b9e95d022368bbd89ec8feacec6f1feb2439bc9a37fe2f6bf2078a328`; Switch BID `9A239D3DB569756D`). No fresh build or new version comparison was implied. Exact method targets were matched against the same v1.25.3 `dump.cs` and Round 4 `GetMaxIntervalToFullyExecute` / expiry / `LastOccurrence` results were reused rather than re-established. No console load, original-save change, or private binary commit.
