@@ -28,7 +28,9 @@ try{
  assert(started,'SvelteKit preview base path unavailable');
  browser=await chromium.launch({headless:true,args:['--no-sandbox']});
  const context=await browser.newContext({acceptDownloads:true,viewport:{width:1280,height:900},timezoneId:'UTC'});
- const page=await context.newPage(),errors=[];
+ const page=await context.newPage(),errors=[],failedRequests=[];
+ page.on('requestfailed',req=>failedRequests.push({url:req.url(),reason:req.failure()?.errorText}));
+ page.on('console',msg=>{if(msg.type()==='error')errors.push('console: '+msg.text());});
  page.on('pageerror',e=>errors.push(e.message));
  const profile={
   GameInfo:{Version:626,InitialVersion:518,LastSaveDeviceInfo:{deviceType:'DeviceType_Switch'}},
@@ -48,7 +50,16 @@ try{
  assert.equal(await page.locator('#tk-language').inputValue(),'ja','manual locale persisted');
  await page.locator('#tk-language').selectOption('en');
  await page.locator('#tk-save-file').setInputFiles({name:'synthetic.p1g',mimeType:'application/octet-stream',buffer:original});
- await page.getByText('SvelteKit Fixture').waitFor({timeout:25000});
+ try{await page.getByText('SvelteKit Fixture').waitFor({timeout:15000});}
+ catch(e){
+  console.error('SVELTEKIT_OPEN_DIAGNOSTICS',JSON.stringify({
+   alerts:await page.locator('.alert').allTextContents(),
+   notices:await page.locator('.progress').allTextContents(),
+   workspace:await page.locator('.workspace-head').count(),
+   errors,failedRequests
+  }));
+  throw e;
+ }
  assert.equal(await page.locator('.tabs button').count(),4,'four tabs');
  assert.equal(await page.locator('.event-row').count(),1);
  assert.equal(await page.locator('button').filter({hasText:'Original backup'}).count(),1);
