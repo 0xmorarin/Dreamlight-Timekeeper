@@ -71,7 +71,7 @@ try{
   const decoded=await page.evaluate(async entries=>{
     return Promise.all(entries.map(async x=>{
       const img=new Image();
-      img.src=new URL('../'+x.path,import.meta.url).href;
+      img.src=new URL('./'+x.path,location.href).href;
       await img.decode();
       return {
         key:x.key,kind:x.kind,naturalWidth:img.naturalWidth,naturalHeight:img.naturalHeight,
