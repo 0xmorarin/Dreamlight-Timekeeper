@@ -74,3 +74,10 @@ test('save container rebuild risks are diagnostic only in the UI',()=>{
  assert.match(app,/containerAuditTitle/);
  assert.doesNotMatch(page,/id="export-edited"/);
 });
+
+test('field-level compatibility classification is display-only and not a save writer',()=>{
+ assert.match(app,/compatibilityCodes/);
+ assert.match(app,/compatibilitySummary/);
+ assert.match(app,/response\.compatibility/);
+ assert.doesNotMatch(page,/id="export-edited"/);
+});
