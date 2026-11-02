@@ -1,0 +1,25 @@
+name: 05 QR Nov RC ASSET23 Field5 Placeholder Metadata Delta
+on:
+  pull_request:
+    paths:
+      - 'qa/05qr-nov-rc-asset23-field5.test.mjs'
+      - '.github/workflows/qa-nov-rc-asset23-field5.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  asset-field5:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Pin data and source at frozen ASSET23 HEAD
+        run: |
+          git diff --quiet 0195af35cf1935dcdb66435f85719def20279e64 HEAD -- data/item-image-coverage-v1253.json scripts/audit-shared-placeholder-source.py scripts/verify-item-image-coverage.mjs
+      - name: Independently compare 8f3516a -> 0195af3 field5 metadata and no publication
+        run: node --test qa/05qr-nov-rc-asset23-field5.test.mjs
+      - name: Rights boundary
+        run: echo 'Metadata only. No protected image bytes; no pixel-parity or redistribution approval'
