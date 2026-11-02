@@ -57,10 +57,18 @@ export async function stageSveltekitReviewOnly({
 }={}){
  if(typeof outputRoot!=='string'||!outputRoot.trim())
   throw Error('REVIEW_STAGE_EXPLICIT_OUTPUT_REQUIRED');
- const source=await realpath(resolve(sourceRoot));
- const build=await realpath(resolve(buildRoot??join(source,'build')));
- const st=await lstat(build);
- if(st.isSymbolicLink()||!st.isDirectory()||!inside(source,build))
+ // Check the caller-supplied leaf BEFORE realpath: realpath hides symlinks.
+ // A buildRoot alias must not silently pass the provenance boundary.
+ const sourcePath=resolve(sourceRoot);
+ const buildPath=resolve(buildRoot??join(sourcePath,'build'));
+ const [sourceStat,buildStat]=await Promise.all([lstat(sourcePath),lstat(buildPath)]);
+ if(sourceStat.isSymbolicLink()||!sourceStat.isDirectory())
+  throw Error('REVIEW_STAGE_SYMLINK_OR_INVALID_SOURCE_ROOT');
+ if(buildStat.isSymbolicLink()||!buildStat.isDirectory())
+  throw Error('REVIEW_STAGE_SYMLINK_OR_INVALID_BUILD_ROOT');
+ const source=await realpath(sourcePath);
+ const build=await realpath(buildPath);
+ if(!inside(source,build))
   throw Error('REVIEW_STAGE_COMPILED_BUILD_REQUIRED');
  const output=resolve(outputRoot);
  await verifyReviewDestination(source,build,output);
