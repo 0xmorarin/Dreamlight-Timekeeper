@@ -132,5 +132,5 @@ test('QR-R2 TIME native tick operands require bounded bigint and are not inferre
  ])assert.throws(()=>analyzeW1StaticBranches(ledger,{...source,...invalid}),/bigint/);
  const unknown=analyzeW1StaticBranches(ledger,source);
  assert.equal(unknown.overdueClampCondition,null);
- assert.equal(unknown.actualizeBranchReached,false);
+ assert.equal(unknown.actualizeBranchReached,null); // Unreached native path is UNKNOWN, not confirmed false
 });
