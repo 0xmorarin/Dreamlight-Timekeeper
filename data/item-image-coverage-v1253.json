@@ -125,9 +125,25 @@
         "sourceStream": "ActivityItem.json",
         "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
         "declaredIconAddressGuid": "202f205f8ad0fd94daddf84fe6862586",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "default_6f9a5e20.bundle",
+          "bundleSha256": "acb7b4da1b360e37a9dc7b1b0781199d64c5269a37524335c68f4050e89161b7",
+          "unityCab": "CAB-f7398e9067a3b6cd767cb5fd5c34a752",
+          "spritePathId": "17931729342756677081",
+          "texturePathId": "18223675087384405465",
+          "spriteName": "FestiveBamboo",
+          "width": 256,
+          "height": 256,
+          "compression": "DXT5",
+          "decodedRgbaSha256": "625c099f45597453abc802a65f85d24d849e9c22d4ab5aee6b6cea6faed15f47",
+          "prototypeWebpSha256": "de221ff74dd28451ef580aad2da3f11bbbd10759ce81658d28012c212f0b662c",
+          "prototypeWebpBytes": 42492,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        }
       }
     },
     {
@@ -3214,9 +3230,25 @@
         "sourceStream": "ActivityItem.json",
         "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
         "declaredIconAddressGuid": "c2d8a0bf85476b545b2a322f99c2bcff",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "lootpresent_3acec346.bundle",
+          "bundleSha256": "15056b25a79bf546131625d3dc87c50bbb56b153dee5e1af5f2d7a40d5718cc9",
+          "unityCab": "CAB-818ef776d92b6130c397a483df193a65",
+          "spritePathId": "12235514117036361459",
+          "texturePathId": "3735864404189103859",
+          "spriteName": "LootPresentForaging",
+          "width": 1024,
+          "height": 1024,
+          "compression": "BC7",
+          "decodedRgbaSha256": "4cc6cc0b77b017a41c0ecec80db924fe915225b00d9df17fd895edab9662b529",
+          "prototypeWebpSha256": "8b0cfba58f29ea9b4d489c36e0293591a0aaa51fd0f6537a80e19b57f98f6266",
+          "prototypeWebpBytes": 396534,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        }
       }
     },
     {
@@ -3241,9 +3273,25 @@
         "sourceStream": "ActivityItem.json",
         "sourceSha256": "20e4f190fc4481325cb4311a4a3f3e6fc57d3f1ca7a67acffd9c9008394ba5d4",
         "declaredIconAddressGuid": "ff56d467e029f7643ba98059c63e2332",
-        "spriteResolved": false,
-        "textureResolved": false,
-        "webpDecodedRgbaMatched": false
+        "spriteResolved": true,
+        "textureResolved": true,
+        "webpDecodedRgbaMatched": true,
+        "privatePixelProof": {
+          "sourceBundle": "lootpresent_3acec346.bundle",
+          "bundleSha256": "15056b25a79bf546131625d3dc87c50bbb56b153dee5e1af5f2d7a40d5718cc9",
+          "unityCab": "CAB-818ef776d92b6130c397a483df193a65",
+          "spritePathId": "5390452463298091721",
+          "texturePathId": "8430391546967694025",
+          "spriteName": "LootPresentOnline",
+          "width": 1024,
+          "height": 1024,
+          "compression": "BC7",
+          "decodedRgbaSha256": "7401fca7a415ba7736324c3d101e3f1ff100b61ef53c9878f864d4e13f5afc6e",
+          "prototypeWebpSha256": "93a1399ba7f0fb2db3ca72684f4d8a9308d9edac2035eef56e6f8a66a61388be",
+          "prototypeWebpBytes": 387988,
+          "encoder": "Pillow/libwebp lossless=true method=6 exact=true",
+          "status": "PRIVATE_SOURCE_VP8L_RGBA_EQUAL_NOT_RELEASED"
+        }
       }
     },
     {
@@ -5659,12 +5707,15 @@
     "commonGuidCountInGaps": 81,
     "otherGuidCountInGaps": 25,
     "sourceGuidOnly": true,
-    "spriteTextureProof": 0,
+    "spriteTextureProof": 3,
     "publicImageProof": 0,
     "rights": "NOT_ESTABLISHED",
-    "note": "All 106 missing seven-bundle links have exact v1.25.3 typed itemlist and IconAddress GUIDs (35 ActivityItem + 52 Furniture + 19 Companion). No original Sprite/Texture mapping or deployable WebP follows from this; one Companion GUID aliases two IDs and 81 targets share a common GUID.",
+    "note": "106/106 original typed definition GUIDs; 3 exact source UnityFS Sprite/Texture references + private lossless WebP decoded RGBA matched, still no public image bytes/permission. Remaining 103 require source relation or correct display variant. 81 share a generic GUI address; no assumption of unique item visual.",
     "companionRecords": 19,
     "commonGuidOccurrencesInCompleteThreeStreams": 1798,
-    "distinctSourceIconAddressGuidsInGaps": 25
+    "distinctSourceIconAddressGuidsInGaps": 25,
+    "privatePrototypeRgbaMatched": 3,
+    "privatePrototypeWebpBytes": 827014,
+    "privatePixelEvidenceJsonSha256": "59e2e920570f83812210f4eebcf2013935322ed21dcf43dae4c8eaba48b5c0b8"
   }
 }
