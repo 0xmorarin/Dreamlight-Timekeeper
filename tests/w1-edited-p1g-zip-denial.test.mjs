@@ -25,6 +25,7 @@ const sourceProfile=()=>({GameInfo:{Version:626},Player:{Name:'Synthetic'},
  NextOccurrence:OLD}}},Opaque:{keep:[null,'not a timing field']}}});
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const args=sourceBytes=>({sourceBytes,sourceSessionId:1,activeSessionId:1,
+ getActiveSessionId:()=>1,
  expectedSourceSha256:sha(sourceBytes),targetBuild:{platform:'switch',kind:'switch-bid',value:'9A239D3DB569756D'},
  eventRegistry:registry,w1TargetReview:review,entries:[entry]});
 function modifyArchive(source,mutate){
