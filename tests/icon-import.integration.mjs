@@ -45,7 +45,7 @@ test('offline importer preserves visible and fully transparent RGBA and verifies
   const importer=join(root,'scripts','import-steam-icons.mjs');
   const verifier=join(root,'scripts','verify-icon-assets.mjs');
   await exec(process.execPath,[importer,planPath,output],{maxBuffer:8*1024*1024});
-  for(const file of ['steam-ui-icons-v1253.json','app-ui-icons.json'])
+  for(const file of ['steam-ui-icons-v1253.json','app-ui-icons.json','steam-ui-candidates-v1253.json'])
    await copyFile(join(root,'data',file),join(output,'data',file));
   const manifest=JSON.parse(await readFile(join(output,'data','steam-icons-v1253.json'),'utf8'));
   assert.equal(manifest.icons[id].sourceSha256,sha(png));

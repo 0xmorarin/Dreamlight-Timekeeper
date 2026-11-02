@@ -7,3 +7,17 @@ Read-only integration candidate only. Exact upstream blobs copied without rebase
 The PR #10 one-shot ephemeral `web-asset-rehearsal.yml` is intentionally excluded from permanent staging because it expects an unintegrated app. Its historical script/test remains for provenance. This integration is **not independently accepted** until 05 QR verifies this exact combined HEAD (Node, icons, actual Chromium tab/session/backup, missing asset fallback, 200% native zoom, all false writer flags, no remote data exposure).
 
 No original save writes, edited export, Grid deletion, chest move, direct overwrite, or Wand capability change. Real schema626 ZIP envelope inspection is READ ONLY; native W1 scheduler is STATIC ONLY; all persistent Writer gates remain CLOSED.
+
+## Round 3 Delta Integration (00 CTRL, 2026-11-02)
+
+Starting from the independently accepted READ-ONLY PR #11 `535fecf6cbd89427ec077e2a4e3dc6acb487842f`, 00 CTRL imports **only 12 newer-source files** from validated isolated streams using exact Git blob SHAs, never a blind source-tree overwrite:
+
+- CORE #8 `72c972ad7b4fa3c2ae46d506c1140d25ca33c22b` → `c08ba950481c5e80d2af2c0017836cd9505d9ce9`: Codec JSON structural rejection, synthetic tests and source-rebuild evidence doc. Actual original schema626 **read-only** JS envelope audit remains distinct from a real edited copy.
+- TIME #7 `91b640bf23ec05dcd32ce36de054f8d1964210fd` → `65a788eacc8ef00804774590c49dfb6005771fa0`: Original raw NSO verified, static native paths and corrected off-by-four annotation RVA 0x05A2AC94 / 0x05A2AC98; **no runtime proof**.
+- ASSET #3 `449b208d98d51332c48c65583485fcde5a230616` → `a1621234450323d4cebd757448fad81c01289d5a`: Steam source ledger, exact sprite/texture audit and tests. Original SVG and VP8L game source images unchanged.
+
+There are no overlapping paths among these three deltas, and each existing integration path matched the prior branch's Git blob before importing the new SHA. Prior integrated WEB/Session/Worker/UI, source false Writer gates and Native+QA workflow union remain unchanged.
+
+03 WEB PR #12 `3c59f41dac18c4fa1e24dba1fdf1c7630fed6336` and 05 QR PR #9 `7dcc3aa099dd808627808c2fdb6abe5d11f60251` contain **independent test-only artifacts**, not source product changes. Preserve them on their owned branches; they both hardpin the *earlier* integrated SHA, so do not copy their fixed-SHA workflows into the newer integration branch and mistakenly claim fresh independent acceptance.
+
+**New exact HEAD requires all relevant CI and independent 05 QR delta acceptance**. Compare source against prior independently accepted PR #11 baseline; rerun changed Node/Asset/Native and relevant Chromium only. If an integration bug is found, route to owning stream, then 00 CTRL updates this exclusive branch. PR stays Draft; product release and Writer remain BLOCKED. No edited save, user data, binary source or secrets committed.

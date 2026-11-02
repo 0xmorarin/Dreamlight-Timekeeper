@@ -43,11 +43,18 @@ test('flower branch and global predicates are distinguished from untraced W1 con
   assert.equal(native.native.expiry.rva,'0x05AF3050');
   assert.equal(native.traces.FlowerSpawningInVillage.executeRVA,'0x057C99E0');
   assert.equal(native.traces.FlowerSpawningInVillage.readinessCallsiteVerified,true);
-  for(const kind of ['ItemSpawning','WildCropsSpawningInVillage','FishSpawningInVillage']){
-    assert.equal(native.traces[kind].executeRVA,null);
-    assert.equal(native.traces[kind].readinessCallsiteVerified,false);
-  }
-  assert.equal(native.native.itemExecuteCompletion.entryRVA,null);
+  const verifiedEntries={
+    ItemSpawning:'0x057B9BC0',
+    WildCropsSpawningInVillage:'0x057C2BC0',
+    FlowerSpawningInVillage:'0x057C99E0',
+    FishSpawningInVillage:'0x057C6890'
+  };
+  for(const [kind,rva] of Object.entries(verifiedEntries))
+    assert.equal(native.traces[kind].executeRVA,rva);
+  assert.equal(native.traces.ItemSpawning.readinessCallsiteVerified,true);
+  assert.equal(native.traces.WildCropsSpawningInVillage.readinessCallsiteVerified,true);
+  assert.equal(native.traces.FishSpawningInVillage.readinessCallsiteVerified,false);
+  assert.equal(native.native.itemExecuteCompletion.entryRVA,'0x057B9BC0');
   assert.equal(native.native.itemExecuteCompletion.lastOccurrenceStoreRVA,'0x057BF068');
   assert.equal(native.native.itemExecuteCompletion.rescheduleCallRVA,'0x057BF0C4');
   assert.equal(native.traces.ItemSpawning.catchupBoundRVA,'0x057C0140');
@@ -178,14 +185,136 @@ test('static branches reject unsafe operands and unrecognized evidence ledger',(
 });
 
 
-test('native evidence metadata contradiction is explicit and cannot be promoted to verified x25 assignment',()=>{
+test('primary NSO resolves the upstream wrong-RVA annotation, preserving evidence history',()=>{
   const c=native.native.actualizeSourceConflict;
   assert.equal(c.rva,'0x05A2AC94');
-  assert.equal(c.status,'EVIDENCE_METADATA_CONFLICT');
+  assert.equal(c.status,'RESOLVED_SOURCE_ANNOTATION_OFF_BY_4');
   assert.equal(c.reportedAsm,'mov x25, x0');
   // 0xB0... is ADRP encoding class, not ORR register alias MOV.
   assert.equal((0xB002B8C8 & 0x9F000000)>>>0,0x90000000);
   assert.notEqual(0xB002B8C8,0xAA0003F9); // actual MOV X25, X0 encoding
   assert.equal(c.independentlyDecodedMnemonic,'adrp x8');
+  assert.equal(c.correctedRVA,'0x05A2AC98');
+  assert.equal(c.correctedOpcode,'0xAA0003F9');
+  assert.equal(c.correctedAsm,'mov x25, x0');
   assert.equal(native.native.actualize.rva,'0x05A2A170');
+});
+
+
+// All opcode words below were extracted from the SHA-verified v1.25.3 NSO.
+// These are byte fixtures only: tests do not distribute or load the game binary.
+const decodeBL=(at,op)=>{
+  assert.equal((op & 0xfc000000)>>>0,0x94000000);
+  const v=op&0x03ffffff;
+  return at+((v&0x02000000)?v-0x04000000:v)*4;
+};
+test('raw NSO section SHA identities, size and module BID remain distinct from schema',()=>{
+  const b=native.native.primaryBinary;
+  assert.equal(b.verification,'RAW_NSO_REHASHED_AND_SECTIONS_MATCH_HEADER');
+  assert.equal(b.bytes,96027926);
+  assert.equal(b.moduleIdPrefix,'9A239D3DB569756D');
+  assert.equal(b.mainSHA256,native.source.mainSHA256);
+  assert.equal(b.textSHA256,native.source.nsoTextSHA256);
+  assert.equal(b.rodataSHA256,'2a8f5c5c9203b9c42cf59cf540e0d017ff6bc9b6709c1c2c691241ffb508348c');
+  assert.equal(b.dataSHA256,'c3ac6f93de050aafaacdcc9bf77d4712643726e25374ef0179823191cebb4ce6');
+  assert.equal(b.runtimeVerified,false);
+  assert.equal(native.query(2010000021,'ItemSpawning').sourceBuildVerifiedFromSave,false);
+  assert.equal(native.query(2010000021,'ItemSpawning').writerAuthorized,false);
+});
+test('X25 from slot-6 call converges at 0x05A2AC98; source annotation was one instruction early',()=>{
+  const x=native.native.actualizeSourceConflict;
+  assert.equal(x.rva,'0x05A2AC94');
+  assert.equal(x.reportedOpcode,'0xB002B8C8');
+  assert.equal(x.correctedOpcode,'0xAA0003F9');
+  assert.equal(x.correctedRVA,'0x05A2AC98');
+  assert.equal(x.status,'RESOLVED_SOURCE_ANNOTATION_OFF_BY_4');
+  assert.notEqual(x.correctedRVA,x.rva);
+  assert.equal(native.native.actualize.rva,'0x05A2A170');
+});
+test('all ten raw NSO direct Reschedule BL addresses match exact method/target map',()=>{
+  const verified=[
+    ['ItemSpawning.Execute',0x057BF0C4,0x940CCD03],
+    ['WildCropsSpawningInVillage.Execute',0x057C4260,0x940CB89C],
+    ['FishSpawningInVillage.Execute',0x057C7110,0x940CACF0],
+    ['FlowerSpawningInVillage.Execute',0x057CAE58,0x940C9D9E],
+    ['FlowerDryingInVillage.Execute',0x057CEC34,0x940C8E27],
+    ['ChooseVillageArea.Execute',0x057D1DE8,0x940C81BA],
+    ['MiningRockTurningSpecial.Execute',0x057D5378,0x940C7456],
+    ['PendingFishUpgrade.Execute',0x05801D50,0x940BC1E0],
+    ['ChooseItem.Execute',0x0580737C,0x940BAC55],
+    ['Profile.AddRecurringEvent',0x05A29F18,0x9403216E]
+  ];
+  assert.equal(native.native.directRescheduleCallsites.length,10);
+  assert.equal(new Set(native.native.directRescheduleCallsites.map(x=>x.rva)).size,10);
+  for(let i=0;i<verified.length;i++){
+    const [name,rva,opcode]=verified[i],row=native.native.directRescheduleCallsites[i];
+    assert.equal(row.method,name);
+    assert.equal(row.rva,'0x'+rva.toString(16).toUpperCase().padStart(8,'0'));
+    assert.equal(decodeBL(rva,opcode),0x05AF24D0);
+  }
+});
+test('four W1 Execute exact callsites preserve readiness versus reschedule distinction',()=>{
+  const entries={
+    ItemSpawning:{at:'0x057B9BC0',ready:['0x057BA660','0x057BA684'],later:'0x057BF0C4',skips:true},
+    WildCropsSpawningInVillage:{at:'0x057C2BC0',ready:['0x057C2FC8'],later:'0x057C4260',skips:true},
+    FlowerSpawningInVillage:{at:'0x057C99E0',ready:['0x057C9DD4','0x057C9DF4'],later:'0x057CAE58',skips:true},
+    FishSpawningInVillage:{at:'0x057C6890',ready:[],later:'0x057C7110',skips:null}
+  };
+  const readyOpcodes={
+    '0x057BA660':0x940AAB78,'0x057BA684':0x940AAB6F,
+    '0x057C2FC8':0x940A891E,
+    '0x057C9DD4':0x940A6D9B,'0x057C9DF4':0x940A6D93
+  };
+  for(const [kind,checks] of Object.entries(entries)){
+    const t=native.traces[kind];
+    assert.equal(t.executeRVA,checks.at);
+    assert.deepEqual(t.readinessCallRvas,checks.ready);
+    assert.equal(t.rescheduleCallRVA,checks.later);
+    assert.equal(t.readinessFalseBypassesDirectReschedule,checks.skips);
+    assert.equal(t.spawnedGridObjectProvenanceVerified,false);
+    for(const r of checks.ready)
+      assert.equal(decodeBL(Number(r),readyOpcodes[r]),0x05A65440);
+  }
+});
+test('fish pending-fish allocation is not converted into a confirmed GridObject spawn or universal readiness',()=>{
+  const t=native.traces.FishSpawningInVillage;
+  assert.equal(t.readinessCallsiteVerified,false);
+  assert.equal(t.readinessFalseBypassesDirectReschedule,null);
+  assert(t.sourceGuards.some(x=>x.method==='ProfileWorld.AddPendingFish'&&x.rva==='0x057C70F4'));
+  assert(t.sourceGuards.some(x=>x.method.includes('CountMatchingPendingFishForLocation')));
+  assert.equal(t.spawnedGridObjectProvenanceVerified,false);
+  assert.equal(native.query(2010200014,'FishSpawningInVillage').status,'INACTIVE_SOURCE_DEFINITION');
+});
+test('per-family guard presence never elevates any W1 Event ID to Writer or allocation proof',()=>{
+  const ids=[[2010000021,'ItemSpawning'],[2010400001,'WildCropsSpawningInVillage'],
+    [2010500008,'FlowerSpawningInVillage']];
+  for(const [id,kind] of ids){
+    const r=native.query(id,kind);
+    assert(r.trace.sourceGuards.length>0);
+    assert.equal(r.trace.spawnedGridObjectProvenanceVerified,false);
+    assert.equal(r.spawnAllocationVerified,false);
+    assert.equal(r.areaAndPopulationCapsVerified,false);
+    assert.equal(r.pickupOrRemovalRescheduleVerified,false);
+    assert.equal(r.restartBehaviorVerified,false);
+    assert.equal(r.writerAuthorized,false);
+    assert.equal(r.gridDeletionAuthorized,false);
+  }
+});
+
+test('raw Reschedule uses interval-variant branching and a virtual slot-2 NextOccurrence setter',()=>{
+  const r=native.native.reschedule;
+  assert.equal(r.intervalOneofFieldLoadRVA,'0x05AF25E8');
+  assert.equal(r.intervalTimeOfDayCompareRVA,'0x05AF25F0');
+  assert.equal(r.intervalDurationCompareRVA,'0x05AF25F8');
+  assert.equal(r.setterInterfaceSlotRVA,'0x05AF2C7C');
+  assert.equal(r.setterArgumentRVA,'0x05AF2CA0');
+  assert.equal(r.setterCallRVA,'0x05AF2CA4');
+  // Two direct calls inside Reschedule converge on its TimeOfDay helper.
+  assert.equal(decodeBL(0x05AF2A60,0x940000C0),0x05AF2D60);
+  assert.equal(decodeBL(0x05AF2C30,0x9400004C),0x05AF2D60);
+  assert.equal(r.setterDispatchIsStaticOnly,true);
+  const model=analyzeW1StaticBranches(native,{eventId:2010000021,saveKind:'ItemSpawning',
+    nowTicks:120n,nextOccurrenceTicks:100n});
+  assert.equal(model.afterExecuteRescheduleVerified,false);
+  assert.equal(model.writerAuthorized,false);
 });

@@ -1,6 +1,64 @@
 # 02 TIME — W1 per-event Native semantics ledger (Switch v1.25.3)
 
-**Evidence class: STATIC_ONLY.** This document does **not** claim Nintendo Switch runtime acceptance, save write compatibility, a native timer setter, or automatic GridObject delete/move permission.
+## Round 3 primary binary verification — current authoritative Native outcome (2026-11-02)
+
+**Evidence classification: RAW_NSO_STATIC_VERIFIED, NOT RUNTIME_TESTED.** Round 1/2 sections further below are retained as research history where they disagree with the new direct-binary facts. Original Nintendo Switch v1.25.3 DDVRE private `ExeFS/main` Drive file ID `1towEM6WrKL6ZMwepI76xyPfpzxuqS6BN` was retrieved and verified **read-only**. Original same-version `Il2CppDump/dump.cs` Drive ID `17_y_G-olsu7zzOBcKwJg5YTFOW9JQbto` was retrieved as the method RVA index. Neither was committed or distributed.
+
+| Raw artifact / identity | Measured primary evidence |
+| --- | --- |
+| Executable `main` | 96,027,926 bytes, SHA256 `16957e6ed546daeb196f296362d5ded885fad9eeff70584870f645e1204ca94a` |
+| `NSO0` Module ID | `9A239D3DB569756D9EAAABD79771C522` (BID prefix `9A239D3DB569756D`) |
+| Decompressed text | mem offset 0, 152,840,832 bytes, SHA256 `15d17f0b9e95d022368bbd89ec8feacec6f1feb2439bc9a37fe2f6bf2078a328` |
+| Decompressed rodata | mem offset `0x091C3000`, 26,282,928 bytes, SHA256 `2a8f5c5c9203b9c42cf59cf540e0d017ff6bc9b6709c1c2c691241ffb508348c` |
+| Decompressed data | mem offset `0x0AAD4000`, 13,050,504 bytes, SHA256 `c3ac6f93de050aafaacdcc9bf77d4712643726e25374ef0179823191cebb4ce6` |
+
+All three decompressed section SHA256 digests independently match their NSO0 header hashes; raw main SHA matches the prior authoritative source. This is stronger than checking opcodes copied into a research JSON, but still **static**, with no console or save-write acceptance.
+
+### Original X25 issue: RESOLVED_SOURCE_ANNOTATION_OFF_BY_4
+
+The earlier evidence JSON incorrectly attached `MOV X25,X0` to `0x05A2AC94`. Direct LLVM 17 AArch64 disassembly of verified main text shows **`0x05A2AC94`: `0xB002B8C8` = `ADRP X8,...`**, immediately followed by **`0x05A2AC98`: `0xAA0003F9` = `MOV X25,X0`**. In `Profile.ActualizeRecurringEvents` (method entry RVA `0x05A2A170`), slot-6 `IRecurringEvent.GetMaxIntervalToFullyExecute` virtual calls at `0x05A2AC64` or `0x05A2AC8C` converge on the X25 save at `0x05A2AC98` (branches `0x05A2AC68 CBNZ X20 → 0x05A2AC94`, `0x05A2AC90 CBZ X20 → 0x05A2B568`; fallthrough otherwise). `0x05A2AE20 SUB X8,X8,X9`, `0x05A2AE24 CMP X8,X25`, and `0x05A2AE28 B.LE 0x05A2AF00` confirm the signed overdue threshold. `0x05A2B42C MOV X1,X25` feeds the maximum into subtraction `0x05A2B434 BL 0x0644CD70`. Later the register is **repurposed** at `0x05A2B4D4 MOV X25,X0` after `Timestamp.FromDateTime`, and at `0x05A2B530 MOV X1,X25` it holds the adjusted timestamp argument for the virtual setter `0x05A2B534 BLR X8`. These are different meanings of X25 at different program points. The earlier *semantic* catch-up model was supported; the specific original instruction annotation was shifted by exactly four bytes. This correction does not establish a universal future-date reset, event effect, or runtime setter invocation.
+
+### Verified full direct BL graph for IRecurringEventExtensions.Reschedule
+
+After scanning the complete SHA-verified text for direct AArch64 BL to target `0x05AF24D0`, exactly **10** sites were found and matched to original method RVA metadata. Each RVA is a source byte-backed direct callsite, not merely a source-family hypothesis.
+
+| Method (dump.cs entry RVA) | BL Reschedule RVA |
+| --- | --- |
+| `ItemSpawning.Execute` (`0x057B9BC0`) | `0x057BF0C4` |
+| `WildCropsSpawningInVillage.Execute` (`0x057C2BC0`) | `0x057C4260` |
+| `FishSpawningInVillage.Execute` (`0x057C6890`) | `0x057C7110` |
+| `FlowerSpawningInVillage.Execute` (`0x057C99E0`) | `0x057CAE58` |
+| `FlowerDryingInVillage.Execute` (`0x057CDC10`) | `0x057CEC34` |
+| `ChooseVillageArea.Execute` (`0x057D1020`) | `0x057D1DE8` |
+| `MiningRockTurningSpecial.Execute` (`0x057D3860`) | `0x057D5378` |
+| `PendingFishUpgrade.Execute` (`0x05800F40`) | `0x05801D50` |
+| `ChooseItem.Execute` (`0x05807070`) | `0x0580737C` |
+| `Profile.AddRecurringEvent` (`0x05A29920`) | `0x05A29F18` |
+
+The original statement “nine Execute + one AddRecurringEvent” remains correct; indirect BLR calls, alternate writers and pickup/removal callbacks are **not** ruled out by this scan.
+
+### W1-specific Native consumer, readiness and appearance constraints
+
+| W1 variant | Exact Execute; direct IsReady references | Direct Reschedule | Other verified calls and caveat |
+| --- | --- | --- | --- |
+| ItemSpawning | `0x057B9BC0`; `0x057BA660`, `0x057BA684` | `0x057BF0C4` | `ConditionsList.Evaluate 0x057BAA10`; Area `ShouldSpawn 0x057BB090`; `GetMaximumAmount 0x057BBD88`; `GridState.get_ItemAmountState 0x057BC5BC`. False readiness at `0x057BA668/0x057BA688` bypasses this direct Reschedule. In-Execute RemoveItem helper is not a proof of player pickup rescheduling. |
+| WildCropsSpawningInVillage | `0x057C2BC0`; `0x057C2FC8` | `0x057C4260` | Area `ShouldSpawn 0x057C34C0`; subtype `GetMaximumAmount 0x057C38E8`; `CreateGardeningTile.SetupGardenProduction 0x057C41D4`. False readiness branches `0x057C2FCC → 0x057C4264`, bypassing this Reschedule; source seed ItemID is not actual GridObject identity. |
+| FlowerSpawningInVillage | `0x057C99E0`; `0x057C9DD4`, `0x057C9DF4` | `0x057CAE58` | `GridCollection.TryGetGrid 0x057CA490`; `TryPlaceFlowers 0x057CAE20/0x057CAE38`. False readiness branches `0x057C9DDC/0x057C9DF8` bypass `0x057CAE58`. No proof of successful placement or per-Area counts. |
+| FishSpawningInVillage | `0x057C6890`; **0 direct BL to common IsReady inside this Execute** | `0x057C7110` | `TryGetVillageArea 0x057C6C34`; `GetNumberOfNormalBodiesOfWaterInArea 0x057C6C44`; `CountMatchingPendingFishForLocation 0x057C6E68`; `ProfileWorld.AddPendingFish 0x057C70F4`. This is PendingFish state; direct ripple/GridObject generation, alternative readiness checks and cold-reload outcome are still UNKNOWN. |
+
+The three observed readiness-false branch paths bypass their *specific* Execute Reschedule callsites. None establishes that an already-spawned object disappears, an area cap is a hard Grid population count, pickup reschedules, or a future date suppresses every other mechanism. Fish has no direct BL to common IsReady in its Execute, but alternative/interface checks are not excluded. The per-event-ID semantic ledger remains **source-variant-hint-only**, not a verified saved subtype or GridObject provenance. Always exclude Moonstone `2010000064`, TimeBending `2010000093/2010000120`, Snippet W2, inactive IDs and unknown variants from any Writer authority.
+
+### Reschedule callee: interval variant and virtual NextOccurrence setter (raw NSO)
+
+Directly verified at `IRecurringEventExtensions.Reschedule` RVA `0x05AF24D0` from the same primary SHA-checked NSO: `0x05AF25E8 LDR W8,[X0,#0x20]` reads the interval oneof case, then `0x05AF25F0 CMP W8,#2` / `0x05AF25F8 CMP W8,#1` dispatch the two recognized interval types (the method's C# `Duration` / `TimeOfDay` forms; this is **not** a universal per-ID interval guarantee). `0x05AF2A60 BL 0x05AF2D60` and `0x05AF2C30 BL 0x05AF2D60` call `<Reschedule>g__SetNextTimeOfDay|0_0`. After a candidate next Timestamp is computed, `0x05AF2C7C MOV W2,#2` selects `IRecurringEvent.set_NextOccurrence` interface slot 2, `0x05AF2CA0 MOV X1,X20` passes the computed value, and `0x05AF2CA4 BLR X8` invokes its virtual setter. This is independent primary **STATIC** proof of an explicit Reschedule → NextOccurrence setter path and does not show how any pickup/removal code calls this helper, what concrete ID is being scheduled, whether the setter persists on cold reboot, or whether an actual spawn was successful. Tests reconstruct both helper BL targets from primary instruction words and verify the static setter proof flags. All write/edited-export permissions remain false.
+
+### QR and next steps
+
+Pinned opcode words (not raw game bytes) in Node tests reconstruct the ten direct Reschedule targets and five W1 readiness callsite targets. Preserve source fingerprint distinctions and reject tests that confuse branch-condition reachability with runtime success. Next investigate `Reschedule` callee's actual timestamp calculation, `AddRecurringEvent` ExecuteOnAdd flow, Fish alternate clock/expiry logic, per-Area caps and mutation/harvest callbacks with 01B Grid identity evidence. Main/NSO bytes remain private. No save change, Writer, edited export, Grid deletion or Moonstone movement is authorized.
+
+---
+
+**Legacy Round 1/2 evidence class: STATIC_ONLY.** This document does **not** claim Nintendo Switch runtime acceptance, save write compatibility, a native timer setter, or automatic GridObject delete/move permission.
 
 ## Fixed provenance and reuse
 
@@ -21,7 +79,7 @@
 | `ItemSpawningRecurringEventItemData.GetMaximumAmount` | `0x047AB7F0` | Base maximum, optional area selector references | Actual world population/cap enforcement |
 | `ItemSpawning.Execute` completion side (entry RVA still unresolved) | `0x057BF058` / `0x057BF068` / `0x057BF0C4` | `Timestamp.FromDateTime`, store to `LastOccurrence` at IL2CPP offset `+0x30`, then BL `Reschedule` | Exact entry RVA, generation success/skip condition, pickup callbacks |\n| `FlowerSpawningInVillage.Execute` | `0x057C99E0` | BL `IsReadyForNextOccurence` then TBNZ readiness branch | Spawn allocation, existing caps, event-specific reschedule and collection |
 
-**No complete `Execute` RVA is evidenced by the current canonical static report for ItemSpawning, WildCropsSpawningInVillage or FishSpawningInVillage.** `ItemSpawning.Execute 0x057C...` is incomplete and must not be normalized into an exact address or ported to a later build.
+**Historical Round 1/2 limitation; superseded by primary NSO verification above:** No complete `Execute` RVA was evidenced in the then-consulted derived research for ItemSpawning, WildCropsSpawningInVillage or FishSpawningInVillage. `ItemSpawning.Execute 0x057C...` is incomplete and must not be normalized into an exact address or ported to a later build.
 
 ## Per-kind source/native contract
 
@@ -66,9 +124,9 @@ Additional reused detailed originals: [Native Follow-up 3](https://drive.google.
 
 The original Native research artifact [DDV_v1253_Actualize_Catchup_Flow_Evidence_20261101.json](https://drive.google.com/file/d/1gfP_zlVoyjnejn8e6WIgoSv5F7I7rDc5/view) binds **main** SHA-256 `16957e6ed546daeb196f296362d5ded885fad9eeff70584870f645e1204ca94a` and **decompressed NSO text** SHA-256 `15d17f0b9e95d022368bbd89ec8feacec6f1feb2439bc9a37fe2f6bf2078a328` to the existing static flow. They are different hashes and must never be interchanged with BID `9A239D3DB569756D` or save schema626. Reused records were NOT regenerated by opening the main executable in Round 2.
 
-### NEW: source metadata contradiction at 0x05A2AC94
+### Historical Round 2 contradiction at 0x05A2AC94 (resolved above)
 
-The artifact reports `RVA 0x05A2AC94`, opcode `0xB002B8C8`, text `mov x25, x0`, interpreted as storing `GetMaxIntervalToFullyExecute` into X25. Independent decoding of **the provided 32-bit opcode**, using LLVM's AArch64 disassembler, produces **`adrp x8, ...`**, not `mov x25, x0` (the latter register alias encodes `0xAA0003F9`). This establishes an **EVIDENCE_METADATA_CONFLICT**, NOT proof that the actual game executable contains either instruction at that RVA. The original source may contain an annotation or address transcription error. Re-fetch the version-matched main and independently re-check bytes at 0x05A2AC94 and the actual X25 def-use path before marking the maximum-time argument setup exact. This dispute does **not** automatically invalidate the independent 0x05A2AE20 SUB / 0x05A2AE24 CMP / 0x05A2AE28 B.LE opcode sequence or the later arithmetic/callsite facts, but it prevents an unqualified claim about X25 initialization at the disputed address.
+The artifact reports `RVA 0x05A2AC94`, opcode `0xB002B8C8`, text `mov x25, x0`, interpreted as storing `GetMaxIntervalToFullyExecute` into X25. Independent decoding of **the provided 32-bit opcode**, using LLVM's AArch64 disassembler, produces **`adrp x8, ...`**, not `mov x25, x0` (the latter register alias encodes `0xAA0003F9`). This establishes an **historical EVIDENCE_METADATA_CONFLICT**, resolved above by the independently verified executable. The original source may contain an annotation or address transcription error. Re-fetch the version-matched main and independently re-check bytes at 0x05A2AC94 and the actual X25 def-use path before marking the maximum-time argument setup exact. This dispute does **not** automatically invalidate the independent 0x05A2AE20 SUB / 0x05A2AE24 CMP / 0x05A2AE28 B.LE opcode sequence or the later arithmetic/callsite facts, but it prevents an unqualified claim about X25 initialization at the disputed address.
 
 ### Independently checked *artifact-opcode* examples (NOT a binary SHA revalidation)
 

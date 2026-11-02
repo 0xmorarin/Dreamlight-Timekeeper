@@ -15,38 +15,112 @@ const W1=Object.freeze([
 ]);
 const W1_SET=new Set(W1);
 const NATIVE=Object.freeze({
+  primaryBinary:Object.freeze({
+    file:'DDVRE v1.25.3 ExeFS/main',bytes:96027926,
+    mainSHA256:SOURCE.mainSHA256,moduleIdPrefix:SOURCE.buildId,
+    textSHA256:SOURCE.nsoTextSHA256,
+    rodataSHA256:'2a8f5c5c9203b9c42cf59cf540e0d017ff6bc9b6709c1c2c691241ffb508348c',
+    dataSHA256:'c3ac6f93de050aafaacdcc9bf77d4712643726e25374ef0179823191cebb4ce6',
+    verification:'RAW_NSO_REHASHED_AND_SECTIONS_MATCH_HEADER',
+    provenance:'Private DDVRE ExeFS/main, Google Drive ID 1towEM6WrKL6ZMwepI76xyPfpzxuqS6BN; no raw bytes distributed',
+    runtimeVerified:false
+  }),
+  directRescheduleCallsites:Object.freeze([
+    ['ItemSpawning.Execute','0x057BF0C4'],
+    ['WildCropsSpawningInVillage.Execute','0x057C4260'],
+    ['FishSpawningInVillage.Execute','0x057C7110'],
+    ['FlowerSpawningInVillage.Execute','0x057CAE58'],
+    ['FlowerDryingInVillage.Execute','0x057CEC34'],
+    ['ChooseVillageArea.Execute','0x057D1DE8'],
+    ['MiningRockTurningSpecial.Execute','0x057D5378'],
+    ['PendingFishUpgrade.Execute','0x05801D50'],
+    ['ChooseItem.Execute','0x0580737C'],
+    ['Profile.AddRecurringEvent','0x05A29F18']
+  ].map(([method,rva])=>Object.freeze({method,rva}))),
   readiness:Object.freeze({rva:'0x05A65440',method:'IsReadyForNextOccurence',
     evidence:'0x05A65640 CMP X8,X9 / 0x05A65644 CSET W0,HS; time-eligibility predicate, not a complete spawn outcome'}),
   expiry:Object.freeze({rva:'0x05AF3050',method:'IsEventOver',
     evidence:'separate expiry predicate; EndDate is not NextOccurrence'}),
   reschedule:Object.freeze({rva:'0x05AF24D0',method:'IRecurringEventExtensions.Reschedule',
-    evidence:'10 direct BL sites in reviewed native text: 9 Execute and 1 AddRecurringEvent; indirect callers unresolved'}),
+    evidence:'Raw main: 10 direct BL sites (9 Execute and 1 AddRecurringEvent); dispatch on Interval oneof; virtual setter slot 2 confirmed, runtime call reachability unknown',
+    intervalOneofFieldLoadRVA:'0x05AF25E8',
+    intervalDurationCompareRVA:'0x05AF25F8',
+    intervalTimeOfDayCompareRVA:'0x05AF25F0',
+    setterInterfaceSlotRVA:'0x05AF2C7C',
+    setterArgumentRVA:'0x05AF2CA0',
+    setterCallRVA:'0x05AF2CA4',
+    setterDispatchIsStaticOnly:true}),
   actualize:Object.freeze({rva:'0x05A2A170',method:'Profile.ActualizeRecurringEvents',
     evidence:'interface slots GetMaxInterval=6, Now=0, NextOccurrence getter=1, setter=2; overdue clamp only; future-date release not shown'}),
   actualizeSourceConflict:Object.freeze({
     rva:'0x05A2AC94',reportedAsm:'mov x25, x0',reportedOpcode:'0xB002B8C8',
-    independentlyDecodedMnemonic:'adrp x8',status:'EVIDENCE_METADATA_CONFLICT',
-    consequence:'X25 maxInterval assignment at this exact RVA is NOT opcode-supported; recheck real main before confirming def-use chain'}),
+    independentlyDecodedMnemonic:'adrp x8',
+    status:'RESOLVED_SOURCE_ANNOTATION_OFF_BY_4',
+    correctedRVA:'0x05A2AC98',correctedOpcode:'0xAA0003F9',
+    correctedAsm:'mov x25, x0',
+    evidence:'Raw rehashed main: 0x05A2AC94 ADRP X8; 0x05A2AC98 MOV X25,X0. Both slot-6 getter paths join at 0x05A2AC94; X25 compared at 0x05A2AE24 and used at 0x05A2B42C. No runtime inference.'}),
   itemCatchup:Object.freeze({rva:'0x057C0140',method:'ItemSpawning.GetMaxIntervalToFullyExecute',
     evidence:'uses interval and amount bounds; not a universal cooldown rule'}),
   itemMaximum:Object.freeze({rva:'0x047AB7F0',method:'ItemSpawningRecurringEventItemData.GetMaximumAmount',
     evidence:'base maximum and optional area-choice maximum; not proof of actual grid population'}),
-  itemExecuteCompletion:Object.freeze({entryRVA:null,method:'ItemSpawning.Execute completion-side',
+  itemExecuteCompletion:Object.freeze({entryRVA:'0x057B9BC0',method:'ItemSpawning.Execute completion-side',
     lastOccurrenceFromDateTimeRVA:'0x057BF058',lastOccurrenceStoreRVA:'0x057BF068',
     rescheduleCallRVA:'0x057BF0C4',
-    evidence:'writes LastOccurrence field +0x30 before direct BL Reschedule; entry and spawn-result prerequisites unresolved'}),
+    evidence:'writes LastOccurrence field +0x30 before direct BL Reschedule; entry now verified by main/dump.cs; spawn-result prerequisites unresolved'}),
   flowerExecute:Object.freeze({rva:'0x057C99E0',method:'FlowerSpawningInVillage.Execute',
     evidence:'BL readiness predicate followed by TBNZ branch; effects and reschedule still require full trace'})
 });
 const trace=Object.freeze({
-  ItemSpawning:Object.freeze({executeRVA:null,readinessCallsiteVerified:false,
-    catchupBoundRVA:NATIVE.itemCatchup.rva,maxAmountRVA:NATIVE.itemMaximum.rva}),
-  WildCropsSpawningInVillage:Object.freeze({executeRVA:null,readinessCallsiteVerified:false,
-    catchupBoundRVA:null,maxAmountRVA:null}),
-  FlowerSpawningInVillage:Object.freeze({executeRVA:NATIVE.flowerExecute.rva,
-    readinessCallsiteVerified:true,catchupBoundRVA:null,maxAmountRVA:null}),
-  FishSpawningInVillage:Object.freeze({executeRVA:null,readinessCallsiteVerified:false,
-    catchupBoundRVA:null,maxAmountRVA:null})
+  ItemSpawning:Object.freeze({
+    executeRVA:'0x057B9BC0',readinessCallsiteVerified:true,
+    readinessCallRvas:Object.freeze(['0x057BA660','0x057BA684']),
+    rescheduleCallRVA:'0x057BF0C4',readinessFalseBypassesDirectReschedule:true,
+    sourceGuards:Object.freeze([
+      Object.freeze({rva:'0x057BAA10',method:'ConditionsList.Evaluate'}),
+      Object.freeze({rva:'0x057BB090',method:'SpawnRecurringEventAreaSpecification.ShouldSpawn'}),
+      Object.freeze({rva:'0x057BBD88',method:'ItemSpawningRecurringEventItemData.GetMaximumAmount'}),
+      Object.freeze({rva:'0x057BC5BC',method:'GridState.get_ItemAmountState'})
+    ]),
+    catchupBoundRVA:NATIVE.itemCatchup.rva,maxAmountRVA:NATIVE.itemMaximum.rva,
+    spawnedGridObjectProvenanceVerified:false
+  }),
+  WildCropsSpawningInVillage:Object.freeze({
+    executeRVA:'0x057C2BC0',readinessCallsiteVerified:true,
+    readinessCallRvas:Object.freeze(['0x057C2FC8']),
+    rescheduleCallRVA:'0x057C4260',readinessFalseBypassesDirectReschedule:true,
+    sourceGuards:Object.freeze([
+      Object.freeze({rva:'0x057C34C0',method:'SpawnRecurringEventAreaSpecification.ShouldSpawn'}),
+      Object.freeze({rva:'0x057C38E8',method:'WildCropsSpawningInVillageRecurringEventItemData.GetMaximumAmount'}),
+      Object.freeze({rva:'0x057C41D4',method:'CreateGardeningTile.SetupGardenProduction'})
+    ]),
+    catchupBoundRVA:null,maxAmountRVA:'0x047BCFA0',
+    spawnedGridObjectProvenanceVerified:false
+  }),
+  FlowerSpawningInVillage:Object.freeze({
+    executeRVA:NATIVE.flowerExecute.rva,readinessCallsiteVerified:true,
+    readinessCallRvas:Object.freeze(['0x057C9DD4','0x057C9DF4']),
+    rescheduleCallRVA:'0x057CAE58',readinessFalseBypassesDirectReschedule:true,
+    sourceGuards:Object.freeze([
+      Object.freeze({rva:'0x057CA490',method:'GridCollection.TryGetGrid'}),
+      Object.freeze({rva:'0x057CAE20',method:'FlowerSpawningInVillage.TryPlaceFlowers'}),
+      Object.freeze({rva:'0x057CAE38',method:'FlowerSpawningInVillage.TryPlaceFlowers'})
+    ]),
+    catchupBoundRVA:null,maxAmountRVA:null,
+    spawnedGridObjectProvenanceVerified:false
+  }),
+  FishSpawningInVillage:Object.freeze({
+    executeRVA:'0x057C6890',readinessCallsiteVerified:false,
+    readinessCallRvas:Object.freeze([]), // no direct BL to common readiness in exact Execute
+    rescheduleCallRVA:'0x057C7110',readinessFalseBypassesDirectReschedule:null,
+    sourceGuards:Object.freeze([
+      Object.freeze({rva:'0x057C6C34',method:'ProfileWorld.TryGetVillageArea'}),
+      Object.freeze({rva:'0x057C6C44',method:'FishSpawningInVillage.GetNumberOfNormalBodiesOfWaterInArea'}),
+      Object.freeze({rva:'0x057C6E68',method:'FishSpawningInVillage.CountMatchingPendingFishForLocation'}),
+      Object.freeze({rva:'0x057C70F4',method:'ProfileWorld.AddPendingFish'})
+    ]),
+    catchupBoundRVA:null,maxAmountRVA:null,
+    spawnedGridObjectProvenanceVerified:false
+  })
 });
 const hintFor=r=>{
   if(r.family==='OBSTACLE_EVENT'||r.family==='WOOD_MATERIAL_EVENT'||

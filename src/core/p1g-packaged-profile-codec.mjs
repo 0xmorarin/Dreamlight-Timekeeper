@@ -1,3 +1,5 @@
+import {parseSafeJson} from './safe-edit-session.mjs';
+import {auditP1gEnvelope} from './p1g-envelope-audit.mjs';
 const MAX_INPUT_BYTES = 128 * 1024 * 1024;
 const MAX_ARCHIVE_BYTES = 256 * 1024 * 1024;
 const MAX_PROFILE_BYTES = 128 * 1024 * 1024;
@@ -61,6 +63,12 @@ export const p1gPackagedProfileCodec = Object.freeze({
         if (metadata.zip.archiveComment.length !== 0) {
             throw new Error('ZIP_UNSUPPORTED_ARCHIVE_COMMENT_FOR_MODIFIED_ENCODE');
         }
+        // Only a fully observed simple source envelope can enter this
+        // synthetic/research codec repack path. This is a rejection gate,
+        // never a Writer capability or modified-user-save authorization.
+        const envelope = auditP1gEnvelope({format: 'packaged', metadata});
+        if (!envelope.repackageShapeObserved)
+            throw new Error('ZIP_SOURCE_ENVELOPE_REBUILD_UNVERIFIED');
         const profileBytes = encoder.encode(text);
         if (profileBytes.length > MAX_PROFILE_BYTES)
             throw new Error('PROFILE_ENTRY_TOO_LARGE');
@@ -105,10 +113,14 @@ function checkedVersion(value) {
 function parseRequiredProfileJson(text) {
     let root;
     try {
-        root = JSON.parse(text);
+        root = parseSafeJson(text);
     }
-    catch {
-        throw new Error('PROFILE_JSON_INVALID');
+    catch (error) {
+        if (error instanceof SyntaxError)
+            throw new Error('PROFILE_JSON_INVALID');
+        // Preserve strict parser diagnostics for duplicate keys, unsafe numeric
+        // tokens, and depth limits: every codec entrypoint enforces them.
+        throw error;
     }
     if (!asObject(root) || !asObject(root.GameInfo))
         throw new Error('PROFILE_ROOT_INVALID');

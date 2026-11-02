@@ -39,6 +39,15 @@ test('SYNTHETIC ONLY: packaged P1G edited-copy encode/reopen preserves unrelated
  const reopened=await p1gPackagedProfileCodec.loadProfile(edited);
  assert.deepEqual(parseSafeJson(reopened.jsonText),syntheticEdit);
  assert.deepEqual(diffPaths(parsed,parseSafeJson(reopened.jsonText)),[proposed.pointer]);
+ // Source metadata equality is narrower than arbitrary ZIP or ciphertext parity.
+ for(const field of ['flagBits','compressType','extractVersion','dosTime','dosDate',
+  'createSystem','createVersion','internalAttr','externalAttr']){
+   assert.equal(reopened.metadata.zip.profileEntry[field],loaded.metadata.zip.profileEntry[field],field);
+ }
+ for(const field of ['extra','comment']){
+   assert.deepEqual(reopened.metadata.zip.profileEntry[field],loaded.metadata.zip.profileEntry[field],field);
+ }
+ assert.notDeepEqual(Buffer.from(edited),Buffer.from(source));
  assert.deepEqual(Buffer.from(source),sourceBefore);
  assert.equal(p1gPackagedProfileCodec.getProfileVersion(reopened.metadata),626);
  assert.equal(view.capabilities.editingAllowed,false);
@@ -55,4 +64,34 @@ test('SYNTHETIC ONLY: modified game identity is rejected before P1G encode',asyn
   ()=>p1gPackagedProfileCodec.createEncodedProfile(JSON.stringify(altered),metadata),
   /PROFILE_VERSION_CHANGED_DURING_ENCODE/
  );
+});
+
+test('SYNTHETIC ONLY: codec refuses rebuilding unverified source ZIP metadata without writing',async()=>{
+ const source=makeSyntheticP1gProfile(initial()),original=Buffer.from(source);
+ const loaded=await p1gPackagedProfileCodec.loadProfile(source);
+ const candidate=JSON.stringify({...initial(),FutureUnownedField:{preserve:true}});
+ const zip=loaded.metadata.zip,entry=zip.profileEntry;
+ const cases=[
+  {name:'unknown archive prefix',zip:{...zip,archivePrefixBytes:undefined}},
+  {name:'nonempty archive prefix',zip:{...zip,archivePrefixBytes:4}},
+  {name:'local extra differs',zip:{...zip,profileEntry:{
+   ...entry,localHeader:{...entry.localHeader,extra:Uint8Array.of(9,0,0,0)}
+  }}},
+  {name:'descriptor bit',zip:{...zip,profileEntry:{
+   ...entry,flagBits:0x0008,localHeader:{...entry.localHeader,flagBits:0x0008}
+  }}},
+  {name:'entry comment',zip:{...zip,profileEntry:{
+   ...entry,comment:Uint8Array.of(1)
+  }}},
+  {name:'unknown flag bits',zip:{...zip,profileEntry:{
+   ...entry,flagBits:0x0020,localHeader:{...entry.localHeader,flagBits:0x0020}
+  }}}
+ ];
+ for(const c of cases){
+  await assert.rejects(
+   p1gPackagedProfileCodec.createEncodedProfile(candidate,{...loaded.metadata,zip:c.zip}),
+   /ZIP_SOURCE_ENVELOPE_REBUILD_UNVERIFIED/,c.name
+  );
+ }
+ assert.deepEqual(Buffer.from(source),original);
 });
