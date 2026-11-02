@@ -63,6 +63,15 @@ test('missing, duplicate or unregistered candidate records fail closed',()=>{
   assert.throws(()=>run(unknown),/Malformed/);
 });
 
+test('HOLD evidence must remain explicit and cannot imply consumer semantics',()=>{
+  const missing=copy(catalog);
+  missing.candidates.find(x=>x.key==='tab.shops').holdEvidence='';
+  assert.throws(()=>run(missing),/Malformed/);
+  const promotion=copy(catalog);
+  promotion.candidates.find(x=>x.key==='tab.daily').semanticUseProof='CONFIRMED';
+  assert.throws(()=>run(promotion),/Malformed/);
+});
+
 test('a static ledger result cannot be misreported as pixel or release approval',()=>{
   const result=run();
   assert.ok(!('pixelVerified' in result));

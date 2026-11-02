@@ -218,7 +218,9 @@
       "textureFormat": 25,
       "alternativeCount": 1,
       "reviewState": "HOLD_SEMANTIC_REVIEW",
-      "pixelTrial": "NOT_TESTED"
+      "pixelTrial": "NOT_TESTED",
+      "holdEvidence": "Source name icon_scroogestore_upgrade identifies a store upgrade, not confirmed as a general Shops-tab icon; native UI consumer/screenshot linkage not verified",
+      "semanticUseProof": "UNKNOWN"
     },
     {
       "key": "tab.daily",
@@ -230,7 +232,9 @@
       "textureFormat": 25,
       "alternativeCount": 1,
       "reviewState": "HOLD_SEMANTIC_REVIEW",
-      "pixelTrial": "NOT_TESTED"
+      "pixelTrial": "NOT_TESTED",
+      "holdEvidence": "Source name shop_time_icon identifies shop time, not confirmed as the general Daily-tab icon; native UI consumer/screenshot linkage not verified",
+      "semanticUseProof": "UNKNOWN"
     },
     {
       "key": "world.valley",
@@ -266,7 +270,9 @@
       "textureFormat": 12,
       "alternativeCount": 1,
       "reviewState": "HOLD_DEPLOYMENT",
-      "pixelTrial": "PASS_PRIVATE_2026-11-01"
+      "pixelTrial": "PASS_PRIVATE_2026-11-01",
+      "holdEvidence": "SOURCE_RGBA_PRIVATE_TRIAL_ONLY; final deployed VP8L bytes/SHA and separate release rights not verified; world-filter consumer also unconfirmed",
+      "semanticUseProof": "UNKNOWN"
     }
   ]
 }
