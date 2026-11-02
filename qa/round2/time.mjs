@@ -70,7 +70,10 @@ test('QR-R2 TIME unknown variant and wrong variant prevent source hint from masq
  for(const unknown of [-1,0,NaN,2019999999,'2010500008']){
   const r=ledger.query(unknown,'FlowerSpawningInVillage');
   assert.equal(r.status,'UNKNOWN_EVENT_ID');
-  cannotWrite(r);
+  // Unknown-ID responses expose the strict gate fields, not the normal row-only native hint.
+  for(const key of ['writerAuthorized','operationAllowlisted','gridDeletionAuthorized',
+   'sourceBuildVerifiedFromSave','nativeExecuteLifecycleVerified','futureGuaranteesSuppression'])
+   assert.equal(r[key],false,key);
  }
 });
 test('QR-R2 TIME modified source provenance and missing Wand pack fail closed without mutating sources',()=>{
