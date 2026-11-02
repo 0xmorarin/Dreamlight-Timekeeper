@@ -75,7 +75,7 @@ test('producer budget refuses 700KB row, multibyte UTF8 row, aggregate >2MiB and
   /WORKER_PROJECTION_BYTES_REJECTED/);
  assert.throws(()=>rejectOversizeWorkerProjection(page(Array.from({length:200},(_,i)=>({id:i,data:'x'.repeat(12000)})))),
   /WORKER_PROJECTION_BYTES_REJECTED/);
- assert.throws(()=>rejectOversizeWorkerProjection(page(Array.from({length:201},(_,i)=>({id:i}))),/WORKER_PROJECTION_ENVELOPE_REJECTED/);
+ assert.throws(()=>rejectOversizeWorkerProjection(page(Array.from({length:201},(_,i)=>({id:i})))),/WORKER_PROJECTION_ENVELOPE_REJECTED/);
 });
 test('producer rejects contradictory complete/cursor, missing cursor, zero-progress and invalid JSON',()=>{
  assert.throws(()=>rejectOversizeWorkerProjection(page([{id:1}],true,'extra')),/WORKER_PROJECTION_ENVELOPE_REJECTED/);
