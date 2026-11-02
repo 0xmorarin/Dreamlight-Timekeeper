@@ -1,0 +1,171 @@
+{
+  "contract": "timekeeper.web-rust-api-alignment@1",
+  "reference": {
+    "timekeeper_pr24": "565005fb2daa66ea9ccd3568438e7a2039a0416c",
+    "control_pr25": "e2fdcadce73730952f296b54dbe400d22d216bd2",
+    "wand_pr312": "473acaab467051a03b40e39d92878d2ed8197d31",
+    "rust_contract": "dreamwish.ddv.unified-save-session.research@1",
+    "rust_session_source": "crates/ddv-save-core/src/session.rs",
+    "rust_session_blob_sha": "43951d777ccffb4c92418d7a3383512dae72da33",
+    "control_pr25_current": "2822aeaf6cc47b92cbb3972fa5112c9ef787ee17",
+    "note": "Historical reference.wand_pr312 and rust_session_blob_sha are pinned PR27 initial comparison; observedLatest is the separately rechecked 2026-11-02 HEAD."
+  },
+  "current": {
+    "api": "ddv.common-save-session/1",
+    "mode": "TYPED_TARGET_ONLY",
+    "product_worker": "timekeeper.save-worker@1",
+    "wasmInstalled": false,
+    "writerGranted": false
+  },
+  "mapping": [
+    {
+      "feature": "openLocal",
+      "target": "Core-issued session identity, encrypted local P1G SHA and build/schema/capability",
+      "research": "SaveSession::open_decoded_research(session_id:u64, decoded_json:Vec<u8>, schema:u64, refs:ReferenceIndex)",
+      "state": "PARTIAL_RESEARCH_ONLY",
+      "gap": "Accepts caller-supplied u64 ID and decoded JSON with an asserted reference graph, hashes decoded bytes; no encrypted P1G/source File/verified build context."
+    },
+    {
+      "feature": "queryPage",
+      "target": "Domain/View indexed opaque cursor with bounded rows, Core-issued session/revision/source integrity",
+      "research": "query_paged(pointers:&[String], cursor:usize, limit:usize)",
+      "state": "PARTIAL_RESEARCH_ONLY",
+      "gap": "Pointer-list numeric offset only, MAX_PAGE=64, MAX_QUERY_WATCH=512, preview<=512 bytes; no domain scan, opaque revision-bound cursor, complete flag or verified reference index."
+    },
+    {
+      "feature": "indexInvalidation",
+      "target": "Revision-scoped index generation and paged query invalidation",
+      "research": "index_generation and cached_generation invalidated upon stage_command, undo and redo",
+      "state": "RESEARCH_IMPLEMENTED_ONLY",
+      "gap": "No externally authenticated cursor token, domain-specific index provenance/completeness, cancellation or browser transport."
+    },
+    {
+      "feature": "planCAS",
+      "target": "SemanticCommand with EventID/index/oneof and trusted domain validator; Core-owned ChangeSet ID and CAS",
+      "research": "stage_command(TransactionPlan) with string-token or subtree replacement and read_set/write pointer, session u64, expected_revision, decoded source SHA",
+      "state": "PARTIAL_RESEARCH_ONLY",
+      "gap": "Immediately commits research overlay, no pending ChangeSet ID or production domain authorization; asserted post_references MUST NOT come from UI."
+    },
+    {
+      "feature": "history",
+      "target": "One authoritative ChangeSet revision/Undo/Redo shared across screens",
+      "research": "undo(expected_revision), redo(expected_revision), monotonic revision, MAX_HISTORY=128",
+      "state": "RESEARCH_IMPLEMENTED_ONLY",
+      "gap": "Research in-memory domain history; no single live Wand/Timekeeper browser SaveSession, cancellation, persistent backing or accepted domain semantic adapters."
+    },
+    {
+      "feature": "validate",
+      "target": "Complete independently validated cross-domain dependencies and operation-specific capability",
+      "research": "validate_transaction returns ValidationReceipt with semantic_domain_guards_accepted:false and encode_copy_authorized:false",
+      "state": "PARTIAL_RESEARCH_ONLY",
+      "gap": "Reference graph is asserted research input rather than verified extraction; accepted semantic guard/provenance and encrypted P1G validation absent."
+    },
+    {
+      "feature": "backupOriginal",
+      "target": "Byte-exact original encrypted P1G with verified SHA and source lifetime",
+      "research": "source:Arc<[u8]> original decoded JSON and source_sha256",
+      "state": "UNIMPLEMENTED_PRODUCT",
+      "gap": "No original encrypted source stream/File or identical encrypted P1G backup API."
+    },
+    {
+      "feature": "encodeCopy",
+      "target": "One final encrypted P1G Encode + independent Reopen, separate original and edited outputs",
+      "research": "export_verified_copy()->Err(PRODUCT_P1G_ENCODE_COPY_NOT_AUTHORIZED)",
+      "state": "DENIED_BY_CORE",
+      "gap": "No AES/ZIP/Deflate/CRC writer, product Copy entitlement, ZIP metadata fidelity or independent encrypted reopen."
+    },
+    {
+      "feature": "permissionBoundary",
+      "target": "READ vs ENCODE_COPY vs PERSISTENT_REPLACE positive grants decided by Core",
+      "research": "ValidationReceipt: encode_copy_authorized=false,persistent_replace_authorized=false",
+      "state": "DENIED_BY_CORE",
+      "gap": "No product Writer permission even for supported JSON span replacement."
+    },
+    {
+      "feature": "workerTransport",
+      "target": "Typed async worker port, cancelable paged read, rejection of old Session/Revision/Source",
+      "research": "Rust library SaveSession methods; no exported production wasm32 P1G Worker protocol",
+      "state": "UNIMPLEMENTED_PRODUCT",
+      "gap": "No stable JS/TS binding or Worker-owned issuance of opaque session, revision, cursor/capability; old JS Worker remains oracle."
+    }
+  ],
+  "integration": {
+    "phaseB": "BLOCKED",
+    "prerequisites": [
+      "Wand 01A accepted P1G open/CRC/AES/ZIP versioned schema and SHA scope",
+      "Stable Core-issued IDs/index generations/cursor protocol and domain adapters",
+      "01 CORE+02 TIME agreed typed W1 semantic command/linked ItemID/oneof gates",
+      "05 QR independent encrypted P1G + stale response/security/real browser acceptance"
+    ],
+    "allowedNow": [
+      "READ_ONLY_RESEARCH_COMPARISON",
+      "TYPE_CONTRACT_REVIEW",
+      "NEGATIVE_TESTS",
+      "COMPILED_ARTIFACT_HANDOFF"
+    ],
+    "forbiddenNow": [
+      "INSTALL_RESEARCH_WASM_IN_PRODUCT",
+      "ENABLE_ENCODE_COPY",
+      "ENABLE_PERSISTENT_REPLACE",
+      "TRUST_UI_REFERENCE_INDEX",
+      "RELAX_128MIB_JS_LIMIT",
+      "REPLACE_JS_CODEC"
+    ]
+  },
+  "observedAfterFreeze": {
+    "wandPr312Head": "c587f04855db0543896c51f3defa068ccf002b43",
+    "note": "Later upstream research delta only; pinned comparison remains PR312 473acaab; not a stable API or 05 QR acceptance. Recheck the current upstream HEAD before binding.",
+    "sourceBlobs": {
+      "session": "5eaaaf5f503253f05d25bf15475d3f82df02e200",
+      "p1g": "c8cacdc5fa6afc7a60f388af561522e2867f5c9b",
+      "w1Evidence": "7cc71d31eb19b9fc3306e7b0f99e2109a77c8cb0"
+    },
+    "additions": [
+      "p1g::decode_p1g_research validates limited synthetic encrypted single-profile AES256/ZIP/CRC",
+      "p1g::create_p1g_copy_research performs synthetic encrypted copy and self reopen, but product_encode_copy_authorized=false",
+      "w1_evidence::inspect_w1_source_research validates source/registry SHA, external BID, schema626, W1 ID/index/oneof/token witness with required_reference_closure_complete=false and encode_copy_authorized=false",
+      "session::inspect_source_reference_paths issues source-derived path witnesses but reports cross_domain_reference_closure_complete=false, domain_reference_semantics_verified=false and usable_for_product_writer=false"
+    ],
+    "productP1gAccepted": false,
+    "completeDomainProjectionAccepted": false,
+    "stableWasmWorkerApiAccepted": false,
+    "writerGranted": false
+  },
+  "projectionResponseBoundary": {
+    "status": "WEB_REJECTION_ONLY_NOT_CORE_PROOF",
+    "maxRows": 200,
+    "maxRowBytes": 65536,
+    "maxPageBytes": 2097152,
+    "maxCursorChars": 512,
+    "cursor": "complete=true iff nextCursor=null; non-complete page must be nonempty and supply a new cursor; dispatch-reply ticket tied to session source revision domain/view/sort/filter",
+    "revision": "invalidate all issued page tickets and scoped cursor history on open/close/undo/redo-issued Core revision",
+    "semantics": "large Grid/Inventory/Quest must be Core-indexed as bounded typed rows; UI cannot assert full graph completeness or writer authority"
+  },
+  "observedLatest": {
+    "wandPr312Head": "1909dd5e041db69dd3c6fc0f896d0c57e02c5a89",
+    "comparedFrom": "c587f04855db0543896c51f3defa068ccf002b43",
+    "comparison": "7 commits ahead; changed p1g oracle, w1 evidence and tests; added P1G_SOURCE_EVIDENCE_RESEARCH_API_V1.md and source reference tests; no session.rs or p1g.rs change",
+    "sourceBlobs": {
+      "session": "5eaaaf5f503253f05d25bf15475d3f82df02e200",
+      "p1g": "c8cacdc5fa6afc7a60f388af561522e2867f5c9b",
+      "w1Evidence": "a028f82b0b3c2ca59815920291b0dfd45e722efe",
+      "researchApiDocument": "b2fad0558734f478c209843bee050423eaecef7e"
+    },
+    "researchAvailable": [
+      "decode_p1g_research: synthetic source ciphertext SHA plus decoded JSON SHA, strict single profile, SHA scope distinct",
+      "create_p1g_copy_research: synthetic only encrypted copy/self-reopen, product_encode_copy_authorized=false",
+      "inspect_source_reference_paths: source-derived exact path token witnesses, cross_domain_reference_closure_complete=false",
+      "inspect_w1_source_research: three distinct SHA roots, externally selected BID not cryptographically bound, native_semantics_verified=false"
+    ],
+    "stillMissing": [
+      "stable versioned WASM Worker encrypted File open and accepted typed paged domain cursor",
+      "Core-derived complete semantic reference graph across relevant domains and operation-specific positive capabilities",
+      "original encrypted P1G as immutable product SaveSession backing and byte-exact backup port",
+      "real-schema edited-copy independent read/encode/reopen, resource-bounded browser verification and 05 QR fixed-head acceptance"
+    ],
+    "productP1gAccepted": false,
+    "completeDomainProjectionAccepted": false,
+    "stableWasmWorkerApiAccepted": false,
+    "writerGranted": false
+  }
+}
