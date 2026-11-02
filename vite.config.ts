@@ -2,15 +2,17 @@ import {defineConfig} from 'vite';
 import {sveltekit} from '@sveltejs/kit/vite';
 import {readdirSync,readFileSync,statSync} from 'node:fs';
 import {join,relative,resolve} from 'node:path';
+// Only owner-original UI SVGs and limited informational CSS ship by default.
+// Asset-owned game WebPs are withheld until mapping and publication rights are accepted.
 function existingAssets(){
  return {name:'timekeeper-existing-static-assets',generateBundle(this: any){
-  const root=resolve('assets');
+  const root=resolve('assets/app');
   const walk=(dir:string)=>{
    for(const name of readdirSync(dir)){
     const path=join(dir,name);
     if(statSync(path).isDirectory())walk(path);
     else if(/\.(svg|webp|css)$/i.test(name)){
-     this.emitFile({type:'asset',fileName:'assets/'+relative(root,path).split('\\').join('/'),source:readFileSync(path)});
+     this.emitFile({type:'asset',fileName:'assets/app/'+relative(root,path).split('\\').join('/'),source:readFileSync(path)});
     }
    }
   };walk(root);
