@@ -102,3 +102,54 @@ test('unknown reference shapes and unavailable Wand source never imply clearance
  assert.equal(invalid.matches[0].referenceAssessment,'INCOMPLETE_REFERENCE_GRAPH');
  assert.equal(invalid.bulkDeletionAuthorized,false);
 });
+
+
+test('Wand DiffGrids modified source-linked objects are assessed separately from direct area grids',async()=>{
+ const p=fixture();
+ p.Player={};
+ p.ConditionalEventHistory={ActiveEvents:{'1520002098':{SpawnState:{
+  SpawnedObjects:[{GridID:878,GridObjectID:41}]
+ }}}};
+ p.World.GridCollection.DiffGrids={
+  '878':{ID:878,ModifiedObjects:{
+   '41':{ID:41,ItemID:31700131,From:'GridSource_RemovingBlockers'},
+   '42':{ID:42,ItemID:30800059}
+  },RemovedObjects:[39]},
+  '879':{ID:879,ModifiedObjects:{
+   '5':{ID:5,ItemID:30200147}
+  }}
+ };
+ const tagPack=JSON.parse(await readFile(new URL('../data/wand-iswood-crosswalk-v1253.json',import.meta.url),'utf8'));
+ const tagged=compileDecorationSpawnEvidence(JSON.parse(
+  await readFile(new URL('../data/events-v1253.json',import.meta.url),'utf8')),{woodTagPack:tagPack});
+ const before=JSON.stringify(p);
+ const a=auditDecorationGridItemMatches(p,tagged);
+ assert.equal(a.diffModifiedObjectsInspected,3);
+ assert.equal(a.diffModifiedMatches.length,2);
+ const pine=a.diffModifiedMatches.find(x=>x.itemId===31700131);
+ assert.equal(pine.gridId,878);
+ assert.equal(pine.sourceMatchLevel,'ITEM_ID_ONLY_DIFF_MODIFIED');
+ assert.equal(pine.exactDirectAreaLinked,false);
+ assert.equal(pine.referenceAssessment,'ACTIVE_IDENTITY_REFERENCE');
+ assert.deepEqual(pine.activeConditionalEventIds,['1520002098']);
+ assert.equal(pine.sourceFromRawPresent,true);
+ assert.equal(pine.sourceFromSemanticsVerified,false);
+ assert.equal(pine.locationRoleVerified,false);
+ assert.equal(pine.bulkDeletionAuthorized,false);
+ assert.equal(a.diffModifiedMatches.some(x=>x.itemId===30200147),false);
+ assert.equal(a.matches.some(x=>x.itemId===31700131),false);
+ assert.equal(a.diffModifiedGridsAreNotDirectAreaRoots,true);
+ assert.equal(JSON.stringify(p),before);
+});
+test('malformed DiffGrid structure is reported, not promoted as editable',()=>{
+ const p=fixture();
+ p.World.GridCollection.DiffGrids={'44':{ID:45,ModifiedObjects:{}}};
+ const r=auditDecorationGridItemMatches(p,source);
+ assert(r.diagnostics.some(x=>x.code==='DIFF_GRID_IDENTITY_MISMATCH'));
+ assert.equal(r.bulkDeletionAuthorized,false);
+ p.World.GridCollection.DiffGrids={'44':{ID:44,ModifiedObjects:[{ID:5,ItemID:31700014}]}};
+ const r2=auditDecorationGridItemMatches(p,source);
+ assert(r2.diagnostics.some(x=>x.code==='DIFF_MODIFIED_OBJECTS_STRUCTURE_UNREVIEWED'));
+ assert.equal(r2.diffModifiedMatches.length,0);
+ assert.throws(()=>auditDecorationGridItemMatches(p,source,{maxGrids:1}));
+});
