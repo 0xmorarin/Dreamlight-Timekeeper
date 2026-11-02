@@ -68,6 +68,13 @@
         <input id="custom-time" type="datetime-local" aria-label="Custom local date and time" disabled>
       </div>
       <div id="preview" class="preview" aria-live="polite"></div>
+      <div class="draft-actions">
+        <button id="stage-preview" class="subtle" type="button" data-i18n="stagePlan" disabled>Add to preview plan</button>
+        <button id="undo-plan" class="subtle" type="button" data-i18n="undoPlan" disabled>Undo</button>
+        <button id="redo-plan" class="subtle" type="button" data-i18n="redoPlan" disabled>Redo</button>
+        <button id="clear-plan" class="subtle" type="button" data-i18n="clearPlan" disabled>Clear plan</button>
+      </div>
+      <div id="draft-plan" class="draft-plan" aria-live="polite"></div>
       <details class="technical"><summary data-i18n="technical">Technical details</summary><div id="technical-details"></div></details>
       <div class="detail-bottom">
         <p class="safety-note">Preview only. Changes to the save file are disabled.</p>
