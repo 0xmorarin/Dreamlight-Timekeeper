@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cp,lstat,mkdtemp,mkdir,readFile,rm,symlink,writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
-import {join} from 'node:path';
+import {basename,dirname,join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {stageSveltekitReviewOnly} from '../scripts/stage-sveltekit-review-only.mjs';
 import {auditSveltekitBuild} from '../scripts/audit-sveltekit-build.mjs';
@@ -62,6 +62,25 @@ test('00 CTRL refuses symlinked compiled buildRoot and sourceRoot before realpat
    sourceRoot:sourceAlias,buildRoot:build,outputRoot:target2
   }),/REVIEW_STAGE_SYMLINK_OR_INVALID_SOURCE_ROOT/);
   await assert.rejects(lstat(target2),{code:'ENOENT'});
+ });
+});
+
+test('00 CTRL rejects symlinked ancestor path components before realpath',async()=>{
+ await sandbox(async base=>{
+  const alias=join(base,'aliased-parent');
+  await symlink(dirname(repo),alias,'dir');
+  const sourceViaAncestor=join(alias,basename(repo));
+  const output1=join(base,'source-ancestor-output');
+  await assert.rejects(stageSveltekitReviewOnly({
+   sourceRoot:sourceViaAncestor,buildRoot:build,outputRoot:output1
+  }),/REVIEW_STAGE_SYMLINK_OR_INVALID_SOURCE_ROOT/);
+  await assert.rejects(lstat(output1),{code:'ENOENT'});
+  const buildViaAncestor=join(sourceViaAncestor,'build');
+  const output2=join(base,'build-ancestor-output');
+  await assert.rejects(stageSveltekitReviewOnly({
+   sourceRoot:repo,buildRoot:buildViaAncestor,outputRoot:output2
+  }),/REVIEW_STAGE_SYMLINK_OR_INVALID_BUILD_ROOT/);
+  await assert.rejects(lstat(output2),{code:'ENOENT'});
  });
 });
 
