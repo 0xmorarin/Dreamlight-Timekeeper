@@ -2,6 +2,7 @@ import {TAB_ORDER,WORLD_ORDER,previewScope,safeText} from './reader.mjs';
 import {resolveTimePreset} from './time-presets.mjs';
 import {createTimingDraft} from './core/timing-draft.mjs';
 import {createOriginalBackupCoordinator} from './ui-backup-coordinator.mjs';
+import {createVerifiedPairDownloadUi} from './ui-verified-pair-downloads.mjs';
 import {validateIconManifest,resolveIconAsset} from './icon-assets.mjs';
 import {validateUiManifest,resolveGameUiIcon,resolveAppUiIcon} from './ui-assets.mjs';
 import {SUPPORTED_LOCALES,initialLocale,translate,categoryName,areaName,localDate,parseLocalDateTime} from './i18n.mjs';
@@ -12,6 +13,7 @@ const state={snapshot:null,draft:null,sessionId:null,preflight:null,planPending:
 const t=(key,values)=>translate(state.locale,key,values);
 const fmt=value=>localDate(value,state.locale);
 let worker=null,seq=0,noticeCount=0,iconManifest=null,gameUiManifest=null,appUiManifest=null,preflightSequence=0;
+let outputPlanRevision=0,outputPreparing=false,outputPrepared=false,sessionFormat=null;
 const pending=new Map();
 function failWorker(message){for(const p of pending.values())p.reject(new Error(message));pending.clear();if(worker){worker.terminate();worker=null;}}
 function request(type,payload={},transfer=[]){return new Promise((resolve,reject)=>{
@@ -69,6 +71,7 @@ function showEditor(){
  $('welcome').hidden=true;$('workspace').hidden=false;
  $('session-name').textContent=state.snapshot.identity.name||'Save opened';
  $('download-backup').disabled=false;
+ verifiedOutputs.sync();
  renderAudit();renderTabs();renderFilters();renderList();renderDetails();
 }
 function showWelcome(){if(state.snapshot)return;$('welcome').hidden=false;$('workspace').hidden=true;}
@@ -81,11 +84,83 @@ const backupCoordinator=createOriginalBackupCoordinator({
   setTimeout(()=>URL.revokeObjectURL(url),10000);
  }
 });
+
+const verifiedOutputs=createVerifiedPairDownloadUi({
+ currentSession:()=>state.loading?null:state.sessionId,
+ currentPlanRevision:()=>outputPlanRevision,
+ controls:{panel:$('verified-pair-downloads'),both:$('download-verified-both'),
+  original:$('retry-verified-original'),edited:$('retry-verified-edited')},
+ triggerDownload:(kind,file)=>{
+  if(state.loading||!state.sessionId||!(file?.buffer instanceof ArrayBuffer)||
+     (file.name.length>180||!file.name.toLowerCase().endsWith('.p1g')||
+       [...file.name].some(ch=>ch==='/'||ch===String.fromCharCode(92)||ch.charCodeAt(0)<32))||
+     !file.name.startsWith(kind+'_'))
+   throw Error('Verified P1G filename or session invalid.');
+  const url=URL.createObjectURL(new Blob([file.buffer],{type:'application/octet-stream'}));
+  try{const anchor=make('a');anchor.download=file.name;anchor.href=url;anchor.click();}
+  finally{setTimeout(()=>URL.revokeObjectURL(url),10000);}
+ },
+ onStatus:(kind,result)=>{
+  const label=value=>value==='TRIGGER_REQUESTED_UNCONFIRMED'?t('pairRequested'):
+    value==='TRIGGER_FAILED'?t('pairBlocked'):t('pairNotAttempted');
+  $('verified-pair-status').textContent=kind==='error'?String(result):
+    typeof result==='string'?label(result):
+      t('pairBothStatus',{original:label(result.original),edited:label(result.edited)});
+ }
+});
+function invalidateVerifiedOutput(){
+ ++outputPlanRevision;outputPrepared=false;verifiedOutputs.invalidate();
+ $('verified-pair-status').textContent='';
+ renderOutputControls();
+}
+function renderOutputControls(){
+ const pane=$('prepare-edited-panel');
+ pane.hidden=!state.snapshot||sessionFormat!=='packaged';
+ const p=state.draft?.view();
+ $('prepare-edited').disabled=state.loading||outputPreparing||outputPrepared||
+  state.planPending||!p?.count||p.count>100||
+  !$('confirm-switch-build').checked||sessionFormat!=='packaged';
+ verifiedOutputs.sync();
+}
+async function prepareEditedCopy(){
+ if(state.loading||outputPreparing||outputPrepared||state.planPending||
+    sessionFormat!=='packaged'||!$('confirm-switch-build').checked)return;
+ const draft=state.draft?.view();
+ if(!draft?.count||draft.count>100)return;
+ const sessionId=state.sessionId,planRevision=outputPlanRevision;
+ const byPointer=new Map(state.snapshot.rows.map(row=>[row.pointer,row]));
+ const entries=draft.entries.map(e=>{
+  const row=byPointer.get(e.pointer);
+  return {pointer:e.pointer,eventId:row?.id,kind:row?.kind,
+   originalTime:e.originalTime,targetTime:e.targetTime};
+ });
+ outputPreparing=true;renderOutputControls();
+ try{
+  const response=await request('prepareEdited',{sessionId,planRevision,entries,
+   targetBuildId:'9A239D3DB569756D',confirmedSwitchTarget:true});
+  if(state.loading||sessionId!==state.sessionId||
+     planRevision!==outputPlanRevision||sessionFormat!=='packaged')
+    return;
+  if(response.type!=='preparedEdited'||response.sessionId!==sessionId||
+     response.planRevision!==planRevision||
+     response.receipt?.status!=='WORKER_VERIFIED_PAIR')
+   throw Error('No current Worker-verified edited P1G copy.');
+  verifiedOutputs.acceptWorkerPair(response.receipt,{sessionId,planRevision});
+  outputPrepared=true;
+  message(t('pairReady'));
+ }catch(err){
+  if(!state.loading&&sessionId===state.sessionId&&planRevision===outputPlanRevision)
+    message(t('pairPrepareFailed',{reason:err.message}),true);
+ }finally{
+  outputPreparing=false;renderOutputControls();
+ }
+}
+
 async function openSave(file){
  if(!file||state.loading)return;
- backupCoordinator.invalidate();++preflightSequence;state.planPending=false;
+ backupCoordinator.invalidate();invalidateVerifiedOutput();++preflightSequence;state.planPending=false;
  state.loading=true;$('open-welcome').disabled=true;$('open-again').disabled=true;
- const old=state.snapshot,oldDraft=state.draft,oldSession=state.sessionId,oldPreflight=state.preflight;
+ const old=state.snapshot,oldDraft=state.draft,oldSession=state.sessionId,oldPreflight=state.preflight,oldFormat=sessionFormat;
  let workerSessionCommitted=false;
  message(t('loading',{name:file.name}));
  try{
@@ -94,15 +169,15 @@ async function openSave(file){
   const result=await request('open',{buffer,name:file.name},[buffer]);
   workerSessionCommitted=true;
   ++preflightSequence;
-  state.snapshot=result.view;state.sessionId=result.sessionId;state.preflight=null;state.planPending=false;
+  state.snapshot=result.view;state.sessionId=result.sessionId;state.preflight=null;state.planPending=false;sessionFormat=result.format;
   state.draft=createTimingDraft(result.view);state.tab='spawn';state.world='all';state.group=null;state.subgroup=null;state.selected.clear();state.query='';state.limit=120;state.mode='now';
-  $('filter-input').value='';$('sort-order').value='name';$('time-mode').value='now';$('custom-time').value='';$('custom-time').disabled=true;
+  $('filter-input').value='';$('sort-order').value='name';$('time-mode').value='now';$('custom-time').value='';$('custom-time').disabled=true;$('confirm-switch-build').checked=false;
   showEditor();message(t('opened',{format:result.format}));
  }catch(err){
-  if(!workerSessionCommitted&&old){state.snapshot=old;state.draft=oldDraft;state.sessionId=oldSession;state.preflight=oldPreflight;showEditor();}
-  else{state.snapshot=null;state.draft=null;state.sessionId=null;state.preflight=null;showWelcome();}
+  if(!workerSessionCommitted&&old){state.snapshot=old;state.draft=oldDraft;state.sessionId=oldSession;state.preflight=oldPreflight;sessionFormat=oldFormat;showEditor();}
+  else{state.snapshot=null;state.draft=null;state.sessionId=null;state.preflight=null;sessionFormat=null;showWelcome();}
   message(t('loadError',{name:file.name,reason:err instanceof Error?err.message:String(err)}),true);
- }finally{state.loading=false;$('open-welcome').disabled=false;$('open-again').disabled=false;$('save-file').value='';renderPlan();}
+ }finally{state.loading=false;$('open-welcome').disabled=false;$('open-again').disabled=false;$('save-file').value='';renderPlan();renderOutputControls();}
 }
 function fileDialog(){$('save-file').click();}
 function localizedItem(item){const names=item.names||{};return safeText(names[state.locale]||names['en-US']||item.name||t('recordIndex',{id:item.id}));}
@@ -214,7 +289,7 @@ function renderList(){
  $('more-records').hidden=rows.length<=state.limit;$('more-records').textContent=t('more',{n:rows.length-state.limit});
  $('select-visible').disabled=!rows.length;renderSelectionLabel();
 }
-function setTime(){state.mode=$('time-mode').value;$('custom-time').disabled=state.mode!=='custom';renderDetails();}
+function setTime(){invalidateVerifiedOutput();state.mode=$('time-mode').value;$('custom-time').disabled=state.mode!=='custom';renderDetails();}
 function renderPlan(){
  const root=$('draft-plan');root.replaceChildren();
  const v=state.draft?.view();
@@ -222,6 +297,7 @@ function renderPlan(){
  $('undo-plan').disabled=state.loading||!v?.canUndo;
  $('redo-plan').disabled=state.loading||!v?.canRedo;
  $('clear-plan').disabled=state.loading||!v?.count;
+ renderOutputControls();
  if(!v){root.textContent=t('planEmpty');return;}
  root.append(make('strong','draft-plan-title',v.count?t('planCount',{n:v.count}):t('planEmpty')));
  const rowsByPointer=new Map(state.snapshot.rows.map(r=>[r.pointer,r]));
@@ -305,7 +381,7 @@ function stagePreview(){
   });
   if(preview.affected.length!==rows.length)throw new Error('Preview selection was not consistent.');
   state.draft.stage(preview.affected.map(r=>r.pointer),preview.previewTime);
-  renderDetails();void refreshPreflight();message(t('planUpdated'));
+  invalidateVerifiedOutput();renderDetails();void refreshPreflight();message(t('planUpdated'));
  }catch(err){message(t('planFail',{reason:err.message}),true);}
 }
 async function backup(){try{await backupCoordinator.download(state.sessionId);}catch(err){message(t('backupError',{reason:err.message}),true);}}
@@ -349,17 +425,19 @@ function boot(){
  $('open-welcome').addEventListener('click',fileDialog);$('open-again').addEventListener('click',fileDialog);
  $('save-file').addEventListener('change',e=>{const file=e.target.files?.[0];if(file)openSave(file);});
  $('download-backup').addEventListener('click',backup);
+ $('prepare-edited').addEventListener('click',prepareEditedCopy);
+ $('confirm-switch-build').addEventListener('change',()=>{invalidateVerifiedOutput();});
  $('stage-preview').addEventListener('click',stagePreview);
- $('undo-plan').addEventListener('click',()=>{if(state.loading)return;state.draft?.undo();renderDetails();void refreshPreflight();});
- $('redo-plan').addEventListener('click',()=>{if(state.loading)return;state.draft?.redo();renderDetails();void refreshPreflight();});
- $('clear-plan').addEventListener('click',()=>{if(state.loading)return;state.draft?.clear();renderDetails();void refreshPreflight();});
+ $('undo-plan').addEventListener('click',()=>{if(state.loading)return;state.draft?.undo();invalidateVerifiedOutput();renderDetails();void refreshPreflight();});
+ $('redo-plan').addEventListener('click',()=>{if(state.loading)return;state.draft?.redo();invalidateVerifiedOutput();renderDetails();void refreshPreflight();});
+ $('clear-plan').addEventListener('click',()=>{if(state.loading)return;state.draft?.clear();invalidateVerifiedOutput();renderDetails();void refreshPreflight();});
  $('filter-input').addEventListener('input',e=>{state.query=e.target.value.trim().toLocaleLowerCase();state.limit=120;state.selected.clear();renderList();renderDetails();});
  $('sort-order').addEventListener('change',e=>{state.sort=e.target.value;state.limit=120;renderList();});
  $('select-visible').addEventListener('click',()=>{for(const row of visibleRows())state.selected.add(row.pointer);renderList();renderDetails();});
  $('clear-selection').addEventListener('click',()=>{state.selected.clear();renderList();renderDetails();});
  $('more-records').addEventListener('click',()=>{state.limit+=120;renderList();});
  $('time-mode').addEventListener('change',setTime);
- $('custom-time').addEventListener('change',renderDetails);
+ $('custom-time').addEventListener('change',()=>{invalidateVerifiedOutput();renderDetails();});
  bindDrop();refreshLanguage();window.__dreamlightBooted=true;
  loadIcons();
  request('check').catch(err=>message('Initialization error: '+err.message,true));
