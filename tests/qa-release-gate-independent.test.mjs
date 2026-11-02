@@ -130,3 +130,25 @@ test('QR: Worker public command surface remains open/backup/preflight/check only
  assert(/original=bytes.slice\(\)/.test(worker));
  assert(/original.slice\(\).buffer/.test(worker));
 });
+
+test('QR: encrypted P1G central CRC and size corruption are refused before any backup/export claim',async()=>{
+ const {createCipheriv,createDecipheriv}=await import('node:crypto');
+ const key=Buffer.from('62357168683873614A38556C444A557A545A5864325467366D626F3857386e35','hex');
+ const original=Buffer.from(makeSyntheticP1gProfile(input()));
+ const tamper=offset=>{
+  const decrypt=createDecipheriv('aes-256-ecb',key,null);
+  const zip=Buffer.concat([decrypt.update(original),decrypt.final()]);
+  const signature=Buffer.from([0x50,0x4b,0x01,0x02]);
+  const position=zip.indexOf(signature);
+  assert(position>=0,'Fixture must contain a ZIP central directory');
+  const before=zip.readUInt32LE(position+offset);
+  zip.writeUInt32LE((before+1)>>>0,position+offset);
+  const encrypt=createCipheriv('aes-256-ecb',key,null);
+  return Buffer.concat([encrypt.update(zip),encrypt.final()]);
+ };
+ const wrongCrc=tamper(16);
+ const wrongSize=tamper(24);
+ await assert.rejects(()=>p1gPackagedProfileCodec.loadProfile(wrongCrc));
+ await assert.rejects(()=>p1gPackagedProfileCodec.loadProfile(wrongSize));
+ assert.deepEqual(Buffer.from(original),Buffer.from(makeSyntheticP1gProfile(input())));
+});
