@@ -1,4 +1,5 @@
 import {readFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import {auditItemImageCoverage,recurringImageTargets,BASELINE} from '../src/item-image-coverage.mjs';
 
@@ -275,5 +276,50 @@ if(ambiguous!==81||missing!==163)fail('image resolution status counts drift');
 if(JSON.stringify(priorityCounts)!==JSON.stringify({P0:9,P1:12,P2:60})||
  JSON.stringify(priorities.counts)!==JSON.stringify(priorityCounts))
  fail('81 shared-placeholder research priority counts changed');
+
+
+// Item source categories are now confirmed for ALL 244 ItemIDs from the
+// original v1.25.3 framed ItemDB field1, never from ItemID numeric prefix.
+const typed=pinned.originalItemTypeCensus;
+const exactTypes={'ActivityItem.json':173,'Furniture.json':52,'Companion.json':19};
+const originals={'ActivityItem.json':3716,'Furniture.json':6233,'Companion.json':362};
+const priorLinked=pinned.items.filter(row=>row.sourceCrosswalk==='SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE');
+const originalLinkedDigest=createHash('sha256').update(priorLinked.map(row=>
+  row.itemId+',ActivityItem.json\n').join('')).digest('hex');
+if(typed?.gameVersion!=='1.25.3'||typed.platform!=='Steam/Windows'||
+ typed.evidence!=='ACTUAL_SOURCE_FRAMED_PROTOBUF_FIELD1_ITEMID_READ_ONLY'||
+ typed.supportedRecurringItemIDs!==244||typed.matchedByItemDbField1!==244||
+ typed.distinctSourceStreamsPerItemId!==1||
+ typed.categoryIsOriginalSourceTypeOnly!==true||typed.notNativeGameplayCategory!==true||
+ typed.visualsGranted!==0||typed.rightsGranted!==false||
+ normalized(typed.sourceHashes)!==normalized(expectedStreams)||
+ normalized(typed.originalRecordCounts)!==normalized(originals)||
+ normalized(typed.streamCounts)!==normalized(exactTypes)||
+ typed.formerlyUnclassified138ActivityItemProof?.count!==138||
+ typed.formerlyUnclassified138ActivityItemProof?.inFurniture!==0||
+ typed.formerlyUnclassified138ActivityItemProof?.inCompanion!==0||
+ typed.formerlyUnclassified138ActivityItemProof?.sourceStream!=='ActivityItem.json'||
+ typed.formerlyUnclassified138ActivityItemProof?.canonicalSortedItemIdAndStreamSha256!==
+ '553cc22aef519f8e5cb4e3873e4aa74a1aa0eb358c1e7dd8e2a93d5761b9e012'||
+ originalLinkedDigest!==typed.formerlyUnclassified138ActivityItemProof.canonicalSortedItemIdAndStreamSha256)
+ fail('original v1.25.3 typed 244 ItemID category census drift');
+const typedCounts={'ActivityItem.json':0,'Furniture.json':0,'Companion.json':0};
+for(const row of pinned.items){
+ const witness=row.itemSourceType;
+ if(witness?.status!=='ORIGINAL_V1253_ITEMDB_FIELD1_VERIFIED'||
+   witness.sourceSha256!==expectedStreams[witness.sourceStream]||
+   witness.itemIdField!==1||witness.itemSourceCategoryOnly!==true||
+   witness.notRuntimeGameCategory!==true||witness.notImageProof!==true)
+   fail('false typed source provenance for ItemID '+row.itemId);
+ if(row.definitionAudit&&row.definitionAudit.sourceStream!==witness.sourceStream)
+   fail('typed item source contradicts original IconAddress evidence '+row.itemId);
+ if(!row.definitionAudit&&(
+   row.sourceCrosswalk!=='SOURCE_LINKED_CANDIDATE_PRIVATE_SOURCE'||
+   witness.sourceStream!=='ActivityItem.json'))
+   fail('unverified old candidate ItemDB source '+row.itemId);
+ typedCounts[witness.sourceStream]++;
+}
+if(normalized(typedCounts)!==normalized(exactTypes))
+ fail('typed source category totals mismatch');
 
 console.log('Gap typed source PASS: 106/106 ItemID definitions (Activity35/Furniture52/Companion19), 81 common GUID; private Sprite/Texture 25, shared placeholder 81, published WebP 0');
