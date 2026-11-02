@@ -1,0 +1,44 @@
+name: 02 TIME Offline Native / Wand Rust W1 Research Parity
+
+on:
+  pull_request:
+    paths:
+      - 'tests/w1-rust-research-bridge/**'
+      - 'tests/w1-offline-rust-witness-parity.test.mjs'
+      - 'docs/W1_OFFLINE_NATIVE_EVIDENCE_V1253.md'
+      - '.github/workflows/02time-w1-offline-rust-parity.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compare-real-wand-rust-research-dto:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: DreamwishWand/web
+          ref: c6b152512d3bc901fd1474dbcfcb07253ae1b347
+          path: vendor-wand
+          persist-credentials: false
+      - name: Verify exact imported Wand CORE HEAD
+        run: |
+          test "$(git -C vendor-wand rev-parse HEAD)" = "c6b152512d3bc901fd1474dbcfcb07253ae1b347"
+          grep -F 'pub const W1_EVIDENCE_CONTRACT:&str="dreamwish.ddv.w1-source-witness.research@1"' vendor-wand/crates/ddv-save-core/src/w1_evidence.rs
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compile test-only consumer of Wand-owned Rust code
+        run: cargo build --quiet --manifest-path tests/w1-rust-research-bridge/Cargo.toml
+      - name: Compare actual Wand Rust witness with Timekeeper JS W1 Oracle
+        env:
+          WAND_W1_RESEARCH_BINARY: ${{ github.workspace }}/tests/w1-rust-research-bridge/target/debug/timekeeper-w1-witness-probe
+        run: |
+          node --test tests/w1-offline-rust-witness-parity.test.mjs tests/w1-rust-adapter-oracle.test.mjs tests/w1-minimal-write-contract.test.mjs tests/timing-native-semantics.test.mjs
+      - name: Prevent modifications to imported research source
+        run: git -C vendor-wand diff --exit-code -- crates/ddv-save-core
