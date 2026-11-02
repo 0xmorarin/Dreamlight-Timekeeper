@@ -59,7 +59,7 @@
     .sort((a,b)=>sort==='time'?String(a.time??'').localeCompare(String(b.time??'')):
      sort==='future'?Number((b.status??'').includes('FUTURE'))-Number((a.status??'').includes('FUTURE')):
      labelRow(a).localeCompare(labelRow(b),legacyLocale(localeCode)));
- $: chosen=selectedRows();
+ $: chosen=snapshot?.rows.filter(row=>selected.has(row.pointer))??[];
  $: targetTime=mode==='custom'?(customTime?parseLocalDateTime(customTime):null):
   resolveTimePreset(mode,{now:Date.now()});
  $: preview=(()=>{
