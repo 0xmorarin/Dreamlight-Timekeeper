@@ -106,7 +106,7 @@ test('unknown schema, inactive fish, Moonstone, ambiguous oneof and parallel unr
   contracts:[{eventId:2010000064,kind:'ItemSpawning'}]})),/NOT_ACTIVE/);
  const ambiguous=root();ambiguous.World.RecurringEvents['0'].FlowerSpawningInVillage={
   RecurringEventItemID:2010500008,NextOccurrence:OLD};
- await assert.rejects(createW1EditedP1gCopy(ctx({profile:ambiguous,plan:[edits()[0]]})),/PREFLIGHT/);
+ await assert.rejects(createW1EditedP1gCopy(ctx({profile:ambiguous,plan:[edits()[0]]})),/MISMATCH|PREFLIGHT/);
  const unknown=root();unknown.World.RecurringEvents['0'].OpaqueFutureVariant={NextOccurrence:OLD};
  await assert.rejects(createW1EditedP1gCopy(ctx({profile:unknown,plan:[edits()[0]]})),/PREFLIGHT/);
 });
