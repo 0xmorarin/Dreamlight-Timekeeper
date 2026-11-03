@@ -27,7 +27,13 @@ try{
  assert(ready,'Read-only text build not reachable locally');
  browser=await chromium.launch({headless:true,args:['--no-sandbox']});
  const context=await browser.newContext({acceptDownloads:true,viewport:{width:320,height:720},timezoneId:'UTC'});
+ const remoteRequests=[],remoteSockets=[];
+ context.on('request',req=>{
+  if(!req.url().startsWith('http://127.0.0.1:'+port+'/'))
+   remoteRequests.push(req.url());
+ });
  const page=await context.newPage();
+ page.on('websocket',socket=>{if(!socket.url().startsWith('ws://127.0.0.1:'+port+'/'))remoteSockets.push(socket.url());});
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  const original=Buffer.from(makeSyntheticP1gProfile({
   GameInfo:{Version:626,InitialVersion:518,LastSaveDeviceInfo:{deviceType:'DeviceType_Switch'}},
@@ -60,6 +66,26 @@ try{
  }),workerFiles[0]);
  assert.equal(answer.ok,false);
  assert.equal(answer.error,'RC_READ_ONLY_WRITER_DISABLED');
+ // The shipped Worker MUST reject fake source/Session/Cursor/Complete claims:
+ // a Svelte-hidden control is never the actual security boundary.
+ for(const query of [
+  {id:192,type:'queryPage',domain:'timing',view:'summary',limit:200,cursor:'forged',
+   sourceSha256:'a'.repeat(64),revision:0,indexGeneration:0,complete:true},
+  {id:193,type:'queryPage',domain:'world-grid',view:'all',limit:201,cursor:null,
+   capabilities:{READ:'AVAILABLE'},referenceGraph:{verified:true}}
+ ]){
+  const rejected=await page.evaluate(({workerFile,query})=>new Promise((resolve,reject)=>{
+   const worker=new Worker('/Dreamlight-Timekeeper/_app/immutable/workers/'+workerFile,{type:'module'});
+   const timeout=setTimeout(()=>{worker.terminate();reject(Error('READ denial timeout'));},10000);
+   worker.onmessage=e=>{clearTimeout(timeout);worker.terminate();resolve(e.data);};
+   worker.onerror=e=>{clearTimeout(timeout);worker.terminate();reject(Error(e.message));};
+   worker.postMessage(query);
+  }),{workerFile:workerFiles[0],query});
+  assert.equal(rejected.ok,false);
+  assert.equal(rejected.error,'CORE_READ_ABI_NOT_ACCEPTED');
+ }
+ assert.deepEqual(remoteRequests,[],'Compiled UI/Worker requested external network URL');
+ assert.deepEqual(remoteSockets,[],'Compiled UI opened external WebSocket');
  assert.deepEqual(errors,[]);
- console.log('WEB READONLY TEXT RC CHROMIUM PASS: 244-type source text, backup original, four tabs, eight locales, 320px, Worker direct prepareEdited DENY');
+ console.log('WEB READONLY TEXT RC CHROMIUM PASS: 244-type source text, backup original, four tabs, eight locales, 320px, Worker direct prepareEdited + untrusted READ DENY; network local-only');
 }finally{await browser?.close();server.kill();}

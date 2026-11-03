@@ -9,6 +9,11 @@ on:
       - 'tests/browser-sveltekit-readonly-text-rc.smoke.mjs'
       - 'src/lib/timekeeper/worker-projection-bounds.mjs'
       - 'src/lib/timekeeper/core-read-worker-bridge.mjs'
+      - 'src/lib/timekeeper/model.ts'
+      - 'svelte.config.js'
+      - 'scripts/audit-web-compiled-egress.mjs'
+      - 'scripts/verify-web-compiled-reproducibility.mjs'
+      - 'tests/web-compiled-egress-review.test.mjs'
       - 'scripts/stage-release-asset-profile.mjs'
       - 'tests/release-asset-scope.test.mjs'
       - 'tests/web-core-read-bridge.test.mjs'
@@ -34,7 +39,7 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Verify draft text-only RC and existing Projection/Worker regressions
         run: |
-          node --test tests/web-core-read-bridge.test.mjs tests/web-readonly-rc-contract.test.mjs tests/save-session-response-fence.test.mjs tests/web-projection-qr-fixtures.test.mjs tests/web-rust-session-alignment.test.mjs
+          node --test tests/web-compiled-egress-review.test.mjs tests/web-core-read-bridge.test.mjs tests/web-readonly-rc-contract.test.mjs tests/save-session-response-fence.test.mjs tests/web-projection-qr-fixtures.test.mjs tests/web-rust-session-alignment.test.mjs
           node --test tests/release-asset-scope.test.mjs tests/sveltekit-migration-contract.test.mjs tests/reader.test.mjs tests/worker.test.mjs tests/ui-separate-downloads.test.mjs
       - name: Type-check Svelte, JS and eight-locale UI
         run: npm run check
@@ -46,6 +51,14 @@ jobs:
           npm run build
           node scripts/audit-sveltekit-build.mjs build .release-audit/web-readonly-rc-build-inventory.json
           test -s .release-audit/web-readonly-rc-build-inventory.json
+          node -e "const fs=require('fs'),cp=require('child_process');const actual=JSON.parse(fs.readFileSync('build/_app/version.json','utf8')).version;const expected='git-'+cp.execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();if(actual!==expected)throw Error('UNPINNED_SVELTEKIT_BUILD_VERSION')"
+          node scripts/audit-web-compiled-egress.mjs build .release-audit/web-compiled-egress-review.json
+          node -e "const r=require('./.release-audit/web-compiled-egress-review.json');if(r.publicReleaseAuthorized!==false||r.remoteEgressFullyExcluded!==false||r.coreRealReadAccepted!==false)process.exit(12)"
+          cp .release-audit/web-readonly-rc-build-inventory.json .release-audit/web-readonly-rc-build-inventory-first.json
+          rm -rf build .svelte-kit
+          npm run build
+          node scripts/audit-sveltekit-build.mjs build .release-audit/web-readonly-rc-build-inventory-second.json
+          node scripts/verify-web-compiled-reproducibility.mjs .release-audit/web-readonly-rc-build-inventory-first.json .release-audit/web-readonly-rc-build-inventory-second.json
           node -e "const c=require('./contracts/web-readonly-rc-release-v1.json');if(c.status!=='DRAFT_NEVER_DEPLOY'||c.releaseGates.publicReleaseApproved!==false||c.product.writerEnabled!==false||c.product.editedCopyOutputEnabled!==false)process.exit(9)"
       - name: Existing Chromium 4-tab / 8-locale / 320px / zoom / Worker regression
         run: |

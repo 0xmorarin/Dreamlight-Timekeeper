@@ -8,7 +8,6 @@ const hash=/^[a-f0-9]{64}$/;
 const domainNames=new Set(['timing','inventory','collections','storage',
   'world-grid','rooms','progression','quests']);
 const allowedIntent=new Set(['domain','view','limit','cursor','filters','sort']);
-const own=(o,k)=>Object.hasOwn(o,k);
 const plain=o=>o!==null&&typeof o==='object'&&!Array.isArray(o)&&
  (Object.getPrototypeOf(o)===Object.prototype||Object.getPrototypeOf(o)===null);
 const validRoots=r=>plain(r)&&
@@ -63,8 +62,10 @@ export function createProspectiveCoreReadWorkerBridge({core}={}){
  if(!core||['openLocal','queryIndexedPage','verifyIndexedPage','close'].some(k=>typeof core[k]!=='function'))
   throw Error('CORE_READ_PRIVATE_PORT_REQUIRED');
  let epoch=0,active=null,seen=new Set(),busy=false;
+ let expectedCursor=null,activeScope=null;
  const invalidate=()=>{
   epoch++;active=null;seen.clear();busy=false;
+  expectedCursor=null;activeScope=null;
   core.close();
  };
  const openLocal=async file=>{
@@ -79,7 +80,10 @@ export function createProspectiveCoreReadWorkerBridge({core}={}){
   if(!active||busy)throw Error('CORE_READ_SESSION_NOT_READY');
   const intent=canonicalIntent(input);
   const cursor=intent.cursor;
+  const scope=JSON.stringify([intent.domain,intent.view,intent.sort,intent.filters,intent.limit]);
   if(cursor!==null&&seen.has(cursor))throw Error('CORE_CURSOR_REPLAY');
+  if(cursor!==null&&(cursor!==expectedCursor||scope!==activeScope))
+   throw Error('CORE_CURSOR_SCOPE_OR_SEQUENCE_INVALID');
   busy=true;
   const run=epoch,expected=active,key=rootsKey(expected);
   try{
@@ -97,13 +101,21 @@ export function createProspectiveCoreReadWorkerBridge({core}={}){
    if(await core.verifyIndexedPage(intent,page,expected)!==true)
     throw Error('CORE_PAGE_AUTHORITY_REJECTED');
    if(run!==epoch||!active||rootsKey(active)!==key)throw Error('STALE_CORE_PAGE');
-   if(cursor!==null)seen.add(cursor);
-   // Must be done before a Worker postMessage; metadata counts toward budget.
+   // Must be done before a Worker postMessage; metadata counts towards budget.
    rejectOversizeWorkerProjection(page,{requestedLimit:intent.limit});
-   if(page.nextCursor!==null&&seen.has(page.nextCursor))
+   if(page.nextCursor!==null&&(page.nextCursor===cursor||seen.has(page.nextCursor)))
     throw Error('CORE_CURSOR_REPLAY');
+   if(cursor!==null)seen.add(cursor);
+   if(seen.size>=16384)throw Error('CORE_CURSOR_HISTORY_EXHAUSTED');
+   expectedCursor=page.nextCursor;
+   activeScope=expectedCursor===null?null:scope;
    // The caller may emit this bounded page only after all checks.
    return page;
+  }catch(error){
+   // A response-side failure or Core verifier denial invalidates the entire
+   // session and all private cursor state. No partial rows may escape.
+   if(run===epoch)invalidate();
+   throw error;
   }finally{if(run===epoch)busy=false;}
  };
  return Object.freeze({

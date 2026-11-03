@@ -47,6 +47,13 @@ self.onmessage=async({data})=>{
   const id=data?.id;
   if(!Number.isSafeInteger(id))return;
   try{
+    if(data.type==='queryPage'){
+      // No accepted Wand Rust READ-only ABI is installed. A forged UI-issued
+      // source/session/revision/cursor/complete/reference claim cannot become
+      // a trusted CORE projection. This is denied in ALL builds, including
+      // normal developer JS-Codec comparison builds.
+      throw Error('CORE_READ_ABI_NOT_ACCEPTED');
+    }
     if(data.type==='open'){
       // Fence every pending Writer before starting another asynchronous file load.
       const generation=++openGeneration;
