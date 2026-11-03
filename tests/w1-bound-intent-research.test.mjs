@@ -262,7 +262,7 @@ test('a coherent fabricated Core-issued receipt remains untrusted research, not 
 test('raw token equality with caller-witness is not actual original-P1G byte-span provenance',()=>{
  const p=fixture(),projectionValue=projection(p,[selection(review(p),mainEvent)]);
  const w=current(),intent=request();
- const fabricatedLexical='"\\\\u0032126-08-20T00:00:00Z"';
+ const fabricatedLexical='"\\u0032126-08-20T00:00:00Z"';
  w.tokens[0].rawOldJson=fabricatedLexical;
  intent.rawOldJson=fabricatedLexical;
  assert.equal(JSON.parse(fabricatedLexical),OLD);
