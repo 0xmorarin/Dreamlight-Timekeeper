@@ -37,7 +37,8 @@ function canonicalIntent(x){
  const canonical={};
  for(const key of Object.keys(filters).sort()){
   const val=filters[key];
-  if(!key||key.length>128||!['string','boolean','number'].includes(typeof val)||
+  if(!key||key.length>128||['__proto__','prototype','constructor'].includes(key)||
+    !['string','boolean','number'].includes(typeof val)||
     typeof val==='number'&&!Number.isFinite(val)||
     typeof val==='string'&&val.length>512)throw Error('READ_WORKER_UNTRUSTED_QUERY');
   canonical[key]=val;
