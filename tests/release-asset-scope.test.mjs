@@ -52,7 +52,7 @@ test('two release variants are staged outside source, with exact file counts and
    assert.equal(names.filter(x=>x.endsWith('.svg')).length,16);
    assert.equal(names.filter(x=>x.endsWith('.webp')).length,expectGame);
    for(const p of ['index.html','styles.css','src/app.mjs','src/worker.mjs',
-    'src/core/w1-edited-p1g-copy.mjs','data/events-v1253.json',
+    'src/core/w1-edited-p1g-copy.mjs','src/item-image-coverage.mjs','data/events-v1253.json',
     'data/item-names-v1250.json.gz','assets/app/release-notice.css']){
     assert.ok(names.includes(p),'Missing production app dependency: '+p);
    }
