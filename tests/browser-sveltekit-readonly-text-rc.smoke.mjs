@@ -58,7 +58,7 @@ try{
  // distinct obstacle ItemIDs, three of which never occur first in source.
  const thorn=page.locator('.event-row').filter({hasText:'EventID 2010000003'});
  assert.equal(await thorn.count(),1);
- assert.equal(await thorn.locator('.linked-items li').count(),4);
+ assert.equal(await thorn.locator('.linked-items [role="listitem"]').count(),4);
  for(const id of [31300003,31300004,31300005,31300006]){
   assert.equal(await thorn.getByText('ItemID '+id,{exact:false}).count(),1);
  }
