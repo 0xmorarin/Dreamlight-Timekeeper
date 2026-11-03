@@ -20,6 +20,13 @@ const observed=[
  {eventId:2010500008,kind:'FlowerSpawningInVillage',execute:'0x057C99E0',reschedule:'0x057CAE58',status:'SOURCE_VARIANT_HINT_ONLY'},
  {eventId:2010200014,kind:'FishSpawningInVillage',execute:'0x057C6890',reschedule:'0x057C7110',status:'INACTIVE_SOURCE_DEFINITION'}
 ];
+function decodeSubOrCompare(word){
+ const opcode=word&0xffe0fc00;
+ assert([0xcb000000,0xeb000000].includes(opcode),
+  'Expected signed 64-bit SUB or SUBS/CMP (shifted-register form)');
+ return {kind:opcode===0xcb000000?'SUB':'CMP',
+  rd:word&31,rn:(word>>>5)&31,rm:(word>>>16)&31};
+}
 function decodeBCond(word,pc){
  assert.equal(word&0xff000010,0x54000000,'Expected AArch64 B.cond');
  let imm19=(word>>>5)&0x7ffff;
@@ -40,7 +47,10 @@ test('verified exact NSO/text identity and signed Actualize overdue guards (no b
  assert.equal(ledger.source.buildId,'9A239D3DB569756D');
  // Native 0x05A2AE20 SUB X8,X8,X9 ; 0x05A2AE24 CMP X8,X25 ;
  // 0x05A2AE28 B.LE to 0x05A2AF00 skips overdue clamp.
- assert.equal(0xcb090108,0xcb090108);
+ assert.deepEqual(decodeSubOrCompare(0xcb090108),
+  {kind:'SUB',rd:8,rn:8,rm:9});
+ assert.deepEqual(decodeSubOrCompare(0xeb19011f),
+  {kind:'CMP',rd:31,rn:8,rm:25});
  assert.deepEqual(decodeBCond(0x540006cd,0x05A2AE28),
   {condition:0xd,target:0x05A2AF00}); // signed LE
  // Native 0x05A2AEF4 SUB ; 0x05A2AEF8 CMP ;
