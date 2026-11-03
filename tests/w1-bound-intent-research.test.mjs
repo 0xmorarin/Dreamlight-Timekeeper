@@ -173,3 +173,59 @@ test('bad Core raw token, duplicate source pointers, and unrecognized registry f
  deny(assessBoundW1IntentResearch({projection:pr,coreWitness:c,intents:[request()]}),
  'REGISTRY_OR_BUILD_DIFFERENT');
 });
+
+
+test('synthetic claimed CORE authenticity is never product authorization, even when all fields align',()=>{
+ const p=fixture(),r=request(),s=review(p);
+ const simulated=current();
+ simulated.authenticatedByCore=true; // Test-controlled, not cryptographically authenticated.
+ const result=assessBoundW1IntentResearch({
+  projection:projection(p,[selection(s,mainEvent)]),coreWitness:simulated,intents:[r]
+ });
+ assert.equal(result.status,'RESEARCH_BOUND_CANDIDATES_ONLY');
+ assert.equal(result.evidence,'SYNTHETIC_CONTRACT_ONLY');
+ assert.equal(result.nativeConsumerSuccessVerified,false);
+ assert.equal(result.operationReferencesComplete,false);
+ assert.equal(result.capabilityGranted,false);
+ assert.equal(result.writerAuthorized,false);
+ assert.equal(result.productSemanticCommandAuthorized,false);
+ assert.equal(result.operations[0].capabilityGranted,false);
+ assert.throws(()=>result.operations.push({}),TypeError);
+});
+
+test('Core token witness identity drift at correct canonical pointer aborts whole proposal',()=>{
+ const p=fixture(),pr=projection(p,[selection(review(p),mainEvent)]),before=JSON.stringify(p);
+ const substitutions=[
+  {eventId:flowerEvent},{savedIndex:156},{oneof:'FlowerSpawningInVillage'},
+  {decodedOldUtc:'2025-01-01T00:00:00Z'}
+ ];
+ for(const mismatch of substitutions){
+  const w=current();Object.assign(w.tokens[0],mismatch);
+  const result=assessBoundW1IntentResearch({projection:pr,coreWitness:w,intents:[request()]});
+  assert.equal(result.status,'RESEARCH_DENIED');
+  assert.equal(result.capabilityGranted,false);
+  assert.deepEqual(result.operations,[]);
+ }
+ assert.equal(JSON.stringify(p),before);
+});
+
+test('research intent never elevates protected Moonstone, TimeBending, inactive Fish or W2',()=>{
+ for(const [eventId,oneof,indexNo] of [
+  [2010000064,'ItemSpawning',157],
+  [2010000093,'ItemSpawning',158],
+  [2010000120,'ItemSpawning',159],
+  [2010200014,'FishSpawningInVillage',160],
+  [2011300000,'SnippetSpawning',161]
+ ]){
+  const p=fixture();
+  p.World.RecurringEvents[indexNo]={[oneof]:{RecurringEventItemID:eventId,NextOccurrence:OLD}};
+  const s=review(p),target=selection(s,eventId);
+  const planned=[selection(s,mainEvent),target];
+  const r=request(eventId,indexNo,oneof);
+  const result=assess(p,[request(),r],planned);
+  assert.equal(result.status,'RESEARCH_DENIED');
+  assert.equal(result.reason,'W1_ORACLE_DENIED');
+  assert.deepEqual(result.operations,[]);
+  assert.equal(result.writerAuthorized,false);
+ }
+});
