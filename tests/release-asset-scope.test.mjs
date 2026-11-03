@@ -52,12 +52,20 @@ test('two release variants are staged outside source, with exact file counts and
    assert.equal(names.filter(x=>x.endsWith('.svg')).length,16);
    assert.equal(names.filter(x=>x.endsWith('.webp')).length,expectGame);
    for(const p of ['index.html','styles.css','src/app.mjs','src/worker.mjs',
+    'src/lib/timekeeper/read-only-rc-mode.mjs',
     'src/core/w1-edited-p1g-copy.mjs','data/events-v1253.json',
     'data/item-names-v1250.json.gz','assets/app/release-notice.css']){
     assert.ok(names.includes(p),'Missing production app dependency: '+p);
    }
    assert.equal(names.filter(x=>x.startsWith('tests/')).length,0);
    assert.equal(names.filter(x=>x.startsWith('.github/')).length,0);
+   // The SvelteKit source is NEVER shipped by old HTML staging; its compiled
+   // review-only counterpart is managed separately by 00 CTRL.
+   for(const p of ['src/app.html','src/routes/+page.svelte',
+    'src/lib/timekeeper/item-text-only.mjs',
+    'src/lib/timekeeper/worker-projection-bounds.mjs',
+    'src/lib/wand-ui/ResponsiveFrame.svelte'])
+    assert.equal(names.includes(p),false,'Svelte source leaked to old HTML release: '+p);
    return names;
   };
   await checkAssets(gameDir,4);await checkAssets(textDir,0);
@@ -95,6 +103,24 @@ test('release staging refuses added unapproved executable source modules before 
   await assert.rejects(stageReleaseAssetProfile({sourceRoot:source,outputRoot:output,
    profile:'owner_svg_text_only'}),/Unknown|unapproved/);
   await assert.rejects(lstat(output),{code:'ENOENT'});
+ }finally{await rm(folder,{recursive:true,force:true});}
+});
+
+test('fixed SvelteKit isolation inventory fails closed on deletion and source rewrite, including dormant source files',async()=>{
+ const {folder,source}=await isolatedReleaseFixture();
+ try{
+  const file=join(source,'src','lib','timekeeper','ItemThumb.svelte');
+  await rm(file);
+  const output=join(folder,'rejected-missing-known-svelte');
+  await assert.rejects(stageReleaseAssetProfile({sourceRoot:source,outputRoot:output,
+   profile:'owner_svg_text_only'}),/Unknown|unapproved/);
+  await assert.rejects(lstat(output),{code:'ENOENT'});
+  const runtime=join(source,'src','lib','timekeeper','read-only-rc-mode.mjs');
+  await rm(runtime);
+  const out2=join(folder,'rejected-missing-worker-dep');
+  await assert.rejects(stageReleaseAssetProfile({sourceRoot:source,outputRoot:out2,
+   profile:'owner_svg_text_only'}),/Unknown|unapproved/);
+  await assert.rejects(lstat(out2),{code:'ENOENT'});
  }finally{await rm(folder,{recursive:true,force:true});}
 });
 
