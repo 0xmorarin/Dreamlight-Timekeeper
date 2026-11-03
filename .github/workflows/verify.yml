@@ -16,6 +16,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Prepare audited local SvelteKit test fixture (never deploy)
+        env:
+          BASE_PATH: /Dreamlight-Timekeeper
+          VITE_WEB_READONLY_RC: '1'
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+          test -s build/index.html
       - name: Run tests and icon integrity checks
         run: npm test
       - name: Install lossless image verification tools
