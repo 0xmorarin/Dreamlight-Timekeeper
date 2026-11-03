@@ -1,0 +1,42 @@
+name: 05 QR WEB56 new multi-link and A-B recovery delta
+on:
+  pull_request:
+    paths:
+      - 'qa/05qr-web56-multilink.test.mjs'
+      - 'qa/05qr-web56-ab-recovery-browser.mjs'
+      - '.github/workflows/qa-web56-ab-recovery.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  web56-scoped:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact frozen WEB56 source code preserved
+        run: git diff --quiet 96425000ab0dc1d1d7dcbb68a27b2da0a23c3f15 HEAD -- src data contracts tests/web-multi-item-text-coverage.test.mjs tests/browser-sveltekit-readonly-text-rc.smoke.mjs .github/workflows/web-readonly-rc-validate-v1.yml
+      - name: Independent source 489 links and no ItemID truncation
+        run: node --test qa/05qr-web56-multilink.test.mjs
+      - name: Build source-only read RC, no upload
+        env:
+          VITE_WEB_READONLY_RC: '1'
+          BASE_PATH: /Dreamlight-Timekeeper
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+          node scripts/audit-sveltekit-build.mjs build .release-audit/qa-web56-build-inventory.json
+      - name: Isolated Chromium
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Independent real browser A/B original backup and corrupt-file recovery
+        run: node qa/05qr-web56-ab-recovery-browser.mjs
+      - name: No product release
+        run: echo 'WEB56 READ TEXT ONLY; NO PROTECTED IMAGE; NO Rust READ OR WRITER'
