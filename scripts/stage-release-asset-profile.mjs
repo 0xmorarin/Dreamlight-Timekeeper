@@ -53,6 +53,7 @@ const approvedRuntimeModules=Object.freeze([
 const excludedSvelteKitOnlyModules=Object.freeze([
   "src/app.html",
   "src/lib/timekeeper/ItemThumb.svelte",
+  "src/lib/timekeeper/core-read-worker-bridge.mjs",
   "src/lib/timekeeper/item-text-only.mjs",
   "src/lib/timekeeper/locale.ts",
   "src/lib/timekeeper/model.ts",
