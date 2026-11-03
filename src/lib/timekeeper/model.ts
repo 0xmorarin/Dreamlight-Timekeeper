@@ -16,7 +16,7 @@ export interface VerifiedPair{
  original:PairFile;edited:PairFile;changedPaths:string[];
 }
 export type SaveRequest=
- | {type:'check'}|{type:'open';buffer:ArrayBuffer;name:string}
+ | {type:'check'}|{type:'queryPage';domain:string;view:string;limit:number;cursor?:string|null;filters?:Record<string,string|number|boolean>;sort?:string}|{type:'open';buffer:ArrayBuffer;name:string}
  | {type:'backup';sessionId:number}|{type:'preflight';sessionId:number;entries:PlanEntry[]}
  | {type:'prepareEdited';sessionId:number;planRevision:number;entries:{pointer:string;eventId:string|number;kind:string;originalTime:string;targetTime:string}[];targetBuildId:string;confirmedSwitchTarget:true};
 export type SaveResponse=
