@@ -30,7 +30,7 @@ test('QR CTRL53 jobs use SAME explicit immutable requested commit on separate fr
  assert.equal((wf.match(/npm install --no-audit --no-fund/g)||[]).length,2);
  assert.equal((wf.match(/VITE_WEB_READONLY_RC: '1'/g)||[]).length,2);
  assert.equal((wf.match(/scripts\/audit-sveltekit-build\.mjs build/g)||[]).length,2);
- assert.equal((wf.match(/scripts\/verify-readonly-rc-candidate\.mjs/g)||[]).length,2);
+ assert.equal((wf.match(/^\s{10}node scripts\/verify-readonly-rc-candidate\.mjs /gm)||[]).length,2);
  assert(!/actions\/upload-artifact|deploy-pages|gh release|npm publish|git push/i.test(wf));
  assert(wf.includes('unpinned package registry'));
 });
