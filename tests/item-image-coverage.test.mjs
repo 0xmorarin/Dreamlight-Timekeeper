@@ -44,6 +44,82 @@ test('all ItemIDs remain required even when never first in a multi-item recurrin
  assert.equal(all.itemIdCount,244);
 });
 
+test('81 shared IconAddress rows prove only a generic Sprite/Texture, not item-specific 2D variants',async()=>{
+ const audit=await json('data/item-image-coverage-v1253.json');
+ const ambiguous=audit.items.filter(x=>x.readOnlyImageResolution?.status==='AMBIGUOUS');
+ assert.equal(ambiguous.length,81);
+ assert.equal(ambiguous.reduce((total,x)=>total+x.references,0),173);
+ assert.deepEqual(Object.fromEntries(['ActivityItem.json','Furniture.json','Companion.json']
+  .map(stream=>[stream,ambiguous.filter(x=>x.itemSourceType?.sourceStream===stream).length])),{
+   'ActivityItem.json':28,'Furniture.json':52,'Companion.json':1
+ });
+ const placeholder='04495f960b1edba4181ec51efa5e07d9';
+ for(const row of ambiguous){
+  const source=row.definitionAudit;
+  const catalog=source.catalogDependency;
+  assert.equal(source.declaredIconAddressGuid,placeholder);
+  assert.equal(source.status,'SHARED_ICON_ADDRESS_NOT_ITEM_SPECIFIC');
+  assert.equal(catalog.primaryBundle,'usedplaceholders_assets_all.bundle');
+  assert.equal(catalog.genericSourceSpritePathId,'13192077654445607906');
+  assert.equal(catalog.genericSourceTexturePathId,'15528772250824494050');
+  assert.equal(catalog.perItemSpritePathId,null);
+  assert.equal(catalog.perItemTexturePathId,null);
+  assert.equal(catalog.variantStatus,'UNKNOWN_NOT_RUNTIME_OR_ITEM_SPECIFIC');
+  assert.equal(source.spriteResolved,false);
+  assert.equal(source.textureResolved,false);
+  assert.equal(source.webpDecodedRgbaMatched,false);
+  assert.equal(source.worldObjectSource.catalogResourceType,'UnityEngine.GameObject');
+  assert.equal(source.worldObjectSource.candidateRenderingStrategy,'UNKNOWN_RUNTIME');
+  assert.equal(source.worldObjectSource.doesNotResolve2DThumbnail,true);
+  assert.equal(row.spritePathId,null);
+  assert.equal(row.texturePathId,null);
+  assert.equal(row.publishedImage,'MISSING');
+  assert.equal(row.readOnlyImageResolution.url,null);
+  const view=resolveRcItemTextRow(empty,{id:row.itemId},{coverageAudit:audit});
+  assert.equal(view.image.status,'AMBIGUOUS');
+  assert.equal(view.image.url,null);
+  assert.equal(view.textFallback.visibleByDefault,true);
+ }
+ assert.equal(Object.keys(empty.icons).length,0);
+ assert.equal(audit.readOnlyResolutionContract.verifiedPublished,0);
+ assert.equal(audit.readOnlyResolutionContract.ambiguousWithoutUrl,81);
+ assert.equal(audit.readOnlyResolutionContract.missingWithoutUrl,163);
+});
+
+test('81 field5 GameObject catalog census is private-digest aggregate; only nine P0 per-item routes are public metadata',async()=>{
+ const audit=await json('data/item-image-coverage-v1253.json');
+ const rows=audit.items.filter(x=>x.readOnlyImageResolution?.status==='AMBIGUOUS');
+ const source=audit.field5WorldObjectCatalogAudit;
+ assert.equal(source.sourceItemCount,81);
+ assert.equal(source.distinctField5Guids,81);
+ assert.equal(source.gameObjectCatalogEntries,81);
+ assert.equal(source.uniquePrimaryBundleCount,32);
+ assert.equal(source.privateRouteMetadataRowCount,81);
+ assert.equal(source.privateCanonical81RouteMetadataSha256,
+  '6d6d397b527736ade58d472d4693563f9484fd61f4cfe1e912d525a48f3f7057');
+ assert.equal(source.field5NativeUsageVerified,false);
+ assert.equal(source.actualRuntimeVariantVerified,false);
+ assert.equal(source.renderedThumbsMatched,0);
+ assert.equal(source.publicImageUrlsGranted,0);
+ assert.equal(source.rights,'NOT_ESTABLISHED');
+ const explicit=rows.filter(x=>typeof x.definitionAudit.worldObjectSource.gameObjectGuid==='string');
+ const summaryOnly=rows.filter(x=>!x.definitionAudit.worldObjectSource.gameObjectGuid);
+ assert.equal(explicit.length,9);
+ assert.equal(summaryOnly.length,72);
+ assert.equal(new Set(explicit.map(x=>x.definitionAudit.worldObjectSource.gameObjectGuid)).size,9);
+ assert.ok(summaryOnly.every(x=>x.definitionAudit.worldObjectSource.additionalSourcePathProof==='SOURCE_CENSUS_ONLY'));
+ assert.ok(explicit.every(x=>x.unresolvedVariantPriority.tier==='P0'&&
+  x.definitionAudit.worldObjectSource.additionalSourcePathProof==='EXACT_FIELD5_AND_CATALOG_DEPENDENCY'));
+ assert.deepEqual(explicit.map(x=>x.itemId),[
+  30400263,31300004,31300005,31300006,40600035,40600448,40600449,40600450,40600451
+ ]);
+ assert.equal(explicit.reduce((sum,x)=>sum+x.references,0),82);
+ assert.deepEqual(audit.sharedPlaceholderPriority.counts,{P0:9,P1:12,P2:60});
+ // A metadata digest, a GameObject address or a same-source category never
+ // grants a rendered UI variant, a sprite pair, media rights or an image URL.
+ assert.ok(explicit.every(x=>!x.spritePathId&&!x.texturePathId&&!x.readOnlyImageResolution.url));
+});
+
 test('current publicly packaged item art remains ZERO; all 244 missing, not silently mapped',()=>{
  const summary=auditItemImageCoverage(registry,empty);
  assert.equal(summary.contract,ITEM_IMAGE_CONTRACT);
