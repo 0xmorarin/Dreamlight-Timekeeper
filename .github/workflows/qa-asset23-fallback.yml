@@ -1,0 +1,24 @@
+name: 05 QR ASSET23 whole-manifest text fallback delta
+on:
+  pull_request:
+    paths:
+      - 'qa/05qr-asset23-rc-fallback.test.mjs'
+      - '.github/workflows/qa-asset23-fallback.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  scoped-asset:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Exact frozen product source
+        run: git diff --quiet 302e11e739d41d46920047e36a692bab390e530f HEAD -- src/item-image-coverage.mjs tests/item-image-coverage.test.mjs docs
+      - name: Independent whole-manifest fail closed and URL locality
+        run: node --test qa/05qr-asset23-rc-fallback.test.mjs
+      - name: No game-derived media rights
+        run: echo 'GAME_ART_PIXELS_NOT_QR_VERIFIED; PUBLIC_DISTRIBUTION_BLOCKED'
