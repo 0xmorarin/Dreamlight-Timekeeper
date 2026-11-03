@@ -22,6 +22,7 @@ on:
       - 'contracts/web-readonly-core-worker-v1.json'
       - 'contracts/web-readonly-rc-release-v1.json'
       - 'tests/web-readonly-rc-contract.test.mjs'
+      - 'tests/web-multi-item-text-coverage.test.mjs'
       - '.github/workflows/web-readonly-rc-validate-v1.yml'
   workflow_dispatch:
 permissions:
@@ -39,7 +40,7 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Verify draft text-only RC and existing Projection/Worker regressions
         run: |
-          node --test tests/web-compiled-egress-review.test.mjs tests/web-core-read-bridge.test.mjs tests/web-readonly-rc-contract.test.mjs tests/save-session-response-fence.test.mjs tests/web-projection-qr-fixtures.test.mjs tests/web-rust-session-alignment.test.mjs
+          node --test tests/web-multi-item-text-coverage.test.mjs tests/web-compiled-egress-review.test.mjs tests/web-core-read-bridge.test.mjs tests/web-readonly-rc-contract.test.mjs tests/save-session-response-fence.test.mjs tests/web-projection-qr-fixtures.test.mjs tests/web-rust-session-alignment.test.mjs
           node --test tests/release-asset-scope.test.mjs tests/sveltekit-migration-contract.test.mjs tests/reader.test.mjs tests/worker.test.mjs tests/ui-separate-downloads.test.mjs
       - name: Type-check Svelte, JS and eight-locale UI
         run: npm run check

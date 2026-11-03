@@ -3,13 +3,23 @@
 export const WEB_TEXT_ITEM_CONTRACT='timekeeper.web-text-item.v1';
 const SHA='028a206635d37bffd7f3a8ff820958bdaa201887bacf35e10faa8328d20022ea';
 const ASSET_BLOB='9d8941c6c28d6d12b0a1bcd82422bd32792e1ff5';
-const LABELS=Object.freeze({
- 'ActivityItem.json':Object.freeze({en:'Activity item',ja:'アクティビティ項目'}),
- 'Furniture.json':Object.freeze({en:'Furniture / world object',ja:'家具・配置物'}),
- 'Companion.json':Object.freeze({en:'Companion',ja:'コンパニオン'})
+// Source types are verified against the pinned ASSET byte evidence; localized
+// descriptions are *presentation only*, never a new type or media authority.
+const TEXT_BY_LOCALE=Object.freeze({
+ en:{activity:'Activity item',furniture:'Furniture / world object',companion:'Companion',unknown:'Unclassified item',image:'Image unavailable',list:'Linked ItemIDs'},
+ fr:{activity:'Objet d’activité',furniture:'Meuble / objet du monde',companion:'Compagnon',unknown:'Objet non classé',image:'Image indisponible',list:'ItemID associés'},
+ it:{activity:'Oggetto attività',furniture:'Arredo / oggetto del mondo',companion:'Compagno',unknown:'Oggetto non classificato',image:'Immagine non disponibile',list:'ItemID collegati'},
+ de:{activity:'Aktivitätsgegenstand',furniture:'Möbel / Weltobjekt',companion:'Begleiter',unknown:'Nicht klassifizierter Gegenstand',image:'Bild nicht verfügbar',list:'Verknüpfte ItemIDs'},
+ 'es-ES':{activity:'Objeto de actividad',furniture:'Mueble / objeto del mundo',companion:'Compañero',unknown:'Objeto sin clasificar',image:'Imagen no disponible',list:'ItemID vinculados'},
+ ja:{activity:'アクティビティ項目',furniture:'家具・配置物',companion:'コンパニオン',unknown:'種類未確認',image:'画像未提供',list:'関連ItemID'},
+ 'zh-CN':{activity:'活动道具',furniture:'家具／场景物件',companion:'伙伴',unknown:'未分类物品',image:'暂无图片',list:'关联ItemID'},
+ 'pt-BR':{activity:'Item de atividade',furniture:'Móvel / objeto do mundo',companion:'Companheiro',unknown:'Item não classificado',image:'Imagem indisponível',list:'ItemIDs associados'}
 });
-const UNKNOWN=Object.freeze({en:'Unclassified item',ja:'種類未確認'});
-const NO_IMAGE=Object.freeze({en:'Image unavailable',ja:'画像未提供'});
+const STREAM_KEY=Object.freeze({'ActivityItem.json':'activity','Furniture.json':'furniture','Companion.json':'companion'});
+const NAME_LOCALE=Object.freeze({en:['en-US','en'],fr:['fr','fr-FR'],it:['it','it-IT'],de:['de','de-DE'],'es-ES':['es','es-ES'],ja:['ja','ja-JP'],'zh-CN':['zh-CN','zh'], 'pt-BR':['pt-BR','pt']});
+const resolvedLocale=code=>Object.hasOwn(TEXT_BY_LOCALE,code)?code:
+  code==='ja-JP'?'ja':code==='en-US'?'en':'en';
+export function rcLinkedItemListLabel(code){return TEXT_BY_LOCALE[resolvedLocale(code)].list;}
 const caches=new WeakMap();
 const validId=id=>Number.isSafeInteger(id)&&id>0;
 const plainText=x=>typeof x==='string'?x
@@ -51,14 +61,18 @@ export function checkedTextItemTypes(audit){
 /** Svelte uses its native escaped text expressions; never render this as HTML. */
 export function rcTextOnlyItem(item,localeCode,audit){
  const map=checkedTextItemTypes(audit);
- const language=localeCode==='ja'||localeCode==='ja-JP'?'ja':'en';
+ const language=resolvedLocale(localeCode);
+ const words=TEXT_BY_LOCALE[language];
  const id=validId(item?.id)?item.id:null;
  const stream=id===null?null:(map.get(id)??null);
- const category=stream===null?UNKNOWN:LABELS[stream];
  const itemIdText=id===null?'ItemID unknown':'ItemID '+id;
- const categoryText=category[language];
- const imageStatus=NO_IMAGE[language];
+ const categoryText=stream===null?words.unknown:words[STREAM_KEY[stream]];
+ const imageStatus=words.image;
  const displayLine=itemIdText+' · '+categoryText+' · '+imageStatus;
+ const localNames=NAME_LOCALE[language]??NAME_LOCALE.en;
+ const name=plainText(localNames.map(k=>item?.names?.[k]).find(v=>typeof v==='string'&&v.trim())??
+  item?.names?.['en-US']??item?.name)||
+  (language==='ja'?'項目':'Item')+(id===null?'':' '+id);
  return Object.freeze({
   contract:WEB_TEXT_ITEM_CONTRACT,
   itemId:id,itemIdText,sourceCategory:stream===null?'UNCLASSIFIED':stream,
@@ -66,7 +80,18 @@ export function rcTextOnlyItem(item,localeCode,audit){
   // An image fallback is always visible, even if ASSET later supplies a URL.
   displayTextFirst:true,mediaUrl:null,mediaRightsGranted:false,
   ariaLabel:displayLine,
-  name:plainText(item?.names?.[language==='ja'?'ja-JP':'en-US']??item?.name)||
-    (language==='ja'?'項目':'Item')+(id===null?'':' '+id)
+  name
  });
+}
+
+/** Projection-only. Never truncate a verified multi-ItemID source event to
+ * items[0] or infer EventID from the item links. Keeps input order, duplicates,
+ * and any unclassified dynamic item as safe text (no images or URL).
+ */
+export function rcTextOnlyEventItems(items,localeCode,audit){
+ checkedTextItemTypes(audit);
+ if(!Array.isArray(items))return Object.freeze([]);
+ return Object.freeze(items.map((item,linkIndex)=>Object.freeze({
+  ...rcTextOnlyItem(item,localeCode,audit),linkIndex
+ })));
 }

@@ -14,7 +14,7 @@
  import {createVerifiedPairDownloadUi} from '../ui-verified-pair-downloads.mjs';
  import ItemThumb from '$lib/timekeeper/ItemThumb.svelte';
  import itemTypeAudit from '../../data/web-text-item-types-v1253.json';
- import {rcTextOnlyItem} from '$lib/timekeeper/item-text-only.mjs';
+ import {rcTextOnlyEventItems,rcLinkedItemListLabel} from '$lib/timekeeper/item-text-only.mjs';
  import {READONLY_TEXT_RC_BUILD} from '$lib/timekeeper/read-only-rc-mode.mjs';
 
  let localeCode='en',snapshot:TimingSnapshot|null=null,sessionId=0,sourceFormat='';
@@ -22,7 +22,7 @@
  let tab='spawn',world='all',category='',subCategory='',query='',sort='name',selected=new Set<string>(),limit=80;
  let mode='now',customTime='',confirmedSwitch=false;
  let draft:any=null,plan:PlanView|null=null,preflight:any=null,planPending=false;
- let busy=false,preparing=false,prepared=false,revision=0,preflightSerial=0;
+ let busy=false,preparing=false,prepared=false,revision=0,preflightSerial=0,openToken=0;
  let progress='',notice='',error='',preparedMessage='';
  let drag=false,uploaded:HTMLInputElement;
  let pairPanel:HTMLElement,pairBoth:HTMLButtonElement,pairOriginal:HTMLButtonElement,pairEdited:HTMLButtonElement;
@@ -81,26 +81,34 @@
  function toggle(pointer:string,checked:boolean){const next=new Set(selected);checked?next.add(pointer):next.delete(pointer);selected=next;}
  function updateRevision(){invalidateOutput();}
  async function open(file:File|null|undefined){
-  if(!file||busy||!engine)return;
-  busy=true;progress='';notice='';error='';invalidateOutput();backupCoordinator?.invalidate();
-  // Fail closed on failed replacement: the old Worker is terminated and source
-  // bytes are never retained in Svelte stores.
+  if(!file||!engine)return;
+  // A second file may replace an in-flight open. Never let A's delayed progress,
+  // preflight or error overwrite B, even if Worker-local numeric session IDs
+  // are recycled by a freshly constructed Worker.
+  const myOpen=++openToken;
+  ++preflightSerial;
+  busy=true;progress='';notice='';error='';preparing=false;
+  invalidateOutput();backupCoordinator?.invalidate();
   snapshot=null;sessionId=0;draft=null;plan=null;sourceFormat='';selected=new Set();
   try{
    const response=await engine.open(file,p=>{
-    progress=p.phase+(p.loaded===undefined?'':` ${p.loaded}/${p.total??0}`);
+    if(myOpen===openToken)
+     progress=p.phase+(p.loaded===undefined?'':` ${p.loaded}/${p.total??0}`);
    });
+   if(myOpen!==openToken)return;
    snapshot=response.view;sessionId=response.sessionId;sourceFormat=response.format;
    draft=createTimingDraft(response.view);updatePlan();
    tab='spawn';world='all';category='';subCategory='';query='';sort='name';mode='now';
    confirmedSwitch=false;customTime='';notice=t('tk.ready');progress='';
-  }catch(e){error=String(e instanceof Error?e.message:e);progress='';}
-  finally{busy=false;if(uploaded)uploaded.value='';}
+  }catch(e){if(myOpen===openToken){error=String(e instanceof Error?e.message:e);progress='';}}
+  finally{if(myOpen===openToken){busy=false;if(uploaded)uploaded.value='';}}
  }
  async function backup(){
   if(!sessionId||busy)return;
-  try{await backupCoordinator?.download(sessionId);notice=t('tk.saveState');}
-  catch(e){error=String(e instanceof Error?e.message:e);}
+  const myOpen=openToken,s=sessionId;
+  try{await backupCoordinator?.download(s);
+   if(myOpen===openToken&&s===sessionId)notice=t('tk.saveState');}
+  catch(e){if(myOpen===openToken&&s===sessionId)error=String(e instanceof Error?e.message:e);}
  }
  async function refreshPreflight(){
   const current=++preflightSerial,s=sessionId,entries=plan?.entries??[];
@@ -126,7 +134,7 @@
  }
  async function prepare(){
   if(!engine||!snapshot||!canPrepare||!plan)return;
-  const s=sessionId,at=revision;
+  const s=sessionId,at=revision,myOpen=openToken;
   const lookup=new Map(snapshot.rows.map(row=>[row.pointer,row]));
   const entries=plan.entries.map(e=>({pointer:e.pointer,eventId:lookup.get(e.pointer)?.id??'',
     kind:lookup.get(e.pointer)?.kind??'',originalTime:e.originalTime,targetTime:e.targetTime}));
@@ -136,13 +144,13 @@
     type:'prepareEdited',sessionId:s,planRevision:at,entries,
     targetBuildId:targetBid,confirmedSwitchTarget:true
    });
-   if(s!==sessionId||at!==revision||sourceFormat!=='packaged')return;
+   if(s!==sessionId||at!==revision||myOpen!==openToken||sourceFormat!=='packaged')return;
    if(out.type!=='preparedEdited'||out.sessionId!==s||out.planRevision!==at||
       out.receipt?.status!=='WORKER_VERIFIED_PAIR')throw Error('Unverified Worker output');
    verified?.acceptWorkerPair(out.receipt,phase());prepared=true;
    notice=oldText(localeCode,'pairReady');
-  }catch(e){if(s===sessionId&&at===revision)error=String(e instanceof Error?e.message:e);}
-  finally{preparing=false;}
+  }catch(e){if(s===sessionId&&at===revision&&myOpen===openToken)error=String(e instanceof Error?e.message:e);}
+  finally{if(myOpen===openToken)preparing=false;}
  }
  async function resetLanguage(){await resetToBrowserLanguage();notice='';}
  onMount(()=>{
@@ -200,13 +208,13 @@
    <div class="landing" role="region" aria-label="Local save file drop area" class:drag on:dragover={(e)=>{e.preventDefault();drag=true;}} on:dragleave={()=>drag=false} on:drop={(e)=>{e.preventDefault();drag=false;void open(e.dataTransfer?.files?.[0]);}}>
     <img src={base+'/assets/app/ui/action/open-save.svg'} alt="" width="58" height="58"/>
     <h1>{t('tk.drop')}</h1>
-    <button class="primary" type="button" disabled={busy} on:click={()=>uploaded?.click()}>{t('tk.open')}</button>
+    <button class="primary" type="button" on:click={()=>uploaded?.click()}>{t('tk.open')}</button>
     <p>Local only · P1G / JSON · {t('tk.loading')}</p>
    </div>
   {:else}
    <div class="workspace-head">
     <h1>{snapshot.identity?.name??'Save'}</h1>
-    <button type="button" on:click={()=>uploaded?.click()} disabled={busy}>{t('tk.again')}</button>
+    <button type="button" on:click={()=>uploaded?.click()}>{t('tk.again')}</button>
     <button type="button" on:click={backup} disabled={busy||!sessionId}><img src={base+'/assets/app/ui/action/backup.svg'} alt="" width="16" height="16"/>{t('tk.original')}</button>
    </div>
    <nav class="tabs" aria-label="Timing categories">
@@ -253,7 +261,14 @@
         <ItemThumb item={r.items?.[0]??null} localeCode={localeCode}/>
         <span class="row-text"><strong>{labelRow(r)}</strong><small>{location(r)} · {r.kind} · EventID {r.id}</small>
          {#if r.items?.length}
-          <small class="item-type" aria-label={rcTextOnlyItem(r.items[0],localeCode,itemTypeAudit).ariaLabel}>{rcTextOnlyItem(r.items[0],localeCode,itemTypeAudit).displayLine}</small>
+          <span class="linked-items" role="list" aria-label={rcLinkedItemListLabel(localeCode)}>
+           {#each rcTextOnlyEventItems(r.items,localeCode,itemTypeAudit) as item (item.linkIndex)}
+            <span class="linked-item" role="listitem">
+             <span class="linked-item-name">{item.name}</span>
+             <small class="item-type">{item.displayLine}</small>
+            </span>
+           {/each}
+          </span>
          {/if}
         </span>
         <span class="row-time">{dateLabel(r.time,localeCode)}</span>
@@ -352,6 +367,10 @@
  .event-row{display:flex;align-items:center;gap:9px;border:1px solid #35535a;border-radius:8px;margin:5px 0;padding:10px 7px;cursor:pointer;min-width:0}
  .event-row.checked{border-color:#e4bf7a;background:#2b4c4d}.row-text{min-width:0;flex:1;overflow-wrap:anywhere}
  .row-text strong{display:block}.row-text small{display:block;font-size:11px;opacity:.8}
+ .linked-items{display:block;margin:5px 0 0;min-width:0;overflow-wrap:anywhere}
+ .linked-item{display:block;border-left:2px solid #628284;margin:5px 0;padding-left:8px;line-height:1.4}
+ .linked-item-name{font-size:12px}
+ .linked-items .item-type{font-size:11px;overflow-wrap:anywhere}
  .row-time{font-size:11px;max-width:145px;text-align:right;overflow-wrap:anywhere}
  .details>label,.details>select,.details>input{display:block;width:100%;margin:8px 0}
  .meta{font-size:11px;overflow-wrap:anywhere}.preview-list{font-size:11px;max-height:140px;overflow:auto;padding-left:20px}
