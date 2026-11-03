@@ -122,3 +122,58 @@ test('invalid CORE build/schema/root proof is never accepted for product READ',a
  const port=createProspectiveCoreReadWorkerBridge({core});
  await assert.rejects(port.openLocal({}),/CORE_SOURCE_ROOTS_INVALID/);
 });
+
+test('transport preflight rejects forged, skipped, mismatched-scope and repeated cursors before touching Core',async()=>{
+ let called=0;
+ const core=makeCore();
+ const query=core.queryIndexedPage.bind(core);
+ core.queryIndexedPage=async(...args)=>{called++;return query(...args)};
+ const port=createProspectiveCoreReadWorkerBridge({core});
+ await port.openLocal({});
+ await assert.rejects(port.queryPage(request('forged-never-issued')),/CORE_CURSOR_SCOPE_OR_SEQUENCE_INVALID/);
+ assert.equal(called,0);
+ const first=await port.queryPage(request());
+ assert.equal(called,1);
+ for(const mutated of [
+  {...request(first.nextCursor),limit:1},
+  {...request(first.nextCursor),filters:{area:'forest'}},
+  {...request(first.nextCursor),sort:'time'},
+  {...request(first.nextCursor),view:'other'},
+  request('skipped-or-expired')
+ ]){
+  await assert.rejects(port.queryPage(mutated),/CORE_CURSOR_SCOPE_OR_SEQUENCE_INVALID/);
+ }
+ assert.equal(called,1);
+ await port.queryPage(request(first.nextCursor));
+ await assert.rejects(port.queryPage(request(first.nextCursor)),/CORE_CURSOR_REPLAY/);
+ assert.equal(called,2);
+});
+test('CORE verifier false or producer overage clears session and requires private reopen',async()=>{
+ const denied=createProspectiveCoreReadWorkerBridge({core:makeCore({verify:()=>false})});
+ await denied.openLocal({});
+ await assert.rejects(denied.queryPage(request()),/CORE_PAGE_AUTHORITY_REJECTED/);
+ await assert.rejects(denied.queryPage(request()),/CORE_READ_SESSION_NOT_READY/);
+ const oversized=createProspectiveCoreReadWorkerBridge({core:makeCore({produce:(intent,source)=>({
+  roots:source,page:{domain:intent.domain,view:intent.view,
+   rows:[{giant:'界'.repeat(22000)}],complete:true,nextCursor:null}
+ })})});
+ await oversized.openLocal({});
+ await assert.rejects(oversized.queryPage(request()),/WORKER_PROJECTION_BYTES_REJECTED/);
+ await assert.rejects(oversized.queryPage(request()),/CORE_READ_SESSION_NOT_READY/);
+});
+test('new file during delayed verifier result invalidates old page (not just delayed query)',async()=>{
+ let resolveVerify;
+ const verifier=new Promise(resolve=>resolveVerify=resolve);
+ let call=0;
+ const core=makeCore({verify:async()=>{call++;return call===1?verifier:true}});
+ const port=createProspectiveCoreReadWorkerBridge({core});
+ await port.openLocal({name:'A'});
+ const oldPage=port.queryPage(request());
+ // Allow queryIndexedPage and async verifier to advance before switching.
+ await new Promise(r=>setImmediate(r));
+ await port.openLocal({name:'B'});
+ resolveVerify(true);
+ await assert.rejects(oldPage,/STALE_CORE_PAGE/);
+ const result=await port.queryPage(request());
+ assert.equal(result.rows.length,1);
+});
