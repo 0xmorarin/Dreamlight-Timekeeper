@@ -1,0 +1,24 @@
+name: 05 QR CTRL53 independent two-runner fail-closed comparison
+on:
+  pull_request:
+    paths:
+      - 'qa/05qr-ctrl53-compare-negative.test.mjs'
+      - '.github/workflows/qa-ctrl53-compare-negative.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compare-negatives:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Freeze exact CTRL53 Workflow, no product source difference
+        run: git diff --quiet 8b8c1ed90c604b1e3d41df8031806570612ced62 HEAD -- .github/workflows/00ctrl-rc-independent-runner-digest.yml src contracts scripts tests/ctrl-readonly-rc-candidate.test.mjs svelte.config.js
+      - name: Independently exercise 14 false receipts and exact checkout/no-deploy review
+        run: node --test qa/05qr-ctrl53-compare-negative.test.mjs
+      - name: Scope
+        run: echo 'NO_LOCKFILE NO_CROSS_OS_PROOF NO_DEPLOY NO_WRITER'
