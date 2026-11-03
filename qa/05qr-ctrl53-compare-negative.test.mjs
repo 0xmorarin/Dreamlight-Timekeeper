@@ -25,6 +25,7 @@ test('QR CTRL53 jobs use SAME explicit immutable requested commit on separate fr
  assert.match(wf,/runner_b:\s*\n\s*runs-on: ubuntu-24\.04/);
  assert.match(wf,/needs: \[runner_a, runner_b\]/);
  assert.equal((wf.match(/ref: \$\{\{ github\.event\.pull_request\.head\.sha \|\| github\.sha \}\}/g)||[]).length,2);
+ assert.equal((wf.match(/EXPECTED_COMMIT: \$\{\{ github\.event\.pull_request\.head\.sha \|\| github\.sha \}\}/g)||[]).length,1);
  assert.equal((wf.match(/node-version: '22'/g)||[]).length,2);
  assert.equal((wf.match(/npm install --no-audit --no-fund/g)||[]).length,2);
  assert.equal((wf.match(/VITE_WEB_READONLY_RC: '1'/g)||[]).length,2);
