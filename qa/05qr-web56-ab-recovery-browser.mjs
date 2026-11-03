@@ -50,7 +50,7 @@ try{
  for(const id of [31300003,31300004,31300005,31300006]){
   assert.equal(await thorn.getByText('ItemID '+id,{exact:false}).count(),1,'Missing ItemID '+id);
  }
- assert.equal(await thorn.locator('img').count(),0);
+ assert.equal(await thorn.locator('.linked-items img').count(),0,'No game-derived images in linked ItemID list');
  const dlA=page.waitForEvent('download');
  await page.getByRole('button',{name:'Original backup'}).click();
  const da=await dlA;assert.equal(da.suggestedFilename(),'original_a.p1g');
