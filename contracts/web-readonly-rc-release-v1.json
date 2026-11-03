@@ -1,0 +1,58 @@
+{
+  "contract": "timekeeper.sveltekit.readonly-rc-release-gate/1",
+  "status": "DRAFT_NEVER_DEPLOY",
+  "version": "rc-readonly-v1",
+  "profile": "TEXT_ONLY_READ_FIRST",
+  "source": {
+    "webParent": "302e877456c35ab4de46e409d59e6b6ebae60e46",
+    "ctrlReview38": "1a466847a1ab6a174a4dbbc9ad863346fff0542d",
+    "qr35": "122a0751385d4771d84d484419b1dcd69a121c63",
+    "asset23": "067cd1b1b59eb7e0ce4119d2355ed074fd49cc5b",
+    "core329": "4c8cf5568ad767c5712dbe948fc6d9dc4dbbac76"
+  },
+  "product": {
+    "fourTabs": true,
+    "eightLocales": true,
+    "mobile320px": true,
+    "zoom200Percent": true,
+    "screenReaderLabels": true,
+    "originalFirstSeparateDownload": true,
+    "productRustReadEnabled": false,
+    "writerEnabled": false,
+    "editedCopyOutputEnabled": false,
+    "directOverwriteEnabled": false,
+    "assetRasterImagesApproved": 0,
+    "staticSourceTypes": 244,
+    "textFallbackRequired": true,
+    "originalJsWorkerKeptForComparison": true,
+    "historicalJsEditInOrdinaryDevelopmentBuild": true,
+    "readonlyRcBuildTimeFlag": "VITE_WEB_READONLY_RC=1",
+    "readonlyRcWorkerDeniedRequest": "prepareEdited",
+    "buildTimeRcFlagCannotBeEnabledByUi": true,
+    "publicReleaseStillBlockedDespiteMode": true
+  },
+  "staging": {
+    "owner": "00 CTRL",
+    "reviewOnly": true,
+    "artifactProvenanceRequired": true,
+    "compiledFileHashManifestRequired": true,
+    "noSymlinksInAnySourcePath": true,
+    "deterministicBuildRequiredBeforeRelease": true,
+    "noPrivateSaveOrGameBytes": true,
+    "noUploadOrDeployInThisWorkflow": true,
+    "noRemoteTelemetry": true
+  },
+  "releaseGates": {
+    "acceptedCoreReadWorker": false,
+    "qrCoreProducerAndCursor": false,
+    "rightsApproved": false,
+    "rcHeadFrozen": false,
+    "versionedReleaseProvenanceApproved": false,
+    "legacyHtmlVerifyGreen": false,
+    "publicPreviewApproved": false,
+    "publicReleaseApproved": false,
+    "workerSideBuildModeBehaviorVerified": false
+  },
+  "strategy": "new workflow verifies versioned contract, Svelte build, tests and review-only audit WITHOUT altering CTRL stage or publishing; production deploy requires explicit 00 CTRL+QR verified artifact pin",
+  "allowedFailure": "legacy old HTML Verify/Release red remains release blocker, never waived"
+}
