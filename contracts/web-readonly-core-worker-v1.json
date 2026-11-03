@@ -6,7 +6,7 @@
   "rustReadWasmInstalled": false,
   "buildEvidence": {
     "wandCore312": "c6b152512d3bc901fd1474dbcfcb07253ae1b347",
-    "wandCore329": "4c8cf5568ad767c5712dbe948fc6d9dc4dbbac76",
+    "wandCore329": "9c2945a6ac41e584a49394bd1b39865c6d68daeb",
     "coreReadApiAccepted": false,
     "qrFullReadAccepted": false
   },
@@ -76,7 +76,11 @@
     "workerHelperWiredToRealCore": false,
     "countEnvelopeMetadata": true,
     "tooLarge": "error, not truncation or silent completion",
-    "knownRemainingRisk": "bounded output != bounded memory during full Core indexing or P1G decode"
+    "knownRemainingRisk": "bounded output != bounded memory during full Core indexing or P1G decode",
+    "prospectiveWorkerBridge": "src/lib/timekeeper/core-read-worker-bridge.mjs",
+    "privateCorePortBindingStatus": "NOT_INSTALLED",
+    "producerEgressEnforcedByIsolatedBridgeTests": true,
+    "productProducerEgressEnforced": false
   },
   "permissions": {
     "ENCODE_COPY": false,
@@ -89,7 +93,31 @@
     "independentQRRequired": true,
     "jsCodecComparisonOracleKept": true,
     "productPortStartsWithReadOnlyPages": true,
-    "deviceTestOnlyForExplicitUnresolvedRuntimeBehavior": true
+    "deviceTestOnlyForExplicitUnresolvedRuntimeBehavior": true,
+    "requiredCoreMethods": [
+      "openLocal",
+      "queryIndexedPage",
+      "verifyIndexedPage",
+      "close"
+    ],
+    "coreVerifierMustProve": [
+      "encrypted P1G source SHA",
+      "session/generation and current revision/index generation",
+      "opaque cursor issuance and one-time consume",
+      "canonical query scope",
+      "source-derived full indexed enumeration and true Complete",
+      "domain-owned references and read-only capability"
+    ],
+    "uiMustNotProvide": [
+      "Core port",
+      "session identity",
+      "source digest",
+      "revision/index generation",
+      "reference graph",
+      "Cursor minting proof",
+      "Complete flag"
+    ],
+    "prospectiveBridgeTestsSyntheticOnly": true
   },
   "actualReadWorkerEnabled": false,
   "result": "DESIGN_ONLY_NO_PRODUCT_READ_OR_WRITER"

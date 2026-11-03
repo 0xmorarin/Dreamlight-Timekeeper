@@ -107,5 +107,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Prepare audited SvelteKit test fixture before shared source regressions
+        env:
+          BASE_PATH: /Dreamlight-Timekeeper
+          VITE_WEB_READONLY_RC: '1'
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+          test -s build/index.html
       - name: Run all browser reader and timing policy tests
         run: node --test tests/*.test.mjs
