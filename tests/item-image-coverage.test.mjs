@@ -26,6 +26,24 @@ test('authoritative v1.25.3 508 events link 244 distinct ItemIDs, never EventID'
  assert.ok(thorn.eventIds.length>1);
 });
 
+test('all ItemIDs remain required even when never first in a multi-item recurring event',()=>{
+ // Prevent WEB consumers from mistaking event.items[0] for the entire
+ // ItemID-bearing row. This is a source census, not browser acceptance.
+ const all=recurringImageTargets(registry,{strictBaseline:true});
+ const firstItemIds=new Set(registry.events.filter(e=>e.items.length)
+  .map(e=>e.items[0].id));
+ const multiEvents=registry.events.filter(e=>e.items.length>1);
+ const notFirst=all.items.filter(x=>!firstItemIds.has(x.itemId));
+ assert.equal(registry.events.reduce((n,e)=>n+e.items.length,0),489);
+ assert.equal(multiEvents.length,41);
+ assert.equal(Math.max(...registry.events.map(e=>e.items.length)),4);
+ assert.equal(firstItemIds.size,214);
+ assert.equal(notFirst.length,30);
+ assert.deepEqual(notFirst.slice(0,3).map(x=>x.itemId),[31300004,31300005,31300006]);
+ assert.ok(multiEvents.some(e=>e.id===2010000003&&e.items.length===4));
+ assert.equal(all.itemIdCount,244);
+});
+
 test('current publicly packaged item art remains ZERO; all 244 missing, not silently mapped',()=>{
  const summary=auditItemImageCoverage(registry,empty);
  assert.equal(summary.contract,ITEM_IMAGE_CONTRACT);
