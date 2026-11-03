@@ -1,0 +1,24 @@
+name: 05 QR TIME37 bound EventID intent CAS delta
+on:
+  pull_request:
+    paths:
+      - 'qa/05qr-time37-bound-intent.test.mjs'
+      - '.github/workflows/qa-time37-intent.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  scoped-time:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Freeze TIME37 source before QA changes
+        run: git diff --quiet 6dc938f86847e98ba2c997f1407f4ae8a68b4f29 HEAD -- src/w1-bound-intent-research.mjs tests/w1-bound-intent-research.test.mjs
+      - name: Independent new intent EventID and source CAS negatives
+        run: node --test qa/05qr-time37-bound-intent.test.mjs
+      - name: Not trusted Core issuer or product Native/W1
+        run: echo 'STATIC_CONTRACT_ONLY; Core-issued-witness=NOT_INSTALLED; W1_WRITER=OFF'
