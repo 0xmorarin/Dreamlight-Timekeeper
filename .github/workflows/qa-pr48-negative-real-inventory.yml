@@ -1,0 +1,39 @@
+name: 05 QR PR48 independent negative RC and real build inventory
+on:
+  pull_request:
+    paths:
+      - 'qa/05qr-pr48-negative-and-real-manifest.test.mjs'
+      - '.github/workflows/qa-pr48-negative-real-inventory.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  qr-pr48:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Frozen PR48 product source (QA-only changes)
+        run: |
+          git diff --quiet b4450e0e847fd93670c3461312c5911387e483fb HEAD -- src contracts data scripts tests/ctrl-readonly-rc-candidate.test.mjs .github/workflows/00ctrl-rc-composite-review.yml
+      - name: Build internal READ-only SvelteKit (no upload)
+        env:
+          VITE_WEB_READONLY_RC: '1'
+          BASE_PATH: /Dreamlight-Timekeeper
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+          node scripts/audit-sveltekit-build.mjs build .release-audit/qa-pr48-inventory.json
+      - name: Independent 28 permission negatives, source SHA and actual compiled byte SHA
+        env:
+          QR48_COMPILED_INVENTORY: .release-audit/qa-pr48-inventory.json
+          QR48_BUILD_ROOT: build
+        run: node --test qa/05qr-pr48-negative-and-real-manifest.test.mjs
+      - name: Release still blocked
+        run: echo 'NO_DEPLOY; NO_UPLOAD; NO_PRODUCT_RUST_READ; NO_WRITER; QA_ONLY'
