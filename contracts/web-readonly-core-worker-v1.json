@@ -1,0 +1,96 @@
+{
+  "contract": "timekeeper.web.readonly-core-worker/1",
+  "status": "PROPOSED_NOT_BOUND",
+  "phase": "A_DESIGN_ONLY",
+  "existingProductJsWorker": "timekeeper.save-worker@1",
+  "rustReadWasmInstalled": false,
+  "buildEvidence": {
+    "wandCore312": "c6b152512d3bc901fd1474dbcfcb07253ae1b347",
+    "wandCore329": "4c8cf5568ad767c5712dbe948fc6d9dc4dbbac76",
+    "coreReadApiAccepted": false,
+    "qrFullReadAccepted": false
+  },
+  "trustRoots": {
+    "owner": "Wand Rust CORE through private Worker",
+    "clientCannotIssue": true,
+    "source": "immutable encrypted original P1G bytes selected locally, verified original SHA256",
+    "separatelyPinnedDigests": [
+      "encrypted original P1G SHA256",
+      "decoded JSON SHA256",
+      "source Registry SHA256"
+    ],
+    "build": "explicit externally evidenced BID; schema cannot infer BID",
+    "session": "Worker-created opaque session identity and generation, never accepted from Svelte",
+    "revision": "Core atomic monotonic revision; Undo/Redo invalidate index/cursors",
+    "indexGeneration": "Core increments on affected domain index rederive; never UI-supplied",
+    "cursor": "Core-minted private random handle or authenticated token, single-use, bounded, expiry",
+    "cursorClaims": [
+      "sourceSha256",
+      "sessionKey",
+      "generation",
+      "revision",
+      "indexGeneration",
+      "schema",
+      "buildEvidence",
+      "domain",
+      "view",
+      "canonicalFilters",
+      "stableSort",
+      "limit",
+      "nextIndex",
+      "expiry"
+    ],
+    "completion": "derived exclusively from complete source-index enumeration, not truncated watch list",
+    "references": "Core source-derived graph with typed missing-reference Fail Closed, no UI-supplied graph",
+    "authority": "READ-only capability issued only by accepted CORE; never from a response field alone"
+  },
+  "messageProtocol": {
+    "open": "CORE->Worker: authenticated read identity; Worker->UI: bounded detached identity; stale old File sessions closed",
+    "query": "UI->Worker: domain/view/filter/sort/limit/cursor; accepted cursor must match exact bound scope and consume once",
+    "page": "CORE privately proves read authority, valid cursor and accurate complete/total; Worker enforces producer size limits before postMessage; UI independently fences",
+    "cancel": "AbortSignal/close/new File/revision/index update/Worker failure invalidates tickets and drops delayed pages",
+    "failClosedErrors": [
+      "NO_CORE_READ_AUTHORITY",
+      "SOURCE_SHA_MISMATCH",
+      "SESSION_EXPIRED",
+      "REVISION_STALE",
+      "INDEX_STALE",
+      "CURSOR_FORGED",
+      "CURSOR_REPLAY",
+      "QUERY_SCOPE_CHANGED",
+      "PROJECTION_TOO_LARGE",
+      "DOMAIN_NOT_INDEXED",
+      "INCOMPLETE_REFERENCE_GRAPH"
+    ],
+    "noAutomaticRepair": true,
+    "noPartialRowsOnFailure": true
+  },
+  "transport": {
+    "maxRows": 200,
+    "maxRowBytesUtf8Json": 65536,
+    "maxWholePageBytesUtf8Json": 2097152,
+    "maxCursorChars": 512,
+    "workerDesignHelper": "src/lib/timekeeper/worker-projection-bounds.mjs",
+    "independentUIFence": "src/lib/timekeeper/session-response-fence.mjs",
+    "existingSizeCounterReused": true,
+    "workerHelperWiredToRealCore": false,
+    "countEnvelopeMetadata": true,
+    "tooLarge": "error, not truncation or silent completion",
+    "knownRemainingRisk": "bounded output != bounded memory during full Core indexing or P1G decode"
+  },
+  "permissions": {
+    "ENCODE_COPY": false,
+    "PERSISTENT_REPLACE": false,
+    "sourceFileOverwrite": false,
+    "uiRuntimeToggleCanEnableRust": false
+  },
+  "handoff": {
+    "stableRustAbiRequired": true,
+    "independentQRRequired": true,
+    "jsCodecComparisonOracleKept": true,
+    "productPortStartsWithReadOnlyPages": true,
+    "deviceTestOnlyForExplicitUnresolvedRuntimeBehavior": true
+  },
+  "actualReadWorkerEnabled": false,
+  "result": "DESIGN_ONLY_NO_PRODUCT_READ_OR_WRITER"
+}
