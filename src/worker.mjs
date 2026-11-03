@@ -10,6 +10,7 @@ import {compileW1NativeSemantics} from './timing-native-semantics.mjs';
 import {assessMinimalW1WriteTargets} from './w1-minimal-write-contract.mjs';
 import {createW1EditedP1gCopy} from './core/w1-edited-p1g-copy.mjs';
 import {BuildIdentityKind,PlatformFamily} from './core/versioning.mjs';
+import {READONLY_TEXT_RC_BUILD} from './lib/timekeeper/read-only-rc-mode.mjs';
 const decoder=new TextDecoder('utf-8',{fatal:true});
 let indexPromise;
 let namesPromise;
@@ -85,6 +86,7 @@ self.onmessage=async({data})=>{
     }
 
     if(data.type==='prepareEdited'){
+      if(READONLY_TEXT_RC_BUILD)throw Error('RC_READ_ONLY_WRITER_DISABLED');
       if(prepareInFlight)throw Error('W1_PREPARATION_ALREADY_IN_PROGRESS');
       if(!original||!activeProfile||!activeReview||data.sessionId!==activeSessionId||
          activeSourceFormat!=='packaged'||!activeSourceSha256)
