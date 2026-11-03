@@ -229,3 +229,66 @@ test('research intent never elevates protected Moonstone, TimeBending, inactive 
   assert.equal(result.writerAuthorized,false);
  }
 });
+
+
+test('a coherent fabricated Core-issued receipt remains untrusted research, not a product authorization',()=>{
+ const p=fixture(),s=review(p),w=current(),r=request();
+ // All values below can be created inside an untrusted JS execution context.
+ // Matching SHA labels do not prove any hash was derived from source bytes.
+ const fabricatedRegistry='e'.repeat(64);
+ const fabricatedSource='f'.repeat(64);
+ const fabricatedDecoded='d'.repeat(64);
+ w.authenticatedByCore=true;
+ w.source.encryptedP1gSha256=fabricatedSource;
+ w.source.decodedJsonSha256=fabricatedDecoded;
+ w.source.registrySha256=fabricatedRegistry;
+ const fakeProjection=structuredClone(projection(p,[selection(s,mainEvent)]));
+ fakeProjection.source.recurringSourceSha256=fabricatedRegistry;
+ const fakeIntent={...r,encryptedP1gSha256:fabricatedSource,
+  decodedJsonSha256:fabricatedDecoded,registrySha256:fabricatedRegistry};
+ const output=assessBoundW1IntentResearch({
+  projection:fakeProjection,coreWitness:w,intents:[fakeIntent]
+ });
+ // Shape-valid but *not* authenticated: product permission always false.
+ assert.equal(output.status,'RESEARCH_BOUND_CANDIDATES_ONLY');
+ assert.equal(output.evidence,'SYNTHETIC_CONTRACT_ONLY');
+ assert.equal(output.nativeConsumerSuccessVerified,false);
+ assert.equal(output.operationReferencesComplete,false);
+ assert.equal(output.capabilityGranted,false);
+ assert.equal(output.writerAuthorized,false);
+ assert.equal(output.productSemanticCommandAuthorized,false);
+});
+
+test('raw token equality with caller-witness is not actual original-P1G byte-span provenance',()=>{
+ const p=fixture(),projectionValue=projection(p,[selection(review(p),mainEvent)]);
+ const w=current(),intent=request();
+ const fabricatedLexical='"\\\\u0032126-08-20T00:00:00Z"';
+ w.tokens[0].rawOldJson=fabricatedLexical;
+ intent.rawOldJson=fabricatedLexical;
+ assert.equal(JSON.parse(fabricatedLexical),OLD);
+ const output=assessBoundW1IntentResearch({
+  projection:projectionValue,coreWitness:w,intents:[intent]
+ });
+ assert.equal(output.status,'RESEARCH_BOUND_CANDIDATES_ONLY');
+ assert.equal(output.writerAuthorized,false);
+ assert.equal(output.operationReferencesComplete,false);
+ // Actual byte-offset witness and immutable source SHA CAS must come from Worker/Core.
+});
+
+test('research checker cannot reserve revision or stage a cross-domain atomic command',()=>{
+ const p=fixture(),s=review(p),before=JSON.stringify(p);
+ const plan=[selection(s,mainEvent)],pr=projection(p,plan),w=current();
+ const a=assessBoundW1IntentResearch({projection:pr,coreWitness:w,intents:[request()]});
+ const b=assessBoundW1IntentResearch({projection:pr,coreWitness:w,intents:[request()]});
+ assert.equal(a.status,'RESEARCH_BOUND_CANDIDATES_ONLY');
+ assert.equal(b.status,'RESEARCH_BOUND_CANDIDATES_ONLY');
+ assert.equal(a.sourceRevision,7);
+ assert.equal(b.sourceRevision,7);
+ assert.equal(a.productSemanticCommandAuthorized,false);
+ assert.equal(b.productSemanticCommandAuthorized,false);
+ assert.equal(a.operationReferencesComplete,false);
+ assert.equal(b.operationReferencesComplete,false);
+ assert.equal(JSON.stringify(p),before);
+ // Only a Core-owned SaveSession can enforce revision CAS, stage mutations,
+ // validate applicable cross-domain read/write sets and commit Undo/Redo atomically.
+});
