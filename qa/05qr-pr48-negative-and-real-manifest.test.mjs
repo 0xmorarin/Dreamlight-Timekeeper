@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import {readFile,readdir,lstat} from 'node:fs/promises';
 import {join,relative,resolve} from 'node:path';
 import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
 import {verifyReadOnlyRcCandidate} from '../scripts/verify-readonly-rc-candidate.mjs';
 const root=new URL('../',import.meta.url);
 const read=async p=>JSON.parse(await readFile(new URL(p,root),'utf8'));
@@ -62,7 +63,6 @@ for(const [name,mutate] of bad)test('QR48 independent negative: '+name,()=>{
  assert.throws(()=>verifyReadOnlyRcCandidate(candidate),/RC_CANDIDATE_REJECTED/);
 });
 test('QR48 CI source changes exactly THREE files from WEB44, no Writer product code',()=>{
- const {execFileSync}=await import('node:child_process');
  const git=(...a)=>execFileSync('git',a,{encoding:'utf8'}).trim();
  const from='25bf1c9f8c49932127a21e9b2035fb1bd4664e22';
  const to='b4450e0e847fd93670c3461312c5911387e483fb';
