@@ -26,9 +26,9 @@ jobs:
           node-version: '22'
       - name: Install pinned project dependencies without publishing
         run: npm install --no-audit --no-fund
-      - name: Check combined WEB text-only Worker fence and CTRL staging negatives
+      - name: Check READ Worker denial and Svelte source
         run: |
-          node --test tests/web-readonly-rc-contract.test.mjs tests/ctrl-sveltekit-review-stage.test.mjs
+          node --test tests/web-readonly-rc-contract.test.mjs
           npm run check
       - name: Build exact text-only RC configuration
         env:
@@ -38,6 +38,8 @@ jobs:
           npm run build
           node scripts/audit-sveltekit-build.mjs build .release-audit/ctrl-combined-build-inventory.json
           node -e "const c=require('./contracts/web-readonly-rc-release-v1.json'); if(c.status!=='DRAFT_NEVER_DEPLOY'||c.releaseGates.publicReleaseApproved!==false||c.product.writerEnabled!==false||c.product.editedCopyOutputEnabled!==false) process.exit(23)"
+      - name: Independently verify CTRL stage source security and output after build
+        run: node --test tests/ctrl-sveltekit-review-stage.test.mjs
       - name: Independently stage compiled bytes outside checkout, no upload
         shell: bash
         run: |
