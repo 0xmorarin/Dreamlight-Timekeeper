@@ -1,0 +1,44 @@
+name: 05 QR WEB52 compiled Worker and network negative (exact source)
+on:
+  pull_request:
+    paths:
+      - 'qa/05qr-web52-compiled-worker-negative.mjs'
+      - 'qa/05qr-web52-delta.test.mjs'
+      - '.github/workflows/qa-web52-compiled-negative.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  web52-independent:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Guarantee source is exact frozen WEB52
+        run: |
+          git diff --quiet 907e7cd4ac36c1166d974d46e0da39e3bee360de HEAD -- src contracts data scripts tests/browser-sveltekit-readonly-text-rc.smoke.mjs tests/web-core-read-bridge.test.mjs tests/web-compiled-egress-review.test.mjs svelte.config.js .github/workflows/web-readonly-rc-validate-v1.yml
+      - name: New-only source/bridge boundary and Core-owned Cursor expiry negatives
+        run: node --test qa/05qr-web52-delta.test.mjs
+      - name: Install dependencies and compile real static Worker
+        env:
+          VITE_WEB_READONLY_RC: '1'
+          BASE_PATH: /Dreamlight-Timekeeper
+        run: |
+          npm install --no-audit --no-fund
+          npm run build
+          node scripts/audit-sveltekit-build.mjs build .release-audit/qa-web52-bundle.json
+          node scripts/audit-web-compiled-egress.mjs build .release-audit/qa-web52-egress.json
+      - name: Install isolated Chromium runtime
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Independent Chromium direct bundled Worker spoof/replay/source-switch and HTTP/WS observation
+        run: node qa/05qr-web52-compiled-worker-negative.mjs
+      - name: Do not upload or deploy
+        run: echo 'QA_ONLY NO_PRODUCT_RUST_READ NO_WRITER NO_DEPLOY NO_USER_SAVE'
