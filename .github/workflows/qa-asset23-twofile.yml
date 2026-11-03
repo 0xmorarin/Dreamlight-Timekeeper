@@ -1,0 +1,24 @@
+name: 05 QR ASSET23 exact-delta independent
+on:
+  pull_request:
+    paths:
+      - 'qa/05qr-asset23-new-twofile.test.mjs'
+      - '.github/workflows/qa-asset23-twofile.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fixed-source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Pin source HEAD and reject QR product changes
+        run: git diff --quiet 9e826bf6788602a0fe181ef4864923ff1ca9946e HEAD -- src data crates/ddv-save-core .github/workflows/01a-offline-v2-research.yml tests/item-image-coverage.test.mjs tests/w1-bound-intent-research.test.mjs docs
+      - name: Independent new-delta acceptance only
+        run: node --test qa/05qr-asset23-new-twofile.test.mjs
+      - name: Keep product permissions disabled
+        run: echo 'RESEARCH_ONLY; NO_REAL_SAVE_IN_CI; NO_WRITER; NO_PUBLIC_IMAGE'
