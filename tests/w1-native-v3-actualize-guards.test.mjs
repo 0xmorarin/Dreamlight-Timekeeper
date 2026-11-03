@@ -21,7 +21,7 @@ const observed=[
  {eventId:2010200014,kind:'FishSpawningInVillage',execute:'0x057C6890',reschedule:'0x057C7110',status:'INACTIVE_SOURCE_DEFINITION'}
 ];
 function decodeSubOrCompare(word){
- const opcode=word&0xffe0fc00;
+ const opcode=(word&0xffe0fc00)>>>0; // JS bitwise op is signed i32
  assert([0xcb000000,0xeb000000].includes(opcode),
   'Expected signed 64-bit SUB or SUBS/CMP (shifted-register form)');
  return {kind:opcode===0xcb000000?'SUB':'CMP',
