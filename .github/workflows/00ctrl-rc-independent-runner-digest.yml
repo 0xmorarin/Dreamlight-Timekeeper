@@ -1,0 +1,110 @@
+name: 00 CTRL Independent-Runners Read-Only RC Digest (no deploy)
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/00ctrl-rc-independent-runner-digest.yml'
+      - 'svelte.config.js'
+      - 'scripts/audit-sveltekit-build.mjs'
+      - 'scripts/verify-readonly-rc-candidate.mjs'
+      - 'src/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  runner_a:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    outputs:
+      digest: ${{ steps.manifest.outputs.digest }}
+      commit: ${{ steps.manifest.outputs.commit }}
+      files: ${{ steps.manifest.outputs.files }}
+      bytes: ${{ steps.manifest.outputs.bytes }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build local text-only RC without publishing
+        env:
+          BASE_PATH: /Dreamlight-Timekeeper
+          VITE_WEB_READONLY_RC: '1'
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-audit --no-fund
+          npm run build
+          node scripts/audit-sveltekit-build.mjs build .release-audit/independent-runner-inventory.json
+          node scripts/verify-readonly-rc-candidate.mjs .release-audit/independent-runner-inventory.json
+      - id: manifest
+        name: Emit only review digest to job outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "digest=$(sha256sum .release-audit/independent-runner-inventory.json | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+          echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "files=$(node -p "require('./.release-audit/independent-runner-inventory.json').totalFiles")" >> "$GITHUB_OUTPUT"
+          echo "bytes=$(node -p "require('./.release-audit/independent-runner-inventory.json').totalBytes")" >> "$GITHUB_OUTPUT"
+  runner_b:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    outputs:
+      digest: ${{ steps.manifest.outputs.digest }}
+      commit: ${{ steps.manifest.outputs.commit }}
+      files: ${{ steps.manifest.outputs.files }}
+      bytes: ${{ steps.manifest.outputs.bytes }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Independently rebuild local text-only RC
+        env:
+          BASE_PATH: /Dreamlight-Timekeeper
+          VITE_WEB_READONLY_RC: '1'
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-audit --no-fund
+          npm run build
+          node scripts/audit-sveltekit-build.mjs build .release-audit/independent-runner-inventory.json
+          node scripts/verify-readonly-rc-candidate.mjs .release-audit/independent-runner-inventory.json
+      - id: manifest
+        name: Emit only independent digest to job outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "digest=$(sha256sum .release-audit/independent-runner-inventory.json | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
+          echo "commit=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "files=$(node -p "require('./.release-audit/independent-runner-inventory.json').totalFiles")" >> "$GITHUB_OUTPUT"
+          echo "bytes=$(node -p "require('./.release-audit/independent-runner-inventory.json').totalBytes")" >> "$GITHUB_OUTPUT"
+  compare:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    needs: [runner_a, runner_b]
+    env:
+      A_DIGEST: ${{ needs.runner_a.outputs.digest }}
+      B_DIGEST: ${{ needs.runner_b.outputs.digest }}
+      A_COMMIT: ${{ needs.runner_a.outputs.commit }}
+      B_COMMIT: ${{ needs.runner_b.outputs.commit }}
+      A_FILES: ${{ needs.runner_a.outputs.files }}
+      B_FILES: ${{ needs.runner_b.outputs.files }}
+      A_BYTES: ${{ needs.runner_a.outputs.bytes }}
+      B_BYTES: ${{ needs.runner_b.outputs.bytes }}
+      EXPECTED_COMMIT: ${{ github.event.pull_request.head.sha || github.sha }}
+    steps:
+      - name: Reject mismatched or missing manifest outputs, no release grant
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$A_COMMIT" == "$B_COMMIT" && "$A_COMMIT" == "$EXPECTED_COMMIT" ]] || { echo 'RC_RUNNER_SOURCE_MISMATCH'; exit 1; }
+          [[ "$A_DIGEST" =~ ^[a-f0-9]{64}$ && "$A_DIGEST" == "$B_DIGEST" ]] || { echo 'RC_RUNNER_MANIFEST_SHA_MISMATCH'; exit 1; }
+          [[ "$A_FILES" == "$B_FILES" && "$A_BYTES" == "$B_BYTES" ]] || { echo 'RC_RUNNER_COUNT_MISMATCH'; exit 1; }
+          [[ "$A_FILES" -ge 20 && "$A_BYTES" -gt 0 ]] || { echo 'RC_RUNNER_EMPTY_ARTIFACT'; exit 1; }
+          echo "RC_REVIEW_CROSS_RUNNER_SAME_IMAGE_MANIFEST_MATCH sha=$A_DIGEST files=$A_FILES bytes=$A_BYTES source=$A_COMMIT"
+          echo 'REVIEW_ONLY: same Ubuntu image with independently allocated runners, unpinned package registry, no cross-OS claim, no binary upload/deploy, no Writer/public release authorization.'
