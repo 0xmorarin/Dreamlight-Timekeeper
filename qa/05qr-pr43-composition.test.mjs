@@ -70,9 +70,5 @@ test('QR43 review workflow has build BEFORE stage, bound reviewed source, no upl
  assert(wf.includes('RUNNER_TEMP'));
  assert(!webWf.includes('deploy-pages'));
  assert(wf.includes('permissions:\n  contents: read'));
- assert.equal(git('rev-parse',BASE+':src/lib/timekeeper/session-response-fence.mjs'),
-              git('rev-parse',WEB31+':src/lib/timekeeper/session-response-fence.mjs')===
-              git('rev-parse',BASE+':src/lib/timekeeper/session-response-fence.mjs')
-              ? git('rev-parse',BASE+':src/lib/timekeeper/session-response-fence.mjs')
-              : git('rev-parse',BASE+':src/lib/timekeeper/session-response-fence.mjs'));
+
 });
