@@ -24,6 +24,52 @@ export type SessionIdentity = Readonly<{
   origin: 'local-file';
   capabilities: Readonly<Record<SaveCapability, CapabilityDecision>>;
 }>;
+/** Phase B target only. Only the trusted Rust CORE Worker may originate
+ * these state roots. A TS object with these properties is NOT authority.
+ * UI never chooses session/revision/index/cursor or supplies reference edges. */
+export type PrivateCoreReadRoots = Readonly<{
+  encryptedOriginalP1gSha256:string;
+  decodedJsonSha256:string;
+  registrySha256:string;
+  sessionKey:string;
+  generation:number;
+  revision:number;
+  indexGeneration:number;
+  schema:number;
+  build:Readonly<{platform:'Switch';version:string;externalBid:string;bidBoundToSave:false}>;
+}>;
+/** Unprivileged UI query: intent only, never ownership or source provenance. */
+export type ReadOnlyUiQueryIntent = Readonly<{
+  domain:Domain;
+  view:string;
+  limit:number;
+  cursor:string|null;
+  filters?:Readonly<Record<string,string|number|boolean>>;
+  sort?:string;
+}>;
+/** Private Worker/Core verification receipt is NEVER accepted from UI JSON.
+ * Total/complete originates in a fully indexed Native domain, not a guessed
+ * watch-pointer subset; opaque cursor issuance and single-use consume are Core.
+ */
+export type PrivateCoreIndexedPageReceipt<Row> = Readonly<{
+  source:PrivateCoreReadRoots;
+  rows:readonly Readonly<Row>[];
+  complete:boolean;
+  nextCursor:string|null;
+  completeDomainIndexVerified:true;
+  sourceReferencesVerified:true;
+  trustedCoreAuthTag:'CORE_PRIVATE_ONLY';
+}>;
+export const CORE_READ_WORKER_PHASE_B = Object.freeze({
+  status:'PROPOSED_NOT_BOUND',
+  sourceAuthority:'WAND_RUST_CORE_PRIVATE',
+  queryCursorAuthority:'CORE_MINTED_OPAQUE_SINGLE_USE',
+  completeAuthority:'FULL_SOURCE_INDEX',
+  producerByteBoundRequired:true,
+  clientCannotEnableByConfig:true,
+  wasmConnected:false,
+  writerGranted:false
+} as const);
 export type Domain = 'timing' | 'inventory' | 'collections' | 'storage' |
   'world-grid' | 'rooms' | 'progression' | 'quests';
 /** Transport limits are UI rejection guards, not proof that Core fulfilled a full
