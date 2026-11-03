@@ -37,8 +37,10 @@ try{
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  const original=Buffer.from(makeSyntheticP1gProfile({
   GameInfo:{Version:626,InitialVersion:518,LastSaveDeviceInfo:{deviceType:'DeviceType_Switch'}},
-  Player:{Name:'RC Text Only'},World:{RecurringEvents:{'0':{ItemSpawning:{
-   RecurringEventItemID:2010000021,NextOccurrence:'2126-08-20T00:00:00Z'}}}}
+  Player:{Name:'RC Text Only'},World:{RecurringEvents:{
+   '0':{ItemSpawning:{RecurringEventItemID:2010000021,NextOccurrence:'2126-08-20T00:00:00Z'}},
+   '1':{ItemSpawning:{RecurringEventItemID:2010000003,NextOccurrence:'2126-08-20T00:00:00Z'}}
+  }}
  }));
  await page.goto(base,{waitUntil:'domcontentloaded'});
  assert.equal(await page.locator('#tk-language option').count(),8);
@@ -52,6 +54,18 @@ try{
  assert.match(label,/ItemID/);
  assert.match(label,/Image unavailable/);
  assert.match(label,/Activity item|Furniture|Companion/);
+ // 41 source events have >1 ItemID. The second fixture event links four
+ // distinct obstacle ItemIDs, three of which never occur first in source.
+ const thorn=page.locator('.event-row').filter({hasText:'EventID 2010000003'});
+ assert.equal(await thorn.count(),1);
+ assert.equal(await thorn.locator('.linked-items li').count(),4);
+ for(const id of [31300003,31300004,31300005,31300006]){
+  assert.equal(await thorn.getByText('ItemID '+id,{exact:false}).count(),1);
+ }
+ const linked=await thorn.locator('.linked-items').getAttribute('aria-label');
+ assert(linked&&linked.length>0);
+ assert.equal(await thorn.locator('.linked-items img').count(),0);
+
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+3),false);
  const p=page.waitForEvent('download');
  await page.getByRole('button',{name:'Original backup'}).click();
@@ -84,8 +98,33 @@ try{
   assert.equal(rejected.ok,false);
   assert.equal(rejected.error,'CORE_READ_ABI_NOT_ACCEPTED');
  }
+ // New file replacement must invalidate old output and ensure backup is
+ // emitted from the NEW worker session, even when IDs recycle after restart.
+ const second=Buffer.from(makeSyntheticP1gProfile({
+  GameInfo:{Version:626,InitialVersion:518,LastSaveDeviceInfo:{deviceType:'DeviceType_Switch'}},
+  Player:{Name:'RC Text Only B'},World:{RecurringEvents:{
+   '0':{ItemSpawning:{RecurringEventItemID:2010000021,NextOccurrence:'2026-11-03T00:00:00Z'}}
+  }}
+ }));
+ await page.locator('#tk-save-file').setInputFiles({name:'rc-b.p1g',mimeType:'application/octet-stream',buffer:second});
+ await page.getByRole('heading',{name:'RC Text Only B'}).waitFor({timeout:20000});
+ assert.equal(await page.locator('.event-row').filter({hasText:'EventID 2010000003'}).count(),0);
+ const nextBackup=page.waitForEvent('download');
+ await page.getByRole('button',{name:'Original backup'}).click();
+ assert.equal((await nextBackup).suggestedFilename(),'original_rc-b.p1g');
+ // Corrupt replacement must fail closed with no stale snapshot; reselecting a
+ // legitimate local file remains possible without refreshing the browser.
+ await page.locator('#tk-save-file').setInputFiles({
+  name:'corrupt.p1g',mimeType:'application/octet-stream',buffer:Buffer.from([0,1,2,3])
+ });
+ await page.locator('main [role="alert"]').waitFor({timeout:20000});
+ assert.equal(await page.locator('.event-row').count(),0);
+ assert.equal(await page.locator('.landing button.primary').count(),1);
+ await page.locator('#tk-save-file').setInputFiles({name:'rc-b.p1g',mimeType:'application/octet-stream',buffer:second});
+ await page.getByRole('heading',{name:'RC Text Only B'}).waitFor({timeout:20000});
+ assert.equal(await page.locator('main [role="alert"]').count(),0);
  assert.deepEqual(remoteRequests,[],'Compiled UI/Worker requested external network URL');
  assert.deepEqual(remoteSockets,[],'Compiled UI opened external WebSocket');
  assert.deepEqual(errors,[]);
- console.log('WEB READONLY TEXT RC CHROMIUM PASS: 244-type source text, backup original, four tabs, eight locales, 320px, Worker direct prepareEdited + untrusted READ DENY; network local-only');
+ console.log('WEB READONLY TEXT RC CHROMIUM PASS: 244-type multi-item source text, A-to-B and corrupt-file recovery, backup original, four tabs, eight locales, 320px, Worker direct prepareEdited + untrusted READ DENY; network local-only');
 }finally{await browser?.close();server.kill();}
