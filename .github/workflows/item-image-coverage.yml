@@ -5,6 +5,8 @@ on:
       - 'src/item-image-coverage.mjs'
       - 'data/item-image-coverage-v1253.json'
       - 'scripts/verify-item-image-coverage.mjs'
+      - 'scripts/item-image-rights-ledger.mjs'
+      - 'tests/item-image-rights-ledger.test.mjs'
       - 'scripts/reconcile-item-image-source-audits.mjs'
       - 'tests/item-image-coverage.test.mjs'
       - 'tests/item-image-source-reconciliation.test.mjs'
@@ -27,8 +29,10 @@ jobs:
           node --check src/item-image-coverage.mjs
           node --check scripts/reconcile-item-image-source-audits.mjs
           node --check scripts/verify-item-image-coverage.mjs
-          node --test tests/item-image-coverage.test.mjs tests/item-image-source-reconciliation.test.mjs
+          node --check scripts/item-image-rights-ledger.mjs
+          node --test tests/item-image-coverage.test.mjs tests/item-image-source-reconciliation.test.mjs tests/item-image-rights-ledger.test.mjs
           node scripts/verify-item-image-coverage.mjs
+          node scripts/item-image-rights-ledger.mjs
       - name: Verify no original binary game sprites were added to this audit PR
         run: |
           test -f data/item-image-coverage-v1253.json
