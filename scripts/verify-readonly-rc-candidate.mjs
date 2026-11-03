@@ -68,7 +68,7 @@ export function verifyReadOnlyRcCandidate({release,core,types,inventory,buildFla
  for(const item of inventory.files){
   if(typeof item.path!=='string'||distinct.has(item.path)||
      item.path.includes('..')||item.path.startsWith('/')||
-     /\\.(?:webp|png|jpe?g|wasm|p1g|zip|nca|nsp|key|map)$/i.test(item.path)||
+     /\.(?:webp|png|jpe?g|wasm|p1g|zip|nca|nsp|key|map)$/i.test(item.path)||
      !Number.isSafeInteger(item.bytes)||item.bytes<0||!sha.test(item.sha256)||
      !['OWNER_ORIGINAL_PROVISIONAL_SVG','INFORMATIONAL_NOTICE',
        'WORKER_DATA_REVIEW_REQUIRED','HTML_ENTRY','COMPILED_STATIC'].includes(item.class))
