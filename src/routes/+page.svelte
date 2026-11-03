@@ -261,14 +261,14 @@
         <ItemThumb item={r.items?.[0]??null} localeCode={localeCode}/>
         <span class="row-text"><strong>{labelRow(r)}</strong><small>{location(r)} · {r.kind} · EventID {r.id}</small>
          {#if r.items?.length}
-          <ul class="linked-items" aria-label={rcLinkedItemListLabel(localeCode)}>
+          <span class="linked-items" role="list" aria-label={rcLinkedItemListLabel(localeCode)}>
            {#each rcTextOnlyEventItems(r.items,localeCode,itemTypeAudit) as item (item.linkIndex)}
-            <li>
+            <span class="linked-item" role="listitem">
              <span class="linked-item-name">{item.name}</span>
              <small class="item-type">{item.displayLine}</small>
-            </li>
+            </span>
            {/each}
-          </ul>
+          </span>
          {/if}
         </span>
         <span class="row-time">{dateLabel(r.time,localeCode)}</span>
@@ -367,8 +367,8 @@
  .event-row{display:flex;align-items:center;gap:9px;border:1px solid #35535a;border-radius:8px;margin:5px 0;padding:10px 7px;cursor:pointer;min-width:0}
  .event-row.checked{border-color:#e4bf7a;background:#2b4c4d}.row-text{min-width:0;flex:1;overflow-wrap:anywhere}
  .row-text strong{display:block}.row-text small{display:block;font-size:11px;opacity:.8}
- .linked-items{list-style:disc;margin:5px 0 0;padding-left:18px;min-width:0;overflow-wrap:anywhere}
- .linked-items li{margin:4px 0;line-height:1.4}
+ .linked-items{display:block;margin:5px 0 0;min-width:0;overflow-wrap:anywhere}
+ .linked-item{display:block;border-left:2px solid #628284;margin:5px 0;padding-left:8px;line-height:1.4}
  .linked-item-name{font-size:12px}
  .linked-items .item-type{font-size:11px;overflow-wrap:anywhere}
  .row-time{font-size:11px;max-width:145px;text-align:right;overflow-wrap:anywhere}
