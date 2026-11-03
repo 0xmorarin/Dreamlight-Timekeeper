@@ -9,6 +9,8 @@ on:
       - 'scripts/audit-sveltekit-build.mjs'
       - 'tests/ctrl-sveltekit-review-stage.test.mjs'
       - 'tests/web-readonly-rc-contract.test.mjs'
+      - 'scripts/verify-readonly-rc-candidate.mjs'
+      - 'tests/ctrl-readonly-rc-candidate.test.mjs'
       - '.github/workflows/00ctrl-rc-composite-review.yml'
   workflow_dispatch:
 
@@ -28,7 +30,7 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Check READ Worker denial and Svelte source
         run: |
-          node --test tests/web-readonly-rc-contract.test.mjs
+          node --test tests/web-readonly-rc-contract.test.mjs tests/ctrl-readonly-rc-candidate.test.mjs
           npm run check
       - name: Build exact text-only RC configuration
         env:
@@ -37,6 +39,7 @@ jobs:
         run: |
           npm run build
           node scripts/audit-sveltekit-build.mjs build .release-audit/ctrl-combined-build-inventory.json
+          VITE_WEB_READONLY_RC=1 node scripts/verify-readonly-rc-candidate.mjs .release-audit/ctrl-combined-build-inventory.json
           node -e "const c=require('./contracts/web-readonly-rc-release-v1.json'); if(c.status!=='DRAFT_NEVER_DEPLOY'||c.releaseGates.publicReleaseApproved!==false||c.product.writerEnabled!==false||c.product.editedCopyOutputEnabled!==false) process.exit(23)"
       - name: Independently verify CTRL stage source security and output after build
         run: node --test tests/ctrl-sveltekit-review-stage.test.mjs
