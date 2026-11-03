@@ -12,7 +12,7 @@ const icon=(id='31300004')=>({platform:'Steam',gameVersion:'1.25.3',verified:tru
 const verified=()=>({source:{platform:'Steam/Windows',gameVersion:'1.25.3',status:'VERIFIED_STEAM_ASSETS'},icons:{'31300004':icon()}});
 const row={id:31300004,en:'Small Night Thorn',ja:'小さな闇のトゲ'};
 test('QR23: valid synthetic manifest permits only relative local static artwork, never real release by itself',()=>{
- const v=resolveRcItemTextRow(verified(),row,{locale:'ja',basePath:'/Dreamlight-Timekeeper/'});
+ const v=resolveRcItemTextRow(verified(),row,{locale:'ja',basePath:'/Dreamlight-Timekeeper/',coverageAudit:evidence});
  assert.equal(v.image.status,'VERIFIED');
  assert.equal(v.image.url,'/Dreamlight-Timekeeper/assets/steam/v1253/31300004.webp');
  assert.equal(v.fullItemImageReleaseAccepted,false);
