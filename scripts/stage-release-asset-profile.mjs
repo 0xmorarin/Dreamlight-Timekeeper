@@ -29,6 +29,7 @@ const approvedRuntimeModules=Object.freeze([
   "src/icon-assets.mjs",
   "src/icon-import-plan.mjs",
   "src/item-id-structure.mjs",
+  "src/lib/timekeeper/read-only-rc-mode.mjs",
   "src/reader.mjs",
   "src/steam-ui-provenance.mjs",
   "src/time-presets.mjs",
@@ -45,6 +46,38 @@ const approvedRuntimeModules=Object.freeze([
   "src/wand-wood-tag-evidence.mjs",
   "src/worker.mjs"
 ]);
+// SvelteKit-only inputs are review-audited and shipped via the separate
+// 00 CTRL compiled SvelteKit artifact route, NEVER by the historical HTML
+// source-tree release. This explicit inventory is NOT a wildcard waiver.
+// New/renamed executable code still fails closed until explicitly reviewed.
+const excludedSvelteKitOnlyModules=Object.freeze([
+  "src/app.html",
+  "src/lib/timekeeper/ItemThumb.svelte",
+  "src/lib/timekeeper/item-text-only.mjs",
+  "src/lib/timekeeper/locale.ts",
+  "src/lib/timekeeper/model.ts",
+  "src/lib/timekeeper/save-session-contract.ts",
+  "src/lib/timekeeper/session-response-fence.mjs",
+  "src/lib/timekeeper/worker-adapter.ts",
+  "src/lib/timekeeper/worker-projection-bounds.mjs",
+  "src/lib/wand-a11y/LiveRegion.svelte",
+  "src/lib/wand-a11y/VisuallyHidden.svelte",
+  "src/lib/wand-i18n/catalog-schema.js",
+  "src/lib/wand-i18n/messages/index.js",
+  "src/lib/wand-i18n/preference.js",
+  "src/lib/wand-i18n/registry.js",
+  "src/lib/wand-i18n/runtime.js",
+  "src/lib/wand-ui/ResponsiveFrame.svelte",
+  "src/lib/wand-ui/SegmentedControl.svelte",
+  "src/routes/+layout.ts",
+  "src/routes/+page.svelte"
+]);
+// The common worker imports this build-flag module, so it MUST be included
+// in the older HTML source stage as a concrete runtime dependency.
+const exactSourceInventory=Object.freeze([...approvedRuntimeModules,...excludedSvelteKitOnlyModules].sort());
+if(new Set(exactSourceInventory).size!==exactSourceInventory.length)
+ throw new Error('Duplicate reviewed source inventory entry.');
+
 async function assertSafeNewStageDestination(sourceRoot,outputRoot){
  const canonicalSource=await realpath(sourceRoot);
  if(inside(sourceRoot,outputRoot)||inside(outputRoot,sourceRoot))
@@ -122,9 +155,12 @@ export async function stageReleaseAssetProfile({sourceRoot=sourceDefault,outputR
  const base=resolve(sourceRoot),output=resolve(outputRoot);
  await assertSafeNewStageDestination(base,output);
  const {scope,game}=await checkReleaseAssetScope(base);
- const modules=(await filesIn(join(base,'src'))).map(p=>'src/'+p).sort();
- if(JSON.stringify(modules)!==JSON.stringify(approvedRuntimeModules))
+ const observed=(await filesIn(join(base,'src'))).map(p=>'src/'+p).sort();
+ // Full inventory must match exactly, INCLUDING the excluded Svelte files.
+ // Missing or added files cannot hide in a broad ignored directory.
+ if(JSON.stringify(observed)!==JSON.stringify(exactSourceInventory))
   throw new Error('Unknown or unapproved source module in release staging.');
+ const modules=approvedRuntimeModules;
  const webp=profile==='current_repo_game_ui'?scope.gameUi.map(x=>x.path):[];
  const paths=['index.html','styles.css','assets/app/release-notice.css',...modules,
   ...dataFiles.map(p=>'data/'+p),...scope.ownerSvg.map(x=>x.path),...webp];
