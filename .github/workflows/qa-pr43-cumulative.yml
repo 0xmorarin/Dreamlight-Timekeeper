@@ -1,0 +1,24 @@
+name: 05 QR PR43 cumulative exact-blobs independent acceptance
+on:
+  pull_request:
+    paths:
+      - 'qa/05qr-pr43-cumulative.test.mjs'
+      - '.github/workflows/qa-pr43-cumulative.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-composition:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: No product changes by independent QA
+        run: git diff --quiet 20ed2f4a6e90453eb7d63652955bf34c69e8c3ef HEAD -- src contracts data scripts tests/browser-sveltekit-readonly-text-rc.smoke.mjs tests/web-readonly-rc-contract.test.mjs .github/workflows/00ctrl-rc-composite-review.yml
+      - name: Independent inherited 13 source-blob SHA and stage workflow/CAPABILITY fences
+        run: node --test qa/05qr-pr43-cumulative.test.mjs
+      - name: Scope
+        run: echo 'READ_REVIEW_ONLY; NO_DEPLOY; NO_RUST_READ; NO_PRODUCT_WRITER'
