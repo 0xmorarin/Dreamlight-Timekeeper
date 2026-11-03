@@ -10,6 +10,7 @@ on:
       - 'src/lib/timekeeper/worker-projection-bounds.mjs'
       - 'src/lib/timekeeper/core-read-worker-bridge.mjs'
       - 'src/lib/timekeeper/model.ts'
+      - 'svelte.config.js'
       - 'scripts/audit-web-compiled-egress.mjs'
       - 'scripts/verify-web-compiled-reproducibility.mjs'
       - 'tests/web-compiled-egress-review.test.mjs'
@@ -50,6 +51,7 @@ jobs:
           npm run build
           node scripts/audit-sveltekit-build.mjs build .release-audit/web-readonly-rc-build-inventory.json
           test -s .release-audit/web-readonly-rc-build-inventory.json
+          node -e "const fs=require('fs'),cp=require('child_process');const actual=JSON.parse(fs.readFileSync('build/_app/version.json','utf8')).version;const expected='git-'+cp.execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();if(actual!==expected)throw Error('UNPINNED_SVELTEKIT_BUILD_VERSION')"
           node scripts/audit-web-compiled-egress.mjs build .release-audit/web-compiled-egress-review.json
           node -e "const r=require('./.release-audit/web-compiled-egress-review.json');if(r.publicReleaseAuthorized!==false||r.remoteEgressFullyExcluded!==false||r.coreRealReadAccepted!==false)process.exit(12)"
           cp .release-audit/web-readonly-rc-build-inventory.json .release-audit/web-readonly-rc-build-inventory-first.json
