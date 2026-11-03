@@ -84,3 +84,69 @@ test('QR WEB52 worker bridge zero partial results on an oversized 64KiB row desp
  await assert.rejects(b.queryPage(input()),/WORKER_PROJECTION_BYTES_REJECTED/);
  await assert.rejects(b.queryPage(input()),/CORE_READ_SESSION_NOT_READY/);
 });
+
+test('QR WEB52 delayed Core query from File A cannot contaminate File B session',async()=>{
+ let releaseA;
+ const delayed=new Promise(resolve=>{releaseA=resolve;});
+ let opened=0,queries=0,active;
+ const core={
+  openLocal:async()=>{active={...roots(),generation:++opened,sessionKey:'File-'+opened};return active;},
+  queryIndexedPage:async()=>++queries===1?delayed:{
+   roots:active,page:{domain:'timing',view:'events',rows:[{id:'B'}],complete:true,nextCursor:null}
+  },
+  verifyIndexedPage:async()=>true,close:()=>{}
+ };
+ const b=createProspectiveCoreReadWorkerBridge({core});
+ const a=await b.openLocal({name:'File A'});
+ const pending=b.queryPage(input());
+ const bRoots=await b.openLocal({name:'File B'});
+ assert.notEqual(a.sessionKey,bRoots.sessionKey);
+ releaseA({roots:a,page:{domain:'timing',view:'events',rows:[{id:'A'}],
+   complete:true,nextCursor:null}});
+ await assert.rejects(pending,/STALE_CORE_PAGE/);
+ const current=await b.queryPage(input());
+ assert.equal(current.rows[0].id,'B');
+});
+test('QR WEB52 delayed positive verifier result after File B replacement is stale and cannot emit rows',async()=>{
+ let resolveVerifier;
+ const held=new Promise(resolve=>{resolveVerifier=resolve;});
+ let opened=0,verifyCount=0,active;
+ const core={
+  openLocal:async()=>{active={...roots(),generation:++opened,sessionKey:'File-'+opened};return active;},
+  queryIndexedPage:async()=>({roots:active,page:{domain:'timing',view:'events',
+   rows:[{id:active.sessionKey}],complete:true,nextCursor:null}}),
+  verifyIndexedPage:async()=>++verifyCount===1?held:true,close:()=>{}
+ };
+ const b=createProspectiveCoreReadWorkerBridge({core});
+ await b.openLocal({name:'File A'});
+ const pending=b.queryPage(input());
+ await new Promise(resolve=>setImmediate(resolve));
+ await b.openLocal({name:'File B'});
+ resolveVerifier(true);
+ await assert.rejects(pending,/STALE_CORE_PAGE/);
+ const fresh=await b.queryPage(input());
+ assert.equal(fresh.rows[0].id,'File-2');
+});
+test('QR WEB52 cursor reuse and altered filter/query scope are denied before private Core',async()=>{
+ let n=0,active;
+ const core={
+  openLocal:async()=>{active=roots();return active;},
+  queryIndexedPage:async intent=>{n++;return{roots:active,page:{
+   domain:'timing',view:'events',rows:[{id:n}],
+   complete:intent.cursor!==null,nextCursor:intent.cursor===null?'core-minted-opaque':null
+  }};},
+  verifyIndexedPage:async()=>true,close:()=>{}
+ };
+ const b=createProspectiveCoreReadWorkerBridge({core});await b.openLocal({});
+ const first=await b.queryPage(input());
+ assert.equal(first.nextCursor,'core-minted-opaque');
+ for(const altered of [input('made-up'),input('core-minted-opaque',{view:'other'}),
+  input('core-minted-opaque',{limit:2}),input('core-minted-opaque',{filters:{area:'other'}})]){
+  await assert.rejects(b.queryPage(altered),/CORE_CURSOR_SCOPE_OR_SEQUENCE_INVALID/);
+ }
+ assert.equal(n,1,'untrusted query touched private Core');
+ const last=await b.queryPage(input('core-minted-opaque'));
+ assert.equal(last.complete,true);assert.equal(last.nextCursor,null);
+ await assert.rejects(b.queryPage(input('core-minted-opaque')),/CORE_CURSOR_REPLAY/);
+ assert.equal(n,2);
+});
