@@ -6,9 +6,11 @@
   "rustReadWasmInstalled": false,
   "buildEvidence": {
     "wandCore312": "c6b152512d3bc901fd1474dbcfcb07253ae1b347",
-    "wandCore329": "9c2945a6ac41e584a49394bd1b39865c6d68daeb",
+    "wandCore329": "0afee519eacef719e2d0a44b6258c137ae62a425",
     "coreReadApiAccepted": false,
-    "qrFullReadAccepted": false
+    "qrFullReadAccepted": false,
+    "ctrlParent48": "b4450e0e847fd93670c3461312c5911387e483fb",
+    "trustedReadWorkerAbiAccepted": false
   },
   "trustRoots": {
     "owner": "Wand Rust CORE through private Worker",
@@ -63,7 +65,10 @@
       "INCOMPLETE_REFERENCE_GRAPH"
     ],
     "noAutomaticRepair": true,
-    "noPartialRowsOnFailure": true
+    "noPartialRowsOnFailure": true,
+    "currentBrowserWorkerRejectsUntrustedRead": "CORE_READ_ABI_NOT_ACCEPTED",
+    "readQueryInputAuthority": "ONLY_DOMAIN_VIEW_LIMIT_CURSOR_FILTERS_SORT; ALL_OTHER_FIELDS_DENIED_BY_BOUND_BRIDGE",
+    "boundedResponseSequence": "Core verifies source/index/session/revision+cursor expiry and consumes cursor once; WEB bridge checks scope/sequence; Producer UTF8 limits before postMessage"
   },
   "transport": {
     "maxRows": 200,
@@ -80,7 +85,14 @@
     "prospectiveWorkerBridge": "src/lib/timekeeper/core-read-worker-bridge.mjs",
     "privateCorePortBindingStatus": "NOT_INSTALLED",
     "producerEgressEnforcedByIsolatedBridgeTests": true,
-    "productProducerEgressEnforced": false
+    "productProducerEgressEnforced": false,
+    "prospectiveBridgeCursorScopeSequenceGuard": true,
+    "prospectiveBridgeInvalidateOnBadProof": true,
+    "compiledStaticEgressAudit": "scripts/audit-web-compiled-egress.mjs",
+    "cleanSameRunnerRebuildShaCompare": "scripts/verify-web-compiled-reproducibility.mjs",
+    "compiledEvidenceClaim": "STATIC_ONLY_NO_NETWORK_FREEDOM_PROOF",
+    "browserLocalOnlyNetworkNegative": true,
+    "realCoreReadEgressGateInstalled": false
   },
   "permissions": {
     "ENCODE_COPY": false,
@@ -117,7 +129,16 @@
       "Cursor minting proof",
       "Complete flag"
     ],
-    "prospectiveBridgeTestsSyntheticOnly": true
+    "prospectiveBridgeTestsSyntheticOnly": true,
+    "cursorRequiredCoreEvidence": [
+      "Core-minted unpredictable nonce or authenticated token; canonical query scope/domain/limit/sort/filter",
+      "single-use atomic consume and expiry checked only inside CORE",
+      "bind current encrypted source P1G+decoded JSON+registry hashes",
+      "bind original session/generation/revision/index generation, external build identity",
+      "reference closure, counted full indexed domain, complete and nextCursor coherence"
+    ],
+    "noUiSourceAuthority": true,
+    "coreAbiNeedsIndependentQr": true
   },
   "actualReadWorkerEnabled": false,
   "result": "DESIGN_ONLY_NO_PRODUCT_READ_OR_WRITER"
