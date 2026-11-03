@@ -92,6 +92,7 @@ test('Svelte event markup enumerates every linked ItemID and fences stale A-to-B
  const markup=await readFile(new URL('../src/routes/+page.svelte',import.meta.url),'utf8');
  assert.match(markup,/rcTextOnlyEventItems\(r\.items,localeCode,itemTypeAudit\)/);
  assert.match(markup,/aria-label=\{rcLinkedItemListLabel\(localeCode\)\}/);
+ assert.match(markup,/role="listitem"/);
  assert.match(markup,/EventID \{r\.id\}/);
  assert.match(markup,/\+\+openToken/);
  assert.match(markup,/\+\+preflightSerial/);
